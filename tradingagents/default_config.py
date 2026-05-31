@@ -59,7 +59,7 @@ DEFAULT_CONFIG = _apply_env_overrides({
     "memory_log_max_entries": None,
     # LLM settings
     "llm_provider": "openai",
-    "deep_think_llm": "gpt-5.4",
+    "deep_think_llm": "gpt-5.5",
     "quick_think_llm": "gpt-5.4-mini",
     # When None, each provider's client falls back to its own default endpoint
     # (api.openai.com for OpenAI, generativelanguage.googleapis.com for Gemini, ...).
@@ -122,13 +122,15 @@ DEFAULT_CONFIG = _apply_env_overrides({
     # while non-US tickers get their regional index automatically.
     "benchmark_ticker": None,
     "benchmark_map": {
-        ".NS":  "^NSEI",    # NSE India (Nifty 50)
-        ".BO":  "^BSESN",   # BSE India (Sensex)
-        ".T":   "^N225",    # Tokyo (Nikkei 225)
-        ".HK":  "^HSI",     # Hong Kong (Hang Seng)
-        ".L":   "^FTSE",    # London (FTSE 100)
-        ".TO":  "^GSPTSE",  # Toronto (TSX Composite)
-        ".AX":  "^AXJO",    # Australia (ASX 200)
-        "":     "SPY",      # default for US-listed tickers (no suffix)
+        ".NS":  "^NSEI",       # NSE India (Nifty 50)
+        ".BO":  "^BSESN",      # BSE India (Sensex)
+        ".T":   "^N225",       # Tokyo (Nikkei 225)
+        ".HK":  "^HSI",        # Hong Kong (Hang Seng)
+        ".L":   "^FTSE",       # London (FTSE 100)
+        ".TO":  "^GSPTSE",     # Toronto (TSX Composite)
+        ".AX":  "^AXJO",       # Australia (ASX 200)
+        ".SS":  "000001.SS",   # Shanghai (SSE Composite)
+        ".SZ":  "399001.SZ",   # Shenzhen (SZSE Component)
+        "":     "SPY",         # default for US-listed tickers (no suffix)
     },
 })
