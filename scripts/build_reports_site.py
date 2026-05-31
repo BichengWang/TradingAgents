@@ -1,13 +1,23 @@
-"""Build a static site from reports/ for GitHub Pages.
+"""Render every run folder under docs/ to HTML for GitHub Pages.
 
-Walks every run folder under ``reports/`` (created by the CLI's "Save
-report?" prompt — format ``<TICKER>_<DATE>_<MODEL>_<RUN_TIMESTAMP>/``),
-renders ``complete_report.md`` to HTML, writes one
-``site/<run>/index.html`` per run, and a top-level ``site/index.html``
-listing every run grouped by ticker.
+Folder layout produced:
 
-Run via the GitHub Pages workflow (.github/workflows/pages.yml) or
-locally with ``python scripts/build_reports_site.py``.
+    docs/
+        index.html                                       ← top-level entry
+        .nojekyll                                        ← serve raw, skip Jekyll
+        <TICKER>_<DATE>_<MODEL>_<TS>/
+            complete_report.md   (kept)
+            1_analysts/, ...     (kept)
+            index.html           ← rendered from complete_report.md
+
+Pages source: main + /docs. URL: https://<user>.github.io/<repo>/
+
+Run locally:
+
+    python scripts/build_reports_site.py
+
+The script is idempotent — re-running rewrites index.html files but
+never touches the markdown.
 """
 
 from __future__ import annotations
@@ -27,12 +37,11 @@ except ImportError:
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-REPORTS_DIR = REPO_ROOT / "reports"
-SITE_DIR = REPO_ROOT / "site"
+DOCS_DIR = REPO_ROOT / "docs"
 
-# Folder name format: <TICKER>_<YYYYMMDD>_<MODEL>_<YYYYMMDD>_<HHMMSS>
-# Some legacy folders may be missing the run timestamp suffix; we still
-# accept them and fall back to mtime for sort.
+# Folder name format: <TICKER>_<YYYYMMDD>_<MODEL>_<YYYYMMDD>_<HHMMSS>.
+# Older folders may be missing the run timestamp — still accept them and
+# fall back to mtime for sort.
 RUN_DIR_RE = re.compile(
     r"^(?P<ticker>[A-Za-z0-9.\-]+)_(?P<date>\d{8})_(?P<model>.+?)"
     r"(?:_(?P<run_date>\d{8})_(?P<run_time>\d{6}))?$"
@@ -45,7 +54,7 @@ body {
   max-width: 960px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6;
 }
 h1, h2, h3 { line-height: 1.3; }
-table { border-collapse: collapse; width: 100%; }
+table { border-collapse: collapse; width: 100%; margin: .8rem 0; }
 th, td { border: 1px solid rgba(127,127,127,.4); padding: .4rem .6rem; text-align: left; }
 code { background: rgba(127,127,127,.15); padding: .1rem .3rem; border-radius: 3px; }
 pre { background: rgba(127,127,127,.1); padding: .8rem; overflow-x: auto; border-radius: 6px; }
@@ -71,13 +80,11 @@ class Run(NamedTuple):
     ticker: str
     analysis_date: str  # YYYY-MM-DD
     model: str
-    run_started: str    # ISO timestamp or empty
-    folder: Path        # original reports/<dir>
-    out_dir: Path       # site/<dir>
+    run_started: str    # YYYY-MM-DD HH:MM:SS
+    folder: Path        # docs/<run-folder>
 
 
 def parse_run_folder(path: Path) -> Run | None:
-    """Parse a reports/<dir> path. Returns None if the name doesn't match."""
     if not path.is_dir():
         return None
     m = RUN_DIR_RE.match(path.name)
@@ -85,13 +92,9 @@ def parse_run_folder(path: Path) -> Run | None:
         return None
     date = m.group("date")
     analysis_date = f"{date[:4]}-{date[4:6]}-{date[6:8]}"
-    run_started = ""
     rd, rt = m.group("run_date"), m.group("run_time")
     if rd and rt:
-        run_started = (
-            f"{rd[:4]}-{rd[4:6]}-{rd[6:8]} "
-            f"{rt[:2]}:{rt[2:4]}:{rt[4:6]}"
-        )
+        run_started = f"{rd[:4]}-{rd[4:6]}-{rd[6:8]} {rt[:2]}:{rt[2:4]}:{rt[4:6]}"
     else:
         run_started = datetime.fromtimestamp(path.stat().st_mtime).strftime(
             "%Y-%m-%d %H:%M:%S"
@@ -102,12 +105,10 @@ def parse_run_folder(path: Path) -> Run | None:
         model=m.group("model"),
         run_started=run_started,
         folder=path,
-        out_dir=SITE_DIR / path.name,
     )
 
 
 def render_markdown(text: str) -> str:
-    """Render markdown to HTML, falling back to <pre> if the lib is missing."""
     if markdown is not None:
         return markdown.markdown(
             text, extensions=["tables", "fenced_code", "toc"]
@@ -132,10 +133,8 @@ def page(title: str, body: str, crumbs_html: str = "") -> str:
 
 
 def build_run_page(run: Run) -> None:
-    """Render the run's complete_report.md and any per-section markdown."""
-    run.out_dir.mkdir(parents=True, exist_ok=True)
     body_parts = [
-        f"<h1>{html.escape(run.ticker)} — {run.analysis_date}</h1>",
+        f"<h1>{html.escape(run.ticker)} — {html.escape(run.analysis_date)}</h1>",
         f"<p class='muted'>Model: <code>{html.escape(run.model)}</code> · "
         f"Run started: {html.escape(run.run_started)}</p>",
     ]
@@ -146,14 +145,13 @@ def build_run_page(run: Run) -> None:
         body_parts.append("<p><em>complete_report.md missing for this run.</em></p>")
 
     crumbs = '<a href="../index.html">← All runs</a>'
-    (run.out_dir / "index.html").write_text(
+    (run.folder / "index.html").write_text(
         page(f"{run.ticker} {run.analysis_date}", "\n".join(body_parts), crumbs),
         encoding="utf-8",
     )
 
 
-def build_index(runs: list[Run]) -> None:
-    """Top-level site/index.html — runs grouped by ticker, newest first."""
+def build_top_index(runs: list[Run]) -> None:
     by_ticker: dict[str, list[Run]] = defaultdict(list)
     for r in runs:
         by_ticker[r.ticker].append(r)
@@ -179,20 +177,24 @@ def build_index(runs: list[Run]) -> None:
             )
         sections.append("</ul>")
 
-    SITE_DIR.mkdir(parents=True, exist_ok=True)
-    (SITE_DIR / "index.html").write_text(
+    (DOCS_DIR / "index.html").write_text(
         page("TradingAgents Reports", "\n".join(sections)),
         encoding="utf-8",
     )
 
 
 def main() -> int:
-    if not REPORTS_DIR.is_dir():
-        print(f"reports/ not found at {REPORTS_DIR}", file=sys.stderr)
+    if not DOCS_DIR.is_dir():
+        print(f"docs/ not found at {DOCS_DIR}", file=sys.stderr)
         return 1
 
+    # Tell GitHub Pages to skip Jekyll and serve raw — our HTML/CSS is
+    # self-contained and we don't want Jekyll trying to render the
+    # markdown files (which still live alongside for diff visibility).
+    (DOCS_DIR / ".nojekyll").touch()
+
     runs: list[Run] = []
-    for child in sorted(REPORTS_DIR.iterdir()):
+    for child in sorted(DOCS_DIR.iterdir()):
         run = parse_run_folder(child)
         if run is None:
             continue
@@ -200,11 +202,11 @@ def main() -> int:
         runs.append(run)
 
     if not runs:
-        print("No runs found under reports/.", file=sys.stderr)
+        print("No run folders found under docs/.", file=sys.stderr)
         return 1
 
-    build_index(runs)
-    print(f"Built site at {SITE_DIR} ({len(runs)} run pages)")
+    build_top_index(runs)
+    print(f"Built {len(runs)} run pages + docs/index.html")
     return 0
 
 
