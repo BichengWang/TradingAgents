@@ -1,5 +1,6 @@
 from typing import Optional
 import datetime
+import os
 import typer
 import questionary
 from pathlib import Path
@@ -982,10 +983,18 @@ def run_analysis(checkpoint: bool = False):
     config = DEFAULT_CONFIG.copy()
     config["max_debate_rounds"] = selections["research_depth"]
     config["max_risk_discuss_rounds"] = selections["research_depth"]
-    config["quick_think_llm"] = selections["shallow_thinker"]
-    config["deep_think_llm"] = selections["deep_thinker"]
-    config["backend_url"] = selections["backend_url"]
-    config["llm_provider"] = selections["llm_provider"].lower()
+    # When TRADINGAGENTS_* env vars are set, they win over the interactive
+    # selection. This lets users drive a non-menu setup (e.g. an internal
+    # Anthropic-compatible proxy) entirely from .env without the CLI
+    # clobbering provider / model / backend_url with the menu defaults.
+    env_provider = os.environ.get("TRADINGAGENTS_LLM_PROVIDER")
+    env_deep = os.environ.get("TRADINGAGENTS_DEEP_THINK_LLM")
+    env_quick = os.environ.get("TRADINGAGENTS_QUICK_THINK_LLM")
+    env_backend_url = os.environ.get("TRADINGAGENTS_LLM_BACKEND_URL")
+    config["quick_think_llm"] = env_quick or selections["shallow_thinker"]
+    config["deep_think_llm"] = env_deep or selections["deep_thinker"]
+    config["backend_url"] = env_backend_url or selections["backend_url"]
+    config["llm_provider"] = (env_provider or selections["llm_provider"]).lower()
     # Provider-specific thinking configuration
     config["google_thinking_level"] = selections.get("google_thinking_level")
     config["openai_reasoning_effort"] = selections.get("openai_reasoning_effort")
