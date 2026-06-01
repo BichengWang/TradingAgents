@@ -36,6 +36,17 @@ from cli.utils import *
 from cli.announcements import fetch_announcements, display_announcements
 from cli.stats_handler import StatsCallbackHandler
 
+
+def _prune_report_headings(text: str) -> str:
+    """Forward to scripts/prune_report_headings.transform without polluting sys.path globally."""
+    import importlib.util
+
+    script = Path(__file__).resolve().parent.parent / "scripts" / "prune_report_headings.py"
+    spec = importlib.util.spec_from_file_location("prune_report_headings", script)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.transform(text)
+
 console = Console()
 
 app = typer.Typer(
