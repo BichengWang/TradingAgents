@@ -33,20 +33,18 @@ _Uses the latest run folder for each ticker. Current price is the report-time la
 | [NKE](./NKE/20260601_claude-opus-4-8_20260601_225249/complete_report.md) | Hold / Hold | $45.82 | $52.00 | +13.5% | +40.1% | Medium | 3-6m (decision gate at Q4 FY2026 earnings) |
 | [QCOM](./QCOM/20260601_claude-opus-4-8_20260602_092830/complete_report.md) | Hold / Hold | $210.00 | $235.00 | +11.9% | +35.0% | Medium | 3-6m |
 | [ANET](./ANET/20260601_claude-opus-4-8_20260601_204829/complete_report.md) | Hold / Hold | $159.00 | $173.00 | +8.8% | +25.2% | Medium | 3-6m |
+| [ADI](./ADI/20260601_claude-opus-4-8_20260601_201026/complete_report.md) | Hold / Hold | $413.85 | $436.00 | +5.4% | +14.9% | Medium | 3-6m (event-driven on Q3 FY2026 earnings, ~90d) |
 | [CRM](./CRM/20260601_claude-opus-4-8_20260601_213330/complete_report.md) | Hold / Hold | $191.00 | $198.00 | +3.7% | +10.1% | Medium | 3-6m |
 | [PLTR](./PLTR/20260601_claude-opus-4-8_20260601_232222/complete_report.md) | Hold / Hold | $156.54 | $161.67 | +3.3% | +9.0% | Medium | Provisional — re-evaluate at next earnings (3-6m) |
-| [AAPL](./AAPL/20260602_claude-opus-4-8_20260602_110133/complete_report.md) | Hold / Hold | $306.31 | $315.00 | +2.8% | +7.7% | Medium | 3-6m |
 | [QQQ](./QQQ/20260601_claude-opus-4-8_20260601_232619/complete_report.md) | Hold / Hold | $738.31 | $745.65 | +1.0% | +4.9% | Medium | 60-90d |
+| [ALAB](./ALAB/20260601_claude-opus-4-8_20260601_201317/complete_report.md) | Hold / Hold | $342.85 | $342.85 | +0.0% | +0.0% | Medium | 3-6m |
 | [MRVL](./MRVL/20260601_claude-opus-4-8_20260601_184648/complete_report.md) | Hold / Hold | $205.00 | $205.00 | +0.0% | +0.0% | High | 3m (through 10-Q preferred disclosure and Q2 FY2027 earnings) |
 | [PANW](./PANW/20260601_claude-opus-4-8_20260601_232308/complete_report.md) | Hold / Hold | $281.00 | $281.00 | +0.0% | +0.0% | Medium | 30-60d through the catalyst; underlying compounder thesis 12+m |
-| [ADI](./ADI/20260602_claude-opus-4-8_20260602_110114/complete_report.md) | Hold / Hold | $402.69 | $402.00 | -0.2% | -0.5% | Medium | 3-6m (decisive catalyst at the Q3 FY2026 print) |
-| [AMD](./AMD/20260602_claude-opus-4-8_20260602_110446/complete_report.md) | Hold / Hold | $510.00 | $480.00 | -5.9% | -7.8% | Medium | 6-12m |
 | [TXN](./TXN/20260601_claude-opus-4-8_20260601_232518/complete_report.md) | Hold / Hold | $305.68 | $285.00 | -6.8% | -8.9% | Medium | 6-12m |
 | [COIN](./COIN/20260601_claude-opus-4-8_20260601_213440/complete_report.md) | Hold / Hold | $179.00 | $165.00 | -7.8% | -6.3% | Medium | 12-18m |
 | [LRCX](./LRCX/20260601_claude-opus-4-8_20260601_221225/complete_report.md) | Hold / Hold | $318.18 | $293.00 | -7.9% | -6.4% | Medium | 12-18m (multi-year thesis; Q2 FY26 as near-term gating catalyst) |
 | [SNOW](./SNOW/20260601_claude-opus-4-8_20260601_232220/complete_report.md) | Hold / Hold | $255.55 | $235.00 | -8.0% | -20.0% | High | 3-6m |
 | [MU](./MU/20260601_claude-opus-4-8_20260601_225000/complete_report.md) | Hold / Hold | $971.00 | $840.00 | -13.5% | -32.1% | High | 3-6m (re-assess immediately after June 24 earnings) |
-| [ALAB](./ALAB/20260602_claude-opus-4-8_20260602_110341/complete_report.md) | Hold / Hold | $320.09 | $274.00 | -14.4% | n/a | Medium | 1-2 quarters (Q2 earnings is the decision gate) |
 | [VSH](./VSH/20260601_claude-opus-4-8_20260601_232508/complete_report.md) | Hold / Hold | $52.00 | $37.00 | -28.8% | -59.6% | Medium | 3-6m (through the August Q2 catalyst) |
 | [BABA](./BABA/20260601_claude-opus-4-8_20260601_213553/complete_report.md) | Hold / Hold | n/a | $117.93 | n/a | n/a | Medium | Decision gate at ~August Q1 FY2027 earnings; full thesis 6-12m |
 | [PDD](./PDD/20260601_claude-opus-4-8_20260601_232125/complete_report.md) | Hold / Hold | n/a | $70.00 | n/a | n/a | Medium | 3-6m (decision gate at Q2 2026 earnings, ~August 2026) |
