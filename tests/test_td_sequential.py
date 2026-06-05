@@ -137,13 +137,36 @@ class TestYFinanceWindowWiring:
 
 
 @pytest.mark.unit
-class TestAlphaVantageFallbackSignal:
-    def test_td_9_is_unavailable_not_an_error(self):
-        """Alpha Vantage has no TD endpoint. `td_9` must return an informative
-        'computed from OHLCV / unavailable here' string (like vwma) so the
-        router falls back to yfinance — never a hard ValueError."""
+class TestAlphaVantageFallback:
+    def test_td_9_raises_so_router_falls_back_to_yfinance(self):
+        """Alpha Vantage has no TD endpoint. `td_9` raises the standard
+        "not supported" ValueError; route_to_vendor's catch-all then falls
+        through to yfinance (which computes it from OHLCV). This is the repo's
+        existing fallback contract — no placebo string that would short-circuit
+        the chain on the first non-exception return."""
         from tradingagents.dataflows import alpha_vantage_indicator as av
 
-        out = av.get_indicator("AAPL", "td_9", "2026-06-04", 30)
-        assert "td_9" in out.lower() or "td-9" in out.lower()
-        assert "yfinance" in out.lower() or "ohlcv" in out.lower()
+        with pytest.raises(ValueError):
+            av.get_indicator("AAPL", "td_9", "2026-06-04", 30)
+
+    def test_route_to_vendor_falls_back_to_yfinance(self, monkeypatch):
+        """End-to-end: with Alpha Vantage forced primary, a td_9 call still
+        returns the real tiered block computed by yfinance."""
+        import copy
+        from tradingagents.dataflows import y_finance, interface
+        from tradingagents.dataflows.config import get_config, set_config
+
+        frame = _ohlcv([100 + i for i in range(320)])  # rising -> sell-setup
+        monkeypatch.setattr(y_finance, "load_ohlcv", lambda symbol, curr_date: frame)
+
+        saved = copy.deepcopy(get_config())  # restore so the global config doesn't leak
+        try:
+            cfg = get_config()
+            cfg.setdefault("tool_vendors", {})["get_indicators"] = "alpha_vantage"
+            set_config(cfg)
+
+            out = interface.route_to_vendor("get_indicators", "AAPL", "td_9", "2026-06-04", 30)
+            assert "Tier 1 Weekly" in out
+            assert "-9" in out
+        finally:
+            set_config(saved)
