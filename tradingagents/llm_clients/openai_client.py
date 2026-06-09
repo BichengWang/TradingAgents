@@ -1,5 +1,6 @@
 import os
 from typing import Any, Optional
+from urllib.parse import urlparse, urlunparse
 
 from langchain_core.messages import AIMessage
 from langchain_openai import ChatOpenAI
@@ -167,6 +168,17 @@ _PROVIDER_BASE_URL = {
 }
 
 
+def _normalize_native_openai_base_url(base_url: Optional[str]) -> Optional[str]:
+    """Accept OpenAI's API root as shorthand for the SDK's /v1 base URL."""
+    if not base_url:
+        return base_url
+
+    parsed = urlparse(base_url)
+    if parsed.netloc == "api.openai.com" and parsed.path.rstrip("/") == "":
+        return urlunparse(parsed._replace(path="/v1"))
+    return base_url
+
+
 def _resolve_provider_base_url(provider: str) -> Optional[str]:
     """Default base URL for ``provider``, with env-var overrides where defined.
 
@@ -226,7 +238,10 @@ class OpenAIClient(BaseLLMClient):
             else:
                 llm_kwargs["api_key"] = "ollama"
         elif self.base_url:
-            llm_kwargs["base_url"] = self.base_url
+            if self.provider == "openai":
+                llm_kwargs["base_url"] = _normalize_native_openai_base_url(self.base_url)
+            else:
+                llm_kwargs["base_url"] = self.base_url
 
         # Forward user-provided kwargs
         for key in _PASSTHROUGH_KWARGS:
