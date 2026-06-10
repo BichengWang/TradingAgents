@@ -8,6 +8,7 @@ from langchain_openai import ChatOpenAI
 from .api_key_env import get_api_key_env
 from .base_client import BaseLLMClient, normalize_content
 from .capabilities import get_capabilities
+from .retry import call_with_rate_limit_retry
 from .validators import validate_model
 
 
@@ -31,7 +32,15 @@ class NormalizedChatOpenAI(ChatOpenAI):
     """
 
     def invoke(self, input, config=None, **kwargs):
-        return normalize_content(super().invoke(input, config, **kwargs))
+        # Single funnel for plain, tool-bound, and structured calls alike;
+        # the long-horizon rate-limit retry therefore lives here.
+        parent_invoke = super().invoke
+        return normalize_content(
+            call_with_rate_limit_retry(
+                lambda: parent_invoke(input, config, **kwargs),
+                description=self.model_name,
+            )
+        )
 
     def with_structured_output(self, schema, *, method=None, **kwargs):
         caps = get_capabilities(self.model_name)
