@@ -383,14 +383,8 @@ def build_daily_summaries(by_ticker: dict[str, list[Run]]) -> list[DailySummary]
     return summaries
 
 
-def summary_sort_key(row: SummaryRow) -> tuple[int, float, str, str]:
-    action_rank = {"Buy": 0, "Hold": 1, "Sell": 2}
-    return (
-        action_rank.get(row.action, 9),
-        -(row.target_uplift if row.target_uplift is not None else -999.0),
-        row.ticker,
-        row.model,
-    )
+def summary_sort_key(row: SummaryRow) -> tuple[str, str]:
+    return (row.ticker, row.model)
 
 
 def format_price(value: float | None) -> str:

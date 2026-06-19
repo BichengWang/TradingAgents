@@ -115,6 +115,21 @@ def test_daily_decision_summaries_render_newest_first_with_left_rail():
 
 
 @pytest.mark.unit
+def test_decision_summary_rows_sort_by_ticker_alphabetically():
+    builder = load_builder()
+    rows = [
+        summary_row(builder, "MSFT", "msft-0602", action="Buy"),
+        summary_row(builder, "AAPL", "aapl-0602", action="Sell"),
+        summary_row(builder, "GOOG", "goog-0602", action="Hold"),
+    ]
+
+    text = "\n".join(builder.build_decision_summary(rows, "20260602"))
+
+    assert text.index("| [AAPL]") < text.index("| [GOOG]")
+    assert text.index("| [GOOG]") < text.index("| [MSFT]")
+
+
+@pytest.mark.unit
 def test_replace_decision_summary_leaves_other_homepage_sections():
     builder = load_builder()
     home = (

@@ -35,7 +35,7 @@ CONCURRENCY="${CONCURRENCY:-5}"                # 5 ran clean; 20 tripped HTTP 42
 LOGDIR="${TA_LOGDIR:-/tmp/ta_runlogs}"
 mkdir -p "$LOGDIR"
 
-ALL_TICKERS=(SPY QQQ SOXX SPCX)
+ALL_TICKERS=(SPY QQQ SOXX SPCX CRM MSFT META AAPL NVDA MU INTL AVGO GOOGL);
 
 # --- a ticker is "missing" if it has no docs/<T>/<DATESLUG>_*/ folder ------
 missing_tickers() {
