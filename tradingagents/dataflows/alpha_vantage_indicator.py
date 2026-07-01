@@ -26,6 +26,7 @@ def get_indicator(
         String containing indicator values and description
     """
     from datetime import datetime
+
     from dateutil.relativedelta import relativedelta
 
     spec = get_spec(indicator)  # unknown names raise ValueError

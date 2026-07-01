@@ -110,7 +110,7 @@ class TestAlphaVantageContract:
         saved = copy.deepcopy(get_config())  # restore so global config doesn't leak
         try:
             cfg = get_config()
-            cfg.setdefault("tool_vendors", {})["get_indicators"] = "alpha_vantage"
+            cfg.setdefault("tool_vendors", {})["get_indicators"] = "alpha_vantage,yfinance"
             set_config(cfg)
 
             out = interface.route_to_vendor(

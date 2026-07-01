@@ -22,7 +22,19 @@ import re
 from enum import Enum
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+# LLMs sometimes write a placeholder string ("None", "N/A", ...) into an optional
+# numeric field instead of omitting it. Coerce those to None so the structured
+# call validates instead of erroring (#1058). Pydantic still parses real numeric
+# strings ("189.5") to float.
+_NULLISH_FLOAT = {"", "none", "n/a", "na", "null", "nil", "-", "tbd", "unknown"}
+
+
+def _coerce_optional_float(value):
+    if isinstance(value, str) and value.strip().lower() in _NULLISH_FLOAT:
+        return None
+    return value
 
 
 # ---------------------------------------------------------------------------
@@ -125,18 +137,23 @@ class TraderProposal(BaseModel):
             "the research plan. Two to four sentences."
         ),
     )
-    entry_price: Optional[float] = Field(
+    entry_price: float | None = Field(
         default=None,
         description="Optional entry price target in the instrument's quote currency.",
     )
-    stop_loss: Optional[float] = Field(
+    stop_loss: float | None = Field(
         default=None,
         description="Optional stop-loss price in the instrument's quote currency.",
     )
-    position_sizing: Optional[str] = Field(
+    position_sizing: str | None = Field(
         default=None,
         description="Optional sizing guidance, e.g. '5% of portfolio'.",
     )
+
+    @field_validator("entry_price", "stop_loss", mode="before")
+    @classmethod
+    def _nullish_float_to_none(cls, v):
+        return _coerce_optional_float(v)
 
 
 def render_trader_proposal(proposal: TraderProposal) -> str:
@@ -206,10 +223,21 @@ class PortfolioDecision(BaseModel):
             "resolved current price as the neutral target."
         ),
     )
-    time_horizon: Optional[str] = Field(
+    time_horizon: str | None = Field(
         default=None,
         description="Optional recommended holding period, e.g. '3-6 months'.",
     )
+
+    @field_validator("price_target", mode="before")
+    @classmethod
+    def _reject_nullish_price_target(cls, v):
+        if isinstance(v, str) and v.strip().lower() in _NULLISH_FLOAT:
+            raise ValueError(
+                f"price_target is required and must be a number; got a "
+                f"placeholder/nullish value ({v!r}). Provide a numeric target "
+                f"(use the current price for Hold decisions)."
+            )
+        return v
 
 
 def format_pm_price(value: Optional[float]) -> str:
@@ -420,7 +448,9 @@ class SentimentReport(BaseModel):
             "(3) dominant narrative themes; "
             "(4) catalysts and risks surfaced by the data; "
             "(5) a markdown table summarising key sentiment signals, their "
-            "direction, source, and supporting evidence."
+            "direction, source, and supporting evidence. "
+            "Keep it informative and substantive: develop each section thoroughly "
+            "with concrete evidence so every point adds new signal for the trader."
         ),
     )
 
