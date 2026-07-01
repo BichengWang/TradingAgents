@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import re
 from enum import Enum
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -240,14 +240,14 @@ class PortfolioDecision(BaseModel):
         return v
 
 
-def format_pm_price(value: Optional[float]) -> str:
+def format_pm_price(value: float | None) -> str:
     """Render a portfolio price field using the report's stable wire format."""
     if value is None:
         return "n/a"
     return f"${float(value):,.2f}"
 
 
-def _parse_pm_price(value: str) -> Optional[float]:
+def _parse_pm_price(value: str) -> float | None:
     value = value.strip().replace(",", "")
     match = re.search(r"\$?\s*([0-9]+(?:\.\d+)?)", value)
     if match is None:
@@ -265,7 +265,7 @@ def _pm_field_re(field_name: str) -> re.Pattern[str]:
     )
 
 
-def _extract_pm_price_field(markdown: str, field_name: str) -> Optional[float]:
+def _extract_pm_price_field(markdown: str, field_name: str) -> float | None:
     pattern = _pm_field_re(field_name)
     for line in markdown.splitlines():
         match = pattern.match(line)
@@ -274,7 +274,7 @@ def _extract_pm_price_field(markdown: str, field_name: str) -> Optional[float]:
     return None
 
 
-def _extract_pm_target_price(markdown: str) -> Optional[float]:
+def _extract_pm_target_price(markdown: str) -> float | None:
     for field_name in (
         "Price Target",
         "Target Price",
@@ -293,8 +293,8 @@ def _extract_pm_target_price(markdown: str) -> Optional[float]:
 def ensure_pm_price_fields(
     markdown: str,
     *,
-    current_price: Optional[float],
-    price_target: Optional[float] = None,
+    current_price: float | None,
+    price_target: float | None = None,
 ) -> str:
     """Ensure PM markdown has deterministic Current Price and Price Target lines.
 
@@ -351,7 +351,7 @@ def ensure_pm_price_fields(
 def render_pm_decision(
     decision: PortfolioDecision,
     *,
-    current_price: Optional[float] = None,
+    current_price: float | None = None,
 ) -> str:
     """Render a PortfolioDecision back to the markdown shape the rest of the system expects.
 

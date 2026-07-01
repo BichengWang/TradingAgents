@@ -5,10 +5,10 @@ import pandas as pd
 import yfinance as yf
 from dateutil.relativedelta import relativedelta
 
+from .indicator_registry import effective_params, get_spec, resolve_column
 from .stockstats_utils import (
     StockstatsUtils,
     _assert_ohlcv_not_stale,
-    _clean_dataframe,
     compute_obv,
     filter_financials_by_date,
     format_supertrend_block,
@@ -21,7 +21,6 @@ from .stockstats_utils import (
     yfinance_timeout,
     zscore_by_timeframe,
 )
-from .indicator_registry import effective_params, get_spec, resolve_column
 from .symbol_utils import NoMarketDataError, normalize_symbol
 
 

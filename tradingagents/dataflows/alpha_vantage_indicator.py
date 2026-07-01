@@ -1,5 +1,6 @@
-from .alpha_vantage_common import _make_api_request, AlphaVantageNotConfiguredError
+from .alpha_vantage_common import AlphaVantageNotConfiguredError, _make_api_request
 from .indicator_registry import effective_params, get_spec
+
 
 def get_indicator(
     symbol: str,

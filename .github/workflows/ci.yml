@@ -25,7 +25,9 @@ jobs:
       - name: Install (with dev extras)
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev]"
+          # docs extra pulls in mkdocs: test_report_workflow.py exercises the
+          # real `mkdocs build --strict` step, not a mock.
+          pip install -e ".[dev,docs]"
       - name: Run test suite
         run: pytest -q
 

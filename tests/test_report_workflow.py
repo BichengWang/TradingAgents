@@ -352,7 +352,7 @@ def test_dry_run_uses_copied_docs_and_restores_repo_paths(tmp_path, monkeypatch)
     def fake_run_workflow(analysis_date, **kwargs):
         observed["analysis_date"] = analysis_date
         observed["docs"] = workflow.DOCS
-        assert workflow.DOCS != docs
+        assert docs != workflow.DOCS
         assert (workflow.DOCS / "AAPL" / "20260602_opus_20260602_101010").is_dir()
         (workflow.DOCS / "dry-run-marker").write_text("temp only", encoding="utf-8")
 
@@ -362,4 +362,4 @@ def test_dry_run_uses_copied_docs_and_restores_repo_paths(tmp_path, monkeypatch)
 
     assert observed["analysis_date"] == "20260602"
     assert not (docs / "dry-run-marker").exists()
-    assert workflow.DOCS == docs
+    assert docs == workflow.DOCS

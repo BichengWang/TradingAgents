@@ -7,7 +7,6 @@ from tradingagents.agents.utils.agent_utils import (
     get_stock_data,
     get_verified_market_snapshot,
 )
-from tradingagents.dataflows.config import get_config
 from tradingagents.dataflows.indicator_registry import render_prompt_section
 
 

@@ -6,7 +6,6 @@ import time
 from collections import deque
 from functools import wraps
 from pathlib import Path
-from typing import Optional
 
 import typer
 from rich import box
@@ -21,19 +20,40 @@ from rich.spinner import Spinner
 from rich.table import Table
 from rich.text import Text
 
+from cli.announcements import display_announcements, fetch_announcements
+from cli.models import AnalystType, AssetType
+from cli.report_headings import transform as _prune_report_headings
+from cli.stats_handler import StatsCallbackHandler
+from cli.utils import (
+    ask_anthropic_effort,
+    ask_gemini_thinking_config,
+    ask_glm_region,
+    ask_minimax_region,
+    ask_openai_reasoning_effort,
+    ask_output_language,
+    ask_qwen_region,
+    confirm_ollama_endpoint,
+    detect_asset_type,
+    ensure_api_key,
+    filter_analysts_for_asset_type,
+    get_ticker,
+    normalize_ticker_symbol,
+    prompt_openai_compatible_url,
+    resolve_backend_url,
+    select_analysts,
+    select_deep_thinking_agent,
+    select_llm_provider,
+    select_research_depth,
+    select_shallow_thinking_agent,
+)
 from tradingagents.batch import BatchRunner
+from tradingagents.default_config import DEFAULT_CONFIG
 from tradingagents.graph.analyst_execution import (
     AnalystWallTimeTracker,
     build_analyst_execution_plan,
     get_initial_analyst_node,
     sync_analyst_tracker_from_chunk,
 )
-from tradingagents.default_config import DEFAULT_CONFIG
-from cli.models import AnalystType
-from cli.utils import *
-from cli.announcements import display_announcements, fetch_announcements
-from cli.stats_handler import StatsCallbackHandler
-from cli.report_headings import transform as _prune_report_headings
 from tradingagents.graph.trading_graph import TradingAgentsGraph
 from tradingagents.reporting import write_report_tree
 
@@ -1000,10 +1020,10 @@ def _build_run_config(selections: dict, checkpoint: bool | None) -> dict:
 
 def run_analysis(
     checkpoint: bool | None = None,
-    selections: Optional[dict] = None,
-    post_save: Optional[bool] = None,
-    post_save_path: Optional[str] = None,
-    post_display: Optional[bool] = None,
+    selections: dict | None = None,
+    post_save: bool | None = None,
+    post_save_path: str | None = None,
+    post_display: bool | None = None,
 ):
     """Run a full analysis.
 
@@ -1627,7 +1647,7 @@ def run(
             raise typer.Exit(1)
     except ValueError:
         console.print("[red]--date must be YYYY-MM-DD.[/red]")
-        raise typer.Exit(1)
+        raise typer.Exit(1) from None
 
     asset_enum = detect_asset_type(norm_ticker)
 
@@ -1643,7 +1663,7 @@ def run(
         except ValueError:
             valid = ", ".join(a.value for a in AnalystType)
             console.print(f"[red]Unknown analyst {k!r}. Valid: {valid}.[/red]")
-            raise typer.Exit(1)
+            raise typer.Exit(1) from None
     analyst_objs = filter_analysts_for_asset_type(analyst_objs, asset_enum)
     if not analyst_objs:
         console.print("[red]No analysts left after asset-type filter.[/red]")

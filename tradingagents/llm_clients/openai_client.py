@@ -1,7 +1,7 @@
 import os
 import re
 from dataclasses import dataclass
-from typing import Any, Optional
+from typing import Any
 from urllib.parse import urlparse, urlunparse
 
 from langchain_core.messages import AIMessage
@@ -243,7 +243,7 @@ OPENAI_COMPATIBLE_PROVIDERS: dict[str, ProviderSpec] = {
 }
 
 
-def _normalize_native_openai_base_url(base_url: Optional[str]) -> Optional[str]:
+def _normalize_native_openai_base_url(base_url: str | None) -> str | None:
     """Accept OpenAI's API root as shorthand for the SDK's /v1 base URL."""
     if not base_url:
         return base_url

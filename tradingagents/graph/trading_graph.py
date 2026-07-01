@@ -5,13 +5,11 @@ import logging
 import os
 from datetime import datetime, timedelta
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import yfinance as yf
 from langchain_core.rate_limiters import InMemoryRateLimiter
 from langgraph.prebuilt import ToolNode
-
-from tradingagents.dataflows.stockstats_utils import yf_retry, yfinance_timeout
 
 # Import the abstract tool methods from agent_utils
 from tradingagents.agents.utils.agent_utils import (
@@ -32,6 +30,7 @@ from tradingagents.agents.utils.agent_utils import (
 )
 from tradingagents.agents.utils.memory import TradingMemoryLog
 from tradingagents.dataflows.config import set_config
+from tradingagents.dataflows.stockstats_utils import yf_retry, yfinance_timeout
 from tradingagents.dataflows.utils import safe_ticker_component
 from tradingagents.default_config import DEFAULT_CONFIG
 from tradingagents.llm_clients import create_llm_client
@@ -47,7 +46,7 @@ from .signal_processing import SignalProcessor
 logger = logging.getLogger(__name__)
 
 
-def _build_rate_limiter(rpm) -> Optional[InMemoryRateLimiter]:
+def _build_rate_limiter(rpm) -> InMemoryRateLimiter | None:
     """Limiter for ``llm_requests_per_minute``; None/empty/<=0 disables it.
 
     One instance is shared by the deep and quick clients so the cap is a
