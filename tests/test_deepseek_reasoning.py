@@ -24,6 +24,7 @@ from tradingagents.llm_clients.openai_client import (
     _input_to_messages,
 )
 
+
 # ---------------------------------------------------------------------------
 # _input_to_messages — the helper that handles list / ChatPromptValue / other
 # (Gemini bot review note: non-list inputs must also work)

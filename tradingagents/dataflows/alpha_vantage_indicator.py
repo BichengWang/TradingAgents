@@ -1,6 +1,5 @@
-from .alpha_vantage_common import AlphaVantageNotConfiguredError, _make_api_request
+from .alpha_vantage_common import _make_api_request, AlphaVantageNotConfiguredError
 from .indicator_registry import effective_params, get_spec
-
 
 def get_indicator(
     symbol: str,
@@ -27,7 +26,6 @@ def get_indicator(
         String containing indicator values and description
     """
     from datetime import datetime
-
     from dateutil.relativedelta import relativedelta
 
     spec = get_spec(indicator)  # unknown names raise ValueError
