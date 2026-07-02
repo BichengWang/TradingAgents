@@ -1,11 +1,11 @@
 import os
 import re
-from typing import Any
+from typing import Any, Optional
 
 from langchain_anthropic import ChatAnthropic
 
-from .api_key_env import is_anthropic_setup_token
 from .base_client import BaseLLMClient, normalize_content
+from .api_key_env import is_anthropic_setup_token
 from .retry import call_with_rate_limit_retry
 from .validators import validate_model
 
@@ -16,27 +16,20 @@ _PASSTHROUGH_KWARGS = (
 )
 
 # Anthropic's extended-thinking ``effort`` parameter is accepted by Opus 4.5+
-# and Sonnet 4.6+ only. Sonnet 4.5 and any Haiku version 400 with
-# ``"This model does not support the effort parameter"`` (#831). The per-family
-# minimum version below is forward-compatible: future ``claude-{opus,sonnet}-X-Y``
-# releases inherit support automatically, while Sonnet 4.5 and Haiku stay excluded.
+# and Sonnet 4.5+ only. Haiku (any version shipped to date) 400s with
+# ``"This model does not support the effort parameter"`` (#831). Future
+# ``claude-{opus,sonnet}-X-Y`` releases inherit effort support via the
+# forward-compat pattern below; future Haiku stays excluded by default.
 _EFFORT_EXACT = {
     "claude-mythos-preview",  # non-standard preview name; effort-capable
 }
-_EFFORT_MODEL = re.compile(r"^claude-(opus|sonnet)-(\d+)-(\d+)$")
-_EFFORT_MIN_VERSION = {"opus": (4, 5), "sonnet": (4, 6)}
+_EFFORT_PATTERN = re.compile(r"^claude-(opus|sonnet)-\d+-\d+$")
 
 
 def _supports_effort(model: str) -> bool:
     """Whether Anthropic accepts the ``effort`` parameter for this model."""
     model_lc = model.lower()
-    if model_lc in _EFFORT_EXACT:
-        return True
-    match = _EFFORT_MODEL.match(model_lc)
-    if not match:
-        return False
-    family, major, minor = match.group(1), int(match.group(2)), int(match.group(3))
-    return (major, minor) >= _EFFORT_MIN_VERSION[family]
+    return model_lc in _EFFORT_EXACT or bool(_EFFORT_PATTERN.match(model_lc))
 
 
 # Block types that may carry ``cache_control`` per the Anthropic prompt-caching
@@ -138,7 +131,7 @@ class NormalizedChatAnthropic(ChatAnthropic):
 class AnthropicClient(BaseLLMClient):
     """Client for Anthropic Claude models."""
 
-    def __init__(self, model: str, base_url: str | None = None, **kwargs):
+    def __init__(self, model: str, base_url: Optional[str] = None, **kwargs):
         super().__init__(model, base_url, **kwargs)
 
     def get_llm(self) -> Any:
