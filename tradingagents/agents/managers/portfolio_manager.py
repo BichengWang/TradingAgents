@@ -28,6 +28,7 @@ from tradingagents.agents.utils.structured import (
 )
 from tradingagents.dataflows.market_data_validator import latest_close_on_or_before
 
+
 logger = logging.getLogger(__name__)
 
 

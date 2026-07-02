@@ -20,21 +20,9 @@ from __future__ import annotations
 
 import re
 from enum import Enum
-from typing import Literal
+from typing import Literal, Optional
 
-from pydantic import BaseModel, Field, field_validator
-
-# LLMs sometimes write a placeholder string ("None", "N/A", ...) into an optional
-# numeric field instead of omitting it. Coerce those to None so the structured
-# call validates instead of erroring (#1058). Pydantic still parses real numeric
-# strings ("189.5") to float.
-_NULLISH_FLOAT = {"", "none", "n/a", "na", "null", "nil", "-", "tbd", "unknown"}
-
-
-def _coerce_optional_float(value):
-    if isinstance(value, str) and value.strip().lower() in _NULLISH_FLOAT:
-        return None
-    return value
+from pydantic import BaseModel, Field
 
 
 # ---------------------------------------------------------------------------
@@ -137,23 +125,18 @@ class TraderProposal(BaseModel):
             "the research plan. Two to four sentences."
         ),
     )
-    entry_price: float | None = Field(
+    entry_price: Optional[float] = Field(
         default=None,
         description="Optional entry price target in the instrument's quote currency.",
     )
-    stop_loss: float | None = Field(
+    stop_loss: Optional[float] = Field(
         default=None,
         description="Optional stop-loss price in the instrument's quote currency.",
     )
-    position_sizing: str | None = Field(
+    position_sizing: Optional[str] = Field(
         default=None,
         description="Optional sizing guidance, e.g. '5% of portfolio'.",
     )
-
-    @field_validator("entry_price", "stop_loss", mode="before")
-    @classmethod
-    def _nullish_float_to_none(cls, v):
-        return _coerce_optional_float(v)
 
 
 def render_trader_proposal(proposal: TraderProposal) -> str:
@@ -223,31 +206,20 @@ class PortfolioDecision(BaseModel):
             "resolved current price as the neutral target."
         ),
     )
-    time_horizon: str | None = Field(
+    time_horizon: Optional[str] = Field(
         default=None,
         description="Optional recommended holding period, e.g. '3-6 months'.",
     )
 
-    @field_validator("price_target", mode="before")
-    @classmethod
-    def _reject_nullish_price_target(cls, v):
-        if isinstance(v, str) and v.strip().lower() in _NULLISH_FLOAT:
-            raise ValueError(
-                f"price_target is required and must be a number; got a "
-                f"placeholder/nullish value ({v!r}). Provide a numeric target "
-                f"(use the current price for Hold decisions)."
-            )
-        return v
 
-
-def format_pm_price(value: float | None) -> str:
+def format_pm_price(value: Optional[float]) -> str:
     """Render a portfolio price field using the report's stable wire format."""
     if value is None:
         return "n/a"
     return f"${float(value):,.2f}"
 
 
-def _parse_pm_price(value: str) -> float | None:
+def _parse_pm_price(value: str) -> Optional[float]:
     value = value.strip().replace(",", "")
     match = re.search(r"\$?\s*([0-9]+(?:\.\d+)?)", value)
     if match is None:
@@ -265,7 +237,7 @@ def _pm_field_re(field_name: str) -> re.Pattern[str]:
     )
 
 
-def _extract_pm_price_field(markdown: str, field_name: str) -> float | None:
+def _extract_pm_price_field(markdown: str, field_name: str) -> Optional[float]:
     pattern = _pm_field_re(field_name)
     for line in markdown.splitlines():
         match = pattern.match(line)
@@ -274,7 +246,7 @@ def _extract_pm_price_field(markdown: str, field_name: str) -> float | None:
     return None
 
 
-def _extract_pm_target_price(markdown: str) -> float | None:
+def _extract_pm_target_price(markdown: str) -> Optional[float]:
     for field_name in (
         "Price Target",
         "Target Price",
@@ -293,8 +265,8 @@ def _extract_pm_target_price(markdown: str) -> float | None:
 def ensure_pm_price_fields(
     markdown: str,
     *,
-    current_price: float | None,
-    price_target: float | None = None,
+    current_price: Optional[float],
+    price_target: Optional[float] = None,
 ) -> str:
     """Ensure PM markdown has deterministic Current Price and Price Target lines.
 
@@ -351,7 +323,7 @@ def ensure_pm_price_fields(
 def render_pm_decision(
     decision: PortfolioDecision,
     *,
-    current_price: float | None = None,
+    current_price: Optional[float] = None,
 ) -> str:
     """Render a PortfolioDecision back to the markdown shape the rest of the system expects.
 
@@ -448,9 +420,7 @@ class SentimentReport(BaseModel):
             "(3) dominant narrative themes; "
             "(4) catalysts and risks surfaced by the data; "
             "(5) a markdown table summarising key sentiment signals, their "
-            "direction, source, and supporting evidence. "
-            "Keep it informative and substantive: develop each section thoroughly "
-            "with concrete evidence so every point adds new signal for the trader."
+            "direction, source, and supporting evidence."
         ),
     )
 

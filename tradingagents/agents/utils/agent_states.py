@@ -1,7 +1,6 @@
 from typing import Annotated
-
-from langgraph.graph import MessagesState
 from typing_extensions import TypedDict
+from langgraph.graph import MessagesState
 
 
 # Researcher team state
