@@ -90,14 +90,26 @@ class TestNullishFloatCoercion:
         p = TraderProposal(action=TraderAction.BUY, reasoning="x", entry_price="189.5")
         assert p.entry_price == 189.5
 
-    def test_pm_nullish_price_target_coerces_to_none(self):
+    def test_pm_nullish_price_target_rejected(self):
+        """price_target is required on PortfolioDecision (unlike Trader's
+        optional entry_price/stop_loss): a nullish placeholder must fail
+        loudly instead of silently becoming None."""
+        with pytest.raises(ValidationError):
+            PortfolioDecision(
+                rating=PortfolioRating.OVERWEIGHT,
+                executive_summary="s",
+                investment_thesis="t",
+                price_target="N/A",
+            )
+
+    def test_pm_real_numeric_string_still_parses(self):
         d = PortfolioDecision(
             rating=PortfolioRating.OVERWEIGHT,
             executive_summary="s",
             investment_thesis="t",
-            price_target="N/A",
+            price_target="189.5",
         )
-        assert d.price_target is None
+        assert d.price_target == 189.5
 
 
 @pytest.mark.unit

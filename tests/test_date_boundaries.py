@@ -20,7 +20,7 @@ def test_get_yfin_requests_inclusive_end(monkeypatch):
         def __init__(self, symbol):
             pass
 
-        def history(self, start, end):
+        def history(self, start, end, **kwargs):
             captured["start"] = start
             captured["end"] = end
             idx = pd.to_datetime(["2025-05-08", "2025-05-09"])
