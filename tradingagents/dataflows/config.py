@@ -1,9 +1,10 @@
 from copy import deepcopy
+from typing import Dict, Optional
 
 import tradingagents.default_config as default_config
 
 # Use default config but allow it to be overridden
-_config: dict | None = None
+_config: Optional[Dict] = None
 
 
 def initialize_config():
@@ -13,7 +14,7 @@ def initialize_config():
         _config = deepcopy(default_config.DEFAULT_CONFIG)
 
 
-def set_config(config: dict):
+def set_config(config: Dict):
     """Update the configuration with custom values.
 
     Dict-valued keys (e.g. ``data_vendors``) are merged one level deep so a
@@ -30,7 +31,7 @@ def set_config(config: dict):
             _config[key] = value
 
 
-def get_config() -> dict:
+def get_config() -> Dict:
     """Get the current configuration."""
     if _config is None:
         initialize_config()

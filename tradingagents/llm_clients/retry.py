@@ -34,10 +34,9 @@ import logging
 import os
 import random
 import time
-from collections.abc import Callable
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
-from typing import TypeVar
+from typing import Callable, Optional, TypeVar
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +64,7 @@ def _env_number(name: str, default: float, cast) -> float:
         return default
 
 
-def _status_code(exc: BaseException) -> int | None:
+def _status_code(exc: BaseException) -> Optional[int]:
     """HTTP status of an SDK error, from the exception or its response."""
     status = getattr(exc, "status_code", None)
     if isinstance(status, int):
@@ -104,7 +103,7 @@ def is_retryable_rate_limit(exc: BaseException) -> bool:
     return is_rate_limit_error(exc) and not is_quota_exhausted(exc)
 
 
-def _retry_after_seconds(exc: BaseException) -> float | None:
+def _retry_after_seconds(exc: BaseException) -> Optional[float]:
     """Server-suggested wait from the ``retry-after`` header, if any.
 
     Both the delta-seconds and the HTTP-date form are accepted. httpx

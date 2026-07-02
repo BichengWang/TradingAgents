@@ -1,4 +1,3 @@
-import contextlib
 import warnings
 
 # Route Python's SSL through the OS native trust store so private CAs
@@ -32,8 +31,10 @@ except ImportError:
 # subclassed warning categories. To suppress a specific warning we must
 # install our filter AFTER langchain-core has installed its own, so import
 # it first. The package is a guaranteed transitive dep via langgraph.
-with contextlib.suppress(ImportError):
+try:
     import langchain_core  # noqa: F401
+except ImportError:
+    pass
 
 # langgraph-checkpoint 4.0.3 calls Reviver() at module load without an
 # explicit allowed_objects, which triggers a noisy pending-deprecation

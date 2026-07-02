@@ -101,8 +101,7 @@ class TestAlphaVantageContract:
         """End-to-end: with Alpha Vantage forced primary, vwma still returns
         yfinance-computed values."""
         import copy
-
-        from tradingagents.dataflows import interface, y_finance
+        from tradingagents.dataflows import y_finance, interface
         from tradingagents.dataflows.config import get_config, set_config
 
         frame = _ohlcv([100 + i for i in range(60)])
@@ -111,7 +110,7 @@ class TestAlphaVantageContract:
         saved = copy.deepcopy(get_config())  # restore so global config doesn't leak
         try:
             cfg = get_config()
-            cfg.setdefault("tool_vendors", {})["get_indicators"] = "alpha_vantage,yfinance"
+            cfg.setdefault("tool_vendors", {})["get_indicators"] = "alpha_vantage"
             set_config(cfg)
 
             out = interface.route_to_vendor(
