@@ -4,7 +4,6 @@
 block and the last eligible block of the final message with an ephemeral
 ``cache_control`` so the static prefix resent on every debate round /
 tool-loop iteration becomes a cache read instead of fresh input tokens.
-``TRADINGAGENTS_ANTHROPIC_CACHE=0`` disables the injection entirely.
 """
 
 import pytest
@@ -28,8 +27,7 @@ def _count_markers(obj) -> int:
 
 
 @pytest.fixture
-def llm(monkeypatch):
-    monkeypatch.delenv("TRADINGAGENTS_ANTHROPIC_CACHE", raising=False)
+def llm():
     return NormalizedChatAnthropic(model="claude-haiku-4-5", api_key="x")
 
 
@@ -63,13 +61,16 @@ class TestPayloadInjection:
         assert "system" not in payload
         assert _count_markers(payload["messages"]) == 1
 
-    def test_kill_switch_leaves_payload_untouched(self, llm, monkeypatch):
+    def test_env_var_does_not_disable_cache_control(self, llm, monkeypatch):
         baseline_input = [("system", "prefix"), ("human", "tail")]
         monkeypatch.setenv("TRADINGAGENTS_ANTHROPIC_CACHE", "0")
         payload = llm._get_request_payload(baseline_input)
-        assert payload["system"] == "prefix"
-        assert payload["messages"][-1]["content"] == "tail"
-        assert _count_markers(payload) == 0
+        assert payload["system"] == [
+            {"type": "text", "text": "prefix", "cache_control": EPHEMERAL}
+        ]
+        assert payload["messages"][-1]["content"] == [
+            {"type": "text", "text": "tail", "cache_control": EPHEMERAL}
+        ]
 
 
 @pytest.mark.unit

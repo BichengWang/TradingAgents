@@ -64,7 +64,7 @@ run_pass() {
   printf '%s\n' "$@" | xargs -n1 -P"$conc" -I{} bash -c '
       t="$1"; DATE="$2"; LOGDIR="$3"
       echo "[START $t] $(date +%T)"
-      TRADINGAGENTS_ANTHROPIC_CACHE="${TRADINGAGENTS_ANTHROPIC_CACHE:-0}" \
+      TRADINGAGENTS_ANTHROPIC_CACHE=1 \
       uv run python -m cli.main run \
         --ticker "$t" --date "$DATE" \
         --analysts market,social,news,fundamentals \
