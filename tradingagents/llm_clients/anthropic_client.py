@@ -47,14 +47,6 @@ _CACHE_ELIGIBLE_BLOCK_TYPES = frozenset(
 )
 
 
-def _cache_disabled() -> bool:
-    # Read at call time (same convention as the retry.py env knobs) so batch
-    # scripts can flip it without re-importing.
-    return os.environ.get("TRADINGAGENTS_ANTHROPIC_CACHE", "1").strip().lower() in (
-        "0", "false", "no", "off",
-    )
-
-
 def _mark_last_eligible_block(blocks: list) -> None:
     for block in reversed(blocks):
         if isinstance(block, dict) and block.get("type") in _CACHE_ELIGIBLE_BLOCK_TYPES:
@@ -114,9 +106,7 @@ class NormalizedChatAnthropic(ChatAnthropic):
     request body (sync/async, generate and stream alike), so prompt-cache
     breakpoints are injected there — agents stay provider-neutral. The
     override-the-payload pattern matches DeepSeekChatOpenAI /
-    MinimaxChatOpenAI in openai_client.py. Disable with
-    ``TRADINGAGENTS_ANTHROPIC_CACHE=0`` if a langchain-anthropic upgrade
-    ever changes the payload contract.
+    MinimaxChatOpenAI in openai_client.py.
     """
 
     def invoke(self, input, config=None, **kwargs):
@@ -130,8 +120,7 @@ class NormalizedChatAnthropic(ChatAnthropic):
 
     def _get_request_payload(self, input_, *, stop=None, **kwargs):
         payload = super()._get_request_payload(input_, stop=stop, **kwargs)
-        if not _cache_disabled():
-            _inject_cache_control(payload)
+        _inject_cache_control(payload)
         return payload
 
 

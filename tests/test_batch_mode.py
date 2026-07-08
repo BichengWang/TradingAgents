@@ -60,8 +60,7 @@ def test_openai_adapter_builds_responses_batch_line(tmp_path):
     assert "stream" not in line["body"]
 
 
-def test_anthropic_adapter_preserves_cache_markers(tmp_path, monkeypatch):
-    monkeypatch.delenv("TRADINGAGENTS_ANTHROPIC_CACHE", raising=False)
+def test_anthropic_adapter_preserves_cache_markers(tmp_path):
     config = _config(tmp_path)
     config["llm_provider"] = "anthropic"
     adapter = AnthropicBatchAdapter(config)
