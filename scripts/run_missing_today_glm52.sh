@@ -41,7 +41,7 @@ CONCURRENCY="${CONCURRENCY:-10}"               # keep conservative unless the Zh
 LOGDIR="${TA_LOGDIR:-/tmp/ta_runlogs}"
 mkdir -p "$LOGDIR"
 
-DEFAULT_TICKERS=(SPY QQQ SOXX SPCX CRM MSFT META AAPL NVDA MU INTC AVGO GOOGL)
+DEFAULT_TICKERS=(SPY QQQ SOXX YINN SPCX CRM MSFT META AAPL NVDA MU INTC AVGO GOOGL)
 ALL_TICKERS=()
 if [ "$#" -gt 0 ]; then
   for t in "$@"; do
