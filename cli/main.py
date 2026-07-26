@@ -1472,8 +1472,8 @@ def _batch_config(
     config["llm_provider"] = provider_key
     config["backend_url"] = _PROVIDER_DEFAULT_BACKENDS[provider_key]
     if provider_key == "anthropic":
-        config["deep_think_llm"] = deep_model or "claude-opus-4-8"
-        config["quick_think_llm"] = quick_model or "claude-sonnet-4-6"
+        config["deep_think_llm"] = deep_model or "claude-opus-5"
+        config["quick_think_llm"] = quick_model or "claude-sonnet-5"
     else:
         config["deep_think_llm"] = deep_model or config["deep_think_llm"]
         config["quick_think_llm"] = quick_model or config["quick_think_llm"]
@@ -1633,7 +1633,7 @@ def run(
         "-p",
         help="LLM provider key (anthropic, openai, google, xai, deepseek, qwen[-cn], glm[-cn], minimax[-cn], openrouter, azure, ollama).",
     ),
-    deep_model: str = typer.Option(..., "--deep-model", help="Deep-thinking model id (e.g. claude-sonnet-4-6, gpt-5.5)."),
+    deep_model: str = typer.Option(..., "--deep-model", help="Deep-thinking model id (e.g. claude-sonnet-5, gpt-5.5)."),
     quick_model: str = typer.Option(..., "--quick-model", help="Quick-thinking model id (e.g. claude-haiku-4-5, gpt-5.4-mini)."),
     google_thinking_level: str = typer.Option(None, "--google-thinking-level", help="Gemini thinking mode: high|minimal."),
     openai_reasoning_effort: str = typer.Option(None, "--openai-reasoning-effort", help="OpenAI reasoning effort: low|medium|high."),
@@ -1651,7 +1651,7 @@ def run(
 
     Example:
       tradingagents run -t NVDA -d 2024-05-10 -a market,news --depth 1 \\
-        -p anthropic --deep-model claude-sonnet-4-6 --quick-model claude-haiku-4-5
+        -p anthropic --deep-model claude-sonnet-5 --quick-model claude-haiku-4-5
     """
     if clear_checkpoints:
         from tradingagents.graph.checkpointer import clear_all_checkpoints
