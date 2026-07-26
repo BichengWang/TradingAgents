@@ -25,7 +25,7 @@ def _captured_kwargs(model, **kwargs):
 
 @pytest.mark.parametrize("level", ["minimal", "low", "medium", "high"])
 def test_flash_passes_thinking_level_through(level):
-    kw = _captured_kwargs("gemini-3.5-flash", thinking_level=level)
+    kw = _captured_kwargs("gemini-3.6-flash", thinking_level=level)
     assert kw["thinking_level"] == level
     assert "thinking_budget" not in kw  # the 2.5-era param is gone
 
@@ -41,6 +41,6 @@ def test_pro_keeps_high():
 
 
 def test_no_thinking_level_is_omitted():
-    kw = _captured_kwargs("gemini-3.5-flash")
+    kw = _captured_kwargs("gemini-3.6-flash")
     assert "thinking_level" not in kw
     assert "thinking_budget" not in kw
