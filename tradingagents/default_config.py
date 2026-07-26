@@ -106,14 +106,16 @@ DEFAULT_CONFIG = _apply_env_overrides({
     # variation on models that honor it; reasoning models largely ignore it
     # and no setting makes LLM output bit-identical across runs (see README).
     "temperature": None,
-    # Per-request timeout (seconds) and retry count forwarded to every
-    # provider's underlying SDK. Defaults are tuned for long-running
-    # reasoning models on flaky links: a single ``APIConnectionError`` from
-    # a TLS / proxy blip during a depth>=5 run should retry instead of
-    # killing the whole graph. Override with TRADINGAGENTS_LLM_TIMEOUT /
-    # TRADINGAGENTS_LLM_MAX_RETRIES.
+    # Per-request timeout (seconds) forwarded to every provider's underlying
+    # SDK. Tuned for long-running reasoning models on flaky links: a single
+    # ``APIConnectionError`` from a TLS / proxy blip during a depth>=5 run
+    # should retry instead of killing the whole graph. Override with
+    # TRADINGAGENTS_LLM_TIMEOUT.
     "llm_timeout": 600.0,
-    "llm_max_retries": 5,
+    # SDK retry budget forwarded to every provider chat client. None leaves each
+    # provider/SDK at its own default (usually 2). Raise it to ride out bursty
+    # 429 throttling on rate-limited deployments instead of aborting a run (#1091).
+    "llm_max_retries": None,
     # Proactive request pacing: cap on LLM requests per minute for this
     # process (deep + quick combined). None disables pacing. The limiter is
     # in-memory and per-process, so parallel batch runs must divide the
