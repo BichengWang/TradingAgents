@@ -29,6 +29,24 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
 
+# Keep uv and TradingAgents runtime state inside the repository by default.
+# This makes scheduled/sandboxed runs independent of access to ~/.cache and
+# ~/.tradingagents while still honoring explicit caller overrides.
+export UV_CACHE_DIR="${UV_CACHE_DIR:-$ROOT/.tradingagents/uv-cache}"
+export TRADINGAGENTS_RESULTS_DIR="${TRADINGAGENTS_RESULTS_DIR:-$ROOT/.tradingagents/logs}"
+export TRADINGAGENTS_CACHE_DIR="${TRADINGAGENTS_CACHE_DIR:-$ROOT/.tradingagents/cache}"
+mkdir -p "$UV_CACHE_DIR" "$TRADINGAGENTS_RESULTS_DIR" "$TRADINGAGENTS_CACHE_DIR"
+
+# Refuse overlapping invocations: each invocation decides what is missing only
+# once, so concurrent runs can otherwise generate duplicate timestamped reports.
+LOCK_DIR="$ROOT/.tradingagents/run_missing_today_gpt.lock"
+if ! mkdir "$LOCK_DIR" 2>/dev/null; then
+  echo "Another run_missing_today_gpt.sh invocation is already running: $LOCK_DIR" >&2
+  exit 1
+fi
+cleanup_lock() { rmdir "$LOCK_DIR" 2>/dev/null || true; }
+trap cleanup_lock EXIT INT TERM
+
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 PROVIDER="openai"
