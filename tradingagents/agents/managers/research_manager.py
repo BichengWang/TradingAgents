@@ -8,7 +8,6 @@ from tradingagents.agents.utils.agent_utils import (
     get_language_instruction,
 )
 from tradingagents.agents.utils.structured import (
-    NO_EXTERNAL_TOOLS,
     bind_structured,
     invoke_structured_or_freetext,
 )
@@ -41,9 +40,7 @@ Commit to a clear stance whenever the debate's strongest arguments warrant one; 
 ---
 
 **Debate History:**
-{history}
-
-{NO_EXTERNAL_TOOLS}""" + get_language_instruction()
+{history}""" + get_language_instruction()
 
         investment_plan = invoke_structured_or_freetext(
             structured_llm,

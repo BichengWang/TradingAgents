@@ -12,7 +12,6 @@ from tradingagents.agents.utils.agent_utils import (
     get_language_instruction,
 )
 from tradingagents.agents.utils.structured import (
-    NO_EXTERNAL_TOOLS,
     bind_structured,
     invoke_structured_or_freetext,
 )
@@ -32,8 +31,7 @@ def create_trader(llm):
                 "content": (
                     "You are a trading agent analyzing market data to make investment decisions. "
                     "Based on your analysis, provide a specific recommendation to buy, sell, or hold. "
-                    "Anchor your reasoning in the analysts' reports and the research plan. "
-                    + NO_EXTERNAL_TOOLS
+                    "Anchor your reasoning in the analysts' reports and the research plan."
                     + get_language_instruction()
                 ),
             },
