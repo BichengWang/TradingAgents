@@ -1,7 +1,7 @@
 """Long-horizon retry for provider rate limits (HTTP 429 / 529).
 
 The provider SDKs already retry rate-limited requests in-process
-(``llm_max_retries``, default 5) — but with a seconds-scale exponential
+(``llm_max_retries``, opt-in via TRADINGAGENTS_LLM_MAX_RETRIES) — but with a seconds-scale exponential
 backoff that gives up after roughly a minute. That is enough for a burst
 limit, yet useless against a drained per-minute token bucket or a busy
 subscription window: every quick retry fails, the SDK raises, and a deep
