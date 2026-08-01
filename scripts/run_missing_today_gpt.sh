@@ -52,7 +52,8 @@ DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder p
 PROVIDER="openai"
 BACKEND_URL="https://api.openai.com/v1"
 DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-gpt-5.6-sol}"
-QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-gpt-5.4-mini}"
+QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-gpt-5.6-luna}"
+REASONING_EFFORT="${TRADINGAGENTS_OPENAI_REASONING_EFFORT:-high}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
 DEPTH="${TRADINGAGENTS_DEPTH:-5}"
 model_slug() {
@@ -92,7 +93,7 @@ missing_tickers() {
 run_pass() {
   local conc="$1"; shift
   printf '%s\n' "$@" | xargs -n1 -P"$conc" -I{} bash -c '
-      t="$1"; DATE="$2"; LOGDIR="$3"; PROVIDER="$4"; BACKEND_URL="$5"; DEEP_MODEL="$6"; QUICK_MODEL="$7"; ANALYSTS="$8"; DEPTH="$9"
+      t="$1"; DATE="$2"; LOGDIR="$3"; PROVIDER="$4"; BACKEND_URL="$5"; DEEP_MODEL="$6"; QUICK_MODEL="$7"; REASONING_EFFORT="$8"; ANALYSTS="$9"; DEPTH="${10}"
       echo "[START $t] $(date +%T)"
       TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT="${TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT:-0}" \
       TRADINGAGENTS_LLM_PROVIDER="$PROVIDER" \
@@ -105,10 +106,11 @@ run_pass() {
         --depth "$DEPTH" --language English \
         --provider "$PROVIDER" \
         --deep-model "$DEEP_MODEL" --quick-model "$QUICK_MODEL" \
+        --openai-reasoning-effort "$REASONING_EFFORT" \
         --checkpoint --clear-checkpoints \
         > "${LOGDIR}/${t}.log" 2>&1 \
         && echo "[OK $t] $(date +%T)" || echo "[FAIL $t] $(date +%T)"
-    ' _ {} "$DATE" "$LOGDIR" "$PROVIDER" "$BACKEND_URL" "$DEEP_MODEL" "$QUICK_MODEL" "$ANALYSTS" "$DEPTH"
+    ' _ {} "$DATE" "$LOGDIR" "$PROVIDER" "$BACKEND_URL" "$DEEP_MODEL" "$QUICK_MODEL" "$REASONING_EFFORT" "$ANALYSTS" "$DEPTH"
 }
 
 # Portable (bash 3.2 / macOS) array-from-lines; sets the named global array.
