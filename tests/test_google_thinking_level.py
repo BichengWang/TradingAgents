@@ -1,8 +1,9 @@
 """Gemini thinking_level forwarding (Gemini 3.x).
 
 The catalog is Gemini 3.x only, which takes the string ``thinking_level``
-directly. Pro accepts low/high; Flash also accepts minimal/medium — an
-unsupported "minimal" on Pro is mapped to "low".
+directly. Not every model accepts every level: Pro and 3.7 Flash reject
+"minimal" (400 INVALID_ARGUMENT), while 3.1 Flash / Flash-Lite accept it, so an
+unsupported "minimal" is mapped to "low".
 """
 
 from unittest import mock
@@ -23,16 +24,22 @@ def _captured_kwargs(model, **kwargs):
     return captured["kw"]
 
 
-@pytest.mark.parametrize("level", ["minimal", "low", "medium", "high"])
+@pytest.mark.parametrize("level", ["low", "medium", "high"])
 def test_flash_passes_thinking_level_through(level):
-    kw = _captured_kwargs("gemini-3.6-flash", thinking_level=level)
+    kw = _captured_kwargs("gemini-3.7-flash", thinking_level=level)
     assert kw["thinking_level"] == level
     assert "thinking_budget" not in kw  # the 2.5-era param is gone
 
 
-def test_pro_remaps_minimal_to_low():
-    kw = _captured_kwargs("gemini-3.1-pro-preview", thinking_level="minimal")
-    assert kw["thinking_level"] == "low"  # Pro doesn't accept "minimal"
+def test_flash_lite_passes_minimal_through():
+    kw = _captured_kwargs("gemini-3.1-flash-lite", thinking_level="minimal")
+    assert kw["thinking_level"] == "minimal"
+
+
+@pytest.mark.parametrize("model", ["gemini-3.1-pro-preview", "gemini-3.7-flash"])
+def test_remaps_unsupported_minimal_to_low(model):
+    kw = _captured_kwargs(model, thinking_level="minimal")
+    assert kw["thinking_level"] == "low"  # these models reject "minimal"
 
 
 def test_pro_keeps_high():
@@ -41,6 +48,6 @@ def test_pro_keeps_high():
 
 
 def test_no_thinking_level_is_omitted():
-    kw = _captured_kwargs("gemini-3.6-flash")
+    kw = _captured_kwargs("gemini-3.7-flash")
     assert "thinking_level" not in kw
     assert "thinking_budget" not in kw

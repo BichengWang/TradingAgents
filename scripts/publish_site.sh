@@ -8,7 +8,8 @@
 #
 # This script is intentionally model-free: it only reassembles existing report
 # stage files, validates generated links, builds MkDocs HTML, and optionally
-# publishes the compiled site. Missing extracted summary fields are left as-is.
+# publishes the compiled site. It includes all completed reports while omitting
+# redundant report-stage subpages so it stays below GitHub Pages' 1 GB limit.
 
 set -euo pipefail
 
@@ -21,8 +22,7 @@ Usage: bash scripts/publish_site.sh [options]
 
 Options:
   --analysis-date YYYYMMDD|YYYY-MM-DD
-      Refresh and validate the summary for a specific analysis date.
-      Defaults to the latest date discovered under docs/.
+      Focus the summary for a specific analysis date.
   --build-only
       Build and validate _site locally, but do not push gh-pages.
   --dry-run
@@ -75,13 +75,7 @@ else
   PY=python
 fi
 
-if [ -x .venv/bin/mkdocs ]; then
-  MK=.venv/bin/mkdocs
-else
-  MK=mkdocs
-fi
-
-workflow_args=(--allow-incomplete --allow-summary-na)
+workflow_args=(--retain-dates "${PUBLISH_RETAIN_DATES:-all}")
 if [ -n "$analysis_date" ]; then
   workflow_args+=(--analysis-date "$analysis_date")
 fi
@@ -89,8 +83,8 @@ if [ "$dry_run" -eq 1 ]; then
   workflow_args+=(--dry-run)
 fi
 
-echo "==> Refreshing and validating report docs without model calls"
-"$PY" scripts/report_workflow.py "${workflow_args[@]}"
+echo "==> Building a compact, validated reports site without model calls"
+"$PY" scripts/build_publish_site.py "${workflow_args[@]}"
 
 if [ "$dry_run" -eq 1 ]; then
   echo "==> Dry run complete; _site was not rebuilt and gh-pages was not pushed."
@@ -103,6 +97,22 @@ if [ "$build_only" -eq 1 ]; then
 fi
 
 echo "==> Publishing compiled site to gh-pages"
-"$MK" gh-deploy --force
+site_dir="$ROOT/_site"
+remote_url="$(git -C "$ROOT" remote get-url origin)"
+
+# ``mkdocs gh-deploy`` always performs a second build from the full local
+# docs tree. That tree is intentionally much larger than the Pages limit, so
+# publish the compact artifact assembled above instead.
+git -C "$site_dir" init --quiet
+git -C "$site_dir" checkout --orphan gh-pages --quiet 2>/dev/null || \
+  git -C "$site_dir" checkout -B gh-pages --quiet
+git -C "$site_dir" add --all
+if ! git -C "$site_dir" diff --cached --quiet; then
+  git -C "$site_dir" -c user.useConfigOnly=true commit --quiet \
+    -m "Deploy compact reports site"
+fi
+git -C "$site_dir" remote remove origin 2>/dev/null || true
+git -C "$site_dir" remote add origin "$remote_url"
+git -C "$site_dir" push --force origin HEAD:gh-pages
 
 echo "==> Done. GitHub Pages will serve the updated gh-pages branch shortly."

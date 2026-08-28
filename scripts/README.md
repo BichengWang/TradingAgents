@@ -5,6 +5,8 @@ Run TradingAgents analyses and build the report site.
 | Script | What it does | Key args |
 |--------|--------------|----------|
 | `report_workflow.py` | **Main entry.** Reassemble reports, validate `docs/`, and compile `_site`. | `--analysis-date YYYYMMDD`, `--dry-run` |
+| `build_publish_site.py` | Build a GitHub Pages-sized site from all completed reports. | `--analysis-date`, `--retain-dates all` |
+| `publish_site.sh` | Publish the compact `_site` artifact to `gh-pages`. | `--analysis-date`, `--build-only` |
 | `run_one.py` | One-ticker headless run (max depth). | `--ticker` (req), `--date` |
 | `run_top_tickers.sh` | Parallel run, one Docker container per ticker. | env: `CONCURRENCY`, `TRADINGAGENTS_DATE` |
 | `build_reports_site.py` | Lower-level generated Markdown renderer used by `report_workflow.py`. | `--summary-analysis-date`, `--summary-only` |
