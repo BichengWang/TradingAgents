@@ -2,15 +2,19 @@
 # Run the skill.md "heavy run" for every ticker that has NOT been analyzed
 # today, with safe concurrency.
 #
-# Gemini Flash 3.6 variant of run_missing_today_gpt.sh. The repo loads .env
+# Gemini 3.7 Flash variant of run_missing_today_gpt.sh. The repo loads .env
 # from the project root at Python package import; provider "google" reads
 # GOOGLE_API_KEY.
 #
+# Thinking level: gemini-3.7-flash rejects "minimal" (400 INVALID_ARGUMENT,
+# "Thinking level MINIMAL is not supported for this model"); it accepts
+# low/medium/high, so the default here is "low".
+#
 # Usage:
-#   bash scripts/run_missing_today_gemini_flash36.sh                  # all missing tickers, 10-wide
-#   CONCURRENCY=8 bash scripts/run_missing_today_gemini_flash36.sh    # override concurrency
-#   TRADINGAGENTS_DATE=2026-06-01 bash scripts/run_missing_today_gemini_flash36.sh
-#   bash scripts/run_missing_today_gemini_flash36.sh NVDA AMD TSLA    # explicit ticker list
+#   bash scripts/run_missing_today_gemini.sh                  # all missing tickers, 10-wide
+#   CONCURRENCY=8 bash scripts/run_missing_today_gemini.sh    # override concurrency
+#   TRADINGAGENTS_DATE=2026-06-01 bash scripts/run_missing_today_gemini.sh
+#   bash scripts/run_missing_today_gemini.sh NVDA AMD TSLA    # explicit ticker list
 #
 # Rate-limit pacing: export TRADINGAGENTS_LLM_RPM=$((QUOTA / CONCURRENCY)) to
 # divide the provider's request quota across the parallel workers (each run
@@ -24,9 +28,9 @@ ROOT="$(pwd)"
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 PROVIDER="google"
-DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-gemini-3.6-flash}"
-QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-gemini-3.6-flash}"
-GOOGLE_THINKING_LEVEL="${TRADINGAGENTS_GOOGLE_THINKING_LEVEL:-minimal}"
+DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-gemini-3.7-flash}"
+QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-gemini-3.7-flash}"
+GOOGLE_THINKING_LEVEL="${TRADINGAGENTS_GOOGLE_THINKING_LEVEL:-low}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
 DEPTH="${TRADINGAGENTS_DEPTH:-5}"
 model_slug() {
@@ -99,7 +103,7 @@ read_into() {  # read_into ARRAYNAME < input
 # --- pass 1: everything missing, at the safe concurrency ------------------
 read_into TODO < <(missing_tickers)
 if [ "${#TODO[@]}" -eq 0 ]; then
-  echo "Nothing to run - all ${#ALL_TICKERS[@]} tickers already have a ${REPORT_GLOB} report."
+  echo "Nothing to run — all ${#ALL_TICKERS[@]} tickers already have a ${REPORT_GLOB} report."
   exit 0
 fi
 echo "Pass 1: ${#TODO[@]} ticker(s) missing for ${DATE} ${MODEL_SLUG}, concurrency=${CONCURRENCY}"
