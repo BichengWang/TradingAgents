@@ -24,8 +24,8 @@ DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 PROVIDER="glm"
 BACKEND_URL="https://api.z.ai/api/paas/v4/"
-DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-glm-5.2}"
-QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-glm-5.2}"
+DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-glm-5.3}"
+QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-glm-5.3-flash}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
 DEPTH="${TRADINGAGENTS_DEPTH:-5}"
 model_slug() {
