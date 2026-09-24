@@ -1,185 +1,4553 @@
 
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/">
+      
+      
+      
+        <link rel="next" href="AAPL/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
 
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="Multi-agent LLM trading analysis runs" name="description"/>
-<link href="https://bichengwang.github.io/TradingAgents/" rel="canonical"/>
-<link href="AAPL/" rel="next"/>
-<link href="assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.1, mkdocs-material-9.7.7" name="generator"/>
-<title>TradingAgents Reports</title>
-<link href="assets/stylesheets/main.ec1eaa64.min.css" rel="stylesheet"/>
-<link href="assets/stylesheets/palette.ab4e12ef.min.css" rel="stylesheet"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
-<style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
-<link href="stylesheets/extra.css" rel="stylesheet"/>
-<script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-</head>
-<body data-md-color-accent="indigo" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
-<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
-<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
-<label class="md-overlay" for="__drawer"></label>
-<div data-md-component="skip">
-<a class="md-skip" href="#tradingagents-reports">
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tradingagents-reports" class="md-skip">
           Skip to content
         </a>
-</div>
-<div data-md-component="announce">
-</div>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-<nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="TradingAgents Reports" class="md-header__button md-logo" data-md-component="logo" href="." title="TradingAgents Reports">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
-</a>
-<label class="md-header__button md-icon" for="__drawer">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
-</label>
-<div class="md-header__title" data-md-component="header-title">
-<div class="md-header__ellipsis">
-<div class="md-header__topic">
-<span class="md-ellipsis">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             TradingAgents Reports
           </span>
-</div>
-<div class="md-header__topic" data-md-component="header-topic">
-<span class="md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               TradingAgents Reports
             
           </span>
-</div>
-</div>
-</div>
-<form class="md-header__option" data-md-component="palette">
-<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
-<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"></path></svg>
-</label>
-<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
-<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
-</label>
-<input aria-label="Switch to system preference" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
-<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to system preference">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
-</label>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
 </form>
-<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-<div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/BichengWang/TradingAgents" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
-</div>
-<div class="md-source__repository">
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
     BichengWang/TradingAgents
   </div>
 </a>
-</div>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="ALAB/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ALAB
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="CRWD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRWD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="NU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="PANW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PANW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="PLTR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PLTR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="SPCX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPCX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="YINN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  YINN
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
 </nav>
-<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
-<div class="md-grid">
-<ul class="md-tabs__list"><li class="md-tabs__item md-tabs__item--active"><a class="md-tabs__link" href=".">Home</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="AAPL/">AAPL</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="ALAB/">ALAB</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="AMD/">AMD</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="AMZN/">AMZN</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="ANET/">ANET</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="ARM/">ARM</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="AVGO/">AVGO</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="BABA/">BABA</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="CRDO/">CRDO</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="CRM/">CRM</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="CRWD/">CRWD</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="GOOGL/">GOOGL</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="INTC/">INTC</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="META/">META</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="MSFT/">MSFT</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="MU/">MU</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="NFLX/">NFLX</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="NKE/">NKE</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="NOW/">NOW</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="NU/">NU</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="NVDA/">NVDA</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="PANW/">PANW</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="PLTR/">PLTR</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="QCOM/">QCOM</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="QQQ/">QQQ</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="SMCI/">SMCI</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="SOXX/">SOXX</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="SPCX/">SPCX</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="SPY/">SPY</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="TCEHY/">TCEHY</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="TEST-RELEASE/">TEST-RELEASE</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="TSLA/">TSLA</a></li><li class="md-tabs__item"><a class="md-tabs__link" href="YINN/">YINN</a></li></ul>
-</div>
-</nav>
+    
+  
 </header>
-<div class="md-container" data-md-component="container">
-<main class="md-main" data-md-component="main">
-<div class="md-main__inner md-grid">
-<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
-<label class="md-nav__title" for="__drawer">
-<a aria-label="TradingAgents Reports" class="md-nav__button md-logo" data-md-component="logo" href="." title="TradingAgents Reports">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
-</a>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
     TradingAgents Reports
   </label>
-<div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/BichengWang/TradingAgents" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
-</div>
-<div class="md-source__repository">
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
     BichengWang/TradingAgents
   </div>
 </a>
-</div>
-<ul class="md-nav__list" data-md-scrollfix=""><li class="md-nav__item md-nav__item--active"><a class="md-nav__link" href=".">Home</a></li><li class="md-nav__item"><a class="md-nav__link" href="AAPL/">AAPL</a></li><li class="md-nav__item"><a class="md-nav__link" href="ALAB/">ALAB</a></li><li class="md-nav__item"><a class="md-nav__link" href="AMD/">AMD</a></li><li class="md-nav__item"><a class="md-nav__link" href="AMZN/">AMZN</a></li><li class="md-nav__item"><a class="md-nav__link" href="ANET/">ANET</a></li><li class="md-nav__item"><a class="md-nav__link" href="ARM/">ARM</a></li><li class="md-nav__item"><a class="md-nav__link" href="AVGO/">AVGO</a></li><li class="md-nav__item"><a class="md-nav__link" href="BABA/">BABA</a></li><li class="md-nav__item"><a class="md-nav__link" href="CRDO/">CRDO</a></li><li class="md-nav__item"><a class="md-nav__link" href="CRM/">CRM</a></li><li class="md-nav__item"><a class="md-nav__link" href="CRWD/">CRWD</a></li><li class="md-nav__item"><a class="md-nav__link" href="GOOGL/">GOOGL</a></li><li class="md-nav__item"><a class="md-nav__link" href="INTC/">INTC</a></li><li class="md-nav__item"><a class="md-nav__link" href="META/">META</a></li><li class="md-nav__item"><a class="md-nav__link" href="MSFT/">MSFT</a></li><li class="md-nav__item"><a class="md-nav__link" href="MU/">MU</a></li><li class="md-nav__item"><a class="md-nav__link" href="NFLX/">NFLX</a></li><li class="md-nav__item"><a class="md-nav__link" href="NKE/">NKE</a></li><li class="md-nav__item"><a class="md-nav__link" href="NOW/">NOW</a></li><li class="md-nav__item"><a class="md-nav__link" href="NU/">NU</a></li><li class="md-nav__item"><a class="md-nav__link" href="NVDA/">NVDA</a></li><li class="md-nav__item"><a class="md-nav__link" href="PANW/">PANW</a></li><li class="md-nav__item"><a class="md-nav__link" href="PLTR/">PLTR</a></li><li class="md-nav__item"><a class="md-nav__link" href="QCOM/">QCOM</a></li><li class="md-nav__item"><a class="md-nav__link" href="QQQ/">QQQ</a></li><li class="md-nav__item"><a class="md-nav__link" href="SMCI/">SMCI</a></li><li class="md-nav__item"><a class="md-nav__link" href="SOXX/">SOXX</a></li><li class="md-nav__item"><a class="md-nav__link" href="SPCX/">SPCX</a></li><li class="md-nav__item"><a class="md-nav__link" href="SPY/">SPY</a></li><li class="md-nav__item"><a class="md-nav__link" href="TCEHY/">TCEHY</a></li><li class="md-nav__item"><a class="md-nav__link" href="TEST-RELEASE/">TEST-RELEASE</a></li><li class="md-nav__item"><a class="md-nav__link" href="TSLA/">TSLA</a></li><li class="md-nav__item"><a class="md-nav__link" href="YINN/">YINN</a></li></ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix=""><li class="md-nav__item"><a class="md-nav__link" href="#daily-decision-summaries">Daily Decision Summaries</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-09-23-decision-summary">2026-09-23 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-09-09-decision-summary">2026-09-09 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-09-04-decision-summary">2026-09-04 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-09-03-decision-summary">2026-09-03 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-08-28-decision-summary">2026-08-28 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-08-27-decision-summary">2026-08-27 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-08-22-decision-summary">2026-08-22 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-08-14-decision-summary">2026-08-14 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-08-07-decision-summary">2026-08-07 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-08-01-decision-summary">2026-08-01 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-25-decision-summary">2026-07-25 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-21-decision-summary">2026-07-21 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-17-decision-summary">2026-07-17 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-16-decision-summary">2026-07-16 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-14-decision-summary">2026-07-14 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-12-decision-summary">2026-07-12 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-10-decision-summary">2026-07-10 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-09-decision-summary">2026-07-09 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-08-decision-summary">2026-07-08 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-07-decision-summary">2026-07-07 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-03-decision-summary">2026-07-03 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-02-decision-summary">2026-07-02 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-07-01-decision-summary">2026-07-01 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-30-decision-summary">2026-06-30 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-29-decision-summary">2026-06-29 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-28-decision-summary">2026-06-28 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-24-decision-summary">2026-06-24 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-22-decision-summary">2026-06-22 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-21-decision-summary">2026-06-21 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-19-decision-summary">2026-06-19 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-18-decision-summary">2026-06-18 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-17-decision-summary">2026-06-17 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-16-decision-summary">2026-06-16 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-15-decision-summary">2026-06-15 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-14-decision-summary">2026-06-14 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-12-decision-summary">2026-06-12 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-11-decision-summary">2026-06-11 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-10-decision-summary">2026-06-10 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-05-decision-summary">2026-06-05 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-04-decision-summary">2026-06-04 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-03-decision-summary">2026-06-03 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-02-decision-summary">2026-06-02 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-06-01-decision-summary">2026-06-01 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-05-31-decision-summary">2026-05-31 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#2026-03-01-decision-summary">2026-03-01 Decision Summary</a></li><li class="md-nav__item"><a class="md-nav__link" href="#regeneration-skill">Regeneration Skill</a></li><li class="md-nav__item"><a class="md-nav__link" href="#tickers">Tickers</a></li></ul>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#daily-decision-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Daily Decision Summaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Daily Decision Summaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-09-09-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-09 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-09-04-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-04 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-09-03-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-03 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-28-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-28 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-27-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-27 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-22-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-22 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-14-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-14 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-07-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-07 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-25-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-25 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-21-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-21 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-17-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-17 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-16-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-16 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-14-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-14 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-12-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-12 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-10-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-10 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-09-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-09 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-08-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-08 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-07-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-07 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-03-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-03 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-02-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-02 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-30-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-30 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-29-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-29 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-28-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-28 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-24-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-24 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-22-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-22 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-21-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-21 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-19-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-19 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-18-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-18 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-17-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-17 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-16-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-16 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-15-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-15 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-14-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-14 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-12-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-12 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-11-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-11 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-10-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-10 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-05-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-05 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-04-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-04 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-03-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-03 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-02-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-02 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-05-31-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-05-31 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regeneration-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regeneration Skill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tickers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tickers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
-</div>
-</div>
-</div>
-<div class="md-content" data-md-component="content">
-<article class="md-content__inner md-typeset">
-<h1 id="tradingagents-reports">TradingAgents Reports<a class="headerlink" href="#tradingagents-reports" title="Permanent link">¶</a></h1>
-<p><em>1040 runs across 33 tickers.</em></p>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="ALAB/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALAB
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ALAB
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="CRWD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRWD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRWD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="NU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="PANW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PANW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PANW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="PLTR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLTR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PLTR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="SPCX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPCX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPCX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="YINN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YINN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    YINN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#daily-decision-summaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Daily Decision Summaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Daily Decision Summaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dates
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-09-09-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-09 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-09-04-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-04 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-09-03-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-09-03 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-28-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-28 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-27-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-27 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-22-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-22 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-14-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-14 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-07-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-07 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-08-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-08-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-25-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-25 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-21-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-21 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-17-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-17 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-16-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-16 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-14-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-14 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-12-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-12 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-10-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-10 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-09-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-09 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-08-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-08 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-07-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-07 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-03-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-03 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-02-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-02 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-07-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-07-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-30-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-30 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-29-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-29 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-28-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-28 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-24-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-24 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-22-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-22 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-21-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-21 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-19-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-19 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-18-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-18 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-17-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-17 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-16-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-16 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-15-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-15 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-14-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-14 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-12-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-12 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-11-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-11 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-10-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-10 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-05-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-05 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-04-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-04 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-03-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-03 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-02-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-02 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-06-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-06-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-05-31-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-05-31 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-01-decision-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-01 Decision Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regeneration-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regeneration Skill
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tickers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tickers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="tradingagents-reports">TradingAgents Reports<a class="headerlink" href="#tradingagents-reports" title="Permanent link">&para;</a></h1>
+<p><em>1038 runs across 32 tickers.</em></p>
 <div class="admonition warning">
 <p class="admonition-title">Disclaimer</p>
 <p>This website and its AI-generated reports are for <strong>AI testing and experimentation only</strong>. They do not constitute financial or investment advice and are not a substitute for a qualified financial adviser. Reports may contain errors. Do not use them to make investment or trading decisions.</p>
 </div>
-<h2 id="daily-decision-summaries">Daily Decision Summaries<a class="headerlink" href="#daily-decision-summaries" title="Permanent link">¶</a></h2>
+<h2 id="daily-decision-summaries">Daily Decision Summaries<a class="headerlink" href="#daily-decision-summaries" title="Permanent link">&para;</a></h2>
 <div class="daily-summary-layout">
 <nav aria-label="Analysis dates" class="daily-summary-rail">
-<h3 id="dates">Dates<a class="headerlink" href="#dates" title="Permanent link">¶</a></h3>
-<ul><li><a class="daily-summary-date daily-summary-date--active" href="#2026-09-23-decision-summary">2026-09-23</a><span>2 reports</span></li><li><a class="daily-summary-date" href="#2026-09-09-decision-summary">2026-09-09</a><span>44 reports</span></li><li><a class="daily-summary-date" href="#2026-09-04-decision-summary">2026-09-04</a><span>4 reports</span></li><li><a class="daily-summary-date" href="#2026-09-03-decision-summary">2026-09-03</a><span>42 reports</span></li><li><a class="daily-summary-date" href="#2026-08-28-decision-summary">2026-08-28</a><span>1 report</span></li><li><a class="daily-summary-date" href="#2026-08-27-decision-summary">2026-08-27</a><span>56 reports</span></li><li><a class="daily-summary-date" href="#2026-08-22-decision-summary">2026-08-22</a><span>54 reports</span></li><li><a class="daily-summary-date" href="#2026-08-14-decision-summary">2026-08-14</a><span>56 reports</span></li><li><a class="daily-summary-date" href="#2026-08-07-decision-summary">2026-08-07</a><span>56 reports</span></li><li><a class="daily-summary-date" href="#2026-08-01-decision-summary">2026-08-01</a><span>56 reports</span></li><li><a class="daily-summary-date" href="#2026-07-25-decision-summary">2026-07-25</a><span>14 reports</span></li><li><a class="daily-summary-date" href="#2026-07-21-decision-summary">2026-07-21</a><span>28 reports</span></li><li><a class="daily-summary-date" href="#2026-07-17-decision-summary">2026-07-17</a><span>28 reports</span></li><li><a class="daily-summary-date" href="#2026-07-16-decision-summary">2026-07-16</a><span>14 reports</span></li><li><a class="daily-summary-date" href="#2026-07-14-decision-summary">2026-07-14</a><span>14 reports</span></li><li><a class="daily-summary-date" href="#2026-07-12-decision-summary">2026-07-12</a><span>14 reports</span></li><li><a class="daily-summary-date" href="#2026-07-10-decision-summary">2026-07-10</a><span>28 reports</span></li><li><a class="daily-summary-date" href="#2026-07-09-decision-summary">2026-07-09</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-07-08-decision-summary">2026-07-08</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-07-07-decision-summary">2026-07-07</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-07-03-decision-summary">2026-07-03</a><span>13 reports</span></li><li><a class="daily-summary-date" href="#2026-07-02-decision-summary">2026-07-02</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-07-01-decision-summary">2026-07-01</a><span>27 reports</span></li><li><a class="daily-summary-date" href="#2026-06-30-decision-summary">2026-06-30</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-06-29-decision-summary">2026-06-29</a><span>13 reports</span></li><li><a class="daily-summary-date" href="#2026-06-28-decision-summary">2026-06-28</a><span>13 reports</span></li><li><a class="daily-summary-date" href="#2026-06-24-decision-summary">2026-06-24</a><span>13 reports</span></li><li><a class="daily-summary-date" href="#2026-06-22-decision-summary">2026-06-22</a><span>39 reports</span></li><li><a class="daily-summary-date" href="#2026-06-21-decision-summary">2026-06-21</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-06-19-decision-summary">2026-06-19</a><span>13 reports</span></li><li><a class="daily-summary-date" href="#2026-06-18-decision-summary">2026-06-18</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-06-17-decision-summary">2026-06-17</a><span>8 reports</span></li><li><a class="daily-summary-date" href="#2026-06-16-decision-summary">2026-06-16</a><span>8 reports</span></li><li><a class="daily-summary-date" href="#2026-06-15-decision-summary">2026-06-15</a><span>4 reports</span></li><li><a class="daily-summary-date" href="#2026-06-14-decision-summary">2026-06-14</a><span>3 reports</span></li><li><a class="daily-summary-date" href="#2026-06-12-decision-summary">2026-06-12</a><span>3 reports</span></li><li><a class="daily-summary-date" href="#2026-06-11-decision-summary">2026-06-11</a><span>3 reports</span></li><li><a class="daily-summary-date" href="#2026-06-10-decision-summary">2026-06-10</a><span>3 reports</span></li><li><a class="daily-summary-date" href="#2026-06-05-decision-summary">2026-06-05</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-06-04-decision-summary">2026-06-04</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-06-03-decision-summary">2026-06-03</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-06-02-decision-summary">2026-06-02</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-06-01-decision-summary">2026-06-01</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-05-31-decision-summary">2026-05-31</a><span>26 reports</span></li><li><a class="daily-summary-date" href="#2026-03-01-decision-summary">2026-03-01</a><span>1 report</span></li></ul>
+<h3 id="dates">Dates<a class="headerlink" href="#dates" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<a class="daily-summary-date daily-summary-date--active" href="#2026-09-09-decision-summary">2026-09-09</a>
+<span>44 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-09-04-decision-summary">2026-09-04</a>
+<span>4 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-09-03-decision-summary">2026-09-03</a>
+<span>42 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-08-28-decision-summary">2026-08-28</a>
+<span>1 report</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-08-27-decision-summary">2026-08-27</a>
+<span>56 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-08-22-decision-summary">2026-08-22</a>
+<span>54 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-08-14-decision-summary">2026-08-14</a>
+<span>56 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-08-07-decision-summary">2026-08-07</a>
+<span>56 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-08-01-decision-summary">2026-08-01</a>
+<span>56 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-25-decision-summary">2026-07-25</a>
+<span>14 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-21-decision-summary">2026-07-21</a>
+<span>28 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-17-decision-summary">2026-07-17</a>
+<span>28 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-16-decision-summary">2026-07-16</a>
+<span>14 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-14-decision-summary">2026-07-14</a>
+<span>14 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-12-decision-summary">2026-07-12</a>
+<span>14 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-10-decision-summary">2026-07-10</a>
+<span>28 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-09-decision-summary">2026-07-09</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-08-decision-summary">2026-07-08</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-07-decision-summary">2026-07-07</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-03-decision-summary">2026-07-03</a>
+<span>13 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-02-decision-summary">2026-07-02</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-07-01-decision-summary">2026-07-01</a>
+<span>27 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-30-decision-summary">2026-06-30</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-29-decision-summary">2026-06-29</a>
+<span>13 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-28-decision-summary">2026-06-28</a>
+<span>13 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-24-decision-summary">2026-06-24</a>
+<span>13 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-22-decision-summary">2026-06-22</a>
+<span>39 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-21-decision-summary">2026-06-21</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-19-decision-summary">2026-06-19</a>
+<span>13 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-18-decision-summary">2026-06-18</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-17-decision-summary">2026-06-17</a>
+<span>8 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-16-decision-summary">2026-06-16</a>
+<span>8 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-15-decision-summary">2026-06-15</a>
+<span>4 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-14-decision-summary">2026-06-14</a>
+<span>3 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-12-decision-summary">2026-06-12</a>
+<span>3 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-11-decision-summary">2026-06-11</a>
+<span>3 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-10-decision-summary">2026-06-10</a>
+<span>3 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-05-decision-summary">2026-06-05</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-04-decision-summary">2026-06-04</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-03-decision-summary">2026-06-03</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-02-decision-summary">2026-06-02</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-06-01-decision-summary">2026-06-01</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-05-31-decision-summary">2026-05-31</a>
+<span>26 reports</span>
+</li>
+<li>
+<a class="daily-summary-date" href="#2026-03-01-decision-summary">2026-03-01</a>
+<span>1 report</span>
+</li>
+</ul>
 </nav>
-<div class="daily-summary-tables"><h2 id="2026-09-23-decision-summary">2026-09-23 Decision Summary<a class="headerlink" href="#2026-09-23-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-09-23 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
-<thead>
-<tr>
-<th>Ticker</th>
-<th>Model</th>
-<th>Suggestion</th>
-<th style="text-align: right;">Current</th>
-<th style="text-align: right;">Target</th>
-<th style="text-align: right;">Target uplift</th>
-<th style="text-align: right;">1Y uplift</th>
-<th>Confidence</th>
-<th>Horizon</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="AAPL/20260923_SELFTEST-FAKE-DATA_20260923_180000/complete_report/">AAPL</a></td>
-<td><code>SELFTEST-FAKE-DATA</code></td>
-<td>Hold / TEST ONLY</td>
-<td style="text-align: right;">n/a</td>
-<td style="text-align: right;">$120.00</td>
-<td style="text-align: right;">n/a</td>
-<td style="text-align: right;">n/a</td>
-<td>n/a</td>
-<td>12m</td>
-</tr>
-<tr>
-<td><a href="TEST-RELEASE/20260923_SELFTEST-FAKE-DATA_20260923_180000/complete_report/">TEST-RELEASE</a></td>
-<td><code>SELFTEST-FAKE-DATA</code></td>
-<td>Hold / TEST ONLY</td>
-<td style="text-align: right;">n/a</td>
-<td style="text-align: right;">$120.00</td>
-<td style="text-align: right;">n/a</td>
-<td style="text-align: right;">n/a</td>
-<td>n/a</td>
-<td>12m</td>
-</tr>
-</tbody>
-</table><h2 id="2026-09-09-decision-summary">2026-09-09 Decision Summary<a class="headerlink" href="#2026-09-09-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-09-09 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+<div class="daily-summary-tables">
+<h2 id="2026-09-09-decision-summary">2026-09-09 Decision Summary<a class="headerlink" href="#2026-09-09-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-09-09 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -679,7 +5047,10 @@
 <td>5 trading sessions</td>
 </tr>
 </tbody>
-</table><h2 id="2026-09-04-decision-summary">2026-09-04 Decision Summary<a class="headerlink" href="#2026-09-04-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-09-04 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-09-04-decision-summary">2026-09-04 Decision Summary<a class="headerlink" href="#2026-09-04-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-09-04 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -739,7 +5110,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-09-03-decision-summary">2026-09-03 Decision Summary<a class="headerlink" href="#2026-09-03-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-09-03 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-09-03-decision-summary">2026-09-03 Decision Summary<a class="headerlink" href="#2026-09-03-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-09-03 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -1217,7 +5591,10 @@
 <td>1–3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-08-28-decision-summary">2026-08-28 Decision Summary<a class="headerlink" href="#2026-08-28-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-08-28 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-08-28-decision-summary">2026-08-28 Decision Summary<a class="headerlink" href="#2026-08-28-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-08-28 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -1244,7 +5621,10 @@
 <td>3–6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-08-27-decision-summary">2026-08-27 Decision Summary<a class="headerlink" href="#2026-08-27-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-08-27 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-08-27-decision-summary">2026-08-27 Decision Summary<a class="headerlink" href="#2026-08-27-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-08-27 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -1876,7 +6256,10 @@
 <td>1–4w</td>
 </tr>
 </tbody>
-</table><h2 id="2026-08-22-decision-summary">2026-08-22 Decision Summary<a class="headerlink" href="#2026-08-22-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-08-22 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-08-22-decision-summary">2026-08-22 Decision Summary<a class="headerlink" href="#2026-08-22-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-08-22 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -2486,7 +6869,10 @@
 <td>Several trading sessions to 2w</td>
 </tr>
 </tbody>
-</table><h2 id="2026-08-14-decision-summary">2026-08-14 Decision Summary<a class="headerlink" href="#2026-08-14-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-08-14 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-08-14-decision-summary">2026-08-14 Decision Summary<a class="headerlink" href="#2026-08-14-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-08-14 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -3118,7 +7504,10 @@
 <td>1-4w</td>
 </tr>
 </tbody>
-</table><h2 id="2026-08-07-decision-summary">2026-08-07 Decision Summary<a class="headerlink" href="#2026-08-07-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-08-07 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-08-07-decision-summary">2026-08-07 Decision Summary<a class="headerlink" href="#2026-08-07-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-08-07 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -3750,7 +8139,10 @@
 <td>1–3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-08-01-decision-summary">2026-08-01 Decision Summary<a class="headerlink" href="#2026-08-01-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-08-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-08-01-decision-summary">2026-08-01 Decision Summary<a class="headerlink" href="#2026-08-01-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-08-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -4382,7 +8774,10 @@
 <td>1–3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-25-decision-summary">2026-07-25 Decision Summary<a class="headerlink" href="#2026-07-25-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-25 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-25-decision-summary">2026-07-25 Decision Summary<a class="headerlink" href="#2026-07-25-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-25 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -4552,7 +8947,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-21-decision-summary">2026-07-21 Decision Summary<a class="headerlink" href="#2026-07-21-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-21 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-21-decision-summary">2026-07-21 Decision Summary<a class="headerlink" href="#2026-07-21-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-21 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -4876,7 +9274,10 @@
 <td>2-6w</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-17-decision-summary">2026-07-17 Decision Summary<a class="headerlink" href="#2026-07-17-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-17 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-17-decision-summary">2026-07-17 Decision Summary<a class="headerlink" href="#2026-07-17-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-17 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -5200,7 +9601,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-16-decision-summary">2026-07-16 Decision Summary<a class="headerlink" href="#2026-07-16-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-16 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-16-decision-summary">2026-07-16 Decision Summary<a class="headerlink" href="#2026-07-16-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-16 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -5370,7 +9774,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-14-decision-summary">2026-07-14 Decision Summary<a class="headerlink" href="#2026-07-14-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-14 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-14-decision-summary">2026-07-14 Decision Summary<a class="headerlink" href="#2026-07-14-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-14 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -5540,7 +9947,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-12-decision-summary">2026-07-12 Decision Summary<a class="headerlink" href="#2026-07-12-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-12 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-12-decision-summary">2026-07-12 Decision Summary<a class="headerlink" href="#2026-07-12-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-12 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -5710,7 +10120,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-10-decision-summary">2026-07-10 Decision Summary<a class="headerlink" href="#2026-07-10-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-10 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-10-decision-summary">2026-07-10 Decision Summary<a class="headerlink" href="#2026-07-10-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-10 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -6034,7 +10447,10 @@
 <td>1-4w</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-09-decision-summary">2026-07-09 Decision Summary<a class="headerlink" href="#2026-07-09-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-09 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-09-decision-summary">2026-07-09 Decision Summary<a class="headerlink" href="#2026-07-09-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-09 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -6336,7 +10752,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-08-decision-summary">2026-07-08 Decision Summary<a class="headerlink" href="#2026-07-08-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-08 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-08-decision-summary">2026-07-08 Decision Summary<a class="headerlink" href="#2026-07-08-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-08 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -6638,7 +11057,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-07-decision-summary">2026-07-07 Decision Summary<a class="headerlink" href="#2026-07-07-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-07 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-07-decision-summary">2026-07-07 Decision Summary<a class="headerlink" href="#2026-07-07-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-07 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -6940,7 +11362,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-03-decision-summary">2026-07-03 Decision Summary<a class="headerlink" href="#2026-07-03-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-03 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-03-decision-summary">2026-07-03 Decision Summary<a class="headerlink" href="#2026-07-03-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-03 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -7099,7 +11524,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-02-decision-summary">2026-07-02 Decision Summary<a class="headerlink" href="#2026-07-02-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-02 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-02-decision-summary">2026-07-02 Decision Summary<a class="headerlink" href="#2026-07-02-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-02 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -7401,7 +11829,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-07-01-decision-summary">2026-07-01 Decision Summary<a class="headerlink" href="#2026-07-01-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-07-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-07-01-decision-summary">2026-07-01 Decision Summary<a class="headerlink" href="#2026-07-01-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-07-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -7714,7 +12145,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-30-decision-summary">2026-06-30 Decision Summary<a class="headerlink" href="#2026-06-30-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-30 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-30-decision-summary">2026-06-30 Decision Summary<a class="headerlink" href="#2026-06-30-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-30 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -8016,7 +12450,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-29-decision-summary">2026-06-29 Decision Summary<a class="headerlink" href="#2026-06-29-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-29 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-29-decision-summary">2026-06-29 Decision Summary<a class="headerlink" href="#2026-06-29-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-29 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -8175,7 +12612,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-28-decision-summary">2026-06-28 Decision Summary<a class="headerlink" href="#2026-06-28-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-28 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-28-decision-summary">2026-06-28 Decision Summary<a class="headerlink" href="#2026-06-28-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-28 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -8334,7 +12774,10 @@
 <td>2w (re-evaluate within 10 tradingd post-Warsh)</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-24-decision-summary">2026-06-24 Decision Summary<a class="headerlink" href="#2026-06-24-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-24 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-24-decision-summary">2026-06-24 Decision Summary<a class="headerlink" href="#2026-06-24-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-24 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -8493,7 +12936,10 @@
 <td>1-3m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-22-decision-summary">2026-06-22 Decision Summary<a class="headerlink" href="#2026-06-22-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-22 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-22-decision-summary">2026-06-22 Decision Summary<a class="headerlink" href="#2026-06-22-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-22 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -8938,7 +13384,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-21-decision-summary">2026-06-21 Decision Summary<a class="headerlink" href="#2026-06-21-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-21 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-21-decision-summary">2026-06-21 Decision Summary<a class="headerlink" href="#2026-06-21-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-21 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -9240,7 +13689,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-19-decision-summary">2026-06-19 Decision Summary<a class="headerlink" href="#2026-06-19-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-19 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-19-decision-summary">2026-06-19 Decision Summary<a class="headerlink" href="#2026-06-19-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-19 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -9399,7 +13851,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-18-decision-summary">2026-06-18 Decision Summary<a class="headerlink" href="#2026-06-18-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-18 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-18-decision-summary">2026-06-18 Decision Summary<a class="headerlink" href="#2026-06-18-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-18 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -9701,7 +14156,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-17-decision-summary">2026-06-17 Decision Summary<a class="headerlink" href="#2026-06-17-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-17 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-17-decision-summary">2026-06-17 Decision Summary<a class="headerlink" href="#2026-06-17-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-17 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -9805,7 +14263,10 @@
 <td>2-4w (to technical and earnings resolution)</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-16-decision-summary">2026-06-16 Decision Summary<a class="headerlink" href="#2026-06-16-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-16 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-16-decision-summary">2026-06-16 Decision Summary<a class="headerlink" href="#2026-06-16-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-16 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -9909,7 +14370,10 @@
 <td>4-6w (re-evaluate immediately after Fed commentary and the first wave of Q2 earnings)</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-15-decision-summary">2026-06-15 Decision Summary<a class="headerlink" href="#2026-06-15-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-15 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-15-decision-summary">2026-06-15 Decision Summary<a class="headerlink" href="#2026-06-15-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-15 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -9969,7 +14433,10 @@
 <td>4-6w (decision point June 19; reassess through Q2 earnings)</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-14-decision-summary">2026-06-14 Decision Summary<a class="headerlink" href="#2026-06-14-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-14 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-14-decision-summary">2026-06-14 Decision Summary<a class="headerlink" href="#2026-06-14-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-14 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -10018,7 +14485,10 @@
 <td>4-6w</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-12-decision-summary">2026-06-12 Decision Summary<a class="headerlink" href="#2026-06-12-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-12 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-12-decision-summary">2026-06-12 Decision Summary<a class="headerlink" href="#2026-06-12-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-12 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -10067,7 +14537,10 @@
 <td>n/a</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-11-decision-summary">2026-06-11 Decision Summary<a class="headerlink" href="#2026-06-11-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-11 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-11-decision-summary">2026-06-11 Decision Summary<a class="headerlink" href="#2026-06-11-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-11 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -10116,7 +14589,10 @@
 <td>n/a</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-10-decision-summary">2026-06-10 Decision Summary<a class="headerlink" href="#2026-06-10-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-10 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-10-decision-summary">2026-06-10 Decision Summary<a class="headerlink" href="#2026-06-10-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-10 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -10165,7 +14641,10 @@
 <td>n/a</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-05-decision-summary">2026-06-05 Decision Summary<a class="headerlink" href="#2026-06-05-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-05 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-05-decision-summary">2026-06-05 Decision Summary<a class="headerlink" href="#2026-06-05-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-05 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -10467,7 +14946,10 @@
 <td>n/a</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-04-decision-summary">2026-06-04 Decision Summary<a class="headerlink" href="#2026-06-04-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-04 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-04-decision-summary">2026-06-04 Decision Summary<a class="headerlink" href="#2026-06-04-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-04 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -10769,7 +15251,10 @@
 <td>1-3m (decision point at the ~July Q2 delivery/earnings report)</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-03-decision-summary">2026-06-03 Decision Summary<a class="headerlink" href="#2026-06-03-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-03 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-03-decision-summary">2026-06-03 Decision Summary<a class="headerlink" href="#2026-06-03-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-03 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -11071,7 +15556,10 @@
 <td>3-6m</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-02-decision-summary">2026-06-02 Decision Summary<a class="headerlink" href="#2026-06-02-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-02 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-02-decision-summary">2026-06-02 Decision Summary<a class="headerlink" href="#2026-06-02-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-02 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -11373,7 +15861,10 @@
 <td>1-2m to the Q2 delivery report; reassess thereafter</td>
 </tr>
 </tbody>
-</table><h2 id="2026-06-01-decision-summary">2026-06-01 Decision Summary<a class="headerlink" href="#2026-06-01-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-06-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-06-01-decision-summary">2026-06-01 Decision Summary<a class="headerlink" href="#2026-06-01-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-06-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -11675,7 +16166,10 @@
 <td>n/a</td>
 </tr>
 </tbody>
-</table><h2 id="2026-05-31-decision-summary">2026-05-31 Decision Summary<a class="headerlink" href="#2026-05-31-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-05-31 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-05-31-decision-summary">2026-05-31 Decision Summary<a class="headerlink" href="#2026-05-31-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-05-31 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -11977,7 +16471,10 @@
 <td>4-6w</td>
 </tr>
 </tbody>
-</table><h2 id="2026-03-01-decision-summary">2026-03-01 Decision Summary<a class="headerlink" href="#2026-03-01-decision-summary" title="Permanent link">¶</a></h2><p><em>Uses the latest 2026-03-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p><table>
+</table>
+<h2 id="2026-03-01-decision-summary">2026-03-01 Decision Summary<a class="headerlink" href="#2026-03-01-decision-summary" title="Permanent link">&para;</a></h2>
+<p><em>Uses the latest 2026-03-01 run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme.</em></p>
+<table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -12004,9 +16501,10 @@
 <td>n/a</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 </div>
-<h2 id="regeneration-skill">Regeneration Skill<a class="headerlink" href="#regeneration-skill" title="Permanent link">¶</a></h2>
+</div>
+<h2 id="regeneration-skill">Regeneration Skill<a class="headerlink" href="#regeneration-skill" title="Permanent link">&para;</a></h2>
 <p>When ticker folders are upgraded with newer report data, regenerate this homepage instead of editing the table by hand:</p>
 <ol>
 <li>Add each completed run under <code>docs/&lt;TICKER&gt;/&lt;YYYYMMDD&gt;_&lt;MODEL&gt;_&lt;YYYYMMDD&gt;_&lt;HHMMSS&gt;/</code> with <code>complete_report.md</code>, <code>3_trading/trader.md</code>, and <code>5_portfolio/decision.md</code> present.</li>
@@ -12015,57 +16513,134 @@
 <li>If a row has a missing value, check that the new report includes <code>**Rating**</code>, <code>**Current Price**</code>, <code>**Price Target**</code>, <code>**Time Horizon**</code>, and <code>**Action**</code>.</li>
 </ol>
 <p>The generator groups summaries by analysis date and chooses the newest run per ticker/model pair by run-start timestamp within each date.</p>
-<h2 id="tickers">Tickers<a class="headerlink" href="#tickers" title="Permanent link">¶</a></h2>
-<ul><li><a href="AAPL/">AAPL</a> · 64 runs</li><li><a href="ALAB/">ALAB</a> · 6 runs</li><li><a href="AMD/">AMD</a> · 6 runs</li><li><a href="AMZN/">AMZN</a> · 6 runs</li><li><a href="ANET/">ANET</a> · 6 runs</li><li><a href="ARM/">ARM</a> · 6 runs</li><li><a href="AVGO/">AVGO</a> · 61 runs</li><li><a href="BABA/">BABA</a> · 6 runs</li><li><a href="CRDO/">CRDO</a> · 6 runs</li><li><a href="CRM/">CRM</a> · 68 runs</li><li><a href="CRWD/">CRWD</a> · 6 runs</li><li><a href="GOOGL/">GOOGL</a> · 67 runs</li><li><a href="INTC/">INTC</a> · 67 runs</li><li><a href="META/">META</a> · 63 runs</li><li><a href="MSFT/">MSFT</a> · 68 runs</li><li><a href="MU/">MU</a> · 68 runs</li><li><a href="NFLX/">NFLX</a> · 7 runs</li><li><a href="NKE/">NKE</a> · 6 runs</li><li><a href="NOW/">NOW</a> · 6 runs</li><li><a href="NU/">NU</a> · 6 runs</li><li><a href="NVDA/">NVDA</a> · 68 runs</li><li><a href="PANW/">PANW</a> · 6 runs</li><li><a href="PLTR/">PLTR</a> · 6 runs</li><li><a href="QCOM/">QCOM</a> · 7 runs</li><li><a href="QQQ/">QQQ</a> · 78 runs</li><li><a href="SMCI/">SMCI</a> · 6 runs</li><li><a href="SOXX/">SOXX</a> · 78 runs</li><li><a href="SPCX/">SPCX</a> · 68 runs</li><li><a href="SPY/">SPY</a> · 73 runs</li><li><a href="TCEHY/">TCEHY</a> · 6 runs</li><li><a href="TEST-RELEASE/">TEST-RELEASE</a> · 1 runs</li><li><a href="TSLA/">TSLA</a> · 6 runs</li><li><a href="YINN/">YINN</a> · 38 runs</li></ul>
-</article>
-</div>
-<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<h2 id="tickers">Tickers<a class="headerlink" href="#tickers" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="AAPL/">AAPL</a> &middot; 63 runs</li>
+<li><a href="ALAB/">ALAB</a> &middot; 6 runs</li>
+<li><a href="AMD/">AMD</a> &middot; 6 runs</li>
+<li><a href="AMZN/">AMZN</a> &middot; 6 runs</li>
+<li><a href="ANET/">ANET</a> &middot; 6 runs</li>
+<li><a href="ARM/">ARM</a> &middot; 6 runs</li>
+<li><a href="AVGO/">AVGO</a> &middot; 61 runs</li>
+<li><a href="BABA/">BABA</a> &middot; 6 runs</li>
+<li><a href="CRDO/">CRDO</a> &middot; 6 runs</li>
+<li><a href="CRM/">CRM</a> &middot; 68 runs</li>
+<li><a href="CRWD/">CRWD</a> &middot; 6 runs</li>
+<li><a href="GOOGL/">GOOGL</a> &middot; 67 runs</li>
+<li><a href="INTC/">INTC</a> &middot; 67 runs</li>
+<li><a href="META/">META</a> &middot; 63 runs</li>
+<li><a href="MSFT/">MSFT</a> &middot; 68 runs</li>
+<li><a href="MU/">MU</a> &middot; 68 runs</li>
+<li><a href="NFLX/">NFLX</a> &middot; 7 runs</li>
+<li><a href="NKE/">NKE</a> &middot; 6 runs</li>
+<li><a href="NOW/">NOW</a> &middot; 6 runs</li>
+<li><a href="NU/">NU</a> &middot; 6 runs</li>
+<li><a href="NVDA/">NVDA</a> &middot; 68 runs</li>
+<li><a href="PANW/">PANW</a> &middot; 6 runs</li>
+<li><a href="PLTR/">PLTR</a> &middot; 6 runs</li>
+<li><a href="QCOM/">QCOM</a> &middot; 7 runs</li>
+<li><a href="QQQ/">QQQ</a> &middot; 78 runs</li>
+<li><a href="SMCI/">SMCI</a> &middot; 6 runs</li>
+<li><a href="SOXX/">SOXX</a> &middot; 78 runs</li>
+<li><a href="SPCX/">SPCX</a> &middot; 68 runs</li>
+<li><a href="SPY/">SPY</a> &middot; 73 runs</li>
+<li><a href="TCEHY/">TCEHY</a> &middot; 6 runs</li>
+<li><a href="TSLA/">TSLA</a> &middot; 6 runs</li>
+<li><a href="YINN/">YINN</a> &middot; 38 runs</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-</div>
-<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
   Back to top
 </button>
-</main>
-<footer class="md-footer">
-<nav aria-label="Footer" class="md-footer__inner md-grid">
-<a aria-label="Next: AAPL" class="md-footer__link md-footer__link--next" href="AAPL/">
-<div class="md-footer__title">
-<span class="md-footer__direction">
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="AAPL/" class="md-footer__link md-footer__link--next" aria-label="Next: AAPL">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
                 Next
               </span>
-<div class="md-ellipsis">
+              <div class="md-ellipsis">
                 AAPL
               </div>
-</div>
-<div class="md-footer__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
-</div>
-</a>
-</nav>
-<div class="md-footer-meta md-typeset">
-<div class="md-footer-meta__inner md-grid">
-<div class="md-copyright">
-<div class="md-copyright__highlight">
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
       For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
 
     </div>
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
     </a>
+  
 </div>
-</div>
-</div>
+      
+    </div>
+  </div>
 </footer>
-</div>
-<div class="md-dialog" data-md-component="dialog">
-<div class="md-dialog__inner md-typeset"></div>
-</div>
-<div class="md-progress" data-md-component="progress" role="progressbar"></div>
-<script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
-<script src="assets/javascripts/bundle.d7400e89.min.js"></script>
-</body>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
 </html>
