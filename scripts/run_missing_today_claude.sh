@@ -1,39 +1,65 @@
 #!/usr/bin/env bash
-# Run the skill.md "heavy run" for every ticker that has NOT been analyzed
-# today, with safe concurrency and an automatic retry pass for failures.
-#
-# Learnings baked in (from the 2026-06-01 bulk run):
-#   * Targets are the ticker folders under docs/ (minus stylesheets). A ticker
-#     counts as "done today" when docs/<TICKER>/<YYYYMMDD>_*/ already exists.
-#   * CONCURRENCY=10 is the default. CONCURRENCY=20 tripped the API key's
-#     request rate limit (HTTP 429, "Current limit: 50") in a burst at launch
-#     and silently dropped 2 tickers. Keep the default low; only raise it if
-#     the gateway quota is known to be higher.
-#   * Two tickers failed on that 429 and needed a manual re-run, so this script
-#     does a second low-concurrency pass over whatever is still missing.
-#   * `export -f` does NOT survive into `xargs -> bash -c`, so the run command
-#     is inlined into the bash -c string below.
-#
+# Run missing reports through CLIProxyAPI using its existing Claude login.
 # Usage:
-#   bash scripts/run_missing_today.sh                  # all missing tickers, 10-wide
-#   CONCURRENCY=8 bash scripts/run_missing_today.sh    # override concurrency
-#   TRADINGAGENTS_DATE=2026-06-01 bash scripts/run_missing_today.sh
-#   bash scripts/run_missing_today.sh NVDA AMD TSLA    # explicit ticker list
+#   bash scripts/run_missing_today_claude.sh --check-only
+#   bash scripts/run_missing_today_claude.sh NVDA AMD
+#   CONCURRENCY=2 bash scripts/run_missing_today_claude.sh
 #
-# Rate-limit pacing: export TRADINGAGENTS_LLM_RPM=$((QUOTA / CONCURRENCY)) to
-# divide the provider's request quota across the parallel workers (each run
-# paces itself; the limiter is per-process and cannot see its siblings).
+# CLIPROXY_API_KEY overrides the client key read from CLIPROXY_CONFIG
+# (default: /opt/homebrew/etc/cliproxyapi.conf). This is the proxy client key,
+# not the upstream OAuth token. TRADINGAGENTS_LLM_BACKEND_URL overrides the
+# default http://127.0.0.1:8317 server root.
+# TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL must be advertised by
+# the proxy. --check-only checks access and model IDs without generating reports.
+# For the public Anthropic API, set TRADINGAGENTS_CLAUDE_MODE=direct and
+# ANTHROPIC_API_KEY. The direct API key may also come from the project's .env.
+# TRADINGAGENTS_LLM_RPM controls per-worker request pacing.
 
 set -uo pipefail
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/.." || exit 1
 ROOT="$(pwd)"
+
+# These launchers discover completed runs under this repository's docs/.
+# Override stale .env paths so saving and completion checks use the same root.
+export TRADINGAGENTS_REPORTS_DIR="$ROOT/docs"
 
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 PROVIDER="anthropic"
-BACKEND_URL="https://api.anthropic.com/"
-DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-fable-5-1}"
+MODE="${TRADINGAGENTS_CLAUDE_MODE:-proxy}"
+case "$MODE" in
+  proxy) BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-http://127.0.0.1:8317}" ;;
+  direct) BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-https://api.anthropic.com}" ;;
+  *) echo "TRADINGAGENTS_CLAUDE_MODE must be proxy or direct" >&2; exit 1 ;;
+esac
+PYTHON="${TRADINGAGENTS_PYTHON:-$ROOT/.venv/bin/python}"
+if [ ! -x "$PYTHON" ]; then
+  PYTHON="python3"
+fi
+CHECK_ONLY=0
+if [ "${1:-}" = "--check-only" ]; then
+  CHECK_ONLY=1
+  shift
+fi
+proxy_preflight() {
+  if [ "$MODE" = proxy ]; then
+    # Homebrew leaves an already-running service in place.
+    if ! brew services start cliproxyapi; then
+      echo "Could not start CLIProxyAPI with Homebrew; proxy preflight aborted." >&2
+      return 1
+    fi
+    # Keep credentials out of worker command-line arguments and log output.
+    CLIPROXY_API_KEY="$("$PYTHON" scripts/claude_proxy.py --key)" || return 1
+    export CLIPROXY_API_KEY
+    export ANTHROPIC_API_KEY="$CLIPROXY_API_KEY"
+    unset ANTHROPIC_AUTH_TOKEN
+    "$PYTHON" scripts/claude_proxy.py --base-url "$BACKEND_URL" "$DEEP_MODEL" "$QUICK_MODEL" || return 1
+  else
+    echo "Direct Anthropic API selected; proxy preflight does not apply."
+  fi
+}
+DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-5-5}"
 QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-sonnet-5}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
 DEPTH="${TRADINGAGENTS_DEPTH:-5}"
@@ -46,7 +72,14 @@ model_slug() {
 }
 MODEL_SLUG="$(model_slug "$DEEP_MODEL")"
 REPORT_GLOB="${DATE_SLUG}_${MODEL_SLUG}_*"
-CONCURRENCY="${CONCURRENCY:-10}"               # 20 tripped HTTP 429 ("Current limit: 50")
+CONCURRENCY="${CONCURRENCY:-10}"
+case "$CONCURRENCY" in
+  ''|*[!0-9]*|0) echo "CONCURRENCY must be a positive integer" >&2; exit 1 ;;
+esac
+if [ "$CHECK_ONLY" -eq 1 ]; then
+  proxy_preflight
+  exit $?
+fi
 LOGDIR="${TA_LOGDIR:-/tmp/ta_runlogs}"
 mkdir -p "$LOGDIR"
 
@@ -73,7 +106,7 @@ missing_tickers() {
 # Mirrors the skill.md "heavy run" one-liner exactly.
 run_pass() {
   local conc="$1"; shift
-  printf '%s\n' "$@" | xargs -n1 -P"$conc" -I{} bash -c '
+  printf '%s\n' "$@" | xargs -P"$conc" -I{} bash -c '
       t="$1"; DATE="$2"; LOGDIR="$3"; PROVIDER="$4"; BACKEND_URL="$5"; DEEP_MODEL="$6"; QUICK_MODEL="$7"; ANALYSTS="$8"; DEPTH="$9"
       echo "[START $t] $(date +%T)"
       TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT="${TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT:-0}" \
@@ -110,6 +143,7 @@ if [ "${#TODO[@]}" -eq 0 ]; then
   echo "Nothing to run — all ${#ALL_TICKERS[@]} tickers already have a ${REPORT_GLOB} report."
   exit 0
 fi
+proxy_preflight || exit 1
 echo "Pass 1: ${#TODO[@]} ticker(s) missing for ${DATE} ${MODEL_SLUG}, concurrency=${CONCURRENCY}"
 echo "  ${TODO[*]}"
 run_pass "$CONCURRENCY" "${TODO[@]}"
