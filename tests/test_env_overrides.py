@@ -102,11 +102,11 @@ def test_reasoning_effort_defaults_to_none(monkeypatch):
 
     ``google_thinking_level`` has no fork-specific default (None, each
     provider's own default); ``openai_reasoning_effort`` / ``anthropic_effort``
-    intentionally default to max-effort reasoning (#xhigh, #max) rather than
+    intentionally default to max-effort reasoning (#max) rather than
     None here.
     """
     dc = _reload_with_env(monkeypatch)
-    assert dc.DEFAULT_CONFIG["openai_reasoning_effort"] == "xhigh"
+    assert dc.DEFAULT_CONFIG["openai_reasoning_effort"] == "max"
     assert dc.DEFAULT_CONFIG["google_thinking_level"] is None
     assert dc.DEFAULT_CONFIG["anthropic_effort"] == "max"
 
