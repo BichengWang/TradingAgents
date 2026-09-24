@@ -26,8 +26,11 @@
 
 set -uo pipefail
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/.." || exit 1
 ROOT="$(pwd)"
+
+# Save where this launcher checks for completed reports, overriding .env.
+export TRADINGAGENTS_REPORTS_DIR="$ROOT/docs"
 
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
