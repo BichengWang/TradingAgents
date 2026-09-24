@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the MkDocs reports site locally and optionally publish it to gh-pages.
+# Incrementally add local report runs to the published gh-pages site.
 #
 # Report Markdown under docs/ is gitignored and never reaches the remote, so CI
 # cannot build the site. Instead we build from the local working tree and push
@@ -8,8 +8,8 @@
 #
 # This script is intentionally model-free: it only reassembles existing report
 # stage files, validates generated links, builds MkDocs HTML, and optionally
-# publishes the compiled site. It includes all completed reports while omitting
-# redundant report-stage subpages so it stays below GitHub Pages' 1 GB limit.
+# publishes the compiled site. Published report HTML is retained even when its
+# source Markdown is missing locally. Releases extend the existing Git history.
 
 set -euo pipefail
 
@@ -22,15 +22,16 @@ Usage: bash scripts/publish_site.sh [options]
 
 Options:
   --analysis-date YYYYMMDD|YYYY-MM-DD
-      Focus the summary for a specific analysis date.
+      Add only unpublished run folders for this date (default: all local dates).
   --build-only
-      Build and validate _site locally, but do not push gh-pages.
+      Build and validate _site using cached origin/gh-pages; do not fetch or push.
   --dry-run
-      Run the report workflow against a temporary docs copy. Does not write
-      _site or push gh-pages.
+      Validate the merged site in temporary directories; do not write _site,
+      fetch, or push gh-pages.
   -h, --help
       Show this help.
 
+Existing published runs are skipped. Old dates are never removed.
 No LLM/model calls are made by this script.
 EOF
 }
@@ -72,10 +73,16 @@ done
 if [ -x .venv/bin/python ]; then
   PY=.venv/bin/python
 else
-  PY=python
+  PY=python3
 fi
 
-workflow_args=(--retain-dates "${PUBLISH_RETAIN_DATES:-all}")
+# Pin the baseline before building. A normal push below rejects a concurrent
+# release rather than overwriting it. Offline preview modes use the cached ref.
+if [ "$build_only" -eq 0 ] && [ "$dry_run" -eq 0 ]; then
+  git fetch origin +refs/heads/gh-pages:refs/remotes/origin/gh-pages
+fi
+base_commit="$(git rev-parse --verify refs/remotes/origin/gh-pages)"
+workflow_args=(--base-ref "$base_commit" --retain-dates "${PUBLISH_RETAIN_DATES:-all}")
 if [ -n "$analysis_date" ]; then
   workflow_args+=(--analysis-date "$analysis_date")
 fi
@@ -83,7 +90,7 @@ if [ "$dry_run" -eq 1 ]; then
   workflow_args+=(--dry-run)
 fi
 
-echo "==> Building a compact, validated reports site without model calls"
+echo "==> Adding unpublished reports to gh-pages history"
 "$PY" scripts/build_publish_site.py "${workflow_args[@]}"
 
 if [ "$dry_run" -eq 1 ]; then
@@ -96,23 +103,27 @@ if [ "$build_only" -eq 1 ]; then
   exit 0
 fi
 
-echo "==> Publishing compiled site to gh-pages"
+echo "==> Publishing an incremental gh-pages commit"
 site_dir="$ROOT/_site"
-remote_url="$(git -C "$ROOT" remote get-url origin)"
 
-# ``mkdocs gh-deploy`` always performs a second build from the full local
-# docs tree. That tree is intentionally much larger than the Pages limit, so
-# publish the compact artifact assembled above instead.
-git -C "$site_dir" init --quiet
-git -C "$site_dir" checkout --orphan gh-pages --quiet 2>/dev/null || \
-  git -C "$site_dir" checkout -B gh-pages --quiet
-git -C "$site_dir" add --all
-if ! git -C "$site_dir" diff --cached --quiet; then
-  git -C "$site_dir" -c user.useConfigOnly=true commit --quiet \
-    -m "Deploy compact reports site"
+# Use an isolated index: the developer's branch, worktree, and staged files
+# remain untouched. The published commit has the fetched deployment as parent.
+index_dir="$(mktemp -d)"
+trap 'rm -f "$index_dir/index" "$index_dir/index.lock"; rmdir "$index_dir"' EXIT
+export GIT_INDEX_FILE="$index_dir/index"
+git read-tree "$base_commit"
+git --work-tree="$site_dir" add --all --force -- .
+site_tree="$(git write-tree)"
+if [ "$site_tree" = "$(git rev-parse "$base_commit^{tree}")" ]; then
+  echo "==> No unpublished reports; gh-pages is unchanged."
+  exit 0
 fi
-git -C "$site_dir" remote remove origin 2>/dev/null || true
-git -C "$site_dir" remote add origin "$remote_url"
-git -C "$site_dir" push --force origin HEAD:gh-pages
+if [ -n "$(git diff --name-only --diff-filter=D "$base_commit" "$site_tree")" ]; then
+  echo "error: refusing to publish a release that removes existing files" >&2
+  exit 1
+fi
+release_commit="$(git -c user.useConfigOnly=true commit-tree "$site_tree" \
+  -p "$base_commit" -m "Add unpublished trading reports")"
+git push origin "$release_commit:refs/heads/gh-pages"
 
 echo "==> Done. GitHub Pages will serve the updated gh-pages branch shortly."
