@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Resolve CLIProxyAPI's client key or check its advertised Claude/Codex models."""
+"""Resolve CLIProxyAPI's client key or check its advertised Claude/Codex/Gemini models."""
 
 import argparse
 import json
@@ -55,19 +55,21 @@ def check_models(base_url, models, provider="claude"):
             raise ValueError("Proxy returned an invalid model list.") from None
     if not all(isinstance(model, str) for model in available):
         raise ValueError("Proxy returned an invalid model list.")
-    label = "Claude" if provider == "claude" else "Codex"
-    matching = sorted(
-        model for model in available
-        if ("claude" in model.lower() if provider == "claude"
-            else model.lower().startswith(("gpt-", "o1", "o3", "o4", "codex")))
+    label = {"claude": "Claude", "codex": "Codex", "gemini": "Gemini"}[provider]
+    prefixes = {"claude": ("claude",), "codex": ("gpt-", "o1", "o3", "o4", "codex"),
+                "gemini": ("gemini",)}[provider]
+    matching = sorted(model for model in available if model.lower().startswith(prefixes))
+    auth_hint = (
+        "Configure Gemini credentials in CLIProxyAPI. " if provider == "gemini"
+        else f"If {label} is not authenticated, run: cliproxyapi --{provider}-login. "
     )
     missing = [model for model in models if model not in available]
     if missing:
         raise ValueError(
             "Proxy does not advertise: " + ", ".join(missing)
             + f". Available {label} models: " + (", ".join(matching) or "none")
-            + f". If {label} is not authenticated, run: cliproxyapi --{provider}-login. "
-            "Otherwise set TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL "
+            + ". " + auth_hint
+            + "Otherwise set TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL "
             "to advertised model IDs."
         )
     print("Proxy preflight OK: " + ", ".join(models))
@@ -77,7 +79,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--key", action="store_true", help="Emit client key for shell capture only")
     parser.add_argument("--base-url", default="http://127.0.0.1:8317")
-    parser.add_argument("--provider", choices=("claude", "codex"), default="claude")
+    parser.add_argument("--provider", choices=("claude", "codex", "gemini"), default="claude")
     parser.add_argument("models", nargs="*")
     args = parser.parse_args()
     try:
