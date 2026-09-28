@@ -24,6 +24,9 @@
 # divide the provider's request quota across the parallel workers (each run
 # paces itself; the limiter is per-process and cannot see its siblings).
 
+# Parse the complete body before running; edits during a batch must not shift
+# the file positions Bash reads after workers finish. Exit inside this block.
+{
 set -uo pipefail
 
 cd "$(dirname "$0")/.." || exit 1
@@ -116,3 +119,5 @@ if [ "${#FAILED[@]}" -gt 0 ]; then
   echo "STILL FAILING (check ${LOGDIR}/<TICKER>.log): ${FAILED[*]}"
   exit 1
 fi
+exit 0
+}
