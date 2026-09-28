@@ -67,7 +67,7 @@ missing_tickers() {
 # Mirrors the skill.md "heavy run" one-liner exactly.
 run_pass() {
   local conc="$1"; shift
-  printf '%s\n' "$@" | xargs -n1 -P"$conc" -I{} bash -c '
+  printf '%s\n' "$@" | xargs -P"$conc" -I{} bash -c '
       t="$1"; DATE="$2"; LOGDIR="$3"
       echo "[START $t] $(date +%T)"
       TRADINGAGENTS_ANTHROPIC_CACHE=1 \
