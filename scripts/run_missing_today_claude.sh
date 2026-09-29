@@ -89,7 +89,7 @@ fi
 LOGDIR="${TA_LOGDIR:-/tmp/ta_runlogs}"
 mkdir -p "$LOGDIR"
 
-DEFAULT_TICKERS=(QQQ SOXX NVDA AMD MU INTC AVGO BE GEV CRDO NBIS LITE COHR CARR CRM MSFT META AAPL GOOGL AMZN TSLA NFLX STRL MKSI CDE HL KGC LLY UBER MELI SE)
+source "$ROOT/scripts/default_tickers.sh"
 ALL_TICKERS=()
 if [ "$#" -gt 0 ]; then
   for t in "$@"; do

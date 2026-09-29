@@ -73,3 +73,33 @@ def test_invalid_shared_mode_fails_before_preflight(tmp_path, provider):
     )
     assert result.returncode == 1
     assert "TRADINGAGENTS_MODE must be proxy or direct" in result.stderr
+
+
+@pytest.mark.parametrize("provider", LAUNCHERS)
+def test_no_arguments_uses_all_shared_tickers(tmp_path, provider):
+    root = tmp_path / "repo"
+    (root / "scripts").mkdir(parents=True)
+    script = root / f"scripts/run_missing_today_{provider}.sh"
+    shutil.copy2(ROOT / script.relative_to(root), script)
+    # A changed shared list must apply to every launcher without local copies.
+    tickers = ["SPY", "YINN", "CUSTOM"]
+    (root / "scripts/default_tickers.sh").write_text(
+        "DEFAULT_TICKERS=(" + " ".join(tickers) + ")\n"
+    )
+    for ticker in tickers:
+        (root / "docs" / ticker / "20000101_fixture-model_complete").mkdir(parents=True)
+    result = subprocess.run(
+        ["bash", str(script)], cwd=tmp_path,
+        env={
+            "PATH": os.defpath,
+            "TRADINGAGENTS_MODE": "direct",
+            "TRADINGAGENTS_PYTHON": "/usr/bin/true",
+            "TRADINGAGENTS_DATE": "2000-01-01",
+            "TRADINGAGENTS_DEEP_MODEL": "fixture-model",
+            "TA_LOGDIR": str(root / "logs"),
+        },
+        capture_output=True, text=True, timeout=10,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "Nothing to run — all 3 tickers already have" in result.stdout
+    assert not result.stderr
