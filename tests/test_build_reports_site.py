@@ -319,6 +319,32 @@ def test_summary_row_preserves_missing_target(tmp_path, monkeypatch):
     assert row.target_uplift is None
     assert row.annualized_uplift is None
 
+    summary = "\n".join(builder.build_decision_summary([row], "20260621"))
+    assert "n/a" not in summary.lower()
+    assert "| $298.01 | No target set | No target set | No target set | Medium | 3-6m |" in summary
+
+
+@pytest.mark.unit
+def test_summary_explains_each_missing_input():
+    builder = load_builder()
+    row = summary_row(builder, "AAPL", "aapl-0602")._replace(
+        rating="n/a", action="n/a", current_price=None, price_target=None,
+        target_uplift=None, annualized_uplift=None, confidence="n/a", horizon="not provided",
+    )
+    text = "\n".join(builder.build_decision_summary([row]))
+    assert "n/a" not in text.lower()
+    assert "No action stated / Not rated" in text
+    assert "No verified close | No target set" in text
+    assert "Not assessed | Not specified" in text
+
+    with_target = row._replace(price_target=12.0)
+    text = "\n".join(builder.build_decision_summary([with_target]))
+    assert "| $12.00 | No verified close | No verified close |" in text
+
+    with_price = with_target._replace(current_price=10.0, target_uplift=0.2)
+    text = "\n".join(builder.build_decision_summary([with_price]))
+    assert "| +20.0% | No numeric horizon |" in text
+
 
 @pytest.mark.unit
 def test_main_removes_stale_generated_ticker_hubs(tmp_path, monkeypatch):

@@ -10,6 +10,7 @@ and rendering logic:
 from __future__ import annotations
 
 import argparse
+import math
 import re
 import shutil
 import subprocess
@@ -277,9 +278,29 @@ def validate_homepage(
     selected_tickers = {run.ticker for run in selected.values()}
     selected_folders = {run.folder_name for run in selected.values()}
     seen_selected: set[str] = set()
+
+    def valid_value(value, validator):
+        value = value.strip()
+        if value.lower() in site.SUMMARY_PLACEHOLDERS:
+            return allow_na
+        return validator(value)
+
     for row in rows:
-        if not allow_na and "n/a" in row.lower():
-            raise WorkflowError(f"Homepage summary row contains n/a: {row}")
+        cells = [cell.strip() for cell in row.split("|")[1:-1]]
+        complete = len(cells) == 9
+        if complete:
+            suggestion = cells[2].rsplit(" / ", 1)
+            complete = (
+                len(suggestion) == 2
+                and all(valid_value(part, bool) for part in suggestion)
+                and all(valid_value(cells[i], lambda v: site.parse_money(v) is not None) for i in (3, 4))
+                and all(valid_value(cells[i], lambda v: re.fullmatch(r"[+-]?\d+(?:\.\d+)?%", v)
+                                    and math.isfinite(float(v[:-1]))) for i in (5, 6))
+                and valid_value(cells[7], lambda v: v.lower() in {"low", "medium", "high"})
+                and valid_value(cells[8], bool)
+            )
+        if not complete:
+            raise WorkflowError(f"Homepage summary row contains n/a or missing/invalid fields: {row}")
 
         match = SUMMARY_LINK_RE.search(row)
         if match is None:
@@ -387,7 +408,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--allow-summary-na",
         action="store_true",
-        help="Allow n/a fields in homepage summary rows.",
+        help="Allow unprovided fields in homepage summary rows.",
     )
     args = parser.parse_args(argv)
     try:

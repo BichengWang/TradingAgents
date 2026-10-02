@@ -520,9 +520,20 @@ def summary_sort_key(row: SummaryRow) -> tuple[str, str]:
     return (row.ticker, row.model)
 
 
-def format_price(value: float | None) -> str:
+SUMMARY_PLACEHOLDERS = frozenset({
+    "", "n/a", "na", "none", "null", "unknown", "not provided", "not available",
+    "no verified close", "no target set", "not calculated", "no numeric horizon",
+    "not assessed", "not specified", "not rated", "no action stated",
+})
+
+
+def summary_text(value: str, missing: str) -> str:
+    return missing if value.strip().lower() in SUMMARY_PLACEHOLDERS else value
+
+
+def format_price(value: float | None, missing: str = "Not provided") -> str:
     if value is None:
-        return "n/a"
+        return missing
     if value >= 1000:
         return f"${value:,.0f}"
     if value >= 100:
@@ -530,9 +541,9 @@ def format_price(value: float | None) -> str:
     return f"${value:.2f}"
 
 
-def format_percent(value: float | None) -> str:
+def format_percent(value: float | None, missing: str = "Not calculated") -> str:
     if value is None:
-        return "n/a"
+        return missing
     return f"{value * 100:+.1f}%"
 
 
@@ -561,9 +572,9 @@ def build_decision_summary(
         else "## Latest Decision Summary"
     )
     note = (
-        f"_Uses the latest {analysis_date} run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current − 1. Missing targets stay n/a. Confidence uses the final decision when supplied, otherwise the report's confidence. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme._"
+        f"_Uses the latest {analysis_date} run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current − 1. Unprovided values are labeled explicitly; uplift requires a numeric target and verified close, and 1Y uplift also requires a numeric horizon. Confidence uses the final decision when supplied, otherwise the report's confidence. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme._"
         if analysis_date
-        else "_Uses the latest run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current − 1. Missing targets stay n/a. Confidence uses the final decision when supplied, otherwise the report's confidence. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme._"
+        else "_Uses the latest run folder for each ticker/model pair. Current price is the report-time latest close parsed from the report, not a live quote. Target uplift is target/current − 1. Unprovided values are labeled explicitly; uplift requires a numeric target and verified close, and 1Y uplift also requires a numeric horizon. Confidence uses the final decision when supplied, otherwise the report's confidence. 1Y uplift is annualized from the midpoint of the stated horizon, so short-horizon rows can look extreme._"
     )
     lines = [
         heading,
@@ -574,12 +585,14 @@ def build_decision_summary(
         "| --- | --- | --- | ---: | ---: | ---: | ---: | --- | --- |",
     ]
     for row in sorted(rows, key=summary_sort_key):
-        suggestion = f"{row.action} / {row.rating}"
+        suggestion = f"{summary_text(row.action, 'No action stated')} / {summary_text(row.rating, 'Not rated')}"
+        uplift_missing = "No target set" if row.price_target is None else "No verified close"
+        annualized_missing = uplift_missing if row.target_uplift is None else "No numeric horizon"
         lines.append(
             f"| [{row.ticker}]({row.report_link}) | `{row.model}` | {suggestion} | "
-            f"{format_price(row.current_price)} | {format_price(row.price_target)} | "
-            f"{format_percent(row.target_uplift)} | {format_percent(row.annualized_uplift)} | "
-            f"{row.confidence} | {short_horizon(row.horizon)} |"
+            f"{format_price(row.current_price, 'No verified close')} | {format_price(row.price_target, 'No target set')} | "
+            f"{format_percent(row.target_uplift, uplift_missing)} | {format_percent(row.annualized_uplift, annualized_missing)} | "
+            f"{summary_text(row.confidence, 'Not assessed')} | {short_horizon(summary_text(row.horizon, 'Not specified'))} |"
         )
     lines.append("")
     return lines
