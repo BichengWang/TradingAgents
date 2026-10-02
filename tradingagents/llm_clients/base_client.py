@@ -12,12 +12,14 @@ def normalize_content(response):
 
     Multiple providers (OpenAI Responses API, Google Gemini 3) return content
     as a list of typed blocks, e.g. [{'type': 'reasoning', ...}, {'type': 'text', 'text': '...'}].
-    Downstream agents expect response.content to be a string. This extracts
-    and joins the text blocks, discarding reasoning/metadata blocks.
+    Terminal reports need plain text. Tool turns retain native blocks because
+    providers need their reasoning/signatures when the conversation continues.
     """
     metadata = getattr(response, "response_metadata", {}) or {}
     reason = metadata.get("stop_reason") or metadata.get("finish_reason") or "unknown"
     content = getattr(response, "content", None)
+    if isinstance(content, list) and getattr(response, "tool_calls", None):
+        return response
     if isinstance(content, list):
         texts = [
             item.get("text", "") if (isinstance(item, dict)

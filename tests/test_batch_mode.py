@@ -1,11 +1,12 @@
 from __future__ import annotations
 
 import pytest
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 
 from tradingagents.batch.adapters import AnthropicBatchAdapter, OpenAIBatchAdapter
 from tradingagents.batch.runner import BatchRunner
 from tradingagents.default_config import DEFAULT_CONFIG
+from tradingagents.llm_clients.base_client import normalize_content
 
 
 class FakeOpenAIAdapter(OpenAIBatchAdapter):
@@ -76,6 +77,27 @@ def test_anthropic_adapter_preserves_cache_markers(tmp_path):
     assert line["params"]["messages"][-1]["content"][0]["cache_control"] == {
         "type": "ephemeral"
     }
+
+
+def test_anthropic_batch_tool_followup_preserves_signed_thinking(tmp_path):
+    config = _config(tmp_path)
+    config["llm_provider"] = "anthropic"
+    config["max_tokens"] = 1024
+    adapter = AnthropicBatchAdapter(config)
+    thinking = {"type": "thinking", "thinking": "native reasoning", "signature": "signed_fixture"}
+    response = adapter.message_from_response({"content": [
+        thinking, {"type": "tool_use", "id": "call1", "name": "lookup", "input": {}},
+    ]})
+    payload = adapter.build_payload(
+        model="claude-sonnet-5-5",
+        messages=[HumanMessage("Use verified evidence."), normalize_content(response),
+                  ToolMessage(content="Verified evidence", tool_call_id="call1")],
+        request_kwargs={},
+    )
+    assistant = payload["messages"][1]["content"]
+    assert assistant[0] == thinking
+    assert assistant[1]["type"] == "tool_use"
+    assert assistant[1]["id"] == "call1"
 
 
 def test_openai_adapter_extracts_structured_function_arguments(tmp_path):

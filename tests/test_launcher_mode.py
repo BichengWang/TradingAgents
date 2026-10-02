@@ -108,3 +108,52 @@ def test_no_arguments_uses_all_shared_tickers(tmp_path, provider):
     assert result.returncode == 0, result.stdout + result.stderr
     assert "Nothing to run — all 3 tickers already have" in result.stdout
     assert not result.stderr
+
+
+@pytest.mark.parametrize("token_budget", [None, "65536"])
+@pytest.mark.parametrize("effort", [None, "max"])
+@pytest.mark.parametrize("models,default_budget", [
+    (("claude-opus-5-5", "claude-opus-5-5"), "128000"),
+    (("claude-opus-5-5", "claude-sonnet-5-5"), "128000"),
+    (("claude-opus-4-5", "claude-sonnet-5-5"), ""),
+    (("claude-opus-5-5", "claude-haiku-4-5"), ""),
+])
+def test_claude_workers_receive_output_budget(tmp_path, token_budget, effort, models, default_budget):
+    root = tmp_path / "repo"
+    (root / "scripts").mkdir(parents=True)
+    (root / "bin").mkdir()
+    for name in ("run_missing_today_claude.sh", "report_guard.py", "default_tickers.sh"):
+        shutil.copy2(ROOT / "scripts" / name, root / "scripts" / name)
+    worker = root / "bin/uv"
+    worker.write_text('''#!/bin/bash
+printf '%s' "$TRADINGAGENTS_MAX_TOKENS" > "$CAPTURE"
+printf '%s\\n' "$@" > "$CAPTURE.args"
+report="docs/NVDA/20000101_${TRADINGAGENTS_DEEP_THINK_LLM}_20000102_030405"
+mkdir -p "$report/1_analysts" "$report/3_trading" "$report/5_portfolio"
+for stage in complete_report.md 1_analysts/market.md 3_trading/trader.md 5_portfolio/decision.md; do
+  echo fixture > "$report/$stage"
+done
+''')
+    worker.chmod(0o755)
+    capture = root / "budget"
+    env = {
+        "PATH": str(root / "bin") + os.pathsep + os.defpath,
+        "TRADINGAGENTS_MODE": "direct",
+        "TRADINGAGENTS_DATE": "2000-01-01",
+        "TRADINGAGENTS_DEEP_MODEL": models[0],
+        "TRADINGAGENTS_QUICK_MODEL": models[1],
+        "TA_LOGDIR": str(root / "logs"),
+        "CAPTURE": str(capture),
+    }
+    if token_budget is not None:
+        env["TRADINGAGENTS_MAX_TOKENS"] = token_budget
+    if effort is not None:
+        env["TRADINGAGENTS_OPENAI_REASONING_EFFORT"] = effort
+    result = subprocess.run(
+        ["bash", str(root / "scripts/run_missing_today_claude.sh"), "NVDA"],
+        cwd=tmp_path, env=env, capture_output=True, text=True, timeout=10,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert capture.read_text() == (token_budget or default_budget)
+    args = capture.with_suffix(".args").read_text().splitlines()
+    assert args[args.index("--anthropic-effort") + 1] == (effort or "high")

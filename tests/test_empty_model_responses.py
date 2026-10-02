@@ -6,7 +6,7 @@ from unittest.mock import MagicMock
 import anthropic
 import pytest
 from anthropic import _base_client as sdk_transport
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 
 from tradingagents.agents.schemas import TraderProposal
 from tradingagents.agents.structured import invoke_structured_or_freetext
@@ -33,6 +33,53 @@ def test_empty_answers_raise(content):
 def test_tool_only_turn_still_runs_tools():
     message = AIMessage(content="", tool_calls=[{"name": "get_stock_data", "args": {}, "id": "call1"}])
     assert normalize_content(message).tool_calls == message.tool_calls
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize("reasoning", [
+    {"type": "thinking", "thinking": "native reasoning", "signature": "signed"},
+    {"type": "text", "text": "native reasoning", "thought": True, "thought_signature": "signed"},
+    {"type": "reasoning", "id": "reasoning1", "encrypted_content": "opaque"},
+])
+def test_tool_turn_keeps_native_blocks_after_repeated_normalization(reasoning):
+    blocks = [reasoning, {"type": "text", "text": "Checking the evidence."}]
+    message = AIMessage(content=blocks, tool_calls=[{"name": "lookup", "args": {}, "id": "call1"}])
+    assert normalize_content(normalize_content(message)).content == blocks
+    with pytest.raises(EmptyModelResponseError, match="expected report text"):
+        require_report_text(message, "Terminal agent")
+
+
+@pytest.mark.unit
+def test_anthropic_tool_followup_preserves_signed_thinking():
+    requests = []
+    thinking = {"type": "thinking", "thinking": "native reasoning", "signature": "signed_fixture"}
+
+    def respond(request):
+        body = json.loads(request.content)
+        requests.append(body)
+        content = [thinking, {"type": "tool_use", "id": "call1", "name": "lookup", "input": {}}]
+        if len(requests) > 1:
+            content = [{"type": "text", "text": "Completed report."}]
+        return httpx.Response(200, json={
+            "id": "msg_fixture", "type": "message", "role": "assistant", "model": body["model"],
+            "content": content, "stop_reason": "tool_use" if len(requests) == 1 else "end_turn",
+            "stop_sequence": None, "usage": {"input_tokens": 10, "output_tokens": 20},
+        })
+
+    with httpx.Client(transport=httpx.MockTransport(respond)) as client:
+        llm = NormalizedChatAnthropic(model="claude-sonnet-5-5", api_key="fixture", max_tokens=1024)
+        llm._client = anthropic.Anthropic(api_key="fixture", http_client=client)
+        bound = llm.bind_tools([{"name": "lookup", "description": "Look up evidence",
+                                 "input_schema": {"type": "object", "properties": {}}}])
+        question = HumanMessage(content="Use verified evidence.")
+        tool_turn = normalize_content(bound.invoke([question]))
+        final = bound.invoke([question, tool_turn, ToolMessage(content="Verified evidence", tool_call_id="call1")])
+
+    assert final.content == "Completed report."
+    assistant = requests[1]["messages"][1]["content"]
+    assert assistant[0] == thinking
+    assert assistant[1]["type"] == "tool_use"
+    assert assistant[1]["id"] == "call1"
 
 
 @pytest.mark.unit
