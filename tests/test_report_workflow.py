@@ -30,6 +30,8 @@ def make_run(
             f"# Trading Analysis Report: {ticker}\n",
             encoding="utf-8",
         )
+        (run_dir / "5_portfolio").mkdir()
+        (run_dir / "5_portfolio/decision.md").write_text("Price Target: 120", encoding="utf-8")
     for rel_path, body in (stage_files or {}).items():
         path = run_dir / rel_path
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -273,6 +275,7 @@ def test_homepage_validation_rejects_bad_rows(
         "AAPL",
         "20260602_opus_20260602_101010",
         complete=create_report,
+        stage_files={"5_portfolio/decision.md": "Price Target: 120"},
     )
     make_run(docs, "AAPL", "20260601_opus_20260601_101010")
     run = workflow.site.parse_run_folder(run_dir.parent, run_dir)
@@ -321,7 +324,7 @@ def test_homepage_validation_can_allow_summary_na(tmp_path, monkeypatch):
 @pytest.mark.parametrize("column,value,allow_missing", [
     (2, "No action stated / Buy", True), (2, "Buy / Not rated", True),
     (2, "n/a  / Overweight", True),
-    (3, "No verified close", True), (4, "No target set", True), (5, "No target set", True),
+    (3, "No verified close", True), (4, "No target set", False), (5, "No target set", True),
     (6, "No numeric horizon", True), (7, "Not assessed", True), (8, "Not specified", True),
     (3, "", True), (4, "$0.00", False), (5, "NaN%", False), (6, "+Inf%", False),
     (9, "Extra column", False),

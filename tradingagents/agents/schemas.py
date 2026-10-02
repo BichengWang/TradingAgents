@@ -280,7 +280,9 @@ class PortfolioDecision(BaseModel):
         default=None,
         description=(
             "Evidence-backed target price as one absolute number in the quote currency. "
-            "Use null when no target can be justified; do not substitute the current price."
+            "Explain its source or calculation in investment_thesis. A positive numeric "
+            "target is required to complete the report. Use null when no target can be "
+            "justified, leaving the run incomplete; do not substitute the current price."
         ),
     )
     current_price: float | None = Field(

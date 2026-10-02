@@ -14,6 +14,7 @@ import pytest
 from langchain_core.messages import AIMessage
 from pydantic import ValidationError
 
+from cli.report_fields import MissingPriceTargetError, require_price_target
 from tradingagents.agents.analysts.sentiment_analyst import create_sentiment_analyst
 from tradingagents.agents.managers.portfolio_manager import create_portfolio_manager
 from tradingagents.agents.managers.research_manager import create_research_manager
@@ -210,6 +211,52 @@ def test_invoke_structured_falls_back_when_result_is_none():
     )
     assert out == "FREETEXT"
     plain.invoke.assert_called_once()
+
+
+@pytest.mark.parametrize("structured_available", [True, False])
+@pytest.mark.parametrize("corrected", [True, False])
+def test_missing_target_gets_only_one_correction(structured_available, corrected):
+    from tradingagents.agents.structured import invoke_structured_or_freetext
+
+    incomplete = "Current Price: 100\nPrice Target: not provided"
+    complete = "Investment Thesis: Report valuation supports 120.\nPrice Target: 120"
+    structured = MagicMock() if structured_available else None
+    plain = MagicMock()
+    correction = complete if corrected else incomplete
+    if structured_available:
+        structured.invoke.return_value = incomplete
+        plain.invoke.return_value = AIMessage(content=correction)
+    else:
+        plain.invoke.side_effect = [AIMessage(content=incomplete), AIMessage(content=correction)]
+
+    def invoke():
+        return invoke_structured_or_freetext(
+            structured, plain, "source evidence", lambda result: result, "Portfolio Manager",
+            validate=require_price_target, retry_prompt="source evidence\nCorrection required",
+        )
+
+    if corrected:
+        assert invoke() == complete
+    else:
+        with pytest.raises(MissingPriceTargetError, match="remains incomplete"):
+            invoke()
+    assert plain.invoke.call_count == (1 if structured_available else 2)
+    assert plain.invoke.call_args.args[0] == "source evidence\nCorrection required"
+
+
+def test_required_target_preserves_rate_limit_errors():
+    from tradingagents.agents.structured import invoke_structured_or_freetext
+
+    structured, plain = MagicMock(), MagicMock()
+    error = RuntimeError("429 Too Many Requests")
+    error.status_code = 429
+    structured.invoke.side_effect = error
+    with pytest.raises(RuntimeError, match="429"):
+        invoke_structured_or_freetext(
+            structured, plain, "evidence", lambda result: result, "Portfolio Manager",
+            validate=require_price_target,
+        )
+    plain.invoke.assert_not_called()
 
 
 @pytest.mark.unit

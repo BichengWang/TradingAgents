@@ -38,6 +38,10 @@ from pathlib import Path
 from typing import NamedTuple
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(REPO_ROOT))
+
+from cli.report_fields import extract_price_target, field, parse_money  # noqa: E402
+
 DOCS_DIR = REPO_ROOT / "docs"
 
 TICKER_DIR_RE = re.compile(r"^[A-Za-z0-9.\-]+$")
@@ -88,6 +92,7 @@ class SummaryRow(NamedTuple):
 class DailySummary(NamedTuple):
     analysis_date: str
     rows: list[SummaryRow]
+    incomplete_count: int = 0
 
 
 def parse_run_folder(ticker_dir: Path, run_path: Path) -> Run | None:
@@ -119,57 +124,6 @@ def read_text(path: Path) -> str:
     if not path.is_file():
         return ""
     return path.read_text(encoding="utf-8", errors="replace")
-
-
-def field(text: str, name: str) -> str:
-    m = re.search(
-        rf"^[ \t]*(?:[-*][ \t]+|\d+[.)][ \t]+)?(?:\*\*)?{re.escape(name)}"
-        rf"(?:\*\*)?[ \t]*:[ \t]*(?:\*\*)?(?:\n[ \t]*)?([^\n]+)$",
-        text, flags=re.I | re.M,
-    )
-    if m:
-        value = clean_field_value(m.group(1))
-        if not re.match(r"(?:\*\*)?[A-Za-z][^\n:]*?(?:\*\*)?\s*:", value):
-            return value
-    m = re.search(
-        rf"^\|\s*\*{{0,2}}{re.escape(name)}\*{{0,2}}\s*\|\s*(.+?)\s*\|",
-        text,
-        flags=re.I | re.M,
-    )
-    return clean_field_value(m.group(1)) if m else ""
-
-
-def clean_field_value(value: str) -> str:
-    return value.strip().strip("*").strip()
-
-
-def parse_money(value: str) -> float | None:
-    value = value.strip().replace("**", "").replace(",", "")
-    m = re.match(r"^(?:[$€£¥]\s*)?([0-9]+(?:\.\d+)?)(?=$|\s|[();!?]|\.(?!\d))", value)
-    if not m or re.match(
-        r"\s*(?:%|(?:[-–—/]|to\b)\s*(?:[$€£¥]\s*)?\d)", value[m.end():]
-    ):
-        return None
-    number = float(m.group(1))
-    return number if math.isfinite(number) and number > 0 else None
-
-
-def extract_price_target(decision_text: str) -> float | None:
-    for name in (
-        "Price Target",
-        "Target Price",
-        "Near-term target",
-        "Medium-term target",
-        "Base-case target",
-        "Fair Value",
-        "Valuation Target",
-    ):
-        value = field(decision_text, name)
-        if value:
-            target = parse_money(value)
-            if target is not None:
-                return target
-    return None
 
 
 def extract_time_horizon(decision_text: str) -> str:
@@ -507,10 +461,13 @@ def build_daily_summaries(by_ticker: dict[str, list[Run]]) -> list[DailySummary]
     for analysis_date in analysis_dates(by_ticker):
         runs = latest_runs(by_ticker, analysis_date)
         if runs:
+            rows = [build_summary_row(run) for run in runs]
+            complete = [row for row in rows if row.price_target is not None]
             summaries.append(
                 DailySummary(
                     analysis_date=analysis_date,
-                    rows=[build_summary_row(run) for run in runs],
+                    rows=complete,
+                    incomplete_count=len(rows) - len(complete),
                 )
             )
     return summaries
@@ -534,6 +491,8 @@ def summary_text(value: str, missing: str) -> str:
 def format_price(value: float | None, missing: str = "Not provided") -> str:
     if value is None:
         return missing
+    if 0 < value < 0.01:
+        return f"${value:.8g}"
     if value >= 1000:
         return f"${value:,.0f}"
     if value >= 100:
@@ -641,6 +600,11 @@ def build_daily_decision_summaries(
     )
     for summary in summaries:
         lines.extend(build_decision_summary(summary.rows, summary.analysis_date))
+        if summary.incomplete_count:
+            lines.extend([
+                f"_{summary.incomplete_count} incomplete decision(s) excluded: a supported numeric price target is required._",
+                "",
+            ])
     lines.extend(
         [
             "</div>",

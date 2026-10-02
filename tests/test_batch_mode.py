@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 import pytest
 from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 
@@ -209,3 +211,57 @@ def test_runner_replays_result_and_advances_to_next_node(tmp_path, monkeypatch, 
     assert run.decoded_state()["market_report"] == "Market report."
     nodes = [request.node for request in runner.manifest.requests.values()]
     assert nodes == ["Market Analyst", "Bull Researcher"]
+
+
+@pytest.mark.parametrize("provider", ["openai", "anthropic"])
+@pytest.mark.parametrize("corrected", [True, False])
+def test_pm_target_correction_survives_batch_replay(tmp_path, monkeypatch, provider, corrected):
+    import tradingagents.batch.runner as runner_mod
+
+    monkeypatch.setattr(runner_mod, "resolve_instrument_identity", lambda ticker: {})
+    config = _config(tmp_path)
+    config.update(llm_provider=provider, memory_log_path=str(tmp_path / "memory.md"))
+    runner = BatchRunner.create(
+        provider=provider, tickers=["AAPL"], trade_date="2026-10-01",
+        asset_types={"AAPL": "stock"}, selected_analysts=["market"],
+        config=config, root=tmp_path / "batch",
+    )
+    run = runner.manifest.runs["AAPL"]
+    state = run.decoded_state()
+    state.update(market_report="Verified resistance objective: 120.",
+                 fundamentals_report="Valuation: 6 EPS times 20 multiple supports 120.",
+                 investment_plan="Hold.", trader_investment_plan="Action: Hold")
+    run.set_state(state)
+    run.progress["phase"] = "portfolio_manager"
+    runner.advance_all()
+    first = next(iter(runner.manifest.requests.values()))
+    assert first.kind == "structured"
+    missing = {"rating": "Hold", "executive_summary": "Retain current position.",
+               "investment_thesis": "Balanced evidence.", "price_target": None}
+    first.status = "succeeded"
+    first.response = (
+        {"output": [{"type": "function_call", "call_id": "pm", "name": "PortfolioDecision",
+                     "arguments": json.dumps(missing)}]} if provider == "openai" else
+        {"content": [{"type": "tool_use", "id": "pm", "name": "PortfolioDecision", "input": missing}]}
+    )
+    runner.advance_all()
+    assert run.status == "waiting"
+    assert len(runner.manifest.requests) == 2
+    # Resume while the correction is still pending: do not enqueue a third call.
+    runner.advance_all()
+    assert len(runner.manifest.requests) == 2
+    second = list(runner.manifest.requests.values())[1]
+    assert second.kind == "message"
+    text = "Rating: Hold\nInvestment Thesis: EPS 6 times multiple 20 supports 120.\nPrice Target: "
+    text += "120" if corrected else "not provided"
+    second.status = "succeeded"
+    second.response = (
+        {"output": [{"type": "message", "content": [{"type": "output_text", "text": text}]}]}
+        if provider == "openai" else {"content": [{"type": "text", "text": text}]}
+    )
+    runner.advance_all()
+    assert run.status == ("completed" if corrected else "failed")
+    assert len(runner.manifest.requests) == 2
+    if not corrected:
+        assert "numeric Price Target" in run.error
+        assert not runner.memory_log.load_entries()

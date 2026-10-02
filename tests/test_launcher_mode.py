@@ -82,6 +82,9 @@ def test_no_arguments_uses_all_shared_tickers(tmp_path, provider):
     script = root / f"scripts/run_missing_today_{provider}.sh"
     shutil.copy2(ROOT / script.relative_to(root), script)
     shutil.copy2(ROOT / "scripts/report_guard.py", root / "scripts/report_guard.py")
+    (root / "cli").mkdir(exist_ok=True)
+    for helper in ("__init__.py", "report_fields.py"):
+        shutil.copy2(ROOT / "cli" / helper, root / "cli" / helper)
     # A changed shared list must apply to every launcher without local copies.
     tickers = ["SPY", "YINN", "CUSTOM"]
     (root / "scripts/default_tickers.sh").write_text(
@@ -92,7 +95,7 @@ def test_no_arguments_uses_all_shared_tickers(tmp_path, provider):
         for stage in ("complete_report.md", "1_analysts/market.md", "3_trading/trader.md", "5_portfolio/decision.md"):
             path = report / stage
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text("fixture report")
+            path.write_text("Price Target: 120")
     result = subprocess.run(
         ["bash", str(script)], cwd=tmp_path,
         env={
@@ -124,6 +127,9 @@ def test_claude_workers_receive_output_budget(tmp_path, token_budget, effort, mo
     (root / "bin").mkdir()
     for name in ("run_missing_today_claude.sh", "report_guard.py", "default_tickers.sh"):
         shutil.copy2(ROOT / "scripts" / name, root / "scripts" / name)
+    (root / "cli").mkdir(exist_ok=True)
+    for helper in ("__init__.py", "report_fields.py"):
+        shutil.copy2(ROOT / "cli" / helper, root / "cli" / helper)
     worker = root / "bin/uv"
     worker.write_text('''#!/bin/bash
 printf '%s' "$TRADINGAGENTS_MAX_TOKENS" > "$CAPTURE"
@@ -131,7 +137,7 @@ printf '%s\\n' "$@" > "$CAPTURE.args"
 report="docs/NVDA/20000101_${TRADINGAGENTS_DEEP_THINK_LLM}_20000102_030405"
 mkdir -p "$report/1_analysts" "$report/3_trading" "$report/5_portfolio"
 for stage in complete_report.md 1_analysts/market.md 3_trading/trader.md 5_portfolio/decision.md; do
-  echo fixture > "$report/$stage"
+  echo "Price Target: 120" > "$report/$stage"
 done
 ''')
     worker.chmod(0o755)

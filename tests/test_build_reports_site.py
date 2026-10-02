@@ -346,6 +346,22 @@ def test_summary_explains_each_missing_input():
     assert "| +20.0% | No numeric horizon |" in text
 
 
+def test_targetless_latest_run_is_excluded_and_counted(monkeypatch):
+    builder = load_builder()
+    older = builder.Run("AAPL", "2026-10-01", "model", "2026-10-01 10:00:00", "older")
+    newer = older._replace(run_started="2026-10-01 12:00:00", folder_name="newer")
+    supported = older._replace(ticker="MSFT", folder_name="supported")
+    monkeypatch.setattr(builder, "build_summary_row", lambda run: summary_row(
+        builder, run.ticker, run.folder_name)._replace(price_target=None if run == newer else 120.0))
+    summaries = builder.build_daily_summaries({"AAPL": [older, newer], "MSFT": [supported]})
+    assert [row.ticker for row in summaries[0].rows] == ["MSFT"]
+    assert summaries[0].incomplete_count == 1
+    text = "\n".join(builder.build_daily_decision_summaries(summaries))
+    assert "1 incomplete decision(s) excluded" in text
+    assert "No target set" not in text
+    assert "older/complete_report.md" not in text
+
+
 @pytest.mark.unit
 def test_main_removes_stale_generated_ticker_hubs(tmp_path, monkeypatch):
     builder = load_builder()
@@ -400,9 +416,23 @@ def test_confidence_field_formats(text):
 
 
 @pytest.mark.unit
-@pytest.mark.parametrize("value", ["n/a", "not provided", "2026-10-01", "15%", "150-160", "150 to 160", "nan", "inf"])
+@pytest.mark.parametrize("value", ["n/a", "not provided", "2026-10-01", "15%", "150-160", "150 to 160", "nan", "inf",
+                                   "6 months", "20 basis points", "15 percent", "6-month target", "6 trading days"])
 def test_price_parser_does_not_turn_non_prices_into_quotes(value):
     assert load_builder().parse_money(value) is None
+
+
+def test_small_structured_target_survives_completion_guard():
+    from cli.report_fields import extract_price_target, require_price_target
+    from tradingagents.agents.schemas import PortfolioDecision, render_pm_decision
+
+    rendered = render_pm_decision(PortfolioDecision(
+        rating="Hold", executive_summary="Retain current position.", investment_thesis="Supported micro-price objective.",
+        price_target=1e-5))
+    require_price_target(rendered)
+    assert extract_price_target(rendered) == 1e-5
+    builder = load_builder()
+    assert builder.parse_money(builder.format_price(1e-5)) == 1e-5
 
 
 @pytest.mark.unit

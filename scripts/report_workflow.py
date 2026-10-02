@@ -108,13 +108,21 @@ def require_full_coverage(
     selected: dict[tuple[str, str], site.Run],
     analysis_date: str,
 ) -> None:
-    selected_tickers = {ticker for ticker, _ in selected}
+    selected_tickers = {ticker for ticker, _ in runs_with_targets(selected)}
     missing = sorted(ticker for ticker in runs_by_ticker if ticker not in selected_tickers)
     if missing:
         tickers = ", ".join(missing)
         raise WorkflowError(
             f"Analysis date {analysis_date} is incomplete; missing tickers: {tickers}"
         )
+
+
+def runs_with_targets(selected: dict[tuple[str, str], site.Run]) -> dict[tuple[str, str], site.Run]:
+    return {
+        key: run for key, run in selected.items()
+        if site.extract_price_target(site.read_text(DOCS / run.ticker / run.folder_name / "5_portfolio/decision.md"))
+        is not None
+    }
 
 
 def report_path(run: site.Run) -> Path:
@@ -269,6 +277,7 @@ def validate_homepage(
     index_path = DOCS / "index.md"
     home_text = index_path.read_text(encoding="utf-8", errors="replace")
     rows = decision_summary_rows(home_text, normalized)
+    selected = runs_with_targets(selected)
 
     if len(rows) < len(selected):
         raise WorkflowError(
@@ -293,7 +302,8 @@ def validate_homepage(
             complete = (
                 len(suggestion) == 2
                 and all(valid_value(part, bool) for part in suggestion)
-                and all(valid_value(cells[i], lambda v: site.parse_money(v) is not None) for i in (3, 4))
+                and valid_value(cells[3], lambda v: site.parse_money(v) is not None)
+                and site.parse_money(cells[4]) is not None
                 and all(valid_value(cells[i], lambda v: re.fullmatch(r"[+-]?\d+(?:\.\d+)?%", v)
                                     and math.isfinite(float(v[:-1]))) for i in (5, 6))
                 and valid_value(cells[7], lambda v: v.lower() in {"low", "medium", "high"})
@@ -408,7 +418,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--allow-summary-na",
         action="store_true",
-        help="Allow unprovided fields in homepage summary rows.",
+        help="Allow unprovided fields other than the required numeric target in homepage summary rows.",
     )
     args = parser.parse_args(argv)
     try:
