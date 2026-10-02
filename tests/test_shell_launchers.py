@@ -53,6 +53,10 @@ value = lambda flag: sys.argv[sys.argv.index(flag) + 1]
 slug = value("--deep-model").translate(str.maketrans({"/": "-", ":": "-", ".": "-"}))
 report = Path(os.environ["TRADINGAGENTS_REPORTS_DIR"]) / value("--ticker") / (value("--date").replace("-", "") + "_" + slug + "_20000102_030405")
 report.mkdir(parents=True)
+for stage in ("complete_report.md", "1_analysts/market.md", "3_trading/trader.md", "5_portfolio/decision.md"):
+    path = report / stage
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("fixture report")
 ''')
     wrapper = f'#!/bin/bash\nexec {shlex.quote(sys.executable)} {shlex.quote(str(worker))} "$@"\n'
     programs = {

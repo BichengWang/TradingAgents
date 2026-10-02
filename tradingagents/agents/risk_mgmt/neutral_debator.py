@@ -1,3 +1,4 @@
+from tradingagents.llm_clients.base_client import require_report_text
 from tradingagents.agents.context import (
     get_instrument_context_from_state,
     get_language_instruction,
@@ -60,7 +61,7 @@ Engage actively by analyzing both sides critically, addressing weaknesses in the
 
         response = llm.invoke([("system", system), ("human", human)])
 
-        argument = f"Neutral Analyst: {response.content}"
+        argument = f"Neutral Analyst: {require_report_text(response, 'Neutral Analyst')}"
 
         new_risk_debate_state = {
             "history": history + "\n" + argument,

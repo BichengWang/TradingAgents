@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import pytest
 from langchain_core.messages import HumanMessage, SystemMessage
 
 from tradingagents.batch.adapters import AnthropicBatchAdapter, OpenAIBatchAdapter
@@ -140,7 +141,8 @@ def test_runner_submits_first_deferred_request(tmp_path, monkeypatch):
     assert request.provider_batch_id == "fake_batch_1"
 
 
-def test_runner_replays_result_and_advances_to_next_node(tmp_path, monkeypatch):
+@pytest.mark.parametrize("market_text", ["Market report.", ""])
+def test_runner_replays_result_and_advances_to_next_node(tmp_path, monkeypatch, market_text):
     import tradingagents.batch.runner as runner_mod
 
     monkeypatch.setattr(runner_mod, "resolve_instrument_identity", lambda ticker: {})
@@ -165,7 +167,7 @@ def test_runner_replays_result_and_advances_to_next_node(tmp_path, monkeypatch):
         "output": [
             {
                 "type": "message",
-                "content": [{"type": "output_text", "text": "Market report."}],
+                "content": [{"type": "output_text", "text": market_text}],
             }
         ],
         "usage": {"input_tokens": 10, "output_tokens": 2, "total_tokens": 12},
@@ -173,6 +175,13 @@ def test_runner_replays_result_and_advances_to_next_node(tmp_path, monkeypatch):
     runner.collect()
 
     run = runner.manifest.runs["AAPL"]
+    if not market_text:
+        assert run.status == "failed"
+        assert "empty response" in run.error
+        assert not run.decoded_state()["market_report"]
+        assert len(runner.manifest.requests) == 1
+        assert not runner.memory_log.load_entries()
+        return
     assert run.progress["phase"] == "debate"
     assert run.progress["active_node"] == "Bull Researcher"
     assert run.decoded_state()["market_report"] == "Market report."

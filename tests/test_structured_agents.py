@@ -11,6 +11,7 @@ import inspect
 from unittest.mock import MagicMock
 
 import pytest
+from langchain_core.messages import AIMessage
 from pydantic import ValidationError
 
 from tradingagents.agents.analysts.sentiment_analyst import create_sentiment_analyst
@@ -202,7 +203,7 @@ def test_invoke_structured_falls_back_when_result_is_none():
     structured = MagicMock()
     structured.invoke.return_value = None
     plain = MagicMock()
-    plain.invoke.return_value = MagicMock(content="FREETEXT")
+    plain.invoke.return_value = AIMessage(content="FREETEXT")
 
     out = invoke_structured_or_freetext(
         structured, plain, "prompt", render=lambda r: r.rating, agent_name="t"
@@ -273,7 +274,7 @@ class TestTraderAgent:
         )
         llm = MagicMock()
         llm.with_structured_output.side_effect = NotImplementedError("provider unsupported")
-        llm.invoke.return_value = MagicMock(content=plain_response)
+        llm.invoke.return_value = AIMessage(content=plain_response)
         trader = create_trader(llm)
         result = trader(_make_trader_state())
         assert result["trader_investment_plan"] == plain_response
@@ -345,7 +346,7 @@ class TestResearchManagerAgent:
         plain_response = "**Recommendation**: Sell\n\n**Rationale**: ...\n\n**Strategic Actions**: ..."
         llm = MagicMock()
         llm.with_structured_output.side_effect = NotImplementedError("provider unsupported")
-        llm.invoke.return_value = MagicMock(content=plain_response)
+        llm.invoke.return_value = AIMessage(content=plain_response)
         rm = create_research_manager(llm)
         result = rm(_make_rm_state())
         assert result["investment_plan"] == plain_response
@@ -476,7 +477,7 @@ class TestSentimentAnalystAgent:
         plain = "**Overall Sentiment:** **Bearish** (Score: 3.0/10)\n**Confidence:** Low\n\nLimited data."
         llm = MagicMock()
         llm.with_structured_output.side_effect = NotImplementedError("provider unsupported")
-        llm.invoke.return_value = MagicMock(content=plain)
+        llm.invoke.return_value = AIMessage(content=plain)
         assert create_sentiment_analyst(llm)(_make_sentiment_state())["sentiment_report"] == plain
 
     def test_falls_back_to_freetext_when_structured_call_fails(self):
@@ -485,7 +486,7 @@ class TestSentimentAnalystAgent:
         structured.invoke.side_effect = ValueError("bad JSON from model")
         llm = MagicMock()
         llm.with_structured_output.return_value = structured
-        llm.invoke.return_value = MagicMock(content=plain)
+        llm.invoke.return_value = AIMessage(content=plain)
         assert create_sentiment_analyst(llm)(_make_sentiment_state())["sentiment_report"] == plain
 
 
@@ -546,3 +547,91 @@ def test_the_trader_names_the_levels_it_did_not_give():
     for field in ("Entry Price", "Stop Loss", "Position Sizing"):
         assert field in rendered
     assert rendered.lower().count("not provided") == 3
+
+
+_NARRATIVE_CASES = [
+    (ResearchPlan, {"recommendation": "Hold", "rationale": "Balanced evidence.",
+                    "strategic_actions": "Retain current position."}, "rationale"),
+    (ResearchPlan, {"recommendation": "Hold", "rationale": "Balanced evidence.",
+                    "strategic_actions": "Retain current position."}, "strategic_actions"),
+    (TraderProposal, {"action": "Hold", "reasoning": "Balanced evidence."}, "reasoning"),
+    (PortfolioDecision, {"rating": "Hold", "executive_summary": "Retain current position.",
+                         "investment_thesis": "Balanced evidence."}, "executive_summary"),
+    (PortfolioDecision, {"rating": "Hold", "executive_summary": "Retain current position.",
+                         "investment_thesis": "Balanced evidence."}, "investment_thesis"),
+    (SentimentReport, {"overall_band": "Neutral", "overall_score": 5.0, "confidence": "low",
+                       "narrative": "No social posts are available for this window."}, "narrative"),
+]
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize("schema, fields, field", _NARRATIVE_CASES)
+@pytest.mark.parametrize("empty", ["", " \n\t", "N/A", "None", "not provided"])
+def test_structured_rating_cannot_hide_an_empty_narrative(schema, fields, field, empty):
+    """Generated headings make the rendered report nonempty even without analysis."""
+    with pytest.raises(ValidationError) as error:
+        schema.model_validate({**fields, field: empty})
+    assert error.value.errors()[0]["loc"] == (field,)
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize("schema, fields, field", _NARRATIVE_CASES)
+def test_required_narrative_preserves_an_explanation_of_missing_data(schema, fields, field):
+    narrative = "\n  The source returned no data, so confidence is low.\n"
+    parsed = schema.model_validate({**fields, field: narrative})
+    assert getattr(parsed, field) == narrative
+    assert schema.model_json_schema()["properties"][field]["minLength"] == 1
+
+
+@pytest.mark.unit
+def test_empty_structured_narrative_uses_the_valid_plain_text_fallback():
+    from tradingagents.agents.structured import invoke_structured_or_freetext
+
+    structured = MagicMock()
+    structured.invoke.side_effect = lambda prompt: TraderProposal(action="Buy", reasoning=" ")
+    plain = MagicMock()
+    plain.invoke.return_value = AIMessage(content="Hold until current-price evidence is available.")
+
+    result = invoke_structured_or_freetext(
+        structured, plain, "prompt", render_trader_proposal, "Trader"
+    )
+    assert result == plain.invoke.return_value.content
+    plain.invoke.assert_called_once_with("prompt")
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize("schema, fields, price_fields", [
+    (TraderProposal, {"action": "Buy", "reasoning": "Supported by supplied evidence."},
+     ("entry_price", "stop_loss")),
+    (PortfolioDecision, {"rating": "Buy", "executive_summary": "Build a small position.",
+                         "investment_thesis": "Supported by supplied evidence."},
+     ("price_target", "current_price")),
+])
+@pytest.mark.parametrize("invalid", [float("nan"), float("inf"), float("-inf"),
+                                     "NaN", "Infinity", 0, -1, True, {}, []])
+def test_invalid_absolute_prices_drop_only_the_price_fields(schema, fields, price_fields, invalid):
+    parsed = schema.model_validate({**fields, **dict.fromkeys(price_fields, invalid)})
+    assert all(getattr(parsed, field) is None for field in price_fields)
+    assert all(getattr(parsed, field) == value for field, value in fields.items())
+    assert "NaN" not in parsed.model_dump_json()
+    assert "Infinity" not in parsed.model_dump_json()
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize("written, expected", [(" HIGH ", "high"), ("Medium", "medium"),
+                                                ("low", "low"), ("N/A", None), ("", None),
+                                                ("very confident", None), (None, None)])
+def test_optional_pm_confidence_does_not_discard_the_decision(written, expected):
+    decision = PortfolioDecision(rating="Hold", executive_summary="Retain the position.",
+                                 investment_thesis="Balanced evidence.", confidence=written)
+    assert decision.confidence == expected
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize("written, expected", [(" 3-6 months ", "3-6 months"), ("N/A", None),
+                                                ("unknown", None), ("not provided", None),
+                                                (" \n", None), (None, None)])
+def test_optional_pm_horizon_distinguishes_missing_data(written, expected):
+    decision = PortfolioDecision(rating="Hold", executive_summary="Retain the position.",
+                                 investment_thesis="Balanced evidence.", time_horizon=written)
+    assert decision.time_horizon == expected

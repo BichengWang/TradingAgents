@@ -30,7 +30,26 @@ def report_exists(reports, ticker, prefix):
     return any(
         p.is_dir() and p.name.startswith(prefix)
         and re.fullmatch(r"[0-9]{8}_[0-9]{6}", p.name[len(prefix):])
+        and report_complete(p)
         for p in directory.iterdir()
+    )
+
+
+def report_complete(directory):
+    """An allocated folder or a decision built on empty analysts is not a run."""
+    def populated(path):
+        try:
+            return bool(path.read_text(encoding="utf-8").strip())
+        except (OSError, UnicodeError):
+            return False
+
+    return (
+        all(populated(directory / name) for name in (
+            "complete_report.md", "3_trading/trader.md", "5_portfolio/decision.md",
+        ))
+        and any(populated(directory / "1_analysts" / name) for name in (
+            "market.md", "sentiment.md", "news.md", "fundamentals.md",
+        ))
     )
 
 

@@ -34,6 +34,7 @@ def create_portfolio_manager(llm):
         risk_debate_state = state["risk_debate_state"]
         research_plan = state["investment_plan"]
         trader_plan = state["trader_investment_plan"]
+        market_report = state.get("market_report") or "No technical market report supplied."
 
         past_context = state.get("past_context", "")
         lessons_line = (
@@ -60,6 +61,7 @@ def create_portfolio_manager(llm):
 **Context:**
 - Research Manager's investment plan: **{research_plan}**
 - Trader's transaction proposal: **{trader_plan}**
+- Technical Market Report (source for the latest verified close):\n{market_report}
 {lessons_line}
 **Risk Analysts Debate History:**
 {history}
@@ -75,6 +77,10 @@ Write these sections, in this order, starting with the rating on its own line:
 - **Rating**: exactly one of Buy / Overweight / Hold / Underweight / Sell
 - **Executive Summary**: the call and how to act on it
 - **Investment Thesis**: the evidence that decided it, and what would change it
+- **Current Price**: latest verified close from the technical market report, or not provided
+- **Price Target**: one evidence-backed absolute target price, or not provided; never substitute current price
+- **Confidence**: Low / Medium / High based on the final decision's evidence and data quality
+- **Time Horizon**: numeric duration and units (e.g. 3-6 months), or not provided if unsupported
 
 {NO_EXTERNAL_TOOLS}{get_language_instruction()}"""
 

@@ -55,7 +55,11 @@ else
   [ -z "${GEMINI_API_KEY:-}" ] || exit 10
   [ "$TRADINGAGENTS_LLM_BACKEND_URL" = https://generativelanguage.googleapis.com ] || exit 8
 fi
-mkdir -p docs/NVDA/20000101_gemini-test_20000102_030405
+report=docs/NVDA/20000101_gemini-test_20000102_030405
+mkdir -p "$report/1_analysts" "$report/3_trading" "$report/5_portfolio"
+for stage in complete_report.md 1_analysts/market.md 3_trading/trader.md 5_portfolio/decision.md; do
+  echo fixture > "$report/$stage"
+done
 ''',
     }
     for name, body in programs.items():

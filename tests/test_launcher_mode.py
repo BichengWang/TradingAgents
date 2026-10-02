@@ -88,7 +88,11 @@ def test_no_arguments_uses_all_shared_tickers(tmp_path, provider):
         "DEFAULT_TICKERS=(" + " ".join(tickers) + ")\n"
     )
     for ticker in tickers:
-        (root / "docs" / ticker / "20000101_fixture-model_20000102_030405").mkdir(parents=True)
+        report = root / "docs" / ticker / "20000101_fixture-model_20000102_030405"
+        for stage in ("complete_report.md", "1_analysts/market.md", "3_trading/trader.md", "5_portfolio/decision.md"):
+            path = report / stage
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("fixture report")
     result = subprocess.run(
         ["bash", str(script)], cwd=tmp_path,
         env={

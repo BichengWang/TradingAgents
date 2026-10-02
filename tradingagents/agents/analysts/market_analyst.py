@@ -1,3 +1,4 @@
+from tradingagents.llm_clients.base_client import normalize_content, require_report_text
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from tradingagents.agents.context import get_instrument_context_from_state, get_language_instruction
@@ -29,6 +30,8 @@ def create_market_analyst(llm):
 
 Before writing the final report, call get_verified_market_snapshot for this ticker and the current date, and treat it as the source of truth for any exact OHLCV, price-level, or indicator-value claim. If another tool's output conflicts with the verified snapshot, flag the discrepancy rather than inventing a reconciled number. Do not claim historical validation, support/resistance bounces, or exact percentage moves unless they are directly supported by tool output with concrete dates and prices.
 
+Start the final report with **Current Price**: followed by the latest verified closing price as one absolute number in the quote currency, and **Price As Of**: followed by that bar's YYYY-MM-DD date. If the verified snapshot has no close, write not provided; never substitute a historical comparison or an entry level.
+
 Write a very detailed and nuanced report of the trends you observe. Provide specific, actionable insights with supporting evidence to help traders make informed decisions."""
             + """ Make sure to append a Markdown table at the end of the report to organize key points in the report, organized and easy to read."""
             + get_language_instruction()
@@ -58,12 +61,12 @@ Write a very detailed and nuanced report of the trends you observe. Provide spec
 
         chain = prompt | llm.bind_tools(TOOLS)
 
-        result = chain.invoke(state["messages"])
+        result = normalize_content(chain.invoke(state["messages"]))
 
         report = ""
 
         if len(result.tool_calls) == 0:
-            report = result.content
+            report = require_report_text(result, 'Market Analyst')
 
         return {
             "messages": [result],

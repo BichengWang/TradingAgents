@@ -29,6 +29,7 @@ from typing import Any, TypeVar
 
 from pydantic import BaseModel
 
+from tradingagents.llm_clients.base_client import EmptyModelResponseError, require_report_text
 from tradingagents.llm_clients.retry import is_rate_limit_error
 
 logger = logging.getLogger(__name__)
@@ -85,7 +86,10 @@ def invoke_structured_or_freetext(
                 # the tool, leaving the parser with nothing to return. Treat it
                 # as a structured miss and fall back, with a clear reason.
                 raise ValueError("structured output returned no parsed result")
-            return render(result)
+            text = render(result)
+            if not isinstance(text, str) or not text.strip():
+                raise EmptyModelResponseError(f"{agent_name}: structured output rendered an empty report")
+            return text
         except Exception as exc:
             if is_rate_limit_error(exc):
                 # Capacity or billing, not an output-format problem: the
@@ -97,5 +101,4 @@ def invoke_structured_or_freetext(
                 agent_name, exc,
             )
 
-    response = plain_llm.invoke(prompt)
-    return response.content
+    return require_report_text(plain_llm.invoke(prompt), agent_name)

@@ -1,3 +1,4 @@
+from tradingagents.llm_clients.base_client import normalize_content, require_report_text
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from tradingagents.agents.context import get_instrument_context_from_state, get_language_instruction
@@ -55,12 +56,12 @@ def create_fundamentals_analyst(llm):
 
         chain = prompt | llm.bind_tools(TOOLS)
 
-        result = chain.invoke(state["messages"])
+        result = normalize_content(chain.invoke(state["messages"]))
 
         report = ""
 
         if len(result.tool_calls) == 0:
-            report = result.content
+            report = require_report_text(result, 'Fundamentals Analyst')
 
         return {
             "messages": [result],

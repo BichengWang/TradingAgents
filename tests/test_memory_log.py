@@ -791,7 +791,7 @@ class TestPortfolioManagerInjection:
         plain_response = "**Rating**: Sell\n\nExit ahead of guidance."
         llm = MagicMock()
         llm.with_structured_output.side_effect = NotImplementedError("provider unsupported")
-        llm.invoke.return_value = MagicMock(content=plain_response)
+        llm.invoke.return_value = MagicMock(content=plain_response, tool_calls=[])
         pm_node = create_portfolio_manager(llm)
         result = pm_node(_make_pm_state())
         assert result["final_trade_decision"] == plain_response

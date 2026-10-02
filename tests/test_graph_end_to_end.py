@@ -121,8 +121,10 @@ def _graph(tmp_path, monkeypatch, model, **config):
 
 @pytest.mark.unit
 @pytest.mark.parametrize("structured", [False, True], ids=["free-text", "structured"])
-def test_a_full_run_reaches_a_logged_decision(tmp_path, monkeypatch, offline, structured):
-    graph = _graph(tmp_path, monkeypatch, ScriptedModel(structured=structured))
+@pytest.mark.parametrize("debate_rounds", [0, 1])
+def test_a_full_run_reaches_a_logged_decision(tmp_path, monkeypatch, offline, structured, debate_rounds):
+    graph = _graph(tmp_path, monkeypatch, ScriptedModel(structured=structured),
+                   max_debate_rounds=debate_rounds, max_risk_discuss_rounds=debate_rounds)
 
     state, signal = graph.propagate("NVDA", TRADE_DATE)
 
@@ -136,6 +138,20 @@ def test_a_full_run_reaches_a_logged_decision(tmp_path, monkeypatch, offline, st
                     "get_insider_transactions", "ohlcv"}
     assert offline == tool_methods
     assert [e["rating"] for e in graph.memory_log.load_entries()] == ["Overweight"]
+
+
+@pytest.mark.unit
+def test_empty_analyst_cannot_reach_a_logged_decision(tmp_path, monkeypatch, offline):
+    from tradingagents.llm_clients.base_client import EmptyModelResponseError
+
+    class EmptyModel(ScriptedModel):
+        def _generate(self, *args, **kwargs):
+            return ChatResult(generations=[ChatGeneration(message=AIMessage(content=""))])
+
+    graph = _graph(tmp_path, monkeypatch, EmptyModel())
+    with pytest.raises(EmptyModelResponseError, match="Market Analyst"):
+        graph.propagate("NVDA", TRADE_DATE)
+    assert not graph.memory_log.load_entries()
 
 
 @pytest.mark.unit
