@@ -387,7 +387,10 @@ def test_horizon_accepts_typographic_range_dash():
 @pytest.mark.unit
 def test_structured_decision_survives_report_writer_and_summary(tmp_path, monkeypatch):
     from tradingagents.agents.schemas import (
-        PortfolioDecision, TraderProposal, render_pm_decision, render_trader_proposal,
+        PortfolioDecision,
+        TraderProposal,
+        render_pm_decision,
+        render_trader_proposal,
     )
     from tradingagents.reporting import write_report_tree
 

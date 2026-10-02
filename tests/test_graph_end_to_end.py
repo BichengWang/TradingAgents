@@ -149,7 +149,7 @@ def test_empty_analyst_cannot_reach_a_logged_decision(tmp_path, monkeypatch, off
             return ChatResult(generations=[ChatGeneration(message=AIMessage(content=""))])
 
     graph = _graph(tmp_path, monkeypatch, EmptyModel())
-    with pytest.raises(EmptyModelResponseError, match="Market Analyst"):
+    with pytest.raises(EmptyModelResponseError, match="empty response"):
         graph.propagate("NVDA", TRADE_DATE)
     assert not graph.memory_log.load_entries()
 

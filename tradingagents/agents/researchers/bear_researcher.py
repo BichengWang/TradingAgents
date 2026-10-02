@@ -1,10 +1,10 @@
-from tradingagents.llm_clients.base_client import require_report_text
 from tradingagents.agents.context import (
     get_instrument_context_from_state,
     get_language_instruction,
     opponent_argument_or_opening,
     report_or_absent,
 )
+from tradingagents.llm_clients.base_client import require_report_text
 
 
 def create_bear_researcher(llm):

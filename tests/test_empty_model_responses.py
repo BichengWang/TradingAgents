@@ -4,15 +4,17 @@ import json
 from unittest.mock import MagicMock
 
 import anthropic
-from anthropic import _base_client as sdk_transport
 import pytest
+from anthropic import _base_client as sdk_transport
 from langchain_core.messages import AIMessage
 
 from tradingagents.agents.schemas import TraderProposal
 from tradingagents.agents.structured import invoke_structured_or_freetext
 from tradingagents.llm_clients.anthropic_client import NormalizedChatAnthropic
 from tradingagents.llm_clients.base_client import (
-    EmptyModelResponseError, normalize_content, require_report_text,
+    EmptyModelResponseError,
+    normalize_content,
+    require_report_text,
 )
 
 # Use the installed SDK's transport; newer releases use httpx2.
@@ -81,7 +83,7 @@ def test_anthropic_retries_rejected_schema_tool_with_auto():
         })
 
     with httpx.Client(transport=httpx.MockTransport(respond)) as client:
-        llm = NormalizedChatAnthropic(model="claude-sonnet-5-5", api_key="fixture")
+        llm = NormalizedChatAnthropic(model="claude-sonnet-5-5", api_key="fixture", max_tokens=1024)
         llm._client = anthropic.Anthropic(api_key="fixture", http_client=client)
         proposal = llm.with_structured_output(TraderProposal).invoke("Use the supplied evidence.")
 
@@ -103,7 +105,7 @@ def test_unrelated_anthropic_400_is_not_retried():
         }})
 
     with httpx.Client(transport=httpx.MockTransport(respond)) as client:
-        llm = NormalizedChatAnthropic(model="claude-sonnet-5-5", api_key="fixture")
+        llm = NormalizedChatAnthropic(model="claude-sonnet-5-5", api_key="fixture", max_tokens=1024)
         llm._client = anthropic.Anthropic(api_key="fixture", http_client=client)
         with pytest.raises(anthropic.BadRequestError, match="invalid model"):
             llm.with_structured_output(TraderProposal).invoke("prompt")

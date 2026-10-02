@@ -346,9 +346,9 @@ def extract_current_price(
     for pattern in CURRENT_PRICE_PATTERNS:
         # These legacy patterns were introduced for a May 29 report batch.
         # They must not promote those historical examples in later reports.
-        if analysis_date and ("May" in pattern or "5/29" in pattern or "05-29" in pattern):
-            if normalize_analysis_date(analysis_date)[5:] != "05-29":
-                continue
+        if (analysis_date and ("May" in pattern or "5/29" in pattern or "05-29" in pattern)
+                and normalize_analysis_date(analysis_date)[5:] != "05-29"):
+            continue
         for m in re.finditer(pattern, market_text, flags=re.I):
             if not date_is_relevant(m, market_text):
                 continue
