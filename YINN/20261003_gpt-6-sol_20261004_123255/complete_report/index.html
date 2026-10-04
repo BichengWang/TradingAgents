@@ -1,0 +1,3480 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/YINN/20261003_gpt-6-sol_20261004_123255/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: YINN - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-yinn" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: YINN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CDE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CDE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  YINN
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CDE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CDE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YINN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    YINN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yinn-technical-outlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YINN technical outlook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exhaustion-versus-reversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exhaustion versus reversal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#levels-and-risk-to-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Levels and risk to monitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yinn-sentiment-2026-09-26-to-2026-10-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YINN sentiment | 2026-09-26 to 2026-10-03
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignments-and-divergences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignments and divergences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-narrative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant narrative
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-possible-catalysts-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Possible catalysts and risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-key-sentiment-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Key sentiment signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yinn-trading-and-macro-report-october-3-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YINN trading and macro report — October 3, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-over-the-past-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed over the past week
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implications-for-yinn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implications for YINN
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yinn-fundamental-report-as-of-october-3-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        YINN fundamental report — as of October 3, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-available-records-establish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the available records establish
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-assess-yinn-instead-of-using-company-ratios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to assess YINN instead of using company ratios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="trading-analysis-report-yinn">Trading Analysis Report: YINN<a class="headerlink" href="#trading-analysis-report-yinn" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-03</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-04 12:32:55</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-sol, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $23.17
+<strong>Price As Of</strong>: 2026-10-02</p>
+<h4 id="yinn-technical-outlook">YINN technical outlook<a class="headerlink" href="#yinn-technical-outlook" title="Permanent link">&para;</a></h4>
+<p><strong>YINN remains in a bearish trend, but its latest decline is stretched enough to make a short-term rebound plausible.</strong> October 3 is a Saturday, so the analysis uses Friday’s verified close—not a live price. These are conditional signals, not a trade recommendation.</p>
+<p>The clearest trend evidence is alignment across timeframes. YINN’s <strong>SuperTrend is DOWN</strong> on the weekly, monthly, and daily charts, with lines at <strong>$33.94, $53.81, and $26.37</strong>, respectively. The weekly signal carries the most weight; the distant monthly line describes the broader regime rather than a practical near-term target. YINN also closed below its <strong>50-day SMA of $28.02</strong>. That average has eased from $28.28 on September 25, adding to the medium-term weakness.</p>
+<p>Recent price action reinforces the caution. YINN closed at <strong>$27.30 on September 22</strong>, <strong>$24.78 on October 1</strong>, and <strong>$23.17 on October 2</strong>. Friday’s verified range was <strong>$22.88–$23.48</strong>, with a close near the lower end. The <strong>MACD histogram fell to −0.19</strong>, from approximately −0.10 on October 1, indicating that near-term momentum weakened again. <strong>OBV has declined since September 22</strong>, consistent with selling participation; its absolute value is not meaningful. Friday’s verified volume was <strong>3,269,600 shares</strong>.</p>
+<p>There is an important qualification: <strong>ADX is 19.56</strong>, below the customary 25 threshold for a strong daily trend. Its recent rise warrants attention, but it does not yet confirm that this leg down is a strong, clean trend-following setup. The multi-timeframe SuperTrend points down; ADX says to be wary of daily whipsaws.</p>
+<h4 id="exhaustion-versus-reversal">Exhaustion versus reversal<a class="headerlink" href="#exhaustion-versus-reversal" title="Permanent link">&para;</a></h4>
+<p>YINN’s <strong>daily z-score is −2.01</strong>, meeting the stated threshold for a statistically stretched move. The <strong>weekly and monthly readings, −1.28 and −1.50</strong>, are below their means but not at that threshold. This combination favors <em>rebound risk</em> over a conclusion that the broader downtrend has ended.</p>
+<p>TD-9 tells a similar, still-incomplete story: <strong>weekly +6</strong>, <strong>monthly −1</strong>, and <strong>daily +7</strong>. The weekly and daily buy-setups are approaching nine, while the monthly count points the other way. None has completed nine. Even a completed daily nine would be a <strong>reversal watch, not confirmation</strong>, particularly while the weekly trend remains down.</p>
+<h4 id="levels-and-risk-to-monitor">Levels and risk to monitor<a class="headerlink" href="#levels-and-risk-to-monitor" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Downside continuation:</strong> A daily close below Friday’s <strong>$22.88 low</strong>, especially with OBV continuing to fall, would strengthen the bearish case. That low is an observation point, <strong>not proven support</strong>.</li>
+<li><strong>Initial recovery:</strong> Reclaiming the <strong>October 1 close of $24.78</strong> would be a first sign that Friday’s selling is easing. A subsequent close above the <strong>$26.37 daily SuperTrend line</strong>, accompanied by an improving MACD histogram and stabilizing OBV, would make a rebound more credible. The <strong>$28.02 50-day SMA</strong> is a further medium-term hurdle; a daily recovery alone would not overturn the weekly signal.</li>
+<li><strong>Sizing:</strong> Verified <strong>ATR is $1.06</strong>, a measure of recent movement, not a forecast or guaranteed stop distance. YINN is a <strong>daily-reset, 3× leveraged China ETF</strong>: gaps and compounding can make losses and multi-day returns depart sharply from a simple three-times expectation. Size any position to a predetermined exit risk rather than treating an oversold reading as an entry signal.</li>
+</ul>
+<p>The eight indicators below were chosen to separate <strong>trend and its strength</strong>, <strong>momentum</strong>, <strong>volatility</strong>, <strong>volume participation</strong>, and <strong>potential exhaustion</strong> without pairing overlapping oscillators.</p>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>Latest reading for YINN</th>
+<th>What it contributes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SuperTrend</td>
+<td>Weekly DOWN, <strong>$33.94</strong>; monthly DOWN, <strong>$53.81</strong>; daily DOWN, <strong>$26.37</strong></td>
+<td>Aligns the three trend timeframes; weekly takes priority. Lines can change with new bars.</td>
+</tr>
+<tr>
+<td>close_50_sma</td>
+<td><strong>$28.02</strong>, above the $23.17 close</td>
+<td>Medium-term trend benchmark and potential recovery hurdle—not established resistance.</td>
+</tr>
+<tr>
+<td>adx</td>
+<td><strong>19.56</strong></td>
+<td>Daily trend strength is not yet firmly confirmed; reduces confidence in chasing a break.</td>
+</tr>
+<tr>
+<td>macdh</td>
+<td><strong>−0.19</strong></td>
+<td>Negative momentum, weaker than the approximately −0.10 reading on October 1.</td>
+</tr>
+<tr>
+<td>atr</td>
+<td><strong>$1.06</strong></td>
+<td>Volatility input for position sizing and exit-risk planning.</td>
+</tr>
+<tr>
+<td>obv</td>
+<td>Falling since September 22</td>
+<td>Checks whether volume participation corroborates the price decline.</td>
+</tr>
+<tr>
+<td>td_9</td>
+<td>Weekly <strong>+6</strong>; monthly <strong>−1</strong>; daily <strong>+7</strong></td>
+<td>Approaching, but not completed, weekly and daily exhaustion setups.</td>
+</tr>
+<tr>
+<td>z_score</td>
+<td>Weekly <strong>−1.28</strong>; monthly <strong>−1.50</strong>; daily <strong>−2.01</strong></td>
+<td>Daily oversold stretch creates rebound risk without reversing the higher-timeframe trend.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mildly Bullish</strong> (Score: 5.8/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="yinn-sentiment-2026-09-26-to-2026-10-03">YINN sentiment | 2026-09-26 to 2026-10-03<a class="headerlink" href="#yinn-sentiment-2026-09-26-to-2026-10-03" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-evidence">1. Source-by-source evidence<a class="headerlink" href="#1-source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>StockTwits — cautiously positive retail positioning, with visible unease.</strong> The 14 most-recent messages include 6 user-tagged Bullish, 1 Bearish, and 7 unlabeled. Bullish tags make up 6/7 (86%) of <em>labeled</em> posts, but only 6/14 (43%) of the full sample; half the posts have no sentiment tag. Three of the six Bullish tags come from the same user, @BambooC, who said they had added YINN and speculated about a Monday “dip and rip” and “22 to 50.” These are expressions of conviction or hopes, not independent confirmations of a catalyst or verified prices. Another Bullish poster said they were loaded just over 23 while cautioning “buyer beware,” and a September 28 poster described buying beaten-down China names. Offsetting this, an unlabeled October 2 post asked “What happened here?”, another speculated that big money was holding YINN down or that war might be coming, and the sole Bearish tag offered only a mocking reaction. Unlabeled does not mean neutral: the text conveys some concern, but it cannot be converted into a reliable bearish count. Posts tagged alongside BABA, BIDU, and JD often concern those names rather than YINN directly; for example, a claimed 22% profit in BABA is not evidence of a YINN return. Likewise, a negative September 27 post about a “company,” its management and allegations appears directed at a cross-tagged individual stock, not necessarily at this ETF; its allegations are unverified.</p>
+<p><strong>Yahoo Finance news — unavailable.</strong> The vendor reports no retrievable articles tagged YINN. There are therefore no usable news headlines to establish an institutional stance, corroborate prices, or confirm any macro development. This is a coverage limitation, not evidence that no events occurred or that institutional sentiment is neutral.</p>
+<p><strong>Reddit — unavailable.</strong> Collection was disabled; no posts, votes, or comments from r/wallstreetbets, r/stocks, or r/investing can be assessed. Do not infer subreddit sentiment or engagement.</p>
+<h4 id="2-cross-source-alignments-and-divergences">2. Cross-source alignments and divergences<a class="headerlink" href="#2-cross-source-alignments-and-divergences" title="Permanent link">&para;</a></h4>
+<p>A genuine news-versus-retail or Reddit-versus-StockTwits divergence cannot be measured because only StockTwits supplied data. <em>Within</em> StockTwits, the bullish user tags and bargain-buying language contrast with unlabeled expressions of surprise, geopolitical anxiety, and caution. The labeled 6:1 skew consequently merits a mild bullish reading rather than a strong or cross-source-confirmed one.</p>
+<h4 id="3-dominant-narrative">3. Dominant narrative<a class="headerlink" href="#3-dominant-narrative" title="Permanent link">&para;</a></h4>
+<p>The recurring YINN-specific thesis is a rebound in beaten-down China exposure: posters discuss adding or being loaded, a potential Monday reversal, and upside targets. Posts mentioning BIDU, BABA, and JD place this in a broader China-equities conversation but should not be treated as direct evidence about ETF holdings, performance, or fundamentals. The counter-narrative is uncertainty about an apparent decline and possible geopolitical or policy shocks; none of these claimed explanations is verified by the supplied data.</p>
+<h4 id="4-possible-catalysts-and-risks">4. Possible catalysts and risks<a class="headerlink" href="#4-possible-catalysts-and-risks" title="Permanent link">&para;</a></h4>
+<p>A September 26 StockTwits message claimed a new U.S.–China trade agreement, and a September 30 user asked about a China-related deal. Those posts show <em>interest in trade policy</em>, not confirmation that any agreement exists or will affect YINN. A suggested Monday “dip and rip” is a retail scenario, not a scheduled or verified catalyst. Key sentiment risks are the tiny, non-independent sample; half the messages being unlabeled; apparent buy-the-dip enthusiasm alongside distress; and speculative geopolitical claims. YINN is identified as a daily 3X bull China ETF, so the directional thesis entails amplified short-term exposure; this sentiment sample cannot establish the underlying index's moves or a favorable entry. There is no verified price, news catalyst, Reddit corroboration, or trading signal here.</p>
+<h4 id="5-key-sentiment-signals">5. Key sentiment signals<a class="headerlink" href="#5-key-sentiment-signals" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User-tagged stance</td>
+<td>Bullish, qualified</td>
+<td>StockTwits</td>
+<td>6 Bullish vs 1 Bearish among 7 labeled posts; 7 of 14 unlabeled.</td>
+</tr>
+<tr>
+<td>Independence of bullish posts</td>
+<td>Limits confidence</td>
+<td>StockTwits</td>
+<td>@BambooC authored 3 of the 6 Bullish-tagged messages.</td>
+</tr>
+<tr>
+<td>Dip-buying/rebound thesis</td>
+<td>Mildly bullish</td>
+<td>StockTwits</td>
+<td>Posters report adding or loading YINN; one speculates about a Monday rebound.</td>
+</tr>
+<tr>
+<td>Distress and uncertainty</td>
+<td>Bearish/cautionary</td>
+<td>StockTwits</td>
+<td>“What happened here?”, “buyer beware,” and unverified war/market-pressure speculation.</td>
+</tr>
+<tr>
+<td>China trade-policy talk</td>
+<td>Unconfirmed potential catalyst</td>
+<td>StockTwits</td>
+<td>One user alleges a deal; another asks about one; no validating news is provided.</td>
+</tr>
+<tr>
+<td>Institutional framing</td>
+<td>Unknown</td>
+<td>Yahoo Finance</td>
+<td>YINN-tagged news data unavailable, not a neutral or negative news signal.</td>
+</tr>
+<tr>
+<td>Community corroboration</td>
+<td>Unknown</td>
+<td>Reddit</td>
+<td>Feed disabled; no subreddit evidence.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assessment:</strong> YINN sentiment is <em>Mildly Bullish</em> (5.8/10), with <strong>low confidence</strong>. This describes a small retail-discussion sample through October 3, 2026, not a price forecast or trade recommendation; another decision-maker should weigh it against independently obtained market and fundamental evidence.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="yinn-trading-and-macro-report-october-3-2026">YINN trading and macro report — October 3, 2026<a class="headerlink" href="#yinn-trading-and-macro-report-october-3-2026" title="Permanent link">&para;</a></h4>
+<p><strong>YINN</strong> is the Direxion Daily FTSE China Bull 3X Shares, designed to deliver approximately <strong>three times the FTSE China 50 Index’s <em>daily</em> return</strong>, before fees and tracking differences. It is a tactical China-equity instrument, not a three-times bet on the index’s return over a week or longer.</p>
+<p><strong>Bottom line:</strong> The available evidence gives YINN a mixed backdrop, not a confirmed China-equity signal. U.S. stocks rallied late in the week as rate-hike expectations eased, but Treasury yields remain elevated, inflation is above 3% on the measures below, and oil prices pose a risk to China as an energy importer. Crucially, the YINN-specific news feed returned <strong>no articles</strong>, and these tools provide neither a current YINN quote nor a current FTSE China 50 level. I cannot establish whether Chinese shares confirmed the U.S. risk-on move.</p>
+<h4 id="what-changed-over-the-past-week">What changed over the past week<a class="headerlink" href="#what-changed-over-the-past-week" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Rates sent conflicting signals.</strong> The U.S. 10-year Treasury yield was <strong>5.24% on October 1</strong>, up from <strong>5.17% on September 25</strong>, though down from <strong>5.29% on September 30</strong>. The two-year yield fell from <strong>4.81% on September 25 to 4.78% on October 1</strong>. <a href="https://fred.stlouisfed.org/series/DGS10">FRED 10-year</a> · <a href="https://fred.stlouisfed.org/series/DGS2">FRED two-year</a>. News coverage described an <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html">October 2 U.S. equity rally as rate-hike expectations faded</a>, while other coverage reported <a href="https://finance.yahoo.com/economy/policy/article/chorus-of-fed-officials-warn-inflation-is-still-too-high-signaling-more-work-to-do-on-interest-rates-151947919.html">Fed officials’ continuing inflation concerns</a>. A U.S. rally alone is therefore insufficient confirmation for YINN.</li>
+<li><strong>Inflation limits confidence in sustained easing.</strong> From the latest available August index readings, headline CPI was approximately <strong>3.35% higher year over year</strong>, and core PCE approximately <strong>3.01% higher year over year</strong>—calculations from the reported index levels, not newly released October figures. September unemployment was <strong>4.2%</strong>, versus <strong>4.1% in August</strong>. The September average effective federal funds rate was <strong>3.75%</strong>; a change in this monthly average should <strong>not</strong> be read as proof of a change in the Fed’s target rate. <a href="https://fred.stlouisfed.org/series/CPIAUCSL">FRED CPI</a> · <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE</a> · <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> · <a href="https://fred.stlouisfed.org/series/FEDFUNDS">effective rate</a>.</li>
+<li><strong>Energy is a material China risk.</strong> The latest available Brent observation was <strong>$113.96 per barrel on September 29</strong>, versus <strong>$92.37 on August 19</strong>. This is not an October 3 price, but it indicates substantial recent energy-cost pressure. One <a href="https://finance.yahoo.com/markets/article/the-iran-war-is-driving-inflation-higher--and-its-not-just-because-of-oil-100000797.html">Yahoo Finance report linked Iran-related conflict to broader inflation pressure</a>; the news feed does not independently establish the conflict’s details. Monitor fresh oil prices rather than treating that headline as a live trading signal. <a href="https://fred.stlouisfed.org/series/DCOILBRENTEU">FRED Brent</a>.</li>
+<li><strong>Volatility has edged up.</strong> The latest available VIX reading was <strong>16.39 on October 1</strong>, up from <strong>14.87 on September 25</strong>. That makes position sizing and overnight-gap risk relevant even if U.S. equities are rising. <a href="https://fred.stlouisfed.org/series/VIXCLS">FRED VIX</a>.</li>
+</ul>
+<h4 id="implications-for-yinn">Implications for YINN<a class="headerlink" href="#implications-for-yinn" title="Permanent link">&para;</a></h4>
+<p><strong>Before a long position, seek China-specific confirmation:</strong> check the live FTSE China 50 and its major Hong Kong-listed constituents, current policy or economic releases, and YINN’s spread and liquidity. Also verify Hong Kong and mainland trading calendars around the October holidays; mismatched sessions can leave a U.S.-listed China fund reacting to incomplete or stale local-market price discovery.</p>
+<p>If those checks show strength <strong>and</strong> oil and yields are easing, the global backdrop becomes more supportive of a short-duration YINN trade. If China shares fail to confirm, or energy and yields resume rising, <strong>staying flat is more defensible than inferring a China rally from U.S. tech stocks</strong>. Size any position for daily leverage: a <strong>5% one-day decline</strong> in the underlying index would imply roughly a <strong>15% YINN decline</strong> before fees and tracking differences. Daily resets can also erode returns in choppy markets.</p>
+<p><strong>Evidence limits:</strong> No YINN-tagged news was available; the global feed supplied little China-specific reporting. The latest yuan and broad-dollar observations were only from <strong>September 25</strong>, too old to establish this week’s currency direction. Historical, date-appropriate prediction-market probabilities were unavailable, so no event odds are quoted.</p>
+<table>
+<thead>
+<tr>
+<th>Key point</th>
+<th>Evidence available as of Oct. 3</th>
+<th>YINN trading implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>China-equity confirmation</td>
+<td>No YINN news, live fund quote, or FTSE China 50 level supplied</td>
+<td><strong>Verify the underlying move before acting</strong></td>
+</tr>
+<tr>
+<td>U.S. rates</td>
+<td>10-year yield <strong>5.24% Oct. 1</strong>, versus <strong>5.17% Sep. 25</strong></td>
+<td>Elevated yields remain a headwind to risk appetite</td>
+</tr>
+<tr>
+<td>Inflation and labor</td>
+<td>August CPI <strong>~3.35% YoY</strong>; core PCE <strong>~3.01% YoY</strong>; September unemployment <strong>4.2%</strong></td>
+<td>Do not assume imminent Fed easing</td>
+</tr>
+<tr>
+<td>Energy</td>
+<td>Brent <strong>$113.96 Sep. 29</strong>; newer price unavailable</td>
+<td>Watch for renewed oil pressure on China and inflation</td>
+</tr>
+<tr>
+<td>Market risk</td>
+<td>VIX <strong>16.39 Oct. 1</strong>, versus <strong>14.87 Sep. 25</strong></td>
+<td>Use small positions and account for gaps</td>
+</tr>
+<tr>
+<td>Fund structure</td>
+<td>YINN targets <strong>3× daily</strong>, not multi-day, index returns</td>
+<td>Favor monitored, short-duration exposure over an unattended hold</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="yinn-fundamental-report-as-of-october-3-2026">YINN fundamental report — as of October 3, 2026<a class="headerlink" href="#yinn-fundamental-report-as-of-october-3-2026" title="Permanent link">&para;</a></h4>
+<p><strong>YINN is Direxion Daily FTSE China Bull 3X Shares, a leveraged exchange-traded fund—not an operating company.</strong> Its central investment characteristic is a target of approximately <strong>three times the <em>daily</em> performance</strong> of its China-equity benchmark, before fees and expenses. That daily objective does not mean an investor should expect three times the benchmark’s return over a week or longer.</p>
+<h4 id="what-the-available-records-establish">What the available records establish<a class="headerlink" href="#what-the-available-records-establish" title="Permanent link">&para;</a></h4>
+<p>I checked the available fundamental, balance-sheet, cash-flow, income-statement and insider-transaction sources for <strong>YINN</strong>. None supplied figures that could be verified as publicly available by October 3, 2026. In particular, these sources do <strong>not</strong> establish a current NAV or price, assets under management, expense ratio, holdings, shareholder-report figures, or changes during the past week. I therefore cannot substantiate a past-week fundamental catalyst or characterize recent fund flows.</p>
+<p>The statement sources lack filing dates, and the other sources do not preserve reliable point-in-time records. Using their present-day values to describe YINN as of October 3 would risk introducing information that was not yet public.</p>
+<h4 id="how-to-assess-yinn-instead-of-using-company-ratios">How to assess YINN instead of using company ratios<a class="headerlink" href="#how-to-assess-yinn-instead-of-using-company-ratios" title="Permanent link">&para;</a></h4>
+<p>Corporate measures such as revenue growth, earnings per share, P/E, debt-to-equity and operating cash flow are <strong>not meaningful valuation tests for YINN</strong>. Fund financial documents, when verified, are useful for different questions:</p>
+<ul>
+<li><strong>Prospectus and summary prospectus:</strong> Confirm the precise benchmark, daily objective, fees, derivatives strategy and principal risks.</li>
+<li><strong>Annual and semiannual shareholder reports:</strong> Examine fund-level assets and liabilities, operations, net-asset changes and investments. These are fund accounts, not the earnings of a Chinese operating business.</li>
+<li><strong>Portfolio disclosures:</strong> Review holdings and derivatives exposure, including counterparty concentration where disclosed.</li>
+<li><strong>Daily fund and market data:</strong> Compare NAV with trading price, bid–ask spread, volume, assets, and performance against the <em>daily</em> objective. None of those current measurements was available from the tools used here.</li>
+</ul>
+<p>Insider buying or selling of company shares is likewise not a conventional signal for this ETF. The insider source returned no point-in-time-verifiable transactions; that is <strong>not evidence that no transactions occurred</strong>.</p>
+<h4 id="trading-implications">Trading implications<a class="headerlink" href="#trading-implications" title="Permanent link">&para;</a></h4>
+<p><strong>Daily reset and compounding are the primary fundamental risk.</strong> If the benchmark rises 10% one day and falls approximately 9.09% the next, it finishes roughly unchanged. Ignoring costs and tracking differences, a daily 3× position would rise 30% and then fall about 27.27%, finishing <strong>approximately 5.45% below</strong> its starting value. Volatility and holding period therefore matter even when a directional China-equity thesis proves broadly right.</p>
+<p>Before trading YINN, verify its latest dated prospectus and disclosures, then check the <strong>current NAV-to-price difference and bid–ask spread</strong>. Size a position against a roughly <strong>3% one-day move for each 1% benchmark move</strong>, <em>before</em> tracking differences and costs; this is an illustration, not a loss limit. Reassess exposure daily rather than treating YINN as a set-and-forget three-times investment. China-market hours, holidays, currency effects and market volatility can further complicate execution and tracking.</p>
+<p><strong>Bottom line:</strong> The available evidence supports describing YINN’s leveraged-fund structure and its risks, <strong>not a current buy or sell call</strong>. A directional decision needs verified, dated benchmark and fund data that these tools did not provide.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Finding for YINN</th>
+<th>Trader action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td>Direxion Daily FTSE China Bull 3X Shares; leveraged ETF, not an operating company</td>
+<td>Evaluate fund mechanics rather than company valuation ratios</td>
+</tr>
+<tr>
+<td>Objective</td>
+<td>Approximately 3× <strong>daily</strong> benchmark performance, before fees and expenses</td>
+<td>Do not extrapolate the target to multiday returns</td>
+</tr>
+<tr>
+<td>Past-week developments</td>
+<td>No dated, verifiable update was returned</td>
+<td>Check dated fund filings and announcements before attributing a catalyst</td>
+</tr>
+<tr>
+<td>Financial statements</td>
+<td>No point-in-time-verifiable figures returned</td>
+<td>Review filed shareholder reports for fund assets, liabilities and operations</td>
+</tr>
+<tr>
+<td>Price, NAV, AUM, fees and holdings</td>
+<td>No verified current figures returned</td>
+<td>Confirm each from dated fund disclosures and market data</td>
+</tr>
+<tr>
+<td>Insider activity</td>
+<td>No verifiable transaction data returned</td>
+<td>Do not infer that there were no transactions</td>
+</tr>
+<tr>
+<td>Principal trading risk</td>
+<td>Daily compounding can create losses even if the benchmark ends a volatile period flat</td>
+<td>Limit position size, monitor tracking and reassess daily</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>Opening bull case for YINN:</strong> This is a tactical rebound case, not a claim that the downtrend has ended. YINN is a daily-reset, 3× China-equity ETF—not an operating company—so revenue forecasts and P/E ratios cannot establish its upside. The opportunity is its amplified exposure <em>if</em> the FTSE China 50 turns higher. For illustration, two consecutive 2% benchmark gains would produce roughly a 12.4% YINN gain before fees and tracking differences; the same leverage magnifies losses.</p>
+<p>Bear, your strongest point is the chart. At the last verified close of <strong>$23.17 on Friday, October 2</strong>, YINN was below its <strong>$28.02 50-day average</strong>, its daily and weekly SuperTrends pointed down, and momentum and OBV were deteriorating. I would not call that a confirmed reversal. But the <strong>−2.01 daily z-score</strong> says the selloff is stretched, while <strong>ADX at 19.56</strong> does not confirm a strong daily trend. That combination makes a further decline possible <em>and</em> makes chasing the decline vulnerable to a sharp rebound. The daily TD count at <strong>+7</strong> adds to the reversal watch, though it has not completed a signal.</p>
+<p>There are modest supporting signs, not a proven catalyst: U.S. equities rallied on October 2 as rate-hike expectations eased, and the small available retail sample leans bullish. Neither establishes that Chinese shares have turned; the StockTwits sample is thin and partly driven by one poster.</p>
+<p><strong>My bullish stance is conditional:</strong> I’d look for YINN to reclaim <strong>$24.78</strong>, then close above <strong>$26.37</strong> with improving momentum, stabilizing OBV, and confirmation from the underlying China index. <strong>$28.02</strong> would be the next hurdle, not a promised target. A close below <strong>$22.88</strong>, or renewed weakness in Chinese shares, would undermine the setup. Elevated yields, oil prices, overnight gaps, and daily-reset decay argue for a small, monitored position—not an unattended buy-and-hold bet.
+Bull Analyst: Bear, I agree with your diagnosis of the chart. At YINN’s last verified close of <strong>$23.17 on Friday, October 2</strong>, the weekly trend was down, MACD had weakened, and OBV was falling. My disagreement is with your <em>decision to rule out an early position entirely</em>. A <strong>−2.01 daily z-score</strong> makes the decline unusually stretched, while <strong>ADX of 19.56</strong> does not confirm a strong daily trend. Neither predicts a reversal, but together they make a small, tactical rebound position more defensible than your avoid-at-all-costs conclusion suggests.</p>
+<p>You’re right that waiting for <strong>$26.37</strong> would buy more confirmation. It would also mean waiting until YINN had risen roughly <strong>14%</strong> from Friday’s close. That is the trade-off in a daily 3× fund: confirmation reduces uncertainty but can surrender a substantial part of a fast move. The appeal of YINN is efficient exposure <em>if</em> Chinese equities rebound—not company revenue growth or a valuation discount. Its leverage makes the opportunity meaningful and the cost of being wrong severe.</p>
+<p>I would not use the U.S. rally, sparse retail posts, or an unverified trade-policy claim as China confirmation. Nor would I call <strong>$22.88</strong> a safe stop: it is only Friday’s low, and gaps can bypass an exit. <strong>My bull stance is a small, monitored starter only if the next tradable session shows strength in the FTSE China 50 and YINN’s spread is acceptable</strong>, with no position if China shares remain weak. A reclaim of <strong>$24.78</strong>, followed by improving MACD and OBV and a close above the stated <strong>$26.37</strong> daily SuperTrend line, would justify greater conviction; a break below <strong>$22.88</strong> would challenge the rebound thesis.</p>
+<p>So yes, your wait-for-confirmation approach is prudent for many investors. My counterpoint is narrower: YINN’s stretched decline creates a credible <em>early-entry opportunity</em> for a trader who can size for 3× daily exposure and exit promptly—not a confirmed trend reversal or a set-and-forget investment.
+Bull Analyst: Bear, I agree with your central objection: <strong>the evidence available as of October 3 does not justify buying YINN simply because it is oversold.</strong> We have no verified FTSE China 50 turn, and a U.S.-listed fund move around China-market holidays could reflect incomplete price discovery. My bull case is about <em>when to act</em>, not a claim that Friday’s $23.17 close was a confirmed bottom.</p>
+<p>Where I differ is on the price of confirmation. Requiring YINN to close above its <strong>$26.37 daily SuperTrend</strong> before taking <em>any</em> exposure means waiting through a roughly <strong>14% rise</strong> from Friday’s close. That may suit a trend-following investor. For a monitored rebound trade, I would consider a <strong>small starter earlier</strong>—but only after the underlying China shares show genuine strength during an active local session, YINN’s spread is acceptable, and selling participation begins to ease. A lone YINN uptick would not meet that test.</p>
+<p>You’re also right that the <strong>−2.01 daily z-score</strong> is not a rebound probability. Paired with <strong>ADX of 19.56</strong>, though, it argues against treating the latest decline as an unambiguously strong trend to chase. YINN’s appeal is its approximately <strong>3× daily exposure if the FTSE China 50 turns higher</strong>; it has no company revenue or valuation discount to fall back on. The same leverage makes your 15% one-day loss illustration and gap warning decisive reasons to keep any position small and actively managed.</p>
+<p>So our practical recommendations overlap <strong>today: stay flat without China-specific confirmation</strong>. The bullish difference is that I would not insist on a $26.37 close once that confirmation arrives. I’d look first for underlying strength and improving participation, then a YINN reclaim of <strong>$24.78</strong>; a break below <strong>$22.88</strong> would instead challenge the setup, not provide a guaranteed exit price. This is a conditional, short-duration YINN opportunity—not a buy-and-hold investment or a reversal already proved.
+Bull Analyst: Bear, that’s a fair challenge. I cannot establish a positive expected return for buying YINN at the last verified <strong>$23.17</strong> close. The <strong>−2.01 daily z-score</strong> and <strong>19.56 ADX</strong> make a rebound worth watching; they are not, by themselves, a long signal. And the nearly <strong>14%</strong> move from $23.17 to the $26.37 daily SuperTrend is <em>potentially forgone upside</em>, not a gain an early trader could reliably capture.</p>
+<p>Where I remain bullish is on a <strong>testable entry before full trend confirmation</strong>, not an entry today. During an active China-market session, I’d want to see the FTSE China 50 and major constituents strengthen, then check that YINN’s pricing and spread are credible and that selling participation is easing. A reclaim of <strong>$24.78</strong> with stabilizing OBV and improving momentum would strengthen that case even while the weekly trend remains down. If local markets are closed or those checks fail, I stay flat.</p>
+<p>Your leverage objection is decisive for sizing: YINN’s roughly <strong>3× daily</strong> exposure can reward a sustained China-equity rebound, but it also magnifies losses and can decay in choppy trading. <strong>$22.88 is an invalidation observation, not a guaranteed stop</strong>; a gap may defeat an exit plan. Elevated yields and the last cited oil price remain headwinds, not catalysts I can wave away.</p>
+<p>So my answer to “what establishes an edge before $26.37?” is <strong>fresh, China-specific strength corroborated by YINN’s price and participation</strong>—not oversoldness or a forecast. That evidence is not yet available. My recommendation as of October 3 remains <strong>no new YINN position</strong>, with a bullish bias toward a small, closely monitored trade <em>if</em> those conditions appear.
+Bull Analyst: Bear, I agree that <strong>one strong China session would not prove a durable reversal</strong>. But durability is not the test for a short-duration YINN trade. The test is whether fresh evidence makes a rebound more credible <em>before</em> the broader downtrend has reversed—and whether the possible gain is worth the unusually high cost of being wrong.</p>
+<p>Right now, that test has <strong>not</strong> been met. YINN’s last verified close was <strong>$23.17 on October 2</strong>; its weekly and daily SuperTrends were down, MACD had weakened, and OBV was falling. The <strong>−2.01 daily z-score</strong> and <strong>19.56 ADX</strong> make a snapback plausible, not profitable by themselves. So I would not buy YINN on the October 3 evidence.</p>
+<p>Where I differ is what could change that decision. I would look for strength across the FTSE China 50’s major constituents during active local trading, followed by credible YINN pricing and an acceptable spread in the U.S. session. A move back above <strong>$24.78</strong> that <em>holds</em>, alongside stabilizing OBV and an improving MACD histogram, would be more persuasive than a single-session pop. It would still be a <strong>countertrend trade</strong> below the <strong>$28.02</strong> 50-day average—not a claim that the weekly bear trend is over.</p>
+<p>Your compounding example is exactly why I would keep such a position small and monitored. YINN’s approximately <strong>3× daily</strong> exposure can make a genuine, sustained index rebound meaningful over a short window; it can just as readily punish a false start or a choppy path. <strong>$22.88</strong> is a warning level, not a guaranteed exit through a gap.</p>
+<p>So my recommendation remains <strong>no new YINN position as of October 3</strong>. My bullish disagreement is narrower: if China-specific strength persists and fund pricing and participation corroborate it, I would consider a small tactical entry <em>before</em> requiring a close above <strong>$26.37</strong>. Waiting for that line is a valid risk choice, but it is not the only disciplined one.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: <strong>Bear reply:</strong> I agree this is a tactical debate, not a valuation debate: YINN is a daily-reset 3× ETF, not a company. But your case depends on a China-equity turn that the available evidence has not confirmed. At Friday’s last verified close of <strong>$23.17</strong>, YINN was down about <strong>15% from September 22</strong>, below its <strong>$28.02 50-day average</strong>, and under its daily and weekly SuperTrend lines. The MACD histogram worsened to <strong>−0.19</strong>, while OBV had been falling.</p>
+<p>You’re right that a <strong>−2.01 daily z-score</strong> and <strong>ADX of 19.56</strong> make a snapback plausible. They do not make it probable enough to establish an entry. ADX says the daily decline is not a strong, clean trend—not that selling is finished. The daily TD count is only <strong>+7</strong>, and neither that count nor the weekly setup has completed. With 3× daily exposure, being early can be costly even if a rebound eventually arrives.</p>
+<p>Your proposed confirmation also exposes the weakness in buying <em>now</em>. Reclaiming <strong>$24.78</strong> requires roughly <strong>7%</strong> upside from Friday’s close; clearing the <strong>$26.37</strong> daily SuperTrend requires nearly <strong>14%</strong>. Until YINN does that <em>and</em> the underlying China index confirms, the rebound remains a scenario rather than observed strength. A close below <strong>$22.88</strong> would instead reinforce the downside case, although that level is an observation point, not proven support.</p>
+<p>Nor would I borrow conviction from the U.S. equity rally or retail posts. The latest cited 10-year yield was <strong>5.24% on October 1</strong>, and Brent was <strong>$113.96 on September 29</strong>—potential headwinds, not proof of a China recovery. Only <strong>6 of 14</strong> sampled StockTwits posts carried bullish tags, three from one author; there is no verified China-index turn or news catalyst in the supplied evidence.</p>
+<p>Finally, your two-day upside illustration cuts both ways: YINN targets <strong>3× each day</strong>, not 3× the eventual multi-day index return. Choppy moves can erode the position even if the index ends roughly flat. <strong>My stance is to avoid initiating YINN on the evidence available as of October 3</strong>, while acknowledging rebound risk and reassessing if China-specific strength and your stated price-and-volume confirmations actually appear.
+Bear Analyst: Bull, I’m not saying “avoid YINN at all costs.” I’m saying <strong>don’t pay for an unconfirmed rebound with 3× daily exposure</strong>. Your proposed starter now depends on <em>future</em> evidence: strength in the FTSE China 50 and an acceptable YINN spread next session. Neither is established by the information available as of October 3. And one strong session, especially around potentially mismatched China-market holidays, would need checking against actual underlying price discovery—not just a move in the U.S.-listed fund.</p>
+<p>You’re right that waiting for a close above <strong>$26.37</strong> could forfeit nearly <strong>14%</strong> from Friday’s <strong>$23.17</strong> close. But that is not automatically a reason to buy earlier; it is the price of reducing uncertainty. Today’s evidence still points the other way: YINN is below its <strong>$28.02</strong> 50-day average, its daily and weekly SuperTrends are down, its MACD histogram worsened to <strong>−0.19</strong>, and OBV has fallen since September 22. The <strong>−2.01</strong> daily z-score describes how stretched the move is, not the odds or size of a rebound. <strong>ADX at 19.56</strong> cautions against confidently chasing the decline, but it offers no affirmative long signal. The daily TD setup is still only <strong>+7</strong>.</p>
+<p>The asymmetry you emphasize works against the starter, too. A <strong>5% one-day fall in the benchmark implies roughly a 15% fall in YINN</strong> before costs and tracking differences; a gap could bypass a planned exit near <strong>$22.88</strong>. Even a broadly correct multi-day China thesis can lose money in a choppy daily-reset fund. Elevated yields and the last cited <strong>$113.96 Brent</strong> reading add macro risk, while the small retail sample supplies no verified China catalyst.</p>
+<p>So I’ll grant you a <em>conditional trading plan</em>, not an investment case: if the FTSE China 50 genuinely strengthens, YINN’s spread is acceptable, and price and participation improve, reassess. <strong>Until then, my recommendation is to stay flat on YINN rather than buy an oversold reading.</strong>
+Bear Analyst: Bull, we now agree on the decision <strong>as of October 3: stay flat on YINN</strong>. My disagreement is with calling the potential early starter an opportunity before we can judge its odds. I’m <strong>not</strong> requiring a close above $26.37 for every possible trade. I’m asking what establishes an edge <em>before</em> that close. Genuine FTSE China 50 strength during an active local session, an acceptable YINN spread, and easing selling pressure would be useful—but none is verified yet.</p>
+<p>Your “missed 14%” argument assumes a trader could recognize and capture that move in real time. The competing risk is buying a one-session bounce while YINN remains below its <strong>$28.02 50-day average</strong>, its daily and weekly SuperTrends point down, and OBV and MACD have weakened. The <strong>−2.01 z-score</strong> and <strong>19.56 ADX</strong> warn me not to chase the decline; they do not give the starter positive expected returns.</p>
+<p>YINN’s structure makes that distinction consequential. Its 3× target applies <strong>daily</strong>, so volatility can damage a position even if the benchmark later recovers. A stop near <strong>$22.88</strong> is not assured execution through an overnight gap, particularly if local and U.S. trading sessions do not line up. Elevated yields and the last cited <strong>$113.96 Brent</strong> reading add risks, not a China-specific catalyst.</p>
+<p>If your underlying-market, spread, and participation checks turn positive, I’ll reassess an early <em>trade</em> without insisting mechanically on $26.37. Until they do, <strong>my recommendation remains no new YINN position—not a short, and not a leveraged bet on an oversold reading.</strong>
+Bear Analyst: Bull, your revised plan is more disciplined, and we agree on the immediate decision: <strong>there is no verified reason to open a YINN position as of October 3</strong>. The remaining disagreement is whether fresh China-market strength would create an early-entry edge. It would be useful evidence, but one strong local session would not necessarily distinguish a durable rebound from a bounce inside a downtrend.</p>
+<p>Even a reclaim of <strong>$24.78</strong>—about <strong>7% above</strong> Friday’s $23.17 close—would leave YINN below its <strong>$28.02 50-day average</strong>, with the daily and weekly SuperTrends still down. I would want to see strength across the FTSE China 50’s major constituents, selling pressure ease, and credible YINN pricing when U.S. trading begins. Around market holidays, a U.S.-listed fund move alone is especially weak confirmation.</p>
+<p>The cost of a false start is unusually high. YINN targets <strong>3× daily</strong> returns, not a sustained three-times index return. For illustration, if the benchmark gains 10% and then loses about 9.09%, it ends roughly flat; YINN would lose about <strong>5.45%</strong> before costs and tracking differences. A gap could also bypass an intended exit near $22.88.</p>
+<p>I accept that waiting for <strong>$26.37</strong> is not mandatory for every tactical trade. But avoiding an unverified early entry is not forfeiting a certain 14% gain. <strong>My recommendation remains no new YINN position</strong> until China-specific strength, fund pricing, and improving participation can actually be checked—not merely anticipated.
+Bear Analyst: Bull, I agree that a short-duration YINN trade does not require a durable reversal. But it still needs an edge <strong>after</strong> allowing for 3× daily exposure, execution costs, and a false-start risk. Strength across China’s major shares, credible YINN pricing, and a sustained reclaim of <strong>$24.78</strong> would be better evidence than an oversold reading. We have none of that verified as of October 3.</p>
+<p>The early-entry trade-off also deserves a closer look. From <strong>$24.78</strong>, a move to the <strong>$26.37</strong> daily SuperTrend line is about <strong>6.4%</strong>; a move back to Friday’s <strong>$22.88</strong> low is about <strong>7.7%</strong>. Neither level is a target or a reliable stop, so those distances do <strong>not</strong> establish a favorable payoff. Waiting to see whether $24.78 <em>holds</em> may reduce the advantage of entering early, while a gap can make the downside larger. ADX at <strong>19.56</strong> warns of whipsaws in either direction; it does not make a countertrend entry safer.</p>
+<p>I would reassess if strength persists during active China-market trading and YINN’s price, spread, and participation corroborate it. Until then, the verified picture is still a <strong>$23.17</strong> close below the <strong>$28.02</strong> 50-day average, with weekly and daily trends down and MACD and OBV weakening. <strong>My recommendation remains no new YINN position—not a short, and not a bet that a plausible bounce is a profitable one.</strong></p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For YINN, the bull made a credible case for watching a small tactical rebound: its −2.01 daily z-score suggests a stretched selloff, and ADX at 19.56 does not show a strong daily trend. But those are not entry signals, and the bull ultimately conceded that no China-specific turn or reliable entry edge has been verified as of October 3. The bear's observed evidence is stronger: the last verified $23.17 close was below the $28.02 50-day average, daily and weekly SuperTrends were down, and MACD and OBV had weakened. YINN's daily-reset 3× exposure magnifies false starts, gaps and choppy-market losses. That supports an Underweight rather than a new buy; it does not establish a strong enough case for a categorical Sell, since a sharp rebound remains possible.</p>
+<p><strong>Strategic Actions</strong>: Do not initiate or add to YINN on the available evidence. If already held, trim to at most 25% of a standard unleveraged allocation; otherwise keep a 0% allocation. Retain any residual stake only as a short-duration, actively monitored trade, not a buy-and-hold investment, and avoid it altogether if it cannot be monitored. Reassess a starter of no more than 25% of a standard allocation only after verified FTSE China 50 strength across major constituents during an active local session, credible YINN pricing and an acceptable spread in U.S. trading, and a sustained reclaim of $24.78 with stabilizing OBV and improving MACD. A close above $26.37 with continuing China-market confirmation would strengthen the case for a cautious increase, still below a standard allocation while YINN remains below the $28.02 50-day average. If China shares weaken or YINN breaks $22.88, cut any tactical exposure promptly; $22.88 is an observation/invalidation level, not a guaranteed stop, because gaps can bypass it. None of the required fresh market or spread checks is provided.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: YINN's Underweight plan supports trimming existing exposure, not initiating a new position: the last verified $23.17 close is below the $26.37 daily SuperTrend and $28.02 50-day SMA, while the weekly trend is down and MACD and OBV have weakened. Its −2.01 daily z-score and ADX of 19.56 leave room for a rebound, so this is a measured reduction rather than an unconditional liquidation. No fresh China-market confirmation or U.S. spread check is available; with $1.06 ATR and daily-reset 3× leverage, a move below $22.88 calls for promptly cutting any retained tactical stake, although gaps can bypass that level.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: 22.88</p>
+<p><strong>Position Sizing</strong>: If already held, trim YINN to no more than 25% of a standard unleveraged allocation; if not held, maintain 0%. Retain a residual stake only if it can be actively monitored.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: Neither other analyst has weighed in yet, so here’s my opening case: I support the SELL, and I see it as an aggressive allocation decision, not a retreat from risk. YINN fell about 15% from its September 22 close to its last verified close of $23.17 on October 2. It remains below the $26.37 daily SuperTrend and $28.02 50-day average, while weekly trend, MACD, and OBV all argue against committing a full position. Waiting for another break before trimming risks spending capital on a daily-reset 3× exposure whose upside thesis has not yet been confirmed by China-market data.</p>
+<p>The rebound case is real: YINN’s daily z-score is −2.01, and ADX at 19.56 does not show a firmly established daily trend. That is why I would not call for an unconditional liquidation of an existing position. But a plausible bounce is not yet a demonstrated reversal. The mildly bullish 5.8/10 sentiment reading comes from a small, low-confidence retail sample, not verified China strength or a confirmed catalyst. Elevated yields and the last reported $113.96 Brent observation add reasons not to mistake bargain-hunting for confirmation.</p>
+<p>If you hold YINN, trim it now to no more than 25% of your standard unleveraged allocation; if you do not hold it, do not initiate a position on this evidence. Keep even that residual only if you can monitor it actively. A move below $22.88 calls for promptly cutting it, but that level is just $0.29 below the last close—far less than YINN’s $1.06 ATR—and cannot cap a gap loss. Selling the excess preserves risk capacity for a faster, better-supported trade if YINN reclaims $24.78 and then $26.37 with improving momentum and confirmed China-market strength. That is the higher-reward risk to pursue, rather than paying leveraged holding costs while waiting for hope to become evidence.
+Aggressive Analyst: Conservative, I agree that 25% is a ceiling, not a target, and that YINN’s 3× daily exposure makes even a residual consequential. But making zero the default for every holder gives up an opportunity the data actually identify: YINN’s −2.01 daily z-score and 19.56 ADX leave room for a sharp, uneven rebound. From Friday’s verified $23.17 close, a return to $24.78 would be about a 7% move in YINN. That is not a forecast or a reason to keep a full position; it is a reason an actively monitored holder with a defined loss budget might retain a small stake while selling the excess. I am not arguing for automatic, repeated re-entry after every bounce.</p>
+<p>You are also right that the weekly downtrend, falling OBV, weaker MACD, and the close below $26.37 and $28.02 make the full-sized bet unattractive. That is precisely why I support SELL. And $22.88 is not protection: it is only $0.29 below the close, versus a $1.06 ATR, and a gap could bypass it. The aggressive move is to remove most of the leveraged exposure now, not to pretend a nearby exit level makes it safe.</p>
+<p>Neutral, I agree that insisting on a $26.37 reclaim before <em>any</em> participation could miss a fast rebound—$26.37 is nearly 14% above Friday’s close. A small existing residual addresses that concern without leaving the entire position exposed to a bearish weekly trend. Where I would be firmer than your “reassess if weakness continues” language is on a move below $22.88: for a retained tactical stake, that calls for a prompt decision to cut, not an open-ended wait for more weakness. Execution may be worse than that level.</p>
+<p>Neither the mildly bullish, low-confidence retail sample nor Friday’s U.S. rally confirms a China catalyst. Conversely, stale oil and yield observations do not prove YINN must fall next session. My call remains SELL: if already held, trim YINN to <strong>no more than 25% of a normal unleveraged allocation</strong>, and retain any portion only if it fits a defined loss budget and can be monitored. If not held, do not initiate on Friday’s data. At the next tradable session, check the current quote, spread, China-market conditions, and holiday schedule; consider increasing risk later only on fresh evidence, not on a hoped-for bounce.
+Aggressive Analyst: Conservative, you’re right that YINN’s −2.01 daily z-score is not a reversal signal, and that even a quarter-sized stake carries meaningful 3× daily exposure. But making zero the default for every existing holder treats a plausible rebound as worthless. ADX at 19.56 does not confirm a strong daily downtrend; from Friday’s verified $23.17 close, a return to $24.78 would be roughly 7%. That is an upside scenario, not a forecast. For a holder who can absorb a gap and monitor the trade, a small residual preserves participation while selling at least three-quarters of a standard allocation. Daily-reset decay and missing China confirmation make it a short-duration tactical choice, not a passive holding.</p>
+<p>Neutral, I agree that nobody should compare that possible 7% gain with the $0.29 distance to $22.88 as though it were a dependable reward-to-risk ratio. The $1.06 ATR and gap risk rule that out. Where I’d be firmer is on execution: if YINN moves below $22.88, promptly cut a retained tactical stake rather than waiting to see whether weakness continues, while recognizing the sale may occur well below that level. And you’re right that freed-up capacity need not return to YINN; a later reclaim of $24.78 and then $26.37 warrants reassessment, not an automatic buy.</p>
+<p>The aggressive decision is still <strong>SELL</strong>. YINN is below its $26.37 daily SuperTrend and $28.02 50-day average, its weekly trend is down, and MACD and OBV have weakened. Thin, mildly bullish retail sentiment does not replace China-market confirmation. At the next tradable session, check the live quote and spread before trimming any existing YINN position to <strong>no more than 25% of a normal unleveraged allocation</strong>; retain less or nothing if the loss budget or monitoring ability demands it. If YINN is not held, do not initiate on Friday’s data. That removes the oversized risk now without forcing every capable holder to surrender all rebound exposure.
+Aggressive Analyst: Conservative, you’re right that YINN’s −2.01 z-score does not predict a rebound, and active monitoring cannot prevent an overnight gap or daily-reset losses. But that argues against a full-sized hold, not necessarily for taking every existing holder to zero. ADX at 19.56 leaves the daily downtrend less firmly established than the weekly signal, and a return from Friday’s $23.17 close to $24.78 would be about 7% in YINN. That is a scenario, not a forecast. A holder who can absorb a substantially worse-than-$22.88 exit may rationally preserve a <em>small, short-duration</em> stake while selling the excess. The 25% figure is a ceiling, never a default target; its roughly 75% daily benchmark sensitivity is exactly why the ceiling must be tight.</p>
+<p>Neutral, I agree that the possible 7% rebound cannot be divided by the $0.29 distance to $22.88 to manufacture a reward-to-risk ratio. The $1.06 ATR and gap risk make that misleading. But the opportunity cost of going entirely to zero is real for a capable existing holder: waiting for a $26.37 SuperTrend reclaim would mean waiting for a move of nearly 14% from Friday’s close before even considering participation. A residual is not a bet that this will happen; it is a deliberately bounded allocation decision while most YINN risk is removed. Freed-up risk capacity need not return to YINN.</p>
+<p>My call remains SELL. YINN is below its daily SuperTrend and 50-day average, with a down weekly trend and weakening MACD and OBV. Thin, mildly bullish retail sentiment cannot substitute for China-market confirmation, and the available oil and yield readings are dated. If YINN is already held, trim it to no more than 25% of a normal unleveraged allocation; retain less or zero if total exposure, gap-loss capacity, or monitoring ability warrants it. If it is not held, do not initiate. At the next tradable session, verify the live quote, spread, and China-market conditions. If YINN moves below $22.88, promptly cut any tactical residual—without assuming that price is executable.
+Aggressive Analyst: Conservative, you’re right that a possible rebound is not proof of an attractive risk-adjusted trade. YINN’s down weekly trend, weaker MACD and falling OBV are why I want the oversized position sold, not defended. But favoring zero for every existing holder can discard a tactical opportunity: the −2.01 daily z-score shows a stretched decline, while ADX at 19.56 does not confirm a strong daily trend. A move from Friday’s $23.17 close back to $24.78 would be about 7% in YINN—not a forecast, but meaningful upside for someone who can deliberately bear the risk. Your gap and compounding objections are real; they argue for a small, short-duration exception, not a full-sized hold. The 25% ceiling still carries roughly 75% of a standard unleveraged allocation’s daily benchmark sensitivity, so it is emphatically not a default target.</p>
+<p>Neutral, I agree that nobody can claim the nearly 14% distance to $26.37 is a return a holder will capture. My point is that waiting for that reclaim before allowing <em>any</em> exposure can miss an earlier rebound. A defined residual lets a capable existing holder participate without betting the full allocation on thin, low-confidence retail sentiment or unverified China strength. Conversely, your conditional framing should not slow the SELL: YINN has fallen about 15% since September 22, and waiting for another break leaves excess 3× exposure in place.</p>
+<p>My call remains SELL. If YINN is held, trim to no more than 25% of a normal unleveraged allocation; keep less or none unless total China exposure, a loss budget that can absorb a gap, and active monitoring support a residual. If it is not held, do not initiate. At the next tradable session, check the live quote, spread, NAV relationship where available, and China-market conditions—but do not mistake Friday’s close for an executable price. Below $22.88, promptly cut a tactical residual, recognizing that a gap may make the sale price substantially worse. A later recovery warrants fresh assessment, not automatic repurchase.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst that the excess YINN exposure should be sold. Where I disagree is calling the remaining stake a ready source of “higher-reward” opportunity. The proposed 25% of a standard unleveraged allocation is a ceiling, not a conservative target: because YINN seeks 3× the benchmark’s daily return, even that stake can carry substantial one-day risk. A quick re-entry after a bounce could turn a sound reduction into repeated leveraged exposure.</p>
+<p>YINN’s −2.01 daily z-score and 19.56 ADX make a rebound plausible, but they do not establish a reversal. YINN closed at $23.17, below its $26.37 daily SuperTrend and $28.02 50-day average, with the weekly trend still down and MACD and OBV weakening. Nor does $22.88 provide dependable protection: it is an observed low, not proven support, and sits just $0.29 below the close against a $1.06 ATR. A gap could bypass an exit there.</p>
+<p>The Neutral Analyst has not offered a case yet. But if the neutral choice is to hold YINN while waiting for either $22.88 to break or a rebound to confirm, that is still an active leveraged-risk decision. The mildly bullish retail sample is too small and concentrated to offset missing China-market confirmation, current NAV and spread data, and the risks from elevated yields and the last reported oil price. Even a recovery through $24.78 and $26.37 would justify reassessment, not an automatic purchase.</p>
+<p>My lower-risk adjustment is to <strong>sell YINN exposure above the proposed ceiling and favor 0% retained exposure</strong> unless the holder has a defined loss budget, can monitor it actively, and verifies current China-market conditions and YINN execution costs. If not held, remain at 0%. October 3 is a Saturday, so use a current quote and spread at the next tradable session rather than treating Friday’s close or a stop level as an executable price.
+Conservative Analyst: Aggressive, I agree with selling excess YINN exposure, but a possible 7% rebound to $24.78 is not a reason to keep a leveraged stake. The −2.01 daily z-score identifies a stretched decline, not a reversal, and ADX at 19.56 makes a clean trend trade less certain in either direction. YINN remains below its $26.37 daily SuperTrend and $28.02 50-day average, with the weekly trend down and MACD and OBV weakening. Calling a residual an opportunity understates what it costs in risk capacity while China-market confirmation is missing.</p>
+<p>Neutral, favoring zero does not mean predicting another decline. It means declining to bear an unconfirmed risk merely to avoid missing a bounce. Even 25% of a normal unleveraged allocation has roughly 75% of that allocation’s <em>daily benchmark sensitivity</em> in YINN, before tracking differences. Daily resets can also erode returns through a choppy hold. The mildly bullish sentiment comes from a small, concentrated retail sample; neither it nor the dated oil and yield readings establishes what China shares will do next.</p>
+<p>I would keep the <strong>SELL</strong> direction, but treat 25% as an exceptional ceiling, not the default residual. If YINN is held, favor trimming toward zero; retain anything only against a defined loss budget, active monitoring, and fresh checks of China trading, YINN’s quote, NAV relationship, and spread. If it is not held, remain at zero. The $22.88 Friday low is $0.29 below the last verified close versus a $1.06 ATR: a break calls for a prompt exit decision on any residual, but neither that level nor a stop guarantees execution through a gap. Reassess a future trade on confirmed evidence, rather than paying for leveraged exposure while waiting for it.
+Conservative Analyst: Aggressive, I’m not treating a YINN rebound as worthless. I’m saying its possible gain is not enough evidence to make retaining leveraged exposure the default. A move from Friday’s $23.17 close to $24.78 would be about 7%, but the −2.01 daily z-score and 19.56 ADX do not establish that it will happen. YINN’s weekly trend remains down, and its MACD and OBV have weakened. Active monitoring helps with decisions during trading hours; it cannot prevent an overnight gap or the effects of daily-reset compounding.</p>
+<p>Neutral, I agree that zero should not be mandatory for every holder. But with no portfolio context, we cannot presume a residual YINN stake fits the caller’s loss budget. Even the proposed 25% ceiling has roughly 75% of a standard unleveraged allocation’s daily benchmark sensitivity before tracking differences. The $22.88 level is only $0.29 below the last close, against a $1.06 ATR, so it is not a dependable limit on losses. Missing current China-market confirmation, NAV and spread data make “keep a little for the bounce” a risk decision, not a neutral compromise.</p>
+<p>I would keep the SELL decision and favor trimming any existing YINN holding toward zero. Retain a stake below the 25% ceiling only if the holder has checked total China exposure, can absorb a loss substantially beyond the proposed stop, and can monitor a short-duration trade. If YINN is not held, stay at zero. At the next tradable session, verify the live quote, spread and China-market conditions before execution; a break below $22.88 calls for a prompt exit decision on any residual, not an assumption that $22.88 will be the sale price.
+Conservative Analyst: Aggressive, the possible 7% rebound to $24.78 is a scenario, not evidence that keeping YINN offers an attractive risk-adjusted return. ADX at 19.56 makes the daily trend less decisive; it does not cancel the down weekly trend, weakening MACD and OBV, or Friday’s close below the $26.37 daily SuperTrend. Missing part of a rebound is an opportunity cost. An overnight gap in a daily-reset 3× fund is a loss of capital, and active monitoring cannot prevent it.</p>
+<p>Neutral, I agree that zero need not be mandatory for every existing holder. But a residual should be an exception justified by the holder’s total China exposure and a loss budget that can absorb a sale well below $22.88—not the natural compromise after trimming. Even the proposed 25% ceiling carries roughly 75% of a standard unleveraged allocation’s daily benchmark sensitivity, before tracking differences. The small, low-confidence bullish retail sample does not resolve the missing China-market confirmation.</p>
+<p>My recommendation remains SELL: if YINN is held, favor reducing it toward zero; retain less than the 25% ceiling only for a defined, short-duration risk that can be monitored and afforded. If it is not held, stay at zero. Before executing at the next tradable session, check the live quote, spread, NAV relationship where available, and China-market holiday conditions; Friday’s $23.17 close is not an execution price. If a retained stake breaks $22.88, act promptly to exit, without assuming that level will be available. A recovery through $24.78 or $26.37 would warrant fresh assessment, not automatic re-entry.
+Conservative Analyst: Aggressive, I agree that excess YINN exposure should be sold without waiting for another break. But a possible 7% rebound to $24.78 describes upside, not its likelihood or its risk-adjusted value. YINN’s −2.01 daily z-score and 19.56 ADX leave room for a choppy bounce; they do not outweigh the down weekly trend, weakening MACD, and falling OBV. Waiting for confirmation might miss some upside. Keeping a daily-reset 3× stake in the meantime means bearing gap and compounding risk without China-market confirmation.</p>
+<p>Neutral, I agree that missing confirmation does not prove YINN will fall. It also does not justify making a residual stake the natural compromise. At the proposed 25% ceiling, a hypothetical 5% one-day benchmark decline would imply roughly a 15% YINN decline, or about 3.75% of the <em>reference allocation’s dollar value</em>, before tracking differences. That is meaningful risk for an unverified rebound thesis. The thin retail sentiment and dated oil and yield readings do not settle it.</p>
+<p>My recommendation remains SELL: if YINN is held, favor trimming toward zero. Treat 25% of a normal unleveraged allocation as an exceptional maximum, not a target, and retain less only if total China exposure, a gap-tolerant loss budget, and active monitoring support it. If YINN is not held, stay at zero. At the next tradable session, check the live quote, spread, NAV relationship where available, and China trading calendar while arranging the reduction. The $22.88 low is a prompt to cut any residual if broken—not a guaranteed exit price.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with both analysts on the immediate direction: the case for keeping a full YINN position is weak. But I would make the SELL a measured reduction, not a prediction that YINN must keep falling.</p>
+<p>The Aggressive Analyst is right that YINN’s $23.17 October 2 close sits below its $26.37 daily SuperTrend and $28.02 50-day average, with a down weekly trend and weakening MACD and OBV. Where I would push back is the idea that selling now simply frees capital for a “higher-reward” re-entry. YINN’s −2.01 daily z-score and ADX of 19.56 make a sharp, choppy rebound plausible; waiting for $26.37 could mean missing much of it. That argues for allowing a small, monitored residual for a holder who has a reason and a risk budget to keep one—not for retaining a full leveraged bet. The mildly bullish retail sentiment is too thin to justify more.</p>
+<p>The Conservative Analyst is right that zero is the appropriate choice if the holder cannot monitor YINN or absorb a gap. Still, making zero the default for every existing holder gives too little weight to rebound risk. Elevated yields and the last reported $113.96 Brent price are genuine headwinds, but neither is current proof that China shares will fall at the next session. A strictly limited residual can preserve some participation without making a new purchase or treating a bounce as a confirmed reversal.</p>
+<p>My adjustment is to sell any existing YINN exposure above 25% of the holder’s normal unleveraged allocation, and retain less—or none—if the loss budget, diversification, or ability to monitor it calls for that. If YINN is not already held, stay at 0% rather than initiate on these signals. The 25% figure is a ceiling, not a target: YINN’s 3× daily reset makes even a small allocation consequential.</p>
+<p>I would also treat $22.88 as a prompt to reassess or exit promptly if weakness continues, not as a loss guarantee. It is only $0.29 below Friday’s close versus a $1.06 ATR, and a gap can pass it. Since October 3 is Saturday, check the next tradable quote, spread, China-market conditions and local holiday schedule before executing. A recovery through $24.78, then $26.37 with improving momentum and China-specific confirmation, would justify reassessing a small tactical position—not automatically buying back what was sold.
+Neutral Analyst: Aggressive, I agree with selling excess YINN, but the possible rebound to $24.78 is an upside scenario, not a measured reward that can be weighed against a dependable $22.88 exit. That level is only $0.29 below Friday’s $23.17 close, versus a $1.06 ATR, and a gap could make the loss much larger. A residual position is defensible only if the holder can afford that uncertainty—not simply because a bounce might be missed.</p>
+<p>Conservative, your preference for zero is right for someone who cannot monitor YINN, has little loss capacity, or already has substantial China exposure elsewhere. I would not make it mandatory for every existing holder, though. The −2.01 daily z-score and ADX of 19.56 leave room for a choppy rebound, even as the weekly downtrend and weakening MACD and OBV argue against a full position. A small residual can preserve participation without requiring a new buy.</p>
+<p>So I would keep the SELL decision: trim any existing YINN holding to no more than 25% of a normal unleveraged allocation, and choose less or zero based on the holder’s total exposure and loss budget. That ceiling still represents roughly 75% of the reference allocation’s daily benchmark sensitivity before tracking differences. If YINN is not held, stay at zero. At the next tradable session, check the live quote, spread, China-market conditions and holiday schedule before acting. A move below $22.88 calls for a prompt decision to cut a residual, not faith in a guaranteed stop; a recovery through $24.78 and then $26.37 warrants reassessment, not an automatic repurchase. Freed-up risk capacity need not go back into concentrated China exposure.
+Neutral Analyst: Aggressive, I agree with selling excess YINN, but I would not make a possible rebound to $24.78 the reason to retain a stake. The −2.01 daily z-score and 19.56 ADX leave room for a bounce; they do not tell us its probability or size. And a 25% allocation to YINN still has roughly 75% of the reference allocation’s daily benchmark sensitivity before tracking differences. That is a meaningful risk commitment, not merely a way to avoid missing upside.</p>
+<p>Conservative, I agree that zero is sensible when the holder cannot absorb a gap, monitor the trade, or account for other China exposure. But favoring zero for every holder risks turning a prudent reduction into an all-or-nothing call. An existing holder with a defined loss budget may reasonably keep a smaller, short-duration stake while the oversold move plays out. That is a conditional choice, not a default target.</p>
+<p>My recommendation remains <strong>SELL</strong>: if YINN is held, trim it to no more than 25% of a normal unleveraged allocation, and retain less or none if total exposure or loss capacity warrants it. If it is not held, stay at zero. Before acting at the next tradable session, check YINN’s live quote and spread, China-market conditions, and holiday schedule; Friday’s $23.17 close is not an execution price. A move below $22.88 calls for promptly cutting a retained tactical stake, while recognizing that a gap may make the sale price worse. A rebound through $24.78 and then $26.37 merits reassessment, not an automatic repurchase. Freed-up risk capacity can also support diversification rather than another leveraged China trade.
+Neutral Analyst: Aggressive, I agree that an existing YINN holder need not surrender every chance of a rebound. But the nearly 14% distance from Friday’s $23.17 close to the $26.37 daily SuperTrend is not a return the holder can expect to capture by keeping a residual stake. The −2.01 daily z-score and ADX of 19.56 make a choppy bounce plausible, not probable enough to justify exposure without a loss budget. A quarter-sized YINN stake still has roughly three-quarters of a standard unleveraged allocation’s daily benchmark sensitivity, before tracking differences.</p>
+<p>Conservative, favoring zero is sensible when that budget or active monitoring is absent. But missing China-market confirmation is uncertainty, not confirmation of further losses. The weekly downtrend and weakening MACD and OBV support reducing risk; they do not make complete liquidation the only defensible choice for a holder who can afford a short-duration residual. Neither the thin bullish retail sample nor dated oil and yield readings settles that choice.</p>
+<p>I would keep the SELL decision. If YINN is already held, trim it to no more than 25% of a normal unleveraged allocation, with less or zero appropriate after accounting for other China exposure and a possible gap loss. If it is not held, do not initiate. At the next tradable session, check the live quote, spread and China-market holiday conditions rather than treating Friday’s close as executable. A move below $22.88 calls for a prompt exit decision on any residual, not reliance on a fill at that price: the level is just $0.29 below Friday’s close against a $1.06 ATR. A recovery through $24.78 and then $26.37, alongside improving momentum and China-specific confirmation, would merit reassessment—not automatic repurchase. Freed-up risk capacity can remain available or support diversification instead of returning to leveraged China exposure.
+Neutral Analyst: Aggressive, I agree that YINN holders should not wait for another breakdown before selling excess exposure. But the possible rebound to $24.78 is an upside scenario, not a reason by itself to retain a stake. A −2.01 daily z-score and 19.56 ADX leave room for a bounce; they do not establish its odds, especially with the weekly trend down and MACD and OBV weakening.</p>
+<p>Conservative, your loss example is the useful counterweight: at the proposed 25% ceiling, a hypothetical 5% one-day benchmark decline could cost roughly 3.75% of the reference allocation’s value before tracking differences. Still, that stress case is not a forecast either. Missing China-market confirmation supports reducing YINN risk, but it does not make zero the only reasonable outcome for an existing holder with room in a defined loss budget.</p>
+<p>I would keep the SELL decision conditional on the actual position: if YINN is held, reduce it to no more than 25% of a normal unleveraged allocation, and choose a smaller residual or zero after accounting for other China exposure and a loss that could exceed the planned stop. That ceiling is not a target. If YINN is not held, do not initiate on Friday’s data. At the next tradable session, check the live quote, spread and China trading calendar while arranging the reduction; do not treat the $23.17 Friday close as an execution price. A move below $22.88 calls for promptly cutting a tactical residual, without assuming a fill there. A recovery through $24.78 and then $26.37, backed by improving momentum and China-specific strength, would invite reassessment—not automatic buying. Freed-up risk capacity can remain available or be diversified rather than committed back to leveraged China exposure.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: For YINN, sell excess exposure at the next tradable session after checking the live quote, spread, available NAV relationship, and China-market trading calendar; the October 2 close is not an execution price. If already held, reduce to no more than 25% of a normal unleveraged allocation, preferably less or zero if other China exposure, gap-loss capacity, or monitoring ability warrants; if not held, do not initiate. Treat any residual as an actively monitored 1–2 week trade and promptly cut it if YINN breaks $22.88, without assuming that level is an executable stop.</p>
+<p><strong>Investment Thesis</strong>: The analysts agree on selling excess YINN exposure, but the aggressive and neutral cases allow a small, risk-budgeted residual while the conservative case favors zero; that measured reduction supports an Underweight portfolio rating rather than a mandatory full exit. YINN's last verified $23.17 close on October 2 was below its $26.37 daily SuperTrend and $28.02 50-day SMA; the weekly trend was down, the MACD histogram had weakened to −0.19, and OBV was falling. The −2.01 daily z-score and 19.56 ADX allow a choppy rebound but do not confirm one. Even a quarter-sized holding has roughly three-quarters of a standard unleveraged allocation's daily benchmark sensitivity because YINN targets 3× daily exposure; gaps and compounding make the $22.88 observed low unreliable as a loss limit. No verified current China-market confirmation, live spread, or NAV relationship is provided. There is no applicable corporate valuation objective, so the conditional downside technical target extrapolates the October 1-to-October 2 close-to-close decline: $24.78 − $23.17 = $1.61; $23.17 − $1.61 = $21.56. This is a short-horizon measured-move scenario, not established support or a guaranteed forecast. A sustained reclaim of $24.78, followed by $26.37 with improving MACD and OBV and confirmed China-market strength, would warrant reassessment rather than automatic buying; $28.02 remains a further hurdle.</p>
+<p><strong>Current Price</strong>: 23.17</p>
+<p><strong>Price Target</strong>: 21.56</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1-2 weeks</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

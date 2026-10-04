@@ -1,0 +1,3631 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/META/20261003_gpt-6-sol_20261004_134035/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: META - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-meta" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: META
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CDE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CDE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../YINN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  YINN
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CDE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CDE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CDE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../YINN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    YINN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    YINN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meta-technical-outlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        META technical outlook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trend-intact-with-less-room-for-complacency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trend: intact, with less room for complacency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#momentum-participation-and-stretch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Momentum, participation, and stretch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actionable-levels-and-risk-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actionable levels and risk checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meta-sentiment-2026-09-26-to-2026-10-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        META sentiment, 2026-09-26 to 2026-10-03
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignment-or-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignment or divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-potential-catalysts-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Potential catalysts and risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meta-weekly-news-and-macro-trading-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        META: weekly news and macro trading brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-matters-for-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What matters for META
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-macro-backdrop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The macro backdrop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-plan-for-meta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading plan for META
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meta-fundamental-report-as-of-october-3-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        META fundamental report — as of October 3, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earnings-and-financial-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Earnings and financial history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-and-investment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow and investment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance-sheet-and-funding-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balance sheet and funding questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-traders-should-watch-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What traders should watch next
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="trading-analysis-report-meta">Trading Analysis Report: META<a class="headerlink" href="#trading-analysis-report-meta" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-03</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-04 13:40:35</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-sol, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $728.08
+<strong>Price As Of</strong>: 2026-10-02</p>
+<h4 id="meta-technical-outlook">META technical outlook<a class="headerlink" href="#meta-technical-outlook" title="Permanent link">&para;</a></h4>
+<p><strong>META remains in an uptrend, but its September surge has given way to a pullback.</strong> The October 3 analysis date is a Saturday, so October 2 is the latest trading bar. META closed at $777.59 on September 24, $715.62 on September 28, and $728.08 on October 2. That sequence shows a substantial retreat from the recent closing peak without, so far, a break of the daily trend signal.</p>
+<p>The eight indicators selected below separate <strong>trend direction, trend strength, momentum, volatility, participation, and exhaustion</strong>. That matters here: a strong trend and a stretched price can both be true.</p>
+<h4 id="trend-intact-with-less-room-for-complacency">Trend: intact, with less room for complacency<a class="headerlink" href="#trend-intact-with-less-room-for-complacency" title="Permanent link">&para;</a></h4>
+<p>META closed above its <strong>50-day SMA of $624.66</strong>. That average has risen from $606.90 on September 18, supporting a constructive medium-term reading, although a moving average is a lagging measure—not a promise of support.</p>
+<p><strong>SuperTrend is UP on all three timeframes:</strong> weekly with a $563.23 trailing line, monthly at $522.45, and daily at $680.67. The weekly signal carries the most weight for the broader trend; the daily line is more useful for monitoring near-term deterioration. At the latest close, the daily line was <strong>$47.41 below price</strong>, about <strong>1.9 times the $25.43 ATR</strong>. These lines can change with new bars; they are not fixed future exit prices.</p>
+<p><strong>ADX was 44.45</strong>, well above the 25 threshold commonly used to identify a strong trend. It has nevertheless fallen from 64.10 on September 25. ADX measures <em>strength, not direction</em>: the decline says the force of the preceding move has eased, not that a downtrend has been confirmed. This tool’s ADX uses EMA-6 smoothing of DX-14, so it may differ from a conventional Wilder ADX.</p>
+<h4 id="momentum-participation-and-stretch">Momentum, participation, and stretch<a class="headerlink" href="#momentum-participation-and-stretch" title="Permanent link">&para;</a></h4>
+<p><strong>RSI has cooled to 61.54</strong> from 80.55 on September 24. META is no longer above the usual 70 overbought threshold, while a reading above 50 remains consistent with positive momentum. That cooling reduces the immediacy of the daily overbought warning, but does not by itself establish a fresh entry.</p>
+<p><strong>OBV confirms substantial participation in the earlier advance, but not a full recovery since the pullback.</strong> It reached 502.34 million on September 24, dropped to 448.57 million on September 28, and recovered to 478.22 million on October 2. Its recent improvement is constructive; its failure to regain the September 24 reading warrants watching. OBV’s <em>change</em> is useful here, not its absolute number. Because price also remains below its September 24 close, this is <strong>not</strong> a confirmed price–OBV divergence.</p>
+<p>The higher-timeframe warnings are more pronounced than the daily ones. <strong>Weekly z-score is +2.03</strong>, just beyond the ±2 stretch threshold, versus <strong>+1.08 monthly</strong> and <strong>+0.67 daily</strong>. <strong>TD-9 is −6 weekly, −2 monthly, and −1 daily</strong>: the weekly sell-setup is progressing but has <strong>not</strong> completed a 9. Together, these readings argue against assuming that every dip is an attractive bargain. Equally, an elevated weekly z-score can persist in a strong uptrend; neither reading alone confirms a top.</p>
+<h4 id="actionable-levels-and-risk-checks">Actionable levels and risk checks<a class="headerlink" href="#actionable-levels-and-risk-checks" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>For renewed upside:</strong> Watch whether META can close above the <strong>$741.58 October 2 high</strong>, then sustain progress toward the <strong>$777.59 September 24 close</strong>. These are observed price references, <strong>not historically validated resistance levels</strong>. Improving OBV alongside such a move would provide better participation confirmation than price alone.</li>
+<li><strong>For a deeper pullback:</strong> The <strong>$715.62 September 28 close</strong> is a nearby reference to monitor, followed by the <strong>$680.67 current daily SuperTrend line</strong>. A close through the applicable, updated daily line would weaken the near-term uptrend signal; it would not automatically reverse the weekly or monthly signals.</li>
+<li><strong>For sizing:</strong> ATR of <strong>$25.43</strong> and the $47.41 distance from the latest close to the current daily SuperTrend line imply meaningful room for normal price movement. Size any position against a chosen risk limit and allow for gaps or stop execution away from the intended level.</li>
+</ul>
+<p><strong>Bottom line:</strong> META’s verified price and the selected trend indicators favor an <strong>intact but cooling uptrend</strong>. The key tension is strong trend confirmation versus a stretched weekly reading and an unfinished weekly exhaustion setup. Confirmation through price <em>and</em> participation is more informative than treating either the recent pullback or the weekly stretch as a standalone trade signal.</p>
+<p>The verified market snapshot supplies the latest close, OHLCV, 50-day SMA, RSI, and ATR. SuperTrend, ADX, OBV, TD-9, and z-score readings come from their respective indicator outputs and are not included in that snapshot.</p>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest reading for META</th>
+<th>Why it fits this market context</th>
+<th>What to monitor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>close_50_sma</code></td>
+<td><strong>$624.66</strong></td>
+<td>Medium-term trend benchmark after a sharp advance</td>
+<td>Whether price remains above a rising average; do not presume a bounce</td>
+</tr>
+<tr>
+<td><code>supertrend</code></td>
+<td><strong>Weekly UP $563.23; monthly UP $522.45; daily UP $680.67</strong></td>
+<td>Separates primary trend, regime, and near-term trailing signal</td>
+<td>A close through the <strong>updated</strong> daily line; give weekly direction greater weight</td>
+</tr>
+<tr>
+<td><code>adx</code></td>
+<td><strong>44.45</strong>, down from <strong>64.10</strong> on Sep. 25</td>
+<td>Tests whether the move remains strong despite the pullback</td>
+<td>Further loss of trend strength; ADX does not establish direction</td>
+</tr>
+<tr>
+<td><code>rsi</code></td>
+<td><strong>61.54</strong>, versus <strong>80.55</strong> on Sep. 24</td>
+<td>Shows that extreme daily momentum has cooled</td>
+<td>Renewed strength above 70 or deterioration toward/below 50</td>
+</tr>
+<tr>
+<td><code>atr</code></td>
+<td><strong>$25.43</strong></td>
+<td>Grounds stop distance and position sizing in current volatility</td>
+<td>Whether volatility expands again; account for gap risk</td>
+</tr>
+<tr>
+<td><code>obv</code></td>
+<td><strong>478.22 million</strong>, below <strong>502.34 million</strong> on Sep. 24</td>
+<td>Checks participation behind a renewed rise</td>
+<td>Whether OBV recovers alongside price, rather than lagging it</td>
+</tr>
+<tr>
+<td><code>td_9</code></td>
+<td><strong>Weekly −6; monthly −2; daily −1</strong></td>
+<td>Flags developing exhaustion without declaring a completed reversal</td>
+<td>Progress toward a weekly 9, interpreted with trend and price</td>
+</tr>
+<tr>
+<td><code>z_score</code></td>
+<td><strong>Weekly +2.03; monthly +1.08; daily +0.67</strong></td>
+<td>Distinguishes weekly stretch from a much less stretched daily reading</td>
+<td>Persistent weekly stretch versus genuine mean reversion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mildly Bullish</strong> (Score: 5.9/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="meta-sentiment-2026-09-26-to-2026-10-03">META sentiment, 2026-09-26 to 2026-10-03<a class="headerlink" href="#meta-sentiment-2026-09-26-to-2026-10-03" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-evidence">1. Source-by-source evidence<a class="headerlink" href="#1-source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>News (Yahoo Finance feed):</strong> Eleven headlines were supplied, but not article bodies. Six explicitly concern Meta or Instagram, and a seventh compares Muse with OpenAI Dots, which is relevant in light of the separate Meta Muse headline. The clearest favorable <em>framing</em> is Yahoo Finance's assertion that CEO Mark Zuckerberg is “winning for investors again,” Fortune's report that Meta is building a large undersea cable network spanning six continents, and Benzinga's headline about a <strong>reportedly</strong> $3.9 billion tax perk associated with AI spending. Motley Fool's headline claims META rose 25% in September, but its question, “Is It Still a Buy in October?”, is not an affirmative recommendation; neither the price change nor the tax benefit is independently verified by the supplied material. The counterweights are Motley Fool's explicit uncertainty about whether Muse AI benefits e-commerce, competitive comparison with OpenAI, and the Wall Street Journal's concern about teens' time spent on TikTok and Instagram. The latter raises potential reputational and policy sensitivity for an Instagram owner, but the headline provides no specific regulatory action. Large-scale cable and AI infrastructure also suggest spending and execution exposure; no costs or returns are supplied. Four other headlines focus on Intel, a generic starter portfolio, the wider stock market, or a weekly review; their titles do not establish META-specific developments. Overall, the usable news <em>framing</em> leans positive, rather than documenting a clear fundamental change.</p>
+<p><strong>StockTwits:</strong> Unavailable for this historical window because the source only serves recent items. There are <strong>zero observable messages or user sentiment tags in the supplied data</strong>, not evidence of zero actual META discussion. No Bullish/Bearish count, ratio, screened-post assessment, or retail-positioning inference is possible.</p>
+<p><strong>Reddit:</strong> Disabled by configuration. There are <strong>zero supplied posts</strong> from r/wallstreetbets, r/stocks, or r/investing; no subreddit-specific opinion, engagement, or cross-community consensus can be inferred.</p>
+<h4 id="2-cross-source-alignment-or-divergence">2. Cross-source alignment or divergence<a class="headerlink" href="#2-cross-source-alignment-or-divergence" title="Permanent link">&para;</a></h4>
+<p>No observed StockTwits or Reddit opinion can confirm or contradict the mildly positive news framing. An institutional-versus-retail divergence, retail exuberance, and a bullish/bearish social ratio are therefore <strong>not measurable</strong>; absence of accessible posts must not be treated as neutral sentiment.</p>
+<h4 id="3-dominant-themes">3. Dominant themes<a class="headerlink" href="#3-dominant-themes" title="Permanent link">&para;</a></h4>
+<p>Within the available news, META's AI investment and competitive positioning dominate: Muse is discussed against OpenAI and in relation to e-commerce, alongside the reported tax treatment of AI data centers. A secondary infrastructure theme is the reported undersea-cable buildout. Favorable CEO/investor framing and the headline's claimed September rally compete with uncertainty about returns on spending, product commercialization, and Instagram-related teen-well-being concerns. These are headline-level themes, not verified article findings.</p>
+<h4 id="4-potential-catalysts-and-risks">4. Potential catalysts and risks<a class="headerlink" href="#4-potential-catalysts-and-risks" title="Permanent link">&para;</a></h4>
+<p>Further information about Muse's e-commerce utility, comparisons with rival AI offerings, the scope and economics of cable and data-center investments, and confirmation or scrutiny of the <strong>reported</strong> tax perk could change the sentiment read. The headline-reported 25% September gain may make enthusiasm more sensitive to disappointing follow-through, but there is no valuation, trading, or technical data here to quantify that risk. Instagram-related teen-well-being coverage could sustain reputational or policy concern; no specific lawsuit, rule, or action is identified. No earnings date, confirmed product launch, or quantified investment return is provided.</p>
+<table>
+<thead>
+<tr>
+<th>Key signal for META</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence and limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zuckerberg/investor framing and recent performance</td>
+<td>Positive, qualified</td>
+<td>Yahoo Finance; Motley Fool headlines</td>
+<td>CEO described as “winning for investors again”; a separate headline claims META rose 25% in September but asks whether it remains a buy. Opinion and unverified headline price claim, respectively.</td>
+</tr>
+<tr>
+<td>AI and e-commerce positioning</td>
+<td>Mixed</td>
+<td>Motley Fool; Investing.com headlines</td>
+<td>Muse's e-commerce impact is posed as “Good or Bad”; Muse is compared with OpenAI Dots. Neither headline establishes an outcome.</td>
+</tr>
+<tr>
+<td>Network buildout</td>
+<td>Positive opportunity / spending risk</td>
+<td>Fortune headline</td>
+<td>Meta reportedly building a major undersea cable network; no profitability or budget data supplied.</td>
+</tr>
+<tr>
+<td>AI tax treatment</td>
+<td>Tentatively positive / scrutiny risk</td>
+<td>Benzinga headline</td>
+<td><strong>Reported</strong> $3.9 billion tax perk and “pilot models” classification; no independent confirmation or finding of wrongdoing.</td>
+</tr>
+<tr>
+<td>Instagram teen well-being</td>
+<td>Negative risk</td>
+<td>Wall Street Journal headline</td>
+<td>Concern about teens losing track of time on TikTok and Instagram; no specific financial effect or policy action given.</td>
+</tr>
+<tr>
+<td>Retail and community sentiment</td>
+<td>Unavailable, not neutral</td>
+<td>StockTwits; Reddit</td>
+<td>StockTwits historical feed unavailable; Reddit disabled; no messages, stance counts, or posts supplied.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bottom line:</strong> META's available headline framing is <strong>mildly bullish (5.9/10)</strong>, tempered by commercialization, spending, competitive, and reputational questions. <strong>Confidence is low</strong> because both social sources are unavailable and news consists only of headlines. This describes observed sentiment for the stated period, not a price forecast or trade recommendation; weigh it with separately sourced fundamentals and technicals.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="meta-weekly-news-and-macro-trading-brief">META: weekly news and macro trading brief<a class="headerlink" href="#meta-weekly-news-and-macro-trading-brief" title="Permanent link">&para;</a></h4>
+<p><strong>As of Saturday, October 3, 2026 | News window: September 26–October 3</strong></p>
+<p><strong>Bottom line:</strong> META has a credible AI-and-advertising growth narrative, but the near-term trade is unusually sensitive to interest rates. A soft September jobs reading helped technology stocks on Friday, while elevated Treasury yields and inflation still threaten the valuations investors are willing to pay. <strong>My stance is selective rather than chase-the-rally bullish:</strong> look for evidence that META’s AI spending improves ad performance and margins, alongside a sustained decline in yields.</p>
+<h4 id="what-matters-for-meta">What matters for META<a class="headerlink" href="#what-matters-for-meta" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>AI commerce is attracting attention, not yet proving returns.</strong> Recent coverage compares META’s <em>Muse</em> AI with competing tools and asks how it might affect e-commerce platforms. That points to a possible opportunity in shopping discovery and ad conversion, but the retrieved headlines provide <strong>no adoption, revenue or return-on-investment figures</strong>. Treat monetization as a question for forthcoming disclosures, not an established catalyst. <a href="https://finance.yahoo.com/technology/ai/articles/muse-stacks-vs-openai-dots-225400938.html">Muse comparison</a> · <a href="https://finance.yahoo.com/technology/ai/articles/metas-muse-ai-good-bad-225000015.html">E-commerce analysis</a></li>
+<li><strong>Infrastructure reinforces both the opportunity and the cost risk.</strong> <a href="https://finance.yahoo.com/technology/articles/meta-building-one-world-biggest-104400728.html">Fortune reports</a> on META’s extensive undersea-cable buildout—potentially valuable for network control and reliability, but another reason to watch capital expenditure and free cash flow. A separate <a href="https://finance.yahoo.com/technology/ai/articles/metas-ai-spending-3-9-094520390.html">Benzinga report</a> describes a <em>reported</em> $3.9 billion data-center tax benefit; its treatment and durability should be checked against company filings before being incorporated into a valuation.</li>
+<li><strong>Platform scrutiny remains a downside risk.</strong> <a href="https://finance.yahoo.com/m/8910040c-db2d-3eef-8d99-2d166ec93a1c/teens-who-can%E2%80%99t-put-down.html">Wall Street Journal coverage</a> of teenagers’ Instagram use keeps youth-safety and reputational concerns in focus. It is not, by itself, evidence of a new regulatory action.</li>
+</ul>
+<h4 id="the-macro-backdrop">The macro backdrop<a class="headerlink" href="#the-macro-backdrop" title="Permanent link">&para;</a></h4>
+<p>September nonfarm payrolls increased by <strong>29,000</strong>, versus <strong>133,000</strong> in August, and unemployment rose to <strong>4.2% from 4.1%</strong>, according to the <a href="https://fred.stlouisfed.org/series/PAYEMS">FRED payroll</a> and <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> series. <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html">Friday’s market coverage</a> describes a technology rally as rate-hike expectations faded. For META, weaker hiring can support the stock through lower expected rates—but a more pronounced slowdown could eventually weigh on advertisers’ budgets.</p>
+<p>Inflation complicates that relief trade. August headline CPI was approximately <strong>3.35% year over year</strong>, and core PCE inflation approximately <strong>3.01%</strong>, calculated from their <a href="https://fred.stlouisfed.org/series/CPIAUCSL">FRED index levels</a> and <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE levels</a>. The effective fed-funds rate averaged <strong>3.75% in September</strong>. The latest outright <a href="https://fred.stlouisfed.org/series/DGS10">10-year Treasury</a> observation supplied is <strong>5.24% on October 1</strong>, up from <strong>5.17% on September 25</strong>; the <a href="https://fred.stlouisfed.org/series/T5YIE">five-year inflation breakeven</a> reached <strong>2.37% on October 2</strong>. Although <a href="https://finance.yahoo.com/markets/article/tech-stocks-jump-after-jobs-report-miss-treasury-yields-ease-alphacheck-134916934.html">October 2 reporting</a> says yields eased, the available outright 10-year series does <strong>not</strong> provide an October 2 close. The distinction matters before declaring that META’s rate headwind has reversed.</p>
+<p>Consumer demand has not collapsed: August nominal <a href="https://fred.stlouisfed.org/series/RSAFS">retail sales</a> were <strong>$737.8 billion</strong>, up about <strong>1.13% from July</strong>. Still, oil and geopolitics present an inflation risk. The latest supplied <a href="https://fred.stlouisfed.org/series/DCOILWTICO">WTI observation</a> is <strong>$96.16 per barrel on September 29</strong>, while <a href="https://finance.yahoo.com/markets/article/the-iran-war-is-driving-inflation-higher--and-its-not-just-because-of-oil-100000797.html">Yahoo Finance coverage</a> links conflict involving Iran to broader price pressures. Higher energy costs could squeeze consumers and advertisers while keeping bond yields elevated.</p>
+<h4 id="trading-plan-for-meta">Trading plan for META<a class="headerlink" href="#trading-plan-for-meta" title="Permanent link">&para;</a></h4>
+<p><strong>Watch the interaction of yields and company execution, rather than the jobs headline alone.</strong> A sustained decline in the 10-year yield, coupled with evidence of better AI-driven ad results <em>without</em> disproportionate spending growth, would strengthen the case for adding to META. Conversely, renewed pressure above the recent <strong>5.29% September 30</strong> 10-year reading, weak advertising demand, or rising capex without measurable returns would favor a smaller or hedged position. <strong>5.29% is a yield reference, not a META share-price target.</strong></p>
+<p>No verified current META share price, valuation or trading volume was supplied, so this brief does not set an entry price. Historical, as-of-date prediction-market probabilities were also unavailable; live odds would risk introducing information from after October 3.</p>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Evidence as of Oct. 3</th>
+<th>Implication for META</th>
+<th>What to watch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI commerce</td>
+<td>Muse-related coverage; no supplied adoption or revenue metrics</td>
+<td>Potential ad upside, still unproven</td>
+<td>Disclosed usage, conversion and monetization</td>
+</tr>
+<tr>
+<td>Infrastructure spending</td>
+<td>Reported undersea-cable expansion and data-center tax treatment</td>
+<td>Strategic capacity versus free-cash-flow pressure</td>
+<td>Capex guidance, margins and filing-confirmed tax effects</td>
+</tr>
+<tr>
+<td>Labor and demand</td>
+<td>September payrolls <strong>+29k</strong>; unemployment <strong>4.2%</strong>; August retail sales <strong>$737.8bn</strong></td>
+<td>Rate relief helps; slowing ad budgets would hurt</td>
+<td>Whether weaker hiring spreads to consumption</td>
+</tr>
+<tr>
+<td>Inflation and rates</td>
+<td>August CPI <strong>~3.35% y/y</strong>; core PCE <strong>~3.01% y/y</strong>; 10-year <strong>5.24%</strong> on Oct. 1</td>
+<td>Elevated discount-rate risk</td>
+<td>A sustained yield decline versus renewed highs</td>
+</tr>
+<tr>
+<td>Geopolitics</td>
+<td>WTI <strong>$96.16</strong> on Sept. 29; inflation-risk coverage</td>
+<td>Possible pressure on consumers, advertisers and rates</td>
+<td>Oil and inflation-expectation trends</td>
+</tr>
+<tr>
+<td>Youth safety</td>
+<td>Renewed Instagram-related coverage</td>
+<td>Reputational and possible compliance risk</td>
+<td>Concrete policy or regulatory developments</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="meta-fundamental-report-as-of-october-3-2026">META fundamental report — as of October 3, 2026<a class="headerlink" href="#meta-fundamental-report-as-of-october-3-2026" title="Permanent link">&para;</a></h4>
+<p><strong>META</strong> is Meta Platforms, Inc., a Communication Services / Internet Content &amp; Information company listed on NMS. Its businesses include advertising across Facebook and Instagram, messaging products, and virtual- and augmented-reality products. This report uses financial-statement figures available as of October 3, 2026; dollar figures below are in <strong>USD billions</strong> unless noted.</p>
+<p><strong>Past-week limitation:</strong> The available data does not identify a new filing or other fundamental announcement during September 26–October 3. The latest financial period supplied is <strong>Q2 2026, ended June 30</strong>. Q3 2026 results are not available here, so the figures below should not be read as a past-week earnings update.</p>
+<h4 id="earnings-and-financial-history">Earnings and financial history<a class="headerlink" href="#earnings-and-financial-history" title="Permanent link">&para;</a></h4>
+<p>META’s revenue growth remains strong, but its most recent quarter shows a pronounced gap between sales growth and operating-profit growth.</p>
+<table>
+<thead>
+<tr>
+<th>Period</th>
+<th style="text-align: right;">Revenue</th>
+<th style="text-align: right;">Operating income</th>
+<th style="text-align: right;">Net income</th>
+<th style="text-align: right;">Diluted EPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FY2022</td>
+<td style="text-align: right;">$116.61</td>
+<td style="text-align: right;">$28.94</td>
+<td style="text-align: right;">$23.20</td>
+<td style="text-align: right;">$8.59</td>
+</tr>
+<tr>
+<td>FY2023</td>
+<td style="text-align: right;">$134.90</td>
+<td style="text-align: right;">$46.75</td>
+<td style="text-align: right;">$39.10</td>
+<td style="text-align: right;">$14.87</td>
+</tr>
+<tr>
+<td>FY2024</td>
+<td style="text-align: right;">$164.50</td>
+<td style="text-align: right;">$69.38</td>
+<td style="text-align: right;">$62.36</td>
+<td style="text-align: right;">$23.86</td>
+</tr>
+<tr>
+<td>FY2025</td>
+<td style="text-align: right;">$200.97</td>
+<td style="text-align: right;">$83.28</td>
+<td style="text-align: right;">$60.46</td>
+<td style="text-align: right;">$23.49</td>
+</tr>
+<tr>
+<td>Q2 2025</td>
+<td style="text-align: right;">$47.52</td>
+<td style="text-align: right;">$20.44</td>
+<td style="text-align: right;">$18.34</td>
+<td style="text-align: right;">$7.14</td>
+</tr>
+<tr>
+<td>Q2 2026</td>
+<td style="text-align: right;">$60.80</td>
+<td style="text-align: right;">$18.78</td>
+<td style="text-align: right;">$15.85</td>
+<td style="text-align: right;">$6.18</td>
+</tr>
+</tbody>
+</table>
+<p>FY2025 revenue rose <strong>22.2%</strong> and operating income <strong>20.0%</strong> from FY2024, while net income fell <strong>3.1%</strong>. The longer history shows the scale of the recovery after FY2022: operating margin rose from approximately <strong>24.8% in 2022</strong> to <strong>42.2% in 2024</strong>, before easing to <strong>41.4% in 2025</strong>.</p>
+<p>The more immediate concern is Q2 2026. Revenue grew <strong>28.0% year over year</strong>, but operating income fell <strong>8.2%</strong>, net income fell <strong>13.6%</strong>, and diluted EPS declined from <strong>$7.14 to $6.18</strong>. Revenue less cost of revenue implies a gross margin of approximately <strong>81.4%</strong>, versus <strong>82.1%</strong> a year earlier. The larger change was below gross profit: implied operating expenses rose from <strong>$18.58 billion to $30.70 billion</strong>, approximately <strong>65.2%</strong>, outpacing sales growth. Operating margin consequently fell from <strong>43.0% to 30.9%</strong>.</p>
+<p>This was not solely a one-quarter revenue issue. In <strong>H1 2026</strong>, revenue reached <strong>$117.11 billion</strong>, up <strong>30.4%</strong> year over year, while operating income increased only <strong>9.6%</strong> to <strong>$41.65 billion</strong>. H1 operating margin declined from approximately <strong>42.3% to 35.6%</strong>. The statements provided do not break down the expense increase sufficiently to assign it to a specific program or business.</p>
+<p>Net income also warrants care as a comparison measure: <strong>Q3 2025 net income was $2.71 billion despite $20.54 billion of operating income</strong>, while <strong>Q1 2026 net income of $26.77 billion exceeded its $22.87 billion of operating income</strong>. The supplied statements do not explain these differences. Traders assessing underlying performance should compare operating profit and cash generation alongside EPS, and inspect tax and non-operating items in the underlying filings.</p>
+<h4 id="cash-flow-and-investment">Cash flow and investment<a class="headerlink" href="#cash-flow-and-investment" title="Permanent link">&para;</a></h4>
+<p>META still generates substantial operating cash, but capital spending is absorbing a growing share of it. Here, <em>free cash flow</em> is calculated consistently as <strong>operating cash flow minus capital expenditure</strong>; it is a derived measure, not a separately supplied statement line.</p>
+<table>
+<thead>
+<tr>
+<th>Period</th>
+<th style="text-align: right;">Operating cash flow</th>
+<th style="text-align: right;">Capital expenditure</th>
+<th style="text-align: right;">Calculated free cash flow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FY2022</td>
+<td style="text-align: right;">$50.48</td>
+<td style="text-align: right;">$31.19</td>
+<td style="text-align: right;">$19.29</td>
+</tr>
+<tr>
+<td>FY2023</td>
+<td style="text-align: right;">$71.11</td>
+<td style="text-align: right;">$27.05</td>
+<td style="text-align: right;">$44.07</td>
+</tr>
+<tr>
+<td>FY2024</td>
+<td style="text-align: right;">$91.33</td>
+<td style="text-align: right;">$37.26</td>
+<td style="text-align: right;">$54.07</td>
+</tr>
+<tr>
+<td>FY2025</td>
+<td style="text-align: right;">$115.80</td>
+<td style="text-align: right;">$69.69</td>
+<td style="text-align: right;">$46.11</td>
+</tr>
+<tr>
+<td>H1 2025</td>
+<td style="text-align: right;">$49.59</td>
+<td style="text-align: right;">$29.48</td>
+<td style="text-align: right;">$20.11</td>
+</tr>
+<tr>
+<td>H1 2026</td>
+<td style="text-align: right;">$64.09</td>
+<td style="text-align: right;">$49.11</td>
+<td style="text-align: right;">$14.98</td>
+</tr>
+</tbody>
+</table>
+<p>H1 2026 operating cash flow rose <strong>29.2%</strong> year over year, but capital expenditure climbed <strong>66.6%</strong>, leaving calculated free cash flow <strong>25.5% lower</strong>. The Q2 movement was sharper: operating cash flow was <strong>$31.86 billion</strong>, capex <strong>$30.12 billion</strong>, and free cash flow just <strong>$1.75 billion</strong>, down from <strong>$9.02 billion</strong> in Q2 2025. FY2025 showed the same direction: operating cash flow grew, but free cash flow declined from <strong>$54.07 billion in FY2024 to $46.11 billion</strong>.</p>
+<p>For context, the <strong>calculated trailing-12-month</strong> totals through June 2026 were approximately <strong>$228.25 billion revenue</strong>, <strong>$86.93 billion operating income</strong>, <strong>$130.30 billion operating cash flow</strong>, and <strong>$40.98 billion free cash flow</strong>. These are arithmetic calculations from the supplied FY2025 and H1 statements, not vendor-provided valuation metrics.</p>
+<h4 id="balance-sheet-and-funding-questions">Balance sheet and funding questions<a class="headerlink" href="#balance-sheet-and-funding-questions" title="Permanent link">&para;</a></h4>
+<p>At June 30, 2026, META reported <strong>$449.96 billion of assets</strong>, <strong>$188.74 billion of liabilities</strong>, and <strong>$261.22 billion of stockholders’ equity</strong>. Current assets of <strong>$125.48 billion</strong> exceeded current liabilities of <strong>$56.38 billion</strong>, giving a calculated <strong>2.23 current ratio</strong> and <strong>$69.10 billion</strong> of working capital.</p>
+<p>That is a substantial current-asset cushion, although the current ratio has declined from approximately <strong>2.95 at June 2025</strong>. Cash and equivalents were <strong>$15.46 billion</strong>, down from <strong>$35.87 billion at December 2025</strong>. Total liabilities rose from <strong>$148.78 billion at December 2025</strong> and <strong>$95.18 billion at June 2025</strong>. H1 2026 investing cash outflow reached <strong>$83.33 billion</strong>, while financing cash flow was a <strong>$9.41 billion inflow</strong>, versus a <strong>$35.47 billion outflow</strong> in H1 2025.</p>
+<p><strong>Do not equate total liabilities with borrowings.</strong> The supplied balance sheet does not provide a debt or marketable-securities breakdown sufficient to calculate net debt or explain the change in financing cash flow. Those details are important checks before drawing a firm conclusion about leverage or liquidity.</p>
+<h4 id="what-traders-should-watch-next">What traders should watch next<a class="headerlink" href="#what-traders-should-watch-next" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Margin recovery versus continued sales growth.</strong> Q3 2025 sets comparison figures of <strong>$51.24 billion revenue</strong> and <strong>$20.54 billion operating income</strong>. A future report showing higher sales but operating margin remaining near or below <strong>Q2 2026’s 30.9%</strong> would strengthen the expense-pressure concern; improving margin would challenge it.</li>
+<li><strong>Conversion of operating cash into free cash.</strong> Q2 2026’s <strong>$30.12 billion</strong> of capex nearly matched operating cash flow. Watch whether that relationship persists and whether quarterly free cash flow recovers from <strong>$1.75 billion</strong>.</li>
+<li><strong>The source of rising liabilities and financing inflows.</strong> Review the next filing’s debt, commitments, investing-activity, and cash-flow notes rather than inferring their composition from aggregate figures.</li>
+<li><strong>Earnings quality.</strong> Given the large differences between operating and net income in some recent quarters, check taxes and non-operating items before using year-over-year EPS alone as a signal.</li>
+</ol>
+<p><strong>Data gaps:</strong> The available fundamentals feed withholds point-in-time market capitalization, share price, valuation multiples, and 52-week range. The insider-transaction feed also withholds trades because it cannot establish which were publicly filed by October 3. Thus, this evidence supports a <strong>strong-revenue-growth but margin-and-free-cash-flow-cautious</strong> fundamental assessment—not a price-based buy or sell call or a claim about recent insider activity.</p>
+<table>
+<thead>
+<tr>
+<th>Key point for META</th>
+<th>Evidence as of October 3, 2026</th>
+<th>Trading relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales momentum</td>
+<td>Q2 revenue <strong>$60.80B</strong>, <strong>+28.0% YoY</strong></td>
+<td>Check whether the next reported quarter sustains growth.</td>
+</tr>
+<tr>
+<td>Margin pressure</td>
+<td>Q2 operating margin <strong>30.9%</strong>, versus <strong>43.0%</strong> a year earlier</td>
+<td>Watch expense growth and operating profit, not revenue alone.</td>
+</tr>
+<tr>
+<td>Capex intensity</td>
+<td>H1 capex <strong>$49.11B</strong>, <strong>+66.6% YoY</strong></td>
+<td>Monitor whether spending produces stronger future cash returns.</td>
+</tr>
+<tr>
+<td>Free-cash-flow compression</td>
+<td>Q2 calculated FCF <strong>$1.75B</strong>, versus <strong>$9.02B</strong> a year earlier</td>
+<td>Test whether cash conversion rebounds.</td>
+</tr>
+<tr>
+<td>Balance-sheet cushion, with open questions</td>
+<td>Current ratio <strong>2.23</strong>; liabilities <strong>$188.74B</strong></td>
+<td>Examine liability and financing details in the next filing.</td>
+</tr>
+<tr>
+<td>Missing decision inputs</td>
+<td>No verified past-week filing, insider data, or point-in-time valuation supplied</td>
+<td>Avoid treating this report as a fresh catalyst or a valuation-based trade signal.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>My opening case for META: selectively accumulate, rather than chase.</strong> At the October 2 close of <strong>$728.08</strong>, the bull thesis is not that AI spending has already paid off. It is that META has a fast-growing advertising business capable of funding a potentially valuable AI buildout while investors wait for evidence of returns.</p>
+<p>The growth is measurable. Q2 2026 revenue rose <strong>28.0% year over year to $60.80 billion</strong>, and first-half revenue grew <strong>30.4% to $117.11 billion</strong>. Facebook and Instagram give META established advertising distribution; if AI improves ad relevance or shopping conversion, META can monetize that improvement through an existing business rather than relying entirely on a new product launch. Muse-related coverage points to that opportunity, but supplies <strong>no adoption or revenue figures</strong>. I would treat it as upside potential, not booked growth.</p>
+<p>The strongest bear objection is spending—and it deserves a direct answer. Q2 operating expenses rose about <strong>65%</strong>, operating margin fell to <strong>30.9% from 43.0%</strong>, and capex left just <strong>$1.75 billion of quarterly free cash flow</strong>. That is a real deterioration, not something to wave away as “investment.” But it has not erased META’s cash-generating capacity: first-half operating cash flow grew <strong>29.2% to $64.09 billion</strong>, calculated trailing-12-month free cash flow was about <strong>$40.98 billion</strong>, and current assets exceeded current liabilities by <strong>$69.10 billion</strong> at June 30. The bull bet is that revenue growth persists and spending growth eventually moderates; neither outcome is guaranteed. Rising liabilities and declining cash also require scrutiny because the supplied figures do not establish net debt or future commitments.</p>
+<p>I would challenge the bear on the distinction between <strong>returns not yet demonstrated</strong> and <strong>returns impossible</strong>. AI infrastructure and the reported cable buildout could strengthen ad performance and network reliability, but META must prove that benefit in operating margins and free cash flow. High Treasury yields, softer hiring and Instagram youth-safety scrutiny make patience especially important.</p>
+<p>The market is giving a constructive, not risk-free, signal: META remains above its rising <strong>$624.66 50-day average</strong>, with daily, weekly and monthly SuperTrend readings UP. Yet the weekly stretch reading is elevated, and volume participation has not fully recovered from September’s peak. I favor <strong>staged buying</strong>, with stronger conviction if META moves above the observed <strong>$741.58</strong> near-term high on improving participation <em>and</em> subsequent results show better cash conversion. If margins remain near Q2’s level while capex keeps absorbing operating cash, the bear case gains force.
+Bull Analyst: Bear, I agree that <strong>Q2’s economics are the strongest argument against META</strong>. Revenue rose 28.0% while operating income fell 8.2%; capex of $30.12 billion nearly consumed the quarter’s $31.86 billion of operating cash flow. I would not call that spending a success before META shows a return.</p>
+<p>Where I disagree is your requirement to wait for <em>full proof</em> before owning any shares. META is not asking investors to fund an unprofitable AI start-up. First-half revenue grew 30.4% to $117.11 billion, operating income still grew 9.6% despite margin compression, and the business generated $64.09 billion of operating cash flow and $14.98 billion of calculated free cash flow. Facebook and Instagram give META an existing way to deploy better ad and commerce tools at scale. That makes the potential payoff credible—not certain, and not evidence that Muse has already contributed revenue.</p>
+<p>Your cash warning is fair, too. The decline to $15.46 billion in cash and the rise in liabilities warrant a close look at the next filing. But current assets still exceeded current liabilities by $69.10 billion at June 30. That supports <strong>room to invest while testing the thesis</strong>, not a license for unlimited capex.</p>
+<p>So my timing argument is narrower than “buy the dip.” At the October 2 close of <strong>$728.08</strong>, I favor a <strong>small, staged META position</strong>, not an aggressive purchase. Waiting until margins and free cash flow have plainly recovered reduces execution risk, but it could also mean buying after the market has recognized that recovery. I cannot claim META is cheap without a verified valuation multiple.</p>
+<p>The chart supports patience in sizing: the broader trend remains up, but OBV has not regained its September peak and the weekly z-score is stretched. A move above $741.58 would help confirm demand for the shares, <strong>not</strong> AI returns. The decisive test is the next financial disclosure: if operating margin stays near Q2’s 30.9% and capex again absorbs nearly all operating cash, I would stop adding and reassess. If revenue growth remains strong <em>and</em> cash conversion improves, your wait-for-proof stance risks missing the point at which this investment cycle begins to pay off.
+Bull Analyst: Bear, your distinction is fair: <strong>META can afford this investment cycle, but affordability does not prove an attractive return.</strong> Q2’s 30.9% operating margin and $1.75 billion of free cash flow are reasons not to make a large bet. They are not, in my view, reasons to require a complete turnaround before owning any META.</p>
+<p>The case for a small position rests first on the business already operating, not on an assumed Muse payoff. In the first half of 2026, META grew revenue <strong>30.4%</strong> and operating cash flow <strong>29.2%</strong>; even after $49.11 billion of capex, it generated <strong>$14.98 billion of free cash flow</strong>. Q2 operating income fell year over year, as you emphasize, but was still <strong>$18.78 billion</strong>. Facebook and Instagram give META a scaled advertising channel through which better targeting or commerce tools <em>could</em> be deployed. That is a credible route to upside, though the supplied evidence does not show that Muse is delivering it yet.</p>
+<p>I also think the margin data identifies a testable path, not just an open-ended hope. Q2 gross margin was about <strong>81.4%</strong>, close to <strong>82.1%</strong> a year earlier; the much larger deterioration came from operating expenses growing faster than revenue. If that expense growth moderates while sales remain strong, operating leverage can return. <strong>We do not know that it will</strong>, or how much of the expense increase will persist. But requiring both a recovered margin <em>and</em> materially improved free cash flow before initiating means waiting until two major uncertainties have already eased.</p>
+<p>You are right that a small position does not improve META’s investment returns. It limits the cost of being early. Nor can I argue that $728.08 is cheap: we have no verified valuation multiple. My timing judgment is simply that waiting has a cost too—the possibility that shares reprice as soon as investors see the first convincing improvement. With that trade-off, I favor <strong>selectively initiating or holding a small META position, not chasing or adding aggressively</strong>.</p>
+<p>I would make the next disclosure decisive. If revenue growth persists but operating margin stays near <strong>30.9%</strong> and capex again consumes nearly all operating cash flow, I would stop adding and reassess the thesis. If margin and cash conversion begin to improve, I would have a basis to increase conviction. The uptrend supports that measured approach, but the stretched weekly reading, incomplete OBV recovery and elevated yields argue against treating the chart as a substitute for those results.
+Bull Analyst: Bear, your <strong>$12.1 billion operating-expense increase</strong> is the strongest objection to META. I agree: Q2 did not show improving investment returns. But your <strong>95% capex-to-operating-cash-flow figure</strong> captures the most spending-intensive quarter, not the whole cash-generation picture.</p>
+<p>Subtract Q2 from the first-half totals: META generated about <strong>$32.23 billion of operating cash flow in Q1</strong> and <strong>$31.86 billion in Q2</strong>—nearly unchanged. Capex, meanwhile, rose from about <strong>$18.99 billion to $30.12 billion</strong>, driving calculated free cash flow from roughly <strong>$13.2 billion to $1.75 billion</strong>. That does <strong>not</strong> prove spending will ease or pay off. It does show that the sharp sequential cash-flow squeeze came primarily from a higher investment outlay, not a collapse in operating cash generation.</p>
+<p>That distinction matters when deciding whether to own <em>any</em> META before your two tests—margin improvement <strong>and</strong> materially lower capex intensity—are met. The existing business grew first-half revenue <strong>30.4%</strong>, produced <strong>$64.09 billion</strong> of operating cash flow, and retained an approximately <strong>81.4% Q2 gross margin</strong>. Facebook and Instagram provide an established channel for deploying better ad tools at scale. Muse’s returns remain unproven; the bull case does not need to count them as revenue today.</p>
+<p>I would <strong>initiate or hold a small, staged META position at the October 2 close of $728.08</strong>, not chase it or call it cheap without a verified valuation multiple. Elevated yields, the stretched weekly chart, rising liabilities, and Q2’s weak margin justify that restraint. If the next disclosure again shows a margin near <strong>30.9%</strong> <em>and</em> capex consuming almost all operating cash, I would reassess rather than keep buying. But requiring both measures to recover before taking even a small position risks waiting until the first improvement has already been reflected in META’s price.
+Bull Analyst: Bear, I agree that we have <strong>no evidence Q2 was peak spending</strong>. The cable buildout, AI competition, and future depreciation could keep pressure on META’s earnings and cash flow. My case for a small position does not require calling that peak—or counting Muse revenue that has not been demonstrated.</p>
+<p>Where I differ is on how much improvement must arrive before buying. In Q2, gross profit grew roughly <strong>$10.5 billion</strong> year over year, while implied operating expenses grew roughly <strong>$12.1 billion</strong>. Closing that <strong>$1.66 billion gap</strong>, all else equal, would have kept operating income level with the prior year. That is not a forecast, and it would not restore the old 43% margin. It shows why an <em>early</em> earnings inflection is plausible without a complete reversal of the investment cycle. META’s existing Facebook and Instagram advertising reach gives it a way to deploy better tools at scale; whether those tools earn enough to justify their costs remains the test.</p>
+<p>Your cash-flow objection is still decisive for sizing. Q2’s <strong>$1.75 billion</strong> of free cash flow is poor conversion for a business generating <strong>$31.86 billion</strong> of operating cash. But first-half operating cash flow grew <strong>29.2%</strong>, and META generated <strong>$14.98 billion</strong> of free cash flow despite the capex surge. That buys time to test returns; it does not prove them. I would watch whether operating cash growth can outpace spending, not assume capex must immediately fall.</p>
+<p>I cannot establish that <strong>$728.08</strong> is cheap without a verified valuation multiple. Elevated yields and the stretched weekly chart reinforce restraint. My recommendation remains <strong>a small, staged META position—not an aggressive add</strong>. Waiting for both margin and cash conversion to improve reduces risk, but may also mean buying after the first credible turn is reflected in the share price. If the next disclosure instead shows margin near <strong>30.9%</strong> and capex again consuming nearly all operating cash, I would stop adding and reassess.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: <strong>Bear Analyst — META: I would avoid adding at the October 2 close of $728.08.</strong></p>
+<p>You’re right that META’s advertising growth is real, and I’m not arguing that AI investment cannot pay off. My objection is to <strong>accumulating before the economics improve</strong>. In Q2 2026, revenue grew 28.0%, yet operating income fell 8.2%. Operating margin dropped from 43.0% to 30.9% as implied operating expenses rose about 65%. That is not just a large investment bill; it is a sharp reversal in operating leverage.</p>
+<p>You point to $64.09 billion of first-half operating cash flow as evidence that META can fund the buildout. It can—for now—but capex consumed $49.11 billion of that cash, up 66.6% year over year. First-half free cash flow fell 25.5%, and Q2 free cash flow was just $1.75 billion versus $9.02 billion a year earlier. The roughly $40.98 billion of trailing-12-month free cash flow is substantial; it does not establish that incremental AI spending is earning an attractive return. Cash also fell from $35.87 billion at year-end 2025 to $15.46 billion in June. I would not call this a liquidity crisis, or infer net debt from aggregate liabilities, but the balance-sheet cushion does not make spending discipline irrelevant.</p>
+<p>Nor does Facebook and Instagram distribution settle the competitive question. Muse may improve commerce and ad conversion, but the supplied coverage gives us <strong>no adoption, revenue, or comparative performance figures</strong>. In a competitive AI market, existing reach is an advantage—not proof that new capabilities will lift margins rather than raise the cost of defending the ad business.</p>
+<p>Finally, I would separate your constructive chart from an investment case. META remains above its 50-day average, but it has retreated from its $777.59 September 24 close, OBV has not regained that day’s reading, and the weekly z-score is stretched at +2.03. A move above $741.58 would confirm price strength, <strong>not cash returns</strong>. With the 10-year Treasury at 5.24% on October 1 and September payroll growth slowing to 29,000, investors also face both valuation-rate risk and potential pressure on advertiser budgets.</p>
+<p>Your proposed test is the right one—better margins and cash conversion. My disagreement is timing: <strong>wait for that evidence before buying META</strong>, rather than pay today for returns that remain unmeasured.
+Bear Analyst: Bull, I’m not asking META to prove its entire AI strategy before anyone buys. I’m asking for <strong>the first clear sign that spending is improving the economics</strong>. That is a lower bar—and Q2 moved in the opposite direction: revenue rose 28.0%, but operating income fell 8.2% as implied operating expenses grew about 65%. Q2 capex of $30.12 billion nearly matched $31.86 billion of operating cash flow, leaving just $1.75 billion of free cash flow, down from $9.02 billion a year earlier.</p>
+<p>You’re right that Facebook and Instagram give META a powerful distribution advantage. But distribution does not tell us whether Muse will lift ad conversion enough to offset its costs, or whether competitive AI spending will become an ongoing cost of defending the business. The supplied coverage offers no adoption or monetization figures to resolve that question.</p>
+<p>The balance-sheet cushion and $14.98 billion of first-half free cash flow mean this is <strong>not a liquidity-crisis argument</strong>. It is an investment-return argument. First-half operating cash flow grew, yet free cash flow fell 25.5% because capex grew faster. Buying a smaller position limits the dollars at risk; it does not improve those returns.</p>
+<p>I also take your point that waiting could mean paying more after a recovery. But at the October 2 close of <strong>$728.08</strong>, we have no verified valuation multiple to show that early buyers are being compensated for that uncertainty. The uptrend is real, while the weekly stretch and incomplete OBV recovery make the chart a weak substitute for financial evidence. Elevated yields and slowing hiring add risks to both investor appetite and advertising demand.</p>
+<p><strong>My recommendation remains to wait rather than initiate or add to META.</strong> I would revisit it if the next disclosures show a recovering operating margin and materially better free-cash-flow conversion—not demand that every AI payoff already be complete.
+Bear Analyst: Bull, I agree that META’s scale and 81.4% Q2 gross margin give it a <em>possible</em> path back to operating leverage. But the latest quarter shows why I would not pay for that possibility yet: gross profit rose roughly <strong>$10.5 billion</strong> year over year, while implied operating expenses rose roughly <strong>$12.1 billion</strong>. Despite 28% revenue growth, operating income fell 8.2%. Expense moderation is a testable thesis, not an observed trend.</p>
+<p>The <strong>$14.98 billion of first-half free cash flow</strong> also needs context. Capex consumed about <strong>77% of operating cash flow</strong>, versus about <strong>59%</strong> a year earlier; in Q2 it consumed about <strong>95%</strong>. META can fund this spending today, but Facebook and Instagram’s reach does not establish whether Muse will earn enough to cover it—or whether competing AI tools will make higher spending an enduring cost of defending the ad business. We have no adoption or monetization figures to settle that question.</p>
+<p>I accept your timing point: waiting for evidence may mean buying at a higher price. But a small position limits exposure; it does not make <strong>$728.08</strong> an attractive entry when we lack a verified valuation multiple. The uptrend is real, yet the weekly stretch and incomplete OBV recovery offer little protection if margins and cash conversion disappoint, particularly with the 10-year yield at <strong>5.24% on October 1</strong>.</p>
+<p>I am <strong>not demanding a complete AI payoff</strong>. A credible early improvement in operating margin <em>and</em> a meaningful retreat from Q2’s near-total absorption of operating cash by capex would make me revisit META. Until then, my recommendation remains <strong>wait rather than initiate or add</strong>.
+Bear Analyst: Bull, I accept your distinction: <strong>META’s operating cash generation did not collapse between Q1 and Q2</strong>. But that makes the investment question sharper, not safer. With quarterly operating cash flow nearly flat, capex rose from about <strong>$18.99 billion to $30.12 billion</strong>, and free cash flow fell from roughly <strong>$13.2 billion to $1.75 billion</strong>. The business is generating cash; management is committing almost all of it before investors can see the returns.</p>
+<p>You describe Q2 as the most spending-intensive quarter. It may be—but we have no evidence it was the peak. The reported cable buildout and AI competition leave open the possibility that elevated investment is an ongoing requirement, not a brief bridge to higher margins. And even if capex moderates, the spending already made may bring future depreciation costs. That is why META’s <strong>81.4% gross margin</strong> and advertising reach do not resolve the key issue: in Q2, operating expenses grew faster than gross profit, and operating income fell despite 28% revenue growth.</p>
+<p>I am not asking for both margin and cash conversion to <em>fully recover</em> before reconsidering META. I want an early, credible turn in those economics. Your small-position approach limits how much an investor can lose by being early; it does not establish that <strong>$728.08</strong> compensates them for being early—particularly without a verified valuation multiple. The uptrend cannot answer that question either.</p>
+<p>So my recommendation remains <strong>wait rather than initiate or add to META</strong>. If the next disclosure shows expense growth easing, operating margin beginning to recover from <strong>30.9%</strong>, and capex taking a meaningfully smaller share of operating cash flow, I would revisit it. Until then, the most recent evidence says META’s growth is real, but shareholders are receiving less of its cash benefit.
+Bear Analyst: Bull, the <strong>$1.66 billion gap</strong> makes an earnings inflection sound easier than it is. Closing it would have kept Q2 operating income <em>flat</em> year over year. On $60.80 billion of revenue, that would still mean an operating margin of about <strong>33.6%</strong>, well below the prior year’s <strong>43.0%</strong>. META does not need to regain 43% immediately, but flat profit after 28% sales growth would be a modest result—not evidence that the investment cycle is paying off.</p>
+<p>The cash hurdle is separate. First-half operating cash flow of <strong>$64.09 billion</strong> gives META time, as you say. Yet Q2 capex of <strong>$30.12 billion</strong> consumed nearly all of that quarter’s <strong>$31.86 billion</strong> in operating cash flow, leaving <strong>$1.75 billion</strong> in free cash flow versus <strong>$9.02 billion</strong> a year earlier. Facebook and Instagram provide distribution, but we have no Muse adoption or monetization figures showing that AI spending will lift returns rather than become a continuing cost of competing. The reported cable buildout adds to that uncertainty.</p>
+<p>I accept that waiting could mean missing an early share-price move. But a small position changes the <em>size</em> of the bet, not its expected return; without a verified valuation multiple, neither of us can show that <strong>$728.08</strong> compensates investors for weak cash conversion. The uptrend is real, but the stretched weekly reading and <strong>5.24%</strong> October 1 Treasury yield make price momentum a poor substitute for that evidence.</p>
+<p>My recommendation remains <strong>wait rather than initiate or add to META</strong>. I am not demanding a full recovery—just an early, credible turn in expense growth, operating margin, and the share of operating cash absorbed by capex. Q2 showed the opposite.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For META, the bull is right that 30.4% first-half revenue growth, $64.09 billion in operating cash flow, positive first-half free cash flow, and Facebook/Instagram's advertising reach make a future payoff plausible; the latest quarter is not a liquidity crisis. But the bear has the stronger near-term evidence: Q2 revenue grew 28% while operating income fell 8.2%, operating margin declined to 30.9%, and $30.12 billion of capex absorbed about 95% of operating cash flow, leaving $1.75 billion of free cash flow. There is no evidence Q2 was peak spending, no quantified Muse monetization, and no verified valuation multiple showing that the $728.08 October 2 close compensates investors for that uncertainty. The uptrend and durable core business argue against a Sell; the lack of an early turn in spending returns argues against adding now, so a modest Underweight is more appropriate than Hold or an aggressive exit.</p>
+<p><strong>Strategic Actions</strong>: For META, target 0.75x a standard allocation: trim any larger holding toward that level in measured trades, and pause new initiations or additions if not already invested; do not chase a move through $741.58 on price alone. Reassess after the next financial disclosure. Begin restoring toward 1.0x in stages only if operating-expense growth slows, operating margin starts to improve from 30.9%, and capex takes a meaningfully smaller share of operating cash flow than Q2's roughly 95%, with better free-cash-flow conversion. If margin stays near 30.9% and capex again consumes almost all operating cash, keep additions on hold and consider trimming toward 0.5x. No verified valuation multiple or future capex schedule was provided, so avoid a price-based fair-value claim.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: For META, modestly trim an existing holding rather than initiate a short: Q2 operating margin fell to 30.9% and $30.12 billion of capex absorbed about 95% of operating cash flow, while a verified valuation or spending-return inflection is absent. The October 2 close of $728.08 remains above the $680.67 daily SuperTrend line, but the pullback from $777.59, weekly z-score of +2.03, and $25.43 ATR argue for measured trimming rather than an aggressive exit. Treat $715.62 as the nearer downside reference and $741.58 as an upside confirmation level that does not alone justify adding; reassess after the next financial disclosure.</p>
+<p><strong>Entry Price</strong>: 728.08</p>
+<p><strong>Stop Loss</strong>: 680.67</p>
+<p><strong>Position Sizing</strong>: For META, reduce holdings above a standard allocation to about 0.75x that allocation in measured trades; if uninvested, do not initiate a position. The $680.67 protective level applies only to any retained long position, not to the trim or a short; account for the $25.43 ATR, changing SuperTrend line, and gap risk.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: I’d back the SELL, but as a tactical trim of META, not a bearish bet against it. The aggressive move here is to stop giving every dollar of the position the same benefit of the doubt. META’s Q2 revenue grew 28% year over year, yet operating income fell 8.2%, and $30.12 billion of capex consumed roughly 95% of operating cash flow. That left just $1.75 billion of quarterly free cash flow, down from $9.02 billion a year earlier. AI commerce and network investment could produce substantial returns, but the supplied evidence does not yet show those returns. Why keep an oversized allocation untouched while that question is unresolved?</p>
+<p>A fully defensive exit would make the opposite mistake. META remains above its $680.67 daily SuperTrend line, all three SuperTrend timeframes are UP, and RSI has cooled to 61.54 rather than signaling a confirmed reversal. Trimming toward 0.75x a standard allocation, if your holding is oversized, keeps meaningful exposure to a renewed advance while freeing capital from the least compelling portion of the position. And a neutral “just wait” stance overlooks the timing: META is below its $777.59 September 24 close, its weekly z-score is +2.03, and OBV has not recovered its earlier high. The trend is strong, but strength alone is not a reason to carry excess size through the next disclosure.</p>
+<p>I’d use the $728.08 October 2 close as the decision reference, not a guaranteed sale price. A move above $741.58 with improving participation would challenge the trim, but that level alone would not establish an investment return on the spending. Watch $715.62 on the downside; manage any retained META long against the <em>updated</em> daily SuperTrend line, allowing for the $25.43 ATR and gap risk. If you hold no META, this SELL is not a call to open a short.
+Aggressive Analyst: I still favor a measured SELL of excess META, and I think the conservative view understates why retaining a meaningful core matters. The conservative analyst is right that 0.75x a standard allocation is not automatically safe: the right size depends on the investor’s loss limit and other growth-stock exposure. But that is a reason to calibrate the trim, not to abandon the tactical target. META’s weekly, monthly and daily SuperTrend signals remain UP, and Q2 revenue grew 28%. Selling everything because spending returns are unproven would give up substantial upside if that growth starts converting into profit. Selling the excess while retaining roughly 0.75x, where the risk budget permits, makes a bolder distinction between the opportunity worth owning and the exposure that no longer earns its place.</p>
+<p>The conservative analyst is also right that an uptrend does not prove an adequate return on investment, and a weekly z-score of +2.03 does not prove a reversal. That combination is precisely why I favor a trim rather than a short or a full exit. Waiting for <em>fully demonstrated</em> AI returns before any future addition, though, sets the bar too late: improving margins, cash conversion or ad performance at the next disclosure could justify reassessment before the entire investment pays off. For now, Q2 operating margin fell to 30.9%, and capex absorbed about 95% of operating cash flow. The risk is concrete even if the eventual payoff is not.</p>
+<p>The neutral analyst’s objection that the 95% figure covers only one quarter is fair, but it does not make the cash pressure a one-quarter anomaly we can dismiss. H1 capex rose 66.6% while operating cash flow rose 29.2%, and calculated H1 free cash flow fell 25.5%. Trimming only to a normal allocation may leave too much capital committed to that unresolved trade-off if META began as an oversized position. Conversely, 0.75x is a deliberate tactical underweight, not a mechanical instruction for someone whose META holding is already appropriately sized. Neutral is right that a move above $741.58 with improving OBV would be useful evidence; it would not, by itself, establish a spending payoff or undo the reason for trimming today.</p>
+<p>I would not build the decision on a cheap-or-expensive valuation claim we cannot verify, low-confidence headline sentiment, or assumed rate relief. The latest supplied 10-year yield was still 5.24% on October 1. Yet those uncertainties strengthen the case for <em>selective</em> risk-taking: retain META exposure to its growth and AI upside, while freeing risk capacity before the next disclosure rather than waiting with an oversized position. Use $728.08 as the October 2 reference, watch $715.62, and manage any retained long against the <strong>updated</strong> daily SuperTrend line, not a guaranteed fill at the current $680.67 line; the $25.43 ATR and gaps matter. If META is not above the investor’s risk-adjusted target, do not force a sale. If there is no holding, this SELL is not a short recommendation.
+Aggressive Analyst: I still favor a measured SELL of excess META, and I disagree with letting an undefined gap scenario push the retained position automatically below 0.75x. Conservative, you are right: 0.75x is a tactical target, not a risk limit, and the $680.67 daily SuperTrend line cannot guarantee an exit. Stress-test the retained holding against a gap and correlated growth-stock losses; cut further if it breaches the investor’s limit. But absent that result, selling more gives up exposure to a company whose Q2 revenue grew 28%, H1 operating cash flow grew 29.2%, and weekly, monthly, and daily trends remain UP. Risk discipline should size the opportunity, not erase it.</p>
+<p>Neutral, positive free cash flow is a reason to keep a META core, not necessarily a reason to stop trimming at a “normal” allocation. Q2 capex absorbed roughly 95% of operating cash flow, and this is broader than one quarter: H1 capex rose 66.6% while calculated free cash flow fell 25.5%. With no verified valuation or demonstrated spending return, why presume normal size is the right amount of exposure through the next disclosure? A risk-budget-permitted 0.75x is a deliberate underweight that preserves upside if margins recover while freeing capacity if they do not. It is not a mechanical cut for someone whose META holding already fits their risk-adjusted target.</p>
+<p>I agree with both of you that the next improvement need not be a fully realized AI payoff. Credible gains in margins, cash conversion, or disclosed ad performance could justify adding back sooner. A close above $741.58 with stronger OBV would help, but price alone would not answer the spending question. Conversely, META’s +2.03 weekly z-score and pullback from $777.59 argue for trimming excess <em>before</em> a possible disappointment, not waiting for a confirmed trend break. The mildly bullish headline sentiment is low-confidence, and the last supplied 10-year yield—5.24% on October 1—does not establish rate relief.</p>
+<p>So my call remains SELL in measured trades if META is oversized: work toward roughly 0.75x a standard allocation <strong>where the portfolio loss budget permits</strong>, retain a meaningful core, and reassess after the next disclosure. Use $728.08 as the October 2 reference, not an executable price; monitor $715.62 and the updated daily SuperTrend, allowing for the $25.43 ATR and gaps. If META already fits the risk budget, do not force a sale. If uninvested, do not open a short.
+Aggressive Analyst: Conservative, you’re right that 0.75x a standard allocation is not a safety guarantee. Test any retained META position against an earnings gap beyond the updated SuperTrend line and losses in correlated holdings; cut below 0.75x if that breaches the portfolio’s loss limit. But the test should size an opportunity, not quietly rule it out. META’s Q2 revenue grew 28%, H1 operating cash flow rose 29.2%, and its weekly, monthly and daily trend signals remain UP. Those facts do not erase the cash-return risk, but they make a full exit—or an indefinitely tiny core—costly if spending begins to improve ad performance.</p>
+<p>Neutral, I agree that a modest overweight does not automatically warrant a cut to 0.75x. Yet stopping at a “normal” allocation gives that number unearned authority too. Q2 operating margin fell from 43.0% to 30.9%, quarterly free cash flow fell from $9.02 billion to $1.75 billion, and H1 capex rose 66.6% while free cash flow fell 25.5%. For a materially oversized holding, a risk-budget-permitted 0.75x is a purposeful tactical underweight: sell the least defensible exposure now, but keep enough META to benefit if its investment cycle pays off. Positive H1 free cash flow of $14.98 billion is a reason to preserve that possibility, not to ignore the deterioration.</p>
+<p>I also agree with both of you that additions need not wait for <em>fully realized</em> AI returns. Credible improvement in margins, cash conversion or disclosed ad performance could justify acting earlier. A close above $741.58 with improving OBV would support reassessment, not prove the spending case. Conversely, the +2.03 weekly z-score and pullback from $777.59 make waiting with excess size a poor way to pursue that upside. Nor would I presume rate relief: the latest supplied 10-year yield was still 5.24% on October 1.</p>
+<p>My call remains a measured SELL of excess META, aiming around 0.75x a standard allocation only where the investor’s gap-and-concentration stress test permits; trim further if it does not. $728.08 is the October 2 decision reference, not a promised execution price. Watch $715.62 and manage any retained long against the <em>updated</em> daily SuperTrend line, allowing for the $25.43 ATR and gaps beyond the current $680.67 line. If META already fits the risk-adjusted allocation, do not force a sale; if uninvested, do not open a short.
+Aggressive Analyst: Conservative, I agree that META’s growth does not prove 0.75x is safe. Your 10–15% earnings-gap scenario, a more severe gap, and losses in correlated holdings should all be tested against the actual portfolio loss limit. If 0.75x fails, sell more. But a stress test tells us what we can carry, not whether we should leave an oversized position untouched until the next disclosure. META’s Q2 margin fell from 43.0% to 30.9%, and H1 free cash flow fell 25.5%. The cash-return risk is visible now, even though the eventual payoff remains open.</p>
+<p>Neutral, you’re right that passing that test does not prove 0.75x is the uniquely correct weight. But “normal allocation” has no special claim either when META’s spending and margin profile have changed. For a materially oversized holding, trimming toward roughly 0.75x—<em>if the loss budget permits</em>—is a purposeful tactical underweight, not a universal target or a retained-size floor. It removes a quarter of the exposure relative to a standard allocation while keeping substantial participation if the investment cycle starts paying off. META’s 28% Q2 revenue growth, $14.98 billion of H1 free cash flow, and UP weekly and monthly trends are strong reasons not to turn this SELL into a full exit by default.</p>
+<p>That is the opportunity both cautious approaches risk obscuring: sell the least defensible exposure before an unresolved disclosure, but preserve the capacity to act quickly if margins, cash conversion, or disclosed ad performance improve. I would not demand proof that the entire AI investment has paid for itself. A move above $741.58 with improving OBV could strengthen the case for reassessment, though it would not establish a spending return. Conversely, the pullback from $777.59 and +2.03 weekly z-score make carrying an <em>excess</em> position a poor way to pursue upside.</p>
+<p>My call is still a measured SELL of oversized META, using $728.08 as the October 2 decision reference—not a promised execution price. Aim around 0.75x a standard allocation only if a gap-and-concentration stress test supports it; go lower if it does not, and do not force a sale if the holding already fits the risk-adjusted target. Watch $715.62 and the updated daily SuperTrend line, recognizing that the current $680.67 line cannot guarantee an exit and the $25.43 ATR leaves room for substantial movement. If uninvested, do not open a short.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst’s SELL direction for an oversized META holding, but I would not call 0.75x a standard allocation automatically safe. That target should be checked against the firm’s loss limit and concentration in other growth stocks. A position can still be too large after a trim.</p>
+<p>The case for keeping substantial exposure is the intact uptrend. But META’s weekly, monthly and daily SuperTrend signals describe price direction, not whether its spending is earning an adequate return. Q2 revenue grew 28%, yet operating income fell 8.2%, operating margin dropped from 43.0% to 30.9%, and capex consumed about 95% of operating cash flow. Quarterly free cash flow fell to $1.75 billion from $9.02 billion. Those figures make “the trend is still up” an insufficient reason to retain excess risk. Equally, the weekly z-score of +2.03 is a stretch warning, not proof that a reversal has begun; this is a risk-reduction case, not a short thesis.</p>
+<p>The Neutral Analyst has not spoken, but a proposed “wait for the next disclosure” stance would leave an oversized META holding exposed while the central cash-return question remains unanswered. Rate relief is not yet established either: the latest supplied 10-year yield was 5.24% on October 1, and weaker hiring could ultimately pressure advertising demand.</p>
+<p>My adjustment is to sell excess META in measured trades, using $728.08 only as the October 2 decision reference, not an executable price. Consider roughly 0.75x a standard allocation only if it fits the caller’s risk budget; reduce further if a decline through the updated daily SuperTrend line would breach that budget. The current $680.67 line is about 6.5% below the last close, and a gap could make an exit worse. Monitor $715.62, but do not mistake either level for guaranteed protection. If META is already a small holding, there is no case here for a mechanical sale; if uninvested, do not open a short. Reconsider adding only after disclosures show better margins and cash returns on spending, not merely a close above $741.58.
+Conservative Analyst: Aggressive, I agree that an oversized META holding warrants a measured sell, but “retain 0.75x” is not a risk limit. Without knowing the portfolio’s other growth-stock exposures or its loss tolerance, that could still leave too much capital exposed to one earnings gap. META’s uptrend and 28% Q2 revenue growth are real; so are the fall in operating margin from 43.0% to 30.9% and the drop in quarterly free cash flow to $1.75 billion. A meaningful core should be earned by the risk budget, not protected by a tactical label.</p>
+<p>Neutral, you are right not to project Q2’s roughly 95% capex-to-operating-cash-flow ratio indefinitely. But trimming only to a “normal” allocation assumes normal is safe despite a broader pattern: H1 capex rose 66.6%, while operating cash flow rose 29.2% and calculated free cash flow fell 25.5%. I also agree that we need not wait for <em>fully realized</em> AI returns before reconsidering META. Credible improvement in margins, cash conversion, or disclosed ad performance would be enough to reassess; price above $741.58 with better OBV would be supporting evidence, not a substitute.</p>
+<p>My adjustment remains a conditional SELL of excess META, with the retained size set by a portfolio loss limit and a downside scenario that allows for a gap beyond the updated daily SuperTrend line. At the October 2 close of $728.08, the current $680.67 line was already about 6.5% lower; it is not a guaranteed exit price. Reduce below 0.75x if that stress loss or correlated exposure is too large. If META already fits the risk budget, do not sell mechanically; if uninvested, do not initiate a short. Watch $715.62 and the next disclosure, rather than assuming the intact trend will protect capital.
+Conservative Analyst: Aggressive, the absence of a failed stress test is not evidence that retaining 0.75x a standard allocation is safe for META. Revenue growth and an intact uptrend justify considering a retained position, but they do not set its size. Q2 revenue rose 28% while operating income fell 8.2%, and capex left just $1.75 billion of quarterly free cash flow. H1 free cash flow also fell 25.5%. The upside case remains possible; the cash-return risk is already visible.</p>
+<p>Neutral, I agree that a modest overweight does not automatically warrant a cut to 0.75x. But “normal allocation” is not automatically prudent either if it was set before META’s margin and spending profile changed. Positive free cash flow matters, yet it does not tell us how much exposure the firm can safely carry through a disappointing disclosure. Nor can we rely on rate relief: the latest supplied 10-year yield was 5.24% on October 1, while weaker hiring could eventually hurt advertising demand.</p>
+<p>My recommendation remains a conditional SELL of excess META, with <strong>no preset retained-size floor</strong>. Set the remaining position against the firm’s loss limit, including an illustrative gap beyond the updated daily SuperTrend line and losses in correlated holdings; that scenario is a stress test, not a price forecast. The current $680.67 line was already about 6.5% below META’s $728.08 October 2 close and cannot guarantee an exit. If 0.75x passes that test, it may be reasonable; if not, trim further. If META already fits the risk budget, do not sell mechanically, and if uninvested, do not open a short. Reassess additions when disclosed margins and cash conversion improve relative to spending—not on a move above $741.58 alone.
+Conservative Analyst: Aggressive, META’s 28% Q2 revenue growth and rising H1 operating cash flow support keeping an open mind about upside. They do not establish that a 0.75x holding is worth carrying through the next disclosure. Q2 operating margin fell from 43.0% to 30.9%, and H1 free cash flow fell 25.5% as capex outpaced operating-cash-flow growth. An intact uptrend cannot tell us whether that spending will earn an adequate return. If a meaningful core fails the firm’s loss limit, the possibility of missing a rally is not a reason to keep it.</p>
+<p>Neutral, I agree that an unlimited worst-case test would be unhelpful, and positive H1 free cash flow is a reason not to assume failure. Use a bounded stress instead: for example, test an illustrative 10–15% META earnings gap alongside losses in correlated growth holdings. That range is not a forecast; it is a way to check the retained weight against the firm’s actual loss limit. A “normal” allocation should pass that test too, rather than be presumed safe because it is normal. The current $680.67 daily SuperTrend line was already about 6.5% below the $728.08 October 2 close, and it cannot guarantee an exit after a gap.</p>
+<p>I favor a measured SELL of META <strong>only where the holding exceeds a reassessed risk-adjusted allocation</strong>, with no preset 0.75x floor or target. Do not force a sale of an already suitable holding or open a short if uninvested. Reconsider additions when disclosures show improving margins or cash conversion relative to capex; a move above $741.58 with stronger OBV would be supporting evidence, not a substitute.
+Conservative Analyst: Aggressive, I agree that an oversized META holding should not sit untouched until the next disclosure. But passing a loss-limit test establishes how much the firm <em>could</em> retain, not how much it <em>should</em> retain. Roughly 0.75x a standard allocation remains an arbitrary anchor while META’s Q2 operating margin has fallen from 43.0% to 30.9% and quarterly free cash flow has fallen to $1.75 billion. Revenue growth and an UP trend preserve upside potential; neither shows that increased spending is earning an adequate return.</p>
+<p>Neutral, positive H1 free cash flow is important, but its 25.5% decline while capex rose 66.6% argues for reassessing what a “normal” META allocation means. Nor would I treat the current trend line as sufficient protection through a disclosure. The $680.67 daily SuperTrend reading was already about 6.5% below the $728.08 October 2 close, and a gap could bypass it. The latest supplied 10-year yield was still 5.24% on October 1; weaker hiring might ease rates but could also weaken advertising demand.</p>
+<p>My recommendation is a measured, conditional SELL of META exposure above a <em>reassessed</em> risk-adjusted weight, with no preset 0.75x floor or target. Size what remains against bounded but progressively worse earnings-gap scenarios, including losses in correlated holdings, and reduce further if those losses exceed the firm’s limit. If META already fits that limit, do not sell mechanically; if uninvested, do not short it. Treat $715.62 and the updated daily trend line as monitoring references, not promised exits. Credible improvement in disclosed margins or cash conversion relative to capex could justify adding back without waiting for the entire AI investment to pay off; a move above $741.58 alone would not.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with a conditional SELL for META, but I would separate “reduce excess risk” from “target 0.75x” as though they were the same decision.</p>
+<p>The Aggressive Analyst is right that an oversized holding deserves scrutiny: Q2 capex absorbed about 95% of operating cash flow while operating margin fell to 30.9%. But prescribing 0.75x a standard allocation could overshoot for someone whose only problem is a modest overweight. That 95% figure is also one quarter, not proof that META’s investment will permanently consume nearly all its cash. Revenue grew 28% year over year, H1 operating cash flow grew 29.2%, and the broader price trend remains up. I would trim an overweight toward a normal allocation first, then consider 0.75x only if the remaining META position still exceeds the investor’s loss limit or adds too much exposure to similar growth stocks.</p>
+<p>The Conservative Analyst rightly questions whether 0.75x is safe and warns against treating $680.67 as guaranteed protection. But requiring fully demonstrated returns on AI spending before <em>any</em> addition may be too cautious: evidence of improving margins, cash conversion, or ad performance can emerge before the entire investment pays off. Price strength above $741.58 with improving OBV would be useful supporting evidence, though neither is enough by itself to prove the spending case.</p>
+<p>For now, my recommendation is to sell META in measured trades <strong>if it is above your risk-adjusted target</strong>, while retaining a core position that fits your portfolio. If META is already appropriately sized, I would not sell mechanically; if you own none, this is not a short recommendation. The $728.08 October 2 close is a reference, not an available execution price. Watch $715.62 and the <em>updated</em> daily SuperTrend line, recognizing that the current $680.67 line is roughly 6.5% below that close and a gap could exceed the planned loss.</p>
+<p>That restraint matters on both sides of the debate. We do not have a verified valuation that makes META clearly cheap or expensive, and headline-only, low-confidence sentiment cannot settle the question. Lower yields could help its growth narrative, but the latest supplied 10-year yield was still 5.24% on October 1; weaker hiring could also hurt advertising demand. Diversifying proceeds from an excess META position, rather than simply replacing it with a closely correlated growth holding, makes the trim more meaningful. Reassess the size after the next disclosure clarifies margins, capex, and free cash flow.
+Neutral Analyst: Aggressive, I agree that selling excess META before the next disclosure is more defensible than waiting with an oversized position. But 0.75x a standard allocation is a tactical underweight, not a conclusion the evidence forces. Q2 capex nearly matched operating cash flow, and H1 free cash flow fell 25.5%; that pressure is broader than one quarter. Still, Q2 revenue grew 28%, H1 operating cash flow grew 29.2%, and META continues to generate free cash flow. Without a verified valuation or the investor’s portfolio limits, we cannot say that every normally sized holding deserves a further cut.</p>
+<p>Conservative, your warning about an earnings gap is important, but stress-testing should determine the retained size, not automatically argue for less than 0.75x. META’s weekly, monthly and daily trends remain up, while the weekly z-score of +2.03 warns of stretch rather than a confirmed reversal. Selling too much could sacrifice meaningful upside if margins or cash conversion improve. Conversely, an intact trend cannot protect against a gap. The softer jobs reading might ease rate pressure, but it could also foreshadow weaker advertising demand; the latest supplied 10-year yield was still 5.24% on October 1.</p>
+<p>My adjustment is a conditional SELL: trim META in measured trades <strong>if it exceeds a risk-adjusted portfolio allocation</strong>, then size the retained holding against a plausible gap loss and exposure to correlated growth stocks. Use 0.75x only if that test calls for an underweight, and reduce further if even 0.75x breaches the loss limit. If META already fits, do not sell mechanically; if uninvested, do not open a short. Diversify trim proceeds rather than merely moving them into a similar risk. The $728.08 close is a reference, not an execution price; $715.62 and the updated daily SuperTrend line are monitoring points, not guaranteed exits. Reassess after the next disclosure shows whether margins and free cash flow are recovering relative to spending.
+Neutral Analyst: Aggressive, I agree with trimming excess META, but “keep 0.75x unless a stress test fails” gives that number more authority than it has earned. The current $680.67 daily SuperTrend line was already about 6.5% below the $728.08 October 2 close, and an earnings gap could carry META farther. Before selecting a retained weight, test what a larger gap, combined with losses in correlated growth holdings, would do to the portfolio. The cash concern is not confined to Q2: H1 capex rose 66.6% while free cash flow fell 25.5%. Equally, META’s 28% Q2 revenue growth and rising H1 operating cash flow mean the spending has not been shown to fail.</p>
+<p>Conservative, that stress test needs bounds. An unlimited worst case can justify selling almost any growth stock, regardless of its potential reward. META still produced $14.98 billion of H1 free cash flow, and its weekly and monthly trend signals remain up. Neither guarantees safety, but both argue against treating a full exit as the default. If a plausible gap and correlated-loss scenario breaches the investor’s loss limit, though, I would not insist on retaining a core.</p>
+<p>My recommendation is a conditional SELL of META held above a reassessed, risk-adjusted allocation. Trim in measured trades to a weight that passes that portfolio test; use 0.75x a standard allocation only if the test and concentration warrant it, not as a universal target or floor. If META already fits, do not sell mechanically; if uninvested, do not open a short. Diversify the proceeds rather than shifting the same risk into another closely related holding. Watch $715.62 and the updated daily SuperTrend for deterioration, not guaranteed exits. A move above $741.58 with improving OBV would support the upside case, but the next disclosure’s margins, capex and cash conversion should carry more weight in deciding whether to add back.
+Neutral Analyst: Aggressive, I agree that leaving an oversized META holding untouched is a decision with its own risk. H1 capex rose 66.6% while free cash flow fell 25.5%, so the cash-pressure concern extends beyond Q2. But passing a loss-limit test does not, by itself, make 0.75x the right target. That is a deliberate underweight, and we lack a verified valuation or portfolio context to show that it offers a better trade-off than a reassessed normal allocation. META’s 28% Q2 revenue growth, positive H1 free cash flow, and intact weekly and monthly uptrends give the retained exposure a credible upside case.</p>
+<p>Conservative, your proposed 10–15% earnings-gap test is a useful starting point, not a boundary on what can happen. I would also check a more severe gap alongside losses in correlated holdings; neither scenario is a forecast. At the same time, stress tests should guide sizing rather than presume that a meaningful META position must fail. The current $680.67 daily SuperTrend line is about 6.5% below the $728.08 October 2 close, but it cannot guarantee an exit near that level.</p>
+<p>My call remains a conditional, measured SELL: reassess the portfolio’s META target, then trim only the amount above the weight that fits its loss budget and concentration limits. That might be a normal weight, 0.75x, or less—not a preset destination. If META already fits, do not force a sale; if uninvested, do not open a short. Diversify any proceeds rather than replacing META with the same growth-stock risk. Watch $715.62 and the updated daily trend line for deterioration, while treating a move above $741.58 with stronger OBV as supporting evidence, not proof. The next disclosure’s margins, capex, and cash conversion should matter more when deciding whether to add back.
+Neutral Analyst: Aggressive, I agree that an oversized META holding should not be left untouched while spending returns are unresolved. But passing a gap-loss test only tells us that 0.75x a standard allocation is <em>affordable</em>, not that it is the best target. Q2’s 30.9% operating margin and the 25.5% decline in H1 free cash flow justify less confidence; META’s 28% Q2 revenue growth and positive H1 free cash flow argue against treating the investment as a demonstrated failure. The +2.03 weekly z-score warns against complacency, not against retaining any exposure.</p>
+<p>Conservative, you are right not to give 0.75x the status of a safety threshold. But “sell to a reassessed weight” needs a practical decision rule or it risks postponing the trim. I would set a portfolio loss limit, test META alongside correlated holdings under a 10–15% gap and a more severe scenario, then decide whether the evidence warrants a normal weight or a tactical underweight. A stress test caps what can be held; the assessment of growth, margins, and cash conversion determines what <em>should</em> be held.</p>
+<p>My call remains a measured, conditional SELL of META <strong>only if the current holding exceeds that reassessed weight</strong>. Trim the excess in stages; use 0.75x if both the risk test and the spending concerns warrant it, not as a default. Diversify proceeds rather than transferring the same risk to another growth stock. If META already fits, do not force a sale; if uninvested, do not initiate a position or a short.</p>
+<p>The $728.08 October 2 close is a reference, not an execution price. Watch $715.62 and the updated daily SuperTrend line for deterioration, allowing for the $25.43 ATR and gaps beyond the current $680.67 line. A move above $741.58 with improving OBV would support reassessment, but disclosed margins, capex, and cash conversion should carry more weight before adding back.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: For META, trim exposure above a reassessed risk-adjusted allocation in measured trades; roughly 0.75x a standard allocation is a possible tactical weight, not a mandatory target or floor. Size any retained holding against a 10–15% earnings-gap scenario and a more severe gap alongside correlated growth-stock losses; if already appropriately sized, do not sell mechanically, and if uninvested, do not initiate or short. Over the next 1–3 months, monitor $715.62 and the updated daily SuperTrend line (currently $680.67), allowing for the $25.43 ATR and gaps; reassess after the next disclosure.</p>
+<p><strong>Investment Thesis</strong>: The analysts' stronger case is measured risk reduction, not an exit: META's Q2 revenue grew 28%, but operating income fell 8.2%, operating margin contracted from 43.0% to 30.9%, and $30.12 billion capex consumed roughly 95% of operating cash flow, leaving $1.75 billion in quarterly free cash flow versus $9.02 billion a year earlier. The pattern extends into H1: capex rose 66.6% and free cash flow fell 25.5%. Counterbalancing a full Sell, META generated $14.98 billion H1 free cash flow, H1 operating cash flow grew 29.2%, and weekly, monthly, and daily SuperTrend remain UP. The $728.08 October 2 close is a reference, not a promised execution price; a +2.03 weekly z-score supports trimming excess risk, not declaring a reversal. With no verified valuation objective, use the first supported technical downside reference, META's $715.62 September 28 close, for a $715.62 target: $728.08 − ($728.08 − $715.62) = $715.62, about 1.7% below the latest close. This prior closing reference is neither fair value nor validated support. A close above $741.58 with improving OBV would support reassessment but not alone justify adding; evidence that operating margin improves from 30.9%, capex takes materially less than Q2's roughly 95% of operating cash flow, and free cash flow rebounds would change the underweight call. Missing point-in-time valuation, a verified future capex schedule, and portfolio holdings limit target precision and sizing certainty.</p>
+<p><strong>Current Price</strong>: 728.08</p>
+<p><strong>Price Target</strong>: 715.62</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1-3 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
