@@ -14,5 +14,6 @@ DEFAULT_TICKERS=(
   "${AI_TICKERS[@]}"
   "${BIG_TICKERS[@]}"
   "${ALPHA_TICKERS[@]}"
+  "${CANDIDATES_TICKERS[@]}"
   "${TOPIC_TICKERS[@]}"
 )
