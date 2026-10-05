@@ -70,14 +70,9 @@ DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-5-5}"
 QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-opus-5-5}"
 # Claude 5.5 tool workflows need room for thinking and the final answer; new
 # IDs can inherit the SDK's 4096-token fallback. Other models keep SDK defaults.
-case "$DEEP_MODEL/$QUICK_MODEL" in
-  claude-opus-5-5/claude-opus-5-5 | claude-opus-5-5/claude-sonnet-5-5 | \
-  claude-sonnet-5-5/claude-opus-5-5 | claude-sonnet-5-5/claude-sonnet-5-5)
-    export TRADINGAGENTS_MAX_TOKENS="${TRADINGAGENTS_MAX_TOKENS:-128000}"
-    # A max-effort synthesis call can run past the 600s default; three
-    # attempts at 600s each then fail the run with AnthropicTimeoutError.
-    export TRADINGAGENTS_LLM_TIMEOUT="${TRADINGAGENTS_LLM_TIMEOUT:-1800}" ;;
-esac
+export TRADINGAGENTS_MAX_TOKENS="${TRADINGAGENTS_MAX_TOKENS:-256000}"
+export TRADINGAGENTS_LLM_TIMEOUT="${TRADINGAGENTS_LLM_TIMEOUT:-600}" ;;
+
 REASONING_EFFORT="${TRADINGAGENTS_OPENAI_REASONING_EFFORT:-max}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
 DEPTH="${TRADINGAGENTS_DEPTH:-5}"
