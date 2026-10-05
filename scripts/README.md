@@ -6,7 +6,8 @@ Run TradingAgents analyses and build the report site.
 |--------|--------------|----------|
 | `report_workflow.py` | **Main entry.** Reassemble reports, validate `docs/`, and compile `_site`. | `--analysis-date YYYYMMDD`, `--dry-run` |
 | `build_publish_site.py` | Merge unpublished local reports with the compiled `gh-pages` history. | `--analysis-date`, `--base-ref`, `--dry-run` |
-| `publish_site.sh` | Incrementally publish new reports, preserving prior dates and Git history. | `--analysis-date`, `--build-only`, `--dry-run` |
+| `publish_site.sh` | Incrementally publish new reports, preserving prior dates and Git history. | `--analysis-date`, `--build-only`, `--dry-run`, `--cloudflare-only` |
+| `publish_cloudflare.py` | Deploy a published `gh-pages` commit to the Cloudflare Pages mirror. | `--commit`, `--check` |
 | `run_one.py` | One-ticker headless run (max depth). | `--ticker` (req), `--date` |
 | `run_top_tickers.sh` | Parallel run, one Docker container per ticker. | env: `CONCURRENCY`, `TRADINGAGENTS_DATE` |
 | `build_reports_site.py` | Lower-level generated Markdown renderer used by `report_workflow.py`. | `--summary-analysis-date`, `--summary-only` |
@@ -77,6 +78,49 @@ only. Use `publish_site.sh` for releases: it restores historical content from
 All report Markdown under `docs/` is currently gitignored. Incremental releases
 preserve published HTML, **not** original Markdown, stage outputs, or raw market
 data. Back up those source files separately if you need to rerun analyses.
+
+## Cloudflare Pages mirror
+
+`publish_site.sh` can publish every release to two places: GitHub Pages
+(`https://bichengwang.github.io/TradingAgents/`, from `gh-pages` as before) and
+a Cloudflare Pages project that serves the same site under `/TradingAgents/`.
+A site such as altairworld can then show the reports as one of its own paths by
+proxying `/TradingAgents/*` to that project.
+
+One-time setup:
+
+```bash
+npx wrangler login   # or set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID
+npx wrangler pages project create tradingagents-reports --production-branch main
+```
+
+Then set `CLOUDFLARE_PAGES_PROJECT=tradingagents-reports` in the environment or
+the project `.env`, and copy the current site once:
+
+```bash
+bash scripts/publish_site.sh --cloudflare-only
+```
+
+From then on, each release pushes `gh-pages` first and then deploys that same
+commit; Wrangler uploads only files Cloudflare does not have yet. A broken
+mirror setting stops the release before `gh-pages` moves. If the upload itself
+fails after the push, the script exits non-zero and `--cloudflare-only` retries
+it. Unchanged releases create no deployment. Wrangler runs through
+`npx --yes wrangler@4` (Node.js required); set `TRADINGAGENTS_WRANGLER` to use
+another command.
+
+| Setting | Default | Meaning |
+|---------|---------|---------|
+| `CLOUDFLARE_PAGES_PROJECT` | unset (mirror off) | Pages project to deploy to |
+| `CLOUDFLARE_PAGES_BRANCH` | `main` | The project's production branch |
+| `CLOUDFLARE_PAGES_PATH` | `TradingAgents` | Path prefix; keep it equal to the `site_url` path |
+| `CLOUDFLARE_PAGES_MAX_FILES` | `20000` | Files per deployment (Free plan; raise on paid plans) |
+
+Only `CLOUDFLARE_*` keys are read from `.env`; the environment overrides them,
+so `CLOUDFLARE_PAGES_PROJECT=` turns the mirror off for one run. The release is
+refused before upload if it exceeds the file limit or has a file over 25 MiB.
+GitHub Pages still caps the published site at 1 GB, so the existing
+1,000,000,000-byte budget applies to both copies.
 
 ## Duplicate report protection
 

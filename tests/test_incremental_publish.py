@@ -17,6 +17,7 @@ from scripts import (
     published_history as history,
     report_workflow as workflow,
 )
+from tests.test_publish_cloudflare import calls, fake_wrangler
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 OLD_RUN = "20260909_test-model_20260909_120000"
@@ -207,8 +208,8 @@ def test_missing_baseline_cannot_replace_existing_preview(publication):
     assert hashes(repo / "_site") == before
 
 
-def test_shell_release_extends_history_and_preserves_main_index(publication):
-    repo, docs, base = publication
+def release_remote(repo: Path) -> tuple[Path, dict[str, str]]:
+    """Push the baseline to a bare origin and install the real release scripts."""
     remote = repo.parent / "remote.git"
     subprocess.run(["git", "init", "--bare", "--quiet", str(remote)], check=True)
     git(repo, "remote", "add", "origin", str(remote))
@@ -218,12 +219,21 @@ def test_shell_release_extends_history_and_preserves_main_index(publication):
         shutil.copytree(
             REPO_ROOT / folder, repo / folder, ignore=shutil.ignore_patterns("__pycache__")
         )
+    # A contributor's own Cloudflare settings must not deploy from the suite.
+    env = {key: value for key, value in os.environ.items() if not key.startswith("CLOUDFLARE_")}
+    env["PATH"] = f"{Path(sys.executable).parent}:{os.environ['PATH']}"
+    return remote, env
+
+
+def test_shell_release_extends_history_and_preserves_main_index(publication):
+    repo, docs, base = publication
+    remote, env = release_remote(repo)
+    before = git(remote, "rev-parse", "gh-pages")
     # Verify release plumbing doesn't change the developer's staged source file.
     (repo / "work.txt").write_text("staged work", encoding="utf-8")
     git(repo, "add", "work.txt")
     index_before = (repo / ".git/index").read_bytes()
     make_run(docs, "AAPL", NEW_RUN)
-    env = {**os.environ, "PATH": f"{Path(sys.executable).parent}:{os.environ['PATH']}"}
     command = ["bash", str(repo / "scripts/publish_site.sh"), "--analysis-date", "20260923"]
     shutil.copytree(base, repo / "_site")
     preview_before, docs_before = hashes(repo / "_site"), hashes(docs)
@@ -271,6 +281,61 @@ def test_shell_release_extends_history_and_preserves_main_index(publication):
     assert git(remote, "log", "-1", "--format=%s", "gh-pages") == "Concurrent release"
     assert git(remote, "rev-parse", "gh-pages^") == after
     assert (repo / ".git/index").read_bytes() == index_before
+
+
+def test_shell_release_mirrors_each_new_commit_to_cloudflare(publication):
+    repo, docs, _ = publication
+    remote, env = release_remote(repo)
+    wrangler, log = fake_wrangler(repo.parent)
+    env.update(
+        CLOUDFLARE_PAGES_PROJECT="reports",
+        TRADINGAGENTS_WRANGLER=wrangler,
+        FAKE_WRANGLER_LOG=str(log),
+    )
+
+    def publish(*args: str, **settings: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            ["bash", str(repo / "scripts/publish_site.sh"), *args],
+            cwd=repo,
+            env={**env, **settings},
+            capture_output=True,
+            text=True,
+        )
+
+    def deployed() -> list[str]:
+        return [call["argv"][call["argv"].index("--commit-hash") + 1] for call in calls(log)]
+
+    make_run(docs, "AAPL", NEW_RUN)
+    result = publish("--analysis-date", "20260923")
+    assert result.returncode == 0, result.stderr
+    first = git(remote, "rev-parse", "gh-pages")
+    assert deployed() == [first]
+    files = calls(log)[0]["files"]
+    assert f"TradingAgents/AAPL/{NEW_RUN}/complete_report/index.html" in files
+    assert f"TradingAgents/AAPL/{OLD_RUN}/complete_report/index.html" in files
+
+    # An unchanged gh-pages creates no new deployment either.
+    assert publish("--analysis-date", "20260923").returncode == 0
+    assert deployed() == [first]
+
+    # A failed upload keeps the gh-pages release and names the retry command.
+    make_run(docs, "MSFT", NEW_RUN)
+    result = publish("--analysis-date", "20260923", FAKE_WRANGLER_EXIT="1")
+    assert result.returncode == 1
+    assert "--cloudflare-only" in result.stderr
+    second = git(remote, "rev-parse", "gh-pages")
+    assert git(remote, "rev-parse", "gh-pages^") == first
+    result = publish("--cloudflare-only")
+    assert result.returncode == 0, result.stderr
+    assert deployed() == [first, second, second]
+
+    # A broken mirror setting stops the release before gh-pages moves.
+    make_run(docs, "NVDA", NEW_RUN)
+    result = publish("--analysis-date", "20260923", CLOUDFLARE_PAGES_PROJECT="Not A Project")
+    assert result.returncode == 1
+    assert git(remote, "rev-parse", "gh-pages") == second
+    assert deployed() == [first, second, second]
+    assert publish("--cloudflare-only", "--dry-run").returncode == 2
 
 
 def test_summary_backfill_with_relative_link_does_not_replace_newer():
