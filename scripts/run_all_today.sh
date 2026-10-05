@@ -16,7 +16,7 @@
 #
 # Usage:
 #   bash scripts/run_all_today.sh                  # all missing tickers, 10-wide
-#   CONCURRENCY=8 bash scripts/run_all_today.sh    # override concurrency
+#   CONCURRENCY=10 bash scripts/run_all_today.sh    # override concurrency
 #   TRADINGAGENTS_DATE=2026-06-01 bash scripts/run_all_today.sh
 #   bash scripts/run_all_today.sh NVDA AMD TSLA    # explicit ticker list
 #
@@ -39,7 +39,7 @@ DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-4-8}"
 QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-sonnet-4-6}"
-CONCURRENCY="${CONCURRENCY:-10}"               # 20 tripped HTTP 429 ("Current limit: 50")
+CONCURRENCY="${CONCURRENCY:-30}"               # 20 tripped HTTP 429 ("Current limit: 50")
 LOGDIR="${TA_LOGDIR:-/tmp/ta_runlogs}"
 mkdir -p "$LOGDIR"
 

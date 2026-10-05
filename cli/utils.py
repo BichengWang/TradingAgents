@@ -1,7 +1,9 @@
 import os
+import sys
 from pathlib import Path
 
 import questionary
+import typer
 from dotenv import find_dotenv, set_key
 from rich.console import Console
 
@@ -630,6 +632,10 @@ def ensure_api_key(provider: str) -> str | None:
     existing = os.environ.get(env_var)
     if existing:
         return existing
+
+    if not sys.stdin.isatty():
+        console.print(f"[red]{env_var} is not set; there is no terminal to ask for it.[/red]")
+        raise typer.Exit(code=1)
 
     console.print(
         f"\n[yellow]{env_var} is not set in your environment.[/yellow]"
