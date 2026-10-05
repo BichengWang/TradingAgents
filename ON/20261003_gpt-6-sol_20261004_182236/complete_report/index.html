@@ -1,0 +1,1828 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/ON/20261003_gpt-6-sol_20261004_182236/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: ON - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-on" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: ON
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ON
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TXG/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TXG
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ON
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ON
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TXG/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TXG
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TXG
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-technical-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ON — technical assessment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#levels-and-conditional-setups" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Levels and conditional setups
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-sentiment-2026-09-26-to-2026-10-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ON sentiment, 2026-09-26 to 2026-10-03
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignment-divergences-and-dominant-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignment, divergences, and dominant themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalysts-and-risks-to-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalysts and risks to monitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-weekly-trading-and-macro-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ON: weekly trading and macro report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-for-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed for ON
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-macro-setting-for-the-next-trade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The macro setting for the next trade
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-fundamental-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ON — Fundamental report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-isand-is-notcurrent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is—and is not—current
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earnings-a-recovery-from-a-weak-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Earnings: a recovery from a weak base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-and-financial-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow and financial position
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actionable-considerations-for-traders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actionable considerations for traders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="trading-analysis-report-on">Trading Analysis Report: ON<a class="headerlink" href="#trading-analysis-report-on" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-03</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-04 18:22:36</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-sol, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: 84.89 USD
+<strong>Price As Of</strong>: 2026-10-02</p>
+<h4 id="on-technical-assessment">ON — technical assessment<a class="headerlink" href="#on-technical-assessment" title="Permanent link">&para;</a></h4>
+<p>ON has a <strong>strong short-term rebound, but not yet a confirmed higher-priority trend reversal</strong>. The close rose from 66.60 on September 16 to 84.89 on October 2, while remaining well below its June 3 close of 133.93. October 2 brought a sizeable upward gap: its low of 82.96 was above October 1’s high of 80.46. Volume rose to 22,891,100 shares from 10,940,800 the prior session, lending weight to the move. Still, ON closed at 84.89 after reaching 86.45 intraday, so holding the gap matters more than assuming Friday’s surge will continue.</p>
+<p>The selected indicators deliberately separate <strong>trend, trend strength, momentum, volatility, participation and price stretch</strong>:</p>
+<ul>
+<li><strong>Trend is mixed across timeframes.</strong> SuperTrend is <strong>DOWN weekly</strong>, with its current line at 101.98, but <strong>UP monthly</strong> at 66.31 and <strong>UP daily</strong> at 73.86. Under the indicator’s hierarchy, the bearish weekly reading takes precedence: the daily uptrend is a tactical rebound, not proof of a durable reversal. ON is above its 50-day SMA of 76.65, although that average has fallen from 84.41 on September 3. Those SuperTrend levels are dynamic, not fixed targets or guaranteed support.</li>
+<li><strong>Momentum and participation favor the rebound.</strong> The MACD histogram increased from +1.27 on October 1 to <strong>+1.63</strong> on October 2. RSI reached <strong>65.49</strong>—strong, but below the conventional 70 overbought threshold. OBV has risen alongside price over the recent rebound; its direction, rather than its absolute value, is the useful signal.</li>
+<li><strong>Strength has only just emerged, while near-term stretch is substantial.</strong> ADX rose from <strong>18.34</strong> on October 1 to <strong>26.03</strong> on October 2, crossing the usual 25 trend-strength threshold. ADX does not establish direction, and one reading above 25 is less persuasive than sustained strength. The daily z-score is <strong>+2.66</strong>, a mean-reversion warning, whereas the weekly <strong>−0.34</strong> and monthly <strong>+0.89</strong> readings are much less stretched. That combination argues against treating a high daily z-score alone as a sell signal—or chasing the gap without a risk plan.</li>
+<li><strong>Volatility makes entry price important.</strong> ATR is <strong>3.61</strong>. A stop roughly one ATR from an actual entry entails about 3.61 USD per share of <em>planned</em> risk before gaps and slippage; the appropriate share count depends on the trader’s cash-risk limit.</li>
+</ul>
+<h4 id="levels-and-conditional-setups">Levels and conditional setups<a class="headerlink" href="#levels-and-conditional-setups" title="Permanent link">&para;</a></h4>
+<p>For a <strong>breakout approach</strong>, watch whether ON can <em>close</em> above October 2’s <strong>86.45 high</strong> and retain participation on subsequent sessions. That level is a fresh test, not historically validated resistance. For a <strong>pullback approach</strong>, watch the October 2 low at <strong>82.96</strong> and then the October 1 high at <strong>80.46</strong>, the two boundaries of Friday’s gap. A move back through the gap would weaken the immediate breakout case; the current 50-day SMA at <strong>76.65</strong> and daily SuperTrend line at <strong>73.86</strong> are deeper, moving risk references. Conversely, a durable weekly trend change would require ON to overcome its <em>then-current</em> weekly SuperTrend line, now <strong>101.98</strong>—not merely sustain the daily rebound.</p>
+<p><strong>Bottom line:</strong> ON’s price, volume and momentum support a tactical bullish interpretation, but the bearish weekly SuperTrend and stretched daily z-score call for confirmation and position-size discipline. The cited gap boundaries and session high are observations from dated bars, not promises that ON will bounce or reverse there.</p>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest reading for ON</th>
+<th>What it adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>supertrend</code></td>
+<td>Weekly <strong>DOWN</strong>, 101.98; monthly <strong>UP</strong>, 66.31; daily <strong>UP</strong>, 73.86</td>
+<td>Separates the bearish primary trend from bullish lower-timeframe conditions; lines are dynamic.</td>
+</tr>
+<tr>
+<td><code>close_50_sma</code></td>
+<td><strong>76.65</strong></td>
+<td>ON is above its medium-term average, but the average is still declining.</td>
+</tr>
+<tr>
+<td><code>adx</code></td>
+<td><strong>26.03</strong></td>
+<td>Trend strength has newly crossed 25; direction must come from other evidence.</td>
+</tr>
+<tr>
+<td><code>macdh</code></td>
+<td><strong>+1.63</strong></td>
+<td>Positive, rising momentum relative to October 1’s +1.27.</td>
+</tr>
+<tr>
+<td><code>rsi</code></td>
+<td><strong>65.49</strong></td>
+<td>Strong momentum, not yet at the conventional 70 threshold.</td>
+</tr>
+<tr>
+<td><code>atr</code></td>
+<td><strong>3.61</strong></td>
+<td>Basis for volatility-aware stop distance and position sizing.</td>
+</tr>
+<tr>
+<td><code>obv</code></td>
+<td>Rising over the recent rebound</td>
+<td>Price gains have accompanying volume participation; absolute OBV is not a price level.</td>
+</tr>
+<tr>
+<td><code>z_score</code></td>
+<td>Weekly <strong>−0.34</strong>; monthly <strong>+0.89</strong>; daily <strong>+2.66</strong></td>
+<td>Daily price is stretched even though higher-timeframe readings are not.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Bullish</strong> (Score: 7.2/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="on-sentiment-2026-09-26-to-2026-10-03">ON sentiment, 2026-09-26 to 2026-10-03<a class="headerlink" href="#on-sentiment-2026-09-26-to-2026-10-03" title="Permanent link">&para;</a></h4>
+<h4 id="source-by-source-evidence">Source-by-source evidence<a class="headerlink" href="#source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>Yahoo Finance headlines — bullish, with substantial repetition.</strong> The 20 supplied headlines prominently cover ON’s revised acquisition of Synaptics: a reported $5.7 billion, $123-per-share all-cash deal replacing a roughly $7 billion stock deal. Several headlines say both stocks rallied; one reports ON climbing 8% and Synaptics surging 14%. This is one dominant event repeated across outlets, not 20 independent catalysts. The analyst framing is favorable: a headline says UBS expects immediate earnings accretion, another says BofA sees an improved earnings outlook, and Wells Fargo raised its ON price target to $100 from $85 while maintaining Overweight. Tech-sector gains and a headline linking weak jobs data with reduced Fed rate-hike expectations offer a possible broader-market tailwind, not proof that the deal alone drove the move. Some roundup and sector headlines add little ON-specific information; the holiday-returns headline provides no discernible ON signal. Only headlines, not article texts or independently verified deal documents, were supplied.</p>
+<p><strong>StockTwits — enthusiastic but thin, concentrated around the announcement.</strong> Of 23 recent ON messages, 5 are user-tagged Bullish, 1 Bearish, and 17 unlabeled. Among the <em>six tagged</em> posts, the split is 5:1 (about 83% bullish); measured against all 23, only about 22% are explicitly tagged Bullish and 4% Bearish. Unlabeled does not mean neutral: posts describe a breakout, call buying, and targets of $90–$100 or higher, but these are traders’ opinions, not price forecasts to adopt. One post claims a Friday close of $84.89, up 6% on 23 million shares; volume, chart levels, and the claimed November 2 next report date are unverified poster statements. Two promotional-looking options posts come from the same account, and repeated $100 predictions come from the same poster, limiting independence. The sole Bearish-tagged post predicts a drop without a substantiated counter-catalyst. More substantive caution comes from an unlabeled briefing post: avoiding stock dilution may accelerate expected EPS accretion, but an all-cash purchase increases leverage and makes financing, integration, and debt reduction important. Another unlabeled post relays a Stifel Hold rating and $75 target; that rating is not independently confirmed by the supplied news headlines. The messages are mostly from October 2–3, so they do not establish sentiment throughout the entire seven-day window.</p>
+<p><strong>Reddit — unavailable, not neutral.</strong> The r/wallstreetbets, r/stocks, and r/investing feed was disabled by configuration. There are no posts, bodies, votes, or comments to assess, and no basis to infer what those communities think of ON. This missing third source requires <strong>low confidence</strong> despite meaningful news and StockTwits data.</p>
+<h4 id="alignment-divergences-and-dominant-themes">Alignment, divergences, and dominant themes<a class="headerlink" href="#alignment-divergences-and-dominant-themes" title="Permanent link">&para;</a></h4>
+<p>News coverage and the directional StockTwits discussion broadly align on relief over the revised Synaptics transaction and the associated ON rally; there is no clear news-versus-retail directional conflict. The difference is in <em>emphasis</em>: analyst headlines discuss prospective accretion and a higher price target, while retail posts extrapolate the move into speculative breakout and short-dated options scenarios. One StockTwits-sourced Stifel Hold/$75 target contrasts with the reported Wells Fargo Overweight/$100 target, illustrating that the analyst picture may not be unanimous; these items have unequal verification in the supplied data. The central narrative is that switching from a larger stock-funded deal to a smaller cash transaction improves the perceived dilution and earnings profile, while transferring attention to leverage and execution. Sector strength and rate expectations are secondary narratives; claims of recovering auto/industrial demand and easing inventories appear in a trader post, not as corroborated company results here.</p>
+<h4 id="catalysts-and-risks-to-monitor">Catalysts and risks to monitor<a class="headerlink" href="#catalysts-and-risks-to-monitor" title="Permanent link">&para;</a></h4>
+<p>Further confirmation of deal terms, financing, approvals, closing and integration plans, and actual earnings accretion would test the favorable acquisition narrative; none of those outcomes is established by these headlines. Future ON earnings could test the asserted demand and inventory recovery, but the November 2 date appears only in a StockTwits post and is unverified. Risks include greater cash/debt burden, integration or deal-completion setbacks, a reversal of the broader tech/rates tailwind, and sentiment outrunning evidence after a sharp reported rally. The directional reading describes current sentiment, not an ON price target or trade decision.</p>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revised Synaptics transaction</td>
+<td>Bullish, with financing caveat</td>
+<td>Yahoo Finance headlines; StockTwits</td>
+<td>Headlines report a $5.7B all-cash agreement replacing an approximately $7B stock deal; a post flags higher leverage.</td>
+</tr>
+<tr>
+<td>Reported ON and Synaptics rally</td>
+<td>Bullish, potentially crowded</td>
+<td>Yahoo Finance headlines; StockTwits</td>
+<td>A headline reports ON +8% and Synaptics +14%; a trader separately claims ON closed at $84.89, +6%, which is unverified here.</td>
+</tr>
+<tr>
+<td>Analyst assessments</td>
+<td>Mostly bullish, not unanimous</td>
+<td>Yahoo Finance headlines; StockTwits</td>
+<td>UBS expects immediate accretion; BofA sees an improved outlook; Wells Fargo raises its target to $100 from $85. A post relays an unverified Stifel Hold/$75 target.</td>
+</tr>
+<tr>
+<td>Tagged retail stance</td>
+<td>Bullish, limited sample</td>
+<td>StockTwits</td>
+<td>5 Bullish versus 1 Bearish among 6 tagged posts; 17 of 23 messages are unlabeled.</td>
+</tr>
+<tr>
+<td>Speculative breakout/options talk</td>
+<td>Bullish, overextension risk</td>
+<td>StockTwits</td>
+<td>Repeated $100-soon claims, breakout language, and short-dated call promotions are opinions from a small, partly repetitive sample.</td>
+</tr>
+<tr>
+<td>Macro/sector tailwind</td>
+<td>Mildly bullish, reversible</td>
+<td>Yahoo Finance headlines; StockTwits</td>
+<td>Headlines cite tech strength and weaker jobs data cooling rate-hike bets; a post also links softer jobs data to semis.</td>
+</tr>
+<tr>
+<td>Independent community cross-check</td>
+<td>Unknown</td>
+<td>Reddit</td>
+<td>Feed explicitly disabled; no Reddit discussion available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="on-weekly-trading-and-macro-report">ON: weekly trading and macro report<a class="headerlink" href="#on-weekly-trading-and-macro-report" title="Permanent link">&para;</a></h4>
+<p><strong>As of October 3, 2026 | News window: September 26–October 3</strong></p>
+<p><strong>Bottom line:</strong> A revised Synaptics transaction is the immediate catalyst for ON. Friday’s reported rally suggests investors welcomed the new terms, but the next test is whether the deal’s financing and earnings benefits hold up to scrutiny. The wider backdrop is mixed: weaker jobs news helped technology shares, while elevated inflation, oil prices and long-term Treasury yields remain risks.</p>
+<h4 id="what-changed-for-on">What changed for ON<a class="headerlink" href="#what-changed-for-on" title="Permanent link">&para;</a></h4>
+<p>Reports on October 2 described a <strong>$5.7 billion all-cash offer for Synaptics replacing a previously reported $7 billion stock deal</strong>. One <a href="https://finance.yahoo.com/markets/stocks/articles/semiconductor-climbs-8-synaptics-surges-131302389.html">market report</a> said ON rose about <strong>8%</strong> and Synaptics about <strong>14%</strong>; those are reported trading moves, not verified closing returns. <a href="https://finance.yahoo.com/markets/stocks/articles/onsemi-apos-revised-synaptics-deal-154901040.html">UBS</a> expected the revised deal to be immediately earnings-accretive, while <a href="https://finance.yahoo.com/markets/stocks/articles/semiconductors-revised-synaptics-deal-improves-173100056.html">BofA</a> saw an improved earnings outlook. Those are analyst assessments, not confirmed results. <a href="https://finance.yahoo.com/markets/stocks/articles/wells-fargo-adjusts-semiconductor-price-125231704.html">Wells Fargo</a> raised its ON target to $100 from $85 and retained an Overweight rating.</p>
+<p>The reported transaction value is $1.3 billion, or roughly 19%, below the earlier figure. That supports the initial positive reaction, but <strong>all-cash consideration shifts attention to funding</strong>. Before treating analyst accretion estimates as durable, traders should check the definitive transaction terms, funding mix, borrowing cost, closing conditions and management guidance. The available news feed provides headlines rather than the full agreement.</p>
+<h4 id="the-macro-setting-for-the-next-trade">The macro setting for the next trade<a class="headerlink" href="#the-macro-setting-for-the-next-trade" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Rates and inflation:</strong> The 10-year Treasury yield was <strong>5.24% on October 1</strong>, versus <strong>5.17% on September 25</strong> and <strong>4.65% on August 19</strong> (<a href="https://fred.stlouisfed.org/series/DGS10">FRED</a>). August CPI was approximately <strong>3.35% higher year over year</strong> (<a href="https://fred.stlouisfed.org/series/CPIAUCSL">FRED</a>); August core PCE was approximately <strong>3.01% higher</strong> (<a href="https://fred.stlouisfed.org/series/PCEPILFE">FRED</a>). High yields can pressure semiconductor valuations and make acquisition financing more consequential.</li>
+<li><strong>Jobs versus Fed caution:</strong> September unemployment rose to <strong>4.2% from 4.1% in August</strong> (<a href="https://fred.stlouisfed.org/series/UNRATE">FRED</a>). <a href="https://finance.yahoo.com/markets/live/stock-market-today-friday-october-2-dow-sp-500-nasdaq-september-jobs-report-080623878.html">October 2 market coverage</a> linked weaker jobs news to fading rate-hike expectations and technology gains. Yet <a href="https://finance.yahoo.com/economy/policy/article/chorus-of-fed-officials-warn-inflation-is-still-too-high-signaling-more-work-to-do-on-interest-rates-151947919.html">Fed officials’ inflation warnings</a> argue against assuming an imminent easing cycle. September’s <em>effective</em> federal funds rate was <strong>3.75%</strong> (<a href="https://fred.stlouisfed.org/series/FEDFUNDS">FRED</a>); that monthly average is not the Fed’s announced target range.</li>
+<li><strong>Energy and demand:</strong> The latest WTI observation available here was <strong>$96.16 per barrel on September 29</strong> (<a href="https://fred.stlouisfed.org/series/DCOILWTICO">FRED</a>). <a href="https://finance.yahoo.com/markets/article/the-iran-war-is-driving-inflation-higher--and-its-not-just-because-of-oil-100000797.html">Reporting this week</a> highlighted conflict-related inflation risks, though the oil observation is too old to establish an October 2 price. August industrial production was <strong>1.42% above its year-earlier level</strong> (<a href="https://fred.stlouisfed.org/series/INDPRO">FRED</a>): growth, but not evidence on its own of a semiconductor-demand surge.</li>
+</ul>
+<p><strong>Trading stance:</strong> Treat ON as an <strong>event-driven opportunity, not a confirmed fundamental rerating</strong>. For a new long position, wait for both a clearer financing/accretion case and evidence that ON retains Friday’s gains; avoid relying on an analyst target as a trading floor. A funding surprise, weaker demand guidance or another rise in the 10-year yield would weaken the bullish case. No current ON quote was available to set a defensible entry or stop level.</p>
+<p>Prediction-market probabilities were unavailable for an October 3 historical snapshot; assigning live odds to this report would introduce later information.</p>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Evidence as of October 3</th>
+<th>Practical implication for ON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Synaptics revision</td>
+<td>Reported $5.7B cash offer replaces $7B stock deal</td>
+<td>Positive initial reaction; verify signed terms and closing conditions</td>
+</tr>
+<tr>
+<td>Earnings and financing</td>
+<td>UBS/BofA assessments favor accretion; funding details unverified here</td>
+<td>Test borrowing cost and management guidance before extrapolating EPS benefits</td>
+</tr>
+<tr>
+<td>Share reaction</td>
+<td>Approximately 8% ON rise reported during October 2 trading</td>
+<td>Avoid assuming the quoted move was the closing return or will persist</td>
+</tr>
+<tr>
+<td>Interest rates</td>
+<td>10-year yield 5.24% on Oct. 1; 5.17% on Sept. 25</td>
+<td>Higher discount and financing rates could offset deal optimism</td>
+</tr>
+<tr>
+<td>Inflation and energy</td>
+<td>August CPI +3.35% YoY; core PCE +3.01%; WTI $96.16 on Sept. 29</td>
+<td>Watch whether renewed inflation pressure limits Fed flexibility</td>
+</tr>
+<tr>
+<td>Labor and demand</td>
+<td>September unemployment 4.2%; August industrial production +1.42% YoY</td>
+<td>Rate relief may help sentiment, but monitor demand and guidance separately</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="on-fundamental-report">ON — Fundamental report<a class="headerlink" href="#on-fundamental-report" title="Permanent link">&para;</a></h4>
+<p><strong>As of October 3, 2026 | ON Semiconductor Corporation | NMS | Technology / Semiconductors</strong></p>
+<p><strong>Bottom line:</strong> ON’s latest available quarter shows a meaningful earnings recovery, but the improvement is not yet a return to its 2022–2023 profit levels. Revenue and margins improved year over year in the quarter ended July 3, 2026. Cash generation also improved in that quarter, although reduced capital spending and a large financing inflow are important qualifications when assessing the rise in cash.</p>
+<h4 id="what-isand-is-notcurrent">What is—and is not—current<a class="headerlink" href="#what-isand-is-notcurrent" title="Permanent link">&para;</a></h4>
+<p>The available financial figures are SEC EDGAR-derived statements filed by October 3, 2026. The latest quarterly period supplied ends <strong>July 3, 2026</strong>; the latest full year ends <strong>December 31, 2025</strong>. Period-end dates are not filing dates. The tools do <strong>not</strong> establish that ON issued a new filing or other fundamental announcement during the past week.</p>
+<p>ON is a semiconductor company associated with power and sensing applications, including automotive and industrial markets. The available company-profile feed was withheld to prevent look-ahead bias, so current product mix, customer exposure, guidance and segment revenue cannot be verified here.</p>
+<h4 id="earnings-a-recovery-from-a-weak-base">Earnings: a recovery from a weak base<a class="headerlink" href="#earnings-a-recovery-from-a-weak-base" title="Permanent link">&para;</a></h4>
+<p>In the quarter ended July 3, 2026, ON reported <strong>$1.604 billion revenue</strong>, up <strong>6.0%</strong> from the preceding quarter and <strong>9.2%</strong> from the comparable 2025 quarter. Gross profit was <strong>$616 million</strong>, giving a <strong>38.4% gross margin</strong>, versus <strong>37.6%</strong> a year earlier. Operating income was <strong>$259 million</strong>—a <strong>16.1% operating margin</strong>—versus $193 million a year earlier. Net income rose to <strong>$227 million</strong> from $170 million, and diluted EPS rose to <strong>$0.56</strong> from $0.41.</p>
+<p>The sequential turnaround is notable: the April 3, 2026 quarter had <strong>$1.513 billion revenue</strong>, a <strong>$53 million operating loss</strong> and a <strong>$33 million net loss</strong>. Its gross margin was nevertheless approximately <strong>38.5%</strong>, close to the latest quarter’s margin. Traders should therefore investigate operating-expense and other income-statement details before assuming that the swing to profit came entirely from better product margins; the supplied statement does not identify its cause.</p>
+<p>For the first half of 2026, revenue was <strong>$3.117 billion</strong>, up <strong>6.9%</strong> from the first half of 2025. Operating income was <strong>$206 million</strong>, compared with a <strong>$381 million loss</strong> in the prior-year half; net income was <strong>$194 million</strong>, compared with a <strong>$316 million loss</strong>. That comparison benefits from an exceptionally weak first quarter of 2025, when ON reported a <strong>$486 million net loss</strong>. The supplied figures do not establish why that loss occurred.</p>
+<p>The longer history tempers the recovery case. Annual revenue declined from <strong>$8.326 billion in 2022</strong> and <strong>$8.253 billion in 2023</strong> to <strong>$7.082 billion in 2024</strong> and <strong>$5.995 billion in 2025</strong>. ON’s 2025 operating income was just <strong>$84 million</strong>, down from <strong>$1.768 billion</strong> in 2024; diluted EPS fell from <strong>$3.63 to $0.29</strong>. Annual gross margin contracted from approximately <strong>45.4% in 2024</strong> to <strong>33.1% in 2025</strong>. The latest quarter’s 38.4% margin is a substantial improvement on the 2025 full year, but remains below the 2024 annual level.</p>
+<p>Using <strong>2025 full-year results plus first-half 2026 minus first-half 2025</strong>, trailing-12-month revenue is approximately <strong>$6.197 billion</strong>, operating income <strong>$671 million</strong>, and net income <strong>$631 million</strong>. These are calculations from the supplied statements, not separately reported guidance.</p>
+<h4 id="cash-flow-and-financial-position">Cash flow and financial position<a class="headerlink" href="#cash-flow-and-financial-position" title="Permanent link">&para;</a></h4>
+<p>The latest quarter generated an estimated <strong>$460 million of operating cash flow</strong> and required <strong>$34 million of capital expenditure</strong>, or approximately <strong>$426 million of free cash flow</strong>. These quarterly cash-flow amounts are derived by subtracting the reported first-quarter amounts from first-half totals. Comparable prior-year estimates are <strong>$185 million operating cash flow</strong>, <strong>$78 million capital expenditure</strong>, and <strong>$107 million free cash flow</strong>.</p>
+<p>For the full first half, the picture is more mixed: operating cash flow <strong>fell to $699 million from $787 million</strong>, while capital expenditure fell sharply to <strong>$56 million from $226 million</strong>. Consequently, first-half free cash flow—defined here as operating cash flow less capital expenditure—<strong>rose to $643 million from $561 million</strong>. Lower investment therefore accounts for more than the increase in first-half free cash flow; traders should test whether this capital-spending level is sustainable.</p>
+<p>That pattern was also visible in 2025: operating cash flow declined to <strong>$1.760 billion</strong> from <strong>$1.906 billion</strong> in 2024, but capital expenditure fell to <strong>$341 million</strong> from <strong>$694 million</strong>. Calculated free cash flow rose from <strong>$1.212 billion to $1.419 billion</strong> despite sharply lower reported profit.</p>
+<p>At July 3, 2026, ON held <strong>$3.514 billion cash and equivalents</strong>, up <strong>$1.510 billion</strong> from April 3. Current assets were <strong>$7.282 billion</strong> against <strong>$2.102 billion current liabilities</strong>: a <strong>3.46× current ratio</strong> and <strong>$5.180 billion working capital</strong>. The comparable April current ratio was approximately <strong>4.87×</strong>, so the larger cash balance should not be read as an unqualified improvement in short-term liquidity.</p>
+<p>Total liabilities rose <strong>$1.557 billion quarter over quarter</strong> to <strong>$6.247 billion</strong>, while stockholders’ equity declined <strong>$83 million</strong> to <strong>$7.219 billion</strong>. The latest quarter’s <strong>approximately $1.044 billion financing cash inflow</strong>, calculated from first-half less first-quarter cash flows, is material relative to its cash increase. The supplied statements do not break out debt issuance or other financing components: <strong>do not infer that the entire inflow was borrowing</strong>, or calculate net debt from these figures.</p>
+<h4 id="actionable-considerations-for-traders">Actionable considerations for traders<a class="headerlink" href="#actionable-considerations-for-traders" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Evidence for a sustained recovery:</strong> Look for the next reported quarter to maintain revenue above the prior-year comparable quarter’s <strong>$1.551 billion</strong>, keep gross margin near or above the latest <strong>38.4%</strong>, and remain operating-profit positive. These are analytical checkpoints, <strong>not company guidance</strong>.</li>
+<li><strong>Cash-quality check:</strong> Compare the next period’s operating cash flow with capital spending. First-half 2026 free cash flow improved even though operating cash flow declined; a rebound in required investment could change that picture.</li>
+<li><strong>Balance-sheet check:</strong> Review the next filing’s debt and financing details before treating the <strong>$3.514 billion cash balance</strong> as wholly operationally generated. Watch whether current liabilities and total liabilities continue to grow.</li>
+<li><strong>Valuation and insider activity:</strong> No point-in-time share price, market capitalization, valuation multiples, guidance, or verifiable recent insider filings were available. A price target, valuation-based entry level, or insider-sentiment conclusion would not be supported by these tools.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Key point for ON</th>
+<th>Evidence available as of Oct. 3, 2026</th>
+<th>Trading implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest-quarter growth</td>
+<td>July 2026-quarter revenue <strong>$1.604B</strong>, <strong>+9.2% YoY</strong></td>
+<td>Recovery is visible; test whether it persists next quarter.</td>
+</tr>
+<tr>
+<td>Latest-quarter profitability</td>
+<td>Gross margin <strong>38.4%</strong>; operating income <strong>$259M</strong>; diluted EPS <strong>$0.56</strong></td>
+<td>Stronger than a year ago, but not proof of a return to prior peak margins.</td>
+</tr>
+<tr>
+<td>Long-term earnings risk</td>
+<td>2025 revenue <strong>$5.995B</strong>, down <strong>15.3%</strong> YoY; operating income <strong>$84M</strong> versus <strong>$1.768B</strong> in 2024</td>
+<td>Keep the latest rebound in the context of a steep preceding decline.</td>
+</tr>
+<tr>
+<td>Cash-flow quality</td>
+<td>First-half 2026 operating cash flow <strong>$699M</strong>, down from <strong>$787M</strong>; capex <strong>$56M</strong>, down from <strong>$226M</strong></td>
+<td>Rising free cash flow partly reflects sharply lower investment.</td>
+</tr>
+<tr>
+<td>Liquidity and financing</td>
+<td>Cash <strong>$3.514B</strong>; current ratio <strong>3.46×</strong>; latest-quarter financing inflow about <strong>$1.044B</strong></td>
+<td>Verify financing sources and liabilities before relying on the cash increase.</td>
+</tr>
+<tr>
+<td>Information limits</td>
+<td>No verified past-week filing, current valuation, guidance, or recent insider transactions supplied</td>
+<td>Avoid attributing a new catalyst or setting a valuation-based trade from this report alone.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: I’m bullish on <strong>ON</strong>, but not because one deal headline sent the stock higher. The stronger case is that its operating recovery was visible <em>before</em> the October 2 rally: in the July quarter, revenue rose <strong>9.2% year over year to $1.604 billion</strong>, operating income climbed to <strong>$259 million from $193 million</strong>, and diluted EPS increased to <strong>$0.56 from $0.41</strong>. ON’s established power-and-sensing business gives it a platform in automotive and industrial applications; the next question is whether it can sustain that recovery, not whether it can invent a new market from scratch.</p>
+<p>The growth opportunity is substantial without requiring an aggressive forecast. Trailing revenue is about <strong>$6.20 billion</strong>, versus <strong>$7.08 billion in 2024</strong>. Regaining that previously achieved sales level would mean roughly <strong>14% revenue growth</strong> from the trailing figure—an illustrative scenario, not guidance. The reported revised Synaptics offer adds another potential avenue for growth: <strong>$5.7 billion in cash rather than an approximately $7 billion stock transaction</strong>. The lower price and avoidance of share dilution improve the proposition, and UBS and BofA have expressed favorable earnings views. Their estimates, however, still need to survive scrutiny of the actual financing and integration plan.</p>
+<p>A bear would fairly point to ON’s weak 2025, falling first-half operating cash flow, and the leverage risk of an all-cash acquisition. I wouldn’t dismiss any of those. But the July quarter generated an estimated <strong>$460 million in operating cash flow</strong>, versus <strong>$185 million</strong> a year earlier, and ON held <strong>$3.514 billion in cash</strong> at quarter-end. That is meaningful flexibility—not evidence that a $5.7 billion purchase is already fully funded. I’d also want to see cash generation hold up when capital spending normalizes; first-half free-cash-flow improvement benefited from sharply reduced capex.</p>
+<p>The market response supports, rather than proves, the thesis: ON closed at <strong>$84.89 on October 2</strong>, above its <strong>$76.65</strong> 50-day average, on <strong>22.9 million shares</strong>, more than double the prior session’s volume. The bear is right that the weekly trend remains down and the daily move is stretched. <strong>My call is a conditional buy for ON, not a chase of Friday’s gap</strong>: holding the <strong>$82.96–$80.46</strong> gap area and sustaining a move above <strong>$86.45</strong> would strengthen the entry case. A failed gap, disappointing financing terms, or a reversal in operating cash flow would force me to reassess.
+Bull Analyst: Bear, you’re right that ON has not regained its 2022 earnings power. But that sets the wrong hurdle for a bullish investment. The case is a recovery from 2025, not an immediate return to peak margins. July-quarter revenue rose <strong>9.2% year over year to $1.604 billion</strong>, operating income increased to <strong>$259 million from $193 million</strong>, and EPS rose to <strong>$0.56 from $0.41</strong>. ON already has a power-and-sensing business serving automotive and industrial applications; the thesis does not require inventing a new market. Regaining 2024 revenue would represent roughly <strong>14% growth</strong> from the approximately $6.20 billion trailing figure. That is an illustration of room to recover, not a forecast.</p>
+<p>Your cash-flow objection is the strongest one, but the quarterly detail changes its force. Yes, first-half operating cash flow fell <strong>$88 million</strong>, and lower capex accounted for the increase in first-half free cash flow. In the July quarter alone, though, estimated operating cash flow rose <strong>$275 million year over year, to $460 million</strong>. Estimated free cash flow rose <strong>$319 million, to $426 million</strong>; only <strong>$44 million</strong> of that improvement came from lower capex. That does not prove the pace will persist, but it is more than a capex-cutting story.</p>
+<p>I also won’t call the Synaptics transaction a free win. A reported <strong>$5.7 billion cash offer</strong> is roughly <strong>19% below</strong> the earlier $7 billion stock proposal and avoids issuing shares, but ON’s <strong>$3.514 billion</strong> cash balance does not fund it by itself. The higher liabilities, financing inflow and <strong>5.24%</strong> Treasury yield make borrowing costs and deal terms essential checks. UBS’s and BofA’s favorable earnings views are reasons to investigate the upside, not substitutes for those checks. Importantly, ON’s operating improvement predates the deal headline.</p>
+<p>And I agree that <strong>$86.45</strong> is a price test, not proof of acquisition economics. Still, the October 2 move came on <strong>more than twice the prior session’s volume</strong>. The down weekly trend and stretched daily reading argue against chasing it—not necessarily against owning ON while the recovery develops.</p>
+<p><strong>My call remains a conditional buy on ON at the October 2 reference price of $84.89, not an unconditional purchase after a gap.</strong> I’d look for sustained strength above <strong>$86.45</strong> or a pullback that holds the <strong>$82.96–$80.46</strong> gap area, with position size reflecting volatility. If cash generation weakens again at normal capex, financing undermines deal returns, or the gap fails, the bull case needs revision. Waiting for every one of your conditions may reduce risk, but it also means declining to act on the recovery already visible in ON’s latest quarter.
+Bull Analyst: Bear, your objections are reasons to <strong>size an ON position carefully</strong>, not reasons to dismiss the recovery already in the numbers.</p>
+<p>Start with your capex stress test. If ON had spent <strong>$174 million</strong> rather than $34 million in the July quarter, its estimated free cash flow would still have been <strong>$286 million</strong>, versus <strong>$107 million</strong> in the year-earlier quarter. That does not establish a sustainable run rate—first-half operating cash flow did fall—but it shows the July improvement was not dependent on unusually low capex.</p>
+<p>Your April-to-July profit bridge raises a fair question about costs. The year-over-year comparison supplies an important countercheck: July-quarter gross profit rose by roughly <strong>$64 million</strong>, from about $552 million to $616 million, while operating income rose <strong>$66 million</strong>, from $193 million to $259 million. The sequential $312 million operating swing needs explaining, but the improvement over the comparable quarter was broadly matched by higher gross profit. ON’s July operating margin was <strong>16.1%</strong>, up from about <strong>13.1%</strong> a year earlier.</p>
+<p>Nor does the thesis require 2024’s 25% operating margin. As an <em>illustration, not a forecast</em>, applying July’s roughly 16% margin to ON’s <strong>$6.20 billion</strong> trailing revenue would produce about <strong>$1 billion</strong> in operating income, versus roughly <strong>$671 million</strong> trailing. That is meaningful room for improvement without assuming peak margins, a return to 2024 sales, or unverified market-share gains. ON’s established automotive and industrial power-and-sensing business is the platform for that opportunity; I would not claim its presence alone proves a moat.</p>
+<p>I agree the <strong>$5.7 billion</strong> reported Synaptics cash offer cannot be judged from ON’s <strong>$3.514 billion</strong> cash balance or analyst accretion comments. The roughly <strong>$2.19 billion</strong> arithmetic gap may understate funding needs because ON must retain operating liquidity. Still, a price about <strong>$1.3 billion below</strong> the earlier proposal and no share issuance improve the starting terms. Financing cost, acquired earnings and integration—not the headline—will decide whether the deal creates value. My bull case rests first on ON’s pre-deal operating recovery; I am not counting unverified synergies.</p>
+<p><strong>My call remains a conditional, small-position buy on ON, using $84.89 as the October 2 reference price—not a chase of the gap.</strong> I would look for a hold of <strong>$82.96–$80.46</strong> or sustained strength above <strong>$86.45</strong>, then increase conviction only if another quarter supports the cash-flow and margin recovery and the financing terms hold up. A failed gap or unfavorable deal economics would change my view. Your wait-for-proof approach reduces uncertainty; it also forgoes exposure to the recovery that ON has already begun to demonstrate.
+Bull Analyst: Bear, I agree with your central caution: <strong>one good quarter and an $86.45 breakout cannot prove ON’s acquisition economics</strong>. Where we differ is whether investors must wait for that proof before taking <em>any</em> exposure to a recovery that is already showing up in operations.</p>
+<p>The April-quarter cash-flow weakness is real. But the subsequent July quarter generated an estimated <strong>$460 million in operating cash flow</strong>, up <strong>$275 million year over year</strong>. Your tougher capex test still leaves about <strong>$286 million in quarterly free cash flow</strong> if spending had matched ON’s 2024 quarterly average. That is not a dependable acquisition-funding run rate; it is evidence that July’s improvement was more than a capex cut.</p>
+<p>The margin objection also sets a higher hurdle than my thesis needs. ON does not have to regain 2024’s 45.4% gross margin for earnings to improve. July revenue grew <strong>9.2% year over year</strong>, gross profit rose about <strong>$64 million</strong>, and operating income rose <strong>$66 million</strong>. That comparable-quarter relationship is a better reason to investigate a scalable recovery than simply annualizing one strong margin. My roughly <strong>$1 billion operating-income illustration</strong> is upside <em>if</em> July’s operating margin holds across trailing sales—not an estimate I’m asking investors to accept today. ON’s established power-and-sensing presence in automotive and industrial markets gives that recovery a business platform, though it does not prove share gains.</p>
+<p>You are right about the deal, too: <strong>$5.7 billion in cash exceeds ON’s $3.514 billion cash balance</strong>, and a 5.24% Treasury yield makes funding terms consequential. I would not count Synaptics accretion before seeing those terms. But the reported <strong>$1.3 billion lower purchase price</strong> and avoided share issuance improve the proposition, while ON’s operating improvement predates the announcement. The acquisition is potential upside to test, not the sole reason to own ON.</p>
+<p><strong>My call remains a conditional, small-position buy on ON, with $84.89 as the October 2 reference price—not a chase of the gap.</strong> I’d favor a hold of <strong>$82.96–$80.46</strong> or sustained strength above <strong>$86.45</strong> for entry, then require another sound cash-flow quarter and credible financing before adding. The down weekly trend and stretched daily reading make sizing important; a failed gap or poor deal economics would change my view. Your wait-for-proof approach is defensible, but it risks waiting until more of the recovery is reflected in the price.
+Bull Analyst: Bear, your distinction is fair: <strong>a recovery beginning does not prove ON is cheap at $84.89</strong>. We do not have enough valuation or deal-financing detail to make that claim. But requiring the acquisition to be fully explained before taking <em>any</em> position overlooks the improvement in ON’s existing business.</p>
+<p>The first-half cash-flow decline is a real warning. It also includes a weak April quarter; July operating cash flow reached an estimated <strong>$460 million, versus $185 million a year earlier</strong>. Even your higher-capex sensitivity leaves roughly <strong>$286 million of July free cash flow</strong>. I would not annualize that figure. I would, however, treat it as evidence that the latest quarter’s cash recovery was not simply the result of spending less.</p>
+<p>The earnings comparison tells a similar story. ON is nowhere near its 2024 gross margin, but July’s <strong>$64 million year-over-year gross-profit increase</strong> broadly matched its <strong>$66 million operating-income increase</strong>. Revenue grew <strong>9.2%</strong>, and operating margin improved to <strong>16.1% from about 13.1%</strong>. That gives the bull case a measurable path to better earnings without assuming peak margins or unproven market-share gains. ON’s established automotive and industrial power-and-sensing business is the platform for that opportunity, not proof that it will succeed.</p>
+<p>I also agree that four years—or even one year—of illustrative free cash flow is the wrong way to fund a purchase that closes upfront. The reported <strong>$5.7 billion</strong> Synaptics price exceeds ON’s cash, and its rising liabilities demand scrutiny. Yet a <strong>3.46× current ratio</strong> does not signal an immediate liquidity crisis, and the revised, lower-priced cash proposal avoids issuing deal shares. Those are reasons to examine the financing terms, not to count accretion as achieved—or to presume financing is impossible.</p>
+<p><strong>My call remains a small, conditional buy in ON</strong>, not a claim that the October 2 gap proves investment value. At the <strong>$84.89</strong> reference close, I would wait for the <strong>$82.96–$80.46</strong> gap area to hold or for sustained strength above <strong>$86.45</strong>, given the down weekly trend and stretched daily move. I would add only after another quarter supports margins and cash flow at credible capex, and the deal economics are disclosed. Waiting for all of that before buying is defensible; the bullish choice is to take limited exposure to the operating recovery already visible, while making those tests conditions for greater conviction.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: <strong>My bear call on ON: avoid a new position at $84.89.</strong> I agree with the bull that the July quarter improved. I disagree that one better quarter, followed by a deal-driven rally, establishes a durable recovery.</p>
+<p>The bull’s <strong>9.2% year-over-year revenue growth</strong> is real, but it follows a steep contraction: annual revenue fell from <strong>$8.33 billion in 2022 to $6.00 billion in 2025</strong>. The roughly <strong>$6.20 billion</strong> trailing figure remains below 2024’s $7.08 billion. Regaining that level is a possible scenario, not evidence that automotive and industrial demand will deliver it. July’s <strong>38.4% gross margin</strong> also remains well below 2024’s roughly <strong>45.4%</strong>. Without verified current product-mix, customer or guidance data, I would not assume ON has recovered its former pricing power or competitive position.</p>
+<p>The bull fairly cites <strong>$460 million of estimated July-quarter operating cash flow</strong>. But for the <em>first half</em>, operating cash flow <strong>fell to $699 million from $787 million</strong>. Free cash flow rose only because capex dropped <strong>$170 million</strong>, more than offsetting the $88 million cash-flow decline. That makes the cash-generation case less convincing if investment needs rise again.</p>
+<p>The revised Synaptics offer is cheaper and avoids share dilution, but <strong>$5.7 billion all-cash</strong> is still about <strong>$2.19 billion more than ON’s $3.51 billion quarter-end cash balance</strong>—and ON cannot necessarily devote all its cash to a purchase. Liabilities had already risen <strong>$1.56 billion quarter over quarter</strong>; the sources of the quarter’s large financing inflow are not established here. UBS’s prospective EPS accretion is not proof that financing and integration will earn an attractive return, particularly with the 10-year Treasury yield at <strong>5.24%</strong> on October 1.</p>
+<p>Finally, I would push back on the bull’s proposed technical confirmation. A sustained move above <strong>$86.45</strong> could confirm buying interest, but not acquisition economics or a return to peak profitability. ON’s weekly trend remains <strong>down</strong>, its 50-day average is still falling, and its <strong>+2.66 daily z-score</strong> shows how far the rebound has already run. Conversely, losing the <strong>$82.96–$80.46</strong> gap area would weaken the bull’s own entry case.</p>
+<p>I’d reconsider ON after repeated profitable quarters <strong>with stronger operating cash flow at sustainable capex</strong>, disclosed deal financing, and evidence that the weekly trend has turned. Until then, the bull is paying for several improvements that remain unproven.
+Bear Analyst: Bull, I accept your strongest correction: ON’s July-quarter cash-flow improvement was <strong>not mainly a capex-cutting story</strong>. Estimated operating cash flow rose $275 million year over year, and lower capex accounted for only $44 million of the $319 million free-cash-flow gain. That is real progress. My objection is that one quarter does not yet establish the cash generation needed to support a large acquisition. First-half operating cash flow still fell from $787 million to $699 million, while July-quarter capex was just $34 million. If spending had matched ON’s roughly $174 million <em>average quarterly capex in 2024</em>, July free cash flow would have been about $286 million rather than $426 million, holding operating cash flow constant. That is a sensitivity check, not a forecast.</p>
+<p>There is also a question beneath the earnings rebound. From the April quarter to July, gross profit rose by roughly <strong>$33 million</strong>, while operating income swung by <strong>$312 million</strong>, from a $53 million loss to a $259 million profit. Most of that swing therefore came from costs or other items between gross profit and operating income—not from a surge in gross profit. Without the underlying detail, I would not assume the entire improvement repeats. You do not need ON to regain peak earnings for a bull case, but regaining 2024 <em>revenue</em> alone is not enough: trailing operating margin is about <strong>10.8%</strong>, versus roughly <strong>25.0% in 2024</strong>.</p>
+<p>The cheaper Synaptics offer avoids dilution, but it substitutes a funding question. The reported <strong>$5.7 billion cash price exceeds ON’s $3.514 billion cash balance by about $2.19 billion</strong>, before allowing for cash the business may need to retain. The rise in liabilities and financing inflow warrant scrutiny, though neither tells us how this deal will be funded. UBS’s and BofA’s favorable earnings assessments cannot answer whether the purchase earns an attractive return after financing and integration costs. Nor does ON’s automotive and industrial presence, by itself, demonstrate renewed customer demand or market-share gains.</p>
+<p>Finally, I agree that holding the gap or clearing <strong>$86.45</strong> could improve a <em>trade</em>. It would not resolve those investment questions. At the October 2 close of <strong>$84.89</strong>, ON had already risen about <strong>27% from September 16</strong>; its daily z-score was <strong>+2.66</strong>, while its weekly trend remained down. Heavy deal-day volume shows interest, not durable earnings power.</p>
+<p><strong>My call remains to avoid a new investment in ON at that reference price.</strong> I am not asking for peak margins or certainty—just another quarter that clarifies the profit and cash-flow run rate, alongside disclosed financing terms, before treating the rebound as a dependable recovery.
+Bear Analyst: Bull, I agree that ON’s July recovery is real. Your capex stress test still leaves an estimated <strong>$286 million of quarterly free cash flow</strong>, and the year-over-year rise in gross profit broadly explains the rise in operating income. My disagreement is about whether that quarter justifies buying ON at <strong>$84.89</strong>, not whether it improved.</p>
+<p>The cash-flow record is less steady than July alone suggests. First-half operating cash flow <strong>fell to $699 million from $787 million</strong>. Subtracting the July-quarter estimates implies roughly <strong>$239 million in the April quarter, versus $602 million a year earlier</strong>. July’s rebound matters, but a large cash acquisition makes consistency—and cash generation when capex rises—more important than one strong quarter.</p>
+<p>I also think your <strong>$1 billion operating-income illustration</strong> asks investors to assume what they need to see proven. Applying July’s roughly 16% margin to all $6.20 billion of trailing sales adds about <strong>$329 million</strong> to ON’s actual trailing operating income of $671 million. That may happen, but the trailing margin is only about <strong>10.8%</strong>, and July’s <strong>38.4% gross margin</strong> remains below 2024’s roughly <strong>45.4%</strong>. ON’s automotive and industrial presence gives it a market to serve; the supplied evidence does not establish renewed share gains or lasting pricing power.</p>
+<p>The revised Synaptics price is better than the earlier proposal. It still leaves a reported <strong>$5.7 billion cash commitment</strong> against <strong>$3.514 billion of quarter-end cash</strong>, before ON retains anything for its own operations. We do not yet know the funding mix or integration costs. Avoiding dilution does not, by itself, make the purchase a good return on capital—particularly with the 10-year Treasury yield at <strong>5.24%</strong> on October 1.</p>
+<p>A small position limits the dollars at risk; it does not resolve those unknowns. Nor would a hold above <strong>$86.45</strong> resolve them: ON had already rallied about <strong>27% from September 16</strong>, while its weekly trend remained down. <strong>I would avoid initiating ON at the October 2 reference price of $84.89.</strong> I accept that waiting may miss some upside, but I would rather see another quarter of durable margins and cash flow, plus disclosed deal financing, before paying for that recovery.
+Bear Analyst: Bull, I agree that ON’s July improvement was real—not merely the result of cutting capex. But <strong>“the recovery has begun” and “ON is worth buying at $84.89” are different claims</strong>. July’s estimated $460 million in operating cash flow follows an implied $239 million in the April quarter, versus $602 million in the comparable prior-year quarter. First-half operating cash flow still fell from $787 million to $699 million. For a business contemplating a large cash acquisition, that unevenness matters.</p>
+<p>Your tougher capex test is useful: July free cash flow would still have been about $286 million at ON’s 2024 average quarterly capex. But even repeating that <em>illustrative</em> amount for four quarters yields roughly $1.14 billion—about one-fifth of the reported $5.7 billion Synaptics price. The purchase needs funding at closing, not over five years. Meanwhile, ON’s liabilities rose $1.56 billion quarter over quarter and its current ratio fell from about 4.87 to 3.46, despite the higher cash balance. The available figures do <strong>not</strong> establish how the proposed deal will be financed; that is precisely why I would not treat $3.514 billion of cash as straightforward acquisition capacity.</p>
+<p>Nor is the $1.3 billion reduction from the earlier <em>stock</em> proposal proof of a bargain. Avoiding dilution can help per-share earnings without proving an attractive return after financing and integration costs. ON’s July gross margin of 38.4% also remains well below 2024’s roughly 45.4%; its automotive and industrial presence does not, by itself, establish lasting pricing power.</p>
+<p>You’re right that waiting could miss upside. But ON had already climbed about 27% from September 16 to October 2. A move above $86.45 would test buying interest, not resolve the cash-flow or deal questions, and the weekly trend remained down. <strong>My call remains to avoid initiating ON at the October 2 reference price of $84.89</strong> until another quarter tests the recovery and the financing terms are clear.
+Bear Analyst: Bull, I’m not overlooking ON’s July improvement. Revenue grew <strong>9.2% year over year</strong>, and the <strong>$460 million</strong> estimated operating cash flow was a substantial rebound. The question is whether taking even a small position at the <strong>$84.89 October 2 close</strong> offers enough evidence of a durable recovery to justify the risks already in view.</p>
+<p>Your higher-capex test makes an important point: July’s cash-flow gain was not just a spending cut. But ON’s <strong>first-half operating cash flow still fell from $787 million to $699 million</strong>. The earnings evidence is promising rather than settled, too. July’s year-over-year rise in gross profit broadly matched its rise in operating income, but the <strong>38.4% gross margin</strong> remains below 2024’s roughly <strong>45.4%</strong>, and trailing operating margin is about <strong>10.8%</strong>, not July’s <strong>16.1%</strong>. A platform in automotive and industrial markets gives ON an opportunity; these figures do not yet show how consistently it can capture it.</p>
+<p>I also agree that a <strong>3.46× current ratio is not a liquidity crisis</strong>. That is a lower bar than the deal requires. The reported <strong>$5.7 billion cash offer</strong> exceeds ON’s <strong>$3.514 billion</strong> cash balance before allowing for operating needs, and the funding mix is unknown. Avoiding dilution may improve per-share earnings while financing and integration costs still impair the return on the purchase. With the 10-year Treasury yield at <strong>5.24% on October 1</strong>, I would want the actual terms before giving ON credit for accretion.</p>
+<p>A small position controls exposure, but it cannot establish an attractive entry price—particularly when we lack a defensible valuation and ON had already risen about <strong>27% since September 16</strong>. Holding the gap or clearing <strong>$86.45</strong> would strengthen a <em>trading</em> signal; it would not answer the cash-flow and deal questions. <strong>My call remains to avoid initiating ON at the $84.89 reference price.</strong> I’d rather risk missing some upside than buy before another quarter tests the recovery and the financing economics are disclosed.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: ON’s July-quarter recovery is genuine: revenue rose 9.2% year over year, operating income improved, and estimated operating cash flow climbed to $460 million; even the bear’s higher-capex sensitivity leaves roughly $286 million of illustrative free cash flow. But the bear’s entry-price case carries more weight. First-half operating cash flow still fell, July’s margins are not yet a demonstrated run rate, and the reported $5.7 billion cash offer exceeds ON’s $3.514 billion cash balance before retaining operating liquidity. Financing and acquisition returns are unknown. With ON already up about 27% from September 16 to the $84.89 October 2 reference close, the weekly trend down, and no defensible valuation supplied, a small new buy relies on too many unverified improvements. This warrants caution rather than a Sell because the operating improvement is real.</p>
+<p><strong>Strategic Actions</strong>: Keep ON at 0–0.5× a standard allocation: trim holdings above 0.5× in stages; if uninvested, do not initiate at the $84.89 reference price solely on the rally or a breakout above $86.45. Reassess for a move toward a full allocation only after another quarter demonstrates durable margins and operating cash flow at credible capex, and the Synaptics funding mix and post-financing/integration economics are disclosed. Use $82.96–$80.46 as a trading risk area, not proof of value; a sustained break below $80.46 warrants reviewing or reducing any remaining position. Holding that area or clearing $86.45 alone is insufficient to upgrade ON.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: ON’s improved July-quarter revenue and cash flow argue against a full exit, but the research plan calls for underweighting because first-half cash flow weakened, margin durability is unproven, and the $5.7 billion cash offer’s financing and returns are unknown. At the October 2 reference close of $84.89, ON has rebounded sharply, yet the weekly SuperTrend remains down and the daily z-score is stretched; neither the gap nor a move above $86.45 alone justifies adding. Trim any position above 0.5× a standard allocation rather than initiating a short, and treat a sustained break below the $80.46 gap boundary as reason to reduce the remainder.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: 80.46</p>
+<p><strong>Position Sizing</strong>: Retain 0–0.5× the caller’s standard allocation; trim holdings above 0.5× in stages. If uninvested, do not initiate at the $84.89 reference close or solely on a breakout.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: I’d make the SELL call on ON—but I’d sell excess exposure into strength, not abandon the upside. ON rose about 27% from its September 16 close to the October 2 reference close of $84.89, with volume more than doubling on October 2. July-quarter revenue grew 9.2% year over year, operating profit recovered, and the revised Synaptics offer is reportedly $1.3 billion cheaper than the earlier proposal. Those are real reasons to retain some ON rather than initiate a short.</p>
+<p>The aggressive move is to recognize what that rally has already priced in. First-half operating cash flow fell even as free cash flow rose, largely because capital spending dropped. The $5.7 billion cash offer may improve per-share earnings, but its funding cost and returns remain unverified; ON’s larger cash balance also coincided with a substantial financing inflow. Meanwhile, the weekly SuperTrend is still down and the daily z-score is +2.66. I wouldn’t mistake those warnings for proof ON must fall—RSI is still below 70, and volume and momentum favor the rebound—but they make a full-sized bet on an unproven deal less compelling.</p>
+<p>An overly conservative full exit would forfeit the chance of a sustained recovery; a passive hold would leave too much capital exposed while the financing case is unresolved. If you own more than 0.5× your standard ON allocation, trim toward that ceiling in stages. If you own less, there’s no need to sell simply to express this view; if you’re uninvested, don’t chase the $84.89 reference close. Reconsider adding only if financing becomes clearer <em>and</em> ON sustains a move above $86.45 with participation—not on a breakout alone. A sustained break below $80.46 would argue for reducing the remainder; that level is a trigger, not a guaranteed exit price.
+Aggressive Analyst: I still favor SELL for ON, but I’d sell excess exposure into strength rather than sell away the recovery. That is the more opportunistic trade: take advantage of a sharp, heavily traded rebound while keeping some capacity to benefit if the business and deal improve.</p>
+<p>To the Conservative Analyst, the roughly $2.19 billion difference between the reported $5.7 billion offer and ON’s July cash balance is a serious financing question—not an established funding shortfall or proof that the deal destroys value. The revised offer is reportedly $1.3 billion cheaper than the earlier stock proposal, while ON’s July-quarter revenue grew 9.2% year over year and operating income reached $259 million. Estimated quarterly free cash flow was $426 million. None of that establishes how ON will fund the purchase: first-half operating cash flow fell, and lower capital spending helped free cash flow. But reducing every holder toward 0–0.25× risks surrendering meaningful upside before those questions are answered.</p>
+<p>I also agree that RSI below 70 does not make ON safe. Yet the daily z-score of +2.66 is a warning about entry price, not evidence that the rebound is finished. October 2 volume more than doubled from the prior session, momentum strengthened, and the daily trend is up even as the weekly SuperTrend remains down. Waiting for every higher-timeframe signal to turn could mean missing much of a genuine reversal. That argues for retaining <em>limited</em> exposure, not chasing ON at $84.89.</p>
+<p>To the Neutral Analyst, semiconductor concentration should absolutely affect an individual risk budget; we have no portfolio information with which to prescribe a holding. But waiting for documented financing, sustained cash generation <em>and</em> fully improved price action before retaining any ON could make caution expensive. The bullish analyst headlines and $100 Wells Fargo target are not verified returns, and sentiment is low-confidence. They do, however, help explain why a full exit could be premature.</p>
+<p>My SELL instruction is therefore precise: if ON exceeds 0.5× your standard allocation, trim the excess in stages; treat 0.5× as a ceiling, not a target. If you are already below it, don’t sell mechanically unless your risk limit calls for it. If uninvested, don’t buy solely at the $84.89 reference close or on a move above $86.45. Watch $82.96 for gap weakness and reduce remaining exposure on a sustained break below $80.46; from $84.89 that is about 5.2% lower <em>before</em> any gap or slippage. Selling the oversized portion now converts the rally into risk capacity without betting that ON’s upside is over.
+Aggressive Analyst: I’m sticking with <strong>SELL for ON</strong>, but I’d sell excess exposure into strength rather than sell away the recovery.</p>
+<p>Conservative, you’re right to press on financing. The reported $5.7 billion cash offer exceeds ON’s July cash balance by about $2.19 billion, and the 5.24% ten-year yield makes borrowing costs consequential. But that comparison is not a verified funding shortfall. The reported deal price is also $1.3 billion below the earlier stock proposal, with less potential dilution. Those changes could improve returns, even though UBS’s accretion view remains a forecast. ON’s July-quarter revenue grew 9.2% year over year and operating income reached $259 million. I would not turn unanswered funding questions into a default near-exit just as the business shows signs of recovery.</p>
+<p>Neutral, I agree that neither the estimated $426 million of quarterly free cash flow nor bullish sentiment warrants a full-sized position. Capital spending was unusually low, first-half operating cash flow fell, and sentiment confidence is low. But insisting on fully proven cash generation and deal returns before retaining meaningful <em>limited</em> exposure risks arriving after much of a rerating. ON’s October 2 volume more than doubled from the prior session, ADX reached 26.03, and RSI at 65.49 was strong without reaching 70. The weekly SuperTrend is still down and the daily z-score is +2.66; to me, that combination argues for <strong>trimming the surge</strong>, not treating the rebound as finished.</p>
+<p>So the aggressive execution is disciplined: if ON exceeds 0.5× your standard allocation, trim the excess promptly in stages. Treat 0.5× as a ceiling, not a target; below it, let your cash-risk limit and semiconductor exposure decide whether to sell more. If uninvested, don’t buy at the $84.89 reference close or on an $86.45 breakout alone. Watch $82.96 for gap weakness, and reduce the remainder on a sustained break below $80.46—recognizing that a gap can make the actual exit worse. That SELL preserves capital for a better entry while keeping limited upside if ON’s recovery and deal economics hold up.
+Aggressive Analyst: Conservative, I agree that ON’s financing risk is real, but I wouldn’t turn an unanswered question into a default near-exit. The reported $5.7 billion offer exceeds ON’s July cash balance by about $2.19 billion; that arithmetic is not a funding plan or a verified shortfall. The 5.24% Treasury yield adds pressure, but it is not ON’s borrowing rate. The reported $1.3 billion reduction from the earlier stock proposal could improve the deal’s economics and reduce potential dilution, even though returns remain unproven. More importantly, ON’s estimated July-quarter operating cash flow rose to $460 million from $185 million a year earlier. First-half operating cash flow still declined and unusually low capital spending flattered free cash flow, so I would trim an oversized holding—not assume every modest holding should shrink to 0–0.25×.</p>
+<p>Your chart cautions are valid too: ADX does not indicate direction, RSI below 70 is no safety guarantee, and ON’s weekly SuperTrend remains down. But the daily trend is up, OBV has risen with price, and October 2 volume more than doubled from the prior session. A daily z-score of +2.66 makes this a compelling opportunity to sell <em>excess</em> ON into strength; it does not establish that the rebound is over. Waiting for the weekly trend to reverse before retaining any meaningful exposure risks missing the early part of a recovery.</p>
+<p>Neutral, I agree that the cheaper offer does not prove a better return when consideration has shifted to cash, and 0.5× cannot be right for every portfolio. But uncertainty is why I favor a limited residual position, not why I would automatically eliminate it. ON’s July-quarter revenue grew 9.2% year over year and operating profit recovered. The favorable analyst assessments are forecasts, not deal results, yet requiring documented returns and sustained cash generation before keeping <em>any</em> exposure could leave no participation if those outcomes begin to be priced in first. Those are sensible hurdles for <strong>adding</strong>, not universal conditions for <strong>holding a risk-budgeted remainder</strong>.</p>
+<p>My call remains SELL for ON: promptly trim holdings above 0.5× a standard allocation in stages, using 0.5× as a ceiling, never a target. Below that, let the caller’s loss tolerance and semiconductor exposure govern further selling; 0–0.25× or zero may be appropriate. If uninvested, do not initiate at the dated $84.89 close or on an $86.45 breakout alone, and do not short ON on these signals. Watch $82.96 for early gap weakness and reduce the remainder on a sustained break below $80.46, recognizing that the roughly 5.2% distance from $84.89 is not a guaranteed maximum loss. That is the aggressive edge here: realize gains on oversized risk now without surrendering all exposure to ON’s potential recovery.
+Aggressive Analyst: Conservative, ON’s first-half operating cash flow fell from $787 million to $699 million, and lower capital spending helped free cash flow. But that half-year figure can obscure the latest quarter’s change: estimated operating cash flow rose to $460 million from $185 million a year earlier. That does not prove ON can sustain the pace, but it is a costly signal to dismiss by taking every modest holding toward zero.</p>
+<p>The financing question is real, too. The reported $5.7 billion cash offer is about $2.19 billion above ON’s July cash balance, but that difference is not a funding plan, and the 5.24% Treasury yield is not ON’s borrowing rate. A reported $1.3 billion lower purchase price and less potential dilution could create meaningful upside if the deal earns its cost of capital. I would not bet a full allocation on that outcome; I also would not require it to be proven before retaining any risk-budgeted exposure.</p>
+<p>Neutral, “sell into strength” does not mean wait for another rally. ON has already rebounded sharply, and October 2 volume more than doubled from the prior session. The weekly SuperTrend is down and the daily z-score of +2.66 warns against chasing, but rising OBV, positive momentum and a recovering July quarter make a full exit a substantial opportunity cost. Low-confidence sentiment and analyst accretion forecasts are reasons to limit the position, not the basis for keeping it.</p>
+<p>My call remains SELL for ON: trim any holding above 0.5× a standard allocation promptly, in stages as liquidity permits. That is a ceiling, not a target; below it, let your loss budget and semiconductor exposure govern further selling. If uninvested, do not buy at the dated $84.89 close or on an $86.45 breakout alone. Watch $82.96 for early gap weakness, and reduce the remainder on a sustained break below $80.46; that level is not a guaranteed exit price. The aggressive edge is to free risk capacity now without surrendering all participation before ON’s recovery and deal economics have had a chance to prove themselves.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst’s SELL direction for ON, but I would not treat 0.5× a standard allocation as the amount to keep by default. The risk is not just that ON’s rebound fades. It is that the market has welcomed a transaction whose financing cost, closing terms and returns are still unverified. The reported $5.7 billion cash offer exceeds ON’s July 3 cash balance of $3.514 billion by about $2.19 billion, before allowing for operating cash needs. That does not tell us how ON will fund it, but it makes the funding question too important to set aside because the revised price is lower.</p>
+<p>The July quarter’s revenue and profit recovery are encouraging, as the Aggressive Analyst says. They do not yet establish durable margins: ON’s 38.4% gross margin remains below its 2024 annual level, and first-half operating cash flow fell even though free cash flow rose as capital spending dropped. Nor does RSI below 70 make the entry safe. ON’s high-volume rally has participation, but the weekly SuperTrend remains down and the daily z-score is +2.66. A move above $86.45 would be worth watching, not a substitute for resolving those financial risks.</p>
+<p>The Neutral Analyst has not offered a case yet. If the neutral position is simply to hold and wait, I would challenge the assumption that waiting is costless when the position may already exceed its risk budget. From the $84.89 reference close, $80.46 is $4.43 lower—about 5.2% before slippage—and a gap can defeat that level as an exit price. The 5.24% ten-year Treasury yield on October 1 adds pressure to both valuation and the prospective financing case.</p>
+<p>My adjustment is to keep the SELL recommendation but use 0.5× as a maximum, not a target. If ON is above that, trim into available liquidity; for a particularly volatility-sensitive mandate, consider reducing toward 0–0.25×, including from a position already below 0.5×. If uninvested, do not initiate. I would reconsider a larger ON allocation only after the financing and expected returns are documented, cash generation holds up with sustainable investment, and the higher-priority trend improves. I would not short ON or claim that $80.46 guarantees a clean exit.
+Conservative Analyst: Aggressive Analyst, I agree that ON’s recovery could continue and that a full exit is not automatically warranted. But the cost of missing some upside is easier to contain than the potential loss from holding too much ON through a financing or demand disappointment. The reported $5.7 billion cash offer is about $2.19 billion above ON’s July cash balance; that is a financing question, not a verified funding shortfall. A cheaper offer, $259 million of July-quarter operating income and an estimated $426 million of quarterly free cash flow do not yet answer what the purchase will cost to fund or earn. First-half operating cash flow fell, and much lower capital spending supported free cash flow.</p>
+<p>I also would not let ON’s heavy-volume rally set the risk budget. The weekly SuperTrend remains down, while the daily z-score of +2.66 signals a stretched move. Neither proves a reversal is imminent, but a close above $86.45 would confirm price strength, not deal returns or durable margins. The 5.24% ten-year Treasury yield adds weight to the unanswered financing question.</p>
+<p>Neutral Analyst, you are right that the cash-balance comparison does not establish a shortfall, and that cutting every ON holding to 0–0.25× would be too rigid without portfolio context. My concern is that “reassess” at $80.46 may be too passive for an oversized holding. From the $84.89 reference close, that level is already $4.43 lower, and a gap could make the actual sale worse. Waiting for ON to break it before reducing excess exposure would spend risk capacity unnecessarily.</p>
+<p>I would keep the SELL decision but tighten its execution: trim ON above 0.5× a standard allocation promptly as liquidity permits, rather than waiting for another breakout or a break below $80.46. Treat 0.5× as a ceiling, not a holding target. If ON is already below it, use the caller’s loss tolerance and semiconductor exposure to decide whether a smaller 0–0.25× residual—or no position—is more appropriate; do not sell a modest position mechanically. If uninvested, do not initiate or short ON. Treat $82.96 as an early warning and a sustained break below $80.46 as a reason to reduce what remains, not as a guaranteed exit price. I would increase exposure only after ON’s funding terms, expected returns and cash generation under sustainable capital spending become clearer.
+Conservative Analyst: Aggressive Analyst, I agree that ON’s recovery may continue, but preserving upside is not a reason to retain 0.5× by default. The reported $1.3 billion reduction in the Synaptics offer and less potential dilution may help shareholders, yet neither establishes the financing cost or return on a $5.7 billion cash purchase. The roughly $2.19 billion difference between that offer and ON’s July cash balance is a question to investigate, not a verified funding shortfall. July-quarter revenue and profit improved, but first-half operating cash flow fell; much lower capital spending helped lift free cash flow. One strong quarter does not settle how much cash ON can generate while investing sustainably.</p>
+<p>The rally deserves respect, not a larger risk budget. ON’s volume and momentum strengthened, but ADX says nothing about direction, RSI below 70 says nothing about safety, and the weekly SuperTrend remains down. With the daily z-score at +2.66, I would use strength to reduce excess exposure rather than wait for another rise.</p>
+<p>Neutral Analyst, you are right that neither higher yields nor the cash-balance comparison proves the deal will fail. But waiting for a sustained break below $80.46 to act on an oversized ON position puts capital at risk first. That level is $4.43 below the October 2 reference close of $84.89, before a possible gap or slippage.</p>
+<p>My recommendation remains SELL: trim ON above 0.5× a standard allocation promptly as liquidity permits, without treating 0.5× as a target. If ON is already below that ceiling, let the caller’s loss tolerance and semiconductor exposure determine whether 0–0.25×, or no position, is more prudent; do not sell a modest holding mechanically. If uninvested, do not initiate or short ON. Treat $82.96 as an early warning and $80.46 as a reason to reduce remaining exposure, not a guaranteed stop price. I would require clearer funding terms, credible returns and cash generation under sustainable capital spending before restoring a larger ON allocation.
+Conservative Analyst: Aggressive, I agree that ON’s stronger July-quarter operating cash flow is a reason not to assume the recovery has failed. It is not enough to set the size of a residual holding. First-half operating cash flow still fell from $787 million to $699 million, while capital spending dropped from $226 million to $56 million. That makes the improvement in free cash flow less reassuring as evidence of what ON can generate while investing at a sustainable level.</p>
+<p>The cheaper reported Synaptics offer may reduce dilution, but it replaces a stock proposal with a $5.7 billion cash purchase whose funding cost and returns are unknown. The roughly $2.19 billion difference between the offer and ON’s July cash balance is a question, not a verified funding shortfall. Likewise, the 5.24% Treasury yield is not ON’s borrowing rate. Both uncertainties matter when deciding how much capital to leave exposed. A high-volume rebound, rising OBV and an improving daily trend show buyers are participating; they do not resolve the bearish weekly trend or make a daily z-score of +2.66 less stretched.</p>
+<p>Neutral, I agree that ON’s improving quarter argues against mechanically cutting every holder to 0–0.25×. But I would put more weight on the risk of waiting: from the dated $84.89 close, $80.46 is already $4.43 lower, and a gap could make the eventual exit worse. An oversized holding should be reduced before that test, not merely reassessed afterward.</p>
+<p>My recommendation remains SELL for ON. If holdings exceed 0.5× a standard allocation, trim promptly in stages as liquidity permits; 0.5× is a ceiling, not a target. Below it, the caller’s loss tolerance and correlated semiconductor exposure should determine whether a smaller 0–0.25× residual—or no position—is appropriate. If uninvested, do not initiate or short ON on these signals. Treat $82.96 as an early warning and a sustained break below $80.46 as a reason to reduce remaining exposure, never as a guaranteed stop price. I would restore a larger allocation only when funding and expected returns are clearer and cash generation remains credible under sustainable capital spending—not on an $86.45 breakout alone.
+Conservative Analyst: Aggressive, ON’s estimated $460 million of July-quarter operating cash flow is encouraging, but one quarter does not establish what ON can generate while investing normally. First-half operating cash flow fell from $787 million to $699 million, while capital spending dropped from $226 million to $56 million. The reported $1.3 billion reduction in the Synaptics offer may help, but less dilution does not tell us whether a $5.7 billion cash purchase will earn its funding cost. The gap between the offer and ON’s July cash balance is a financing question, not a proven shortfall. For a capital-preservation mandate, missing part of a recovery is preferable to leaving too much exposed to an unresolved funding or demand surprise.</p>
+<p>Neutral, I agree that a modest ON holding need not be cut mechanically. But a “limited” position must still fit a loss budget. From the dated $84.89 close, $80.46 was about 5.2% lower before slippage, and a gap could make the exit worse. ON’s strong volume does not remove that risk while the weekly SuperTrend remains down and the daily z-score is +2.66.</p>
+<p>I would keep the SELL call: trim ON promptly if it exceeds 0.5× a standard allocation, rather than wait for another rally or for $80.46 to break. Treat 0.5× as a ceiling, not a target; a volatility-sensitive or semiconductor-heavy portfolio may warrant 0–0.25× or no position. If already below the ceiling, size any remainder to the actual loss limit. Treat $82.96 as an early warning and a sustained break below $80.46 as a reason to reduce further, not a guaranteed stop. I would not initiate or short ON on these signals; adding should wait for clearer deal economics and cash generation under sustainable capital spending.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with the SELL direction for ON, but I’d frame it as reducing risk, not making a call that the rebound is over. The Aggressive Analyst is right to preserve some upside: July-quarter revenue rose 9.2% year over year, operating profit recovered, and October 2’s rally had strong volume. But treating 0.5× as the amount to retain would be too optimistic for an investor already concentrated in semiconductors. The cheaper reported Synaptics offer does not establish its financing cost or returns, and first-half operating cash flow fell despite higher free cash flow driven by lower capital spending. A close above $86.45 would improve the chart, not answer those questions.</p>
+<p>The Conservative Analyst is right that waiting can leave an oversized position exposed. Still, the roughly $2.19 billion difference between the reported offer and ON’s July cash balance is not a verified funding shortfall; the funding mix and operating cash needs are unknown. Cutting every position to 0–0.25× could also give up too much of a genuine recovery. The weekly SuperTrend remains down, but that alone does not erase the improving quarter or the rebound’s participation. High Treasury yields add pressure to valuation and financing, while weaker jobs news may support technology sentiment; neither macro argument settles the trade.</p>
+<p>My adjustment is to trim ON holdings above 0.5× a standard allocation in stages, using 0.5× as a ceiling, not a target. If already below it, decide whether further selling is warranted by your cash-risk limit and exposure to similar stocks; a volatility-sensitive investor may reasonably prefer 0–0.25×. If uninvested, don’t buy solely on the October 2 reference close of $84.89 or an $86.45 breakout. Watch $82.96 for early gap weakness and a sustained break below $80.46 as reason to reassess or reduce what remains—not as a guaranteed exit price. I’d consider increasing ON only when the deal’s funding and expected returns, sustained cash generation, and price action collectively improve.
+Neutral Analyst: I still support SELL for ON as a reduction in exposure, not a bet that the recovery has ended. Aggressive Analyst, the heavy-volume rebound and July-quarter improvement justify keeping room for upside, but they do not make 0.5× a suitable holding for everyone. ON’s estimated $426 million of quarterly free cash flow followed unusually low capital spending, while first-half operating cash flow declined. Nor does a reported $1.3 billion reduction in the offer establish that the all-cash deal will earn an adequate return. The weekly trend remains down, and low-confidence bullish sentiment is a poor reason to let a position exceed its risk budget.</p>
+<p>Conservative Analyst, I agree that an oversized ON holding should be cut before waiting for $80.46. But reducing every holder toward 0–0.25× would be too cautious without knowing their other semiconductor exposure or loss tolerance. The roughly $2.19 billion difference between the reported offer and July cash is a funding question, not a verified shortfall. Higher yields make financing more consequential; they do not rule out a sustained business recovery.</p>
+<p>My practical adjustment is to trim ON above 0.5× a standard allocation promptly, in stages as liquidity permits, and treat 0.5× as a ceiling rather than a target. Below that ceiling, further selling should depend on the caller’s total exposure and cash-risk limit. From the $84.89 reference close, $80.46 is $4.43 away—about 1.23 times the reported ATR—before any gap or slippage. I would treat $82.96 as an early warning and a sustained break below $80.46 as a reason to reduce remaining exposure, not as a guaranteed stop price. If uninvested, I would not initiate ON at the reference close or on an $86.45 breakout alone; stronger price action needs to be weighed alongside documented funding terms and cash generation under sustainable investment.
+Neutral Analyst: Aggressive Analyst, I agree with selling excess ON into strength while preserving some upside. But the reported $1.3 billion reduction in the offer price does not establish better returns: the proposed consideration has shifted from stock to cash, and the funding cost is still unknown. Nor do one high-volume session and ADX just above 25 resolve the bearish weekly trend or the stretched daily price. Those signals support a limited residual position, not a presumption that 0.5× is right for every holder.</p>
+<p>Conservative Analyst, I agree that an oversized ON position should be trimmed now rather than held until $80.46 breaks. But making 0–0.25× the default would give too little weight to July-quarter revenue growth, recovered operating profit and the possibility that the rebound persists. The roughly $2.19 billion difference between the reported offer and July cash is a question about funding, not a verified shortfall. High yields increase that question’s importance; they do not settle the deal’s outcome.</p>
+<p>I would keep the SELL decision: trim ON above 0.5× a standard allocation promptly, in stages as liquidity permits, and treat 0.5× as a ceiling, not a target. Below it, let your loss budget and exposure to other semiconductor stocks determine whether to hold or trim further. At the dated $84.89 reference close, $80.46 is $4.43 lower—about 5.2% before gaps or slippage—so it is a trigger to reduce remaining exposure on a sustained break, not a guaranteed stop price. Watch $82.96 for earlier gap weakness. If uninvested, do not initiate ON or short it on these signals alone; a move above $86.45 would need to be weighed against clearer financing terms and cash generation under sustainable capital spending.
+Neutral Analyst: Aggressive, I agree that ON’s improved July quarter and high-volume rebound make a full exit hard to justify. But “sell into strength” should not mean waiting for another rally before fixing an oversized position. The estimated $460 million of quarterly operating cash flow is encouraging, yet first-half operating cash flow declined, and the cheaper reported Synaptics offer has changed from stock to cash. Less dilution is a potential benefit, not evidence that the financing cost or deal returns will be attractive. Bullish sentiment is also low-confidence and heavily tied to one repeated news event.</p>
+<p>Conservative, you’re right that an oversized ON holding should be reduced before a break below $80.46. But I wouldn’t make 0–0.25× the default for every holder. July-quarter revenue grew 9.2% year over year, operating profit recovered, and buyers participated in the rebound. A limited holding can preserve exposure to further recovery while funding details are investigated. The 5.24% Treasury yield raises the stakes for financing; it is not ON’s borrowing rate or proof the deal fails.</p>
+<p>My recommendation remains SELL as a sizing decision. Trim ON promptly if it exceeds 0.5× your standard allocation, in stages as liquidity permits; <strong>0.5× is a ceiling, not a target</strong>. If already below it, decide whether to trim further based on your loss budget and exposure to other semiconductor holdings. At the dated $84.89 close, $80.46 was $4.43 lower before gaps or slippage: use $82.96 as an early warning and a sustained break below $80.46 to reduce the remainder, not as a guaranteed stop. If uninvested, don’t initiate ON on an $86.45 breakout alone. Reassess a larger allocation when financing terms and cash generation under sustainable capital spending are clearer, alongside sustained price strength.
+Neutral Analyst: Aggressive, I agree that ON’s estimated $460 million of July-quarter operating cash flow and high-volume rebound make a full exit costly if the recovery continues. But that cash-flow figure is derived from half-year statements, and first-half operating cash flow still fell while capital spending dropped sharply. The cheaper reported Synaptics offer may reduce dilution, yet replacing stock with $5.7 billion in cash leaves the funding cost and returns unanswered. Those are reasons to preserve only risk-budgeted upside, not to regard 0.5× as the natural amount to keep. One strong session and a rising daily trend do not resolve ON’s bearish weekly trend.</p>
+<p>Conservative, I agree that an oversized ON holding should be trimmed before the chart breaks. But making 0–0.25× the default for every holder gives too little weight to the improved July-quarter revenue and operating profit. The roughly $2.19 billion difference between the reported offer and July cash is a financing question, not a verified shortfall. Likewise, the 5.24% Treasury yield raises the stakes for borrowing and valuation, but it is not ON’s borrowing rate. Weaker jobs news could support tech sentiment even as it raises demand concerns; neither macro effect settles the case.</p>
+<p>I would keep SELL for ON as a sizing decision. If holdings exceed 0.5× a standard allocation, trim the excess promptly in stages; use 0.5× as a ceiling, not a target. If already below it, sell more only if the position, including correlated semiconductor exposure, exceeds the caller’s loss budget. At the dated $84.89 close, $80.46 was $4.43 lower before slippage, so it is a trigger for reducing the remainder on a sustained break, not a guaranteed stop or maximum loss; $82.96 offers an earlier warning. If uninvested, do not initiate ON on an $86.45 breakout alone. Clearer deal funding and cash generation under sustainable investment would matter more for adding than bullish sentiment, which remains low-confidence.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: Underweight ON over 1–3 months: promptly trim any holding above 0.5× your standard allocation in stages, treating 0.5× as a ceiling, not a target; size any smaller remainder to your loss budget and semiconductor exposure. If uninvested, do not initiate at the dated $84.89 close or on an $86.45 breakout alone, and do not short ON on these signals. Watch $82.96 for early gap weakness; a sustained break below $80.46 warrants reducing remaining exposure, but gaps and slippage can defeat that risk level.</p>
+<p><strong>Investment Thesis</strong>: The analysts' case for reducing ON wins on sizing, not on forecasting a failed recovery: July-quarter revenue grew 9.2% year over year, operating income reached $259 million and derived quarterly operating cash flow was $460 million, supporting a limited residual position rather than a blanket exit. Against that, first-half operating cash flow fell to $699 million from $787 million while capex fell to $56 million from $226 million, making improved free cash flow less conclusive. The reported $5.7 billion cash offer exceeds July's $3.514 billion cash balance by about $2.19 billion, a funding question rather than a verified shortfall; financing costs and returns are unknown. ON has rallied roughly 27% since September 16 but its weekly SuperTrend remains down and daily z-score is +2.66 despite strong volume, favoring a partial trim. There is no defensible current valuation or verified consensus target, so the technical objective is the reported 50-day SMA of $76.65: $84.89 latest close minus $76.65 equals $8.24, or about 9.7% downside. That moving average is a tentative objective, not intrinsic value or guaranteed support. Reconsider a larger allocation only after durable margin and operating-cash-flow performance at credible capex, documented deal funding and returns, and improved higher-timeframe price action.</p>
+<p><strong>Current Price</strong>: 84.89</p>
+<p><strong>Price Target</strong>: 76.65</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1–3 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
