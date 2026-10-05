@@ -1,0 +1,1783 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/SMCI/20261003_gpt-6-sol_20261004_175059/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: SMCI - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-smci" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: SMCI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/BichengWang/TradingAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    BichengWang/TradingAgents
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smci-technical-outlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMCI technical outlook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trend-a-consequential-weekly-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trend: a consequential weekly test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#momentum-participation-and-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Momentum, participation, and exhaustion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-plan-and-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading plan and risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smci-sentiment-2026-09-26-to-2026-10-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMCI sentiment | 2026-09-26 to 2026-10-03
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alignments-and-divergences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alignments and divergences
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dominant-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dominant themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#catalysts-and-risks-to-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Catalysts and risks to monitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smci-trading-and-macro-report-october-3-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMCI trading and macro report — October 3, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-this-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed this week
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#smci-fundamental-report-as-of-october-3-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SMCI fundamental report — as of October 3, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earnings-and-financial-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Earnings and financial history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-and-balance-sheet-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow and balance-sheet quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-traders-canand-cannotconclude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What traders can—and cannot—conclude
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="trading-analysis-report-smci">Trading Analysis Report: SMCI<a class="headerlink" href="#trading-analysis-report-smci" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-03</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-04 17:50:59</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-sol, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $43.69
+<strong>Price As Of</strong>: 2026-10-02</p>
+<h4 id="smci-technical-outlook">SMCI technical outlook<a class="headerlink" href="#smci-technical-outlook" title="Permanent link">&para;</a></h4>
+<p><strong>SMCI is in a daily upswing, but it has not yet overturned its bearish weekly and monthly trends.</strong> October 3 is a Saturday, so the October 2 close is the latest verified price. The eight indicators selected below separate trend direction and strength from momentum, volatility, participation, and exhaustion.</p>
+<h4 id="trend-a-consequential-weekly-test">Trend: a consequential weekly test<a class="headerlink" href="#trend-a-consequential-weekly-test" title="Permanent link">&para;</a></h4>
+<p>SMCI’s <strong>daily SuperTrend is up</strong>, with a trailing line at <strong>$36.57</strong>. Its <strong>weekly SuperTrend remains down</strong>, with a line at <strong>$44.40</strong>, and its <strong>monthly SuperTrend remains down</strong>, with a line at <strong>$69.53</strong>. The higher-timeframe signals deserve more weight: this is a promising daily advance <em>within</em> a still-bearish weekly and monthly structure, not an established long-term reversal.</p>
+<p>The October 2 intraday high of <strong>$44.59</strong> crossed the weekly line, but SMCI closed at <strong>$43.69</strong>, below it. That distinction matters. A future daily close above the line would strengthen the breakout case; confirmation of a <strong>weekly</strong> trend change requires assessing the completed weekly bar against the <em>then-current</em> weekly line.</p>
+<p><strong>ADX was 28.19</strong>, above the commonly used 25 trend-strength threshold. That makes the current move more noteworthy than a weak-range fluctuation, but ADX does not establish direction on its own. The opposing SuperTrend timeframes remain the central qualification.</p>
+<h4 id="momentum-participation-and-exhaustion">Momentum, participation, and exhaustion<a class="headerlink" href="#momentum-participation-and-exhaustion" title="Permanent link">&para;</a></h4>
+<p>The verified <strong>RSI was 62.96</strong>: positive momentum, though not at the conventional 70 overbought threshold. The verified <strong>MACD histogram was +0.08</strong>, following a slightly negative reading on October 1. That is an improvement, but a small positive histogram is not yet compelling evidence of sustained acceleration.</p>
+<p><strong>OBV has risen alongside price since mid-September</strong>, supporting the view that participation has accompanied the advance. Watch whether that relationship persists on an attempted breakout; a higher price without a corresponding OBV rise would weaken the signal. October 2 volume was <strong>44,415,100 shares</strong>.</p>
+<p>There are two distinct cautions against chasing. The <strong>weekly TD-9 is −9</strong>, a completed <em>sell-setup</em> and therefore a reversal watch—not a prediction that SMCI must fall. Monthly and daily counts are each <strong>−1</strong>. Meanwhile, the <strong>20-period z-scores are +1.33 weekly, +0.61 monthly, and +1.62 daily</strong>. Price is above its recent weekly and daily means, but none of these readings meets the ±2 stretch threshold. Together, they describe an advance with some room to develop, yet one approaching a higher-timeframe decision point with an exhaustion warning already present.</p>
+<h4 id="trading-plan-and-risk">Trading plan and risk<a class="headerlink" href="#trading-plan-and-risk" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Breakout case:</strong> Look for a daily close above the <em>updated</em> weekly SuperTrend line, currently <strong>$44.40</strong>, with continued OBV strength and a widening positive MACD histogram. Treat that as an <strong>early</strong> signal; a completed weekly close above the updated weekly line would carry more weight. The October 2 intraday move alone did not meet this test.</li>
+<li><strong>Failed-advance case:</strong> A close below <strong>$41.07</strong>, SMCI’s verified September 30 close, would surrender a recent closing reference and call the near-term upswing into question. This is a decision level, <strong>not a historically validated support floor</strong>. Deteriorating OBV or a return to a negative MACD histogram would add caution.</li>
+<li><strong>Position sizing:</strong> Verified ATR is <strong>$2.29</strong>, so ordinary price movement can be substantial. The daily SuperTrend line at <strong>$36.57</strong> is <strong>$7.12 below</strong> the latest close—about <strong>3.1 ATRs</strong> away. A trader using that trailing line as an exit reference should size for the wide risk rather than assume the stop will prevent slippage or an overnight gap. SuperTrend lines update as new bars form.</li>
+</ul>
+<p><strong>Bottom line:</strong> SMCI merits a breakout watch, not an unconditional bullish call. Daily momentum and participation favor the advance, while the unbroken weekly/monthly downtrends and completed weekly TD-9 sell-setup argue for confirmation and disciplined sizing.</p>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest reading</th>
+<th>Why it matters for SMCI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SuperTrend</td>
+<td>Weekly <strong>down, $44.40</strong>; monthly <strong>down, $69.53</strong>; daily <strong>up, $36.57</strong></td>
+<td>Defines the conflicting timeframes and dynamic exit/confirmation lines.</td>
+</tr>
+<tr>
+<td>ADX</td>
+<td><strong>28.19</strong></td>
+<td>Indicates meaningful trend strength; does not specify direction.</td>
+</tr>
+<tr>
+<td>MACD histogram</td>
+<td><strong>+0.08</strong></td>
+<td>Short-term momentum has improved, but remains modest.</td>
+</tr>
+<tr>
+<td>RSI</td>
+<td><strong>62.96</strong></td>
+<td>Positive momentum without a conventional overbought reading.</td>
+</tr>
+<tr>
+<td>ATR</td>
+<td><strong>$2.29</strong></td>
+<td>Essential for sizing and allowing for SMCI’s volatility.</td>
+</tr>
+<tr>
+<td>OBV</td>
+<td>Rising alongside the recent price advance</td>
+<td>Tests whether participation confirms a breakout.</td>
+</tr>
+<tr>
+<td>TD-9</td>
+<td>Weekly <strong>−9</strong>; monthly <strong>−1</strong>; daily <strong>−1</strong></td>
+<td>Completed weekly sell-setup warrants an exhaustion watch.</td>
+</tr>
+<tr>
+<td>Z-score</td>
+<td>Weekly <strong>+1.33</strong>; monthly <strong>+0.61</strong>; daily <strong>+1.62</strong></td>
+<td>Shows above-mean positioning, but no ±2 statistical extreme.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mildly Bullish</strong> (Score: 6.1/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="smci-sentiment-2026-09-26-to-2026-10-03">SMCI sentiment | 2026-09-26 to 2026-10-03<a class="headerlink" href="#smci-sentiment-2026-09-26-to-2026-10-03" title="Permanent link">&para;</a></h4>
+<h4 id="source-by-source-evidence">Source-by-source evidence<a class="headerlink" href="#source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>Yahoo Finance news:</strong> The supplied feed contains 19 headlines, of which eight explicitly name SMCI or Super Micro; the remaining 11 concern peers, the broader AI/data-center sector, or topics whose connection to SMCI cannot be verified from their headlines. The clearest positive SMCI headlines are StockStory’s “Why Super Micro (SMCI) Stock Is Up Today,” GuruFocus’s “Super Micro Shares Jump as AI Orders Surge,” and Barchart’s “Why Super Micro Computer Stock Has More Room to Run.” The first two report a positive price move and, in GuruFocus’s framing, stronger AI orders; Barchart’s further-upside framing is commentary, not an established event. Simply Wall St.’s question about SMCI expanding its AI-infrastructure role adds a favorable theme but supplies no detail establishing the scale of any expansion. Zacks’s investor-attention headline offers no directional conclusion. Two Zacks SMCI-versus-WDC value headlines pose a comparison without giving its answer, and should not be treated as two independent bullish verdicts. A 24/7 Wall St. headline says Hewlett Packard Enterprise jumped 5% on an AMD order while Dell and Super Micro barely moved: a counterpoint to broad claims that every AI-infrastructure development moves SMCI. The cash-burning/challenges, revenue-growth, and other sector headlines do not establish that those descriptors apply to SMCI. Headlines alone do not provide order size, article details, price series, financial results, or a verified date for each event within the interval.</p>
+<p><strong>StockTwits:</strong> Unavailable for this historical window. There are no usable message counts, user Bullish/Bearish tags, screened stance counts, or bullish/bearish ratio. This is a retrieval limitation, <strong>not</strong> evidence of zero SMCI discussion or neutral retail sentiment.</p>
+<p><strong>Reddit:</strong> Skipped because Reddit collection was disabled. No posts, body excerpts, or subreddit-specific observations are available for r/wallstreetbets, r/stocks, or r/investing; no inference about discussion or engagement is possible.</p>
+<h4 id="alignments-and-divergences">Alignments and divergences<a class="headerlink" href="#alignments-and-divergences" title="Permanent link">&para;</a></h4>
+<p>A cross-source comparison cannot be made: there is only one usable source, the headline feed. Within it, reports that SMCI rose on AI-order interest coexist with a peer-order headline in which Super Micro barely moved. These need not describe the same trading session, so they are a caution against extrapolating a uniform market reaction, not proof of contradictory data. There is no measured retail-versus-news divergence.</p>
+<h4 id="dominant-themes">Dominant themes<a class="headerlink" href="#dominant-themes" title="Permanent link">&para;</a></h4>
+<p>AI-server and data-center infrastructure demand is the principal favorable narrative for SMCI, particularly the headline attributing a share jump to surging AI orders. Investor attention and possible additional upside appear in other headlines, but the upside language is opinion. Value relative to WDC is raised twice without a stated outcome. HPE, Dell, NetApp and other infrastructure names appear as sector context, not evidence that their orders or prospects accrue to SMCI.</p>
+<h4 id="catalysts-and-risks-to-monitor">Catalysts and risks to monitor<a class="headerlink" href="#catalysts-and-risks-to-monitor" title="Permanent link">&para;</a></h4>
+<p>The reported AI-order acceleration is the main potential catalyst, conditional on corroboration of order amounts, timing and conversion to revenue; none is supplied. A separate AMD order benefiting HPE highlights peer-specific catalysts and competition for investor attention, without demonstrating lost SMCI business. Risks in interpreting this sentiment include overreading recent share-move headlines, treating a question-form valuation headline as a favorable verdict, or attributing the unspecified cash-burning headline to SMCI. No earnings date, guidance update, order disclosure details, valuation figures, or verified SMCI cash-flow data are provided. This is a mildly positive <strong>headline-sentiment signal</strong>, not a price forecast or trade recommendation.</p>
+<table>
+<thead>
+<tr>
+<th>Sentiment signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence / limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Share gains and AI-order narrative</td>
+<td>Positive</td>
+<td>StockStory; GuruFocus via Yahoo Finance</td>
+<td>“Stock Is Up Today” and “Shares Jump as AI Orders Surge”; magnitude of orders and underlying data unavailable.</td>
+</tr>
+<tr>
+<td>AI-infrastructure opportunity / upside commentary</td>
+<td>Positive, lower evidentiary weight</td>
+<td>Simply Wall St.; Barchart via Yahoo Finance</td>
+<td>SMCI expansion posed as a question; “More Room to Run” is an opinion headline.</td>
+</tr>
+<tr>
+<td>Attention and relative value</td>
+<td>Indeterminate</td>
+<td>Zacks via Yahoo Finance</td>
+<td>Investor-attention headline and two SMCI/WDC comparison headlines contain no value verdict.</td>
+</tr>
+<tr>
+<td>Uneven response to peer order</td>
+<td>Cautionary</td>
+<td>24/7 Wall St. via Yahoo Finance</td>
+<td>HPE reportedly jumped 5% on an AMD order; Super Micro reportedly barely moved.</td>
+</tr>
+<tr>
+<td>Retail sentiment</td>
+<td>Unknown</td>
+<td>StockTwits</td>
+<td>Historical messages unavailable; ratio and sample size cannot be calculated.</td>
+</tr>
+<tr>
+<td>Community sentiment</td>
+<td>Unknown</td>
+<td>Reddit</td>
+<td>Collection disabled; no posts to assess.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assessment:</strong> SMCI headlines lean positive, but an all-source read is impossible. Confidence is <strong>low</strong> because StockTwits is unavailable, Reddit is disabled, and the usable news consists of headlines rather than full articles or corroborating figures.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="smci-trading-and-macro-report-october-3-2026">SMCI trading and macro report — October 3, 2026<a class="headerlink" href="#smci-trading-and-macro-report-october-3-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Bottom line:</strong> SMCI has a favorable AI-infrastructure narrative, but this week’s company-specific evidence is thinner than the headlines suggest. A report that <a href="https://finance.yahoo.com/technology/ai/articles/super-micro-shares-jump-ai-171751611.html">AI orders are surging</a> coincides with positive share-price coverage, yet the available news feed does not establish order values, delivery timing, margins, or cash collection. For SMCI, confirmation of <em>profitable, cash-generating</em> demand matters more than the headline alone.</p>
+<h4 id="what-changed-this-week">What changed this week<a class="headerlink" href="#what-changed-this-week" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>SMCI and its peers:</strong> Coverage described <a href="https://finance.yahoo.com/markets/stocks/articles/why-super-micro-smci-stock-013403342.html">SMCI shares rising</a> alongside AI-order enthusiasm. Separately, a report said <a href="https://finance.yahoo.com/markets/stocks/articles/hewlett-packard-enterprise-jumps-5-144133368.html">HPE rose on an AMD order while Dell and SMCI barely moved</a>. That contrast argues against assuming every AI-server announcement will lift SMCI equally. The supplied company stories are principally secondary-market coverage, not verified order disclosures.</li>
+<li><strong>Jobs versus inflation:</strong> September nonfarm payrolls increased <strong>29,000</strong>, calculated from <a href="https://fred.stlouisfed.org/series/PAYEMS">FRED’s payroll series</a>; <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> rose to <strong>4.2%</strong> from 4.1%. Reports attributed an <a href="https://finance.yahoo.com/markets/article/tech-stocks-jump-after-jobs-report-miss-treasury-yields-ease-alphacheck-134916934.html">October 2 technology rally to a jobs-report miss and easing yields</a>. But the latest available August readings still put headline <a href="https://fred.stlouisfed.org/series/CPIAUCSL">CPI</a> <strong>3.35%</strong> and <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE</a> <strong>3.01%</strong> above their year-earlier index levels. Softer hiring may help rate-sensitive stocks, while persistent inflation limits that relief.</li>
+<li><strong>Rates remain a headwind:</strong> The <a href="https://fred.stlouisfed.org/series/DFEDTARL">Fed target range</a> is <strong>3.75%–4.00%</strong>, up 25 basis points since September 16. The <a href="https://fred.stlouisfed.org/series/DGS10">10-year Treasury yield</a> was <strong>5.24% on October 1</strong>, versus 5.17% on September 25. Thus, reports of late-week yield declines should not be mistaken for a sustained weekly decline. Higher borrowing costs can weigh on data-center customers’ project economics and on SMCI’s valuation.</li>
+<li><strong>Global cost risk:</strong> <a href="https://fred.stlouisfed.org/series/DCOILWTICO">WTI crude</a> last registered <strong>$96.16 on September 29</strong>, up from $83.99 on August 14. Reporting also flags <a href="https://finance.yahoo.com/markets/article/the-iran-war-is-driving-inflation-higher--and-its-not-just-because-of-oil-100000797.html">Iran-related inflation pressure</a>. Energy-price volatility is worth monitoring for its effects on inflation, power-intensive data-center budgets, and yields; the oil observation is several days old.</li>
+</ul>
+<p><strong>Actionable read-through for SMCI:</strong> Treat an order-driven rally as more durable <strong>only if</strong> SMCI confirms the orders and demonstrates that revenue conversion, gross margins, working capital, and operating cash flow support them. Watch whether SMCI outperforms Dell and HPE on <em>SMCI-specific</em> disclosures rather than moving solely with the broader tech rally. If yields resume rising or order details remain unconfirmed, avoid treating a headline-driven jump as proof of improved fundamentals. No current SMCI price or technical levels were supplied, so this report does not set a price target or entry point.</p>
+<p><strong>Forecast-data limitation:</strong> Prediction-market tools withheld October 3 odds because their live markets lack a historical snapshot for that date; no market-implied Fed or recession probability is asserted here.</p>
+<table>
+<thead>
+<tr>
+<th>Trading factor</th>
+<th>Evidence available as of October 3</th>
+<th>Implication for SMCI</th>
+<th>What to check next</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI orders</td>
+<td>Secondary report says <a href="https://finance.yahoo.com/technology/ai/articles/super-micro-shares-jump-ai-171751611.html">orders surged</a>; amounts unverified here</td>
+<td>Potential positive catalyst, with low visibility into economics</td>
+<td>Company disclosure, shipment timing, margins</td>
+</tr>
+<tr>
+<td>Labor and tech sentiment</td>
+<td>September payrolls <strong>+29,000</strong>; unemployment <strong>4.2%</strong></td>
+<td>Softer jobs may support rate-sensitive technology shares</td>
+<td>Whether weaker demand offsets any yield relief</td>
+</tr>
+<tr>
+<td>Inflation and rates</td>
+<td>August CPI <strong>+3.35% YoY</strong>; core PCE <strong>+3.01% YoY</strong>; 10-year yield <strong>5.24%</strong> on October 1</td>
+<td>Limits scope for a rates-led SMCI rally</td>
+<td>Next inflation readings and Treasury yields</td>
+</tr>
+<tr>
+<td>Energy and geopolitics</td>
+<td>WTI <strong>$96.16</strong> on September 29; inflation-pressure reporting</td>
+<td>Possible pressure on data-center economics and bond yields</td>
+<td>Fresh oil prices and customer spending plans</td>
+</tr>
+<tr>
+<td>Execution risk</td>
+<td>Headlines do not verify cash conversion</td>
+<td>Revenue growth alone may not justify chasing SMCI</td>
+<td>Working capital, operating cash flow, peer-relative performance</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="smci-fundamental-report-as-of-october-3-2026">SMCI fundamental report — as of October 3, 2026<a class="headerlink" href="#smci-fundamental-report-as-of-october-3-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Company:</strong> Super Micro Computer, Inc. (<strong>SMCI</strong>), a Nasdaq-listed computer-hardware company. The available statement data are SEC EDGAR figures filed by the analysis date, in <strong>USD millions</strong> unless noted. The fundamentals feed withholds its point-in-time company profile, valuation multiples, market capitalization and price range. It also provides no filing or announcement chronology for the past week, so this report <strong>cannot establish that any particular result was newly released during that week</strong>.</p>
+<h4 id="earnings-and-financial-history">Earnings and financial history<a class="headerlink" href="#earnings-and-financial-history" title="Permanent link">&para;</a></h4>
+<p>SMCI reported <strong>FY2026 revenue of $39.06 billion</strong>, up <strong>77.8%</strong> from FY2025’s $21.97 billion. Growth has been substantial over several years: revenue was $7.12 billion in FY2023 and $14.99 billion in FY2024. FY2026 operating income rose to <strong>$2.77 billion</strong> from $1.25 billion, and net income rose to <strong>$2.23 billion</strong> from $1.05 billion. Reported diluted EPS was <strong>$3.26</strong>, versus <strong>$1.68</strong> in FY2025; traders should check share-count and split adjustments before extending EPS comparisons further back.</p>
+<p>Profitability has not risen uniformly with sales. FY2026 gross margin was <strong>10.82%</strong>, down slightly from <strong>11.06%</strong> in FY2025 and well below <strong>18.01%</strong> in FY2023. FY2026 operating margin was <strong>7.09%</strong>, versus <strong>5.70%</strong> a year earlier.</p>
+<p>The latest June-quarter income figures are <strong>derived by subtracting the reported first nine months from the FY2026 annual totals</strong>, because the quarterly income feed ends in March:</p>
+<table>
+<thead>
+<tr>
+<th>Income measure</th>
+<th style="text-align: right;">June 2026 quarter, derived</th>
+<th style="text-align: right;">March 2026 quarter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revenue</td>
+<td style="text-align: right;">$11,120m</td>
+<td style="text-align: right;">$10,243m</td>
+</tr>
+<tr>
+<td>Gross profit</td>
+<td style="text-align: right;">$1,942m</td>
+<td style="text-align: right;">$1,019m</td>
+</tr>
+<tr>
+<td>Gross margin</td>
+<td style="text-align: right;"><strong>17.46%</strong></td>
+<td style="text-align: right;"><strong>9.95%</strong></td>
+</tr>
+<tr>
+<td>Operating income</td>
+<td style="text-align: right;">$1,488m</td>
+<td style="text-align: right;">$626m</td>
+</tr>
+<tr>
+<td>Net income</td>
+<td style="text-align: right;">$1,178m</td>
+<td style="text-align: right;">$483m</td>
+</tr>
+</tbody>
+</table>
+<p>June-quarter revenue was about <strong>93% above</strong> the derived June 2025 quarter, but the more consequential change was margin: June 2026 gross margin reached <strong>17.46%</strong>, compared with approximately <strong>9.45%</strong> a year earlier. That quarter supplied <strong>about 53% of FY2026 net income</strong> on roughly <strong>28% of annual revenue</strong>. <strong>Trading implication:</strong> test whether this sharp margin improvement is repeatable rather than extrapolating the June profit rate automatically. At June-quarter sales, a return to FY2026’s <strong>10.82%</strong> annual gross margin would reduce gross profit by roughly <strong>$739 million</strong>, before changes in operating costs.</p>
+<h4 id="cash-flow-and-balance-sheet-quality">Cash flow and balance-sheet quality<a class="headerlink" href="#cash-flow-and-balance-sheet-quality" title="Permanent link">&para;</a></h4>
+<p><strong>Cash conversion is SMCI’s principal fundamental caution.</strong> FY2026 operating cash flow was <strong>negative $6.81 billion</strong>, despite $2.23 billion of net income. After $162 million of capital expenditure, estimated free cash flow was <strong>negative $6.97 billion</strong>. This reverses FY2025’s <strong>positive $1.66 billion</strong> operating cash flow and approximately <strong>$1.53 billion</strong> free cash flow. FY2024 free cash flow was also negative, at approximately <strong>$2.61 billion</strong>.</p>
+<p>The cash-flow feed labels December as <strong>six months</strong> and March as <strong>nine months</strong>; those columns must not be treated as standalone quarters. Subtracting cumulative figures implies roughly <strong>negative $6.62 billion</strong> operating cash flow in the March 2026 quarter, followed by <strong>positive $747 million</strong> in the June quarter. That June improvement is encouraging but did not erase the full-year outflow. The available summary does <strong>not</strong> identify the working-capital accounts or other items responsible.</p>
+<p>At June 30, 2026, SMCI held <strong>$7.52 billion in cash</strong>, against <strong>$29.95 billion in assets</strong>, <strong>$15.47 billion in total liabilities</strong>, and <strong>$14.48 billion in equity</strong>. Current assets of <strong>$27.73 billion</strong> exceeded current liabilities of <strong>$7.16 billion</strong>, producing a <strong>3.87× current ratio</strong>. That is substantial near-term balance-sheet coverage, although the ratio fell from approximately <strong>5.25×</strong> a year earlier. The summary does not separate borrowings from other liabilities, so it cannot establish net debt.</p>
+<p>FY2026 financing cash inflow was <strong>$9.48 billion</strong>, including a derived <strong>$5.57 billion</strong> in the June quarter. Cash rose from <strong>$1.29 billion in March to $7.52 billion in June</strong>. Thus, the stronger year-end cash balance coincided with substantial financing inflows—not just internally generated cash. Before treating that liquidity increase as durable, inspect the FY2026 filing for financing terms, maturities, issuance and dilution, and the receivables and inventory changes behind operating cash flow.</p>
+<h4 id="what-traders-canand-cannotconclude">What traders can—and cannot—conclude<a class="headerlink" href="#what-traders-canand-cannotconclude" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Constructive confirmation:</strong> Subsequent results that sustain the June-quarter gross-margin improvement <em>and</em> produce positive operating cash flow would strengthen the case that FY2026 earnings are converting into cash.</li>
+<li><strong>Warning signal:</strong> Renewed large operating cash outflows, a margin retreat toward the <strong>10.82%</strong> FY2026 average, or materially dilutive or costly financing would weaken that case even if revenue remains high.</li>
+<li><strong>Information limits:</strong> Point-in-time valuation data and recent insider transactions were withheld. The insider result <strong>does not mean there was no trading</strong>; the vendor cannot establish which transactions were public by October 3. No price-based entry point, valuation judgment, past-week filing claim, or insider-buying signal is supported by these tools.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>SMCI key point</th>
+<th>Evidence as of October 3, 2026</th>
+<th>Trader takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scale and growth</td>
+<td>FY2026 revenue <strong>$39.06bn</strong>, <strong>+77.8%</strong> year over year</td>
+<td>Strong expansion; assess the growth rate against future margins</td>
+</tr>
+<tr>
+<td>Annual profitability</td>
+<td>Net income <strong>$2.23bn</strong>; gross margin <strong>10.82%</strong> versus <strong>18.01%</strong> in FY2023</td>
+<td>Earnings grew, but long-run gross-margin compression matters</td>
+</tr>
+<tr>
+<td>June-quarter inflection</td>
+<td>Derived gross margin <strong>17.46%</strong>; about <strong>53%</strong> of annual net income earned in the quarter</td>
+<td>Verify repeatability and any nonrecurring effects</td>
+</tr>
+<tr>
+<td>Cash conversion</td>
+<td>FY2026 operating cash flow <strong>−$6.81bn</strong>; free cash flow about <strong>−$6.97bn</strong></td>
+<td>Key risk despite reported profits</td>
+</tr>
+<tr>
+<td>Liquidity and funding</td>
+<td>June cash <strong>$7.52bn</strong>; current ratio <strong>3.87×</strong>; FY2026 financing inflow <strong>$9.48bn</strong></td>
+<td>Check financing terms and underlying working capital</td>
+</tr>
+<tr>
+<td>Past-week, valuation and insiders</td>
+<td>No verifiable past-week event chronology; valuation and insider data withheld</td>
+<td>Do not infer a fresh catalyst, attractive price, or insider signal</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>My opening bull case for SMCI:</strong> the market has a real reason to revisit this company, but the case rests on execution—not on an AI headline or an assumed cheap valuation.</p>
+<p>SMCI’s FY2026 revenue reached <strong>$39.06 billion, up 77.8%</strong>, from $7.12 billion just three years earlier. Operating income more than doubled year over year to <strong>$2.77 billion</strong>, and operating margin improved from <strong>5.70% to 7.09%</strong>. That combination matters: SMCI has demonstrated the capacity to serve AI-infrastructure demand at substantial scale while growing annual profit. Its June-quarter figures, derived from the annual and nine-month statements, sharpen the opportunity: revenue rose to <strong>$11.12 billion</strong> from $10.24 billion in March, while gross margin rose to <strong>17.46%</strong> from 9.95%. If better margins recur, the earnings potential on a $39 billion revenue base is significant. They are <strong>not yet a reliable forecast</strong>.</p>
+<p>The strongest bear objection is cash, and I wouldn’t wave it away. FY2026 operating cash flow was <strong>negative $6.81 billion</strong>, and the $7.52 billion year-end cash balance coincided with <strong>$9.48 billion of financing inflows</strong>. That is a serious test of earnings quality. The bull counterpoint is narrower but meaningful: the derived June-quarter operating cash flow turned <strong>positive by about $747 million</strong>, versus roughly <strong>negative $6.62 billion</strong> in March. One quarter does not fix the year; it does make sustained cash conversion a plausible, measurable catalyst rather than a purely hypothetical one. Likewise, the June margin rebound is encouraging, but SMCI must prove it can persist.</p>
+<p>I also wouldn’t claim SMCI has an established, unassailable moat. Its demonstrated advantage is <strong>the scale at which it is already generating AI-infrastructure revenue</strong>; the reports of surging orders are a potential catalyst, not verified evidence of order size or profitability. An HPE-specific order moving HPE shares more than SMCI shares does not establish that SMCI lost business. The next company disclosures—shipments, margins, working capital and financing terms—will settle that debate more convincingly than headlines.</p>
+<p>At the <strong>October 2 close of $43.69</strong>, the technical picture supports patience rather than chasing. Rising OBV and an up daily SuperTrend favor the advance, but SMCI closed below the <strong>$44.40 weekly SuperTrend line</strong>, and the monthly trend remains down. I favor a <strong>selective bullish position or breakout watch</strong>, with a completed weekly trend confirmation carrying more weight than an intraday crossing. A close below the recent <strong>$41.07</strong> reference would weaken the near-term case. With valuation data unavailable, I cannot call SMCI cheap; my investment argument is that its proven growth and potential margin-and-cash-flow improvement offer a compelling upside case <strong>if the next results confirm them</strong>.
+Bull Analyst: <strong>Bear, I agree that SMCI has not earned a full-sized position. I disagree that investors must wait for every cash-flow and margin question to be settled before taking any position.</strong> The bull case does not require treating June’s exceptional margin as the new normal.</p>
+<p>Your $739 million June gross-profit stress test is the right one. But holding June operating costs constant, that reduction would still leave roughly <strong>$749 million in quarterly operating income</strong>, versus the reported $1.49 billion—not a loss. At the annual level, SMCI already produced <strong>$2.77 billion in FY2026 operating income</strong>, up from $1.25 billion, while its gross margin <em>slipped</em> slightly year over year. Operating margin nevertheless rose from <strong>5.70% to 7.09%</strong>. That is evidence of operating leverage at scale, even though it is not proof of durable pricing power. I would not build a forecast around the 17.46% June gross margin.</p>
+<p>Cash is your strongest objection. <strong>Negative $6.81 billion in FY2026 operating cash flow is not sustainable</strong>, and financing inflows helped produce the $7.52 billion cash balance. But June’s derived <strong>positive $747 million of operating cash flow</strong> is an operating result, not a financing inflow. It does not repair the year or reveal what happened in working capital; it does show that the March quarter’s severe outflow was not repeated in June. Cash of $7.52 billion and a <strong>3.87× current ratio</strong> give SMCI room to demonstrate whether that change can persist, though the financing terms remain essential to assess.</p>
+<p>On competition, I am not claiming an unassailable moat or assigning SMCI HPE’s AMD order. I am pointing to business already won: <strong>$39.06 billion of FY2026 revenue, up 77.8%</strong>, followed by <strong>$11.12 billion in derived June-quarter sales</strong>. Secondary headlines about surging AI orders may signal further opportunity, but they supply no verified order economics and are not the foundation of my case.</p>
+<p>That distinction also shapes my timing. At the <strong>October 2 close of $43.69</strong>, rising OBV and the daily upswing support a <em>small, risk-sized bullish position</em>; the close below the <strong>$44.40 weekly SuperTrend line</strong> and the bearish monthly trend argue against an aggressive add. I would increase conviction only with a completed weekly trend confirmation and, more importantly, evidence that margins and operating cash flow hold up without costly or dilutive financing. A close below <strong>$41.07</strong> would weaken the near-term setup, not guarantee an exit price.</p>
+<p><strong>My recommendation for SMCI is selective accumulation, not an unconditional buy.</strong> Waiting for proof is defensible, but it also means foregoing exposure to a company that has already delivered substantial revenue growth and operating-profit expansion. The position should be sized so that, if June’s cash and margin improvements prove temporary, the unresolved risk—not the AI narrative—determines the loss.
+Bull Analyst: <strong>Bear, your cash-flow objection is the strongest argument against SMCI.</strong> The roughly $9.04 billion gap between FY2026 net income and operating cash flow is real, and I would not treat the $7.52 billion cash balance as proof of self-funded growth when financing inflows were $9.48 billion. Without the financing terms or a valuation multiple, I cannot demonstrate that SMCI is cheap. My disagreement is narrower: those gaps justify a <em>small initial investment</em>, not necessarily zero exposure until the improvement is fully established.</p>
+<p>The operating evidence is stronger than a one-quarter margin bet. SMCI grew FY2026 revenue <strong>77.8%</strong> and operating income from <strong>$1.25 billion to $2.77 billion</strong>, even as annual gross margin edged down from <strong>11.06% to 10.82%</strong>. That is operating leverage already achieved, not projected. Your June stress test is important: reverting to the annual gross margin would roughly halve June operating income, holding operating costs fixed. But it would still leave about <strong>$749 million</strong> of quarterly operating profit in that illustration. I’m not assuming June’s <strong>17.46%</strong> gross margin persists; I’m arguing that SMCI has shown an ability to earn substantial operating profit at a considerably lower margin.</p>
+<p>On cash, June’s derived <strong>$747 million positive operating cash flow</strong> does not explain away the annual outflow. It is nevertheless a reversal worth testing in subsequent results, and SMCI generated <strong>$1.66 billion of positive operating cash flow in FY2025</strong>. Neither fact guarantees repeatability; together, they make a return to cash generation more than a headline-driven hope. I would want the next disclosures to show <em>why</em> cash flow changed, whether margins held, and what the financing costs shareholders.</p>
+<p>I agree that neither an unquantified AI-orders headline nor HPE’s separate order establishes SMCI’s future economics or a durable moat. The investable advantage today is narrower: SMCI has already translated demand into <strong>$39.06 billion of annual sales</strong> and sharply higher operating income. That gives investors a real business on which to test the next phase of the thesis.</p>
+<p><strong>My recommendation remains a risk-sized initial investment in SMCI, not an aggressive add.</strong> At the <strong>$43.69 October 2 close</strong>, the daily upswing and rising OBV are constructive, but the weekly trend has not confirmed a reversal; a completed weekly close above the <em>updated</em> SuperTrend line, currently <strong>$44.40</strong>, would improve the setup, not settle the cash question. A close below <strong>$41.07</strong> would prompt reassessment. Your wait-for-proof approach avoids meaningful risk, but it also relinquishes exposure if June proves to be the start of a margin-and-cash-flow recovery. My smaller position accepts that uncertainty without pretending it has been resolved.
+Bull Analyst: <strong>Bear, I agree that a smaller position does not make SMCI cheap.</strong> With valuation multiples and financing terms unavailable, I cannot prove that $43.69 adequately compensates investors for the risk. Where I disagree is your conclusion that the cash-flow record already warrants <em>zero</em> exposure.</p>
+<p>The <strong>$6.81 billion FY2026 operating cash outflow</strong> is serious. But its timing matters: the derived March quarter accounted for roughly <strong>$6.62 billion</strong> of that net annual outflow; the other three quarters combined were approximately <strong>negative $190 million</strong>, including <strong>positive $747 million in June</strong>. That does <em>not</em> prove March was a one-off—the working-capital detail is missing. It does challenge the assumption that each quarter of growth requires financing on March’s scale. SMCI also generated <strong>$1.66 billion of operating cash flow in FY2025</strong>. The next filing must tell us which pattern is recurring.</p>
+<p>On margins, I accept your warning that June’s <strong>17.46% gross margin</strong> cannot be the baseline. My case does not need it to be. SMCI earned <strong>$2.77 billion in FY2026 operating income</strong> at a <strong>10.82% annual gross margin</strong>, while revenue grew <strong>77.8%</strong> and operating margin improved from <strong>5.70% to 7.09%</strong>. That is demonstrated operating leverage, not a claim of durable pricing power. It also makes the opportunity material: at FY2026 sales, each percentage point of gross margin represents about <strong>$391 million in gross profit</strong> before any change in operating costs. The sensitivity cuts both ways, which is precisely why the next margin result matters.</p>
+<p>You are right that <strong>$7.52 billion of cash</strong> and a <strong>3.87× current ratio</strong> buy time rather than establish self-funding; the <strong>$9.48 billion financing inflow</strong> makes its terms essential reading. I would not underwrite unverified AI-order headlines, assume Dell or HPE will lose share, or mistake a technical breakout for better cash collection. The October 2 close remained below the <strong>$44.40 weekly SuperTrend line</strong> despite a constructive daily upswing and rising OBV.</p>
+<p><strong>My recommendation remains a small, risk-sized initial investment in SMCI, not an aggressive add.</strong> It is exposure to an already profitable, rapidly scaled business <em>before</em> the cash-conversion question is settled—not a claim that the question is settled or that the stock is demonstrably cheap. I would add conviction only after reviewing working capital and financing terms alongside further positive operating cash flow at reasonable margins. If another severe cash outflow requires unfavorable funding, your wait-for-proof position wins the debate; today’s evidence does not yet show that outcome is inevitable.
+Bull Analyst: <strong>Bear, your “negative $190 million across the other three quarters” point is fair.</strong> SMCI did not self-fund FY2026 once March is set aside. But the timing still matters to the investment decision: the roughly $6.62 billion March-quarter outflow was not repeated in June, when revenue increased to $11.12 billion and derived operating cash flow turned positive by $747 million. We do not know whether that reflects a lasting change or working-capital timing. It does, however, make a continuing March-sized funding need a risk to investigate—not an established cost of growth.</p>
+<p>I also agree that June’s 17.46% gross margin is too high to use as a baseline. The stronger bull evidence is annual: <strong>SMCI grew operating income from $1.25 billion to $2.77 billion while gross margin edged down from 11.06% to 10.82%</strong>. That is demonstrated operating leverage, not proof of pricing power. Your $391 million sensitivity per margin point is real in both directions; it makes the next margin disclosure consequential, rather than making the upside case depend on another exceptional June.</p>
+<p>On price, I cannot prove that <strong>$43.69</strong> is cheap without valuation data or financing terms. But uncertainty alone cannot prove it is unattractive, either. This is where our recommendations differ: you would surrender the first part of a possible recovery to get confirmation; I would take <strong>limited exposure to SMCI now</strong>, accepting that the entire stake is at risk if cash conversion fails. The $7.52 billion cash balance and 3.87× current ratio give the company time to demonstrate improvement, though the $9.48 billion financing inflow means they are <em>not</em> evidence of self-funded growth.</p>
+<p>My case rests on SMCI’s <strong>$39.06 billion of sales, 77.8% annual growth, and higher operating profit</strong>—not an unquantified AI-orders headline or an assumed advantage over HPE. Rising OBV and the daily upswing help with timing, but the October 2 close remained below the $44.40 weekly SuperTrend line; a breakout would not answer your cash question.</p>
+<p><strong>My recommendation remains a small initial SMCI position, not an aggressive add.</strong> I would increase it only after reviewing financing terms and seeing further positive operating cash flow at reasonable margins. Another severe outflow requiring unfavorable funding would be a reason to cut the thesis, not defend it with revenue growth.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: <strong>Bear Analyst:</strong> I agree with your distinction between a real business and an unverified AI-order headline. My disagreement is about <em>when</em> SMCI becomes investable. Your case asks shareholders to pay today for margin and cash-flow improvements that SMCI has not yet shown it can sustain.</p>
+<p>The <strong>77.8% revenue growth</strong> is impressive, but sales growth is not the same as attractive economics. FY2026 gross margin was <strong>10.82%</strong>, down from <strong>18.01% in FY2023</strong>. And the June quarter you rightly highlight generated roughly <strong>53% of annual net income on only 28% of annual revenue</strong>. That concentration makes the <strong>17.46% June gross margin</strong> a demanding assumption, not a sensible baseline. At June’s sales level, a return to the FY2026 average margin would cut gross profit by about <strong>$739 million</strong> before operating-cost changes. Scale demonstrates demand; it does not, by itself, demonstrate durable pricing power against Dell, HPE and other suppliers.</p>
+<p>Your cash-flow counterpoint is fair but too small to settle the issue. June’s derived <strong>$747 million positive operating cash flow</strong> followed an approximately <strong>$6.62 billion March-quarter outflow</strong>. For the full year, SMCI reported <strong>$2.23 billion of net income but negative $6.81 billion of operating cash flow</strong>. Its <strong>$7.52 billion</strong> year-end cash balance is reassuring as liquidity, yet it arrived alongside <strong>$9.48 billion of financing inflows</strong>. The current ratio remains strong at <strong>3.87×</strong>, so I’m not arguing imminent distress. I am arguing that investors need the financing terms and a clearer account of working capital before treating reported earnings as self-funding.</p>
+<p>Nor do the proposed catalysts close that gap. “Surging AI orders” comes from secondary headlines without verified amounts, margins or collection terms. HPE’s AMD-order reaction does <strong>not</strong> prove SMCI lost business—but it does challenge the idea that broad AI spending automatically accrues to SMCI. Meanwhile, a <strong>5.24% 10-year Treasury yield</strong> on October 1 and still-elevated inflation leave both customer project economics and growth-stock valuations exposed.</p>
+<p>Finally, at the <strong>October 2 close of $43.69</strong>, SMCI remained below its <strong>$44.40 weekly SuperTrend line</strong>, with the monthly trend also down. I acknowledge rising OBV and the daily upswing; they make this a stock to watch, not a confirmed reversal.</p>
+<p><strong>My recommendation is to avoid adding SMCI for now.</strong> Sustained positive operating cash flow, repeatable margins, and transparent financing terms would change my view. Until then, a “selective bullish position” is principally a bet that the most important unresolved risks break favorably.
+Bear Analyst: <strong>Bear Analyst:</strong> Bull, I’m not asking for every uncertainty to disappear before buying SMCI. I’m asking for evidence on the two uncertainties that most directly determine whether its growth creates value: <strong>repeatable margins and cash conversion</strong>. A smaller position limits the dollars at risk; it does not establish that today’s price compensates investors for those risks—especially when we do not have reliable valuation multiples.</p>
+<p>Your June stress test still leaves roughly <strong>$749 million in quarterly operating income</strong> if gross margin falls to the FY2026 average. Fair. But that is about <strong>half</strong> the reported June operating income, even before any change in operating costs. It shows how sensitive profit is to margin, not how safe that profit is. June produced roughly <strong>53% of FY2026 net income on 28% of revenue</strong>. Meanwhile, annual gross margin was <strong>10.82%</strong>, versus <strong>18.01% in FY2023</strong>. SMCI has proved it can sell at scale; it has not proved that scale gives it durable pricing power against Dell, HPE and other suppliers.</p>
+<p>I also accept that June’s derived <strong>$747 million positive operating cash flow</strong> was an operating result, not financing. But one positive quarter does not explain the roughly <strong>$9.04 billion gap</strong> between FY2026 net income and operating cash flow. Full-year operating cash flow was <strong>negative $6.81 billion</strong>, and free cash flow was approximately <strong>negative $6.97 billion</strong>. The <strong>$7.52 billion</strong> cash balance and <strong>3.87×</strong> current ratio provide breathing room, not an answer about funding: FY2026 financing inflows were <strong>$9.48 billion</strong>, and their terms remain unknown.</p>
+<p>As for “business already won,” the <strong>77.8% revenue growth</strong> is real. It does not tell us what future orders will earn or when customers will pay. The surging-orders headline supplies none of those details. Nor does HPE’s AMD order prove SMCI lost business; it simply illustrates why sector demand should not be counted automatically as SMCI’s next profitable sale.</p>
+<p>Finally, rising OBV and the daily upswing are legitimate positives, but SMCI’s <strong>$43.69 October 2 close</strong> was below the <strong>$44.40 weekly SuperTrend line</strong>, with the monthly trend still down. A technical breakout could improve the trading setup; it would not resolve the cash-flow question.</p>
+<p><strong>My recommendation remains to avoid adding SMCI for now.</strong> That may mean missing some upside. I would rather incur that opportunity cost than buy ahead of evidence that June’s margins recur, operating cash flow stays positive, and financing is not costly or dilutive.
+Bear Analyst: <strong>Bear Analyst:</strong> Bull, I agree SMCI is a real, fast-growing business—not merely an AI headline. I also agree investors could miss upside by waiting. But a small position changes the <em>size</em> of the bet, not whether the odds at <strong>$43.69</strong> are attractive. With valuation and financing terms unavailable, neither of us can show that the price compensates shareholders for the unresolved cash-flow risk.</p>
+<p>Your operating-leverage point is valid: FY2026 operating income rose to <strong>$2.77 billion</strong> despite a slight decline in annual gross margin. But the June stress test cuts both ways. Roughly <strong>$749 million of hypothetical quarterly operating income</strong> after a margin reset would still be profit; it would also be about half June’s reported operating income. More importantly, accounting profit did not translate into cash for the year: SMCI generated <strong>negative $6.81 billion in operating cash flow</strong> and roughly <strong>negative $6.97 billion in free cash flow</strong>. Positive operating income is not yet evidence that this pace of growth funds itself.</p>
+<p>I take June’s <strong>$747 million positive operating cash flow</strong> seriously, as well as FY2025’s positive cash flow. Yet June followed an approximately <strong>$6.62 billion March-quarter outflow</strong>, while FY2026 financing inflows totaled <strong>$9.48 billion</strong>. The <strong>$7.52 billion</strong> cash balance and <strong>3.87×</strong> current ratio give SMCI time; they do not tell us what sustaining growth will cost shareholders. The next filing’s working-capital detail and financing terms matter more to me than another strong sales figure.</p>
+<p>Nor would I use the daily upswing to bridge that gap. SMCI closed <strong>below the $44.40 weekly SuperTrend line</strong>, and the monthly trend remains down. A breakout could improve the trade without proving better cash conversion. Elevated yields also leave less room for a rally driven mainly by optimism about future AI demand.</p>
+<p>So I’m not demanding certainty or insisting June’s <strong>17.46%</strong> gross margin must recur. I’m asking for evidence that <em>reasonable margins produce sustained cash flow without unfavorable financing</em>. <strong>I would avoid adding SMCI for now</strong> and revisit that call when those facts arrive. Waiting may cost some upside; buying before the central economic question is answered could cost more.
+Bear Analyst: <strong>Bear Analyst:</strong> Bull, I don’t need to assume another March-sized cash drain to justify waiting on SMCI. Your timing breakdown is useful, but even the <em>other three quarters combined</em> produced roughly <strong>negative $190 million in operating cash flow</strong>, despite June’s positive $747 million. FY2025’s $1.66 billion inflow shows SMCI <em>can</em> generate cash; it does not establish that it can do so consistently at FY2026’s much larger scale. For FY2026, <strong>$2.23 billion of net income became a $6.81 billion operating cash outflow</strong>, while financing brought in $9.48 billion.</p>
+<p>I grant your operating-leverage point: <strong>$2.77 billion of operating income is real</strong>. But the margin sensitivity makes it a weaker reason to buy before the next disclosure. At FY2026 sales, a one-percentage-point change in gross margin is about <strong>$391 million</strong>, roughly 14% of annual operating income before other changes. June’s 17.46% gross margin was encouraging; if it reverted to the annual average at June’s sales level, the illustrative gross-profit decline would be about <strong>$739 million</strong>. Revenue scale has not yet established durable pricing power against Dell, HPE and other suppliers.</p>
+<p>So the distinction between us is not whether a second cash crunch is <em>inevitable</em>. It isn’t. It is whether an investor should pay <strong>$43.69</strong> for that uncertainty when valuation multiples and financing terms are unavailable. A small position limits exposure, but it cannot show that the prospective return compensates for the risk. The daily upswing and rising OBV deserve attention, yet SMCI still closed below its <strong>$44.40 weekly SuperTrend line</strong>; a breakout would not answer the cash question either.</p>
+<p><strong>I would avoid adding SMCI for now.</strong> Show me sustained positive operating cash flow at reasonable margins, the working-capital explanation, and financing terms that do not unduly burden shareholders. I may miss the first leg of a recovery, but that is preferable to treating an unresolved funding problem as an investable catalyst.
+Bear Analyst: <strong>Bear Analyst:</strong> Bull, I agree that March’s roughly <strong>$6.62 billion operating cash outflow</strong> may not recur. My case against buying SMCI does not depend on it recurring. It depends on not knowing <em>why</em> it happened—or whether June’s improvement will last.</p>
+<p>June’s derived <strong>$747 million positive operating cash flow</strong> is encouraging. But that same quarter brought approximately <strong>$5.57 billion of financing inflows</strong>, while cash rose from <strong>$1.29 billion to $7.52 billion</strong>. Financing did not create the positive operating cash flow, and it does not prove distress. It does mean the larger cash balance cannot yet be presented as the product of self-funded growth. For FY2026 as a whole, <strong>$2.23 billion of net income</strong> coincided with <strong>negative $6.81 billion of operating cash flow</strong>. That gap deserves an explanation before I pay for a recovery.</p>
+<p>I grant your annual operating-leverage argument: <strong>$2.77 billion of operating income</strong> is substantial. But it does not remove the margin risk. SMCI’s FY2026 gross margin was <strong>10.82%</strong>, versus <strong>18.01% in FY2023</strong>; at FY2026 sales, a one-percentage-point margin move represents about <strong>$391 million of gross profit</strong> before cost changes. June’s exceptionally strong margin could prove durable, but scale alone does not establish pricing power against Dell and HPE.</p>
+<p>You’re also right that uncertainty does not <em>prove</em> <strong>$43.69</strong> is unattractive. Without valuation data or financing terms, though, I cannot establish that the potential return compensates for this particular uncertainty. A smaller stake limits the loss; it does not improve the underlying odds. Rising OBV is worth watching, but SMCI still closed below its <strong>$44.40 weekly SuperTrend line</strong>, and a breakout would not explain the cash-flow gap.</p>
+<p><strong>I would avoid adding SMCI for now</strong>, not rule it out permanently. Show me the working-capital explanation, acceptable financing terms, and further positive operating cash flow at reasonable margins. That is a more meaningful confirmation than another quarter of rapid sales growth.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: SMCI’s bull case has substance: FY2026 revenue grew 77.8% to $39.06 billion, operating income reached $2.77 billion, and the derived June quarter produced $747 million of positive operating cash flow. Its $7.52 billion cash balance and 3.87× current ratio provide breathing room. But the bear case carries more weight for a position today: $2.23 billion of annual net income coincided with negative $6.81 billion of operating cash flow and approximately negative $6.97 billion of free cash flow, alongside $9.48 billion of financing inflows. June’s cash recovery and 17.46% gross margin are encouraging but not established as repeatable; annual gross margin was 10.82%. The financing terms, working-capital explanation, and reliable valuation multiples are missing, so neither funding risk nor compensation for it can be assessed confidently. At the cited October 2 close of $43.69, SMCI was also below the $44.40 weekly SuperTrend line. Proven growth and liquidity argue against an outright exit, but unresolved cash conversion and funding tip the decision toward a cautious underweight rather than a new add.</p>
+<p><strong>Strategic Actions</strong>: Target approximately 50% of a standard SMCI allocation pending confirmation; trim an existing full-size position toward that level, and do not initiate or add if currently uninvested. The trader and portfolio manager should apply this target to actual holdings. Reassess after the next filing for the working-capital bridge, financing costs and dilution, sustained positive operating cash flow, and gross margins that support profitability without relying on June’s 17.46%. Consider scaling toward a standard allocation only if those fundamentals improve; a completed weekly close above the updated SuperTrend line (quoted as $44.40 on October 2) would improve timing but is not a substitute. A close below the cited $41.07 reference or another severe, financing-dependent cash outflow warrants reviewing whether to cut remaining exposure. The quoted prices are historical references, not verified current levels or guaranteed execution prices.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: SMCI's research plan calls for underweighting: strong growth and liquidity are outweighed by negative $6.81 billion annual operating cash flow, financing dependence, and unresolved cash conversion. At the last verified $43.69 close, SMCI remained below the $44.40 weekly SuperTrend despite a daily upswing; the weekly TD-9 sell-setup adds caution. Trim an existing full allocation toward half-size rather than exit entirely, and do not initiate a position if uninvested; a close below $41.07 warrants reviewing the remaining stake.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: 41.07</p>
+<p><strong>Position Sizing</strong>: Target approximately 50% of your standard SMCI allocation; trim existing holdings to that level, with no new purchase if uninvested. Treat $41.07 as a closing-price risk trigger for reviewing or reducing remaining exposure, not a guaranteed stop-order execution price; ATR is $2.29 and gaps are possible.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: No conservative or neutral analyst has made a case yet, so I’ll open with mine: <strong>SELL SMCI down to roughly half of a standard allocation if you currently hold more than that.</strong> This is an aggressive capital-allocation decision, not a claim that SMCI’s growth story is over. FY2026 revenue grew 77.8%, the derived June-quarter gross margin reached 17.46%, and June-quarter operating cash flow turned positive. Keeping half a position preserves meaningful upside if those improvements persist.</p>
+<p>But keeping a <em>full</em> allocation asks you to absorb a risk that the current evidence does not justify. SMCI generated negative $6.81 billion in annual operating cash flow despite $2.23 billion in net income, while $9.48 billion of financing inflows helped build its cash balance. Financing fast growth can pay off; without the terms and a demonstrated recovery in cash conversion, it is not yet a reason to maximize exposure. Nor would I treat the AI-order headlines as proof of profitable orders: their size, margins and collection remain unverified.</p>
+<p>The price action makes trimming now more compelling than simply waiting. SMCI’s $43.69 verified close remained below the $44.40 weekly SuperTrend after trading above it intraday. Rising OBV and a 62.96 RSI give the advance credibility, but the weekly trend is still down and the weekly TD-9 sell-setup warrants attention—not a prediction of a fall. A full exit would be too defensive given the potential upside; an unchanged full position would overlook the unresolved cash risk. <strong>Half-size keeps SMCI in the game while releasing risk capacity for opportunities with stronger confirmation.</strong></p>
+<p>If you are uninvested, do not initiate SMCI on this evidence. If you retain shares, treat a <em>close</em> below $41.07 as a prompt to review or reduce them, not as a guaranteed execution price; SMCI’s $2.29 ATR and possible gaps matter. A sustained break above the updated weekly trend line, backed by participation and better cash conversion, would be reason to reassess the trimmed exposure.
+Aggressive Analyst: Conservative, the $6.81 billion operating cash outflow is the strongest argument for selling SMCI, not necessarily for exiting it. The $7.52 billion cash balance was helped by $9.48 billion of financing inflows, and June’s roughly $747 million of operating cash flow does not repair the full-year shortfall. But a 3.87× current ratio gives SMCI room to test whether its 77.8% revenue growth can convert into cash. Your margin warning is substantial: reverting from June’s 17.46% gross margin to the 10.82% annual rate would cost roughly $739 million of quarterly gross profit at the same sales. It is a risk scenario, though, not an established forecast. Treating half-size as a ceiling—or making the residual stake expendable by default—could sacrifice much of the upside if June’s improvement proves durable.</p>
+<p>Your technical caution is fair, too, but the weekly TD-9 sell-setup is a watch signal, not a sell verdict. SMCI’s daily trend is up, OBV has risen with price, RSI is 62.96, and neither the daily nor weekly z-score has reached a ±2 extreme. I would not use those signals to defend a full allocation against unresolved cash risk. I would use them to defend keeping meaningful exposure rather than waiting entirely on the sidelines for confirmation that may arrive after a repricing.</p>
+<p>Neutral, you are right that SMCI’s $43.69 close was just $0.71 below the $44.40 weekly SuperTrend—about 0.31 of its $2.29 ATR. That is precisely why this SELL is a sizing decision, not a declaration that the upswing has failed. Selling roughly half an existing full allocation reduces the damage from a failed breakout while preserving substantial participation if SMCI clears the <em>updated</em> weekly line. I agree that half is a target relative to a standard allocation, not an exact share count: an investor already at or below it need not sell to satisfy a formula, and a tight loss budget or concentrated technology exposure calls for less.</p>
+<p>I also agree that high yields, inflation and oil prices constrain the bullish macro case, while the AI-order headlines lack verified economics. Softer hiring and the reported late-week easing in yields nevertheless leave room for a rally; neither side should claim a macro certainty. The aggressive advantage is to free risk capacity now without abandoning SMCI’s potential inflection. My recommendation remains <strong>SELL SMCI toward roughly half of a standard allocation if currently full-sized; do not initiate SMCI if uninvested.</strong> A close below $41.07 calls for reviewing or reducing what remains, not assuming a capped loss—gaps can pass that level. A daily close above the updated weekly trend line with continued OBV strength would merit reassessment; a completed weekly confirmation and better cash conversion would make rebuilding a stronger case.
+Aggressive Analyst: Conservative, SMCI’s 3.87× current ratio does not prove that growth funds itself. The negative $6.81 billion in FY2026 operating cash flow and $9.48 billion of financing inflows are exactly why I would <strong>sell a full position down</strong>, rather than defend full exposure. But they do not make the remaining stake expendable by default. The derived June quarter produced roughly $747 million in positive operating cash flow and a 17.46% gross margin. One quarter proves neither will persist; requiring several more quarters of proof before retaining meaningful exposure risks missing the repricing if they do.</p>
+<p>Your $739 million gross-profit margin-reversion calculation is a serious stress test, not a forecast. The same uncertainty that argues against a full position also creates the opportunity in retaining half. Unknown financing terms, working-capital drivers and valuation prevent us from claiming an attractive measured risk–reward; they do not establish that zero or a token position is superior. And with SMCI’s daily trend up, OBV rising, RSI at 62.96 and no ±2 z-score extreme, the weekly TD-9 sell-setup and still-bearish weekly trend warrant a trim, not an automatic exit.</p>
+<p>Neutral, I agree that SMCI’s $43.69 close only $0.71 below the $44.40 weekly SuperTrend—about 0.31 ATR—does not prove the advance failed. That is why the trade is <strong>position sizing, not a bearish breakout verdict</strong>. Waiting for decisive technical evidence before trimming leaves a full allocation exposed to unresolved cash conversion; waiting for a completed weekly breakout and sustained cash-flow improvement before retaining much exposure could forfeit the upside. “Roughly half” gives a holder starting from a full allocation an actionable middle course, not a mandatory share count. Existing technology concentration or a tight loss budget calls for less; an already modest holding need not be sold to meet a formula.</p>
+<p>I also would not mistake mildly bullish AI-order headlines for verified profitable orders, or softer hiring for assured rate relief while inflation and yields remain high. Those limits support selling excess SMCI risk now. They do not negate the potential in SMCI’s 77.8% revenue growth and June improvement. My recommendation remains <strong>SELL SMCI toward roughly half a standard allocation if currently full-sized; do not initiate SMCI if uninvested</strong>. For retained shares, a close below $41.07 prompts review or reduction—not an assumed loss cap, because gaps can pass it. A close above the <em>updated</em> weekly trend line with continued OBV strength would warrant reassessment; a completed weekly confirmation and better cash conversion would make rebuilding more compelling.
+Aggressive Analyst: Conservative, you’re right that SMCI’s $7.52 billion cash balance is not proof of self-funded growth: FY2026 operating cash flow was negative $6.81 billion, and financing inflows were $9.48 billion. That is the case for selling a full allocation down. But making half-size a ceiling for every holder risks treating an unresolved problem as a failed turnaround. June brought roughly $747 million of positive operating cash flow, while the derived gross margin rose to 17.46% from 9.95% in March. Neither result is proven durable, but alongside 77.8% annual revenue growth, they make a meaningful residual stake more compelling than a token holding for someone who can bear the risk.</p>
+<p>Your $739 million margin-reversion calculation is an important stress test, not the most likely outcome we can establish. Unknown financing terms and valuation also prevent me from claiming SMCI is cheap. They justify limiting exposure, not assuming that waiting for several confirmed quarters is costless: a genuine improvement could be reflected in the price before it is fully visible in annual cash flow.</p>
+<p>Neutral, I agree that SMCI’s $43.69 close was only $0.71 below the $44.40 weekly SuperTrend—about 0.31 ATR. I am not calling that a decisive failed breakout or insisting on an exact share count. The stronger reason to trim now is the cash-flow gap; the reason to retain roughly half of a <em>previously full</em> standard allocation is that the daily trend and OBV are rising while the weekly reversal remains possible. Waiting for both a completed weekly breakout and sustained cash-flow proof before keeping meaningful exposure may give up the very upside this risk is meant to capture. Mildly bullish AI-order headlines and possible rate relief add possibilities, not verified order economics or a macro guarantee.</p>
+<p>My recommendation remains SELL SMCI toward roughly half a standard allocation if currently full-sized, subject to a smaller remainder if concentration or gap risk exceeds the caller’s budget. Do not initiate SMCI if uninvested, and do not trim an already modest holding merely to hit a formula. For retained shares, a close below $41.07 calls for prompt review or reduction, not an assumed loss cap; a close above the <em>updated</em> weekly line with continued participation would warrant reassessment, not an automatic purchase.
+Aggressive Analyst: Conservative, SMCI’s $6.81 billion operating cash outflow against $2.23 billion of net income is a strong reason to sell down a full position. You’re also right that its $7.52 billion cash balance was helped by $9.48 billion in financing inflows; the 3.87× current ratio does not prove growth funds itself. But making half-size a universal ceiling goes further than that evidence supports. The derived June quarter delivered roughly $747 million in positive operating cash flow and a 17.46% gross margin, following 77.8% annual revenue growth. One quarter cannot settle the cash-conversion question, but exiting or keeping only a token stake could miss a substantial repricing if that improvement persists.</p>
+<p>Your $739 million gross-profit margin-reversion calculation is a serious stress test, not a forecast. Unknown financing terms and valuation mean I cannot call SMCI a bargain or claim a measured return outweighs the risk. That uncertainty argues for cutting a full allocation, not automatically surrendering meaningful upside. The same distinction applies to the chart: the weekly and monthly trends remain down, and the weekly TD-9 warrants caution. Yet SMCI closed just $0.71 below the $44.40 weekly line, while its daily trend and OBV rose. That is a contested breakout, not proof the advance is over.</p>
+<p>Neutral, I agree that half-size must pass a portfolio risk-budget test. My case for it is narrower and more actionable: for someone <em>already holding a full standard allocation</em>, selling toward half immediately reduces dollar exposure while retaining participation if SMCI clears the updated weekly line. The $0.71 technical miss is not the reason to insist on a trim; unresolved funding and cash conversion are. Waiting for both a completed weekly reversal and sustained cash-flow proof before retaining meaningful exposure may mean buying back after the opportunity has repriced. Mildly bullish AI-order headlines and possible yield relief add to that opportunity, though neither verifies order economics or guarantees a rally.</p>
+<p>My recommendation remains <strong>SELL SMCI toward roughly half a standard allocation if currently full-sized</strong>, and retain less if technology concentration or gap risk exceeds your loss budget. Do not sell an already modest stake just to meet a formula, and do not initiate SMCI if uninvested. A close below $41.07 calls for prompt review or reduction of retained shares—not an assumed loss cap. A close above the <em>updated</em> weekly trend line with continued participation would warrant reassessing the trim, not an automatic purchase.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst’s decision to sell SMCI down from a full allocation, but I disagree that keeping half is necessarily the right default. Half-size still leaves meaningful exposure to a business that reported $2.23 billion in net income but negative $6.81 billion in annual operating cash flow. June’s positive operating cash flow is encouraging, not proof that the annual shortfall has been resolved. Likewise, the $7.52 billion year-end cash balance should not be treated as purely self-funded when FY2026 financing inflows were $9.48 billion and the financing terms have not been assessed.</p>
+<p>The growth case deserves attention, but it does not yet establish sustainable returns. The derived June gross margin of 17.46% supplied an outsized share of annual profit; at the same quarterly sales, a return to the 10.82% annual margin would mean roughly $739 million less gross profit. AI-order headlines do not tell us whether orders will produce durable margins or cash collections. Rising OBV and a daily upswing are constructive, but SMCI closed at $43.69, below the $44.40 weekly SuperTrend, while the weekly and monthly trends remained down. The weekly TD-9 is a warning to watch, not a reason to predict a decline.</p>
+<p>The Neutral Analyst has not offered a position yet, so I would not put words in their mouth. If the argument is to hold a full position while waiting for confirmation, my objection is that confirmation may come only after another weak cash-flow report or a price gap. The $41.07 closing-price trigger is a review point, not a loss limit.</p>
+<p>My recommendation is SELL SMCI exposure above half of a standard allocation, treating half as a ceiling rather than an automatic target. A smaller residual position—or an exit—fits better if the caller’s loss budget is tight or existing technology exposure is already high. Do not initiate SMCI if uninvested; reconsider larger exposure only when cash conversion and the higher-timeframe trend improve.
+Conservative Analyst: Aggressive, I agree with selling a full SMCI allocation, but I would not make half-size the default destination. SMCI’s 3.87× current ratio shows near-term balance-sheet coverage; it does not establish that growth is funding itself. FY2026 operating cash flow was negative $6.81 billion despite $2.23 billion in net income, and $9.48 billion of financing inflows accompanied the rise in cash. June’s positive cash flow and 17.46% derived gross margin are encouraging, but one quarter cannot establish that either improvement will persist. The roughly $739 million gross-profit difference if that margin returned to the annual rate is a risk scenario, not a forecast—and a substantial reason to limit exposure before the next results.</p>
+<p>Neutral, I agree that SMCI’s $43.69 close, just below the $44.40 weekly SuperTrend, does not prove the upswing has failed. But the proximity cuts both ways: it offers little evidence that the weekly downtrend has reversed. Rising OBV and the daily uptrend support a watchlist case, not a fixed residual allocation. Nor does keeping a position automatically become prudent because upside might be missed. With financing terms, working-capital drivers, and valuation unavailable, we cannot judge whether that upside adequately compensates for the downside.</p>
+<p>My low-risk adjustment remains <strong>SELL SMCI exposure above half of a standard allocation, with half as a ceiling, not a target</strong>. If the caller’s loss budget is tight or technology exposure is concentrated, a smaller stake or an exit is more defensible; if uninvested, do not initiate SMCI. Decide in advance what deterioration would prompt further reduction rather than relying on the $41.07 closing-price review trigger to cap losses—SMCI can gap through it. I would require sustained improvement in cash conversion and margins, alongside a completed weekly trend confirmation, before considering a larger allocation.
+Conservative Analyst: Aggressive, the risk of missing an SMCI rally is real, but it does not make half a standard allocation the right default. SMCI reported $2.23 billion in FY2026 net income while using $6.81 billion in operating cash, and $9.48 billion of financing inflows helped build its $7.52 billion cash balance. June’s roughly $747 million of positive operating cash flow is encouraging; it has not yet shown that growth can fund itself without substantial external capital. Until the working-capital drivers and financing terms are understood, keeping half is a meaningful risk decision, not merely a way to preserve upside.</p>
+<p>Neutral, I agree that neither a margin-reversion stress test nor SMCI’s close just below the weekly SuperTrend proves a decline is coming. But uncertainty cuts against committing capital as well as against making a bearish forecast. At June-quarter sales, a return from the derived 17.46% gross margin to the 10.82% annual rate would mean roughly $739 million less gross profit. That is not a prediction; it shows how much of the apparent improvement still needs testing. The 3.87× current ratio provides coverage, but it does not answer when assets become cash.</p>
+<p>SMCI’s rising OBV and daily uptrend deserve attention. They do not overturn the weekly and monthly downtrends: the last verified $43.69 close remained below the $44.40 weekly line. Nor do mildly bullish headlines verify AI-order margins or collections. Softer hiring might help rate-sensitive shares, but inflation above 3% and the recently high Treasury yield leave that support uncertain.</p>
+<p>My recommendation remains to sell SMCI exposure above half of a standard allocation, treating half as a ceiling rather than a target. Size any remainder to the caller’s actual loss budget and technology concentration; a smaller stake or an exit is reasonable if a gap would cause an unacceptable loss. I would not automatically sell an already modest holding, and I would not initiate SMCI if uninvested. For retained shares, decide in advance what reduction a close below $41.07 would prompt—recognizing that it is a review trigger, not a guaranteed exit price. I would require stronger evidence of sustained cash conversion and margins, as well as a completed weekly trend confirmation, before increasing exposure.
+Conservative Analyst: Aggressive, I agree that SMCI’s June improvement leaves room for a turnaround. But preserving that upside does not make half a standard allocation the right default. SMCI used $6.81 billion in operating cash during FY2026 despite reporting $2.23 billion in net income. One derived quarter of roughly $747 million in positive operating cash flow does not explain that gap, and the $7.52 billion year-end cash balance rose alongside $9.48 billion in financing inflows. Until the working-capital drivers and financing terms are understood, a meaningful residual stake is a risk choice, not a demonstrated bargain. We also lack valuation data, so the possibility of missing a repricing cannot establish that the potential return compensates for that risk.</p>
+<p>Neutral, I agree that SMCI’s close just below the $44.40 weekly SuperTrend is too close to call a failed breakout. I would trim for the cash-flow risk, not for a $0.71 technical miss. Rising OBV and a daily uptrend make SMCI worth watching, but the weekly and monthly trends remain down. Likewise, June’s derived 17.46% gross margin is promising, yet that quarter supplied about 53% of annual net income. The roughly $739 million gross-profit difference under a return to the annual margin is a stress test, not a forecast; it shows why one strong quarter is insufficient grounds for a default half-position.</p>
+<p>I would SELL SMCI exposure above half of a standard allocation, treating half as a ceiling rather than a destination. Keep less, or exit, if the caller’s technology concentration or tolerance for a gap warrants it. I would not automatically sell an already small holding without knowing the portfolio, but “small” alone does not make it safe. If uninvested, do not initiate SMCI on the present evidence. The $41.07 closing-price level should trigger a preplanned review or reduction of retained shares, not an assumption that losses stop there. I would consider increasing exposure only after cash conversion and margins show persistence and a completed weekly bar confirms a reversal above the then-current trend line.
+Conservative Analyst: Aggressive, I agree that SMCI could reprice upward before several quarters of confirmation. But the possibility of missing a rally does not establish that retaining half a standard allocation is a sound risk. SMCI reported $2.23 billion in FY2026 net income while operating cash flow was negative $6.81 billion; $9.48 billion of financing inflows accompanied the rise in cash. June’s roughly $747 million of positive operating cash flow is encouraging, but it neither explains the annual gap nor tells us whether the improvement will persist. With financing terms and valuation unavailable, we cannot judge whether the upside adequately compensates for that exposure.</p>
+<p>Neutral, I agree that SMCI’s $43.69 close just below the $44.40 weekly SuperTrend is not a decisive failed breakout, and that a modest holding may suit someone able to bear the risk. My reason to sell is not that $0.71 technical miss. It is that the daily advance and rising OBV have not resolved the cash-conversion problem or reversed the weekly and monthly downtrends. June’s derived 17.46% gross margin also needs testing: a return to the 10.82% annual rate at the same quarterly sales would mean roughly $739 million less gross profit. That is a stress test, not a forecast.</p>
+<p>My recommendation is to SELL SMCI exposure above a conservative loss budget now. For a full position, treat half a standard allocation as a provisional ceiling, not an automatic destination; keep less or exit if existing technology exposure or a gap would cause an unacceptable loss. I would not mechanically sell an already small holding without knowing the portfolio, and I would not initiate SMCI if uninvested. For retained shares, decide in advance what a close below $41.07 will prompt—it is a review level, not a guaranteed exit price. I would consider increasing exposure only after cash conversion and margins demonstrate persistence and a completed weekly bar confirms a reversal above the then-current trend line.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with the proposed SELL for an existing full SMCI allocation, but I would make the half-size figure a risk-budget guide, not an automatic destination.</p>
+<p>The Aggressive Analyst is right that SMCI’s $6.81 billion annual operating cash outflow makes a full allocation hard to defend. Where I disagree is the precision of “sell to half now.” The last verified $43.69 close was only $0.71 below the $44.40 weekly SuperTrend line—less than one-third of SMCI’s $2.29 ATR. That failed intraday crossing warrants caution, but it is not decisive evidence that the daily upswing has ended. Half a standard allocation could also be too large for someone already concentrated in technology.</p>
+<p>The Conservative Analyst is right not to mistake June’s improvement for a solution to the full-year cash shortfall. But treating a residual SMCI position as potentially expendable on the current evidence risks discounting real upside: FY2026 revenue grew 77.8%, June-quarter operating cash flow was positive, and the latest reported current ratio was 3.87×. None proves durable cash conversion, but neither does financing dependence alone prove that SMCI cannot achieve it. Rising OBV and a daily uptrend make a modest holding more defensible than an automatic exit for an investor with room for the risk.</p>
+<p>My adjustment is to trim SMCI exposure above roughly half of a standard allocation, then size the remainder to the caller’s actual loss budget and total technology exposure. If SMCI is already at or below that level, I would not sell more solely to satisfy a formula; if the portfolio is concentrated or cannot tolerate a gap, less than half—or an exit—may be appropriate. If uninvested, I would not initiate SMCI on these headlines and technical signals alone. Diversifying the risk released by a trim is more useful than simply moving it to another AI-hardware name with similar exposures.</p>
+<p>The broader backdrop argues against either extreme. Weak hiring may support rate-sensitive shares, but inflation above 3%, a 5.24% ten-year yield as of October 1, and elevated oil prices limit confidence in lasting rate relief. For SMCI specifically, I would consider rebuilding only after a completed weekly close above the then-current weekly trend line and evidence that margins and operating cash flow hold up—not merely an AI-order headline. A close below $41.07 should prompt a review or further reduction, not an assumption that losses are capped there; SMCI can gap past a closing-price trigger.
+Neutral Analyst: Aggressive, I agree that selling part of a full SMCI position is more measured than exiting outright. But “roughly half” should not become a default trade size. SMCI’s 3.87× current ratio provides near-term coverage; it does not tell us how readily working capital becomes cash. June’s roughly $747 million of operating cash flow is encouraging, but it is one quarter against a $6.81 billion annual outflow. And the $43.69 close below the $44.40 weekly SuperTrend is only about 0.31 ATR away—too close to treat the failed intraday crossing as decisive evidence for the timing of a trim.</p>
+<p>Conservative, that uncertainty justifies a smaller risk budget, not an automatic exit. SMCI’s 77.8% revenue growth, improved derived June margin, and rising OBV leave a plausible upside case. The margin-reversion calculation is a useful stress test, not a forecast. Requiring proof of durable cash conversion before retaining <em>any</em> exposure could mean giving up participation before that proof appears in reported results.</p>
+<p>My recommendation remains to <strong>SELL SMCI exposure that exceeds a prudent allocation</strong>, using roughly half of a standard position as a starting guide only if the caller currently holds a full one. Adjust the remainder downward for existing technology concentration or limited tolerance for a gap; do not sell an already modest holding merely to meet a formula, and do not initiate SMCI if uninvested. Put risk released by a trim somewhere less correlated than another AI-hardware stock.</p>
+<p>For the retained stake, a close below $41.07 calls for prompt review, not an assumed execution price or capped loss. I would reconsider adding only if SMCI clears the <em>updated</em> weekly trend line on a completed weekly bar and subsequent results support margins and operating cash conversion. Softer hiring might help rates, but persistent inflation and the recently high ten-year yield make a macro-led rally too uncertain to substitute for that evidence.
+Neutral Analyst: Aggressive, I agree with trimming an existing full SMCI position, but “uncertainty creates opportunity” is not enough to justify keeping exactly half. We lack valuation data and the terms of SMCI’s $9.48 billion in financing inflows. The $43.69 last verified close was also only $0.71 below the $44.40 weekly SuperTrend—small relative to the $2.29 ATR—so that failed intraday crossing is a weak reason to insist on a particular trim size. The stronger reason to reduce risk is the $6.81 billion annual operating cash outflow despite reported profit.</p>
+<p>Conservative, that cash-flow gap is serious, but requiring sustained proof before retaining any SMCI exposure could rule out participation while an improvement is still emerging. June’s positive operating cash flow, 17.46% derived gross margin and strong revenue growth make a modest residual stake defensible for someone who can absorb the volatility. They do not make that improvement durable; your margin-reversion calculation is a useful stress test, not a forecast.</p>
+<p>My recommendation remains SELL SMCI exposure above a prudent risk budget. For an existing full position, roughly half a standard allocation is a starting guide, not a mandatory target or minimum. Keep less—or exit—if technology concentration or a price gap would create an unacceptable loss; do not sell an already modest holding just to meet a formula. If uninvested, do not initiate SMCI on the current evidence. Put risk released by a trim into less-correlated exposure rather than another AI-hardware name.</p>
+<p>For any retained SMCI shares, decide in advance what a close below $41.07 would prompt; it is a review trigger, not a guaranteed exit price. I would consider rebuilding only after a completed weekly close above the then-current trend line and evidence that margins and operating cash flow persist. AI-order headlines and possible rate relief cannot substitute for that evidence while inflation and yields remain headwinds.
+Neutral Analyst: Aggressive, I agree that selling part of a full SMCI position need not mean abandoning its upside. But “retain half” still needs a risk-budget test, not just a growth argument. FY2026 revenue grew 77.8% and June operating cash flow improved, yet neither establishes what return would compensate for the $6.81 billion annual operating cash outflow when valuation and financing terms are unavailable. I would trim for that unresolved funding risk, not because SMCI’s $43.69 close—just $0.71 below the $44.40 weekly SuperTrend—proves the upswing failed.</p>
+<p>Conservative, your cash-flow concern is the strongest objection to a larger stake, but a universal half-position ceiling gives too little weight to the possibility that June’s improvement persists. SMCI’s positive June operating cash flow, stronger derived margin and rising OBV make a modest residual position reasonable for someone who can bear the risk. They do not make it compulsory: the $7.52 billion cash balance rose alongside substantial financing inflows, so liquidity is not proof of self-funded growth.</p>
+<p>My recommendation remains a conditional SELL: if SMCI is currently a full allocation, trim toward roughly half as a starting point, then reduce further if existing technology exposure or gap risk exceeds the caller’s loss budget. Do not sell an already modest holding merely to meet that figure, and do not initiate SMCI if uninvested. At the last verified close, $41.07 was about 6% lower; it should prompt a preplanned review of retained shares, not be treated as a guaranteed exit price. I would reconsider increasing exposure after a completed weekly trend confirmation and evidence that margins and operating cash flow persist. Until then, keep any risk released by the trim from simply migrating to another highly correlated AI-hardware holding.
+Neutral Analyst: Aggressive, I agree that trimming a full SMCI position can preserve upside without carrying full exposure. But half a standard allocation is not automatically moderate: a two-ATR move is about $4.58 per share, or 10.5% of the last verified $43.69 close, and an overnight gap could be larger. Rising OBV and June’s positive operating cash flow make the upside plausible; they do not tell us whether a particular holder can afford that downside.</p>
+<p>Conservative, you’re right that SMCI’s $6.81 billion annual operating cash outflow and financing dependence deserve more weight than an AI-order headline. But the missing valuation and financing details argue against confidence in <em>either</em> a bargain or an inevitable failure. SMCI’s 77.8% revenue growth and improved June margin leave a credible case for retaining a modest stake while those questions are tested. Making half a universal ceiling risks turning caution into a rule unsupported by the individual portfolio.</p>
+<p>I would keep the proposed <strong>SELL</strong> conditional: if SMCI is full-sized, trim toward roughly half as an initial guide, then size the remainder so a substantial move or gap fits the holder’s loss budget and existing technology exposure. A holder already below that budget need not sell mechanically; an uninvested caller should not initiate on the present evidence. Diversify proceeds away from highly correlated AI-hardware risk.</p>
+<p>For retained SMCI shares, decide now what a close below $41.07 would prompt, without treating it as an execution price. A completed weekly close above the then-current trend line would improve the technical case, but rebuilding a larger position should also depend on margins and operating cash flow persisting. Softer hiring may help rates; inflation and the recently high Treasury yield make that an uncertain tailwind, not a substitute for company-specific proof.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: Underweight SMCI over a 1–3 month horizon: if an existing position is full-sized, trim toward roughly half a standard allocation, then size any remainder to your loss budget and existing technology exposure; do not mechanically sell an already modest position or initiate one if uninvested. For retained SMCI shares, a close below the historical $41.07 reference calls for a preplanned review or further reduction, not a guaranteed stop execution; reassess any increase only after a completed weekly close above the updated trend line and stronger fundamental confirmation.</p>
+<p><strong>Investment Thesis</strong>: The analysts' strongest common argument is to cut excess SMCI risk without requiring a full exit: FY2026 operating cash flow was negative $6.81 billion versus $2.23 billion of net income, and $9.48 billion of financing inflows accompanied the rise to $7.52 billion of cash. FY2026 revenue growth of 77.8%, a 3.87× current ratio, and a derived June quarter with roughly $747 million of positive operating cash flow and a 17.46% gross margin support retaining a risk-budgeted stake, but one quarter does not establish repeatability; reverting to the 10.82% annual gross margin at June sales would reduce quarterly gross profit by approximately $739 million in a stress scenario. SMCI closed at $43.69 on October 2 below the $44.40 weekly SuperTrend resistance despite improving daily momentum and OBV; the weekly and monthly downtrends persist. Valuation multiples, working-capital drivers and financing terms are unavailable, so no valuation objective can be substantiated. The technical price target is the quoted $44.40 weekly SuperTrend line: $43.69 + $0.71 = $44.40, approximately 1.6% above the verified close; it is a point-in-time resistance retest, not a guaranteed ceiling, and the updated line may move. Reconsider the underweight if a completed weekly close exceeds the then-current line and subsequent results substantiate persistent margins, positive operating cash flow and acceptable financing terms; weaker cash conversion or a close below $41.07 argues for further reduction. The $41.07 level is a review trigger rather than a support guarantee, and SMCI's $2.29 ATR and possible gaps make fixed loss assumptions unsafe.</p>
+<p><strong>Current Price</strong>: 43.69</p>
+<p><strong>Price Target</strong>: 44.4</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1-3 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
