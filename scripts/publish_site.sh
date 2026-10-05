@@ -11,8 +11,13 @@
 # publishes the compiled site. Published report HTML is retained even when its
 # source Markdown is missing locally. Releases extend the existing Git history.
 
+# Usage:
+#  bash scripts/publish_site.sh --analysis-date 20261003
+# 
 # Parse the complete body before running; edits during a build must not shift
 # the file positions Bash reads afterward. Exit inside this block.
+# 
+
 {
 set -euo pipefail
 
