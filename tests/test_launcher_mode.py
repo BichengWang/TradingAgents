@@ -115,13 +115,14 @@ def test_no_arguments_uses_all_shared_tickers(tmp_path, provider):
 
 @pytest.mark.parametrize("token_budget", [None, "65536"])
 @pytest.mark.parametrize("effort", [None, "high", "max"])
-@pytest.mark.parametrize("models,default_budget", [
-    (("claude-opus-5-5", "claude-opus-5-5"), "128000"),
-    (("claude-opus-5-5", "claude-sonnet-5-5"), "128000"),
-    (("claude-opus-4-5", "claude-sonnet-5-5"), ""),
-    (("claude-opus-5-5", "claude-haiku-4-5"), ""),
+# The launcher gives every model pair the same 256000-token default budget.
+@pytest.mark.parametrize("models", [
+    ("claude-opus-5-5", "claude-opus-5-5"),
+    ("claude-opus-5-5", "claude-sonnet-5-5"),
+    ("claude-opus-4-5", "claude-sonnet-5-5"),
+    ("claude-opus-5-5", "claude-haiku-4-5"),
 ])
-def test_claude_workers_receive_output_budget(tmp_path, token_budget, effort, models, default_budget):
+def test_claude_workers_receive_output_budget(tmp_path, token_budget, effort, models):
     root = tmp_path / "repo"
     (root / "scripts").mkdir(parents=True)
     (root / "bin").mkdir()
@@ -160,6 +161,6 @@ done
         cwd=tmp_path, env=env, capture_output=True, text=True, timeout=10,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert capture.read_text() == (token_budget or default_budget)
+    assert capture.read_text() == (token_budget or "256000")
     args = capture.with_suffix(".args").read_text().splitlines()
-    assert args[args.index("--anthropic-effort") + 1] == (effort or "max")
+    assert args[args.index("--anthropic-effort") + 1] == (effort or "xhigh")
