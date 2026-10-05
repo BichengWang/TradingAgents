@@ -6,7 +6,7 @@ import datetime
 import pytest
 import typer
 
-from cli import prompts, run, selections
+from cli import prompts, run, selections, utils
 from cli.models import AnalystType, AssetType
 
 UNATTENDED_ENV = {
@@ -133,12 +133,13 @@ def test_an_announcement_does_not_wait_for_enter_without_a_terminal(monkeypatch)
 
 
 @pytest.mark.unit
-def test_a_missing_key_without_a_terminal_names_the_variable(monkeypatch, capsys):
+@pytest.mark.parametrize("module", [prompts, utils])  # cli.main imports the utils copy
+def test_a_missing_key_without_a_terminal_names_the_variable(monkeypatch, capsys, module):
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     monkeypatch.setattr(prompts.sys.stdin, "isatty", lambda: False)
 
     with pytest.raises(typer.Exit):
-        prompts.ensure_api_key("openai")
+        module.ensure_api_key("openai")
     assert "OPENAI_API_KEY" in capsys.readouterr().out
 
 
