@@ -71,7 +71,7 @@ QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-opus-5-5}"
 # Claude 5.5 tool workflows need room for thinking and the final answer; new
 # IDs can inherit the SDK's 4096-token fallback. Other models keep SDK defaults.
 export TRADINGAGENTS_MAX_TOKENS="${TRADINGAGENTS_MAX_TOKENS:-256000}"
-export TRADINGAGENTS_LLM_TIMEOUT="${TRADINGAGENTS_LLM_TIMEOUT:-600}" ;;
+export TRADINGAGENTS_LLM_TIMEOUT="${TRADINGAGENTS_LLM_TIMEOUT:-600}"
 
 REASONING_EFFORT="${TRADINGAGENTS_OPENAI_REASONING_EFFORT:-xhigh}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
