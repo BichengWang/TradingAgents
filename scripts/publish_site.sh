@@ -10,6 +10,10 @@
 # stage files, validates generated links, builds MkDocs HTML, and optionally
 # publishes the compiled site. Published report HTML is retained even when its
 # source Markdown is missing locally. Releases extend the existing Git history.
+#
+# With CLOUDFLARE_PAGES_PROJECT set (environment or .env), each new gh-pages
+# commit is also deployed to that Cloudflare Pages project under /TradingAgents/
+# (see scripts/publish_cloudflare.py), so another site can serve it as a path.
 
 # Usage:
 #  bash scripts/publish_site.sh --analysis-date 20261003
@@ -36,10 +40,14 @@ Options:
   --dry-run
       Validate the merged site in temporary directories; do not write _site,
       fetch, or push gh-pages.
+  --cloudflare-only
+      Deploy the current gh-pages commit to the Cloudflare Pages mirror
+      without building or pushing; use it for the first sync or a retry.
   -h, --help
       Show this help.
 
 Existing published runs are skipped. Old dates are never removed.
+Set CLOUDFLARE_PAGES_PROJECT to also deploy each release to Cloudflare Pages.
 No LLM/model calls are made by this script.
 EOF
 }
@@ -47,6 +55,7 @@ EOF
 analysis_date=""
 build_only=0
 dry_run=0
+cloudflare_only=0
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -66,6 +75,10 @@ while [ "$#" -gt 0 ]; do
       dry_run=1
       shift
       ;;
+    --cloudflare-only)
+      cloudflare_only=1
+      shift
+      ;;
     -h|--help)
       usage
       exit 0
@@ -78,15 +91,31 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 
+if [ "$cloudflare_only" -eq 1 ] && {
+  [ -n "$analysis_date" ] || [ "$build_only" -eq 1 ] || [ "$dry_run" -eq 1 ]
+}; then
+  echo "error: --cloudflare-only cannot be combined with other options" >&2
+  exit 2
+fi
+
 if [ -x .venv/bin/python ]; then
   PY=.venv/bin/python
 else
   PY=python3
 fi
 
+if [ "$cloudflare_only" -eq 1 ]; then
+  git fetch origin +refs/heads/gh-pages:refs/remotes/origin/gh-pages
+  echo "==> Deploying the published gh-pages site to Cloudflare Pages"
+  "$PY" scripts/publish_cloudflare.py --require --commit refs/remotes/origin/gh-pages
+  exit 0
+fi
+
 # Pin the baseline before building. A normal push below rejects a concurrent
 # release rather than overwriting it. Offline preview modes use the cached ref.
 if [ "$build_only" -eq 0 ] && [ "$dry_run" -eq 0 ]; then
+  # Reject a broken Cloudflare mirror setup before anything is published.
+  "$PY" scripts/publish_cloudflare.py --check
   git fetch origin +refs/heads/gh-pages:refs/remotes/origin/gh-pages
 fi
 base_commit="$(git rev-parse --verify refs/remotes/origin/gh-pages)"
@@ -133,6 +162,13 @@ fi
 release_commit="$(git -c user.useConfigOnly=true commit-tree "$site_tree" \
   -p "$base_commit" -m "Add unpublished trading reports")"
 git push origin "$release_commit:refs/heads/gh-pages"
+
+# gh-pages stays the record; the mirror only ever receives a pushed commit.
+if ! "$PY" scripts/publish_cloudflare.py --commit "$release_commit"; then
+  echo "error: gh-pages was published, but the Cloudflare Pages deploy failed." >&2
+  echo "Retry the mirror with: bash scripts/publish_site.sh --cloudflare-only" >&2
+  exit 1
+fi
 
 echo "==> Done. GitHub Pages will serve the updated gh-pages branch shortly."
 exit 0
