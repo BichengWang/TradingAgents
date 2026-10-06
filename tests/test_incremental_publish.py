@@ -143,6 +143,14 @@ def test_new_date_retains_html_only_history_and_rerun_is_noop(publication, monke
     assert build(repo) == []
     assert hashes(output) == before
 
+    # A style change ships even when no report is new, and reports stay as published.
+    style = docs / "stylesheets" / "extra.css"
+    style.write_text(style.read_text() + "\n/* restyle */\n", encoding="utf-8")
+    assert build(repo) == []
+    assert (output / "stylesheets/extra.css").read_bytes() == style.read_bytes()
+    changed = {path for path, digest in hashes(output).items() if before.get(path) != digest}
+    assert changed == {"stylesheets/extra.css"}
+
 
 def test_same_date_reruns_models_and_backfills_keep_latest_summary(publication):
     repo, docs, base = publication

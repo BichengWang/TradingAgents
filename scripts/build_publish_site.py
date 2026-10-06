@@ -41,6 +41,16 @@ def copy_publication_docs(destination: Path, runs: list[site.Run]) -> None:
         shutil.copytree(DOCS / relative, destination / relative)
 
 
+def refresh_stylesheets(site: Path) -> None:
+    """Publish the current shared stylesheets, which every page links unhashed.
+
+    Releases without new reports would otherwise never ship a style change.
+    """
+    source = DOCS / "stylesheets"
+    if source.is_dir():
+        shutil.copytree(source, site / "stylesheets", dirs_exist_ok=True)
+
+
 def snapshot_published_site(destination: Path, base_ref: str) -> str:
     result = subprocess.run(
         ["git", "rev-parse", "--verify", f"{base_ref}^{{commit}}"],
@@ -171,7 +181,8 @@ def build_site(
             and f"{run.ticker}/{run.folder_name}/complete_report/index.html" not in old_paths
         ]
         if not runs:
-            print(f"No unpublished report folders; baseline {commit[:12]} is unchanged.")
+            print(f"No unpublished report folders in baseline {commit[:12]}.")
+            refresh_stylesheets(merged)
             history.validate_indexes(merged, old_paths)
             if not identical_sites(merged, site_dir):
                 install_preview(merged, site_dir)
@@ -219,6 +230,7 @@ def build_site(
                 new_hub.write_text(str(page), encoding="utf-8")
         history.merge_sitemap(merged / "sitemap.xml", new_site / "sitemap.xml")
         shutil.copytree(new_site, merged, dirs_exist_ok=True)
+        refresh_stylesheets(merged)
         (merged / ".nojekyll").touch()
         for path, checksum in old_hashes.items():
             if not (merged / path).is_file() or digest(merged / path) != checksum:
