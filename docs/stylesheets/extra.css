@@ -40,8 +40,9 @@ body:has(.daily-summary-layout) .md-sidebar--secondary {
 
 .daily-summary-rail {
   position: sticky;
-  top: 4rem;
-  max-height: calc(100vh - 5rem);
+  /* Clear the sticky header and ticker tabs (2.4rem each). */
+  top: 5.2rem;
+  max-height: calc(100vh - 6.2rem);
   overflow: auto;
   padding: 0.75rem;
   border: 1px solid var(--md-default-fg-color--lightest);
@@ -100,6 +101,12 @@ body:has(.daily-summary-layout) .md-sidebar--secondary {
 .daily-summary-tables table:not([class]) {
   font-size: 0.72rem;
   min-width: 48rem;
+}
+
+/* Ticker, model and suggestion read better on one line; the table scrolls
+   inside .daily-summary-tables when the column is too narrow. */
+.daily-summary-tables td:nth-child(-n + 3) {
+  white-space: nowrap;
 }
 
 .daily-summary-tables table:not([class]) th,
