@@ -1,0 +1,5854 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/AMAT/20261008_gpt-6-astra_20261008_210418/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: AMAT - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-amat" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: AMAT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MCD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../STRL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MCD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../PDD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../STRL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amat-a-daily-rebound-within-a-weaker-weekly-trend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMAT: a daily rebound within a weaker weekly trend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-levels-and-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading levels and decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amat-sentiment-2026-10-01-to-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMAT sentiment | 2026-10-01 to 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source assessment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignment-and-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignment and divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-narrative-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant narrative themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-catalysts-and-risks-to-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Catalysts and risks to monitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amat-weekly-trading-and-macro-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMAT: weekly trading and macro report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amat-and-the-semiconductor-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMAT and the semiconductor cycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rates-inflation-and-market-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rates, inflation and market risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-risks-and-trading-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global risks and trading plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amat-fundamental-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMAT — fundamental report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#company-profile-and-available-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Company profile and available documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earnings-and-growth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Earnings and growth
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-and-financial-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow and financial position
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuation-and-insider-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valuation and insider activity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-watch-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to watch next
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-amat">Trading Analysis Report: AMAT<a class="headerlink" href="#trading-analysis-report-amat" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:04:18</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $509.57
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="amat-a-daily-rebound-within-a-weaker-weekly-trend">AMAT: a daily rebound within a weaker weekly trend<a class="headerlink" href="#amat-a-daily-rebound-within-a-weaker-weekly-trend" title="Permanent link">&para;</a></h4>
+<p>AMAT rallied from a verified close of $415.38 on September 16 to $542.28 on October 5, then closed lower on each of the next three sessions: $530.27, $520.65, and $509.57. The October 8 session ranged from $502.65 to $523.34 but closed near its open of $509.94. That makes the immediate question whether this is a pause in the rebound or the start of a deeper pullback—not whether the rally has already been definitively reversed.</p>
+<p><strong>The timeframes disagree.</strong> SuperTrend is <strong>down on the weekly chart</strong>, with a trailing-stop line at $599.51; <strong>up on the monthly chart</strong>, with a line at $387.77; and <strong>up on the daily chart</strong>, with a line at $482.69. Under the indicator’s prescribed weighting, the weekly downtrend takes priority. The daily uptrend supports tactical long setups, but it does not yet establish a higher-tier reversal. These are moving indicator levels, not fixed price targets.</p>
+<p>AMAT remains above its verified <strong>50-day SMA of $489.67</strong>. That average fell through much of September and has only recently begun edging higher, so the position above it is constructive but not conclusive. Momentum gives a similarly mixed reading: the <strong>MACD histogram is positive at 6.00</strong>, yet it has contracted from 12.09 on October 2. <strong>RSI is 55.56</strong>, down from 69.66 on October 5—still above the neutral 50 area, but no longer showing the same upside force. OBV rose during the late-September advance and has declined across the three most recent down sessions, warranting confirmation from volume before trusting another breakout. One short OBV decline is not proof of sustained distribution.</p>
+<p>Neither exhaustion measure argues for an automatic reversal trade. TD-9 stands at <strong>weekly −3, monthly +1, daily +2</strong>: none is near a completed nine. Z-scores are <strong>weekly −0.16, monthly +1.14, daily +0.66</strong>; none meets the ±2 stretch threshold. In particular, the daily pullback is not, by this measure, an extreme oversold opportunity.</p>
+<h4 id="trading-levels-and-decisions">Trading levels and decisions<a class="headerlink" href="#trading-levels-and-decisions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>For a renewed long:</strong> Look for a <em>daily close</em> back above October 8’s $523.34 high, preferably with OBV turning up and the MACD histogram stabilizing rather than continuing to shrink. The verified closes of <strong>$540.04 on October 2</strong> and <strong>$542.28 on October 5</strong> are subsequent reference checkpoints, <strong>not proven resistance</strong>. Keep the weekly-down signal in mind: this would initially be a tactical rebound trade.</li>
+<li><strong>For a deeper pullback:</strong> A close below October 8’s <strong>$502.65 low</strong> would put the <strong>$489.67 50-day SMA</strong> and then the <strong>$482.69 daily SuperTrend line</strong> in focus. These are decision points, not guaranteed support. A close through the then-current daily SuperTrend line would flip that daily signal; the monthly uptrend would still need separate reassessment.</li>
+<li><strong>For sizing:</strong> Verified ATR is <strong>$18.97</strong>, so stops and share counts should accommodate substantial ordinary price movement and possible gaps. As an illustration, a fill at $523.34 with a stop at $502.65 risks <strong>$20.69 per share before slippage</strong>, while the first $540.04 checkpoint is <strong>$16.70 away</strong>. That first checkpoint alone offers an unattractive reward-to-risk balance for chasing that entry; a trader would need a better entry, a justified farther objective, or a different stop plan.</li>
+</ul>
+<p><strong>Bottom line:</strong> AMAT’s daily rebound is intact above its daily SuperTrend line, but the latest declines, narrowing positive momentum, and weekly downtrend favor <strong>waiting for confirmation rather than assuming either a fresh breakout or an oversold reversal</strong>.</p>
+<p>The verified snapshot supplies the closing price, OHLCV, 50-day SMA, RSI, MACD histogram, and ATR cited above. Multitimeframe SuperTrend, TD-9, z-scores, and OBV behavior come from their specialized indicator outputs; those readings are not independently listed in the snapshot.</p>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest reading or state</th>
+<th>Why it matters now</th>
+<th>What to watch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SuperTrend</strong></td>
+<td>Weekly <strong>down</strong>, stop $599.51; monthly <strong>up</strong>, stop $387.77; daily <strong>up</strong>, stop $482.69</td>
+<td>Exposes the conflict between the higher-priority weekly trend and daily rebound</td>
+<td>A close through the then-current daily line; eventual weekly confirmation</td>
+</tr>
+<tr>
+<td><strong>50-day SMA</strong></td>
+<td><strong>$489.67</strong>; price above it</td>
+<td>Tests whether the rebound retains a medium-term foothold</td>
+<td>Whether price holds above it if $502.65 breaks</td>
+</tr>
+<tr>
+<td><strong>MACD histogram</strong></td>
+<td><strong>+6.00</strong>, versus +12.09 on October 2</td>
+<td>Upside momentum remains positive but is weakening</td>
+<td>Stabilization or renewed expansion before a long</td>
+</tr>
+<tr>
+<td><strong>RSI</strong></td>
+<td><strong>55.56</strong>, versus 69.66 on October 5</td>
+<td>Momentum has cooled without becoming oversold</td>
+<td>Whether it holds near/above 50 or deteriorates</td>
+</tr>
+<tr>
+<td><strong>ATR</strong></td>
+<td><strong>$18.97</strong></td>
+<td>Sets a practical scale for stop distance and position size</td>
+<td>Size risk for volatility and gaps, not just the entry price</td>
+</tr>
+<tr>
+<td><strong>OBV</strong></td>
+<td>Down over the latest three declining sessions</td>
+<td>Recent selling has reduced volume confirmation of the rebound</td>
+<td>A renewed upward slope alongside price</td>
+</tr>
+<tr>
+<td><strong>TD-9</strong></td>
+<td>Weekly <strong>−3</strong>; monthly <strong>+1</strong>; daily <strong>+2</strong></td>
+<td>No timeframe has a completed-nine exhaustion signal</td>
+<td>Counts approaching nine, especially on the weekly tier</td>
+</tr>
+<tr>
+<td><strong>Z-score</strong></td>
+<td>Weekly <strong>−0.16</strong>; monthly <strong>+1.14</strong>; daily <strong>+0.66</strong></td>
+<td>No statistical stretch supports fading price solely on mean-reversion grounds</td>
+<td>A move toward ±2, interpreted alongside trend</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mildly Bullish</strong> (Score: 5.8/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="amat-sentiment-2026-10-01-to-2026-10-08">AMAT sentiment | 2026-10-01 to 2026-10-08<a class="headerlink" href="#amat-sentiment-2026-10-01-to-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-assessment">1. Source-by-source assessment<a class="headerlink" href="#1-source-by-source-assessment" title="Permanent link">&para;</a></h4>
+<p><strong>News (20 supplied Yahoo Finance headlines): mildly positive, with a clear price-action caveat.</strong> Two headlines report the same Applied Materials–UCLA semiconductor R&amp;D collaboration at the EPIC Center: one from MT Newswires and one from GlobeNewswire. This is a tangible innovation development, but the two headlines should not be counted as separate partnerships, and neither specifies revenue or an order. An article discussing TSMC's <em>plans</em> for up to $64 billion of capex quotes an Applied Materials veteran saying it still is not building enough; that suggests a possible sector-demand tailwind, not a confirmed AMAT sale. Other AMAT-related headlines consider AI-driven chip complexity versus LRCX and KLAC, AGS business momentum, and revenue trends versus Qualcomm and Marvell; their question-and-comparison framing does not establish a positive result. A Jim Cramer headline is commentary, not a company event. Against those themes, Zacks explicitly headlines that AMAT suffered a larger drop than the general market. Several of the 20 headlines primarily concern other companies or the broader chip sector; their implications for AMAT are indirect. Article bodies, price-change magnitudes, and article-level publication timestamps were not supplied.</p>
+<p><strong>StockTwits (29 most-recent messages, dated 2026-10-06 to 2026-10-08): optimistic tags, more conflicted discussion.</strong> Eight messages are user-tagged Bullish, zero Bearish, and 21 unlabeled: an 8:0 bullish/bearish split <em>among tagged messages</em>, but only 8/29 (28%) of the full sample are bullish-tagged. Examples include “load more,” “to the moon,” a squeeze call, and enthusiasm around AI-chip R&amp;D. Many unlabeled posts temper that read: users describe chop, a stock or semiconductor-equipment pullback, taking profits, and equipment makers lagging the chip supply chain. One unlabeled “FRAUD ALERT!” post provides no evidence and should not be treated as an established allegation. Posts projecting $700 before earnings or $1,000, an options-return estimate, and a claimed share price are unverified trader assertions, not validated forecasts or current market data. One post describes an Intel–AMAT R&amp;D collaboration; the supplied AMAT-specific news headlines corroborate UCLA, not that Intel claim. The 29-message snapshot covers only October 6–8, not a representative sample of the entire requested week.</p>
+<p><strong>Reddit: unavailable.</strong> Collection for r/wallstreetbets, r/stocks, and r/investing was disabled; there are no posts to analyze. This is missing coverage, not evidence of neutral sentiment or a lack of discussion. Confidence is <strong>low</strong> because one of the three requested sources is absent, the social sample is small and mostly unlabeled, and the news feed consists of headlines without article text.</p>
+<h4 id="2-cross-source-alignment-and-divergence">2. Cross-source alignment and divergence<a class="headerlink" href="#2-cross-source-alignment-and-divergence" title="Permanent link">&para;</a></h4>
+<p>Both news and some retail posts focus on AI-related chipmaking and research partnerships. The divergence is in emphasis: retail's <em>tagged</em> messages lean emphatically bullish, while the news includes an explicit AMAT underperformance headline and frequently frames future upside as a question rather than a result. Even within StockTwits, bullish tags coexist with complaints about weakness and profit-taking. Consequently, the evidence favors <strong>mild</strong> optimism over an unqualified bullish reading; it does not show two consistently opposed source-level consensuses.</p>
+<h4 id="3-dominant-narrative-themes">3. Dominant narrative themes<a class="headerlink" href="#3-dominant-narrative-themes" title="Permanent link">&para;</a></h4>
+<p>The recurring constructive thesis is that growing AI-chip complexity, semiconductor R&amp;D, and possible foundry investment could support demand for AMAT equipment and services. The recurring countertheme is near-term stock and chip-equipment weakness despite that thesis. Comparisons with LRCX, KLAC, and other AI-related names reflect investor attention to relative positioning, but the supplied headlines do not resolve competitive winners or quantify AMAT's benefit.</p>
+<h4 id="4-catalysts-and-risks-to-monitor">4. Catalysts and risks to monitor<a class="headerlink" href="#4-catalysts-and-risks-to-monitor" title="Permanent link">&para;</a></h4>
+<p>The announced UCLA EPIC Center collaboration is a concrete longer-horizon R&amp;D development. Potential TSMC capex and AGS momentum are topics to monitor, <strong>not</strong> confirmed incremental AMAT orders or demonstrated growth in these excerpts. The claimed Intel tie-up appears in social posts and needs independent verification before being treated as a catalyst. Risks surfaced here are reported AMAT underperformance, trader accounts of semiconductor-equipment lag and profit-taking, and potentially overenthusiastic retail price targets. No verified earnings date, forecast, stock return, order value, or financial impact was provided; a poster's “before ER” remark does not establish an earnings catalyst date.</p>
+<table>
+<thead>
+<tr>
+<th>Key signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EPIC Center R&amp;D collaboration</td>
+<td>Positive, long horizon</td>
+<td>MT Newswires; GlobeNewswire</td>
+<td>Two headlines describe the same AMAT–UCLA initiative; no disclosed commercial impact.</td>
+</tr>
+<tr>
+<td>AI/foundry spending thesis</td>
+<td>Tentatively positive</td>
+<td>Benzinga headline; AMAT comparison headlines</td>
+<td>Possible TSMC capex up to $64 billion and discussion of AI-driven complexity; AMAT orders not established.</td>
+</tr>
+<tr>
+<td>Relative price weakness</td>
+<td>Negative</td>
+<td>Zacks; StockTwits</td>
+<td>Headline says AMAT dropped more than the market; posts mention pullbacks, sluggishness, and trimming.</td>
+</tr>
+<tr>
+<td>User-labeled retail stance</td>
+<td>Positive but thin</td>
+<td>StockTwits</td>
+<td>8 Bullish, 0 Bearish, 21 unlabeled out of 29; several bullish posts offer little supporting detail.</td>
+</tr>
+<tr>
+<td>Untagged retail caution</td>
+<td>Negative/mixed</td>
+<td>StockTwits</td>
+<td>Posts describe chop, selling a pop, a semiconductor correction, and equipment-maker lag.</td>
+</tr>
+<tr>
+<td>Longer-form community corroboration</td>
+<td>Unknown</td>
+<td>Reddit</td>
+<td>Collection disabled across all three requested subreddits.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bottom line:</strong> AMAT sentiment is <strong>Mildly Bullish (5.8/10)</strong>, chiefly on R&amp;D and AI-capex narratives plus bullish-tagged retail activity, moderated by reported price weakness and mixed unlabeled chatter. This is a sentiment input for the trading decision, not a price prediction.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="amat-weekly-trading-and-macro-report">AMAT: weekly trading and macro report<a class="headerlink" href="#amat-weekly-trading-and-macro-report" title="Permanent link">&para;</a></h4>
+<p><strong>As of October 8, 2026 | News window: October 1–8</strong></p>
+<p><strong>Bottom line:</strong> The longer-term case for AMAT still rests on semiconductor manufacturers expanding capacity and investing in more complex chips. This week brought a research collaboration, but no verified change to AMAT orders or guidance in the retrieved news. Near-term trading looks more sensitive to <strong>high Treasury yields and uneven chip-stock sentiment</strong> than to the collaboration itself.</p>
+<h4 id="amat-and-the-semiconductor-cycle">AMAT and the semiconductor cycle<a class="headerlink" href="#amat-and-the-semiconductor-cycle" title="Permanent link">&para;</a></h4>
+<p>Applied Materials <a href="https://finance.yahoo.com/technology/articles/applied-materials-ucla-engineering-accelerate-200500850.html">announced a collaboration with UCLA Engineering</a> on semiconductor research at its EPIC Center. It supports AMAT’s longer-term technology position, but the announcement alone does <strong>not</strong> establish near-term revenue or equipment orders.</p>
+<p>An <a href="https://finance.yahoo.com/technology/articles/exclusive-tsmc-plans-64-billion-170949963.html">article cited potential TSMC capital spending of up to $64 billion</a>. That is relevant because foundry investment can drive demand for AMAT’s equipment. Treat the figure as a <strong>reported claim, not confirmed customer guidance</strong>, and watch for TSMC’s own spending plans and AMAT’s subsequent order commentary. This week’s <a href="https://finance.yahoo.com/markets/stocks/articles/applied-materials-sustain-momentum-ags-144300254.html">discussion of AMAT’s services business</a> is another useful watchpoint, but it is analysis rather than a new company result.</p>
+<p>Sector signals were mixed: <a href="https://finance.yahoo.com/markets/article/chip-stocks-retreat-despite-samsungs-record-profit-guidance-alphacheck-134449548.html">chip stocks retreated despite Samsung’s record profit guidance</a>, while <a href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-6-dow-sp-500-nasdaq-080526166.html">the Nasdaq and S&amp;P 500 reached records earlier in the week</a>. For AMAT, strong AI or memory headlines may not translate into share-price gains unless investors also see durable equipment spending.</p>
+<h4 id="rates-inflation-and-market-risk">Rates, inflation and market risk<a class="headerlink" href="#rates-inflation-and-market-risk" title="Permanent link">&para;</a></h4>
+<p>The <a href="https://fred.stlouisfed.org/series/DGS10">10-year Treasury yield</a> was <strong>5.28% on October 7</strong>, up from <strong>4.56% on July 10</strong>—a 72-basis-point rise that increases valuation pressure on growth and technology stocks. Its move <em>within this week</em> was smaller: 5.24% on October 1 to 5.28% on October 7. The <a href="https://fred.stlouisfed.org/series/T10Y2Y">10-year minus 2-year yield spread</a> was <strong>+0.47 percentage points on October 8</strong>.</p>
+<p>The latest available <a href="https://fred.stlouisfed.org/series/CPIAUCSL">CPI index</a> rose approximately <strong>0.40% from July to August</strong>; the <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE price index</a> rose approximately <strong>0.25%</strong> over the same interval. These are <strong>month-over-month index calculations, not annual inflation rates</strong>. September <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> was <strong>4.2%</strong>, versus 4.1% in August. The September monthly average <a href="https://fred.stlouisfed.org/series/FEDFUNDS">effective federal funds rate</a> was <strong>3.75%</strong>.</p>
+<p>Prediction markets reinforce the rate risk, though their odds are neither Fed guidance nor reliable forecasts: Polymarket prices <strong>80%</strong> for another Fed hike in 2026 and <strong>96%</strong> for no cuts in 2026. It prices a <strong>6%</strong> chance of a U.S. recession by year-end. Meanwhile, the <a href="https://fred.stlouisfed.org/series/VIXCLS">VIX</a> was <strong>15.08 on October 7</strong>—relatively subdued alongside the bond-market move.</p>
+<h4 id="global-risks-and-trading-plan">Global risks and trading plan<a class="headerlink" href="#global-risks-and-trading-plan" title="Permanent link">&para;</a></h4>
+<p>A <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">report said oil fell to around $103</a> following comments about U.S.–Iran tensions. Energy-price volatility remains worth watching for its potential effect on inflation and rates. Taiwan is a more direct semiconductor supply-chain risk: Polymarket prices a <strong>2%</strong> chance of a Chinese invasion and <strong>4%</strong> chance of a blockade by year-end. Those low contract odds should not be read as eliminating disruption risk.</p>
+<p><strong>Actionable approach for AMAT:</strong> Avoid treating the UCLA announcement or third-party capex speculation as an immediate earnings upgrade. A stronger bullish setup would pair <strong>confirmed customer spending or AMAT order strength</strong> with <strong>stabilizing Treasury yields</strong>. If yields rise further while chip stocks weaken even on favorable industry news, size AMAT exposure conservatively. No live AMAT quote or verified near-term earnings date was available from these tools, so a price-based entry or stop would be unsupported.</p>
+<table>
+<thead>
+<tr>
+<th>Key point</th>
+<th>Evidence as of October 8</th>
+<th>Implication for AMAT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company development</td>
+<td>UCLA/EPIC research collaboration announced</td>
+<td>Longer-term positive; no demonstrated near-term order impact</td>
+</tr>
+<tr>
+<td>Customer spending</td>
+<td>TSMC capex figure appeared in a third-party report</td>
+<td>Potential demand catalyst; seek customer confirmation</td>
+</tr>
+<tr>
+<td>Sector sentiment</td>
+<td>Chip stocks retreated despite Samsung guidance</td>
+<td>Good industry news may already be priced in</td>
+</tr>
+<tr>
+<td>Rates</td>
+<td>10-year yield 5.28% Oct. 7; +72 bp since July 10</td>
+<td>Principal near-term valuation risk</td>
+</tr>
+<tr>
+<td>U.S. economy</td>
+<td>September unemployment 4.2%; August CPI and core PCE indexes rose month over month</td>
+<td>Watch inflation and rate expectations before adding risk</td>
+</tr>
+<tr>
+<td>Forward risks</td>
+<td>Polymarket: 80% another 2026 Fed hike; 2% Taiwan invasion, 4% blockade</td>
+<td>Scenario indicators, <strong>not</strong> official forecasts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="amat-fundamental-report">AMAT — fundamental report<a class="headerlink" href="#amat-fundamental-report" title="Permanent link">&para;</a></h4>
+<p><strong>Applied Materials, Inc. | As of October 8, 2026</strong></p>
+<p><strong>Bottom line:</strong> AMAT’s latest available quarter shows accelerating revenue and stronger operating margins, while its balance sheet remains liquid. The principal counterweights for traders are a roughly <strong>44× trailing earnings</strong> valuation and cash flow that has not kept pace with the rise in nine-month net income. The only transaction in the supplied insider data dated within the past week is a small officer sale; the tools do not establish whether AMAT issued other news or filings during October 1–8.</p>
+<h4 id="company-profile-and-available-documents">Company profile and available documents<a class="headerlink" href="#company-profile-and-available-documents" title="Permanent link">&para;</a></h4>
+<p>AMAT is classified as <strong>Technology / Semiconductor Equipment &amp; Materials</strong> and trades on the NMS exchange. Its business is exposed to semiconductor manufacturers’ equipment spending, making customer investment cycles an important consideration when assessing growth.</p>
+<p>The financial figures below come from SEC EDGAR statement facts filed by October 8, 2026, supplemented by a fundamentals snapshot and an insider-transactions feed. The <strong>latest quarter available in the retrieved statements ended July 26, 2026</strong>; the latest full fiscal year ended October 26, 2025. The tools provide statement figures, <strong>not</strong> full filing text, segment results, geographic exposure, management guidance, or a confirmed date for the next earnings release. They do not identify a new financial statement published in the past week.</p>
+<h4 id="earnings-and-growth">Earnings and growth<a class="headerlink" href="#earnings-and-growth" title="Permanent link">&para;</a></h4>
+<p><strong>Fiscal Q3 2026 was strong on an operating basis.</strong> Revenue rose <strong>24.8% year over year</strong> to <strong>$9.115 billion</strong>. Gross margin reached <strong>50.3%</strong>, up from <strong>48.8%</strong> a year earlier, and operating income grew <strong>37.7%</strong>. Diluted EPS rose <strong>42.8%</strong> to <strong>$3.17</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Fiscal quarter ended</th>
+<th style="text-align: right;">Revenue</th>
+<th style="text-align: right;">Gross profit</th>
+<th style="text-align: right;">Operating income</th>
+<th style="text-align: right;">Net income</th>
+<th style="text-align: right;">Diluted EPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Jul. 27, 2025</td>
+<td style="text-align: right;">$7.302B</td>
+<td style="text-align: right;">$3.562B</td>
+<td style="text-align: right;">$2.233B</td>
+<td style="text-align: right;">$1.779B</td>
+<td style="text-align: right;">$2.22</td>
+</tr>
+<tr>
+<td>Apr. 26, 2026</td>
+<td style="text-align: right;">$7.910B</td>
+<td style="text-align: right;">$3.947B</td>
+<td style="text-align: right;">$2.523B</td>
+<td style="text-align: right;">$2.806B</td>
+<td style="text-align: right;">$3.51</td>
+</tr>
+<tr>
+<td><strong>Jul. 26, 2026</strong></td>
+<td style="text-align: right;"><strong>$9.115B</strong></td>
+<td style="text-align: right;"><strong>$4.586B</strong></td>
+<td style="text-align: right;"><strong>$3.075B</strong></td>
+<td style="text-align: right;"><strong>$2.538B</strong></td>
+<td style="text-align: right;"><strong>$3.17</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Sequentially, Q3 revenue grew <strong>15.2%</strong> and operating income grew <strong>21.9%</strong>, but net income fell <strong>9.6%</strong> and EPS fell <strong>9.7%</strong> from Q2. The supplied statement rows do not explain that divergence. Traders should check the next full filing for tax or other below-operating-line effects rather than extrapolating Q2’s net margin.</p>
+<p>For the <strong>first nine months of fiscal 2026</strong>, revenue was <strong>$24.037 billion</strong>, up <strong>11.4%</strong> from the comparable 2025 period. Operating income rose <strong>13.0%</strong> to <strong>$7.429 billion</strong>, while net income rose much faster—<strong>44.5%</strong>, to <strong>$7.370 billion</strong>. That gap is another reason to distinguish operating improvement from growth in reported net earnings.</p>
+<p>Annual results provide context: AMAT’s revenue rose from <strong>$17.202 billion in fiscal 2020</strong> to <strong>$28.368 billion in fiscal 2025</strong>, approximately <strong>10.5% annualized</strong>. More recently, growth was slower, while cash generation declined.</p>
+<table>
+<thead>
+<tr>
+<th>Fiscal year</th>
+<th style="text-align: right;">Revenue</th>
+<th style="text-align: right;">Operating income</th>
+<th style="text-align: right;">Net income</th>
+<th style="text-align: right;">Diluted EPS</th>
+<th style="text-align: right;">Operating cash flow</th>
+<th style="text-align: right;">Capital spending</th>
+<th style="text-align: right;">Free cash flow*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023</td>
+<td style="text-align: right;">$26.517B</td>
+<td style="text-align: right;">$7.654B</td>
+<td style="text-align: right;">$6.856B</td>
+<td style="text-align: right;">$8.11</td>
+<td style="text-align: right;">$8.700B</td>
+<td style="text-align: right;">$1.106B</td>
+<td style="text-align: right;">$7.594B</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align: right;">$27.176B</td>
+<td style="text-align: right;">$7.867B</td>
+<td style="text-align: right;">$7.177B</td>
+<td style="text-align: right;">$8.61</td>
+<td style="text-align: right;">$8.677B</td>
+<td style="text-align: right;">$1.190B</td>
+<td style="text-align: right;">$7.487B</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td style="text-align: right;"><strong>$28.368B</strong></td>
+<td style="text-align: right;"><strong>$8.289B</strong></td>
+<td style="text-align: right;"><strong>$6.998B</strong></td>
+<td style="text-align: right;"><strong>$8.66</strong></td>
+<td style="text-align: right;"><strong>$7.958B</strong></td>
+<td style="text-align: right;"><strong>$2.260B</strong></td>
+<td style="text-align: right;"><strong>$5.698B</strong></td>
+</tr>
+</tbody>
+</table>
+<p>*Free cash flow here and below means <strong>operating cash flow minus capital expenditure</strong>. Fiscal 2025 revenue grew <strong>4.4%</strong>, but net income declined <strong>2.5%</strong> and free cash flow declined <strong>23.9%</strong> versus fiscal 2024. Capital expenditure increased about <strong>90%</strong>.</p>
+<h4 id="cash-flow-and-financial-position">Cash flow and financial position<a class="headerlink" href="#cash-flow-and-financial-position" title="Permanent link">&para;</a></h4>
+<p>Through the first nine months of fiscal 2026, operating cash flow was <strong>$5.568 billion</strong>, up <strong>8.5%</strong> year over year. Capital expenditure rose <strong>34.8%</strong> to <strong>$1.988 billion</strong>, leaving <strong>$3.580 billion</strong> of free cash flow—<strong>2.1% below</strong> the comparable 2025 period despite much higher net income. This is the clearest cash-conversion question for traders to monitor.</p>
+<p>The most recent quarter improved: subtracting the six-month totals from the nine-month totals yields <strong>Q3 operating cash flow of $3.037 billion</strong>, capital expenditure of <strong>$707 million</strong>, and free cash flow of <strong>$2.330 billion</strong>. The equivalent derived Q2 free cash flow was only <strong>$210 million</strong>. These are <em>derived quarterly amounts</em> because the cash-flow tool reports cumulative six- and nine-month figures.</p>
+<p>AMAT had <strong>$43.522 billion of assets</strong> and <strong>$25.626 billion of shareholders’ equity</strong> at July 26, 2026. Cash was <strong>$7.037 billion</strong>. Current assets of <strong>$25.095 billion</strong> exceeded current liabilities of <strong>$10.357 billion</strong>, giving a <strong>2.42 current ratio</strong> and <strong>$14.738 billion of working capital</strong>. Liquidity remains substantial, although the current ratio was <strong>2.61</strong> at fiscal year-end 2025. The fundamentals snapshot lists debt-to-equity at <strong>0.29×</strong>; the retrieved balance-sheet rows do not separately provide debt maturities.</p>
+<h4 id="valuation-and-insider-activity">Valuation and insider activity<a class="headerlink" href="#valuation-and-insider-activity" title="Permanent link">&para;</a></h4>
+<p>The fundamentals snapshot puts AMAT’s market capitalization at <strong>$404.4 billion</strong>, trailing EPS at <strong>$11.59</strong>, trailing P/E at <strong>43.97×</strong>, forward EPS at <strong>$18.48</strong>, and forward P/E at <strong>27.58×</strong>. It also lists <strong>15.78× price-to-book</strong>, <strong>0.41% dividend yield</strong>, <strong>41.1% return on equity</strong>, and <strong>1.59 beta</strong>. The trailing and forward EPS figures imply approximately <strong>59% earnings growth</strong> between their respective periods; the snapshot does not specify the forward estimate’s horizon. At this valuation, continued growth matters considerably to the investment case.</p>
+<p>There is a <strong>free-cash-flow data discrepancy</strong> worth noting. The fundamentals snapshot lists approximately <strong>$3.075 billion</strong>, whereas applying operating cash flow less capital expenditure to the EDGAR annual and cumulative statements gives approximately <strong>$5.623 billion for the trailing four quarters</strong>. That statement-derived amount represents about a <strong>1.4% yield</strong> on the reported market cap. Definitions or data-refresh timing may differ; traders should not treat the two FCF figures as interchangeable.</p>
+<p><strong>Past-week insider activity:</strong> The supplied feed records an <strong>October 2 sale of 725 shares for $394,807</strong> by officer Adam Sanders, with no purchase shown for the week. For broader context, it lists CEO Gary Dickerson sales totaling <strong>161,321 shares and approximately $104.8 million</strong> across two June 2026 dates. The feed does not establish whether sales were scheduled or explain insiders’ motives; grants and gifts in the feed are not open-market purchases.</p>
+<h4 id="what-to-watch-next">What to watch next<a class="headerlink" href="#what-to-watch-next" title="Permanent link">&para;</a></h4>
+<p>The next fiscal report can test whether Q3’s <strong>50.3% gross margin</strong> and <strong>33.7% operating margin</strong> persist, and whether cash flow continues to recover. One concrete annual cash-flow benchmark: with <strong>$3.580 billion</strong> of free cash flow recorded through nine months, AMAT would need <strong>more than $2.118 billion in Q4</strong> to exceed fiscal 2025’s <strong>$5.698 billion</strong>. For revenue to grow <strong>more than 10%</strong> over fiscal 2025, Q4 revenue would need to exceed approximately <strong>$7.168 billion</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Key point</th>
+<th>Evidence as of Oct. 8, 2026</th>
+<th>Trader implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Operating momentum</strong></td>
+<td>Q3 revenue <strong>+24.8% YoY</strong>; operating income <strong>+37.7%</strong>; gross margin <strong>50.3%</strong></td>
+<td>Watch whether the next report sustains growth and margins.</td>
+</tr>
+<tr>
+<td><strong>Earnings quality</strong></td>
+<td>Nine-month net income <strong>+44.5%</strong>, but operating cash flow <strong>+8.5%</strong> and free cash flow <strong>−2.1%</strong></td>
+<td>Verify that rising profit translates into cash.</td>
+</tr>
+<tr>
+<td><strong>Liquidity</strong></td>
+<td><strong>$7.037B cash</strong>; <strong>2.42 current ratio</strong></td>
+<td>Strong current-asset coverage, though the ratio has declined from fiscal year-end.</td>
+</tr>
+<tr>
+<td><strong>Valuation</strong></td>
+<td><strong>43.97× trailing P/E</strong>; statement-derived trailing FCF yield about <strong>1.4%</strong></td>
+<td>Limited room for a substantial growth disappointment.</td>
+</tr>
+<tr>
+<td><strong>Near-term evidence</strong></td>
+<td>Only supplied past-week insider item: <strong>725-share officer sale</strong>; latest retrieved financial quarter ended <strong>July 26</strong></td>
+<td>Do not infer a new earnings trend or a significant insider signal from the past-week data alone.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: I’ll open with the strongest reason to consider <strong>AMAT</strong>: its latest reported growth is showing up in the <em>operating business</em>, not just in a bullish AI narrative. Fiscal Q3 revenue rose <strong>24.8% year over year to $9.115 billion</strong>, operating income rose <strong>37.7%</strong>, and gross margin expanded from <strong>48.8% to 50.3%</strong>. That combination suggests AMAT is benefiting from demand while converting additional sales into profit efficiently.</p>
+<p>The longer-term opportunity is credible, though not guaranteed. More complex chips and potential foundry investment create reasons for manufacturers to spend on equipment; AMAT’s newly announced UCLA EPIC Center collaboration adds to its research position. I would not call the collaboration an order, or treat a third-party report of possible TSMC spending as confirmed AMAT revenue. The bull case is that AMAT is already producing strong operating results <em>before</em> either item can be counted as an incremental sale. Its services business is another avenue to watch, but the supplied material does not quantify a new contribution.</p>
+<p>A bear will rightly point to the <strong>43.97× trailing P/E</strong>, weak nine-month cash conversion, and high yields. Those are real constraints on the price investors should pay—not reasons to dismiss the business’s improvement. Nine-month free cash flow slipped <strong>2.1%</strong> despite much faster net-income growth, but derived Q3 free cash flow recovered to <strong>$2.330 billion</strong>, versus <strong>$210 million in Q2</strong>. One quarter does not settle the cash-conversion issue; it does show why extrapolating the nine-month weakness alone could miss a turn. AMAT also held <strong>$7.037 billion in cash</strong> and a <strong>2.42 current ratio</strong> at the latest balance-sheet date. The quoted <strong>27.58× forward P/E</strong> offers a less demanding picture than trailing valuation, but only <em>if</em> the unspecified forward earnings estimate materializes.</p>
+<p>Nor am I asking investors to ignore the tape. At <strong>$509.57 on October 8</strong>, AMAT was above its <strong>$489.67 50-day average</strong> and <strong>$482.69 daily SuperTrend line</strong>, while the <strong>weekly SuperTrend remained down</strong> and momentum had faded. With the 10-year Treasury yield at <strong>5.28% on October 7</strong>, I would favor a <strong>staged, long-horizon investment in AMAT rather than chasing a short-term breakout</strong>. For a tactical add, a close above <strong>$523.34</strong> with improving volume and momentum would be more persuasive; a break below <strong>$502.65</strong> would call for patience and reassessment.</p>
+<p>My challenge to the bear is this: valuation and rates make AMAT vulnerable to disappointment, but the latest <strong>revenue acceleration, margin expansion, and Q3 cash-flow recovery</strong> are evidence of a company delivering—not merely promising—growth. The decisive next test is whether customer spending, margins, and cash generation hold up in the next report.
+Bull Analyst: <strong>I still favor a measured, long-horizon investment in AMAT at $509.57 as of October 8, 2026—not a chase for a quick rebound.</strong> Your valuation objection is serious. Where I disagree is with the conclusion that investors should wait for <em>every</em> durability test to be settled before taking any position.</p>
+<p>You’re right that one strong cash-flow quarter cannot erase weak nine-month conversion. But it changes the direction of the evidence: AMAT produced <strong>$2.330 billion of free cash flow in Q3</strong>, versus a derived <strong>$210 million in Q2</strong>, while Q3 revenue grew <strong>24.8% year over year</strong> and operating income grew <strong>37.7%</strong>. The operating improvement is particularly important because nine-month net-income growth outpaced cash flow by so much. I’m not relying on reported EPS alone; I’m looking for the revenue, margin and cash measures to converge.</p>
+<p>There is a concrete near-term test. AMAT needs <strong>more than $2.118 billion of Q4 free cash flow</strong> to exceed fiscal 2025’s full-year total—slightly less than it generated in Q3. It needs <strong>more than $7.168 billion of Q4 revenue</strong> for fiscal 2026 revenue growth to top 10%, versus <strong>$9.115 billion in Q3</strong>. Neither hurdle guarantees success, and clearing them would not prove Q3’s growth rate is permanent. But they make the bull case testable without assuming another record quarter.</p>
+<p>I also accept your <strong>20% forward-EPS miss</strong> example: at today’s price, roughly <strong>34.5×</strong> that reduced estimate would still be expensive. The quoted <strong>27.58× forward P/E</strong> is not a margin of safety when its estimate horizon is unspecified. My counter is not that AMAT is cheap; it is that avoiding it entirely discounts demonstrated operating momentum and a potential long-run market in increasingly complex chip production. Revenue compounded at approximately <strong>10.5% annually from fiscal 2020 to 2025</strong>, and the latest quarter’s <strong>50.3% gross margin</strong> shows the business is currently converting higher sales into stronger operating results. The UCLA collaboration supports its research position, but I agree it proves neither market-share gains nor an order. Reported possible TSMC spending is an opportunity to monitor, not revenue to count today.</p>
+<p>Rates and the tape argue for discipline. A <strong>5.28% 10-year yield</strong>, three declining AMAT closes, and a <strong>weekly downtrend</strong> could pressure the multiple even if the business performs. That is why I would <strong>start small and add only as execution is confirmed</strong>, rather than buy a full position on forward EPS or chase a close above $523.34. A break below <strong>$502.65</strong> would prompt reassessment, with the <strong>$489.67 50-day average</strong> and then-current daily trend line worth watching—not presumed floors.</p>
+<p>So our real disagreement is about the cost of waiting. You would require sustained margins, cash conversion and identifiable customer spending <em>before</em> initiating. I would take limited exposure to AMAT’s already visible operating growth, then demand those same confirmations before adding materially. If cash flow slips again or margins retreat, the valuation makes that a reason to change the thesis—not to explain it away.
+Bull Analyst: Your <strong>1.4% trailing free-cash-flow yield</strong> is the bear case’s strongest point, and I agree that merely beating fiscal 2025 cash flow would be a low bar. I would not call that a durable recovery. But I also would not treat nine-month cash conversion as the best picture of where <strong>AMAT</strong> stands now.</p>
+<p>In the latest quarter, derived free cash flow was <strong>$2.330 billion</strong>, or about <strong>92% of Q3 net income</strong>, after just <strong>$210 million</strong> in Q2. That could partly reflect timing, so it needs repeating. It matters because the improvement arrived alongside <strong>24.8% year-over-year revenue growth</strong>, <strong>37.7% operating-income growth</strong>, and a gross margin that rose to <strong>50.3%</strong>. The bull case is anchored in operating performance already reported, not in assuming an AI-related order will appear.</p>
+<p>I accept your criticism of my earlier Q4 hurdles. A more useful cash test is whether <strong>AMAT</strong> can sustain something close to Q3’s cash conversion, then do so beyond one more quarter. If Q4 free cash flow merely matched Q3’s $2.330 billion, fiscal-year free cash flow would be about <strong>$5.910 billion</strong>—only <strong>3.7% above fiscal 2025</strong>, and still below fiscal 2024. That would be progress, not victory. Likewise, repeating Q3’s <strong>$9.115 billion</strong> of revenue in Q4 would imply roughly <strong>16.9% fiscal-year revenue growth</strong>; that is a scenario to test, not my forecast.</p>
+<p>Your <strong>22× forward-EPS, roughly $407-per-share</strong> example is a legitimate downside scenario, especially with the 10-year yield at <strong>5.28%</strong>. But it assumes both that the forward earnings arrive and that investors then assign a substantially lower multiple. I cannot dismiss that risk; I weigh it against the reported acceleration in sales and operating profit, a <strong>$7.037 billion cash balance</strong>, and a <strong>2.42 current ratio</strong>. Those financial strengths do not make the shares cheap, but they give <strong>AMAT</strong> room to keep investing through an uneven equipment cycle.</p>
+<p>We also agree that the UCLA collaboration is <strong>not an order</strong>, reported possible TSMC spending is <strong>not AMAT revenue</strong>, and the supplied evidence does <strong>not prove share gains</strong> against rivals. They support the longer-run opportunity in more complex chipmaking; the quarterly results are the evidence that opportunity is currently reaching the business.</p>
+<p>So I would <strong>initiate only a small, long-horizon position in AMAT at the October 8 price of $509.57</strong>, not make a full valuation-insensitive purchase. I would require sustained margins and cash conversion before adding materially, and pause additions if the recent pullback deepens. Your case explains why position size matters. It does not, in my view, outweigh the operating growth already in hand enough to justify avoiding <strong>AMAT</strong> altogether.
+Bull Analyst: You’re right that <strong>AMAT at $509.57 is not priced for a routine semiconductor cycle</strong>. I would not use one strong cash-flow quarter to dismiss a 1.4% trailing free-cash-flow yield. But I think your recommendation to avoid AMAT altogether puts too much weight on the cash-flow shortfall without separating its causes.</p>
+<p>Over the first nine months, operating cash flow <strong>rose about $436 million year over year</strong>; capital spending rose about <strong>$513 million</strong>. The resulting free-cash-flow decline was roughly <strong>$77 million</strong>. That does <em>not</em> resolve the gap between net income and cash generation, and higher spending still has to earn a return. It does show that operating cash receipts were growing, rather than falling alongside free cash flow. Q3 then generated <strong>$2.330 billion of free cash flow</strong>, about <strong>92% of that quarter’s net income</strong>. I agree with you: the next reports must show that was more than timing.</p>
+<p>The operating results give me a reason to take that test. Q3 revenue increased <strong>$1.813 billion</strong> year over year, while operating income increased <strong>$842 million</strong>—an incremental operating margin of roughly <strong>46%</strong>. Gross margin reached <strong>50.3%</strong>. That is evidence of AMAT scaling profitably <em>now</em>, not a forecast based on the UCLA collaboration or an unconfirmed customer capex figure. It does not prove market-share gains, but it makes the growth case stronger than an AI narrative alone.</p>
+<p>Your <strong>22× earnings</strong> downside example is fair. It is a valuation scenario, though, not evidence that AMAT’s multiple will settle there. High yields and the weekly downtrend make me unwilling to buy aggressively; strong operating leverage makes me unwilling to wait on the sidelines for every uncertainty to disappear.</p>
+<p>So I still favor <strong>initiating only a small, long-horizon AMAT position at $509.57</strong>, not adding on a reflexive rebound. I would pause additions if the pullback deepens and require <em>repeated</em> strong cash conversion, sustained margins, and clearer customer-spending evidence before building a full position. If those tests fail, your valuation objection wins. If they hold, avoiding AMAT entirely risks missing a business whose operating growth is already visible.
+Bull Analyst: You’re right that <strong>a small position does not make AMAT cheap</strong>. Your 22× forward-earnings example is a credible repricing risk, especially with the 10-year yield at 5.28%. My disagreement is with <em>avoiding AMAT entirely</em> until the cash-flow question is settled.</p>
+<p>The latest quarter gives us a stronger test of that question than the nine-month total alone. AMAT generated <strong>$3.037 billion of operating cash flow against $2.538 billion of net income</strong> in Q3—about <strong>120% cash conversion before capital spending</strong>. It then spent <strong>$707 million on capital expenditures</strong> and still produced <strong>$2.330 billion of free cash flow</strong>. I would not call that a new run rate, but the rebound was not achieved simply by stopping investment. It arrived in the same quarter as <strong>24.8% revenue growth</strong>, a <strong>50.3% gross margin</strong>, and roughly <strong>46% incremental operating margin</strong> year over year.</p>
+<p>I accept your distinction between strong execution and durable competitive advantage. The supplied evidence proves neither share gains against LRCX and KLAC nor orders from possible TSMC spending. Still, AMAT’s demonstrated ability to grow sales <em>and</em> expand margins is more persuasive to me than an AI narrative alone. The UCLA collaboration strengthens the longer-term research case; I would assign it no near-term revenue.</p>
+<p>So my recommendation remains <strong>a small, long-horizon AMAT purchase at the October 8 price of $509.57</strong>, with no aggressive adding into a weekly downtrend. I would add materially only if subsequent reports show margins holding and cash conversion repeating—not merely if the share price rebounds. If cash flow weakens again while earnings remain strong, your valuation objection becomes the stronger case. But buying limited exposure now recognizes that AMAT’s operating growth is already visible, while keeping the unproven durability of that growth central to the decision.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: <strong>My bear recommendation on AMAT is to avoid initiating or adding at $509.57 as of October 8, 2026.</strong> You’re right that the latest quarter was strong: revenue rose 24.8%, operating income rose 37.7%, and gross margin reached 50.3%. I’m not arguing that growth is imaginary. I’m arguing that the price leaves too little room to learn whether this pace is durable.</p>
+<p>Your Q3 cash-flow recovery is the best counterpoint to that concern, but it does not resolve it. AMAT generated $2.330 billion of free cash flow in Q3 after just $210 million in Q2. Yet across the first nine months, free cash flow was <strong>down 2.1%</strong> while net income was <strong>up 44.5%</strong>. Fiscal 2025 free cash flow had already fallen 23.9% despite revenue growth. A strong quarter makes a recovery possible; it does not establish consistently stronger cash conversion.</p>
+<p>The forward multiple also deserves more skepticism than the trailing multiple alone suggests. AMAT trades at about <strong>44× trailing earnings</strong>, and the quoted <strong>27.58× forward P/E</strong> relies on forward EPS of $18.48 versus trailing EPS of $11.59—roughly <strong>59% higher</strong>, over an unspecified forecast horizon. If that forward estimate missed by 20%, the stock would still trade at about <strong>34.5×</strong> the reduced earnings estimate at today’s price. With the 10-year Treasury yield at 5.28%, up 72 basis points since July 10, investors face a meaningful risk that a good business delivers good results but receives a lower valuation. Its $7.037 billion cash balance helps the business withstand a downturn; it does not protect a buyer from overpaying.</p>
+<p>I also wouldn’t turn the AI opportunity into a competitive conclusion yet. The UCLA collaboration is real, but it has no disclosed order or revenue value. The reported TSMC capex figure is not confirmed customer guidance or an AMAT sale. And the supplied evidence does not show whether AMAT is gaining share against equipment rivals such as LRCX and KLAC. That matters when the investment case assumes exceptional growth will persist through a cyclical customer-spending market.</p>
+<p>Finally, staging a purchase reduces timing risk, not valuation risk. AMAT remains above its 50-day average, but it has closed lower for three sessions since October 5, its MACD histogram has narrowed from 12.09 to 6.00, and the higher-priority weekly SuperTrend is still down. I would reconsider the bear stance if the next report confirms sustained margins <strong>and</strong> cash conversion alongside identifiable customer spending. Until then, I’d rather miss some upside than pay a growth-dependent price before those tests are met.
+Bear Analyst: You’re right that investors need not wait for certainty before buying <strong>AMAT</strong>. My objection is narrower: at <strong>$509.57 on October 8, 2026</strong>, the price asks investors to pay for durable growth before cash generation has demonstrated it.</p>
+<p>Your Q4 tests are useful, but the cash-flow hurdle is forgiving. AMAT needs more than <strong>$2.118 billion</strong> of Q4 free cash flow to beat fiscal 2025—about <strong>9% less</strong> than it generated in Q3. Fiscal 2025 free cash flow had already fallen <strong>23.9%</strong> from fiscal 2024. Clearing that hurdle would be welcome, not proof of a sustained recovery. The revenue test is similarly modest: <strong>$7.168 billion</strong> would deliver more than 10% annual growth even though it is roughly <strong>21% below Q3 revenue</strong>.</p>
+<p>I give Q3’s <strong>$2.330 billion</strong> free cash flow full credit. But across nine months, AMAT generated <strong>$3.580 billion</strong> of free cash flow against <strong>$7.370 billion</strong> of net income; free cash flow fell <strong>2.1%</strong> while net income rose <strong>44.5%</strong>. One strong quarter after a weak Q2 does not tell us whether cash conversion has stabilized. Meanwhile, statement-derived trailing free cash flow of about <strong>$5.623 billion</strong> represents only a <strong>1.4% yield</strong> on the reported market value.</p>
+<p>That is why starting small does not settle the valuation question. At roughly <strong>44× trailing earnings</strong>, AMAT offers little cushion if growth normalizes. Even <em>if</em> the quoted <strong>$18.48 forward EPS</strong> arrives, a hypothetical repricing to <strong>22×</strong> would imply about <strong>$407 per share</strong>, roughly <strong>20% below</strong> the current price. That is a risk illustration, not a price target; the estimate’s horizon is unspecified. A <strong>5.28% 10-year Treasury yield</strong> makes multiple compression harder to dismiss.</p>
+<p>I agree the operating results are strong, and I would not call the UCLA collaboration or possible foundry spending meaningless. Neither, however, establishes incremental AMAT orders or market-share gains against rivals. With the weekly trend still down and momentum fading, <strong>my recommendation remains to avoid initiating or adding to AMAT here—not to short it</strong>. I do not need every question answered to change my view; a more attractive price <em>or</em> convincing evidence that strong margins are translating into sustained cash flow could be enough.
+Bear Analyst: You’re right that investors need not wait for certainty to buy <strong>AMAT</strong>. My objection is that, at <strong>$509.57 on October 8</strong>, they are paying a price that leaves little room for the uncertainty we can already see.</p>
+<p>I give Q3’s cash recovery full credit: <strong>$2.330 billion of free cash flow was about 92% of net income</strong>. But Q2 free cash flow was only <strong>$210 million</strong>, and the nine-month total of <strong>$3.580 billion was about 49% of net income</strong>. With nine-month capital spending up <strong>34.8%</strong>, I cannot yet treat Q3 as AMAT’s new cash-generation run rate. Even if Q4 matches Q3, full-year free cash flow would be roughly <strong>$5.910 billion—still about 21% below fiscal 2024</strong>. That is improvement from fiscal 2025, not a return to the earlier cash-flow level.</p>
+<p>Nor does the downside case require AMAT’s operating growth to disappear. If the quoted <strong>$18.48 forward EPS</strong> arrives but the market values it at <strong>22×</strong>, the implied price is about <strong>$407</strong>, roughly <strong>20% below</strong> today’s price. That is an illustration, not a target. It shows why a <strong>5.28% 10-year Treasury yield</strong> and a <strong>43.97× trailing P/E</strong> matter even for a company reporting strong revenue and margins. AMAT’s <strong>$7.037 billion cash balance</strong> gives it flexibility through a spending cycle; it does not prevent the shares from being repriced.</p>
+<p>I also accept the long-run chip-complexity opportunity. But the UCLA collaboration supplies no disclosed order, possible TSMC spending is not confirmed AMAT revenue, and the supplied evidence establishes no share gain against equipment rivals. Meanwhile, AMAT has closed lower for three sessions and its weekly trend remains down. That is not a reason to short a strong operating business; it is a reason not to rush into a growth-dependent valuation.</p>
+<p><strong>My recommendation remains to avoid initiating or adding to AMAT here.</strong> A more attractive price, or repeated strong cash conversion alongside sustained margins and identifiable customer spending, would change the risk-reward calculation.
+Bear Analyst: Your cash-flow decomposition is fair, and I agree it is better evidence for <strong>AMAT</strong> than simply saying free cash flow fell. But it does not make the shortfall trivial. In the first nine months, operating cash flow rose about <strong>$436 million</strong> while net income rose roughly <strong>$2.27 billion</strong>. Capital spending then rose about <strong>$513 million</strong>, more than absorbing the operating-cash-flow gain. AMAT may be investing wisely, but the supplied figures do not yet show the return on that additional spending. Q3’s <strong>$2.330 billion</strong> of free cash flow is encouraging; one quarter cannot tell us whether the wider profit-to-cash gap was timing or a persistent feature.</p>
+<p>I also give the <strong>46% incremental operating margin</strong> full credit. It shows impressive leverage while sales are accelerating—not that the same growth rate or margin will survive an uneven equipment-spending cycle. We have no confirmed incremental AMAT orders from the reported TSMC spending possibility, and no evidence here that AMAT is gaining share against LRCX or KLAC. Strong current execution is the bull case’s foundation; its <em>durability</em> remains the investment question.</p>
+<p>That uncertainty matters more at <strong>$509.57 as of October 8, 2026</strong>. AMAT trades at about <strong>44× trailing earnings</strong>, with a statement-derived trailing free-cash-flow yield near <strong>1.4%</strong>. The lower <strong>27.58× forward P/E</strong> depends on an estimate roughly <strong>59% above trailing EPS</strong>, over an unspecified horizon. A small position limits the dollars at risk, but it does not improve the price paid per share. With the 10-year Treasury yield at <strong>5.28%</strong> and AMAT’s weekly trend still down, I see a credible path to multiple compression even if the business remains profitable and growing.</p>
+<p>So I’m not disputing that <strong>AMAT</strong> is delivering. I’m disputing that today’s price adequately compensates a new buyer for having to find out whether Q3 cash conversion and exceptional operating leverage repeat. <strong>I would avoid initiating or adding to AMAT here, not short it.</strong> Sustained cash conversion alongside strong margins—or a materially better entry price—would change that judgment.
+Bear Analyst: You’re right that <strong>AMAT’s Q3 cash recovery was real</strong>: operating cash flow exceeded net income, and free cash flow improved without a halt in capital spending. That is the strongest reason to question my bear view. My concern is what a buyer at <strong>$509.57 on October 8</strong> must assume <em>after</em> that quarter.</p>
+<p>Even if AMAT repeated Q3’s <strong>$2.330 billion</strong> of free cash flow for four consecutive quarters, the resulting <strong>$9.32 billion</strong> would be only about a <strong>2.3% free-cash-flow yield</strong> on its reported $404.4 billion market value. That is substantially better than the roughly 1.4% trailing yield—but it requires the strongest recent cash-flow quarter to become routine. The nine-month record has not established that: free cash flow fell <strong>2.1%</strong> while net income rose <strong>44.5%</strong>.</p>
+<p>I also agree that 24.8% revenue growth and a roughly 46% incremental operating margin are evidence of excellent execution, not merely AI enthusiasm. They do not tell us whether customer equipment spending will sustain that pace or whether AMAT is taking share from LRCX and KLAC. Strong operating leverage can work against margins if spending slows. The UCLA collaboration and reported possible TSMC capex do not yet answer those questions with orders.</p>
+<p>Your small position limits your loss if the thesis fails; it does not change the valuation paid. With the <strong>10-year yield at 5.28%</strong> and AMAT’s weekly trend still down, I would <strong>avoid initiating or adding to AMAT here—not short it</strong>. Repeated cash conversion and clearer customer demand, or a materially better price, would make that decision worth revisiting.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: At the supplied October 8, 2026 price of $509.57, the bear case for AMAT is stronger on valuation, not on business quality. The bull deserves credit: Q3 revenue grew 24.8%, operating income grew 37.7%, and gross margin reached 50.3%. Q3 free cash flow of $2.330 billion represented about 92% of net income, with operating cash flow covering both earnings and continued capital spending. Also, the nine-month free-cash-flow decline was driven by higher capital spending rather than falling operating cash flow; it is not evidence that operating cash receipts collapsed.</p>
+<p>But durability remains unproven. Nine-month free cash flow was only about 49% of net income, and operating-cash-flow growth lagged earnings growth substantially. At roughly 44 times trailing earnings and a 1.4% trailing free-cash-flow yield, AMAT offers little demonstrated valuation cushion. Even repeating Q3 free cash flow for four quarters would produce only about a 2.3% yield on the supplied market value; that is a scenario, not a forecast. The quoted 27.58 times forward earnings depends on EPS roughly 59% above trailing EPS over an unspecified horizon, so it cannot establish a reliable margin of safety. The supplied 5.28% Treasury yield and weekly downtrend reinforce caution, but neither is the primary reason for the call.</p>
+<p>The collaboration and possible customer spending establish neither incremental AMAT orders nor share gains. Strong execution and the cash buffer support retaining limited exposure rather than exiting. Nevertheless, valuation relative to unproven sustained cash generation outweighs the bull's argument for a small purchase now, leading to Underweight.</p>
+<p><strong>Strategic Actions</strong>: 1. Sizing: Cap existing AMAT exposure at 0.5 times the portfolio's standard AMAT allocation. If above that cap, trim the excess in two approximately equal tranches over the next few suitable trading sessions after validating the market snapshot. If already at or below the cap, do not add merely to reach it. If unowned, defer initiation. Do not establish a short position.</p>
+<ol>
+<li>
+<p>Execution and downside controls: Refresh prices and indicators before placing orders; $509.57 and all supplied technical levels are dated references, not live quotes. If those levels remain applicable, a daily close below $502.65 should accelerate any unfinished trim and trigger review. Two consecutive closes below the refreshed 50-day average, quoted at $489.67 in the snapshot, should reduce the retained exposure cap to 0.25 times standard pending reassessment. A move above $523.34 alone is not sufficient to add. If the current market is materially different, reassess rather than submit orders against stale levels.</p>
+</li>
+<li>
+<p>Rebuilding criteria: Review the next report and seek confirmation across two subsequent quarters that gross margin remains near Q3's 50.3%, operating cash flow covers net income, and post-capex cash conversion approaches Q3's roughly 92%, with improving cumulative conversion and identifiable customer-demand evidence. Merely clearing the $2.118 billion Q4 free-cash-flow hurdle against a depressed fiscal 2025 baseline is insufficient. Once execution and valuation both support it, rebuild in 0.25-times-standard increments, initially no higher than a normal allocation.</p>
+</li>
+<li>
+<p>Reassessment and missing information: A materially lower price can justify an earlier valuation review, but not an automatic purchase if earnings or cash expectations deteriorate. The approximately $407 outcome from 22 times the quoted forward EPS is a downside illustration, not a target or buy order. The forward-EPS horizon, working-capital explanation, returns on incremental capital spending, current quotes, next reporting date, and portfolio holdings are not supplied. Resolve those gaps before setting fresh valuation limits or event-specific orders; the trader and portfolio manager must apply actual holdings and mandate limits.</p>
+</li>
+</ol>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: AMAT merits an underweight trim rather than a short: at the supplied $509.57, roughly 44 times trailing earnings and a 1.4% trailing free-cash-flow yield offer little cushion despite strong Q3 results, while sustained cash conversion remains unproven. The weekly downtrend, three declining closes, and weakening MACD histogram and OBV argue against adding on the daily rebound. After validating current prices and indicators, a daily close below the dated $502.65 low should accelerate any unfinished trim; two consecutive closes below the refreshed 50-day average (dated at $489.67) should prompt a lower retained-exposure cap. The snapshot is dated, and the plan specifies no defensible fixed sale price or hard stop-loss.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: not provided</p>
+<p><strong>Position Sizing</strong>: Cap existing AMAT at 0.5× the portfolio’s standard AMAT allocation; trim any excess in two approximately equal tranches after refreshing prices and indicators. If two consecutive closes fall below the refreshed 50-day average, reduce the retained cap to 0.25× standard. If already at or below the cap, do not add; if unowned, defer initiation and do not short.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: Neither analyst has spoken yet, so I won’t put arguments in their mouths. My case for the SELL is that an aggressive trader should protect the ability to take a bigger, better-timed AMAT opportunity—not treat every promising growth story as a reason to hold a full position through deteriorating price action.</p>
+<p>AMAT’s upside is real. Fiscal Q3 revenue grew 24.8% year over year, operating income grew 37.7%, and the UCLA collaboration could strengthen its longer-term technology position. That is precisely why I would trim rather than short or exit indiscriminately. But at the supplied October 8 close of $509.57, AMAT traded at about 44 times trailing earnings, while statement-derived trailing free-cash-flow yield was only about 1.4%. The lower forward multiple depends on substantial earnings growth materializing. Nine-month free cash flow was down 2.1% despite net income rising 44.5%; one strong derived Q3 cash-flow figure is encouraging, not yet proof that conversion has caught up.</p>
+<p>The timing makes a proactive trim more compelling than a neutral “wait and see.” AMAT fell for three sessions after its October 5 close of $542.28. Its MACD histogram remained positive but shrank from 12.09 to 6.00, OBV declined, and the weekly SuperTrend was down even as the daily and monthly signals remained up. None of that proves a breakdown. It does mean a full-sized position is taking substantial valuation and momentum risk before the bullish case has regained technical confirmation. With ATR at $18.97, waiting to sell everything on one weak day could also make execution needlessly volatile.</p>
+<p>I’d sell any holdings above <strong>0.5 times the portfolio’s standard AMAT allocation</strong> in two roughly equal tranches, after refreshing the quote and indicators. A daily close below the <em>dated</em> $502.65 low would accelerate an unfinished trim; two consecutive closes below the refreshed 50-day average would cut the retained cap to 0.25 times standard. If the position is already at or below the cap, there is nothing to sell solely to satisfy that sizing rule; if unowned, I would defer rather than short.</p>
+<p>The risk of selling is clear: AMAT could reclaim the dated $523.34 high, with stronger OBV and stabilizing momentum, and continue upward. Keeping a smaller core respects that possibility. Selling the excess now preserves room to take risk again on stronger evidence—whether a confirmed rebound, durable equipment orders, or sustained cash conversion. Those price levels and indicators are from October 8, 2026, not live trading instructions, and this plan has no defensible fixed sale price or hard stop without a refreshed market check.
+Aggressive Analyst: The conservative analyst is right that AMAT offers no guaranteed “safe re-entry.” I’m not selling excess shares on the promise of buying them back cheaper. I’m selling because an oversized position makes it harder to take advantage of the next high-conviction opportunity, whether that is in AMAT or elsewhere. Their $16.70-upside-versus-$20.69-risk comparison is useful for one hypothetical trade above the dated $523.34 high; it does not make $540.04 a proven ceiling on AMAT’s longer-term upside. Fiscal Q3 revenue grew 24.8% and operating income 37.7%. That is why my SELL leaves a core position, not a short.</p>
+<p>I also agree with the conservative analyst that the excess needs a near-term execution plan. But I would not treat AMAT’s three declining closes as grounds to dump the entire excess without regard to execution: on October 8, the daily and monthly SuperTrend signals were still up, RSI was 55.56, and the MACD histogram was still positive. Sell the first half of any excess promptly after refreshing the market and portfolio data, and schedule the second half near-term rather than leaving it open-ended. Accelerate if portfolio limits are breached or a newly relevant breakdown develops. The dated $502.65 low is a decision reference, not gap protection.</p>
+<p>The neutral analyst is also right that the growth story has not failed—and that is an argument for a <em>disciplined trim</em>, not for keeping an oversized AMAT stake unchanged. Derived Q3 free cash flow of $2.33 billion is promising, but nine-month free cash flow was still down 2.1% while net income rose 44.5%. At the October 8 snapshot’s roughly 44× trailing earnings and 1.4% statement-derived cash-flow yield, AMAT needs that improvement to persist. Nor would I require confirmed new orders, sustained cash conversion <em>and</em> a fully repaired weekly trend before even reassessing the opportunity; waiting for every uncertainty to clear could surrender much of the upside. A renewed close above the dated $523.34 high with improving OBV and momentum would merit attention, though not an automatic full-sized buy.</p>
+<p>So my recommendation remains <strong>SELL the excess above 0.5 times the portfolio’s standard AMAT allocation</strong>, in two near-term tranches after a fresh check. If two consecutive closes fall below the <em>refreshed</em> 50-day average, lower the retained cap to 0.25 times standard; act sooner if risk limits demand it. If AMAT is already at or below the cap, the sizing rule calls for no sale, and if unowned, defer rather than short. The aggressive choice is to keep exposure to AMAT’s substantial growth potential without making a full allocation depend on an unproven cash-flow recovery and weakening weekly price action.
+Aggressive Analyst: Conservative Analyst, controlling today’s loss exposure matters, but I disagree that preserving capacity is merely secondary. For an aggressive trader, the two are linked: capital tied up in an oversized AMAT position cannot be deployed when a stronger setup appears. The October 8 snapshot showed three declining closes, a weekly downtrend, and a shrinking MACD histogram; at $509.57, with an $18.97 ATR, carrying excess exposure risks giving back room to act. You are right that daily and monthly uptrends cannot prevent a gap. They are reasons to retain a smaller core, not reasons to keep the excess.</p>
+<p>I also agree that the cap must be real. After refreshing the quote, indicators, holdings, and semiconductor concentration, sell any AMAT exposure above 0.5× the portfolio’s standard AMAT allocation in two defined, near-term slices only if interim risk limits permit it. If those limits are already breached, finish sooner. Do not leave the second slice waiting for a rebound or breakdown. A close below the dated $502.65 low, if still relevant after the refresh, would accelerate an unfinished trim; it is not a stop that protects against gaps.</p>
+<p>Neutral Analyst, freeing capacity does not guarantee a profitable re-entry. But requiring that guarantee sets the wrong bar for an aggressive decision. AMAT’s 24.8% Q3 revenue growth, 37.7% operating-income growth, and $2.33 billion in derived Q3 free cash flow make the retained core worth owning. They also create a possible opportunity to reassess <em>before</em> every uncertainty disappears: a renewed close above the dated $523.34 high with improving OBV and stabilizing momentum would deserve attention, even while the weekly trend is down. It would not automatically justify rebuilding a full position, and the $540.04 reference close is not a proven upside ceiling.</p>
+<p>The harder question is whether that upside warrants an oversized holding <em>now</em>. Nine-month free cash flow fell 2.1% despite net income rising 44.5%; roughly 44× trailing earnings and a 1.4% statement-derived free-cash-flow yield leave AMAT sensitive to disappointment. UCLA’s collaboration offers long-horizon promise, not verified orders; reported TSMC spending is a potential tailwind, not confirmed AMAT revenue. The 5.28% October 7 Treasury yield adds pressure, while mildly bullish, low-confidence sentiment is too thin to override the price action. These risks argue for selling excess exposure, not shorting a company with substantial operating growth.</p>
+<p>My recommendation remains <strong>SELL excess AMAT exposure</strong>, with the retained cap at 0.5× standard after a fresh check. If AMAT closes twice below its <em>refreshed</em> 50-day average, lower that cap to 0.25×; act sooner if portfolio limits require it. If holdings are already within the applicable risk budget, the cap alone requires no sale, though sector concentration still needs checking. If unowned, defer rather than short. The aggressive move is to keep a stake in AMAT’s growth while refusing to make an oversized bet on cash conversion and a weekly trend that have not yet caught up.
+Aggressive Analyst: Conservative Analyst, cash raised from selling AMAT can certainly remain uncommitted. My point is that the ability to act when a better opportunity appears has value even if no opportunity is guaranteed. Keeping an oversized position through a weekly downtrend limits that choice. I agree that a close above the dated $523.34 high is not a buy signal by itself, much less a reason to restore a full allocation. But I would not let the weekly signal veto an early reassessment if OBV and momentum improve. AMAT’s Q3 revenue grew 24.8% and operating income grew 37.7%; waiting for the weekly trend, orders, and cash conversion all to be settled could mean recognizing the opportunity only after much of the move.</p>
+<p>Neutral Analyst, you are right that flexibility is not a promised return and that 0.5× is not universally safe. Those points strengthen the case for a portfolio-aware trim; they do not weaken the SELL decision for a holding above its applicable limit. AMAT’s derived $2.33 billion of Q3 free cash flow gives the retained stake a credible upside case, while nine-month free cash flow falling 2.1% and the dated roughly 44× trailing multiple make excess exposure a demanding bet. Mildly bullish, low-confidence sentiment and the UCLA collaboration add possibilities, not confirmed orders. The October 7 Treasury yield of 5.28% adds valuation pressure; its larger 72-basis-point rise was since July, not a sudden move that week.</p>
+<p>So I would refresh AMAT’s quote, indicators, holdings, and total semiconductor exposure, then <strong>SELL any amount above the lesser of 0.5× the standard AMAT allocation and the portfolio’s risk limit</strong>. If limits permit, sell in two defined near-term slices, starting promptly; do not leave the second slice waiting for a rebound or breakdown. Finish sooner if a limit is breached or a newly relevant break below the dated $502.65 low develops. Two closes below the <em>refreshed</em> 50-day average lower the retained cap to 0.25×; neither level is gap protection or a hard stop.</p>
+<p>That is the aggressive advantage of the trim: keep a stake in AMAT’s growth and the capacity to reassess it early, without forcing an oversized holding to survive every disappointment. If already within the applicable cap, the sizing rule alone calls for no sale or addition. If unowned, defer rather than short.
+Aggressive Analyst: Conservative Analyst, I agree that a rebound above the dated $523.34 high would not prove durable cash conversion or new AMAT orders. But requiring that proof before even considering more risk could mean paying substantially more for it. AMAT’s Q3 revenue grew 24.8% and operating income grew 37.7%; a recovery accompanied by improving OBV and momentum would be worth reassessing while that operating strength remains intact. It would not be an automatic buyback, let alone a return to full size. Your stronger point is execution: if a portfolio limit is breached, the excess should go promptly. If it is not, two scheduled near-term slices can complete the trim without treating three down closes as a definitive reversal.</p>
+<p>Neutral Analyst, a better opportunity is not guaranteed, and cash raised need not go into another chip stock. That does not make flexibility worthless. It lets the trader respond to stronger evidence without first having to unwind an oversized AMAT holding. I also agree that $502.65 was only $6.92 below the October 8 close—about 0.36 times the dated $18.97 ATR. A close below it should accelerate an unfinished trim, not trigger a reflexive exit from the core. Your Q4 cash-flow test is useful: AMAT needs more than $2.118 billion to exceed fiscal 2025 free cash flow, versus $2.330 billion derived for Q3. That makes improvement plausible, not established. Waiting for the next report before <em>reassessing</em> could forfeit upside; carrying excess exposure while waiting takes too much risk at the dated roughly 44× trailing earnings valuation.</p>
+<p>My recommendation remains SELL existing AMAT exposure above the lesser of 0.5× its standard allocation and the portfolio’s sector and drawdown limits, after refreshing prices, indicators, and holdings. Start promptly and finish in two defined near-term slices only if no binding limit remains breached; otherwise complete the required reduction promptly. Two closes below the refreshed 50-day average lower the retained cap to 0.25×, subject to stricter limits. The October 8 levels are decision references, not live stops. If AMAT is already within its applicable budget, the cap alone calls for no sale; if unowned, defer rather than short. The aggressive edge is to retain a measured stake in AMAT’s growth while preserving the ability to act on better evidence—not to demand certainty or defend an oversized position.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the aggressive analyst’s decision to trim AMAT, but I would be more cautious about the promised “bigger, better-timed” opportunity. Selling excess exposure protects capital; it does not guarantee that we can identify a safe re-entry. A close above the dated $523.34 high might revive the daily rebound, yet the weekly trend was still down. From that level, the $540.04 reference close was only $16.70 away, versus $20.69 per share to the dated $502.65 low before slippage. I would not rebuild a full AMAT position on that signal alone.</p>
+<p>Nor would I rely entirely on the proposed two-tranche schedule. At the October 8 snapshot, AMAT’s ATR was $18.97, so waiting for two closes below the refreshed 50-day average could leave substantial losses on the retained position, particularly through a gap. After checking the current quote, indicators, holdings, and total semiconductor exposure, I would promptly trim any AMAT holding above 0.5 times its standard allocation. The second tranche should have a near-term execution plan, not remain indefinitely contingent on a breakdown. If risk limits are breached sooner, reduce exposure sooner; the dated $502.65 low and $489.67 average are decision references, not protective stops.</p>
+<p>The bullish operating case deserves respect: AMAT delivered strong Q3 growth, improved quarterly cash flow, and has substantial liquidity. But roughly 44 times trailing earnings and a statement-derived free-cash-flow yield near 1.4% leave little room for disappointment while nine-month free cash flow lagged net-income growth. The UCLA collaboration establishes no near-term orders, reported TSMC spending is not confirmed AMAT revenue, and the 5.28% October 7 Treasury yield adds valuation pressure. Mildly bullish sentiment has low confidence. None of that warrants a short, but neither does it justify carrying excess exposure.</p>
+<p>The neutral analyst has not offered a position to rebut. If “wait for confirmation” means holding an oversized AMAT stake unchanged, I disagree: confirmation may come only after an avoidable drawdown. My recommendation is SELL only the excess after a fresh market check; if AMAT is already at or below the cap, do not sell merely to meet it or add on a tentative rebound. If unowned, defer rather than short.
+Conservative Analyst: Aggressive Analyst, I agree that the $540.04 reference close is not a ceiling for AMAT, and that trimming is not a bet on buying back cheaper. But preserving capacity for a future opportunity is secondary to controlling today’s loss exposure. At the October 8 snapshot, AMAT’s weekly trend was down, its MACD histogram had narrowed despite remaining positive, and its ATR was $18.97. The daily and monthly uptrends could support a recovery; they cannot protect an oversized holding from a sharp decline or gap.</p>
+<p>Neutral Analyst, I also agree that AMAT’s growth story has not failed. Q3 revenue rose 24.8%, and derived Q3 free cash flow improved. The sustainability question is whether that improvement persists: nine-month free cash flow still fell 2.1% while net income rose 44.5%. At roughly 44 times trailing earnings and a statement-derived free-cash-flow yield near 1.4%, a disappointment could be costly. The UCLA collaboration establishes no near-term orders, reported customer capex is not confirmed AMAT revenue, and the October 7 Treasury yield of 5.28% adds valuation risk. Selling <em>excess</em> exposure is not rushing out of every share; it is declining to carry more risk than the portfolio intended while waiting for proof.</p>
+<p>My adjustment is to make the cap an actual risk limit, not merely the eventual outcome of a two-tranche plan. After checking current prices, liquidity, holdings, and total semiconductor exposure, sell AMAT exposure above 0.5 times the portfolio’s standard AMAT allocation promptly. Two near-term execution slices are reasonable if they limit slippage, but do not postpone the second to await a rebound or a breakdown. Size any retained holding against an adverse move and possible gap, not a fixed stop inferred from dated levels. If two closes fall below the <em>refreshed</em> 50-day average, reduce the retained cap to 0.25 times standard; reduce sooner if portfolio limits require it.</p>
+<p>A renewed close above the dated $523.34 high would merit reassessment, not an automatic rebuild while the weekly trend and cash conversion remain unresolved. If AMAT is already within its applicable risk limit, the cap alone calls for no sale; if unowned, defer rather than short. My recommendation remains SELL excess AMAT exposure, with no assumption that the October 8 quote or indicator levels are live.
+Conservative Analyst: Aggressive Analyst, I agree that selling excess AMAT exposure preserves flexibility, but I would not make a future “stronger setup” part of the justification for today’s risk. Cash raised can remain uncommitted. Nor would I treat a close above the dated $523.34 high as a reason to rebuild quickly: improving OBV and momentum would merit reassessment, but AMAT’s weekly trend was still down on October 8, and a price signal would not resolve its cash-conversion risk.</p>
+<p>Neutral Analyst, an orderly sale does not require declaring AMAT’s growth story broken. I agree that its daily and monthly uptrends, strong Q3 operating results, and $2.33 billion in derived Q3 free cash flow argue against an indiscriminate exit or short. But they do not justify leaving a position above its risk limit while waiting to see whether the rebound holds. That quarterly cash-flow improvement followed a much weaker derived Q2; across nine months, free cash flow still fell 2.1% while net income rose 44.5%. At the dated roughly 44× trailing earnings valuation, disappointment could be expensive, particularly with the 10-year Treasury yield at 5.28% on October 7. The UCLA collaboration and reported customer-spending plans do not yet establish incremental AMAT orders.</p>
+<p>My recommendation is to SELL any AMAT exposure above the <em>lesser</em> of 0.5× the portfolio’s standard AMAT allocation and what its total semiconductor and drawdown limits permit, after refreshing the quote, indicators, and holdings. If limits allow, two execution slices on a defined near-term schedule can reduce slippage; if limits are already breached, complete the reduction promptly rather than waiting for a rebound, a breakdown, or two closes below an average. A close below the dated $502.65 low may reinforce the decision, but neither that level nor the dated $489.67 average protects against a gap. Two closes below the refreshed 50-day average would lower the proposed retained cap to 0.25× standard, subject to a stricter portfolio limit if needed.</p>
+<p>That is a sizing decision, not a prediction that AMAT must fall. If AMAT is already within the applicable risk budget, the cap alone calls for no sale; if unowned, defer rather than short. I would reassess a recovery without demanding that every uncertainty disappear, but I would want stronger evidence before restoring a full allocation.
+Conservative Analyst: Aggressive Analyst, preserving flexibility is useful, but I would not turn it into a reason to re-risk AMAT early. A close above the dated $523.34 high, even with better OBV, would improve the trading picture—not establish durable cash generation or new equipment orders. AMAT’s strong Q3 operating growth deserves respect, but nine-month free cash flow fell 2.1% while net income rose 44.5%. At the October 8 snapshot’s roughly 44× trailing earnings, that gap leaves little cushion if growth disappoints. Reassessment need not wait for every uncertainty to disappear; adding exposure should still require more than a brief technical recovery.</p>
+<p>Neutral Analyst, I agree that 0.5× a standard allocation is not universally safe and that three down closes do not prove a reversal. But an orderly two-slice sale is appropriate only while it keeps AMAT within the portfolio’s binding risk limits. If refreshed holdings already exceed those limits, leaving the excess exposed for days to improve execution puts timing ahead of capital protection. The dated $502.65 low and $489.67 average cannot prevent a gap, particularly when the dated ATR was $18.97.</p>
+<p>My recommendation remains to SELL AMAT exposure above the stricter of the proposed 0.5× allocation cap and what the portfolio’s sector concentration and drawdown limits allow, after refreshing prices and holdings. Complete any required risk-limit reduction promptly; use execution slices only if they do not prolong a breach. Two closes below the refreshed 50-day average would call for considering the lower 0.25× cap, but risk limits may require action sooner. If AMAT is already within its applicable limits, this sizing rule alone does not require a sale; if unowned, defer rather than short.
+Conservative Analyst: Aggressive Analyst, I agree that AMAT’s operating growth makes an early reassessment worthwhile. But reassessing is not the same as adding. A move above the dated $523.34 high, even with improving OBV, would not establish that equipment orders or cash conversion are durable. I would not let concern about paying more later outweigh the risk of increasing exposure while the weekly trend remains down and the valuation leaves little room for disappointment.</p>
+<p>Neutral Analyst, AMAT’s $2.33 billion in derived Q3 free cash flow and strong liquidity support retaining a measured core, not assuming that core is safe at any size. Q4 needs more than $2.118 billion of free cash flow merely to exceed fiscal 2025’s total—a year when free cash flow had already fallen from 2024. That is a useful test, but passing it narrowly would not settle the nine-month gap between net-income growth of 44.5% and declining free cash flow. Nor would AMAT’s cash balance prevent a shareholder drawdown. At the October 8 snapshot, one $18.97 ATR was about 3.7% of the share price; gaps and correlated semiconductor losses could be larger.</p>
+<p>My recommendation is to SELL existing AMAT exposure above the lesser of 0.5 times its standard allocation and the portfolio’s sector and drawdown limits, after refreshing the quote, indicators, holdings, and execution conditions. Complete any reduction required by a binding limit promptly. Otherwise, two defined near-term slices are reasonable, but the second should not wait for a favorable price signal. A newly relevant break below the dated $502.65 low can accelerate an unfinished trim; it is not a protective stop. Two closes below the refreshed 50-day average should lower the retained cap to 0.25 times standard, unless portfolio limits require less sooner.</p>
+<p>If AMAT is already within its applicable risk budget, that sizing rule alone does not call for a sale. If unowned, defer rather than short. I would welcome evidence of sustained cash generation or confirmed demand before increasing risk, without requiring every uncertainty to disappear before reconsidering AMAT.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with the SELL direction for an oversized AMAT position, but I would frame it as a risk-budget trim, not a verdict that AMAT’s growth story has failed.</p>
+<p>The aggressive analyst is right to question whether a full allocation is worth carrying at the October 8 snapshot’s roughly 44× trailing earnings and 1.4% statement-derived free-cash-flow yield. But “sell now, buy back better” assumes a re-entry opportunity that may never appear. AMAT’s fiscal Q3 revenue rose 24.8% year over year, derived Q3 free cash flow improved to $2.33 billion, and the daily and monthly SuperTrend signals were still up. Three declining closes and a shrinking—but still positive—MACD histogram justify less exposure; they do not establish a lasting reversal. I also would not let the second tranche wait indefinitely for a breakdown while calling the trim proactive.</p>
+<p>The conservative analyst is right that dated levels are not protective stops, particularly with October 8 ATR at $18.97. Yet automatically rushing out of every share above the cap can overlook a genuine recovery and create its own timing risk. A close back above the dated $523.34 session high would deserve attention if volume confirmation and momentum improved, though it would not by itself justify rebuilding a full position while the weekly trend remained down. Likewise, the $540.04 checkpoint is not proven resistance; the unattractive reward-to-risk calculation for that one hypothetical trade should not settle the longer-term holding decision.</p>
+<p>My compromise is to refresh AMAT’s quote, indicators, holdings, and total semiconductor exposure first. If AMAT exceeds 0.5 times the portfolio’s normal AMAT allocation, sell the excess in two roughly equal tranches on a defined, near-term schedule rather than waiting solely for a price trigger. Accelerate an unfinished trim if a daily close falls below the dated $502.65 low after confirming that level remains relevant, or sooner if portfolio risk limits are breached. Two closes below the then-current 50-day average would warrant considering the proposed 0.25-times cap, but not treating an old $489.67 reading as a live stop. If AMAT is already at or below the cap, the sizing rule alone calls for no sale; if unowned, I would defer initiation rather than short.</p>
+<p>That smaller retained position leaves room for the operating upside while limiting exposure to the unresolved cash-conversion question and rate-sensitive valuation. Before adding back, I would want more than an upbeat headline or mildly bullish, low-confidence social sentiment: sustained price and volume improvement, evidence of customer spending translating into AMAT orders, or continued strong cash generation would make a more durable case.
+Neutral Analyst: Aggressive Analyst, I agree with trimming an oversized AMAT position, but “freeing capacity” is not itself a return opportunity. AMAT’s strong Q3 operating growth and $2.33 billion in derived quarterly free cash flow give a retained position a credible upside case. They do not yet resolve the fact that nine-month free cash flow fell 2.1% while net income rose 44.5%. At the October 8 snapshot’s roughly 44× trailing earnings, and with the 10-year Treasury yield at 5.28% on October 7, I would not count on either a quick rebound or an easy re-entry. The right retained size also depends on the caller’s total semiconductor exposure, not just AMAT in isolation.</p>
+<p>Conservative Analyst, you are right that a two-tranche plan must actually finish the trim: the dated $502.65 low and $489.67 moving average cannot protect against a gap. But executing the entire excess immediately regardless of refreshed conditions risks treating three down closes as a confirmed reversal. AMAT was still above its 50-day average on October 8, with positive—though weakening—MACD momentum and daily and monthly uptrends. Those signals do not justify excess exposure, but they do justify orderly execution when portfolio risk limits permit it. Your caution about rebuilding is sound; requiring every uncertainty to disappear before <em>reassessing</em> AMAT would be too restrictive.</p>
+<p>My recommendation remains SELL, conditional on holdings: after refreshing the quote, indicators, position, and sector concentration, trim any AMAT exposure above 0.5× its normal allocation in two defined near-term slices. Complete the trim sooner if portfolio limits are breached or a relevant breakdown develops. If AMAT then closes twice below its <em>refreshed</em> 50-day average, reduce the retained cap to 0.25×; treat that as a sizing decision, not a stop-loss guarantee. If already within the applicable risk budget, the cap alone requires no sale, though sector concentration may still warrant one. If unowned, defer rather than short. A recovery with improving volume and momentum would merit reassessment, not an automatic return to full size.
+Neutral Analyst: Aggressive Analyst, I agree that selling excess AMAT exposure creates flexibility, but flexibility is not a promised return. A recovery above the dated $523.34 high with improving OBV would warrant a fresh look, not an automatic buyback: AMAT’s weekly trend was still down, and stronger price action alone would not settle the cash-conversion question.</p>
+<p>Conservative Analyst, you are right that a risk limit must be enforced rather than left waiting on two technical closes. But 0.5× a standard allocation is a proposed cap, not a universally safe position size. Without knowing the portfolio’s other semiconductor holdings or drawdown tolerance, I would not assume either that a sale is needed or that the cap is sufficiently cautious. If limits permit, two scheduled, near-term slices offer more orderly execution than treating three down days as a confirmed reversal.</p>
+<p>The evidence supports that middle ground. AMAT’s strong Q3 growth and $2.33 billion in derived quarterly free cash flow justify retaining some upside exposure, while nine-month free cash flow falling 2.1% despite much faster net-income growth argues against an oversized bet. The roughly 44× trailing earnings valuation and October 7 Treasury yield of 5.28% add risk, though the yield’s larger rise occurred since July, not just in the latest week. Neither the UCLA collaboration nor mildly bullish, low-confidence sentiment establishes new AMAT orders.</p>
+<p>My recommendation remains SELL, conditional on actual holdings. Refresh the quote, indicators, and portfolio exposures, then trim AMAT above the lesser of 0.5× its normal allocation and the portfolio’s semiconductor risk limit on a defined near-term schedule; finish promptly if a limit is already breached. Accelerate an unfinished trim on a relevant breakdown, and reduce the retained cap to 0.25× after two closes below the refreshed 50-day average. Those signals guide sizing, not gap protection or a fixed stop. If AMAT is already within its risk budget, the cap alone calls for no sale; if unowned, defer rather than short.
+Neutral Analyst: Aggressive Analyst, I agree that trimming AMAT preserves flexibility, but a better opportunity is not guaranteed. I would not let a rebound above the dated $523.34 high become a reason to restore a full allocation on price action alone. Improving OBV and momentum would justify reassessment; the weekly trend and cash-conversion question would still matter.</p>
+<p>Conservative Analyst, I agree that a breached portfolio limit takes priority over a leisurely two-tranche plan. But there is a difference between reassessing AMAT early and adding risk early. Strong Q3 operating growth, substantial liquidity, and $2.33 billion of derived Q3 free cash flow support keeping a measured core; demanding that every uncertainty be resolved before even reconsidering it could be too cautious. The next cash-flow report offers a concrete test: AMAT needs more than $2.118 billion of Q4 free cash flow to exceed fiscal 2025’s total.</p>
+<p>My recommendation remains SELL only AMAT exposure above the lesser of 0.5× the portfolio’s normal AMAT allocation and its available sector and drawdown risk budget, after refreshing prices, indicators, and holdings. Complete any reduction needed to satisfy a binding limit promptly; otherwise, two scheduled near-term slices are reasonable. The dated $502.65 low was just $6.92 below the October 8 close—less than half the dated $18.97 ATR—so a close below it should accelerate an unfinished trim, not be mistaken for proof that the retained core must be liquidated. Two closes below the refreshed 50-day average would lower the proposed cap to 0.25×, subject to stricter portfolio limits.</p>
+<p>AMAT’s roughly 44× trailing earnings valuation and elevated Treasury yields argue against excess exposure, not against all participation in its growth. If holdings are already within the applicable cap, this rule alone calls for no sale; if unowned, defer rather than short. Cash raised need not be redeployed into another correlated chip holding.
+Neutral Analyst: Aggressive Analyst, I agree that trimming AMAT preserves flexibility. But the possibility of paying more later is not a reason to add back quickly. At the dated October 8 levels, buying above $523.34 offered only $16.70 to the first $540.04 reference close, versus $20.69 down to $502.65 before slippage. That reference close is not an upside ceiling; the comparison simply shows why improving OBV alone is not a complete risk plan. Cash raised can remain uncommitted or reduce exposure to the semiconductor cycle rather than fund another correlated position.</p>
+<p>Conservative Analyst, your insistence on enforcing a breached risk limit is right. Still, AMAT’s three declining closes did not establish a sustained reversal: the daily and monthly trends remained up, and Q3 operating growth and derived cash flow were strong. I would reassess an improving price-and-volume picture before every cash-conversion question is settled, without treating reassessment as permission to restore a full allocation. Conversely, Q4 free cash flow just above $2.118 billion would only beat fiscal 2025’s total; it would not, by itself, prove durable improvement.</p>
+<p>My recommendation remains a conditional SELL. First refresh AMAT’s price, indicators, holdings, and total semiconductor exposure. Sell any holding above the lesser of 0.5 times the normal AMAT allocation and the portfolio’s sector and drawdown limits. Complete a reduction required by a breached limit promptly; otherwise, use two scheduled near-term slices, not a second slice left waiting for a favorable price. The dated $18.97 ATR was about 3.7% of the share price, and gaps or correlated losses could be larger, so test the retained size against portfolio-wide losses rather than treating 0.5 times as inherently safe.</p>
+<p>A still-relevant close below the dated $502.65 low should accelerate an unfinished trim. Two closes below the refreshed 50-day average should lower the proposed retained cap to 0.25 times, subject to stricter limits. Neither is a protective stop. If AMAT is already within its risk budget, the cap alone calls for no sale; if unowned, defer rather than short.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: AMAT is Underweight for 3–6 months: after refreshing AMAT's quote, indicators, holdings and semiconductor exposure, trim any amount above the lesser of 0.5× the portfolio's standard AMAT allocation and what its sector and drawdown limits permit. Complete any reduction required by a breached binding limit promptly; otherwise sell the excess in two approximately equal, scheduled slices over the next few suitable trading sessions. If AMAT is already within the applicable cap, make no cap-driven sale and do not add; if unowned, defer entry and do not short. A still-relevant daily close below $502.65 should accelerate unfinished trimming, while two consecutive closes below the refreshed 50-day average—dated at $489.67—should lower the retained cap to 0.25× standard, subject to stricter portfolio limits; these are sizing triggers, not protective stops.</p>
+<p><strong>Investment Thesis</strong>: Decision and debate synthesis: The stronger case is to reduce AMAT exposure, not liquidate it. Although the analysts label their transactions SELL, all recommend selling only excess holdings while permitting a smaller retained position; that maps to Underweight on the supplied rating scale. The conservative analyst's insistence on enforcing binding portfolio limits outweighs discretionary execution timing. When those limits are not breached, the aggressive and neutral analysts make a persuasive case for orderly, scheduled execution rather than treating three declining closes as proof of a lasting reversal. Preserving flexibility is useful, but neither a cheaper re-entry nor a profitable alternative investment is assured.</p>
+<p>Valuation and cash conversion decide the reduction. At the October 8 snapshot, AMAT traded at 43.97× trailing earnings. Statement-derived trailing free cash flow of $5.623 billion divided by the supplied $404.4 billion market capitalization gives a 1.39% yield; this uses the explicitly defined operating-cash-flow-minus-capex measure rather than the discrepant snapshot FCF figure. Nine-month FCF of $3.580 billion divided by net income of $7.370 billion gives only 48.6% conversion. Operating cash flow grew 8.5% against 44.5% net-income growth. Importantly, the 2.1% FCF decline reflected higher capital spending, not collapsing operating cash flow. Even repeating Q3 FCF for four quarters would give ($2.330 billion × 4) / $404.4 billion = a 2.30% yield, and that is a scenario rather than a forecast. The quoted $18.48 forward EPS is 59.4% above $11.59 trailing EPS, but its unspecified horizon prevents the 27.58× forward multiple from establishing a dependable margin of safety.</p>
+<p>The operating evidence argues against an indiscriminate exit. AMAT's Q3 revenue increased 24.8%, operating income increased 37.7%, and gross margin reached 50.3%. Derived quarterly operating cash flow of $3.037 billion exceeded net income, while $2.330 billion of post-capex FCF divided by $2.538 billion of net income gives 91.8% conversion. Cash of $7.037 billion and a 2.42 current ratio support financial flexibility, although neither protects shareholders against valuation losses. These facts justify permitting a limited existing position, not requiring an underallocated investor to buy up to the cap. As the analysts emphasize, collaboration headlines and reported customer spending do not establish incremental AMAT orders.</p>
+<p>Technical evidence reinforces caution without proving a breakdown. The higher-priority weekly SuperTrend was down, the positive MACD histogram contracted from 12.09 to 6.00, and OBV declined over three falling sessions. However, the daily and monthly trends remained up, RSI was 55.56, and AMAT remained above its 50-day average. ATR of $18.97 was approximately 3.7% of the verified close; the $502.65 reference low was only $6.92, or 0.36 ATR, below that close. Consequently, a breach can accelerate a trim but is not sufficient evidence to liquidate the retained position, and no dated indicator level provides gap protection. Total semiconductor concentration and portfolio drawdown limits can require a smaller position before any technical trigger occurs.</p>
+<p>Price-target derivation: I adopt the Research Manager's explicit downside re-rating scenario as a provisional 3–6 month valuation objective: quoted forward EPS of $18.48 × 22 = $406.56, approximately 20.2% below the $509.57 verified close. The Research Manager presented this as an illustration, not an established target; using it here as a conditional portfolio-planning target is my decision. It assumes the quoted EPS remains achievable while the multiple contracts, and neither the EPS horizon nor the basis for a normalized 22× multiple is established. It is therefore not a validated fair value, consensus forecast, fixed sale price or automatic buy limit. Confidence in the exact target is lower than confidence in the exposure reduction.</p>
+<p>What would change the call: Reassess earlier if valuation becomes materially more attractive without deteriorating earnings expectations, or if price and volume improve; a refreshed equivalent of a close above $523.34 with improving OBV and stabilizing momentum merits review, not an automatic addition. For rebuilding, seek confirmation across two subsequent quarters that gross margin remains near 50.3%, operating cash flow covers net income, post-capex conversion approaches Q3's roughly 92%, cumulative conversion improves, and customer demand translates into identifiable AMAT business. Q4 FCF above $2.118 billion would merely exceed fiscal 2025's already-depressed annual total and would not alone settle durability. Once valuation and execution support adding, rebuild in 0.25× standard-allocation increments, initially no higher than normal exposure and always within portfolio limits. Live quotes, actual holdings, sector concentration, the next reporting date, the forward-EPS horizon, detailed cash-flow explanations and returns on incremental capex are not supplied. These gaps warrant medium confidence in the decision and a market refresh before execution.</p>
+<p><strong>Current Price</strong>: 509.57</p>
+<p><strong>Price Target</strong>: 406.56</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 3–6 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

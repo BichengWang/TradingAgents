@@ -1,0 +1,5861 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/NFLX/20261008_gpt-6-astra_20261008_212851/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: NFLX - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-nflx" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: NFLX
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MCD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../STRL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MCD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../PDD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../STRL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nflx-technical-outlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFLX technical outlook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditional-levels-to-watch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional levels to watch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nflx-sentiment-2026-10-01-to-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFLX sentiment | 2026-10-01 to 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-divergences-and-alignments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source divergences and alignments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-narrative-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant narrative themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-catalysts-and-risks-to-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Catalysts and risks to monitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-key-sentiment-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Key sentiment signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nflx-trading-and-macro-report-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFLX trading and macro report — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-this-week-for-nflx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed this week for NFLX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-macro-backdrop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The macro backdrop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-events-and-trading-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward events and trading plan
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nflx-fundamental-report-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NFLX fundamental report — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-and-financial-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business and financial documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#growth-profitability-and-cash-flow-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Growth, profitability, and cash-flow history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance-sheet-and-financing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balance sheet and financing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuation-and-data-quality-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valuation and data-quality checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-activity-and-near-term-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insider activity and near-term checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-nflx">Trading Analysis Report: NFLX<a class="headerlink" href="#trading-analysis-report-nflx" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:28:51</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $71.57
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="nflx-technical-outlook">NFLX technical outlook<a class="headerlink" href="#nflx-technical-outlook" title="Permanent link">&para;</a></h4>
+<p><strong>NFLX is rebounding, but its larger trend remains down.</strong> After closing at $67.06 on October 2, it posted four consecutive higher closes, reaching $71.57 on October 8. The latest close is still below the 50-day SMA of $75.38. More importantly, the weekly, monthly and daily SuperTrend readings all remain <strong>DOWN</strong>. This is a developing recovery within a bearish trend, not yet a confirmed reversal.</p>
+<p>I selected eight complementary indicators: <strong>SuperTrend and the 50-day SMA</strong> for trend and potential overhead barriers; <strong>MACD histogram and RSI</strong> for momentum; <strong>ATR</strong> for trade sizing; <strong>OBV</strong> for participation; and <strong>TD-9 and Z-score</strong> to distinguish possible exhaustion from a genuinely stretched price.</p>
+<ul>
+<li><strong>Trend:</strong> The daily SuperTrend line is $72.74, above even October 8’s intraday high of $71.62. The weekly and monthly lines are much higher, at $85.87 and $107.18. A daily close above $72.74 would change the short-term picture, but would not by itself overturn the higher-timeframe downtrends. The 50-day SMA at $75.38 is the next trend test.</li>
+<li><strong>Momentum:</strong> The MACD histogram moved from <strong>−0.27 on October 7 to +0.02 on October 8</strong>—an encouraging but very small positive turn. The MACD line itself remains negative at −2.09. RSI recovered from 31.06 on October 2 to <strong>47.20</strong>, showing that selling pressure has eased without yet establishing momentum above the neutral 50 level. Either signal could reverse if the rebound stalls.</li>
+<li><strong>Participation and volatility:</strong> OBV has risen since October 2 alongside the higher closes, supporting the recent bounce. Its broader slope since early September is still downward, so several improving sessions do not erase the earlier deterioration in participation. ATR is <strong>$1.85</strong>, down from $2.43 on September 18, but NFLX still needs room for ordinary price movement when setting stops.</li>
+<li><strong>Exhaustion versus stretch:</strong> Weekly TD-9 is a <strong>+5 buy-setup</strong>, while monthly is <strong>−1</strong> and daily <strong>−2 sell-setups</strong>. None has reached 9, so there is no completed exhaustion signal; the weekly reading deserves more weight than the shorter-term disagreement. Z-scores are <strong>−0.81 weekly, −1.33 monthly and −0.12 daily</strong>. None meets the ±2 stretch threshold, weakening a case for buying <em>solely</em> because NFLX is statistically oversold.</li>
+</ul>
+<h4 id="conditional-levels-to-watch">Conditional levels to watch<a class="headerlink" href="#conditional-levels-to-watch" title="Permanent link">&para;</a></h4>
+<p>For traders assessing a <strong>countertrend long</strong>, a <em>daily close</em> above <strong>$72.74</strong>, followed by sustained strength above the <strong>$75.38</strong> 50-day SMA and continued OBV improvement, would provide stronger evidence than the current momentum uptick alone. Even then, the weekly SuperTrend would remain down unless it subsequently flips.</p>
+<p>For traders assessing whether the <strong>downtrend is resuming</strong>, failure to clear $72.74 followed by a close below <strong>$69.70</strong>—the October 7 close—would weaken the bounce. A close below <strong>$67.06</strong>, the October 2 close and lowest close in the snapshot’s recent 30 bars, would be a more consequential downside development. These are confirmation conditions, <strong>not claims that either level has held as support or resistance</strong>.</p>
+<p>For sizing, two current ATRs equal <strong>$3.70 per share</strong>. A trader using a two-ATR risk allowance can divide their maximum intended dollar loss by $3.70 to estimate share count, then recalculate against the actual entry and stop. Gaps and slippage can make realized losses larger.</p>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest evidence for NFLX</th>
+<th>Trading implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SuperTrend</td>
+<td>Weekly <strong>DOWN</strong>, $85.87; monthly <strong>DOWN</strong>, $107.18; daily <strong>DOWN</strong>, $72.74</td>
+<td>All three trends remain bearish; $72.74 is the first closing-price test.</td>
+</tr>
+<tr>
+<td>50-day SMA</td>
+<td><strong>$75.38</strong>, above the $71.57 close</td>
+<td>A further test for whether a daily rebound can develop into a stronger recovery.</td>
+</tr>
+<tr>
+<td>MACD histogram</td>
+<td><strong>+0.02</strong>, versus −0.27 on October 7</td>
+<td>Early momentum improvement, but the positive reading is slight.</td>
+</tr>
+<tr>
+<td>RSI</td>
+<td><strong>47.20</strong>, versus 31.06 on October 2</td>
+<td>Selling pressure has eased; momentum remains below neutral 50.</td>
+</tr>
+<tr>
+<td>ATR</td>
+<td><strong>$1.85</strong></td>
+<td>Use volatility-aware stops and position sizing.</td>
+</tr>
+<tr>
+<td>OBV</td>
+<td>Rising since October 2; broader slope down since early September</td>
+<td>Recent buying participation has improved, but longer-lookback confirmation is lacking.</td>
+</tr>
+<tr>
+<td>TD-9</td>
+<td>Weekly <strong>+5</strong>; monthly <strong>−1</strong>; daily <strong>−2</strong></td>
+<td>No completed nine-count exhaustion signal; timeframes disagree.</td>
+</tr>
+<tr>
+<td>Z-score</td>
+<td>Weekly <strong>−0.81</strong>; monthly <strong>−1.33</strong>; daily <strong>−0.12</strong></td>
+<td>No timeframe is statistically stretched to the ±2 threshold.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mixed</strong> (Score: 5.2/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="nflx-sentiment-2026-10-01-to-2026-10-08">NFLX sentiment | 2026-10-01 to 2026-10-08<a class="headerlink" href="#nflx-sentiment-2026-10-01-to-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-evidence">1. Source-by-source evidence<a class="headerlink" href="#1-source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>Yahoo Finance news (20 headlines; mixed, with a cautious fundamental undercurrent).</strong> Several headlines make a recovery or valuation case for NFLX: Simply Wall St. says the shares trade below its cash-flow-based fair value, Insider Monkey asks whether NFLX is undervalued, Trefis asks whether it is cheap enough, and 24/7 Wall St. speculates about a future growth engine. These are publishers' analyses or questions, not independently established undervaluation or growth. GuruFocus reports an NFLX rise of 2.3% despite Morgan Stanley trimming its target—a near-term positive price-reaction headline paired with a cautious analyst action. On the other side, Zacks reports NFLX down 26.8% year to date and argues for staying away; a Motley Fool headline likewise cites an approximately 27% 2026 decline. Insider Monkey raises the question of whether free cash flow is keeping pace with reported earnings, and Investor's Business Daily says streaming price hikes are testing consumer spending limits. Those are concerns to investigate, not evidence in this feed that cash flow has deteriorated or customers have canceled. Industry headlines describe a completed Warner Bros. transaction, a newly enlarged rival carrying roughly $80 billion–$82 billion in debt, and possible breathing room for NFLX; debt could constrain that rival, while its scale could strengthen competition. A Moneywise headline recounts a $2.8 billion payment to Netflix to exit a Warner Bros. deal and an associated 14% NFLX stock jump; the feed does not establish that the jump occurred during this seven-day period, so it should not be counted as this week's return. A Disney/Netflix streaming-playbook headline and a new-show trailer indicate strategic or content interest without demonstrating revenue impact. Some merger, Skydance-price, and governance headlines concern other entities more directly and deserve less weight for NFLX.</p>
+<p><strong>StockTwits (17 most-recent posts, all timestamped 2026-10-08 UTC; mildly bullish but thin and speculative).</strong> Four posts are user-tagged Bullish (24% of all 17), two Bearish (12%), and 11 unlabeled (65%); among the <em>six tagged</em> posts, the split is 4:2, or 67% bullish versus 33% bearish, not a 67% bullish reading across the full sample. The bullish posts anticipate NFLX above $73, a multiday run, pressure on shorts, and a possible double bottom attributed to a TV commentator. Unlabeled posts also express hope for $75–$80, cite an unverified 247,000 calls versus 64,000 puts in a flow recap (about 3.9:1), and say NFLX is holding strong. One bearish post forecasts a drop to $69–$70 after purported short covering; the other bearish-tagged post lists four tickers without a substantive NFLX thesis. Other unlabeled messages question whether NFLX is losing steam after hours or express surprise at the rally. A user claims Morgan Stanley reiterated a buy rating ahead of a truncated 'third-…' reference; the supplied news independently establishes only that Morgan Stanley trimmed its target, not the alleged rating or an earnings date. Price levels, a double bottom, short covering, and option volumes here are user claims or interpretations, not independently verified market data. The posts are clustered within hours on one day, so their apparent momentum is not a weeklong retail trend.</p>
+<p><strong>Reddit:</strong> Disabled by configuration; there are no r/wallstreetbets, r/stocks, or r/investing posts to assess. No Reddit sentiment, engagement, or agreement with either of the other sources can be inferred.</p>
+<h4 id="2-cross-source-divergences-and-alignments">2. Cross-source divergences and alignments<a class="headerlink" href="#2-cross-source-divergences-and-alignments" title="Permanent link">&para;</a></h4>
+<p>The near-term StockTwits mood and the 2.3%-rise headline lean positive for NFLX, whereas the news repeatedly revisits its roughly 27% reported year-to-date decline, valuation uncertainty, consumer price sensitivity, and cash-flow questions. These are different time horizons rather than direct contradictions. Retail discussion of an analyst's supposed buy rating also needs to be separated from the reported target cut. Both feeds discuss a potential NFLX recovery or better entry point; neither establishes that fundamentals have improved. With bearish and bullish themes material in the news and an optimistic but very small retail sample, <strong>Mixed (5.2/10)</strong> is more faithful than calling the evidence uniformly bullish or bearish.</p>
+<h4 id="3-dominant-narrative-themes">3. Dominant narrative themes<a class="headerlink" href="#3-dominant-narrative-themes" title="Permanent link">&para;</a></h4>
+<ol>
+<li><strong>Rebound versus damaged prior trend:</strong> NFLX rally/double-bottom and short-covering talk meets headlines about a steep 2026 drawdown.</li>
+<li><strong>Value versus earnings quality:</strong> cash-flow-based fair-value and 'cheap enough' arguments compete with questions about free cash flow relative to earnings; no underlying figures are supplied.</li>
+<li><strong>Changing streaming competition:</strong> a large, heavily indebted Warner Bros.-related rival could offer NFLX breathing room or pose a scale-driven threat. Disney cooperation and new programming are potential positioning stories, not measured subscriber or profit gains.</li>
+<li><strong>Monetization limits:</strong> industry streaming price increases may help revenue per customer but test consumers' willingness to pay.</li>
+</ol>
+<h4 id="4-catalysts-and-risks-to-monitor">4. Catalysts and risks to monitor<a class="headerlink" href="#4-catalysts-and-risks-to-monitor" title="Permanent link">&para;</a></h4>
+<p>Potential sentiment catalysts for NFLX include clarification of Morgan Stanley's target/rating rationale, any subsequently confirmed earnings announcement and its subscriber, advertising, margin and free-cash-flow detail, performance of new programming, pricing/retention data, and evidence of how the Warner Bros.-related merger affects competition. The StockTwits reference to 'third-…' is truncated: this feed supplies <strong>no confirmed earnings date</strong>. Risks include consumer resistance to price increases, disappointing conversion of earnings into cash, stronger content competition, a recovery driven mainly by short covering or options speculation, and reversals after an abrupt rally. Rival debt and an asserted transaction payment should not be converted into NFLX forecasts without primary financial data.</p>
+<h4 id="5-key-sentiment-signals">5. Key sentiment signals<a class="headerlink" href="#5-key-sentiment-signals" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Direction for NFLX</th>
+<th>Source</th>
+<th>Supporting evidence and qualification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recovery/valuation debate</td>
+<td>Positive, qualified</td>
+<td>Yahoo Finance headlines</td>
+<td>Below-cash-flow-fair-value, undervalued, and 'cheap enough?' articles; publisher opinions, no valuation inputs supplied.</td>
+</tr>
+<tr>
+<td>Prior drawdown and caution</td>
+<td>Negative</td>
+<td>Yahoo Finance headlines</td>
+<td>Zacks cites −26.8% year to date; Motley Fool cites roughly −27% in 2026; these are reported historical figures, not current-week returns.</td>
+</tr>
+<tr>
+<td>Analyst/market reaction</td>
+<td>Mixed</td>
+<td>GuruFocus headline; StockTwits</td>
+<td>Headline says NFLX rose 2.3% despite Morgan Stanley's target cut; a user's separate buy-rating claim is unverified here.</td>
+</tr>
+<tr>
+<td>Short-horizon trader positioning</td>
+<td>Mildly positive, fragile</td>
+<td>StockTwits</td>
+<td>Four Bullish and two Bearish tags among 17 posts; 11 unlabeled and all posts from one day.</td>
+</tr>
+<tr>
+<td>Options/momentum chatter</td>
+<td>Positive, unverified</td>
+<td>StockTwits</td>
+<td>User asserts 247k NFLX calls versus 64k puts; others hope for $73–$80, while one predicts $69–$70. Neither flow nor targets are verified.</td>
+</tr>
+<tr>
+<td>Earnings quality and pricing</td>
+<td>Negative risk, not established harm</td>
+<td>Yahoo Finance headlines</td>
+<td>Free-cash-flow-versus-earnings question and industry warning about price hikes testing consumers.</td>
+</tr>
+<tr>
+<td>Competitive restructuring</td>
+<td>Two-sided</td>
+<td>Yahoo Finance headlines</td>
+<td>Enlarged Warner Bros.-related rival reportedly bears ~$80bn–$82bn debt; potential NFLX breathing room versus greater rival scale.</td>
+</tr>
+<tr>
+<td>Reddit corroboration</td>
+<td>Unavailable</td>
+<td>Reddit feed</td>
+<td>Collection disabled; no posts or engagement figures.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Confidence: low.</strong> Despite 20 headlines, they include opinion pieces, repeated deal framing and stories primarily about other firms; the 17 StockTwits posts are a one-day snapshot with only six tagged opinions; Reddit is disabled. This is a sentiment input for an NFLX trader to weigh against verified fundamentals and technicals, not a price forecast or trade instruction.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="nflx-trading-and-macro-report-october-8-2026">NFLX trading and macro report — October 8, 2026<a class="headerlink" href="#nflx-trading-and-macro-report-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Bottom line:</strong> The near-term case for <strong>NFLX</strong> is mixed. Reports of a completed rival media merger and Netflix’s withdrawal from its own Warner Bros. bid reduce one acquisition-related uncertainty, but a higher-rate, high-oil environment raises the bar for a sustained valuation rebound. I would treat recent favorable headlines as reasons to <strong>watch NFLX for confirmation</strong>, not as a stand-alone buy signal.</p>
+<h4 id="what-changed-this-week-for-nflx">What changed this week for NFLX<a class="headerlink" href="#what-changed-this-week-for-nflx" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>The competitive landscape shifted.</strong> Recent articles report that Skydance completed its Warner Bros. Discovery acquisition, creating a larger streaming and studio rival carrying substantial debt. That could intensify competition for viewers and content, although the rival’s debt may limit its flexibility. Separately, a <a href="https://finance.yahoo.com/markets/stocks/articles/paramount-paid-netflix-2-8-230000125.html">Moneywise report</a> says Paramount paid Netflix $2.8 billion to leave its proposed Warner Bros. transaction. <strong>Do not treat that reported payment as recurring operating cash flow—or assume the payment or the reported 14% stock jump occurred this week.</strong> Verify transaction details in company filings before incorporating them into a valuation.</li>
+<li><strong>Sentiment is divided.</strong> A <a href="https://finance.yahoo.com/markets/stocks/articles/netflix-stocks-jump-2-3-204013689.html">GuruFocus headline</a> reports a 2.3% NFLX gain despite Morgan Stanley lowering its target; a <a href="https://finance.yahoo.com/markets/stocks/articles/netflix-stock-plunges-26-8-135500021.html">Zacks headline</a> describes NFLX as down 26.8% year to date. These are publisher-reported figures, <strong>not a verified live quote or independently calculated return</strong>. An <a href="https://finance.yahoo.com/m/ffdbd4f0-3df8-3db3-97cf-b8429e433191/streaming-video-price-hikes.html">industry report on streaming price hikes</a> points to the practical question for NFLX: whether higher prices can lift revenue without unacceptable churn.</li>
+</ul>
+<h4 id="the-macro-backdrop">The macro backdrop<a class="headerlink" href="#the-macro-backdrop" title="Permanent link">&para;</a></h4>
+<p><strong>Rates are the clearest market-wide headwind.</strong> FRED’s <a href="https://fred.stlouisfed.org/series/DGS10">10-year Treasury yield</a> was <strong>5.28% on October 7</strong>, up from 5.24% on October 1 and 4.56% on July 10. Higher long-term yields can compress the multiples investors will pay for future NFLX earnings, even if its business performs well. The <a href="https://fred.stlouisfed.org/series/T10Y2Y">10-year minus 2-year spread</a> was <strong>+0.47 percentage points on October 8</strong>. The <a href="https://fred.stlouisfed.org/series/VIXCLS">VIX</a> was a comparatively subdued <strong>15.08 on October 7</strong>; low broad-market volatility does not remove company-specific risk.</p>
+<p><strong>Inflation and employment send different signals.</strong> The latest available <a href="https://fred.stlouisfed.org/series/CPIAUCSL">CPI</a> and <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE index</a>, both for <strong>August</strong>, imply approximately <strong>3.35% and 3.01% year-over-year inflation</strong>, respectively. September <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> rose to <strong>4.2% from 4.1%</strong> in August, while <a href="https://fred.stlouisfed.org/series/PAYEMS">nonfarm payrolls</a> increased by <strong>29,000</strong> in September versus 133,000 in August, subject to revision. FRED’s latest <a href="https://fred.stlouisfed.org/series/GDPC1">real GDP</a>, for Q2, was about <strong>2.2% above its year-earlier level</strong>. For NFLX, weaker hiring could increase household price sensitivity and pressure advertisers; easing inflation would help, but the August figures do <strong>not</strong> capture subsequent oil moves.</p>
+<p><strong>Energy remains a geopolitical risk, with care needed over benchmarks.</strong> FRED put <a href="https://fred.stlouisfed.org/series/DCOILBRENTEU">Brent</a> at <strong>$125.44</strong> and <a href="https://fred.stlouisfed.org/series/DCOILWTICO">WTI</a> at <strong>$96.24</strong> per barrel on October 6. A <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">Yahoo Finance headline</a> separately described oil falling to $103 amid Iran-related comments; its headline alone does not establish the benchmark or time needed to compare those prices. Persistently expensive energy could squeeze discretionary spending and keep rates elevated.</p>
+<h4 id="forward-events-and-trading-plan">Forward events and trading plan<a class="headerlink" href="#forward-events-and-trading-plan" title="Permanent link">&para;</a></h4>
+<p>Polymarket markets retrieved October 8 assigned <strong>84%</strong> to <em>no change</em> at the October Fed meeting, <strong>16%</strong> to a 25-basis-point hike, and approximately <strong>0%</strong> to a cut at that meeting. A separate market priced a <strong>6%</strong> chance of a U.S. recession by year-end. These are event-contract prices, not economic forecasts. A market asking whether NFLX beats quarterly earnings showed <strong>55%</strong>, but only <strong>$398 traded</strong>—too little to use as a reliable earnings signal; its October 20 resolution date is <strong>not confirmation of NFLX’s official reporting date</strong>.</p>
+<p><strong>Actionable stance on NFLX: neutral and selective.</strong> Before adding exposure, seek confirmation of subscriber or engagement resilience, advertising progress, margins and <em>recurring</em> free cash flow in NFLX disclosures; confirm the official earnings calendar separately. A renewed move higher in the 10-year yield from its roughly 5.28% level, coupled with weak pricing or churn commentary, would strengthen the case for smaller positions or tighter risk limits. Stabilizing yields and strong operating results would improve the case for buying a pullback. No NFLX share-price level or valuation multiple was available from these tools, so a precise entry target would be invented.</p>
+<p><em>Source limitation:</em> The news feed supplies headlines rather than full articles and returned only a sample for October 1–3. Transaction claims and reported stock moves above should be checked against primary filings and market data before execution.</p>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Evidence as of October 8</th>
+<th>Trading implication for NFLX</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rival consolidation</td>
+<td>Reports say the Skydance–Warner Bros. deal closed; a separate report describes a Netflix withdrawal payment</td>
+<td>Monitor content competition; exclude any one-time payment from recurring cash-flow estimates.</td>
+</tr>
+<tr>
+<td>Rates</td>
+<td>10-year Treasury <strong>5.28%</strong> on October 7; October Fed hold priced at <strong>84%</strong></td>
+<td>Require stronger operating evidence before paying a higher growth multiple.</td>
+</tr>
+<tr>
+<td>Consumer and advertising demand</td>
+<td>September payroll gain <strong>29,000</strong>; unemployment <strong>4.2%</strong></td>
+<td>Watch NFLX churn, pricing response and advertising commentary.</td>
+</tr>
+<tr>
+<td>Inflation and energy</td>
+<td>August CPI about <strong>3.35% y/y</strong>; October 6 Brent <strong>$125.44</strong></td>
+<td>Treat another sustained energy rise as a spending and yield risk.</td>
+</tr>
+<tr>
+<td>Near-term catalyst</td>
+<td>NFLX earnings-beat contract <strong>55%</strong> on just <strong>$398</strong> volume</td>
+<td>Ignore the thin contract as a trading signal; verify NFLX’s reporting date and use its disclosures.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="nflx-fundamental-report-october-8-2026">NFLX fundamental report — October 8, 2026<a class="headerlink" href="#nflx-fundamental-report-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Scope:</strong> This is a point-in-time review of Netflix, Inc. (<code>NFLX</code>), not a claim that its fundamentals changed during the past week. The available SEC-derived statements run through <strong>June 30, 2026</strong>; the newest insider transaction shown is dated <strong>September 10, 2026</strong>. The tools do not establish a new filing, earnings release, or insider trade during <strong>October 1–8</strong>. No third-quarter 2026 results are available in the supplied data.</p>
+<h4 id="business-and-financial-documents">Business and financial documents<a class="headerlink" href="#business-and-financial-documents" title="Permanent link">&para;</a></h4>
+<p>NFLX is classified as <strong>Communication Services / Entertainment</strong>. Its streaming business offers filmed entertainment through subscription plans, including ad-supported offerings. Content investment is central to the business, so traders should assess <em>cash generation alongside accounting profit</em>: revenue growth alone does not establish how much cash remains after content spending and other operating costs.</p>
+<p>The financial history below comes from annual and quarterly SEC EDGAR facts filed by October 8, 2026. The most recent complete annual period supplied is <strong>FY2025</strong>, and the latest quarterly period is <strong>Q2 2026</strong>. Filing links, publication timestamps, management guidance, subscriber and advertising metrics, and detailed debt or content-spending notes were not supplied. Those items should be checked in NFLX’s underlying filings and earnings materials before attributing a change in results to a particular cause.</p>
+<h4 id="growth-profitability-and-cash-flow-history">Growth, profitability, and cash-flow history<a class="headerlink" href="#growth-profitability-and-cash-flow-history" title="Permanent link">&para;</a></h4>
+<p><strong>USD billions, except percentages.</strong> Free cash flow (FCF) below is calculated consistently as <strong>operating cash flow minus reported capital expenditure</strong>; half-year and trailing figures are calculated from the supplied statements.</p>
+<table>
+<thead>
+<tr>
+<th>Period</th>
+<th style="text-align: right;">Revenue</th>
+<th style="text-align: right;">Operating income</th>
+<th style="text-align: right;">Net income</th>
+<th style="text-align: right;">Operating cash flow</th>
+<th style="text-align: right;">Capital expenditure</th>
+<th style="text-align: right;">Calculated FCF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FY2023</td>
+<td style="text-align: right;">33.723</td>
+<td style="text-align: right;">6.954</td>
+<td style="text-align: right;">5.408</td>
+<td style="text-align: right;">7.274</td>
+<td style="text-align: right;">0.349</td>
+<td style="text-align: right;">6.925</td>
+</tr>
+<tr>
+<td>FY2024</td>
+<td style="text-align: right;">39.001</td>
+<td style="text-align: right;">10.418</td>
+<td style="text-align: right;">8.712</td>
+<td style="text-align: right;">7.361</td>
+<td style="text-align: right;">0.440</td>
+<td style="text-align: right;">6.921</td>
+</tr>
+<tr>
+<td>FY2025</td>
+<td style="text-align: right;">45.183</td>
+<td style="text-align: right;">13.327</td>
+<td style="text-align: right;">10.981</td>
+<td style="text-align: right;">10.149</td>
+<td style="text-align: right;">0.688</td>
+<td style="text-align: right;">9.461</td>
+</tr>
+<tr>
+<td>H1 2025</td>
+<td style="text-align: right;">21.622</td>
+<td style="text-align: right;">7.122</td>
+<td style="text-align: right;">6.015</td>
+<td style="text-align: right;">5.212</td>
+<td style="text-align: right;">0.284</td>
+<td style="text-align: right;">4.928</td>
+</tr>
+<tr>
+<td>H1 2026</td>
+<td style="text-align: right;">24.810</td>
+<td style="text-align: right;">8.150</td>
+<td style="text-align: right;">8.684</td>
+<td style="text-align: right;">7.034</td>
+<td style="text-align: right;">0.415</td>
+<td style="text-align: right;">6.619</td>
+</tr>
+<tr>
+<td>Trailing 12 months through Q2 2026</td>
+<td style="text-align: right;">48.371</td>
+<td style="text-align: right;">14.355</td>
+<td style="text-align: right;">13.650</td>
+<td style="text-align: right;">11.971</td>
+<td style="text-align: right;">0.819</td>
+<td style="text-align: right;">11.152</td>
+</tr>
+</tbody>
+</table>
+<p>FY2025 revenue rose <strong>15.9%</strong> over FY2024, while operating income rose <strong>27.9%</strong>. Operating margin improved from <strong>26.7% to 29.5%</strong>. FY2025 calculated FCF increased from <strong>$6.921 billion to $9.461 billion</strong>. Over a longer horizon, the annual statement shows negative operating cash flow of <strong>$2.887 billion in FY2019</strong>; subsequent positive cash generation is a substantial change in NFLX’s financial profile.</p>
+<p><strong>Recent operating signal:</strong> H1 2026 revenue grew <strong>14.7%</strong> year over year, operating income grew <strong>14.4%</strong>, and calculated FCF grew <strong>34.3%</strong>. Growth remains strong, though H1 operating margin was approximately <strong>32.8%</strong>, essentially flat against H1 2025’s <strong>32.9%</strong>.</p>
+<p><strong>Latest-quarter caution:</strong> Q2 2026 revenue was <strong>$12.560 billion</strong>, up <strong>13.4%</strong> from Q2 2025, and operating income was <strong>$4.193 billion</strong>, up <strong>11.1%</strong>. Yet operating cash flow fell <strong>28.0%</strong>, from <strong>$2.423 billion to $1.744 billion</strong>. Calculated quarterly FCF fell <strong>32.7%</strong>, from <strong>$2.267 billion to $1.525 billion</strong>, as capital expenditure increased from <strong>$156 million to $219 million</strong>. Q2 operating margin also eased from roughly <strong>34.1% to 33.4%</strong>. <strong>The next report’s cash conversion is a particularly useful test</strong> of whether this divergence was temporary.</p>
+<p>H1 2026 net income rose <strong>44.4%</strong> year over year, much faster than operating income. In Q1 2026 alone, <strong>$5.283 billion of net income exceeded $3.957 billion of operating income</strong>. The supplied statements do not explain that difference. Traders should inspect the relevant tax and non-operating-income notes before treating the full net-income increase as recurring operating growth.</p>
+<h4 id="balance-sheet-and-financing">Balance sheet and financing<a class="headerlink" href="#balance-sheet-and-financing" title="Permanent link">&para;</a></h4>
+<p>At June 30, 2026, NFLX reported <strong>$58.450 billion of assets</strong>, <strong>$28.298 billion of total liabilities</strong>, and <strong>$30.152 billion of equity</strong>. Cash and equivalents were <strong>$9.099 billion</strong>. Current assets of <strong>$13.853 billion</strong> against current liabilities of <strong>$12.135 billion</strong> imply a <strong>1.14 current ratio</strong> and approximately <strong>$1.718 billion of working capital</strong>.</p>
+<p>Liquidity tightened during Q2: cash declined from <strong>$12.260 billion</strong> at March 31 to <strong>$9.099 billion</strong> at June 30, while the current ratio fell from about <strong>1.41 to 1.14</strong>. Q2 operating cash inflow was positive, but the quarter also had <strong>$4.670 billion of financing cash outflow</strong>. FY2025 financing cash outflow was <strong>$10.346 billion</strong>. The provided statements do <strong>not</strong> break those amounts into repurchases, debt payments, and other financing uses; they should not be labeled entirely as buybacks.</p>
+<p>The fundamentals snapshot gives <strong>debt-to-equity of 0.55×</strong> and <strong>return on equity of 49.5%</strong>. The supplied balance sheet provides total liabilities, not a separate interest-bearing-debt line, so the debt ratio and any net-debt figure cannot be independently reconciled here. Total liabilities should not be mistaken for debt.</p>
+<h4 id="valuation-and-data-quality-checks">Valuation and data-quality checks<a class="headerlink" href="#valuation-and-data-quality-checks" title="Permanent link">&para;</a></h4>
+<p>The fundamentals snapshot lists a <strong>$298.0 billion market capitalization</strong>, <strong>22.5× trailing P/E</strong>, <strong>18.8× forward P/E</strong>, <strong>$3.18 trailing EPS</strong>, <strong>9.88× price-to-book</strong>, <strong>zero dividend yield</strong>, and <strong>1.61 beta</strong>. Its trailing revenue and net income—approximately <strong>$48.371 billion</strong> and <strong>$13.650 billion</strong>—reconcile to the annual and half-year statements. The P/E and EPS imply a share price near <strong>$71.57</strong>, but that is an <em>implied snapshot price</em>, not a timestamped live quote.</p>
+<p>Two vendor fields warrant particular care:</p>
+<ul>
+<li><strong>Free cash flow:</strong> The fundamentals snapshot reports <strong>$25.388 billion</strong>, but supplied operating cash flow less capital expenditure yields <strong>$11.152 billion trailing FCF</strong>. The larger figure cannot be reconciled to these statements. Using the consistent calculation and the snapshot market cap gives an indicative <strong>3.7% trailing FCF yield</strong>; using the unreconciled vendor figure would materially overstate it.</li>
+<li><strong>Operating margin:</strong> The snapshot’s <strong>33.38%</strong> matches <strong>Q2 2026</strong> operating income divided by quarterly revenue. The calculated <strong>trailing-12-month operating margin is about 29.7%</strong>. Labeling the quarterly figure as trailing would distort comparisons.</li>
+</ul>
+<p>Historical per-share fields also appear <strong>split-inconsistent</strong>: reported Q3 2025 diluted EPS is <strong>$5.87</strong>, versus <strong>$0.72</strong> in Q2 2025 despite lower Q3 net income. Insider sale prices likewise move from roughly $1,100 in November 2025 to roughly $100 in December. Normalize historical EPS, share counts, and prices for the corporate-action change before comparing periods.</p>
+<h4 id="insider-activity-and-near-term-checks">Insider activity and near-term checks<a class="headerlink" href="#insider-activity-and-near-term-checks" title="Permanent link">&para;</a></h4>
+<p><strong>No October 1–8 insider transaction appears in the supplied feed.</strong> Its latest entries are director Richard Barton’s <strong>September 8 and 10</strong> option exercises paired with sales of <strong>720 shares for $55,872</strong> and <strong>1,440 shares for $109,102</strong>, respectively. Earlier disclosed August sales include co-CEO Theodore Sarandos’s <strong>133,162 shares for $9.734 million</strong>, co-CEO Gregory Peters’s <strong>27,312 shares for $2.009 million</strong>, and CFO Spencer Neumann’s <strong>9,248 shares for $0.701 million</strong>. The listed option exercises are <strong>not open-market purchases</strong>. The feed supplies neither trading-plan details nor a basis for inferring why individuals sold; insider selling alone is therefore an incomplete trading signal.</p>
+<p><strong>Research priority for NFLX:</strong> In the next available filing, compare operating cash flow and calculated FCF with Q2’s weak year-over-year cash conversion; check whether operating margin holds up as revenue grows; identify the source of Q1’s unusually high net income relative to operating income; and obtain the financing, debt, and content-spending details missing from this dataset. No trade direction can be established from a newly confirmed <em>past-week</em> fundamental event here, because none is documented by the available tools.</p>
+<table>
+<thead>
+<tr>
+<th>Key point for NFLX</th>
+<th>Supporting evidence as of October 8, 2026</th>
+<th>What to do with it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sustained growth</td>
+<td>FY2025 revenue <strong>+15.9%</strong>; H1 2026 revenue <strong>+14.7%</strong> year over year</td>
+<td>Test whether the next reported period sustains growth without margin erosion.</td>
+</tr>
+<tr>
+<td>Improving longer-run cash generation</td>
+<td>Calculated FCF: <strong>$6.921B FY2024</strong>, <strong>$9.461B FY2025</strong>, <strong>$11.152B trailing</strong></td>
+<td>Use statement-derived FCF for valuation comparisons.</td>
+</tr>
+<tr>
+<td>Latest-quarter cash-conversion risk</td>
+<td>Q2 2026 operating cash flow <strong>−28.0%</strong> and calculated FCF <strong>−32.7%</strong> year over year, despite higher revenue</td>
+<td>Prioritize the next cash-flow statement, not EPS alone.</td>
+</tr>
+<tr>
+<td>Reduced near-term liquidity cushion</td>
+<td>Q2 cash <strong>$9.099B</strong>, down <strong>$3.161B</strong> quarter over quarter; current ratio <strong>1.14</strong></td>
+<td>Review financing outflows and the detailed debt schedule.</td>
+</tr>
+<tr>
+<td>Earnings-quality question</td>
+<td>Q1 2026 net income <strong>$5.283B</strong> exceeded operating income <strong>$3.957B</strong></td>
+<td>Verify tax and non-operating items before extrapolating net-income growth.</td>
+</tr>
+<tr>
+<td>Valuation-source discrepancy</td>
+<td>Vendor FCF <strong>$25.388B</strong> versus <strong>$11.152B</strong> calculated from supplied statements</td>
+<td>Do not use the vendor FCF figure for a yield or price target until reconciled.</td>
+</tr>
+<tr>
+<td>Insider and weekly-event limit</td>
+<td>Latest insider entry <strong>September 10</strong>; no supplied October 1–8 transaction or new filing identified</td>
+<td>Avoid treating older sales—or an unverified weekly catalyst—as a fresh signal.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: ## Bull opening: NFLX at $71.57 on October 8, 2026</p>
+<p>I’d <strong>start a measured, long-term NFLX position</strong>, not chase it as a confirmed technical breakout. The bull case rests on a business that is still growing revenue and producing substantial cash—not on a rumored catalyst or four good trading days.</p>
+<p>NFLX grew FY2025 revenue <strong>15.9%</strong> to $45.183 billion and operating income <strong>27.9%</strong>, lifting its operating margin from 26.7% to 29.5%. Growth continued in H1 2026: revenue rose <strong>14.7%</strong> year over year, while calculated free cash flow rose <strong>34.3%</strong> to $6.619 billion. Its trailing free cash flow through June was <strong>$11.152 billion</strong>. That is meaningful capacity to fund content and develop its ad-supported offering within an existing subscription business. Advertising is an opportunity, not yet a quantified forecast: the supplied data do not establish its contribution or subscriber retention.</p>
+<p>Here is the scalability argument without inventing guidance. If NFLX grew its $48.371 billion trailing revenue by <strong>10%</strong> while maintaining its roughly <strong>29.7% trailing operating margin</strong>, revenue would reach about <strong>$53.2 billion</strong> and operating income about <strong>$15.8 billion</strong>, versus $14.355 billion trailing. That is an <em>illustration</em>, not a prediction; it also assumes content costs and margins cooperate.</p>
+<p>I expect the bear to raise three fair objections:</p>
+<ul>
+<li><strong>“Cash conversion is weakening.”</strong> Q2 2026 free cash flow did fall <strong>32.7%</strong> year over year, despite higher sales. I would not wave that away—or use the vendor’s unreconciled $25.388 billion FCF figure. But one weak quarter sits alongside <strong>34.3% H1 FCF growth</strong> and $11.152 billion trailing FCF. The next cash-flow statement is the test of whether Q2 was a timing issue or a deterioration.</li>
+<li><strong>“Competition and consumer pressure will squeeze growth.”</strong> Price sensitivity is real, and a larger combined rival could compete harder. Yet reports that the rival carries roughly <strong>$80 billion–$82 billion of debt</strong> also suggest constraints on its flexibility; neither outcome is assured. NFLX’s advantage is its already scaled subscription and content business, with an ad-supported tier offering another monetization path. I would require retention and advertising evidence before assigning that path a dollar value.</li>
+<li><strong>“The stock is expensive and the chart is bearish.”</strong> Agreed that a roughly <strong>3.7% trailing FCF yield</strong> is not automatically attractive against a <strong>5.28%</strong> 10-year Treasury yield. The investment must earn its premium through continued growth. And while NFLX has posted four higher closes since October 2, its daily, weekly and monthly SuperTrends remain down. A close above <strong>$72.74</strong>, then sustained strength above the <strong>$75.38</strong> 50-day average, would make a tactical add more persuasive.</li>
+</ul>
+<p><strong>My recommendation:</strong> accumulate NFLX modestly for a long-term thesis, reserving additional capital until the next disclosure confirms cash conversion and operating resilience. A close below <strong>$67.06</strong> would undermine the near-term rebound; persistent weak cash flow would challenge the fundamental bull case itself.
+Bull Analyst: <strong>Bear, your strongest point is Q2 cash conversion.</strong> NFLX’s calculated free cash flow fell 32.7% year over year to $1.525 billion even as revenue grew 13.4%. I cannot call that a timing issue without the next filing. But I also would not let one quarter override the larger result: <strong>H1 2026 free cash flow rose 34.3% to $6.619 billion</strong>, and free cash flow as a share of operating income improved from about <strong>69% to 81%</strong> year over year. Q2 is a warning to investigate, not yet evidence that NFLX’s cash-generating model has broken.</p>
+<p>Your 27% margin stress test is useful, but it is a <em>stress test</em>. NFLX’s H1 operating margin was roughly <strong>32.8%</strong>, essentially level with H1 2025, while H1 revenue grew <strong>14.7%</strong>. Q2’s margin slipped by about 0.7 percentage points year over year; that deserves attention, but it does not establish the nearly three-point decline from the 29.7% trailing margin required by your scenario. I agree that the unusually strong H1 net-income growth should not be extrapolated until the Q1 non-operating and tax items are explained. My bull case rests instead on revenue, operating income and statement-derived cash flow.</p>
+<p>On valuation, <strong>26.7 times trailing free cash flow is a demanding price</strong>, especially with the 10-year Treasury at 5.28%. NFLX has to keep growing to justify it. The reason I would begin <em>small</em> rather than wait entirely is that this is not a turnaround thesis dependent on a hoped-for new product: FY2025 revenue grew 15.9%, H1 2026 revenue grew 14.7%, and the business generated $11.152 billion of trailing free cash flow. Its established subscription scale gives NFLX a platform for content investment and an ad-supported offering, though the supplied data do <strong>not</strong> quantify advertising upside or prove pricing power will withstand consumer pressure. A larger, heavily indebted rival is a competitive risk, not a reason to assume NFLX wins.</p>
+<p>Nor am I calling the chart bullish. NFLX at <strong>$71.57 on October 8, 2026</strong> remains below its <strong>$75.38</strong> 50-day average, with daily, weekly and monthly SuperTrends down. The improving OBV and four higher closes make the rebound worth watching, but they do not confirm a reversal. That is an argument against taking a <em>full</em> position—not necessarily against owning any NFLX before every uncertainty is resolved.</p>
+<p><strong>My recommendation remains a measured long-term NFLX purchase, with capital reserved for confirmation.</strong> I would add only if the next disclosure shows healthier recurring cash conversion without meaningful margin or retention deterioration; a close above <strong>$72.74</strong> and then sustained strength above <strong>$75.38</strong> would separately improve the tactical case. Repeated weak free cash flow would undermine my fundamental thesis, while a close below <strong>$67.06</strong> would weaken the near-term rebound. Your “wait” approach protects against bad news; a small initial position balances that risk against the possibility that confirmation arrives after the stock has already repriced.
+Bull Analyst: Bear, I agree that <strong>“not broken” is not a valuation argument</strong> for NFLX at roughly 26.7 times statement-derived trailing free cash flow. The question is whether Q2’s weak conversion deserves more weight than the longer record <em>before</em> we see another filing. I think it deserves a smaller position, not a zero position.</p>
+<p>Your Q2 figures are the right warning: free cash flow was <strong>$1.525 billion</strong>, about <strong>36% of operating income</strong>, and fell 32.7% year over year. But H1 free cash flow still rose <strong>34.3% to $6.619 billion</strong>; across the half-year, it represented about <strong>81% of operating income</strong>, versus 69% a year earlier. Q1 carried much of that improvement, so I am not extrapolating it. I am saying the evidence does not yet establish a sustained cash-conversion decline. Nor does the $3.161 billion Q2 cash drop establish one on its own: operating cash flow remained positive, while financing cash outflow was $4.670 billion. We need the financing detail, not an assumption that operations consumed the cash.</p>
+<p>You’re also right that recent growth has <strong>not</strong> produced increasing operating leverage. Still, flat H1 margin of roughly <strong>32.8%</strong> on <strong>14.7% revenue growth</strong> is a different starting point from your 27% stress case. Even a less severe illustrative squeeze—to a <strong>28.5%</strong> margin on 10% higher trailing revenue—would produce about <strong>$15.2 billion</strong> in operating income, above the current $14.355 billion. That is not guidance; it shows why modest margin pressure need not erase growth.</p>
+<p>Your 20% free-cash-flow decline would indeed make the valuation roughly <strong>33 times</strong> cash flow. The other side of that sensitivity is that 20% growth would bring it to roughly <strong>22 times</strong> at the same market value—also a scenario, not a forecast. NFLX must earn its premium through continued cash growth. Its $48.371 billion trailing revenue base, substantial operating profit and established subscription business give it a platform to fund content and pursue ad-supported monetization, though we lack the retention and advertising figures to price that opportunity.</p>
+<p>So my recommendation remains <strong>initiate a modest long-term NFLX position at $71.57</strong>, not a full allocation or a technical-breakout trade. The down SuperTrends and the 5.28% Treasury yield argue for restraint. I would reserve additions for stronger recurring cash conversion and resilient margins and retention; a close above <strong>$72.74</strong>, then sustained strength above <strong>$75.38</strong>, would improve the separate trading case. If weak conversion persists, your wait-and-see position will have been the better call—and I would reassess mine.
+Bull Analyst: Bear, your point about price is fair: <strong>a small NFLX position does not make 26.7 times trailing, statement-derived free cash flow cheap.</strong> My disagreement is with treating the latest quarter as the best estimate of what comes next.</p>
+<p>The cash-flow skew deserves scrutiny. Q1 supplied about <strong>77% of H1 2026 free cash flow</strong>, versus about <strong>54% in H1 2025</strong>; Q2 free cash flow then fell <strong>32.7% year over year</strong>. I would not dismiss that as seasonality or assume it reverses. But the broader record is also evidence: NFLX generated <strong>$9.461 billion</strong> of free cash flow in FY2025, up from $6.921 billion in FY2024, and <strong>$6.619 billion</strong> in H1 2026, up 34.3%. For FY2026 cash flow merely to fall below FY2025’s total, H2 would have to produce less than <strong>$2.842 billion</strong>—about <strong>37% below H2 2025</strong>. That is a measure of the first-half cushion, <em>not</em> a claim that flat annual cash flow would justify today’s valuation.</p>
+<p>You’re right, too, that H1 showed no increasing operating leverage. But <strong>14.7% revenue growth with a roughly steady 32.8% operating margin</strong> still produced 14.4% operating-income growth. The bull case does not require the ad tier to rescue margins: NFLX’s established subscription business is already growing at substantial profitability. Advertising offers upside, but without contribution and retention figures, I assign it no specific value. Likewise, a larger rival is a genuine threat; its reported debt is a possible constraint, not proof NFLX wins.</p>
+<p>Your “even 20% growth leaves 22 times cash flow” observation looks at just one year. The investment case requires <em>sustained</em> growth, not a one-year multiple fix. As an illustration rather than a forecast, <strong>15% annual free-cash-flow growth for three years</strong> would reduce today’s $298 billion market value to about <strong>17.6 times</strong> that third year’s cash flow. Q2 makes that path less certain, but it does not erase the growth and cash generation already reported. The <strong>5.28% Treasury yield</strong> raises the hurdle further.</p>
+<p>So I would <strong>initiate only a modest, long-term NFLX position at the October 8 price of $71.57</strong>, not call this a confirmed trading reversal: the higher-timeframe SuperTrends remain down. I would add only after a filing shows healthier recurring cash conversion alongside resilient margins and retention. If Q2-like weakness persists, your decision to wait will have been the better one—and my fundamental case would need reassessment.
+Bull Analyst: Bear, you’re right that my <strong>$2.842 billion H2 hurdle was too low to answer the valuation question</strong>. Merely matching FY2025 free cash flow would not justify NFLX at $71.57. The better question is whether Q2’s weak cash conversion is the start of a sustained decline—or a setback within a still-growing cash-generating business.</p>
+<p>The evidence does not settle that question yet, but it gives me a reason to own a little rather than none. NFLX’s statement-derived free cash flow rose from <strong>$6.921 billion in FY2024 to $9.461 billion in FY2025</strong>. Even if H2 2026 only matched H2 2025, full-year free cash flow would be <strong>$11.152 billion, up about 18% year over year</strong>. As you note, that amount is already the trailing figure behind today’s <strong>26.7×</strong> multiple; I’m not presenting it as fresh upside. It does show why Q2’s <strong>32.7%</strong> year-over-year decline, serious as it is, has not yet overturned the broader growth record.</p>
+<p>Your investor-return test improves the debate. At <strong>15% annual free-cash-flow growth for three years</strong>, NFLX would generate roughly <strong>$17 billion</strong> in year-three cash flow. Your hypothetical <strong>20×</strong> exit multiple produces only about <strong>14% total market-value appreciation</strong>. But at <strong>25×</strong>—still below today’s 26.7×—the same cash flow implies about <strong>$424 billion</strong> in market value, or roughly <strong>42% appreciation</strong> before share-count changes or distributions. Neither multiple is a forecast. The point is that your poor-return outcome requires substantial multiple compression <em>as well as</em> uncertainty about cash growth. With the 10-year yield at <strong>5.28%</strong>, that compression is a real risk, not an inevitability.</p>
+<p>I would not use unmeasured advertising upside to bridge the gap. The case I can substantiate is NFLX’s <strong>14.7% H1 revenue growth</strong>, roughly steady <strong>32.8% H1 operating margin</strong>, and established subscription business. The next filing must show whether that business can convert growth into recurring cash despite content competition and price-sensitive customers.</p>
+<p><strong>I would initiate a modest long-term NFLX position at $71.57, while reserving most of the intended allocation.</strong> That accepts your strongest warning: if Q2-like cash weakness persists, 26.7× trailing free cash flow is hard to defend. I would add only on healthier cash conversion and resilient margins and retention—not on four higher closes while the larger technical trends remain down.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: ## Bear response: NFLX at $71.57 on October 8, 2026</p>
+<p>I agree with the bull that NFLX is growing and generating substantial cash. My objection is to <strong>starting a position before the next filing resolves whether that cash generation is keeping pace with the business</strong>. At a roughly $298 billion market value, NFLX trades at about <strong>26.7 times</strong> the $11.152 billion of trailing free cash flow calculated from the supplied statements. That leaves little room for a sustained cash-conversion setback.</p>
+<p>You point to <strong>34.3% first-half free-cash-flow growth</strong>, and that figure is real. But it masks a sharp change between quarters: calculated free cash flow was about <strong>$5.094 billion in Q1 2026</strong>, then <strong>$1.525 billion in Q2</strong>, down <strong>32.7% year over year</strong> in Q2 even as revenue grew 13.4%. Q2 operating cash flow fell 28%. One quarter does not establish a lasting deterioration—but “it may be timing” is a reason to verify the next result, not a reason to pay up before seeing it.</p>
+<p>Your scalability illustration also depends on holding the trailing <strong>29.7% operating margin</strong>. Here is the opposing stress test, not a forecast: with your assumed 10% revenue growth but a <strong>27% margin</strong>, operating income would be about <strong>$14.37 billion—virtually unchanged from today’s $14.355 billion trailing figure</strong>. That margin is close to NFLX’s FY2024 level of 26.7%. Q2’s margin slipped from roughly 34.1% to 33.4% year over year; it does not prove a slide to 27%, but it shows why content costs and competition cannot be held constant by assumption. H1 net income growth of 44.4% also deserves scrutiny when operating income grew only 14.4%, particularly because the supplied statements do not explain why Q1 net income exceeded operating income.</p>
+<p>On competition, the enlarged rival’s reported <strong>$80 billion–$82 billion debt load</strong> may constrain it. It does not make its larger content and studio footprint harmless. Nor can I assign value to NFLX’s ad tier without advertising and retention figures. With September payroll growth at just <strong>29,000</strong> and the 10-year Treasury yield at <strong>5.28%</strong> on October 7, both consumer pricing power and the multiple investors will pay for future growth face a tougher test. NFLX’s roughly <strong>3.7% trailing FCF yield</strong> is not directly comparable to a bond yield, but it plainly requires meaningful growth to justify the equity risk.</p>
+<p>Finally, four higher closes are not confirmation: NFLX remains below its <strong>$75.38</strong> 50-day average, and daily, weekly and monthly SuperTrends are still down. <strong>My recommendation is to avoid initiating NFLX at $71.57</strong>, rather than accumulate ahead of the cash-flow test. I would reconsider if the next disclosure restores year-over-year cash conversion while margins and retention hold up. A failure to clear <strong>$72.74</strong> followed by a close below <strong>$69.70</strong>, then <strong>$67.06</strong>, would instead strengthen the downside case; those are conditions to watch, not guaranteed price levels.
+Bear Analyst: <strong>Bear reply — NFLX at $71.57 on October 8, 2026</strong></p>
+<p>You’re right: one weak quarter does <strong>not</strong> mean NFLX’s cash-generating model is broken. But “not broken” is a lower bar than “worth buying now” at roughly <strong>26.7 times</strong> statement-derived trailing free cash flow.</p>
+<p>The first-half number deserves a closer look. NFLX generated <strong>$5.094 billion</strong> of its <strong>$6.619 billion</strong> in H1 free cash flow during Q1. Q2 contributed <strong>$1.525 billion</strong>, down <strong>32.7% year over year</strong> despite 13.4% revenue growth. Your H1 cash-conversion improvement is real, but the <em>latest quarter’s</em> free cash flow was only about <strong>36% of operating income</strong>, versus roughly <strong>60%</strong> a year earlier. That does not prove the weakness will persist; it makes persistence the question an investor is being asked to bet on before the next filing. Cash also fell <strong>$3.161 billion</strong> during Q2, and the current ratio declined to <strong>1.14</strong>. That is not a liquidity crisis, and the supplied data do not identify the financing outflows as buybacks, but the cushion has narrowed.</p>
+<p>I also accept that my <strong>27% margin</strong> case is a stress test, not a forecast. The nearer-term concern is simpler: H1 revenue grew <strong>14.7%</strong> while operating income grew <strong>14.4%</strong>, and Q2 margin slipped from about <strong>34.1% to 33.4%</strong> year over year. NFLX is growing, but recent results do not demonstrate <em>increasing</em> operating leverage. The ad tier could help; without advertising and retention figures, it cannot yet answer the risk that price-sensitive customers or a larger rival constrain margins. The rival’s reported debt may limit it, but it does not remove its competitive scale.</p>
+<p>Your small-position approach limits dollars at risk, not the valuation risk <strong>per share</strong>. NFLX’s approximately <strong>3.7% trailing free-cash-flow yield</strong> is not directly comparable to the <strong>5.28%</strong> 10-year Treasury yield, yet it leaves the investment dependent on continued growth and cash conversion. A mechanical <strong>20% decline</strong> in trailing free cash flow would put the same $298 billion market value at about <strong>33 times</strong> cash flow—not a forecast, but a measure of how little disappointment the price comfortably absorbs. Meanwhile, four higher closes have not reversed NFLX’s down daily, weekly and monthly SuperTrends.</p>
+<p><strong>I would not initiate NFLX here.</strong> I would rather risk missing an initial rise than buy ahead of an unresolved cash-flow test while the broader trend is down. A subsequent disclosure showing restored cash conversion, resilient margins and retention would give me a stronger reason to reconsider; a close above <strong>$72.74</strong> and sustained strength above <strong>$75.38</strong> would improve the separate technical case.
+Bear Analyst: Bull, I agree that Q2 does not prove NFLX’s cash conversion has permanently weakened. But <strong>the absence of proof of deterioration is not a reason to buy ahead of the next cash-flow statement</strong> at roughly 26.7 times trailing, statement-derived free cash flow.</p>
+<p>Your first-half figure is strong, but about <strong>77% of H1 free cash flow came in Q1</strong>. In the more recent Q2, revenue rose 13.4% year over year while free cash flow fell 32.7%. That divergence may be temporary; we do not have the detail to call it a trend or dismiss it as timing. The $3.161 billion decline in cash also should not be blamed on operations—financing outflows were substantial and their composition is unclear. It does, however, leave less room for an unwelcome surprise.</p>
+<p>I take your 28.5% margin illustration seriously: on 10% more revenue, it produces roughly $15.2 billion of operating income. But that is only modest growth from today’s $14.355 billion, <strong>not evidence that cash flow would grow with it</strong>. H1 revenue and operating income grew at nearly the same rate, Q2 margin slipped year over year, and we lack retention and advertising figures to show that pricing or the ad tier will improve the equation. A larger rival’s debt may restrain it, but its competitive scale remains a risk.</p>
+<p>Even your favorable <strong>20% free-cash-flow growth</strong> scenario leaves NFLX at about <strong>22 times</strong> cash flow at the same market value. Its resulting roughly 4.5% cash-flow yield is not directly comparable to a 5.28% Treasury yield, but it shows how much <em>sustained</em> growth the equity price asks investors to underwrite. Meanwhile, the daily, weekly and monthly trends remain down. Buying a small position reduces the dollars exposed; it does not improve that entry price.</p>
+<p><strong>My recommendation remains: do not initiate NFLX at $71.57 as of October 8, 2026.</strong> I may miss an initial rise if the next filing is excellent. I would accept that cost in exchange for evidence that Q2 cash conversion was temporary and that margins and retention can support the valuation.
+Bear Analyst: Bull, your <strong>$2.842 billion H2 hurdle answers the wrong question</strong>. That is the amount NFLX needs merely to match FY2025 free cash flow. At a $298 billion market value, matching FY2025’s $9.461 billion would leave NFLX at roughly <strong>31.5 times</strong> full-year cash flow. Even if H2 matches last year’s $4.533 billion, FY2026 would produce $11.152 billion—the amount <em>already</em> in the trailing figure we’re using—and NFLX would still trade at <strong>26.7 times</strong> cash flow. Avoiding a decline is not the same as earning today’s price.</p>
+<p>Your three-year example also works mathematically, but it needs an investor-return test. Growing trailing free cash flow <strong>15% annually</strong> would bring it to about <strong>$17 billion</strong>; the <strong>17.6-times</strong> multiple you cite assumes the $298 billion market value stays unchanged. If NFLX then traded at a hypothetical <strong>20 times</strong> cash flow, its market value would be about $339 billion—roughly <strong>14% higher over three years</strong>, before share-count changes or cash distributions. That is an illustration, not a price target. It shows how multiple compression could absorb much of even strong cash growth, especially with the 10-year Treasury yield at <strong>5.28%</strong>.</p>
+<p>I’m not claiming Q2 is the new run rate. I’m saying the next disclosure matters <em>more</em> when the price requires sustained growth: Q2 NFLX revenue rose <strong>13.4%</strong>, yet free cash flow fell <strong>32.7%</strong> year over year. H1 revenue and operating income grew at nearly the same rate, offering little evidence of increasing operating leverage. Advertising upside remains unquantified, while consumer price sensitivity and a larger rival remain risks; that rival’s reported debt does not eliminate its competitive reach.</p>
+<p>I accept your point that waiting could miss an initial rally. <strong>I would still avoid initiating NFLX at $71.57 as of October 8, 2026.</strong> I’d reconsider after evidence of healthier recurring cash conversion, resilient margins and retention. Until then, the unresolved cash-flow test, demanding valuation and downtrends across daily, weekly and monthly SuperTrends make waiting the better risk-reward choice.
+Bear Analyst: Bull, I agree NFLX’s longer cash-flow record is strong. But your <strong>25× exit-multiple case requires two things to go right</strong>: free cash flow must grow 15% annually for three years, <em>and</em> investors must still pay a premium multiple at the end. That is possible; it is not a reason to buy before the next cash-flow statement.</p>
+<p>Your return example also understates how much growth a lower multiple can absorb. Suppose NFLX free cash flow grows <strong>10% annually for three years</strong>—a respectable outcome, not a collapse. At a hypothetical <strong>20×</strong> exit multiple, its market value would be about <strong>$297 billion</strong>, essentially unchanged from today’s $298 billion. That is an illustration, not a forecast. It shows that disappointing returns do <strong>not</strong> require NFLX’s cash generation to break. With the 10-year Treasury yielding <strong>5.28%</strong> on October 7, investors have reason to question whether even 25× cash flow will remain an easy multiple to sustain.</p>
+<p>And the latest operating evidence does not yet support assuming a smooth cash-growth path. NFLX’s H1 free cash flow rose 34.3%, but roughly <strong>77% of it came in Q1</strong>. In Q2, revenue grew <strong>13.4%</strong> while free cash flow fell <strong>32.7%</strong> year over year. H1 operating margin held roughly steady rather than expanding; Q2 margin slipped. None of this proves lasting deterioration. It does mean that historical growth has not resolved the question on which your valuation case depends.</p>
+<p>I accept that waiting could mean paying more after a strong filing. But buying a small position now still exposes each share to the same valuation risk, while NFLX remains below its <strong>$75.38</strong> 50-day average and its daily, weekly and monthly SuperTrends are down. <strong>My recommendation remains not to initiate NFLX at $71.57 as of October 8, 2026.</strong> I would reconsider when a disclosure demonstrates healthier recurring cash conversion alongside resilient margins and retention.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For NFLX, the bear has the stronger near-term risk/reward case at the supplied October 8, 2026 price of $71.57, but the bull makes a convincing case against a full exit. H1 revenue grew 14.7%, operating margin held around 32.8%, and statement-derived free cash flow grew 34.3% to $6.619 billion. Those results, together with $11.152 billion of trailing free cash flow, are substantive evidence of a growing, profitable business. One weak quarter does not establish structural deterioration, and the cash-balance decline should not be mistaken for operating cash burn given substantial financing outflows.</p>
+<p>The deciding concern is the price paid for still-unresolved cash conversion. Q2 free cash flow fell 32.7% to $1.525 billion despite 13.4% revenue growth, while Q1 supplied about 77% of H1 free cash flow. At roughly 26.7 times trailing free cash flow, NFLX needs sustained cash growth; merely avoiding an annual decline is insufficient. The debate's hypothetical 10% annual cash-flow growth for three years with a 20-times exit multiple leaves market value approximately unchanged, before share-count changes or distributions. That is a sensitivity, not a forecast or an assertion that 20 times is fair value, but it shows why business growth alone does not ensure attractive returns. The supplied 5.28% Treasury yield raises the return hurdle without being directly equivalent to an equity free-cash-flow yield.</p>
+<p>Down daily, weekly and monthly SuperTrends reinforce execution caution, not a conclusion that the business is impaired. Advertising contribution, retention evidence and an explanation of the quarterly cash-flow divergence are missing. The valuation exposure and unresolved cash conversion modestly outweigh the demonstrated growth for now, supporting an NFLX underweight rather than a full exit.</p>
+<p><strong>Strategic Actions</strong>: Use 1.0x to mean the trader's standard NFLX allocation; actual holdings are unknown. Apply a 0.5x exposure ceiling for now. Trim holdings above that ceiling, do not increase holdings already below it, and defer initiation if currently flat. This is an unlevered exposure-reduction plan, not a short recommendation.</p>
+<p>After verifying executable quotes, sell half of the required reduction in the next liquid session and complete the remainder over the following three trading sessions using limit orders reviewed against prevailing prices. A rebound toward the supplied $72.74 reference can improve execution, but do not make the reduction contingent on a rally.</p>
+<p>Use $69.70 as a downside alert. A daily close below $67.06 triggers a reduction of the exposure ceiling to 0.25x and a thesis review. Repeated Q2-like cash-conversion weakness without a convincing reconciliation also reduces the ceiling to 0.25x, regardless of a price rebound. These are risk controls, not fair-value estimates; close-based signals do not guarantee execution at the reference price.</p>
+<p>At the next disclosure, reconcile quarterly and year-to-date free cash flow, including content-payment and working-capital effects where disclosed. Consider raising exposure to 0.75x only after year-over-year free-cash-flow growth and conversion versus operating income improve, with broadly stable year-over-year operating margins. Do not treat a single-quarter cash rebound as recurring improvement without reconciliation, or assume retention strength and advertising upside without supporting data.</p>
+<p>Restore toward 1.0x only after those fundamental conditions are met and technical confirmation follows: a close above $72.74, then two consecutive daily closes above the supplied $75.38 reference, also confirming a reclaim of the then-current 50-day average. Price strength alone is not sufficient. All price levels come from the supplied October 8, 2026 snapshot; live quotes, the current moving average and the next reporting date are not supplied and must be verified before execution.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: Underweight NFLX to the research plan’s 0.5x exposure ceiling: H1 growth and strong trailing free cash flow argue against a full exit, but Q2 free cash flow fell 32.7% while the roughly 26.7x trailing free-cash-flow multiple leaves cash conversion unresolved. At the supplied $71.57 close, NFLX remains below the $72.74 daily SuperTrend and $75.38 50-day SMA, with all three SuperTrends down; the recent bounce does not yet reverse the trend. This is a trim of existing exposure above the ceiling, not a short or a recommendation to sell holdings already below it.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: not provided</p>
+<p><strong>Position Sizing</strong>: Cap unlevered NFLX exposure at 0.5x your standard NFLX allocation; trim only holdings above that cap, selling half the required reduction in the next liquid session and the remainder over the following three trading sessions with limits checked against live quotes. Do not add if already below the ceiling or initiate if flat. A daily close below $67.06 lowers the ceiling to 0.25x; $69.70 is a downside alert, not an automatic stop.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: I’m for the proposed SELL in NFLX, but not because I’ve given up on the business. The high-reward move is to cut exposure above the 0.5x ceiling while the rebound offers liquidity, then keep a meaningful position if the recovery becomes real. Neither the conservative nor the neutral analyst has made a case yet, so there’s no argument from them to rebut.</p>
+<p>The upside is precisely why I would not exit completely: NFLX grew H1 2026 revenue 14.7% and calculated free cash flow 34.3% year over year. But those strengths make the recent bounce a better opportunity to trim, not a reason to ignore the risk. Q2 free cash flow fell 32.7%, and the statement-derived $11.152 billion of trailing free cash flow puts NFLX at roughly 26.7 times cash flow. At that price, the next cash-conversion result matters.</p>
+<p>I would challenge a wait-for-certainty stance here. NFLX has risen for four straight closes, OBV has improved, and the MACD histogram has just turned positive. Yet at $71.57 it remains below the $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends still down. RSI at 47.20 and the absence of a statistically stretched Z-score do not make this a confirmed reversal or an obvious oversold bargain. Waiting until the rebound fails could mean giving up today’s chance to sell into strength.</p>
+<p>I would also challenge a full-exit stance: it discards the upside from a business still producing substantial cash. The sharper trade is the one proposed—trim only NFLX holdings above 0.5x the standard allocation, selling half the required reduction next liquid session and the rest over the following three sessions, using limits checked against live quotes. If already at or below that ceiling, do not sell to satisfy this proposal; if flat, do not initiate. Treat $69.70 as an alert, not an automatic stop, and lower the ceiling to 0.25x only after a daily close below $67.06.</p>
+<p>That is aggressive risk-taking with a purpose: reduce exposure before weak cash conversion and a bearish trend can exact a larger cost, while retaining enough NFLX to participate if the rebound clears its hurdles.
+Aggressive Analyst: Conservative, you’re right that NFLX’s four higher closes do not guarantee another one, and $71.57 is not an executable quote. But the proposed SELL does not depend on a rally continuing. Selling half the required reduction in the next liquid session cuts excess exposure immediately; working the rest over three sessions with limits checked against live quotes avoids turning a risk decision into an indiscriminate sale. If conditions deteriorate, reassess the unfinished orders rather than defend the schedule at any price.</p>
+<p>You’re also right that 0.5x is a ceiling, not a promise of safety. NFLX’s Q2 free cash flow fell 32.7%, cash ended at $9.099 billion, and a roughly 26.7x statement-derived trailing FCF multiple leaves room for disappointment—especially with the 10-year Treasury yield at 5.28%. That is the argument for trimming now. It is not, by itself, an argument for discarding every share: H1 revenue rose 14.7% and calculated FCF rose 34.3%. The high-reward choice is to stop carrying exposure above the ceiling while preserving participation if Q2’s cash weakness proves temporary. A tighter personal risk limit should still prevail.</p>
+<p>Neutral, I agree that one weak quarter does not establish lasting deterioration. That uncertainty is exactly why this is a trim rather than a full exit. Waiting for the next cash-flow statement while NFLX remains <em>above</em> the planned ceiling asks the portfolio to bear the very risk the ceiling was designed to control. Conversely, waiting for sustained closes above $72.74 and $75.38 before reconsidering the thesis may mean missing part of a recovery. The retained position keeps that upside in play without requiring today’s faintly positive MACD histogram or improving OBV to be mistaken for a confirmed reversal; all three SuperTrends remain down.</p>
+<p>Neither upbeat social posts nor an unverified options-flow claim makes the trade. The edge is in acting on the mismatch between improving near-term price action and unresolved cash conversion. My recommendation remains SELL only the NFLX exposure above 0.5x the caller’s standard allocation, subject to any tighter personal risk limit. Do not sell solely to implement this proposal if already below the ceiling, and do not initiate if flat. Use the proposed staged, live-quote-checked execution; treat $69.70 as an alert, not a stop, and lower the ceiling to 0.25x after a daily close below $67.06. That is a deliberate bet on preserving upside—not a bet that the bounce is guaranteed.
+Aggressive Analyst: Conservative, you’re right that 0.5x is not automatically safe and that limit orders can go unfilled. I’m not arguing for a “meaningful” NFLX position regardless of the caller’s capacity for loss. The high-reward choice is to remove exposure above the lower of the 0.5x ceiling and the caller’s own risk limit, while preserving only the upside that fits that budget. The four-session schedule is an execution plan, not permission to remain oversized: sell half the required reduction next liquid session, work the remainder over the following three sessions with limits checked against live quotes, and reassess unfinished orders promptly if conditions worsen.</p>
+<p>Your trend evidence strengthens the case to SELL excess NFLX now. Four higher closes and rising recent OBV have made the bounce worth using, not trusting. At the supplied $71.57 close, NFLX was still below the $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends down. Why wait for a confirmed failure before cutting a position that already exceeds its ceiling? Equally, Q2’s 32.7% free-cash-flow decline, lower cash balance and 1.14 current ratio do not establish operating distress: H1 calculated free cash flow still grew 34.3%, and the financing outflow is not explained well enough to assign a cause. The 5.28% Treasury yield and roughly 26.7x statement-derived trailing FCF multiple argue for a smaller bet, not necessarily a zero bet.</p>
+<p>Neutral, I agree that the rebound offers no guaranteed sale price and that one weak quarter does not settle NFLX’s cash-conversion story. That is precisely the positioning edge—not a price forecast. Trimming excess exposure before the next cash-flow test limits what is at stake if conversion disappoints, while a retained, risk-budgeted position participates if H1 growth proves more representative than Q2’s setback. Waiting for closes above both trend levels before making <em>any</em> portfolio decision could leave an oversized position carrying that uncertainty; selling everything now could forfeit the recovery you rightly say remains possible. Mixed, low-confidence social sentiment and unverified options chatter are not needed to make this case.</p>
+<p>My recommendation remains a conditional SELL for NFLX: trim only holdings above the lower of 0.5x the standard NFLX allocation and the caller’s personal risk limit. If already below it, do not sell solely for this proposal; if flat, do not initiate. Treat $69.70 as an alert, not a stop. A daily close below $67.06 lowers the ceiling to 0.25x, subject to any tighter personal limit. Neither closing-price triggers nor limit orders protect against gaps, so size any retained NFLX exposure to an acceptable dollar loss.
+Aggressive Analyst: Conservative, retaining NFLX within a risk budget is taking risk—but that is the point, not a flaw in the trade. A full exit would give up participation in a business whose H1 revenue grew 14.7% and calculated free cash flow grew 34.3% year over year. The bold choice is to sell exposure that exceeds the ceiling before the next cash-conversion test, while keeping only the upside the portfolio can afford. You are right that the four-session schedule cannot excuse unfilled orders: check limits against live liquidity and bring the reduction forward if risk worsens rather than remaining oversized.</p>
+<p>Neutral, I am not claiming four higher closes guarantee a better sale price. I am saying they create an opportunity to act <em>before</em> a failed rebound makes an already-required trim more urgent. From the October 2 close of $67.06 to the supplied October 8 close of $71.57, NFLX rebounded about 6.7%, yet it remained below the $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends down. That combination is more useful for reducing excess exposure than for declaring a new uptrend. The barely positive MACD histogram and improving OBV support acting selectively, not trusting the rally.</p>
+<p>Both of you rightly flag Q2’s 32.7% free-cash-flow decline, the thinner liquidity cushion and the 5.28% Treasury yield. At roughly 26.7 times <em>statement-derived</em> trailing free cash flow, those are reasons not to carry an oversized NFLX bet into another report. They are not proof that H1’s strong cash generation has vanished: Q2 operating cash flow was still positive, and the supplied data do not establish what drove the financing outflow. The high-reward positioning is therefore neither waiting with excess exposure nor selling every share. It is buying the portfolio room to withstand a disappointment without surrendering a recovery if cash conversion improves. Mixed, low-confidence social sentiment is not needed to justify that choice.</p>
+<p>My recommendation remains SELL only the NFLX holdings above the lesser of 0.5x your standard NFLX allocation and your own portfolio risk limit. If already at or below that cap, do not sell solely for this plan; if flat, do not initiate. Aim to sell half the required reduction next liquid session and the remainder over the following three trading sessions using limits checked against live quotes, but promptly review unfilled orders and shorten the schedule if warranted. The $71.57 close is not an execution quote. Treat $69.70 as an alert, not a stop; a daily close below $67.06 lowers the ceiling to 0.25x, subject to any tighter personal limit. Size any retained NFLX stake to a dollar-loss budget, because neither that closing trigger nor a limit order protects against a gap.
+Aggressive Analyst: Conservative, preserving upside alone is not an edge. The edge is refusing to carry NFLX exposure above a chosen ceiling into an unresolved cash-flow test while keeping a stake in a business whose H1 revenue rose 14.7% and calculated free cash flow rose 34.3%. You’re right that unfilled limits do nothing for risk. Sell half the required reduction in the next liquid session, check the remaining orders against live quotes, and bring the trim forward if orderly execution is available and risk worsens. The three-session balance is an execution plan, not permission to stay oversized.</p>
+<p>Neutral, I’m not claiming the rebound guarantees better prices. NFLX rose about 6.7% from its October 2 close to the supplied $71.57 close, with recent OBV improving, yet it remained below the $72.74 daily SuperTrend and $75.38 50-day average; all three SuperTrends were down. That is a useful moment to reduce <em>excess</em> exposure before a possible failed rebound, not proof that the next session will be favorable. Nor does H1 growth settle Q2’s 32.7% free-cash-flow decline. That unresolved contrast is why I favor a trim over either waiting with an oversized position or selling everything.</p>
+<p>The roughly 26.7x multiple on statement-derived trailing free cash flow and the 5.28% Treasury yield make a cash-conversion disappointment costly. They do not erase the recovery potential if Q2 proves temporary. My call remains SELL only NFLX holdings above the lesser of 0.5x your standard unlevered NFLX allocation and your own risk limit. Do not sell solely for this plan if already below that cap, or initiate if flat. Treat $69.70 as an alert, not a stop; a daily close below $67.06 lowers the ceiling to 0.25x. Size what remains to a dollar-loss budget, because limits and closing-price triggers cannot prevent a gap.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst’s SELL direction for NFLX, but not the “high-reward” framing. Four higher closes and improving OBV may offer a chance to trim; they do not establish that the rebound will persist or that the supplied $71.57 close is an available execution price. NFLX remains below its $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends down. Delaying a needed reduction across four sessions simply to sell into hoped-for strength leaves the firm exposed if that strength disappears.</p>
+<p>The H1 growth and cash generation are good reasons not to force a full exit. They are not reasons to treat a 0.5x NFLX allocation as automatically safe. Q2 calculated free cash flow fell 32.7% despite revenue growth; cash declined to $9.099 billion, and the current ratio fell to 1.14. At roughly 26.7 times statement-derived trailing free cash flow, NFLX has limited room for another disappointing cash-conversion result. Higher Treasury yields and weaker hiring add valuation and consumer-demand risks. None proves a further decline, but together they argue for a firm risk budget rather than a “meaningful position” by default.</p>
+<p>The Neutral Analyst has not spoken, so I would not attribute an argument to them. If the neutral case is to wait for confirmation before trimming, it overlooks the cost of carrying excess NFLX exposure while both the longer trend and cash-conversion question remain unresolved. Conversely, neither upbeat social posts nor a tiny earnings contract supplies reliable confirmation of upside.</p>
+<p>My adjustment is a conditional SELL: trim NFLX holdings above the lesser of 0.5x the standard NFLX allocation and the caller’s portfolio risk limit; do not initiate a position or sell merely to meet this proposal if already below that ceiling. Check live quotes and use controlled limits, but permit the reduction to finish sooner than the proposed schedule if conditions deteriorate. Treat $69.70 as a prompt reassessment, and a daily close below $67.06 as the stated trigger to lower the ceiling to 0.25x—not as a guarantee against an overnight gap. Set an acceptable dollar-loss budget in advance; NFLX’s $1.85 ATR means even ordinary movement can be material.
+Conservative Analyst: Aggressive, I agree that NFLX exposure above a risk limit should be reduced, but I would not call retaining a “meaningful position” the high-reward choice without knowing the portfolio’s capacity for loss. Selling half the excess next session helps, yet limit orders for the remaining shares may go unfilled if NFLX falls. The four-session schedule should be an execution option, not a reason to leave an oversized position in place. Four higher closes and improving OBV do not outweigh three downward SuperTrends; at the supplied $71.57 close, NFLX was still below both the $72.74 daily trend line and the $75.38 50-day average.</p>
+<p>Neutral, you are right that one weak quarter does not prove lasting deterioration, and I would not accelerate a sale merely on a hunch that the bounce will fail. But waiting for the next filing while carrying exposure above a defined limit makes the portfolio absorb the uncertainty we are trying to control. NFLX’s H1 free cash flow grew, but Q2 free cash flow fell 32.7% year over year despite revenue growth. Cash fell $3.161 billion during Q2, the current ratio declined to 1.14, and the supplied statements do not explain the financing outflow in enough detail to dismiss the liquidity change. At roughly 26.7 times statement-derived trailing free cash flow, disappointing cash conversion could be costly, particularly with the 10-year Treasury yield at 5.28%. None of that warrants a forced full exit.</p>
+<p>My recommendation remains a conditional SELL for NFLX: trim only the amount above the lower of 0.5x the caller’s standard NFLX allocation and their own portfolio risk limit. If already below that adjusted limit, do not sell just to implement this proposal; if flat, do not initiate. Use live quotes and price-controlled orders, but complete a necessary reduction sooner if orderly execution is available and risk worsens rather than defending a four-session timetable. Treat $69.70 as a reassessment alert, not a stop; a daily close below $67.06 lowers the proposed ceiling to 0.25x. Set a dollar-loss budget for any retained NFLX position, since neither a closing-price trigger nor a limit order protects against a gap.
+Conservative Analyst: Aggressive, I agree that NFLX holdings above a risk ceiling should be trimmed, but I would not call retaining upside a “positioning edge.” It is a choice to keep taking risk. Four higher closes do not change the fact that NFLX closed at $71.57 below its $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends down. Selling half the excess next session is useful; leaving the rest in unfilled limit orders for three more sessions is not risk control. Use the staged schedule only while it achieves timely reduction, and review unfilled orders against live liquidity rather than waiting for a price decline to force the issue.</p>
+<p>Neutral, you are right that Q2 does not prove lasting cash-flow deterioration, and I am not proposing an indiscriminate exit. But uncertainty cuts both ways. NFLX’s Q2 free cash flow fell 32.7% year over year despite revenue growth; cash fell to $9.099 billion and the current ratio to 1.14. We cannot assign the financing outflow a cause from these data, but we also cannot assume the thinner liquidity cushion is harmless. At roughly 26.7 times statement-derived trailing free cash flow, with the 10-year Treasury yield at 5.28%, waiting for another filing while above a defined limit puts more capital at risk than the plan permits.</p>
+<p>My recommendation remains a conditional SELL for NFLX: reduce only holdings above the lower of 0.5x the standard NFLX allocation and the caller’s own portfolio risk limit. If already below that limit, do not sell solely for this proposal; if flat, do not initiate. Treat $69.70 as a prompt to reassess, not a stop. A daily close below $67.06 lowers the ceiling to 0.25x, subject to any tighter limit. Budget the possible loss on retained NFLX in dollars: its $1.85 ATR makes ordinary movement material, and neither a closing-price trigger nor a limit order protects against a gap.
+Conservative Analyst: Aggressive, I agree with selling excess NFLX, but “preserving upside” is not itself an edge. H1 revenue rose 14.7% and calculated free cash flow rose 34.3%, so a forced full exit is not warranted. Still, Q2 free cash flow fell 32.7% despite revenue growth. The four higher closes do not make the remaining three sessions a safe window to finish a trim: NFLX was still below its $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends down. If limits leave excess shares unsold, the risk has not been reduced.</p>
+<p>Neutral, you are right that one quarter and a lower cash balance do not prove lasting operating distress. But we do not need that proof to enforce a position limit. NFLX’s roughly 26.7x multiple uses the $11.152 billion of statement-derived trailing free cash flow; the much larger vendor cash-flow figure is unreconciled. With the 10-year yield at 5.28%, disappointing cash conversion could be costly even if the business remains profitable. Waiting for another filing while holding above a chosen limit exposes capital to that uncertainty. Promptly trimming excess is not the same as a hurried full exit.</p>
+<p>My recommendation remains a conditional SELL for NFLX: reduce holdings only above the lesser of 0.5x your standard NFLX allocation and your own portfolio risk limit. If already at or below that cap, do not sell solely for this plan; if flat, do not initiate. Use live quotes and price-controlled orders, but review unfilled orders promptly and finish the required reduction sooner if orderly execution permits rather than defending a four-session schedule. Treat $69.70 as an alert, not a stop; a daily close below $67.06 lowers the ceiling to 0.25x, subject to any tighter personal limit. Set a dollar-loss budget for retained NFLX: its $1.85 ATR makes routine movement material, and neither a closing-price trigger nor a limit order protects against a gap.
+Conservative Analyst: Aggressive, I agree that NFLX exposure above a risk ceiling should be sold. I disagree that the rebound creates an edge for the shares left behind. H1 revenue and free-cash-flow growth support avoiding a forced full exit, but Q2 free cash flow fell 32.7% despite revenue growth. At the supplied $71.57 close, NFLX was still below its $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends down. The roughly 26.7x multiple on statement-derived trailing free cash flow leaves little room to assume the Q2 cash weakness was temporary.</p>
+<p>Neutral, you are right that NFLX’s positive operating cash flow and lower cash balance do not establish operating distress. But proving distress is not the test for enforcing a position limit. Nor is the choice between waiting three sessions and selling at any price. If orderly liquidity permits, complete an excess-position trim sooner using limits checked against live quotes; review unfilled orders promptly. An order that has not filled has not reduced risk.</p>
+<p>My recommendation is a conditional SELL for NFLX: reduce holdings only above the lesser of 0.5x your standard unlevered NFLX allocation and a tighter limit set by your portfolio concentration and acceptable dollar loss. If already at or below that limit, do not sell solely for this plan; if flat, do not initiate. Use the proposed staged schedule only while it achieves timely reduction. Treat $69.70 as a reassessment alert, not a stop. A daily close below $67.06 lowers the proposed ceiling to 0.25x, subject to any tighter personal limit. NFLX’s $1.85 ATR and possible gaps mean that neither a closing-price trigger nor a resting limit order guarantees the loss budget.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with the SELL direction for NFLX only if the caller’s existing position exceeds a sensible risk limit. I would push back on the Aggressive Analyst’s “high-reward” framing: four higher closes and improving OBV do not guarantee an opportunity to sell into continued strength. The $71.57 close was a snapshot, not an execution price, and NFLX was still below its $72.74 daily SuperTrend and $75.38 50-day average. But I would also resist treating Q2’s 32.7% free-cash-flow decline as proof of a lasting deterioration: H1 free cash flow grew 34.3%, and the business remains cash-generative. The roughly 26.7x multiple, calculated from statement-derived trailing cash flow rather than the unreconciled vendor figure, makes the next cash-flow result important—not predetermined.</p>
+<p>The Conservative Analyst is right that a four-session trim cannot be rigid if conditions worsen, and that 0.5x is not automatically safe for every portfolio. Where that view risks becoming too cautious is in accelerating a sale solely because the rebound might fail. That could sacrifice participation or execution quality before NFLX has reported whether weak Q2 cash conversion persists. Higher yields and softer hiring add real risks, but neither is a company-specific verdict.</p>
+<p>My balanced recommendation is a conditional SELL: cap unlevered NFLX at the lesser of 0.5x the caller’s standard allocation and their own portfolio risk limit, trimming only the excess. If already below that cap, do not sell just to follow this proposal; if flat, do not initiate. Subject to live prices, use the proposed staged reduction with checked limit orders, but reassess and consider completing an unfinished trim sooner if the rebound deteriorates. Treat $69.70 as an alert, not a stop; a daily close below $67.06 lowers the ceiling to 0.25x. Conversely, sustained closes above $72.74 and then $75.38, backed by participation and better recurring cash conversion, would justify revisiting the ceiling—not an automatic purchase. Keep any retained NFLX position within a defined dollar-risk budget and a diversified portfolio; its $1.85 ATR and possible gaps make a price trigger an imperfect loss limit.
+Neutral Analyst: Aggressive, I agree with trimming NFLX above a risk ceiling, but I would not call the rebound an “edge.” Four higher closes and improving OBV may make execution easier; they do not promise better sale prices over the next three sessions. The MACD histogram is only just positive, and all three SuperTrends remain down. Checked limit orders help control price, but they can also leave an oversized position unsold. Your case for retaining some exposure is stronger: H1 free cash flow grew 34.3%, so Q2’s 32.7% decline is a question for the next filing, not proof of lasting deterioration.</p>
+<p>Conservative, a firm risk budget matters, but NFLX’s lower cash balance and 1.14 current ratio do not by themselves justify a full or hurried exit. Cash generation remained positive, and the supplied data do not explain the financing outflow well enough to call it operating distress. The roughly 26.7x <em>statement-derived</em> trailing free-cash-flow multiple and 5.28% 10-year yield warrant caution; neither rules out a recovery if cash conversion improves or yields ease. I would not turn the possibility of a gap into an indiscriminate sale.</p>
+<p>My recommendation remains a conditional SELL for NFLX: trim only holdings above the lesser of 0.5x the caller’s standard NFLX allocation and their own portfolio risk limit. If already below that cap, do not sell solely for this plan; if flat, do not initiate. Aim to sell half the required reduction next liquid session and the rest over the following three sessions, checking limits against live quotes, but shorten that schedule if risk worsens and orderly execution is available. The supplied $71.57 close is not an executable price. Treat $69.70 as an alert; a daily close below $67.06 lowers the proposed ceiling to 0.25x, subject to any tighter personal limit—not a guaranteed stop. Keep the retained NFLX position within a dollar-risk budget and a diversified portfolio. Sustained strength above $72.74 and then $75.38, supported by participation and recurring cash flow, would justify <em>reassessing</em> the cap, not automatically buying.
+Neutral Analyst: Aggressive, I agree that NFLX exposure above a risk limit should be trimmed now, rather than carried until the next filing. But I would not call the rebound an execution edge. Four higher closes and improving OBV may help, yet the MACD histogram is barely positive, and NFLX’s supplied $71.57 close remains below the $72.74 daily SuperTrend and $75.38 50-day average. Limits can prevent an unacceptable sale price; they cannot ensure the excess position gets sold.</p>
+<p>Conservative, the risk budget is essential, but the weaker Q2 cash flow and lower cash balance do not establish a lasting business decline. NFLX’s H1 calculated free cash flow grew 34.3%, and the available data do not explain the financing outflow well enough to diagnose operating distress. The roughly 26.7x multiple on statement-derived trailing free cash flow, a 5.28% 10-year yield, and softer hiring raise the hurdle for a recovery; they do not rule one out if recurring cash conversion improves or yields ease. That argues against turning a necessary trim into a hurried full exit.</p>
+<p>My recommendation is a conditional SELL for NFLX: reduce only holdings above the lesser of 0.5x the caller’s standard NFLX allocation and their own portfolio risk limit. If already below that cap, do not sell solely for this plan; if flat, do not initiate. Aim to sell half the excess next liquid session and work the rest over the following three sessions using limits checked against live quotes. Review unfilled orders promptly and shorten the schedule if risk worsens and orderly execution is available—do not leave an oversized position waiting for a preferred price.</p>
+<p>Treat $69.70 as a reassessment alert, not a stop. A daily close below $67.06 lowers the ceiling to 0.25x, subject to any tighter personal limit; it cannot protect against a gap. For retained NFLX, set a dollar-risk budget and consider how much correlated growth-stock exposure the rest of the portfolio already carries. Sustained strength above $72.74 and $75.38, alongside better recurring cash conversion, would justify revisiting the cap, not automatically buying.
+Neutral Analyst: Aggressive, I agree with selling NFLX exposure above a chosen limit now rather than waiting for another filing. But I would not call the rebound an execution edge: four higher closes and improving OBV do not ensure better prices for the rest of the trim. Nor does H1 free-cash-flow growth settle the cash question. H1 calculated free cash flow rose 34.3%, but Q2 fell 32.7% year over year, so the next period matters. At the supplied $71.57 close, NFLX was still below its $72.74 daily SuperTrend and $75.38 50-day average, with all three SuperTrends down.</p>
+<p>Conservative, you are right that an unfilled limit order does not reduce risk. But finishing faster at any price is not automatically safer either. NFLX still generated positive Q2 operating cash flow, and the supplied statements do not show that its lower cash balance reflects operating distress. The roughly 26.7x multiple on statement-derived trailing free cash flow and the 5.28% Treasury yield argue for a smaller, disciplined position—not a forced exit from one weak cash-conversion quarter. A diversified portfolio and a dollar-loss budget matter more than treating 0.5x as universally safe.</p>
+<p>My recommendation remains a conditional SELL for NFLX: trim only holdings above the lesser of 0.5x your standard NFLX allocation and your own risk limit. If already at or below that cap, do not sell solely for this plan; if flat, do not initiate. Aim to sell half the excess next liquid session and work the rest over the following three sessions with limits checked against live quotes, reviewing unfilled orders promptly and shortening the schedule if risk worsens and orderly execution is available. The $71.57 close is not an execution quote. Treat $69.70 as an alert, not a stop; a daily close below $67.06 lowers the ceiling to 0.25x. NFLX’s $1.85 ATR and possible gaps mean neither that trigger nor a limit order guarantees a loss limit. Revisit the cap—not automatically buy—if price strength above $72.74 and $75.38 is sustained and recurring cash conversion improves.
+Neutral Analyst: Aggressive, I agree that NFLX exposure above a chosen ceiling should come down before the next cash-flow test. But I would not call the rebound an edge. Four higher closes and improving OBV may help execution, yet NFLX remains below the $72.74 daily SuperTrend and $75.38 50-day average. H1 free-cash-flow growth is a reason to retain <em>affordable</em> exposure, not to assume Q2’s 32.7% decline will reverse. The unresolved vendor cash-flow figure and unusually strong Q1 net income also argue against leaning too heavily on an optimistic valuation case.</p>
+<p>Conservative, enforcing a limit does not require proof of distress—you are right about that. But saying the roughly 26.7x statement-derived free-cash-flow multiple leaves little room for recovery risks treating one weak quarter as the new baseline. NFLX still generated positive Q2 operating cash flow; the supplied data do not explain the financing outflow. Higher yields and softer hiring raise the hurdle, while improving cash conversion or easing yields could support the retained stake. Faster execution is sensible if risk worsens, but not a sale at any price.</p>
+<p>My recommendation remains a conditional SELL for NFLX: trim only holdings above the lesser of 0.5x your standard unlevered NFLX allocation and your tighter portfolio risk limit. If already at or below that cap, do not sell solely for this plan; if flat, do not initiate. Aim to sell half the excess next liquid session and work the balance over the following three, checking limits against live quotes and promptly revising unfilled orders if they leave you oversized. Treat $69.70 as an alert, not a stop; a daily close below $67.06 lowers the ceiling to 0.25x, subject to your tighter limit. Budget the retained position for dollar loss and correlated portfolio exposure, since NFLX’s $1.85 ATR and possible gaps make closing-price triggers imperfect protection.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: Underweight NFLX over 1-3 months: cap unlevered exposure at the lesser of 0.5x your standard NFLX allocation and your portfolio risk limit, trimming only the excess; do not add below the cap or initiate if flat. Verify live quotes, sell half the required reduction next liquid session and work the rest over the following three trading sessions with actively reviewed limit orders, accelerating if risk worsens and orderly execution permits. Treat $69.70 as an alert, not a stop; a daily close below $67.06 lowers the ceiling to 0.25x, subject to any tighter limit. Reassess at the next disclosure and keep retained exposure within a dollar-loss budget, since neither closing-price triggers nor limit orders protect against gaps.</p>
+<p><strong>Investment Thesis</strong>: The stronger NFLX case is exposure reduction, not a full exit. The analysts' conditional SELL transaction language translates to an Underweight position rating: their recommendation is to sell only exposure above a risk ceiling. The conservative analyst is right that unfilled orders do not reduce exposure; the neutral analyst is right that faster execution at any price is not automatically better. A flexible staged trim resolves that disagreement without treating the rebound as a demonstrated trading edge.</p>
+<p>Cash conversion and valuation decide the call. NFLX Q2 revenue grew 13.4%, but calculated free cash flow fell 32.7% to $1.525 billion. Q1 contributed approximately 77% of H1 free cash flow, leaving the quarterly divergence unresolved. Using statement-derived trailing FCF, market capitalization / FCF = $298.0 billion / $11.152 billion = approximately 26.7x, equivalent to a 3.74% trailing FCF yield. The unreconciled $25.388 billion vendor FCF figure must not be used. The debate's 5.28% Treasury yield raises the return hurdle, but is not directly comparable to an equity FCF yield. These considerations favor reducing exposure before the next cash-conversion test, rather than assuming strong revenue growth guarantees attractive shareholder returns.</p>
+<p>The evidence against a full exit is substantial: NFLX H1 revenue increased 14.7%, operating margin held near 32.8%, and FCF increased 34.3% to $6.619 billion. Q2 operating cash flow remained positive at $1.744 billion. Cash falling to $9.099 billion and a 1.14 current ratio warrant monitoring, but $4.670 billion of financing outflows prevent interpreting the cash decline as operating cash burn; their composition is not supplied. One weak quarter therefore does not establish structural deterioration.</p>
+<p>Technicals support caution rather than a fresh long entry. NFLX's $71.57 close remains below the $72.74 daily SuperTrend and $75.38 50-day SMA, with daily, weekly and monthly SuperTrends all down. Four higher closes and improving recent OBV are constructive, but a +0.02 MACD histogram and 47.20 RSI do not establish a reversal. ATR of $1.85 means a two-ATR move is $3.70 per share; use that as a volatility stress check for retained exposure, not as a guaranteed maximum loss.</p>
+<p>Price-target method: no established valuation objective is supplied; the 10% FCF growth/20x exit-multiple example is explicitly a sensitivity, not a fair-value forecast. I therefore select a technical retest objective of $69.70, the supplied October 7 NFLX close and bounce-reassessment reference. The implied move is ($69.70 / $71.57 - 1) x 100 = approximately -2.61% over the 1-3 month tactical horizon. This is neither proven support nor an intrinsic-value estimate, and reaching it alone does not trigger a further sale. It is an alert, not the $67.06 exposure-reduction trigger.</p>
+<p>Repeated Q2-like cash-conversion weakness without a convincing reconciliation also lowers the NFLX ceiling to 0.25x, even if price rebounds, subject to any tighter portfolio limit. Consider a ceiling of 0.75x only after reconciled year-over-year FCF growth and conversion versus operating income improve with broadly stable year-over-year operating margins. Eligibility to restore toward 1.0x additionally requires a close above $72.74, then two consecutive daily closes above $75.38 while reclaiming the then-current 50-day average, with participation confirmation; these are reassessment conditions, not automatic purchases. Check content-payment and working-capital effects where disclosed and do not assume advertising or retention strength without evidence. Confidence is limited by financial statements ending June 30, 2026, missing Q3 results, vendor and historical split inconsistencies, and missing live quotes and the next reporting date. All technical references are from the October 8, 2026 snapshot and must be refreshed before execution.</p>
+<p><strong>Current Price</strong>: 71.57</p>
+<p><strong>Price Target</strong>: 69.7</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1-3 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

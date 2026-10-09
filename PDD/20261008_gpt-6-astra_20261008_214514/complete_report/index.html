@@ -1,0 +1,5765 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/PDD/20261008_gpt-6-astra_20261008_214514/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: PDD - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-pdd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: PDD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MCD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../STRL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MCD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../STRL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdd-technical-outlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDD technical outlook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-levels-and-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading levels and conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdd-sentiment-2026-10-01-to-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDD sentiment | 2026-10-01 to 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignment-and-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignment and divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-narratives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant narratives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-catalysts-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Catalysts and risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-key-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Key signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdd-trading-and-macro-report-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDD trading and macro report — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-for-pdd-this-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed for PDD this week
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-world-relevant-to-the-pdd-trade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The world relevant to the PDD trade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actionable-pdd-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actionable PDD checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pdd-holdings-inc-pdd-fundamental-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDD Holdings Inc. (PDD): Fundamental Report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-and-valuation-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading and valuation snapshot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#financial-history-and-profitability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Financial history and profitability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-and-balance-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow and balance sheet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-activity-and-trader-implications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insider activity and trader implications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-pdd">Trading Analysis Report: PDD<a class="headerlink" href="#trading-analysis-report-pdd" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:45:14</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $78.26
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="pdd-technical-outlook">PDD technical outlook<a class="headerlink" href="#pdd-technical-outlook" title="Permanent link">&para;</a></h4>
+<p><strong>PDD’s broader trend is bearish, but its latest rebound makes the immediate direction less clear.</strong> The close is below the falling 50-day simple moving average of <strong>$83.20</strong>. SuperTrend is <strong>down on all three timeframes</strong>: daily at <strong>$80.94</strong>, weekly at <strong>$95.10</strong>, and monthly at <strong>$131.63</strong>. Those are current trend-flip levels, not price targets; they will change as new bars form. The weekly and monthly readings carry more weight than a short-lived daily improvement.</p>
+<p>The improvement is real, but limited. PDD closed at <strong>$75.38 on October 2</strong> and <strong>$78.26 on October 8</strong>. Over that interval, RSI rose from <strong>33.38 to 45.18</strong>, and the MACD histogram moved from <strong>−0.03 to +0.33</strong>. The verified MACD line, however, remains negative at <strong>−1.29</strong>, versus a signal line of <strong>−1.62</strong>. This combination points to <em>improving short-term momentum within an unconfirmed broader downtrend</em>, not an established bullish reversal.</p>
+<p>Trend strength argues against chasing either direction. ADX is <strong>14.91</strong>, down from <strong>25.16 on October 2</strong>. A reading below 20 suggests the current daily move lacks strong trend confirmation, even though SuperTrend still identifies the direction as down. This ADX uses a faster smoothing method than conventional Wilder ADX, so its levels may differ across platforms.</p>
+<p>Participation is similarly mixed. OBV fell over the broader period from late August to October 8, consistent with the decline in price. It improved from October 2 through October 7, then fell on October 8. That recent improvement is worth watching, but does not yet erase the broader weakness. The October 8 verified volume was <strong>5,023,100 shares</strong>.</p>
+<p>There is also no compelling statistical-exhaustion signal. The 20-period z-scores are <strong>−0.98 weekly</strong>, <strong>−1.40 monthly</strong>, and <strong>+0.05 daily</strong>. None reaches the ±2 stretch threshold. The daily reading is near its mean, so an oversold reading alone is not a strong reason to buy here.</p>
+<h4 id="trading-levels-and-conditions">Trading levels and conditions<a class="headerlink" href="#trading-levels-and-conditions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>For a potential long:</strong> A daily close above the <strong>$80.94 daily SuperTrend</strong> would be an initial change of character. Reclaiming the <strong>$83.20 50-day SMA</strong>, with RSI moving above 50 and OBV improving, would make the case stronger. Even then, the weekly SuperTrend would remain down unless that higher-timeframe signal also flips.</li>
+<li><strong>For bearish continuation:</strong> A daily close below the <strong>October 2 close of $75.38</strong>, especially with weakening OBV and ADX rising back above 20 toward 25, would provide better confirmation than selling solely because the broader trend is down. The <strong>October 2 intraday low of $74.72</strong> is a separate observed reference, not proven support.</li>
+<li><strong>For risk sizing:</strong> Verified ATR is <strong>$1.79</strong>, roughly <strong>2.3% of the current close</strong>. A hypothetical purchase at $78.26 with a <em>closing-basis</em> exit below $75.38 exposes about <strong>$2.88 per share before slippage</strong>; actual entry prices and gap risk can change that amount. Size any position against the chosen exit rather than treating an indicator level as a guaranteed stop.</li>
+</ul>
+<p>These eight indicators were chosen for distinct jobs: SuperTrend and the 50-day SMA establish direction, ADX tests strength, the MACD histogram and RSI assess momentum, ATR frames risk, OBV tests participation, and the multi-timeframe z-score checks for stretch. <strong>The practical stance is patience:</strong> short-term momentum has improved, but PDD has not yet reclaimed its nearest trend-flip level.</p>
+<table>
+<thead>
+<tr>
+<th>Indicator or reference</th>
+<th style="text-align: right;">Latest reading</th>
+<th>Trading implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Verified close</td>
+<td style="text-align: right;"><strong>$78.26</strong></td>
+<td>Starting point for the scenarios above</td>
+</tr>
+<tr>
+<td>SuperTrend</td>
+<td style="text-align: right;">Daily <strong>down, $80.94</strong>; weekly <strong>down, $95.10</strong>; monthly <strong>down, $131.63</strong></td>
+<td>All tiers remain bearish; a daily flip alone would not overturn the higher-timeframe trend</td>
+</tr>
+<tr>
+<td>50-day SMA</td>
+<td style="text-align: right;"><strong>$83.20</strong></td>
+<td>Price remains below the medium-term trend benchmark</td>
+</tr>
+<tr>
+<td>ADX</td>
+<td style="text-align: right;"><strong>14.91</strong></td>
+<td>Weak current daily trend strength; seek confirmation before following a breakout</td>
+</tr>
+<tr>
+<td>MACD histogram</td>
+<td style="text-align: right;"><strong>+0.33</strong></td>
+<td>Momentum has improved, while the verified MACD line remains negative</td>
+</tr>
+<tr>
+<td>RSI</td>
+<td style="text-align: right;"><strong>45.18</strong></td>
+<td>Recovery from October 2, but still below the 50 midpoint</td>
+</tr>
+<tr>
+<td>ATR</td>
+<td style="text-align: right;"><strong>$1.79</strong></td>
+<td>Use to size risk and allow for ordinary price movement</td>
+</tr>
+<tr>
+<td>OBV</td>
+<td style="text-align: right;">Broader decline; recent improvement partly reversed October 8</td>
+<td>Participation has not convincingly confirmed a reversal</td>
+</tr>
+<tr>
+<td>Z-score</td>
+<td style="text-align: right;">Weekly <strong>−0.98</strong>; monthly <strong>−1.40</strong>; daily <strong>+0.05</strong></td>
+<td>No ±2 statistical-stretch signal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mixed</strong> (Score: 5.1/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="pdd-sentiment-2026-10-01-to-2026-10-08">PDD sentiment | 2026-10-01 to 2026-10-08<a class="headerlink" href="#pdd-sentiment-2026-10-01-to-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-evidence">1. Source-by-source evidence<a class="headerlink" href="#1-source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>News (three headlines):</strong> Two directly name PDD, but neither establishes a new company-specific event. Zacks calls PDD a “trending stock” and promises facts before betting on it: attention, not an endorsement. Insider Monkey asks whether PDD is a “value play or trap at its 52-week low,” framing depressed valuation as both an opportunity and a warning; the headline alone does not establish the current price or settle that question. The DBS/Sea headline concerns Shopee spending and profit growth, not PDD directly, so it carries little weight for PDD sentiment. No article bodies or dated price observations are supplied.</p>
+<p><strong>StockTwits (24 recent messages):</strong> Five are user-tagged Bullish, one Bearish and 18 unlabeled. Thus the tagged split is 5:1 bullish (83% of the six tagged posts), but tagged bulls represent only 5/24 of the full sample; the 18 unlabeled posts cannot be treated as neutral votes. PDD-specific optimism includes an October 5 post claiming an oversold-chart reversal, bullish candles and a lower-Bollinger-band bounce, plus an October 8 plan to hold through Christmas. These are trader opinions, not verified chart signals. Some bullish-tagged posts mention PDD only alongside other Chinese stocks; the sole Bearish-tagged post proposes a PDD acquisition of NKE and offers no clear bearish case against PDD. Conversely, unlabeled posts describe PDD failing to hold gains and an abrupt intraday decline (October 1), promote short setups (October 4), and report a large PDD $70 put position (October 4). The put post supplies neither transaction side nor evidence that the position is an outright bearish wager; its reported spot price is not a current quote. Nine messages come from @GoodNewsBull, largely discussing BABA and a broader China-stock trading theory, so apparent breadth of bullish opinion is overstated. A post alleging insider buying and an expanded buyback is uncorroborated and should not be treated as a confirmed PDD event.</p>
+<p><strong>Reddit:</strong> Disabled by configuration. There are no posts from r/wallstreetbets, r/stocks or r/investing to assess, and no basis to infer their sentiment or engagement.</p>
+<h4 id="2-cross-source-alignment-and-divergence">2. Cross-source alignment and divergence<a class="headerlink" href="#2-cross-source-alignment-and-divergence" title="Permanent link">&para;</a></h4>
+<p>Tagged retail sentiment leans bullish, while PDD-specific news is exploratory or cautious rather than affirmatively positive. That divergence is tempered by unlabeled retail skepticism about failed rallies and short setups. The Sea headline provides no independent confirmation of either side. Taken together, sources show a contested rebound/value thesis, not a consistent bullish consensus or a uniformly bearish outlook.</p>
+<h4 id="3-dominant-narratives">3. Dominant narratives<a class="headerlink" href="#3-dominant-narratives" title="Permanent link">&para;</a></h4>
+<p>PDD as a possible oversold or 52-week-low opportunity competes with a value-trap and weak-price-action narrative. Many posts instead trade PDD as part of a BABA/JD/China-stock basket: claims about EU trading hours, Golden Week and Chinese-stock investability are opinions, not demonstrated causes of PDD price moves. This limits the specificity of the social signal.</p>
+<h4 id="4-catalysts-and-risks">4. Catalysts and risks<a class="headerlink" href="#4-catalysts-and-risks" title="Permanent link">&para;</a></h4>
+<p>An @Estimize StockTwits post says PDD Q3 results are due <strong>November 19 before market open</strong>, with Wall Street expecting <strong>2.82 EPS</strong>; both details are user-posted and unverified here, and the purported event is outside this report window. Potential catalysts are a sustained rebound if the technical/value thesis holds and that prospective earnings release. Risks include further failed rallies, a possible value trap, short-oriented trading, and broad China-stock skepticism. Neither the technical setup, insider/buyback claim, earnings details nor options-flow interpretation can be independently checked from the supplied data. This sentiment snapshot is context for a trader, not a PDD price forecast.</p>
+<h4 id="5-key-signals">5. Key signals<a class="headerlink" href="#5-key-signals" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tagged retail stance</td>
+<td>Bullish, qualified</td>
+<td>StockTwits</td>
+<td>5 Bullish vs. 1 Bearish, but 18/24 unlabeled; the Bearish-tagged post does not articulate a PDD bear case.</td>
+</tr>
+<tr>
+<td>Oversold-rebound thesis</td>
+<td>Bullish, unverified</td>
+<td>StockTwits</td>
+<td>October 5 PDD-specific technical-reversal claim; October 8 hold-through-Christmas opinion.</td>
+</tr>
+<tr>
+<td>Price-action and short interest</td>
+<td>Bearish/cautionary</td>
+<td>StockTwits</td>
+<td>October 1 failed-gains complaints and October 4 short-setup posts; reported $70 put flow is directionally ambiguous.</td>
+</tr>
+<tr>
+<td>Low-price valuation debate</td>
+<td>Mixed/cautionary</td>
+<td>Insider Monkey headline</td>
+<td>Explicitly asks whether PDD at a purported 52-week low is a value play or trap.</td>
+</tr>
+<tr>
+<td>Trending-stock attention</td>
+<td>Neutral</td>
+<td>Zacks headline</td>
+<td>Promises facts to consider, without stating a bullish or bearish conclusion.</td>
+</tr>
+<tr>
+<td>China-basket concentration</td>
+<td>Mixed, low specificity</td>
+<td>StockTwits</td>
+<td>Nine @GoodNewsBull posts, mostly BABA/China-basket commentary, plus criticism of Chinese equities.</td>
+</tr>
+<tr>
+<td>Prospective earnings</td>
+<td>Catalyst, direction unknown</td>
+<td>StockTwits (@Estimize)</td>
+<td>User-posted November 19 Q3 date and 2.82 EPS expectation, not independently confirmed.</td>
+</tr>
+<tr>
+<td>Missing independent community read</td>
+<td>Unknown</td>
+<td>Reddit</td>
+<td>Feed disabled; no Reddit evidence available.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="pdd-trading-and-macro-report-october-8-2026">PDD trading and macro report — October 8, 2026<a class="headerlink" href="#pdd-trading-and-macro-report-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Bottom line:</strong> The past week’s news feed offers no confirmed PDD earnings release or company announcement that resolves its investment case. For PDD, the near-term trade is therefore less about a new company catalyst and more about whether its valuation can withstand high U.S. yields, cross-border shipping costs, and promotional competition. I would <strong>avoid treating a reported low share price alone as a buy signal</strong>; wait for operating evidence or a clearer improvement in the macro backdrop.</p>
+<h4 id="what-changed-for-pdd-this-week">What changed for PDD this week<a class="headerlink" href="#what-changed-for-pdd-this-week" title="Permanent link">&para;</a></h4>
+<p>The PDD-specific feed contains mostly commentary: a <a href="https://finance.yahoo.com/markets/stocks/articles/pdd-holdings-inc-sponsored-adr-120007304.html">Zacks article on investor interest</a> and an <a href="https://finance.yahoo.com/markets/stocks/articles/pdd-holdings-pdd-vs-baba-183838807.html">Insider Monkey comparison with Alibaba and JD.com</a> framed around a <em>reported</em> 52-week low. These are valuation narratives, not verification of today’s price or proof that PDD is cheap relative to its future earnings. The available feed supplies neither a live quote nor new PDD financial results.</p>
+<p>One competitive signal is a <a href="https://finance.yahoo.com/markets/stocks/articles/dbs-cuts-sea-target-shopee-122324203.html">report that DBS cut its Sea target because Shopee spending weighs on profit growth</a>. That does <strong>not</strong> establish a change in PDD’s market share. It does make promotional intensity and customer-acquisition costs worth checking when PDD next reports, particularly for Temu.</p>
+<h4 id="the-world-relevant-to-the-pdd-trade">The world relevant to the PDD trade<a class="headerlink" href="#the-world-relevant-to-the-pdd-trade" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p><strong>Rates are the clearest valuation headwind.</strong> The <a href="https://fred.stlouisfed.org/series/DGS10">U.S. 10-year Treasury yield</a> was <strong>5.28% on October 7</strong>, versus 5.29% on September 30: elevated, but <strong>not rising materially over this particular week</strong>. The September <a href="https://fred.stlouisfed.org/series/FEDFUNDS">effective fed-funds rate</a> was <strong>3.75%</strong>. In the retrieved Polymarket feed, traders assigned <strong>80%</strong> odds to <em>another Fed hike in 2026</em> and <strong>3%</strong> odds to a cut <em>by the December meeting</em>. Those are contract-implied odds, not Fed guidance. A sustained move back above roughly <strong>5.30%</strong> in the 10-year would be a useful warning to reassess the risk of a higher discount rate for PDD.</p>
+</li>
+<li>
+<p><strong>Inflation helps explain the rate risk; U.S. demand has held up.</strong> From the <a href="https://fred.stlouisfed.org/series/CPIAUCSL">CPI index</a>, August headline inflation was approximately <strong>3.35% year over year</strong>; the <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE price index</a> rose approximately <strong>3.01% year over year</strong>. August <a href="https://fred.stlouisfed.org/series/RSAFS">U.S. retail sales</a> rose about <strong>1.13% from July</strong>, while September <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> was <strong>4.2%</strong>. That is a mixed setup for Temu: consumer spending is supportive, but persistent inflation reduces the case for near-term rate relief. Aggregate retail sales do not measure Temu demand.</p>
+</li>
+<li>
+<p><strong>Oil and shipping remain a margin watchpoint.</strong> A <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">weekly news headline</a> described oil falling to <strong>$103</strong> amid Iran-related developments; the latest retrieved <a href="https://fred.stlouisfed.org/series/DCOILWTICO">WTI observation</a> is <strong>$96.24 on October 6</strong>. Those figures have different timestamps and the headline does not specify a benchmark. A separate Polymarket contract priced an <strong>82%</strong> chance that Strait of Hormuz traffic <em>does not return to normal in 2026</em>. That is a measure of perceived risk—not confirmation of shipping conditions—but persistent freight or fuel pressure could squeeze cross-border fulfillment economics.</p>
+</li>
+<li>
+<p><strong>China and currency deserve monitoring, not extrapolation.</strong> The latest retrieved <a href="https://fred.stlouisfed.org/series/DEXCHUS">yuan rate</a> is <strong>6.7038 per U.S. dollar on October 2</strong>, versus 6.7452 on August 10; the series has no newer observation in this feed. A stronger yuan can change dollar-reported results and dollar-denominated sourcing economics in different directions. A Polymarket contract puts <strong>92%</strong> odds on China’s <em>full-year 2026 GDP growth</em> landing between <strong>4% and 5%</strong>, but that is a forecast market, <strong>not</strong> a reading of Chinese retail demand or PDD sales.</p>
+</li>
+</ul>
+<h4 id="actionable-pdd-checklist">Actionable PDD checklist<a class="headerlink" href="#actionable-pdd-checklist" title="Permanent link">&para;</a></h4>
+<p><strong>For a constructive position:</strong> look for confirmation in PDD’s next official results that revenue and order growth are holding up <strong>without</strong> a disproportionate increase in marketing, subsidies, or fulfillment spending. Check whether the 10-year yield retreats and whether freight-cost pressure eases.</p>
+<p><strong>For a defensive position:</strong> keep exposure sized for company-specific volatility while yields remain near 5.3% and oil/shipping uncertainty persists. Reassess promptly if new parcel tariffs or customs rules are confirmed; the retrieved <strong>October 1–8</strong> news does not establish a new PDD-specific trade-policy change. A September <a href="https://finance.yahoo.com/markets/stocks/articles/death-800-tariff-loophole-erased-135343393.html">article about Shein and the former $800 tariff exemption</a> provides background risk, <strong>not</strong> a new policy event this week.</p>
+<p><em>Evidence limit:</em> News tools returned headlines and links, rather than full articles or a live PDD quote. Price levels, current valuation, policy implementation details, and company operating claims need independent confirmation before placing a trade.</p>
+<table>
+<thead>
+<tr>
+<th>Key point</th>
+<th>Evidence as of October 8, 2026</th>
+<th>PDD trading implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company catalyst</td>
+<td>PDD feed is predominantly valuation commentary; no confirmed new results in the retrieved week</td>
+<td>Do not buy solely on the reported 52-week-low narrative</td>
+</tr>
+<tr>
+<td>Rates</td>
+<td>10-year yield <strong>5.28%</strong> on Oct. 7; Polymarket <strong>80%</strong> odds of another 2026 hike</td>
+<td>Watch for sustained yields above ~5.30%; demand stronger earnings evidence</td>
+</tr>
+<tr>
+<td>Consumer backdrop</td>
+<td>August U.S. retail sales <strong>+1.13% month over month</strong>; September unemployment <strong>4.2%</strong></td>
+<td>Demand is supportive, but not evidence of Temu-specific growth</td>
+</tr>
+<tr>
+<td>Cross-border costs</td>
+<td>WTI <strong>$96.24</strong> on Oct. 6; Hormuz normalization risk remains priced in prediction markets</td>
+<td>Scrutinize shipping, subsidies, and fulfillment margins</td>
+</tr>
+<tr>
+<td>China and FX</td>
+<td>Latest retrieved yuan rate <strong>6.7038/USD</strong>, dated Oct. 2</td>
+<td>Monitor translation and sourcing effects; avoid using stale FX as a live signal</td>
+</tr>
+<tr>
+<td>Decision trigger</td>
+<td>Next <strong>official PDD</strong> operating results and any confirmed customs changes</td>
+<td>Prefer verified margin and growth trends over headline-driven valuation calls</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="pdd-holdings-inc-pdd-fundamental-report">PDD Holdings Inc. (PDD): Fundamental Report<a class="headerlink" href="#pdd-holdings-inc-pdd-fundamental-report" title="Permanent link">&para;</a></h4>
+<p><strong>As of October 8, 2026.</strong> PDD operates in internet retail and is associated with the Pinduoduo and Temu shopping platforms. The available data provide a fundamentals snapshot, annual financial statements through <strong>December 31, 2025</strong>, limited historical interim statements, and an insider-transaction feed. They do <strong>not</strong> establish that PDD issued a new financial report or other fundamental announcement during the past week. In particular, the statement tools do not provide 2026 quarterly income or cash-flow results, so recent operating momentum cannot be verified from them.</p>
+<h4 id="trading-and-valuation-snapshot">Trading and valuation snapshot<a class="headerlink" href="#trading-and-valuation-snapshot" title="Permanent link">&para;</a></h4>
+<p>PDD’s reported market capitalization is <strong>$111.40 billion</strong>. The fundamentals feed gives a trailing P/E of <strong>8.80</strong>, forward P/E of <strong>6.35</strong>, price-to-book of <strong>1.65</strong>, trailing EPS of <strong>$8.89</strong>, and forward EPS of <strong>$12.32</strong>. It reports no dividend yield. Multiplying trailing EPS by trailing P/E implies a price of roughly <strong>$78.26</strong>, but this is an <em>inferred snapshot value, not a live quote</em>. The reported 52-week range is <strong>$71.94–$139.41</strong>.</p>
+<p>The forward multiple implies substantial anticipated earnings improvement: forward EPS is approximately <strong>39% above</strong> trailing EPS. That makes the apparent low valuation worth investigating, but not a stand-alone buy signal—particularly given the deterioration in the last available annual results. The fundamentals feed also reports trailing revenue of <strong>CNY 450.78 billion</strong>, net income of <strong>CNY 92.08 billion</strong>, a <strong>20.43%</strong> profit margin, <strong>22.75%</strong> return on equity, and <strong>CNY 74.64 billion</strong> of free cash flow. The feed does not identify the precise period underlying every snapshot field; its figures should not be treated as a dated 2026 quarterly filing.</p>
+<h4 id="financial-history-and-profitability">Financial history and profitability<a class="headerlink" href="#financial-history-and-profitability" title="Permanent link">&para;</a></h4>
+<p><strong>FY2025 revenue rose while profits fell.</strong> Revenue increased to <strong>CNY 431.85 billion</strong> from <strong>CNY 393.84 billion</strong> in FY2024, growth of approximately <strong>9.7%</strong>. Cost of revenue grew faster—about <strong>22.7%</strong>, to <strong>CNY 188.80 billion</strong>. Calculated gross margin consequently declined from approximately <strong>60.9% to 56.3%</strong>.</p>
+<p>Operating income fell approximately <strong>14.1%</strong>, from <strong>CNY 108.42 billion</strong> to <strong>CNY 93.10 billion</strong>; operating margin narrowed from <strong>27.5% to 21.6%</strong>. Net income declined approximately <strong>13.0%</strong>, from <strong>CNY 112.43 billion</strong> to <strong>CNY 97.84 billion</strong>, while reported annual diluted EPS fell from <strong>CNY 19.00 to CNY 16.50</strong>. The annual EPS figures are labeled in CNY per share, whereas the valuation feed supplies USD EPS; traders should not directly compare them without confirming currency and share/ADS conventions.</p>
+<p>The longer history shows how markedly growth has slowed:</p>
+<ul>
+<li><strong>FY2023:</strong> Revenue <strong>CNY 247.64 billion</strong>; net income <strong>CNY 60.03 billion</strong>.</li>
+<li><strong>FY2024:</strong> Revenue <strong>CNY 393.84 billion</strong>, up approximately <strong>59%</strong>; net income <strong>CNY 112.43 billion</strong>.</li>
+<li><strong>FY2025:</strong> Revenue <strong>CNY 431.85 billion</strong>, up approximately <strong>9.7%</strong>; net income <strong>CNY 97.84 billion</strong>.</li>
+</ul>
+<p>PDD had reported annual net losses in <strong>2018–2020</strong> and became profitable in <strong>2021</strong>, when it reported <strong>CNY 7.77 billion</strong> of net income. Thus, the FY2025 decline follows several years of substantial expansion, rather than a continuing loss-making history.</p>
+<h4 id="cash-flow-and-balance-sheet">Cash flow and balance sheet<a class="headerlink" href="#cash-flow-and-balance-sheet" title="Permanent link">&para;</a></h4>
+<p>FY2025 operating cash flow was <strong>CNY 106.94 billion</strong>, down approximately <strong>12.3%</strong> from <strong>CNY 121.93 billion</strong> in FY2024, but still above FY2025 net income. FY2025 investing cash flow was <strong>negative CNY 43.42 billion</strong>, versus <strong>negative CNY 118.36 billion</strong> a year earlier; financing cash flow was <strong>negative CNY 5.23 billion</strong>. The annual cash-flow tool does <strong>not</strong> supply capital expenditure after 2020, so its statements cannot be used to independently calculate FY2025 free cash flow. Nor should the investing outflow be assumed to consist entirely of capital expenditure.</p>
+<p>At December 31, 2025, PDD reported <strong>CNY 630.04 billion</strong> in total assets, <strong>CNY 216.66 billion</strong> in total liabilities, and <strong>CNY 413.39 billion</strong> in shareholders’ equity. Cash and equivalents were <strong>CNY 108.90 billion</strong>, up from <strong>CNY 57.77 billion</strong> at year-end 2024. Current assets of <strong>CNY 518.98 billion</strong> and current liabilities of <strong>CNY 213.74 billion</strong> imply a year-end current ratio of approximately <strong>2.43</strong> and working capital of approximately <strong>CNY 305.24 billion</strong>.</p>
+<p>The separate fundamentals snapshot reports a <strong>2.62</strong> current ratio and approximately <strong>1.08% debt-to-equity</strong>. Those snapshot measures are not directly reconcilable to the displayed year-end balance sheet: they may reflect different reporting dates or definitions. In particular, <em>total liabilities</em> should not be mistaken for interest-bearing debt.</p>
+<h4 id="insider-activity-and-trader-implications">Insider activity and trader implications<a class="headerlink" href="#insider-activity-and-trader-implications" title="Permanent link">&para;</a></h4>
+<p>The latest <strong>explicitly identified sale</strong> in the supplied insider feed was <strong>1,705 shares</strong> by director Anthony Ping Leung Kam on <strong>September 3, 2026</strong>, at <strong>$82.20 per share</strong>, or approximately <strong>$140,151</strong>. The feed also lists March 30 director sales and July 31 and September 1 entries without an identified transaction type. Those untyped entries should not be counted as additional sales. <strong>No October 1–8 transaction appears in the provided feed</strong>; that does not prove none occurred.</p>
+<p>For traders, the central question is whether FY2025’s margin compression was temporary. PDD’s strong reported cash generation and large year-end liquidity position provide a buffer, and its snapshot valuation is modest relative to reported trailing earnings. Against that, FY2025 revenue growth slowed sharply, operating profit and operating cash flow both declined, and the forward P/E relies on materially higher expected EPS. <strong>Before acting on the apparent valuation discount, seek dated 2026 results that confirm revenue growth, gross-margin stabilization, and sustained operating cash flow.</strong> Until then, treat the forward earnings figure as an expectation, not an achieved recovery. Cross-border retail policy, competition, and fulfillment costs are additional risks to monitor rather than explanations established by these financial statements.</p>
+<table>
+<thead>
+<tr>
+<th>PDD key point</th>
+<th>Evidence available as of Oct. 8, 2026</th>
+<th>Trading significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Valuation</td>
+<td>$111.40bn market cap; 8.80 trailing P/E; 6.35 forward P/E</td>
+<td>Appears inexpensive, but forward valuation depends on earnings improvement.</td>
+</tr>
+<tr>
+<td>Growth</td>
+<td>FY2025 revenue CNY 431.85bn, <strong>+9.7%</strong>; FY2024 growth approximately <strong>59%</strong></td>
+<td>Confirm whether growth has stabilized in dated 2026 results.</td>
+</tr>
+<tr>
+<td>Margins</td>
+<td>FY2025 gross margin approximately <strong>56.3%</strong>, down from <strong>60.9%</strong>; operating income <strong>−14.1%</strong></td>
+<td>Margin recovery is a key test of the investment case.</td>
+</tr>
+<tr>
+<td>Cash generation</td>
+<td>FY2025 operating cash flow <strong>CNY 106.94bn</strong>, <strong>−12.3%</strong> year over year</td>
+<td>Still substantial, but the direction warrants monitoring.</td>
+</tr>
+<tr>
+<td>Liquidity</td>
+<td>Year-end 2025 cash and equivalents <strong>CNY 108.90bn</strong>; calculated current ratio <strong>2.43</strong></td>
+<td>Provides financial flexibility; not proof of improved operating momentum.</td>
+</tr>
+<tr>
+<td>Insider and data recency</td>
+<td>Latest identified sale: Sept. 3; no transaction shown for Oct. 1–8; no 2026 quarterly statements supplied</td>
+<td>Do not infer a past-week insider trend or a verified recent earnings change from this dataset.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>My opening case is bullish on PDD as a patient investment, not as a confirmed short-term breakout.</strong> At $78.26 on October 8, PDD trades at a reported <strong>8.8 times trailing earnings</strong> and <strong>6.35 times forward earnings</strong>. That discount matters because this is still a sizable, profitable business: FY2025 revenue grew <strong>9.7%</strong> to CNY 431.85 billion, operating margin was <strong>21.6%</strong>, and operating cash flow was <strong>CNY 106.94 billion</strong>. Pinduoduo and Temu give PDD two established shopping platforms through which to pursue further growth. Their scale is an opportunity, though the supplied data do not prove recent market-share gains or forecast platform revenue.</p>
+<p>I expect the bear to start with the strongest objection: growth slowed from roughly <strong>59% in FY2024</strong>, while FY2025 operating income fell <strong>14.1%</strong> and gross margin narrowed. That is real deterioration—not something I’d wave away. But a slowdown from an exceptional year is different from a broken business. PDD remained profitable and cash-generative, and ended 2025 with <strong>CNY 108.90 billion in cash and equivalents</strong> and a calculated <strong>2.43 current ratio</strong>. That financial capacity gives it room to compete while testing whether spending on growth can translate into durable earnings.</p>
+<p>The valuation makes that test worth taking. Reported forward EPS of <strong>$12.32</strong> is about <strong>39% above</strong> trailing EPS of <strong>$8.89</strong>. I would not present that as an achieved recovery; no 2026 quarterly income or cash-flow statements are supplied. Rather, it defines the upside question: if PDD sustains revenue growth and stabilizes margins, investors are paying a modest multiple for the possibility. If marketing and fulfillment costs keep outrunning sales, the bear’s “value trap” argument wins. The next official results—not a low-price headline—should decide between those cases.</p>
+<p>Nor would I pretend the chart has turned. PDD remains below its <strong>$80.94 daily SuperTrend</strong> and <strong>$83.20 50-day average</strong>, although RSI’s rise from <strong>33.38 to 45.18</strong> and a positive MACD histogram show improving near-term momentum. High yields, shipping costs and cross-border policy remain risks, but the supplied week’s news confirms no new PDD-specific policy shock or operating setback. <strong>My recommendation is a cautiously bullish, staged PDD position for investors who can tolerate volatility</strong>, with greater conviction reserved for verified margin improvement and a sustained reclaim of those nearby trend levels.
+Bull Analyst: <strong>Bear Analyst, I agree that PDD’s margin decline is the central risk.</strong> FY2025 costs grew faster than revenue, operating income fell 14.1%, and we have no supplied 2026 quarterly results to show a recovery. I would not use the <strong>6.35× forward P/E</strong> or Temu growth expectations as if either were achieved fact.</p>
+<p>Where I disagree is your conclusion that investors must wait for proof before buying <em>any</em> PDD. At the October 8 price of <strong>$78.26</strong>, the reported trailing multiple is <strong>8.8×</strong>, not a valuation that requires a return to FY2024’s 59% revenue growth. Even after the slowdown, PDD grew FY2025 revenue <strong>9.7%</strong>, earned <strong>CNY 93.10 billion</strong> in operating income at a <strong>21.6% operating margin</strong>, and generated <strong>CNY 106.94 billion</strong> in operating cash flow—more than its FY2025 net income. As a stress test, if the earnings underlying the reported trailing P/E fell another <strong>30%</strong>, the multiple at the same share price would be about <strong>12.6×</strong>. That would be painful, not harmless, but it shows why the bull case can rest on <em>stabilization</em>, rather than a heroic earnings rebound.</p>
+<p>You’re also right that <strong>CNY 108.90 billion</strong> in year-end cash does not prove Pinduoduo or Temu will earn attractive returns on future spending. It does give PDD flexibility to compete while investors test that question. Likewise, the Shopee spending headline flags an industry risk; it is not evidence that PDD has lost share. The opportunity is to own two established shopping platforms at a modest reported earnings multiple, with further growth possible—not to claim unverified market-share gains.</p>
+<p>I won’t call the chart bullish yet: <strong>$80.94</strong> and <strong>$83.20</strong> remain levels to reclaim, and the weekly trend is down. Nor is the <strong>5.28%</strong> 10-year yield benign, though it was essentially flat over the cited week. My recommendation remains a <strong>small, staged bullish position in PDD</strong>, not a full-conviction purchase. I would add conviction only if official results show margins and cash generation stabilizing; a close below <strong>$75.38</strong> would prompt me to reassess the entry. Your wait-for-proof approach reduces uncertainty, but it also risks waiting until the market has begun to price in the improvement.
+Bull Analyst: Bear, your <strong>$54.78</strong> example is a fair correction. My 12.6× stress test showed that PDD could still look reasonably valued <em>after</em> an earnings decline; it did <strong>not</strong> show that the share price has limited downside. A 30% earnings drop with an unchanged 8.8× multiple would indeed imply roughly 30% price downside.</p>
+<p>But that is one scenario, not the inevitable result of FY2025’s deterioration. PDD’s gross margin fell and operating income declined <strong>14.1%</strong>—serious evidence for your case—yet it still earned a <strong>21.6% operating margin</strong> and generated <strong>CNY 106.94 billion in operating cash flow</strong>, above net income. It ended 2025 with <strong>CNY 108.90 billion in cash and equivalents</strong>. Those figures don’t prove that spending on Pinduoduo and Temu will pay off; they do show a profitable business with capacity to test that opportunity, rather than one whose investment case depends on immediate financing or a return to 59% revenue growth.</p>
+<p>There is upside that does not require the <strong>39% forward-EPS increase</strong> to materialize. At an unchanged reported trailing EPS of <strong>$8.89</strong>, a hypothetical 12× multiple implies about <strong>$106.68</strong> per share. That is a valuation sensitivity, <strong>not a price target</strong>: high yields or further margin erosion could prevent any rerating. It illustrates why waiting for complete proof may mean paying a different price for PDD.</p>
+<p>I agree the chart gives us no all-clear below <strong>$80.94</strong> and <strong>$83.20</strong>. My recommendation remains a <strong>small, staged bullish PDD position at the October 8 reference price of $78.26</strong>, not a full-size bet on an earnings rebound. I would add only on official evidence of steadier margins and cash generation, preferably alongside reclaimed trend levels. A close below <strong>$75.38</strong> or another material operating deterioration would force a reassessment; a trading exit cannot protect against an earnings gap.
+Bull Analyst: Bear, your incremental-profit calculation is the right challenge to my thesis. PDD’s FY2025 revenue growth did not translate into meaningful gross-profit growth, and cash on the balance sheet cannot fix that by itself. I also agree that <strong>12× earnings is not a defensible base case before operating evidence improves</strong>. My $106.68 example showed possible valuation upside, not a reason to expect an imminent rerating.</p>
+<p>The bull case at <strong>$78.26 on October 8</strong> is narrower: investors can start with a small position at a reported <strong>8.8× trailing earnings</strong> in a business that, <em>after</em> the deterioration you describe, still earned <strong>CNY 93.10 billion in operating income</strong> and generated <strong>CNY 106.94 billion in operating cash flow</strong>. Pinduoduo and Temu provide two established platforms through which PDD can pursue growth; I am not assuming proven market-share gains or that spending on either will automatically pay off.</p>
+<p>Here is what would change the earnings picture without requiring a return to FY2024’s exceptional growth or gross margin. <strong>As an illustration, not a forecast:</strong> if revenue grew about 10% from FY2025, gross margin merely held at its <strong>56.3%</strong> FY2025 level, and operating expenses rose by roughly the same <strong>CNY 18 billion</strong> the bear estimates for FY2025, incremental gross profit would be about <strong>CNY 24 billion</strong> and operating income would rise by about <strong>CNY 6 billion</strong>. The hurdle is real—another margin decline could erase that gain—but the path to improved earnings is <em>stopping the deterioration</em>, not restoring a 60.9% gross margin or achieving the reported 39% forward-EPS increase.</p>
+<p>What prompts a rerating <strong>before</strong> that is verified? I cannot point to a confirmed PDD-specific event this week. The market might anticipate stabilization, but that is a possibility, not my evidence. Official results showing steadier gross margin, spending and cash generation would be the substantive catalyst—and, as you acknowledge, waiting for that evidence may mean buying after some of the recovery is priced in. The <strong>5.28%</strong> Treasury yield and the chart below <strong>$80.94</strong> and <strong>$83.20</strong> argue against a full-size purchase now, not necessarily against owning any PDD.</p>
+<p>So we differ on <em>when</em> to take risk. <strong>I favor a small, staged bullish PDD position</strong>, keeping capital available to add only if the operating evidence improves. If margins keep falling or PDD closes below <strong>$75.38</strong>, I would reassess rather than defend the low multiple on its own. That accepts your downside case while preserving exposure to a recovery that does not need the ambitious 12× rerating to begin.
+Bull Analyst: Bear, your <strong>1.3-percentage-point breakeven</strong> is the sharpest objection to my illustration. Flat gross margin is not a neutral assumption after a roughly <strong>4.6-point decline</strong> in FY2025. If margin fell another full point on the illustrative CNY 475 billion of revenue, about <strong>CNY 4.75 billion</strong> of the projected CNY 6 billion operating-income gain would disappear. I cannot call an earnings recovery established without 2026 results.</p>
+<p>But I think your “buy nothing until it is established” conclusion underweights the price of that uncertainty. At the October 8 reference price of <strong>$78.26</strong>, PDD’s reported <strong>8.8× trailing P/E</strong> is attached to a business that <em>already endured</em> substantial margin compression and still produced <strong>CNY 93.10 billion in operating income</strong> and <strong>CNY 106.94 billion in operating cash flow</strong> in FY2025. Revenue is also about <strong>74% above FY2023’s level</strong>. Pinduoduo and Temu give PDD established platforms on which to pursue further growth, while <strong>CNY 108.90 billion</strong> in year-end cash gives it capacity to compete. None of that proves the next increment of spending will earn an attractive return—but it is a stronger starting point than a low multiple alone.</p>
+<p>That is our real disagreement: you want evidence of stabilization before accepting <em>any</em> exposure; I’m willing to accept a <strong>small, staged PDD position</strong> at this valuation while reserving most capital for that evidence. I’m not relying on the <strong>6.35× forward P/E</strong>, a 12× rerating, or an imminent chart reversal. The next official results must show whether gross margin, spending and cash flow are becoming more durable. A sustained reclaim of <strong>$80.94</strong> and then <strong>$83.20</strong> would add technical support; another material margin decline would weaken my case. A close below <strong>$75.38</strong> would prompt a trading reassessment, though it would not protect against an earnings gap.</p>
+<p><strong>My recommendation remains cautiously bullish on PDD, sized as an unconfirmed recovery—not a proven one.</strong></p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: <strong>Bear Analyst:</strong> I agree with you that PDD is profitable and that its balance sheet gives it room to compete. My objection is to buying <em>before</em> we know whether that competition is eroding the earnings you’re valuing.</p>
+<p>Your 8.8-times trailing P/E looks compelling, but the operating trend points the other way. FY2025 revenue growth slowed to <strong>9.7%</strong> from roughly <strong>59%</strong> in FY2024, while cost of revenue rose <strong>22.7%</strong>. Gross margin fell from <strong>60.9% to 56.3%</strong>, operating income declined <strong>14.1%</strong>, and operating cash flow fell <strong>12.3%</strong>. This is not just growth normalizing after an exceptional year; profitability deteriorated while sales still grew.</p>
+<p>The <strong>6.35-times forward P/E</strong> is the weaker part of your valuation argument. It rests on forward EPS of <strong>$12.32</strong>, about <strong>39% above</strong> reported trailing EPS of <strong>$8.89</strong>. As you acknowledge, we don’t have 2026 quarterly statements here to verify that recovery. PDD’s <strong>CNY 108.90 billion</strong> in year-end cash reduces financial-distress risk, but it doesn’t establish that spending to defend or grow Pinduoduo and Temu will earn attractive returns. Shopee’s reported spending pressure is a reason to scrutinize promotional competition—not proof that PDD has already lost share.</p>
+<p>I also wouldn’t treat the rebound as an entry signal. At <strong>$78.26</strong>, PDD remains below the <strong>$80.94 daily SuperTrend</strong> and <strong>$83.20 50-day average</strong>, with weekly and monthly SuperTrend readings still down. RSI at <strong>45.18</strong> and a positive MACD histogram show improvement, but not a confirmed reversal. With the 10-year yield at <strong>5.28%</strong> and cross-border fulfillment costs worth watching, there’s little reason to pay now for an unverified earnings rebound.</p>
+<p><strong>My recommendation for PDD is to avoid new purchases for now, rather than short it aggressively.</strong> I’d reconsider if official results show margin stabilization and sustained cash generation; a close below <strong>$75.38</strong> would instead strengthen the bearish trading case.
+Bear Analyst: <strong>Bear Analyst:</strong> You’re right that PDD at <strong>8.8× trailing earnings</strong> does not require a return to 59% revenue growth. But your case <em>does</em> require earnings to stop deteriorating, and the latest annual results do not show that yet. In FY2025, revenue grew <strong>9.7%</strong> while cost of revenue rose <strong>22.7%</strong>; gross margin fell from <strong>60.9% to 56.3%</strong>, operating income declined <strong>14.1%</strong>, and operating cash flow fell <strong>12.3%</strong>. That is the risk behind the low multiple, not just a slower growth rate.</p>
+<p>I’d challenge your <strong>12.6× stress test</strong> for one reason: it holds the share price fixed. If earnings fell another 30% and investors continued to pay 8.8× those earnings, the same simple calculation would put PDD near <strong>$54.78</strong>, roughly 30% below the October 8 price of <strong>$78.26</strong>. That is an illustration, not a price target, but it shows why “still reasonably valued after an earnings decline” is not the same as “limited downside.”</p>
+<p>I grant that <strong>CNY 108.90 billion in year-end cash</strong> gives PDD room to compete. It does not tell us whether spending on Pinduoduo and Temu will restore margins. Nor am I claiming Shopee has taken PDD’s share; its spending pressure is a warning about the cost of competing, not proof of PDD’s outcome. With no supplied 2026 quarterly results, a small staged purchase remains a bet on stabilization before we can verify it.</p>
+<p>Your concern about missing the first leg of a recovery is fair. I’d rather risk paying more for demonstrated margin stability than buy an unconfirmed one: PDD is still below its <strong>$80.94 daily SuperTrend</strong> and <strong>$83.20 50-day average</strong>, while the higher-timeframe trends remain down. <strong>My recommendation remains to avoid new PDD purchases for now</strong>, not to short it aggressively. Official evidence of steadier margins and cash flow would change my view; a close below <strong>$75.38</strong> would strengthen the bearish trading case.
+Bear Analyst: Bull, your <strong>$106.68</strong> example is mathematically sound, but it replaces one unverified assumption with another. At unchanged earnings, getting from PDD’s reported <strong>8.8×</strong> trailing multiple to <strong>12×</strong> requires investors to pay a roughly <strong>36% higher multiple</strong>. What would prompt that rerating before we see evidence that margins have stopped falling?</p>
+<p>The FY2025 cost pattern makes “just stabilize” a meaningful hurdle. PDD added about <strong>CNY 38 billion</strong> in revenue, but, using the rounded reported figures, only about <strong>CNY 3 billion</strong> in gross profit. Implied operating expenses rose roughly <strong>CNY 18 billion</strong>, and operating income fell <strong>CNY 15.3 billion</strong>. Its <strong>21.6% operating margin</strong> and strong cash flow show a viable business; they do not establish that the economics of its next increment of growth will improve.</p>
+<p>I grant your strongest point: <strong>CNY 108.90 billion</strong> in year-end cash gives PDD time to compete, and waiting for proof could mean missing an early recovery. But that cash cannot by itself justify a higher earnings multiple, particularly with the U.S. 10-year yield at <strong>5.28%</strong> and no supplied 2026 quarterly results to test either the earnings-recovery or rerating case. Shopee’s spending pressure is a competitive warning, not proof of PDD share loss.</p>
+<p><strong>I would still avoid new PDD purchases at the October 8 reference price of $78.26.</strong> I’m not calling for an aggressive short: the recent rebound is real, and weak ADX offers little trend confirmation. I’d rather reconsider after official results show better cost discipline and sustained cash generation than pay today for a recovery the available numbers have yet to show.
+Bear Analyst: Bull, I agree that PDD does not need to recover its FY2024 growth rate to improve earnings. But your 10%-growth illustration shows how little room there is for another cost surprise. Holding gross margin at <strong>56.3%</strong> and adding roughly <strong>CNY 18 billion</strong> in operating expenses produces about <strong>CNY 6 billion</strong> more operating income. On the roughly <strong>CNY 475 billion</strong> of revenue in that scenario, a further gross-margin decline of only about <strong>1.3 percentage points</strong> would erase that gain, all else equal. PDD’s gross margin fell about <strong>4.6 points</strong> in FY2025. Flat margins are therefore a consequential assumption, not a neutral one.</p>
+<p>I accept your strongest point: <strong>CNY 106.94 billion</strong> in FY2025 operating cash flow and <strong>CNY 108.90 billion</strong> in year-end cash give PDD substantial flexibility. But operating cash flow fell <strong>12.3%</strong>, and that cash cannot tell us whether the next round of spending on Pinduoduo and Temu will earn its way back. The reported <strong>8.8× trailing P/E</strong> may reward a buyer if margins stabilize; it may also reflect the market’s concern that the earnings denominator keeps shrinking. No supplied 2026 quarterly statements settle that question.</p>
+<p>That is why I still disagree with taking even a starter position at <strong>$78.26</strong>. PDD remains below its <strong>$80.94</strong> daily trend-flip level and <strong>$83.20</strong> 50-day average; the improving momentum is worth watching, but it is not confirmation. I concede that waiting for official results could mean missing an early rally. <strong>My recommendation remains to avoid new PDD purchases for now</strong>, rather than short it: I would reconsider on verified margin and cash-flow stability, while a close below <strong>$75.38</strong> would strengthen the bearish trading case.
+Bear Analyst: Bull, I agree that PDD’s <strong>8.8× trailing P/E</strong> deserves attention because the business remains profitable and cash-generative. But saying it has “already endured” margin compression implies the damage may be behind it. The latest annual figures don’t establish that. In FY2025, roughly <strong>CNY 38 billion of additional revenue produced only about CNY 3 billion of additional gross profit</strong>, while operating income fell <strong>14.1%</strong>. The question is not whether PDD can grow sales; it is whether the next increment of sales earns enough to offset the cost of competing.</p>
+<p>You’ve reasonably set aside both the <strong>39% forward-EPS increase</strong> and a <strong>12× rerating</strong> as requirements for your case. That leaves stabilization as the reason to buy a starter position—but stabilization is precisely what we cannot verify without supplied 2026 quarterly results. PDD’s <strong>CNY 108.90 billion</strong> in year-end cash gives it time to compete; it does not make further subsidies or fulfillment spending profitable. Operating cash flow was substantial, but it too fell <strong>12.3%</strong> in FY2025.</p>
+<p>A small position limits the dollars at risk, not the risk per share. I accept that waiting could mean paying more if results improve. In exchange, I would know more about the earnings behind the multiple. At <strong>$78.26</strong>, with PDD still below its <strong>$80.94</strong> daily trend-flip level and <strong>$83.20</strong> 50-day average, I don’t see a confirmed operating or technical reason to take that risk today.</p>
+<p><strong>My recommendation remains to avoid new PDD purchases, not to short aggressively.</strong> I would revisit it when official results show steadier gross margin, controlled spending and sustained cash generation; a close below <strong>$75.38</strong> would instead strengthen the bearish trading case.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For PDD, the bear has the stronger case because the deterioration in operating economics is observed, while stabilization remains an assumption. FY2025 revenue grew 9.7%, but cost of revenue rose 22.7%; gross margin declined from 60.9% to 56.3%, operating income fell 14.1%, and operating cash flow fell 12.3%. The rounded incremental-profit calculation—approximately CNY 38 billion of additional revenue generating only CNY 3 billion of additional gross profit—makes the cost problem particularly clear. This is more consequential than merely lacking a near-term catalyst.</p>
+<p>The bull's strongest counterargument is real: PDD's reported 8.8x trailing P/E accompanies a still-profitable business with a 21.6% operating margin, CNY 106.94 billion of annual operating cash flow, and CNY 108.90 billion of year-end cash. Those figures justify retaining reduced exposure rather than a wholesale exit or an aggressive short. They do not establish that further spending will earn attractive returns. The reported 6.35x forward P/E depends on an approximately 39% EPS increase that the missing 2026 quarterly statements cannot verify. Neither the hypothetical 12x rerating nor the 30% earnings-decline scenario is a forecast or a price target; importantly, a low multiple is not a downside floor.</p>
+<p>At the supplied October 8 reference price of $78.26, PDD is below $80.94 and $83.20 trend references. Improving momentum tempers the bearish timing argument but does not overturn the operating evidence. Competition and cross-border policy remain risks, not demonstrated PDD market-share losses or a newly established company-specific shock. The operating deterioration decides the direction; PDD's valuation, profitability, and liquidity limit the conviction to Underweight.</p>
+<p><strong>Strategic Actions</strong>: 1. Cap PDD at 0.5x the portfolio's standard allocation. Trim exposure above that cap; do not automatically sell half of whatever is currently held. Do not top up smaller positions or initiate a new position before the operating confirmation below. The trader and portfolio manager must apply actual holdings and portfolio limits, which were not provided. Do not establish an aggressive short.
+2. Implement required reductions with limit orders using trader-verified prices and liquidity; do not wait for a rebound to the cited resistance levels. The supplied $78.26 price and technical levels are October 8 references, not live execution instructions. Revalidate their relevance before using them.
+3. If the referenced $75.38 support remains relevant and PDD closes below it, lower the exposure cap to 0.25x standard allocation. Do not average down. This is a closing-price risk rule, not a guaranteed exit price; earnings gaps and slippage can exceed it. If the next official report also shows further comparable-period gross-margin compression alongside continued declines in operating income and operating cash flow, exit the residual position.
+4. Reconsider additions only after official results show comparable-period gross-margin stabilization, better spending discipline, and stable or improving operating cash flow. Assess comparable periods rather than comparing a quarterly margin mechanically with the FY2025 annual margin. If these conditions are met, restore exposure first toward 0.75x standard allocation; a sustained reclaim of the refreshed $80.94 and $83.20 trend references can support timing but cannot replace operating confirmation. Reassess before returning to a full standard allocation.
+5. Review at the next official PDD results release; its date, 2026 quarterly statements, and current quotes are not supplied. Do not underwrite the plan on the unverified forward-EPS recovery or use either valuation sensitivity as a target.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: PDD's FY2025 gross-margin compression and declines in operating income and operating cash flow support the research plan's Underweight, although profitability and low valuation argue for a measured trim rather than an aggressive short or wholesale exit. The supplied October 8 close of $78.26 is below the $80.94 daily SuperTrend and $83.20 50-day SMA; improving RSI and MACD momentum make a new bearish entry less compelling, but do not negate the reduction. Revalidate prices before using limit orders, and treat a close below $75.38 as a trigger to reduce the allocation cap further, not as a guaranteed execution price.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: 75.38</p>
+<p><strong>Position Sizing</strong>: Trim PDD holdings only to the extent they exceed 0.5× the portfolio's standard allocation; if PDD closes below $75.38 and that reference remains relevant, reduce the cap to 0.25×. Do not assume an existing holding, initiate an aggressive short, or add to smaller positions.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: I’d make the measured SELL now. The high-reward move is to free up risk capacity before PDD’s operating recovery is proven—not to wait for the downtrend to become unmistakable. FY2025 revenue growth slowed to 9.7% from roughly 59%, gross margin fell from 60.9% to 56.3%, and both operating income and operating cash flow declined. At the supplied October 8 close of $78.26, PDD was below its $80.94 daily SuperTrend and $83.20 50-day average; the weekly and monthly SuperTrends were down too. Waiting for a close below $75.38 before trimming would mean demanding more evidence while accepting more downside.</p>
+<p>That does not make an aggressive short—or a wholesale exit—the better bet. PDD still generated CNY 106.94 billion in FY2025 operating cash flow, and its 8.80 trailing P/E leaves room for a sharp rebound if margins recover. RSI and the MACD histogram have improved, even though they have not confirmed a broader reversal. The edge is flexibility: reduce excess exposure now, retain some participation in that upside, and preserve capacity to act if verified results and price action improve. Low-confidence retail sentiment and an unverified earnings-date post are not enough reason to postpone the trim.</p>
+<p>Since the conservative and neutral analysts have not spoken, I won’t assign them objections. My challenge to either stance is this: why keep more than a half-standard allocation exposed to deteriorating reported margins while waiting for certainty? Sell only PDD holdings above the 0.5× standard-allocation cap; if PDD later closes below $75.38 and that level remains relevant, lower the cap to 0.25×. If holdings are already below the cap—or there is no position—this plan calls for no sale. Revalidate the October 8 reference price before ordering; $75.38 is an allocation trigger, not a guaranteed execution price.
+Aggressive Analyst: Conservative, I agree that 0.5× is not universally safe and that PDD’s 8.80 trailing P/E is no downside floor. But an <em>unknown</em> concentration is not a case for cutting every residual holding to 0.25× today. Check the actual China, retail and single-stock exposures first. PDD’s FY2025 margin compression and declines in operating income and cash flow justify selling excess exposure now; its CNY 106.94 billion in operating cash flow and substantial year-end cash justify retaining some capacity to benefit if margins recover. Neither the 6.35 forward P/E nor improving momentum proves that recovery. That is the argument for a trim rather than a wholesale exit.</p>
+<p>Neutral, “high-reward” does not mean the sale itself earns a return or that further downside is certain. It means refusing to devote a full allocation to an unverified earnings rebound while keeping a position that can participate if PDD turns. You are right that RSI and the MACD histogram have improved, and ADX at 14.91 makes a new aggressive bearish bet unattractive. Yet PDD’s supplied $78.26 October 8 close was still below the $80.94 daily SuperTrend and $83.20 50-day average, with weekly and monthly SuperTrends down. Weak trend strength is not confirmation of a bullish reversal. Likewise, the absence of 2026 quarterly statements is not proof that deterioration continued—but it is a thin basis for maintaining an oversized wager on recovery.</p>
+<p>I would <strong>SELL only PDD holdings above 0.5× the portfolio’s standard allocation</strong>, after checking the current quote and actual portfolio exposures. If there is no holding, or it is already at or below that cap, this plan makes no sale and opens no short. A relevant later close below $75.38 would lower the cap to 0.25×; it is an allocation trigger, not a protective stop or guaranteed execution price. That approach acts before another breakdown while preserving meaningful upside if verified operating results and sustained price strength change the case.
+Aggressive Analyst: Conservative, you’re right that PDD’s 8.80 trailing P/E is no downside floor, and its 6.35 forward P/E depends on an earnings recovery we cannot verify from the supplied 2026 statements. That is why I would sell excess exposure now. FY2025 revenue growth slowed to 9.7% from roughly 59%, gross margin fell from 60.9% to 56.3%, and operating income and operating cash flow declined. But taking every portfolio straight to 0.25× would make an unknown concentration risk decisive. PDD still generated CNY 106.94 billion in operating cash flow and held CNY 108.90 billion in year-end cash. Those figures do not prove a turnaround; they do make a rebound plausible enough that retaining up to 0.5×, where actual portfolio exposures permit it, is a better risk-taking choice than automatically giving up most of that participation.</p>
+<p>Neutral, I agree that “high reward” cannot mean a trim is guaranteed to outperform holding PDD through a rally. The advantage is acting before a breakdown while keeping both capital available for other opportunities and a stake in a possible recovery. Improving RSI and the MACD histogram, alongside ADX at 14.91, argue against a new short or wholesale exit. They do not erase the supplied October 8 close below the $80.94 daily SuperTrend and $83.20 50-day average, with weekly and monthly SuperTrends also down. Nor does the absence of 2026 quarterly results prove deterioration continued; it means an oversized position would be relying on a recovery that has not been demonstrated. Elevated yields add a valuation headwind, although they barely changed that week, and possible shipping pressure is a risk to test—not a confirmed hit to PDD.</p>
+<p>My call remains SELL, but precisely sized: after checking a current PDD quote and actual China, retail, and single-stock exposure, trim only holdings above 0.5× the portfolio’s standard allocation. That is a ceiling, not a reason to add to a smaller holding; use a lower ceiling now if actual concentration warrants it. If PDD later closes below $75.38 and that reference remains relevant, lower the cap to 0.25×. A closing trigger is not a protective stop or a promised sale price. If there is no holding, there is nothing to sell, and I would not open a short. That is the bold part of this measured trade: reduce an unverified full-size recovery bet today without surrendering the chance to benefit if PDD proves the skeptics wrong.
+Aggressive Analyst: Conservative, I agree that PDD’s cash balance is not proof of a turnaround, its 8.80 trailing P/E is no downside floor, and the 6.35 forward P/E depends on earnings improvement we cannot verify. Those are reasons to SELL excess exposure now, not reasons to make 0.25× the default for a portfolio we have not seen. PDD still produced CNY 106.94 billion in FY2025 operating cash flow and held CNY 108.90 billion in year-end cash. That resilience leaves a credible recovery opportunity worth retaining <em>where the actual risk budget permits</em>. If existing China, retail, or single-stock exposure makes 0.5× too large, use a lower ceiling now; nobody is obliged to hold up to the cap.</p>
+<p>Neutral, you are right that we cannot claim FY2025’s deterioration continued into 2026, and that improving RSI and MACD with ADX at 14.91 argue against a new short or wholesale exit. But waiting for definitive results could miss the chance to reduce an oversized position while PDD’s supplied $78.26 close remains below the $80.94 daily SuperTrend and $83.20 50-day average, with the higher-timeframe trends also down. The high-reward argument is not that selling guarantees a gain. It is that a disciplined trim frees risk capacity while a retained stake can still benefit from a rebound. Elevated yields are a valuation headwind, not evidence of a fresh PDD-specific hit; possible shipping pressure and low-confidence bullish social posts should not be promoted into facts on either side.</p>
+<p>My call remains a conditional SELL: verify the current PDD quote and portfolio exposures, then sell only holdings above a 0.5× standard-allocation ceiling, or a lower ceiling justified by actual concentration. Do not add to a smaller holding or open a short. If PDD later closes below $75.38 and that reference remains relevant, lower the ceiling to 0.25× and execute at the price available—not a presumed stop price. That is a bolder use of uncertainty than either waiting with an oversized bet or surrendering most rebound participation by default.
+Aggressive Analyst: Conservative, you are right that PDD’s cash and low multiple do not prove a turnaround, and I would never treat 0.5× as a holding target. But making 0.25× the default would give an <em>unknown</em> portfolio concentration more weight than the evidence supports. PDD generated CNY 106.94 billion in FY2025 operating cash flow despite the decline and held CNY 108.90 billion in year-end cash. That does not repair the margin compression, but it gives PDD room to compete while a recovery remains possible. Check the actual China, retail, and single-stock exposure; cut the ceiling further now if that exposure warrants it, not simply because upside is uncertain.</p>
+<p>Neutral, I agree that a sale does not earn a return by itself. The high-reward choice is to stop committing a full allocation to an unverified recovery while keeping some participation if PDD rebounds—and freeing risk capacity for opportunities the portfolio can actually use. FY2025 revenue growth slowed to 9.7%, gross margin fell from about 60.9% to 56.3%, and operating income and cash flow declined. At the supplied October 8 close, PDD was below both $80.94 and $83.20, with higher-timeframe SuperTrends down. Improving RSI and MACD, plus ADX at 14.91, are good reasons <em>not</em> to short or exit wholesale; they are not a reason to leave an oversized holding untouched. Nor do I need to claim that elevated yields rose that week or that shipping costs have already hit PDD to make this sizing decision.</p>
+<p>My call is SELL only PDD holdings above a 0.5× standard-allocation ceiling, after verifying the current quote and portfolio exposures. Use a lower ceiling now if actual concentration requires it. If PDD later closes below $75.38 and that reference remains relevant, lower the ceiling to 0.25×; that is not a guaranteed sale price. If PDD is already below the applicable ceiling or is not held, make no sale, add nothing, and open no short.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: Aggressive, I agree with a measured SELL of PDD exposure above the proposed cap, but I would not call 0.5× a universally safe holding. We do not know the portfolio’s existing China, retail, or single-stock exposure. If PDD adds to an already concentrated risk, a smaller residual position—potentially 0.25× the standard allocation—could be more prudent now, rather than waiting for a price trigger.</p>
+<p>Your rebound case deserves respect, but PDD’s 8.80 trailing P/E is not a downside floor. The lower 6.35 forward P/E assumes earnings improvement that the supplied statements cannot verify with 2026 quarterly results. FY2025 gross margin fell from about 60.9% to 56.3%, while operating income and operating cash flow declined. Cash generation and liquidity give PDD resilience; they do not establish that margins have recovered. Likewise, improving RSI and MACD momentum have not reversed the down weekly and monthly SuperTrends.</p>
+<p>Neutral has not offered an argument, so I will not assign one. The risk in simply waiting, if PDD is oversized, is that the $75.38 closing trigger is not a protective stop: a gap or intraday fall could produce a worse sale price. I would revalidate the October 8 quote, trim holdings above 0.5× using the portfolio’s actual risk budget, and consider a lower cap where concentration warrants it. If PDD is already appropriately small or there is no holding, do not manufacture a sale or open a short. Reassess the remaining exposure after verified operating results; treat a relevant close below $75.38 as a reason to review the 0.25× cap, not as a guaranteed exit.
+Conservative Analyst: Aggressive, I agree with selling PDD exposure above a half-standard allocation now, but “preserving upside” is not, by itself, a reason to retain that much. The reported 8.80 trailing P/E offers no downside floor, and the 6.35 forward P/E depends on earnings improvement that the supplied data cannot verify with 2026 quarterly results. PDD’s FY2025 gross margin fell from about 60.9% to 56.3%, while operating income and operating cash flow declined. Its cash balance is a buffer, not evidence that those trends have reversed.</p>
+<p>Neutral, you are right not to cut every PDD holding to 0.25× because portfolio concentration is unknown. But improving RSI and MACD, and a weak daily ADX of 14.91, are reasons not to open an aggressive short—not reasons to give an existing holding a generous risk allowance. PDD remained below its daily SuperTrend and 50-day average at the supplied October 8 close, with weekly and monthly SuperTrends down. Resilient aggregate consumer spending does not establish Temu’s margins, while elevated yields and possible shipping costs add risks rather than a verified company catalyst.</p>
+<p>My low-risk adjustment is a conditional <strong>SELL</strong>: verify the current PDD quote and the portfolio’s exposures, then trim any holding above 0.5× the standard allocation. Use a lower cap, potentially 0.25× now, if the <em>actual</em> China, retail, or single-stock concentration makes the retained position too risky. Do not manufacture a sale if there is no holding, and do not initiate a short. The $75.38 level is not a protective stop: it is $2.88 below the supplied close, and a gap could bypass it. If PDD closes below it and the reference remains relevant, reassess a 0.25× cap promptly rather than treating that price as guaranteed execution.
+Conservative Analyst: Aggressive, I agree with selling excess PDD now, but I would not treat retaining 0.5× as the better choice simply to preserve upside. PDD’s CNY 106.94 billion in FY2025 operating cash flow and CNY 108.90 billion in year-end cash provide resilience, not evidence that its falling margins have recovered. The 6.35 forward P/E depends on earnings improvement that the supplied 2026 statements cannot verify. A half-standard allocation should be a ceiling subject to the portfolio’s actual risk budget, not a stake we feel obliged to keep.</p>
+<p>Neutral, you are right that a 0.25× cap should not be automatic. But the missing 2026 results are also a reason not to give an oversized PDD holding the benefit of the doubt. Improving RSI and MACD, with ADX at 14.91, argue against a new short; they do not undo the FY2025 decline in operating income and cash flow or the October 8 close below the daily SuperTrend and 50-day average. Nor do elevated yields or possible shipping costs need to be <em>proven</em> new hits to PDD to warrant a smaller risk allowance—we should monitor them without claiming they have already damaged results.</p>
+<p>My low-risk adjustment remains a conditional SELL: check the current PDD quote and the portfolio’s China, retail, and single-stock exposures, then trim any holding above 0.5× the standard allocation. Set a lower ceiling, potentially 0.25× now, if those actual exposures make 0.5× too risky. If PDD later closes below $75.38 and that reference is still relevant, lower the cap to 0.25× and reassess execution promptly; that closing level is not a guaranteed exit price, especially after a gap. If there is no holding or it is already below the applicable ceiling, make no sale, add nothing, and open no short.
+Conservative Analyst: Aggressive, I agree with selling excess PDD exposure now, but “preserving upside” is not a reason to keep a half-standard allocation if the portfolio cannot absorb another decline. PDD’s FY2025 cash generation and year-end cash provide a buffer, not evidence of recovery: gross margin fell from about 60.9% to 56.3%, and operating income and operating cash flow declined. The low forward P/E relies on earnings improvement that the supplied 2026 statements do not verify. Treat 0.5× as a maximum, not a position worth maintaining for its own sake.</p>
+<p>Neutral, the improving RSI and MACD histogram make a new short unattractive; they do not make retained PDD exposure low-risk. At the supplied October 8 close, PDD remained below its daily SuperTrend and 50-day average, with weekly and monthly SuperTrends down. You are right that elevated yields were little changed that week and that shipping pressure is not a confirmed new hit to PDD. Neither point establishes that margins are safe.</p>
+<p>My recommendation is a conditional SELL: verify the current PDD quote and actual portfolio exposures, then trim holdings above 0.5× the standard allocation. Set a lower ceiling, potentially 0.25× now, if existing China, retail, or single-stock exposure warrants it. Do not add to a smaller holding or open a short. If PDD later closes below $75.38 and that reference remains relevant, reduce the ceiling to 0.25×; that is an allocation trigger, not a guaranteed exit price. If there is no holding or it is already below the applicable ceiling, there is nothing to sell.
+Conservative Analyst: Aggressive, I agree with trimming PDD before another breakdown, but retaining up to half an allocation is not automatically the better risk choice. FY2025 operating cash flow and year-end cash give PDD financial flexibility; they do not protect the share price or show that gross margins have recovered. Calling the trim “high-reward” also risks obscuring its purpose: limiting a loss the portfolio may not need to bear.</p>
+<p>Neutral, improving RSI and MACD and a weak ADX make an aggressive short unattractive, but they do not justify keeping an oversized PDD holding. The supplied October 8 close remained below the daily SuperTrend and 50-day average, while the weekly and monthly trends were down. You are right that elevated yields and possible shipping costs are not confirmed new hits to PDD. They are reasons to keep the risk allowance modest, not to claim further deterioration as fact.</p>
+<p>My recommendation is a conditional SELL: verify the current PDD quote and actual portfolio exposures, then sell any holding above 0.5× the standard allocation. Treat 0.5× as a ceiling, not a position to preserve for upside; use a lower ceiling, potentially 0.25× now, if existing China, retail, or single-stock exposure warrants it. If PDD later closes below $75.38 and that reference remains relevant, reduce the cap to 0.25× at prices then available. That closing level cannot prevent a gap loss. If there is no holding or it is already below the applicable cap, do not sell, add, or short.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: Aggressive, I agree that PDD holders do not need to wait for a break below $75.38 before trimming an oversized position. FY2025 margin compression and declining operating cash flow justify reducing risk now. But calling the trim a “high-reward” move overstates what we know: there are no supplied 2026 quarterly results to show whether those trends continued, and PDD’s improving RSI and MACD histogram raise the chance of selling into a rebound. ADX at 14.91 also says the current daily trend is weak, even though the broader trend remains down.</p>
+<p>Conservative, you are right that 0.5× is not automatically safe in a portfolio already concentrated in China or internet retail, and that $75.38 cannot protect against a gap down. But cutting every PDD holding to 0.25× now would make an unknown portfolio risk decisive without evidence that every portfolio has it. PDD’s substantial FY2025 cash generation and year-end liquidity leave a credible recovery case, while its low reported multiple is neither a bargain guarantee nor a downside floor.</p>
+<p>My recommendation remains a conditional SELL: after checking a current PDD quote and the portfolio’s exposures, trim only holdings above 0.5× the standard allocation. Use a lower cap now if PDD materially compounds existing concentration. If PDD later closes below $75.38 and that reference remains relevant, review a 0.25× cap; treat it as an allocation decision, not a guaranteed stop price. If the holding is already small or nonexistent, do not create a sale or short.</p>
+<p>Elevated yields and possible shipping costs support keeping PDD exposure modest, while resilient consumer spending leaves room for upside—but neither proves what is happening at Temu. I would reassess the retained position using verified operating results and sustained price improvement above $80.94 and $83.20, rather than low-confidence social sentiment or the old October 8 price alone.
+Neutral Analyst: Aggressive, I agree that PDD holders need not wait for a break below $75.38 to trim an oversized position. But “high reward” is too confident a description of the sale: FY2025’s margin compression and lower operating cash flow justify caution, while the absence of supplied 2026 quarterly results leaves open whether those trends persisted. PDD’s substantial cash generation and low reported trailing multiple leave room for a rebound. Improving momentum and an ADX of 14.91 make a wholesale exit or new short harder to justify, even though the broader trend remains down.</p>
+<p>Conservative, you are right that a half-standard allocation could be too large in a portfolio already concentrated in China or internet retail. But making 0.25× the default would turn an unknown portfolio risk into an assumed fact. Macro risks also need proportion: the 10-year yield was elevated at 5.28%, but barely changed over the cited week, and the supplied evidence does not establish a new shipping-cost hit to PDD’s margins.</p>
+<p>I would keep the conditional SELL. After checking a current PDD quote and actual portfolio exposures, sell only the amount above 0.5× the standard allocation; treat that as a ceiling, not a target to buy toward. Set a lower ceiling now if existing exposures warrant it. If PDD later closes below $75.38 and that reference remains relevant, reduce the ceiling to 0.25×—but a closing trigger cannot guarantee a sale near that price, particularly after a gap. If there is no holding or it is already below the applicable ceiling, make no sale and open no short. Reassess the retained exposure when official operating results arrive and if price strength above the cited $80.94 and $83.20 levels proves sustained.
+Neutral Analyst: Aggressive, I agree that an oversized PDD position need not wait for a break below $75.38 before being trimmed. FY2025 gross-margin compression and declines in operating income and cash flow justify acting on excess exposure. But selling now is risk control, not a reliably “high-reward” trade: no supplied 2026 results establish that deterioration continued, and improving RSI and MACD momentum leave room for a rebound. With ADX at 14.91, I would not turn a measured trim into a confident bearish bet.</p>
+<p>Conservative, you are right that PDD’s cash balance and low trailing P/E do not prove recovery, and that 0.5× may be too much in a portfolio already concentrated in China or internet retail. But uncertainty alone does not justify making 0.25× the default. The cited 10-year yield was elevated but barely changed that week, and possible shipping pressure has not been established as a new hit to PDD. Those risks belong in the position-size decision, not in an assumed worst-case forecast.</p>
+<p>My call remains a conditional SELL. Check a current PDD quote and the portfolio’s actual exposures, then sell only holdings above 0.5× the standard allocation; use a lower ceiling now if concentration or the portfolio’s risk budget warrants it. That ceiling is not a target to buy toward. If a relevant later close falls below $75.38, lower the ceiling to 0.25× and plan execution at the price then available—not at a presumed stop price. If there is no holding, or it is already below the applicable ceiling, make no sale or short.</p>
+<p>For the position retained, seek official evidence that PDD’s margins and cash generation are stabilizing. Sustained strength above the cited $80.94 and $83.20 levels would merit reassessment, but would not by itself prove an operating recovery.
+Neutral Analyst: Aggressive, I agree that PDD holders need not wait for another breakdown to trim an oversized position. FY2025 gross margin fell from about 60.9% to 56.3%, and operating income and cash flow declined. But freeing risk capacity is not automatically a high-reward trade: the supplied statements do not show whether those trends persisted into 2026, while improving RSI and MACD momentum leave room for a rebound. That makes the case for a measured sale, not a more forceful bearish position.</p>
+<p>Conservative, you are right that PDD’s cash balance and 8.80 trailing P/E are neither proof of recovery nor a price floor. Still, making 0.25× the default would assume concentration we have not seen. The 10-year yield was elevated but nearly unchanged that week, and shipping pressure is a risk to investigate, not a confirmed new hit to PDD. Actual overlap with other China, retail, and single-stock holdings should determine whether the ceiling needs to be lower.</p>
+<p>My recommendation remains a conditional SELL: verify the current PDD quote and portfolio exposures, then trim only holdings above 0.5× the portfolio’s standard allocation. Treat that as a ceiling, not a target to maintain or buy toward; use a lower ceiling now if the actual risk budget requires it. If PDD later closes below $75.38 and that reference is still relevant, reduce the ceiling to 0.25×, recognizing that a closing trigger cannot guarantee an execution price. With no holding, or one already below the applicable ceiling, make no sale and open no short.</p>
+<p>For any PDD position retained, I would look for official evidence of stabilizing margins and cash generation. Sustained price strength above the cited $80.94 and $83.20 levels would warrant reassessment, but would not substitute for that operating evidence.
+Neutral Analyst: Aggressive, I agree with trimming an oversized PDD holding before another breakdown. But calling that “high reward” assumes the freed capital will be used well. Moving it into another correlated China or internet-retail position may not reduce portfolio risk much. PDD’s FY2025 margin and cash-flow declines justify a smaller position; they do not establish that the declines continued into 2026, because the supplied data lack dated 2026 quarterly results.</p>
+<p>Conservative, you are right that PDD’s cash balance and 8.80 trailing P/E are not a share-price floor. Still, a 0.25× cap for everyone would assume concentration we have not seen. Improving RSI and MACD momentum, alongside weak daily trend strength, leave room for a rebound even while the broader trend remains down. Elevated yields and possible shipping costs warrant scrutiny, but the cited yield barely changed that week, and no new PDD-specific cost hit is verified.</p>
+<p>My recommendation is a conditional SELL: check a current PDD quote and the portfolio’s actual exposures, then trim only holdings above a 0.5× standard-allocation ceiling. Set a lower ceiling now if concentration or the portfolio’s loss budget requires it; do not treat 0.5× as a target to maintain. If PDD later closes below $75.38 and that reference is still relevant, reduce the ceiling to 0.25× at the price then available. That closing trigger is not a protective stop. With no holding, or one already below the applicable ceiling, make no sale and open no short. Reassess retained exposure against official margin and cash-flow results, not social sentiment or stale technical levels alone.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: For PDD, trim only exposure above 0.5× the portfolio’s standard allocation after checking current prices, liquidity and actual portfolio exposures; use limit orders without waiting for a rebound. Treat that cap as a ceiling, not a target: lower it if concentration or the loss budget warrants, do not initiate or add, and make no sale if PDD is already within the applicable ceiling; do not open a short. If PDD closes below $75.38 and that reference remains relevant, reduce the ceiling to 0.25×, recognizing that the closing trigger cannot guarantee an execution price. Apply this stance over 1–3 months, reviewing sooner at the next official PDD results release or an earlier risk trigger.</p>
+<p><strong>Investment Thesis</strong>: The operating evidence favors reducing PDD exposure rather than maintaining a full allocation. FY2025 revenue increased 9.7%, but cost of revenue rose 22.7%; gross margin fell from approximately 60.9% to 56.3%, operating income declined 14.1%, and operating cash flow declined 12.3%. Approximately CNY 38 billion of incremental revenue generated only about CNY 3 billion of additional gross profit. These are observed annual deteriorations, whereas a recovery is unverified. However, the missing 2026 quarterly statements also prevent a claim that deterioration has continued into 2026.</p>
+<p>The strongest counterargument limits the reduction rather than reversing it. PDD remained profitable, with a 21.6% FY2025 operating margin, CNY 106.94 billion of operating cash flow, CNY 108.90 billion of year-end cash, and a reported 8.80× trailing P/E. Those figures support retaining appropriately sized exposure, not a mandatory exit or a short. The 6.35× forward P/E relies on USD forward EPS of 12.32 versus trailing EPS of 8.89—approximately 39% growth—which supplied quarterly results cannot verify. Neither liquidity nor a low multiple establishes a share-price floor. Underweight therefore captures the analysts’ conditional sale of excess exposure; Sell would incorrectly imply a wholesale exit, while Hold would give insufficient weight to the documented operating deterioration.</p>
+<p>Technical evidence supports caution but not an aggressive bearish trade. The verified October 8, 2026 close of USD 78.26 was below the USD 80.94 daily SuperTrend and USD 83.20 50-day SMA, with weekly and monthly SuperTrends also down. Nevertheless, RSI improved to 45.18 and the MACD histogram to +0.33, while ADX was only 14.91. Improving momentum and weak daily trend strength leave rebound risk. The aggressive analyst’s case for trimming before another breakdown is persuasive; the conservative analyst’s concentration override and the neutral analyst’s warning that a trim is risk control, not guaranteed outperformance, determine sizing. Actual China, internet-retail and single-stock exposures may justify a lower ceiling now, but unknown concentration does not justify imposing 0.25× on every portfolio. Redeploying proceeds into correlated exposures could also undermine the intended portfolio-risk reduction.</p>
+<p>Price-target method: the reports provide valuation snapshots, but no supported fair-value objective or independently justified target multiple. I therefore use the next supported method, a technical retest of PDD’s observed October 2 intraday low of USD 74.72. The calculation is USD 78.26 minus the USD 3.54 distance to that low = USD 74.72; implied return is (74.72 / 78.26 - 1) × 100, approximately -4.5%. This is a manager-selected tactical objective for the 1–3-month review window, not proven support, a fundamental valuation, or a downside floor. It is distinct from the USD 75.38 closing allocation trigger. All supplied prices and technical references require revalidation before execution.</p>
+<p>What changes the decision: exit any residual PDD position if the next official results show further comparable-period gross-margin compression together with continued declines in operating income and operating cash flow. Consider additions only after official comparable-period results demonstrate gross-margin stabilization, better spending discipline and stable or improving operating cash flow; compare like periods rather than a quarterly margin with the FY2025 annual margin. If confirmed, consider restoring exposure first toward 0.75× standard allocation, subject to the actual risk budget, and reassess before returning to full size. Sustained recovery above refreshed USD 80.94 and USD 83.20 trend references can support timing but cannot replace operating evidence. Missing 2026 quarterly statements, an unspecified next-results date and uncertain technical follow-through limit confidence; possible shipping, competition and policy pressures are monitoring risks, not established new PDD-specific shocks.</p>
+<p><strong>Current Price</strong>: 78.26</p>
+<p><strong>Price Target</strong>: 74.72</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1–3 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

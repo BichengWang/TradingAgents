@@ -1,0 +1,5824 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/CARR/20261008_gpt-6-astra_20261008_210042/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: CARR - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-carr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: CARR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MCD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../STRL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MCD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../PDD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../STRL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carr-technical-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CARR technical assessment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carr-sentiment-2026-10-01-to-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CARR sentiment | 2026-10-01 to 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignment-and-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignment and divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-catalysts-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Catalysts and risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carr-trading-and-macro-report-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CARR trading and macro report — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-for-carr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed for CARR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#world-and-market-backdrop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        World and market backdrop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carr-fundamental-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CARR — fundamental report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-and-valuation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business and valuation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#financial-history-and-latest-reported-quarter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Financial history and latest reported quarter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance-sheet-and-cash-flow-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balance sheet and cash-flow capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-activity-and-data-quality-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insider activity and data-quality checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-carr">Trading Analysis Report: CARR<a class="headerlink" href="#trading-analysis-report-carr" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:00:42</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $55.83
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="carr-technical-assessment">CARR technical assessment<a class="headerlink" href="#carr-technical-assessment" title="Permanent link">&para;</a></h4>
+<p><strong>CARR remains in a downtrend, but its short-term momentum is improving.</strong> The close is below the verified 50-day simple moving average (SMA) of <strong>$58.72</strong>, and that average has been falling. The selected SuperTrend indicator also reports <strong>DOWN</strong> on all three timeframes: its daily reversal line is <strong>$59.29</strong>, weekly line <strong>$68.04</strong>, and monthly line <strong>$75.98</strong>. The higher-timeframe readings carry more weight, so a brief daily rally would not, by itself, establish a broader trend reversal.</p>
+<p>The recent closes show why a rebound is plausible but still unconfirmed. CARR closed at <strong>$53.88 on September 18</strong>, <strong>$56.37 on September 25</strong>, and <strong>$55.83 today</strong>. Its MACD histogram is now <strong>+0.32</strong>, indicating that the MACD line (<strong>−0.91</strong>) is above its signal (<strong>−1.23</strong>). Both lines remain below zero, however: this is improving momentum <em>within</em> a weak trend, not clear evidence of a new uptrend. RSI is <strong>45.76</strong>, below the neutral 50 area but no longer at the sub-30 reading recorded on September 18.</p>
+<p><strong>Participation warrants caution.</strong> OBV’s direction deteriorated over the September–October lookback despite some short-lived improvement, so the price stabilization has not yet come with persuasive volume-based confirmation. The September 18 decline occurred on <strong>21,417,100 shares</strong> in the historical OHLCV data; today’s verified volume was <strong>4,950,400 shares</strong>. Those observations support watching participation closely on any attempted breakout rather than assuming the selling pressure has ended.</p>
+<p>There is also an important counterweight to the bearish trend. The weekly TD-9 count is a <strong>completed +9 buy setup</strong>, an <em>exhaustion and reversal watch</em>, not an automatic buy signal. The monthly count is <strong>+3</strong> and the daily count <strong>−1</strong>; the weekly warning deserves priority over the daily count. Yet the z-scores—<strong>weekly −1.25, monthly −0.99, daily +0.46</strong>—are all inside the ±2 stretch threshold. Thus, CARR may be vulnerable to a bounce after its decline, but the stretch measure does <strong>not</strong> identify an exceptionally oversold entry at today’s close.</p>
+<h4 id="trading-framework">Trading framework<a class="headerlink" href="#trading-framework" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>For a cautious long:</strong> First look for a close above <strong>$58.72</strong> (50-day SMA), then above <strong>$59.29</strong> (daily SuperTrend), preferably with OBV improving. These are confirmation conditions, not guarantees; the weekly and monthly SuperTrend readings would still be down.</li>
+<li><strong>For a more speculative rebound trade:</strong> A close above the <strong>September 25 close of $56.37</strong> would be an earlier sign of progress, but it leaves the major trend tests overhead. Treat failure to sustain that move—and especially a close below the <strong>September 18 close of $53.88</strong>—as reasons to reassess rather than average down automatically.</li>
+<li><strong>For bearish positioning:</strong> A close below <strong>$53.88</strong> would strengthen the continuation case. Avoid treating the weekly TD-9 +9 as irrelevant: it raises the risk of a sharp countertrend rally even if the prevailing trend remains down.</li>
+<li><strong>For sizing:</strong> Verified ATR is <strong>$1.52</strong>. As an illustrative volatility allowance, <strong>1.5 × ATR is about $2.28 per share</strong> from an actual entry price. Set the position size from the dollar amount you are willing to lose and your chosen stop distance; a stop cannot eliminate gap or slippage risk.</li>
+</ul>
+<p>The current price, SMA, MACD, RSI, ATR and volume above come from the verified market snapshot. Multi-timeframe SuperTrend, TD-9 and z-score readings come from their respective indicator outputs and are not included in that snapshot.</p>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Selected indicator</th>
+<th>Current evidence</th>
+<th>Practical reading for CARR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trend</td>
+<td><code>supertrend</code></td>
+<td>Weekly <strong>DOWN, $68.04</strong>; monthly <strong>DOWN, $75.98</strong>; daily <strong>DOWN, $59.29</strong></td>
+<td>All tiers favor the bears; a daily close through $59.29 would be only the first timeframe reversal.</td>
+</tr>
+<tr>
+<td>Medium-term trend</td>
+<td><code>close_50_sma</code></td>
+<td><strong>$58.72</strong>, above the $55.83 close</td>
+<td>Watch for a sustained close above the average before treating a rebound as stronger.</td>
+</tr>
+<tr>
+<td>Momentum change</td>
+<td><code>macdh</code></td>
+<td><strong>+0.32</strong>; MACD line remains <strong>−0.91</strong></td>
+<td>Selling momentum has eased, but momentum has not cleared the zero line.</td>
+</tr>
+<tr>
+<td>Momentum condition</td>
+<td><code>rsi</code></td>
+<td><strong>45.76</strong></td>
+<td>Recovery from oversold conditions, without a reading above 50.</td>
+</tr>
+<tr>
+<td>Volatility and sizing</td>
+<td><code>atr</code></td>
+<td><strong>$1.52</strong></td>
+<td>Allow for normal price movement when placing stops and sizing positions.</td>
+</tr>
+<tr>
+<td>Volume confirmation</td>
+<td><code>obv</code></td>
+<td>Direction deteriorated over the lookback</td>
+<td>Seek a sustained improvement alongside any price breakout.</td>
+</tr>
+<tr>
+<td>Exhaustion</td>
+<td><code>td_9</code></td>
+<td>Weekly <strong>+9 complete</strong>; monthly <strong>+3</strong>; daily <strong>−1</strong></td>
+<td>Weekly reversal watch argues against complacently chasing the decline.</td>
+</tr>
+<tr>
+<td>Statistical stretch</td>
+<td><code>z_score</code></td>
+<td>Weekly <strong>−1.25</strong>; monthly <strong>−0.99</strong>; daily <strong>+0.46</strong></td>
+<td>No timeframe meets the ±2 stretch threshold; exhaustion is not the same as a deeply oversold z-score.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mixed</strong> (Score: 4.9/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="carr-sentiment-2026-10-01-to-2026-10-08">CARR sentiment | 2026-10-01 to 2026-10-08<a class="headerlink" href="#carr-sentiment-2026-10-01-to-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-evidence">1. Source-by-source evidence<a class="headerlink" href="#1-source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>Yahoo Finance news (8 headlines):</strong> The most explicitly directional item is Bernstein lowering its CARR price target from $78 to $64, a reduction of about 18%; the headline does not supply the analyst's reasoning or a rating change. Carrier's board declared a quarterly cash dividend, a factual capital-return announcement, but the headline does not say the dividend increased or give its size. Two headlines concern Q3 2026 earnings—an earnings advisory and a preview—establishing an upcoming catalyst without reporting results or indicating whether expectations are favorable. Three industry-outlook headlines profile CARR in air conditioning, smart HVAC controls, and fan coil units for 2026–2035; being profiled is not evidence of new orders, market-share gains, or a CARR-specific growth forecast. The remaining headline is about Comfort Systems' EPS and is only indirect peer context. Taken together, company-specific news is cautious to balanced rather than clearly bullish: the target cut is the clearest negative opinion, offset partly by the dividend announcement, while much of the other coverage is informational.</p>
+<p><strong>StockTwits (3 most-recent messages):</strong> User labels show 1 Bullish, 0 Bearish, and 2 unlabeled. Thus the bullish tag represents 1 of all 3 posts (33%), not a meaningful 100% bullish consensus despite being the sole labeled stance. The bullish author claims CARR moved back above its daily 10- and 21-period moving averages and mentions earnings toward month-end; neither the chart position nor the earnings date is independently verified by this feed. An unlabeled poster says they sold CARR around $55.92 at approximately breakeven/a small loss to adjust other positions: this is one person's trade, not a current quote or a broad bearish trend. The other unlabeled post asks who might buy $GMGMF and cites that other company's claimed HVAC savings; it does not establish a CARR acquisition, savings, or catalyst. Retail tone is slightly constructive but extremely thin.</p>
+<p><strong>Reddit:</strong> Collection was disabled by configuration. There are no r/wallstreetbets, r/stocks, or r/investing posts to assess; absence of posts here must not be interpreted as neutral community sentiment.</p>
+<h4 id="2-cross-source-alignment-and-divergence">2. Cross-source alignment and divergence<a class="headerlink" href="#2-cross-source-alignment-and-divergence" title="Permanent link">&para;</a></h4>
+<p>The single bullish StockTwits label and its technical-recovery claim contrast with Bernstein's lowered CARR target. This is a possible institutional-versus-retail divergence, <strong>not</strong> evidence of a broad retail conviction: only three StockTwits posts were supplied, and just one is labeled. Both news and retail mention forthcoming earnings, but neither provides results or a substantiated earnings forecast. There is no available Reddit read to confirm either view. The conflicting directional signals support a <strong>Mixed</strong> assessment close to the midpoint rather than a decisive bullish or bearish conclusion.</p>
+<h4 id="3-dominant-themes">3. Dominant themes<a class="headerlink" href="#3-dominant-themes" title="Permanent link">&para;</a></h4>
+<p>The near-term narrative is positioning ahead of CARR's Q3 earnings: news announces/previews the report, while one trader cites earnings alongside a claimed chart improvement. A secondary narrative is CARR's exposure to longer-term air-conditioning and smart-HVAC markets, suggested by industry-profile headlines rather than demonstrated company performance. The dividend offers a counterweight to the analyst's lower valuation target, with no evidence here of a dividend raise.</p>
+<h4 id="4-catalysts-and-risks">4. Catalysts and risks<a class="headerlink" href="#4-catalysts-and-risks" title="Permanent link">&para;</a></h4>
+<p><strong>Catalysts to monitor:</strong> The forthcoming Q3 earnings release and any disclosed outlook; the declared quarterly dividend; and whether future reporting substantiates opportunities in smart HVAC controls and other profiled markets. The provided headlines do not specify a confirmed earnings date, dividend size, or CARR-specific market projections. <strong>Risks/uncertainties:</strong> Bernstein's roughly 18% target cut may temper expectations, although its rationale is unavailable. A single unverified technical claim, a speculative mention of another HVAC-related company, and only three StockTwits observations are weak foundations for a trade. Reddit was not collected. These inputs describe past/current sentiment, not a price prediction.</p>
+<table>
+<thead>
+<tr>
+<th>Sentiment signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Analyst target revision</td>
+<td>Bearish</td>
+<td>Yahoo Finance / MT Newswires</td>
+<td>Bernstein cut its CARR target from $78 to $64 (~18%); rationale not provided.</td>
+</tr>
+<tr>
+<td>Quarterly dividend declaration</td>
+<td>Mildly bullish / stabilizing</td>
+<td>Yahoo Finance / PR Newswire</td>
+<td>CARR board declared a quarterly cash dividend; no increase or amount established.</td>
+</tr>
+<tr>
+<td>Q3 earnings attention</td>
+<td>Catalyst, direction uncertain</td>
+<td>Yahoo Finance / PR Newswire and Barchart; StockTwits</td>
+<td>Earnings advisory and preview; one trader expects earnings toward month-end, an unverified timing claim.</td>
+</tr>
+<tr>
+<td>HVAC industry visibility</td>
+<td>Contextual, not a company-specific bullish result</td>
+<td>Yahoo Finance / GlobeNewswire</td>
+<td>CARR appears in three 2026–2035 market-outlook profile headlines; no sales or share gains stated.</td>
+</tr>
+<tr>
+<td>Retail technical optimism</td>
+<td>Mildly bullish, very weak sample</td>
+<td>StockTwits</td>
+<td>1 Bullish of 3 posts claims CARR is back above daily 10/21 moving averages; 0 Bearish and 2 unlabeled.</td>
+</tr>
+<tr>
+<td>Retail position exit</td>
+<td>Ambiguous</td>
+<td>StockTwits</td>
+<td>One unlabeled user reports selling around $55.92 near breakeven/a small loss; not a live CARR quote.</td>
+</tr>
+<tr>
+<td>Reddit corroboration</td>
+<td>Unavailable</td>
+<td>Reddit</td>
+<td>Feed disabled; no posts or engagement data supplied.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="carr-trading-and-macro-report-october-8-2026">CARR trading and macro report — October 8, 2026<a class="headerlink" href="#carr-trading-and-macro-report-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Near-term view: cautious ahead of earnings.</strong> The past week brought a Q3 earnings advisory, a dividend declaration and lower analyst price targets for CARR. At the same time, reports of high mortgage rates and rising Treasury yields point to a difficult financing backdrop for building-related demand. Those are reasons to watch the next earnings report closely—not proof that CARR’s orders or margins have weakened.</p>
+<h4 id="what-changed-for-carr">What changed for CARR<a class="headerlink" href="#what-changed-for-carr" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Carrier issued a <a href="https://finance.yahoo.com/markets/stocks/articles/carrier-third-quarter-2026-earnings-201500883.html">Q3 2026 earnings advisory</a>. The report is the main upcoming company-specific catalyst. Watch management’s outlook for residential HVAC demand, commercial orders, pricing and margins; the available news feed does not provide results or a verified earnings date.</li>
+<li>Carrier’s board <a href="https://finance.yahoo.com/markets/stocks/articles/carrier-board-directors-declares-quarterly-201500191.html">declared a quarterly cash dividend</a>. The feed does not state the amount, so no yield comparison is warranted.</li>
+<li>Analysts reduced targets: <a href="https://finance.yahoo.com/markets/stocks/articles/bernstein-adjusts-price-target-carrier-143309230.html">Bernstein to $64 from $78</a>; <a href="https://finance.yahoo.com/markets/stocks/articles/deutsche-bank-adjusts-price-target-114342441.html">Deutsche Bank to $64 from $71, retaining Hold</a>; and <a href="https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-adjusts-price-target-102214185.html">Goldman Sachs to $74 from $85, retaining Buy</a>. The cuts warrant attention, but the headlines alone do not establish their reasons. With no verified current CARR share price, these targets cannot be translated into reliable upside or downside.</li>
+</ul>
+<h4 id="world-and-market-backdrop">World and market backdrop<a class="headerlink" href="#world-and-market-backdrop" title="Permanent link">&para;</a></h4>
+<p>A <a href="https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-rates-are-stuck-at-the-highest-level-in-nearly-three-years-mortgage-and-refinance-interest-rates-today-160850334.html">mortgage-rate report</a> describes rates as the highest in nearly three years, while a <a href="https://finance.yahoo.com/markets/article/10-year-treasury-yield-hits-highest-level-since-2002-as-stocks-retreat-alphacheck-134621987.html">market report</a> describes a sharp rise in the 10-year Treasury yield. If sustained, expensive financing could weigh on construction and equipment purchases relevant to CARR. Replacement demand could respond differently from new construction, so segment commentary matters more than a broad housing headline.</p>
+<p>Energy and geopolitics remain volatile. A <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">Yahoo Finance report</a> says oil fell to <strong>$103</strong> following comments about U.S.–Iran policy. That figure should not be treated as a verified WTI quote: the retrieved headline does not identify the contract. Oil volatility is relevant to inflation expectations and, indirectly, the rate outlook.</p>
+<p>Prediction markets reinforce the need to plan for <strong>higher-for-longer rates</strong>, while offering odds rather than forecasts. Polymarket prices an <strong>84%</strong> chance of no change at the October Fed meeting, <strong>16%</strong> for a 25-basis-point hike, <strong>96%</strong> for no Fed cuts during 2026, and <strong>80%</strong> for another hike during 2026. It prices a U.S. recession by year-end at <strong>6%</strong>. The combination suggests traders should not rely on imminent rate relief to support CARR, though these contracts have different resolution rules and can move quickly.</p>
+<p><strong>Trading implication:</strong> Avoid treating the lower analyst targets as automatic entry prices. A stronger case for CARR would require resilient orders and guidance at Q3 earnings, preferably alongside easing yields. Weak orders or margins while financing costs remain elevated would strengthen the cautious case. This report cannot verify that macro scenario numerically: FRED requests for CPI, core PCE, unemployment, Fed funds, Treasury yields and housing starts failed with access or rate-limit errors. No macro-series values or current CARR quote have been assumed.</p>
+<table>
+<thead>
+<tr>
+<th>CARR-relevant signal</th>
+<th>Evidence as of Oct. 8</th>
+<th>What to do with it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q3 catalyst</td>
+<td><a href="https://finance.yahoo.com/markets/stocks/articles/carrier-third-quarter-2026-earnings-201500883.html">CARR earnings advisory</a></td>
+<td>Prioritize orders, margins and forward guidance over headline EPS alone.</td>
+</tr>
+<tr>
+<td>Analyst repricing</td>
+<td>Targets lowered to <strong>$64–$74</strong> in the retrieved reports</td>
+<td>Investigate the earnings assumptions behind the cuts; do not infer upside without a current price.</td>
+</tr>
+<tr>
+<td>Financing pressure</td>
+<td><a href="https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-rates-are-stuck-at-the-highest-level-in-nearly-three-years-mortgage-and-refinance-interest-rates-today-160850334.html">High mortgage-rate</a> and <a href="https://finance.yahoo.com/markets/article/10-year-treasury-yield-hits-highest-level-since-2002-as-stocks-retreat-alphacheck-134621987.html">rising-yield</a> reports</td>
+<td>Monitor whether CARR confirms weaker construction-linked demand.</td>
+</tr>
+<tr>
+<td>Fed path</td>
+<td>Polymarket: <strong>84% October hold; 80% another 2026 hike</strong></td>
+<td>Stress-test a higher-for-longer scenario; probabilities are not policy decisions.</td>
+</tr>
+<tr>
+<td>Data confidence</td>
+<td>FRED series unavailable; company feed supplies headlines, not full filings</td>
+<td>Verify releases, macro levels and the live share price before placing a trade.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="carr-fundamental-report">CARR — fundamental report<a class="headerlink" href="#carr-fundamental-report" title="Permanent link">&para;</a></h4>
+<p><strong>Carrier Global Corporation | Industrials / Building Products &amp; Equipment | NYSE | As of October 8, 2026</strong></p>
+<p><strong>Bottom line:</strong> CARR’s 2025 cash generation recovered substantially, but its latest quarterly figures in the supplied statements show a sharp decline in operating profit and operating cash flow despite modest revenue growth. The quoted forward valuation depends on a meaningful earnings recovery. <strong>This is not a verified past-week earnings update:</strong> the latest quarterly financial statements supplied end March 31, 2026, and no October 1–8 event appears in the available extracts.</p>
+<h4 id="business-and-valuation">Business and valuation<a class="headerlink" href="#business-and-valuation" title="Permanent link">&para;</a></h4>
+<p>Carrier Global provides climate-control products and services, principally heating, ventilation and air conditioning, alongside refrigeration-related offerings. Its markets include buildings and temperature-controlled supply chains. The available tools do not provide a current segment breakdown, order backlog, management guidance, or debt-maturity schedule—important gaps for assessing its outlook.</p>
+<p>The comprehensive fundamentals feed reports a <strong>$46.37 billion market capitalization</strong>, <strong>$22.11 billion trailing revenue</strong>, <strong>$3.09 billion EBITDA</strong>, and <strong>$1.17 billion trailing net income</strong>. It quotes a <strong>40.46× trailing P/E</strong>, <strong>16.93× forward P/E</strong>, <strong>3.50× price-to-book</strong>, <strong>1.75% dividend yield</strong>, and <strong>1.29 beta</strong>. Those P/E figures use <strong>$1.38 trailing EPS</strong> and <strong>$3.30 forward EPS</strong>, respectively. The figures imply a price of approximately <strong>$55.83</strong>, <em>not a verified live quote</em>. At that implied price, CARR is below the feed’s 50-day average of $58.80 and 200-day average of $61.66.</p>
+<p>The forward EPS estimate is about <strong>139% above the feed’s trailing EPS</strong>. Consequently, the apparently lower forward P/E is not, by itself, evidence that CARR is inexpensive: it assumes substantially stronger future earnings.</p>
+<h4 id="financial-history-and-latest-reported-quarter">Financial history and latest reported quarter<a class="headerlink" href="#financial-history-and-latest-reported-quarter" title="Permanent link">&para;</a></h4>
+<p><em>USD millions except EPS; annual figures and Q1 figures below come from the supplied SEC-facts income and cash-flow extracts. “FCF proxy” is operating cash flow less capital expenditure, calculated from those extracts.</em></p>
+<table>
+<thead>
+<tr>
+<th>Period</th>
+<th style="text-align: right;">Revenue</th>
+<th style="text-align: right;">Operating income</th>
+<th style="text-align: right;">Operating margin</th>
+<th style="text-align: right;">Net income</th>
+<th style="text-align: right;">Diluted EPS</th>
+<th style="text-align: right;">Operating cash flow</th>
+<th style="text-align: right;">Capex</th>
+<th style="text-align: right;">FCF proxy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023</td>
+<td style="text-align: right;">18,951</td>
+<td style="text-align: right;">2,160</td>
+<td style="text-align: right;">11.4%</td>
+<td style="text-align: right;">1,349</td>
+<td style="text-align: right;">$1.58</td>
+<td style="text-align: right;">2,607</td>
+<td style="text-align: right;">439</td>
+<td style="text-align: right;">2,168</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align: right;">22,486</td>
+<td style="text-align: right;">2,646</td>
+<td style="text-align: right;">11.8%</td>
+<td style="text-align: right;">5,604</td>
+<td style="text-align: right;">$6.15</td>
+<td style="text-align: right;">563</td>
+<td style="text-align: right;">519</td>
+<td style="text-align: right;">44</td>
+</tr>
+<tr>
+<td>2025</td>
+<td style="text-align: right;">21,747</td>
+<td style="text-align: right;">2,172</td>
+<td style="text-align: right;">10.0%</td>
+<td style="text-align: right;">1,484</td>
+<td style="text-align: right;">$1.72</td>
+<td style="text-align: right;">2,513</td>
+<td style="text-align: right;">392</td>
+<td style="text-align: right;">2,121</td>
+</tr>
+<tr>
+<td>Q1 2025</td>
+<td style="text-align: right;">5,218</td>
+<td style="text-align: right;">629</td>
+<td style="text-align: right;">12.1%</td>
+<td style="text-align: right;">412</td>
+<td style="text-align: right;">$0.47</td>
+<td style="text-align: right;">483</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">420</td>
+</tr>
+<tr>
+<td>Q1 2026</td>
+<td style="text-align: right;">5,341</td>
+<td style="text-align: right;">259</td>
+<td style="text-align: right;">4.9%</td>
+<td style="text-align: right;">238</td>
+<td style="text-align: right;">$0.28</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">−15</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The operating trend is the immediate concern.</strong> In Q1 2026, revenue grew <strong>2.4% year over year</strong>, but operating income fell <strong>58.8%</strong> and operating margin contracted by roughly <strong>7.2 percentage points</strong>. Net income fell <strong>42.2%</strong>, while operating cash flow dropped from $483 million to $79 million. Higher capex turned the calculated quarterly FCF proxy from <strong>+$420 million to −$15 million</strong>. One quarter should not establish a full-year trend, but the divergence between sales and profit warrants an explanation before relying on a recovery forecast.</p>
+<p>For full-year 2025, revenue declined <strong>3.3%</strong> from 2024 and operating income fell <strong>17.9%</strong>. The much larger fall in net income, from $5.60 billion to $1.48 billion, should not be read as purely an operating decline: <strong>2024 net income exceeded operating income by nearly $3.0 billion</strong>. The available statements do not identify the below-operating-income items needed to normalize that comparison. Conversely, cash conversion improved markedly: calculated FCF rose from just <strong>$44 million in 2024 to $2.12 billion in 2025</strong>.</p>
+<p>The quarterly extract omits a standalone Q4 2025 column. Subtracting its reported Q1–Q3 figures from the 2025 annual totals <strong>implies</strong>, but does not independently verify, Q4 revenue of <strong>$4.84 billion</strong> and operating income of only <strong>$101 million</strong>. That makes the weak Q1 2026 margin especially important to investigate; the implied Q4 figures should be checked against the underlying filing before being used as reported quarterly results.</p>
+<h4 id="balance-sheet-and-cash-flow-capacity">Balance sheet and cash-flow capacity<a class="headerlink" href="#balance-sheet-and-cash-flow-capacity" title="Permanent link">&para;</a></h4>
+<p>At <strong>March 31, 2026</strong>, the supplied balance sheet shows <strong>$37.19 billion of assets</strong>, <strong>$23.39 billion of total liabilities</strong>, <strong>$13.80 billion of stockholders’ equity</strong>, and <strong>$1.37 billion of cash</strong>. Cash was down from <strong>$1.56 billion at December 31, 2025</strong>.</p>
+<p>Near-term liquidity tightened over that quarter: current assets rose from <strong>$8.53 billion to $9.02 billion</strong>, while current liabilities climbed from <strong>$7.11 billion to $8.59 billion</strong>. Calculated working capital therefore fell from <strong>$1.42 billion to $0.43 billion</strong>, and the calculated current ratio declined from <strong>1.20 to 1.05</strong>. The separate fundamentals feed reports a <strong>1.02 current ratio</strong> and <strong>0.92 debt-to-equity ratio</strong>; it does not give a matching balance-sheet date or debt schedule. Total liabilities should <strong>not</strong> be treated as interest-bearing debt.</p>
+<p>CARR generated <strong>$2.51 billion in operating cash flow in 2025</strong>, but also recorded <strong>$4.67 billion in financing cash outflows</strong>. The provided cash-flow rows do not break those outflows into debt repayment, dividends, repurchases, or other uses. Traders should obtain that breakdown and the maturity schedule before concluding how much of 2025’s strong cash generation remains available to shareholders.</p>
+<h4 id="insider-activity-and-data-quality-checks">Insider activity and data-quality checks<a class="headerlink" href="#insider-activity-and-data-quality-checks" title="Permanent link">&para;</a></h4>
+<p>The largest clearly classified recent insider transaction in the supplied feed was <strong>director Maximilian Viessmann’s indirect sale of 12,094,823 shares on May 20, 2026</strong>, reported at <strong>$62.01 per share</strong>, or approximately <strong>$750 million</strong>. The feed also lists his approximately <strong>$300 million indirect sale in June 2025</strong>. Such a large sale may matter for supply and ownership analysis, but the transaction alone does not establish his motive. CEO David Gitlin’s clearly identified <strong>open-market purchase</strong> was earlier—<strong>19,300 shares on November 25, 2025</strong>, at <strong>$52.62</strong>, or about <strong>$1.02 million</strong>. January 2026 executive entries are labeled <strong>zero-price stock awards</strong>, not open-market purchases. The most recent entry, dated <strong>July 1, 2026</strong>, lacks a transaction classification and should not be counted as buying or selling. <strong>No insider entry dated October 1–8 appears in this extract.</strong></p>
+<p>There is a material <strong>source-reconciliation issue</strong>. Rolling the supplied 2025 annual SEC-facts figures forward through Q1 2026 produces approximately <strong>$21.87 billion revenue</strong> and <strong>$1.69 billion FCF proxy</strong> for the twelve months ended March 2026. The untimestamped fundamentals feed instead reports <strong>$22.11 billion trailing revenue</strong> and <strong>$0.86 billion free cash flow</strong>. Differing dates or definitions may explain the gaps, but the provided tools do not reconcile them. The SEC-facts quarterly extract also stops at <strong>Q1 2026</strong>; that is a limitation of this report, <strong>not evidence that CARR has not filed a later report</strong>.</p>
+<p><strong>Actionable assessment:</strong> Treat the <strong>40.46× trailing P/E versus 16.93× forward P/E</strong> gap as a recovery claim requiring verification. Before increasing exposure to CARR, obtain the missing later-quarter filing and confirm whether operating margin is moving back toward <strong>2025’s roughly 10%</strong>, whether quarterly operating cash flow again exceeds capex, and why current liabilities rose so sharply in Q1. Continued margins near <strong>Q1’s 4.9%</strong> or repeated negative quarterly FCF proxies would weaken the forward-earnings case; demonstrable margin and cash-flow recovery would strengthen it.</p>
+<table>
+<thead>
+<tr>
+<th>Key point for CARR</th>
+<th>Evidence</th>
+<th>Trading implication / next check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sales held up, profitability did not</td>
+<td>Q1 2026 revenue <strong>+2.4% YoY</strong>; operating income <strong>−58.8% YoY</strong></td>
+<td>Check later-quarter margins before relying on forward EPS.</td>
+</tr>
+<tr>
+<td>Cash generation has been volatile</td>
+<td>FCF proxy: <strong>$44m in 2024</strong>, <strong>$2.12bn in 2025</strong>, <strong>−$15m in Q1 2026</strong></td>
+<td>Test whether Q1 cash weakness was temporary using comparable quarters.</td>
+</tr>
+<tr>
+<td>Liquidity narrowed</td>
+<td>Calculated current ratio <strong>1.20 → 1.05</strong> from December to March</td>
+<td>Review working-capital drivers and debt maturities.</td>
+</tr>
+<tr>
+<td>Forward valuation requires recovery</td>
+<td><strong>40.46× trailing P/E</strong> versus <strong>16.93× forward P/E</strong>; forward EPS <strong>$3.30</strong> versus trailing <strong>$1.38</strong></td>
+<td>Do not treat forward P/E as a realized earnings multiple.</td>
+</tr>
+<tr>
+<td>Recent classified insider sale was large</td>
+<td>Viessmann’s <strong>~$750m indirect sale</strong>, May 20, 2026</td>
+<td>Monitor subsequent ownership disclosures; do not infer motive from the sale alone.</td>
+</tr>
+<tr>
+<td>Current information is incomplete</td>
+<td>Supplied statements end <strong>Q1 2026</strong>; vendor and SEC-derived FCF differ</td>
+<td>Verify later filings and reconcile definitions before acting on precise TTM ratios.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>My opening bull case for CARR:</strong> the market is pricing a difficult earnings recovery, but it may be underweighting how much profitability could improve if Carrier stabilizes margins on a large revenue base. This is a <strong>conditional investment case</strong>, not a claim that the turnaround has already happened.</p>
+<p>Bear, your strongest point is Q1 2026: revenue rose <strong>2.4% year over year</strong>, yet operating income fell <strong>58.8%</strong>, operating margin dropped to <strong>4.9%</strong>, and the quarter’s operating-cash-flow-less-capex proxy was <strong>negative $15 million</strong>. I would not explain that away without later filings. But it is also too early to treat one weak quarter as CARR’s permanent earning power. In 2025, CARR generated <strong>$2.51 billion of operating cash flow</strong> and roughly <strong>$2.12 billion after capex</strong>, with a <strong>10.0% operating margin</strong>. On roughly $22 billion of annual revenue, each <em>sustained</em> percentage point of operating-margin improvement would represent about <strong>$220 million of operating profit</strong>, before tax and other effects. That illustrates the recovery opportunity; it is not a forecast.</p>
+<p>There is a business reason to investigate that opportunity. CARR serves building climate control and temperature-controlled supply chains, giving it exposure beyond new-home construction. Replacement needs and demand for more efficient HVAC and smart controls <em>could</em> support sales even if high financing costs restrain new projects. Carrier’s established brand and breadth of offerings help it compete for that demand. I cannot yet put a credible revenue projection or market-share gain on those opportunities—the supplied research has neither current orders nor segment guidance—but <strong>Q1 sales growth despite the margin shock</strong> is a better starting point than simultaneous sales and profit deterioration.</p>
+<p>The bear also has a fair valuation objection: <strong>16.93× forward earnings</strong> looks much less demanding than <strong>40.46× trailing earnings</strong> only because the vendor’s <strong>$3.30 forward EPS</strong> is about <strong>139% above</strong> its $1.38 trailing figure. Recovery must be earned. Still, after cutting their targets, the cited analysts’ <strong>$64–$74</strong> targets sit approximately <strong>15%–33% above</strong> the verified <strong>$55.83 October 8 close</strong>. Those targets are opinions, not proof of value; Goldman Sachs retained a Buy, while Deutsche Bank retained a Hold. The declared dividend is another modest positive, though its announcement alone does not establish a raise.</p>
+<p>So I would not fight the chart blindly. CARR remains below its <strong>$58.72 50-day average</strong>, its daily, weekly and monthly SuperTrends are down, and volume confirmation is lacking. Yet the positive <strong>+0.32 MACD histogram</strong> and completed weekly TD-9 buy setup suggest the decline may be losing force—not that it has reversed. <strong>My bull trigger</strong> is better orders, margin and cash-flow evidence at the forthcoming Q3 report, ideally accompanied by a close above <strong>$58.72–$59.29</strong> on improving participation. A close below <strong>$53.88</strong>, or another quarter near a 4.9% margin with weak cash generation, would force me to reassess.</p>
+<p>That is where I differ from the bear: the risks are real and visible, but CARR has demonstrated substantial annual cash-generating capacity, revenue has not yet broken in the latest supplied quarter, and even partial margin restoration offers meaningful operating leverage. The next earnings report—not an assumed rate cut or an analyst target—is the test of whether that upside deserves capital.
+Bull Analyst: Bear, you’re right that CARR has <strong>not earned</strong> its $3.30 forward EPS estimate. Where we differ is whether investors must wait for a complete recovery before owning any shares. At the verified <strong>$55.83 October 8 close</strong>, I see a case for a <em>small, speculative position</em>—not a full-sized bet that Q1’s problems have disappeared.</p>
+<p>The Q1 margin collapse is serious: revenue rose <strong>2.4%</strong>, yet operating margin fell to <strong>4.9%</strong>. But the sales growth matters. CARR still has a roughly <strong>$22 billion revenue base</strong> across building climate control and refrigeration, rather than a business whose demand has demonstrably collapsed. Replacement HVAC and efficiency-oriented controls offer potential demand beyond new construction, although the supplied research does not establish new orders or market-share gains. If CARR can restore even <strong>one sustained margin point</strong> on that revenue base, the arithmetic is roughly <strong>$220 million more annual operating profit before tax</strong>. You’re right that the leverage works in reverse; that is precisely why the next margin readings matter so much.</p>
+<p>I also wouldn’t call the <strong>$2.12 billion 2025 operating-cash-flow-less-capex proxy</strong> repeatable yet. The weak Q1 cash result and tighter working capital require an explanation. But 2025 demonstrates that CARR <em>has</em> converted this business into substantial cash; Q1’s <strong>negative $15 million</strong> proxy does not, by itself, prove that capacity is gone. The later filings missing from our supplied extracts are essential to settling that debate.</p>
+<p>The chart and valuation argue for discipline, not abandonment. <strong>16.93× forward earnings is an estimate-dependent multiple</strong>, and a weekly TD-9 buy setup is no substitute for improving profits. Still, even after the cited target cuts, the <strong>$64–$74</strong> analyst targets remain above the October 8 close; they are opinions, not a floor. I would start small, verify the missing later-quarter filings, and add only if orders, margins and cash flow improve—preferably with CARR reclaiming <strong>$58.72–$59.29</strong> on stronger participation. A close below <strong>$53.88</strong>, or repeated margins near <strong>4.9%</strong> with weak cash generation, would make me reconsider.</p>
+<p>So I accept your burden of proof, Bear. I just think <strong>a limited position ahead of that proof</strong> is defensible because CARR retains a large revenue base and demonstrated cash-generating capacity. The bull case is margin restoration—not an assumed rate cut or a guaranteed rebound.
+Bull Analyst: Bear, I agree with your central warning: <strong>a one-point margin gain would not repair CARR’s $370 million year-over-year Q1 operating-profit decline</strong>. My bull case is not that one point solves it, or that the $3.30 forward EPS estimate is already credible. It is that the latest supplied quarter may be a poor measure of what this business can earn—and that a <em>small</em> position can be justified before that question is settled.</p>
+<p>The scale matters in both directions. Q1 2026 sales still grew <strong>2.4%</strong> to <strong>$5.34 billion</strong>, while the operating margin fell to <strong>4.9%</strong>. Applying CARR’s <em>2025 full-year</em> margin of <strong>10.0%</strong> to that quarter’s sales would imply roughly <strong>$275 million more operating profit</strong> than Q1 actually produced. That would not fully reverse the $370 million decline, and it is <strong>illustrative arithmetic, not a Q1 forecast</strong>. But it shows why diagnosing the margin collapse—not waiting for a major revenue rebound—is the pivotal investment question. I cannot yet prove the compression is temporary; neither can we conclude from the supplied Q1 figures that 4.9% is permanent.</p>
+<p>The cash figures also deserve a more nuanced reading than “2025 was good, Q1 was bad.” On the <strong>same operating-cash-flow-less-capex basis</strong>, rolling the supplied 2025 annual result through Q1 2026 gives approximately <strong>$1.69 billion for the twelve months ended March 2026</strong>, even after replacing Q1 2025’s <strong>+$420 million</strong> with Q1 2026’s <strong>−$15 million</strong>. That is meaningful historical cash generation, not proof it will continue. Your concerns about 2024’s <strong>$44 million</strong>, shrinking working capital, and the unreconciled vendor free-cash-flow figure remain valid reasons to demand the later filings.</p>
+<p>I also accept that replacement HVAC, refrigeration and smart controls are <strong>opportunities, not documented order growth or a quantified moat</strong>. Their relevance is that CARR’s roughly <strong>$22 billion revenue base</strong> is not solely a bet on new-home construction or an imminent rate cut. High financing costs can still hurt it. The upcoming Q3 outlook needs to show whether demand and pricing are holding up across those activities.</p>
+<p>So my disagreement is with your <em>timing</em>, not your tests. Waiting for clean margins and cash flow reduces uncertainty, but it can also mean buying after the market has repriced an improvement. At the verified <strong>$55.83 October 8 close</strong>, I favor <strong>only a small, speculative CARR position</strong>, sized for the possibility of an earnings gap—not a full allocation based on <strong>16.93× estimated forward earnings</strong> or the cut <strong>$64–$74</strong> analyst targets. I would add only after checking the missing filings and seeing better orders, margins and cash conversion, ideally alongside a move above <strong>$58.72–$59.29</strong> with stronger participation. Repeated margins near <strong>4.9%</strong> and weak cash generation would defeat my thesis; <strong>$53.88</strong> is a reassessment level, not a guaranteed loss limit.</p>
+<p>You are right that the recovery has not been demonstrated. I think CARR’s continuing sales base and substantial, if uneven, historical cash generation make it worth taking <strong>limited risk on that recovery before it is fully demonstrated</strong>.
+Bull Analyst: Bear, your Q4 point changes how I would describe the risk. The supplied figures <em>imply</em> an operating margin of about <strong>2.1% in Q4 2025</strong>, followed by a reported <strong>4.9% in Q1 2026</strong>. The Q4 figure needs filing-level verification, and I would no longer frame Q1 as an isolated bad quarter. But two weak margin readings still do not tell us whether CARR’s earning power has permanently reset—or why margins fell.</p>
+<p>That distinction matters because <strong>demand has not shown the same collapse as profit</strong> in the latest supplied quarter: Q1 revenue rose <strong>2.4%</strong>. Holding those sales constant, a return to CARR’s <strong>10.0% full-year 2025 operating margin</strong> would have added about <strong>$275 million</strong> of quarterly operating profit, recovering roughly three-quarters of the <strong>$370 million</strong> year-over-year decline. That is scenario arithmetic, not a forecast. It shows why answers about costs, mix and pricing could move the investment case substantially even without a construction boom or a rate cut. CARR’s established climate-control and refrigeration businesses also give it opportunities in replacement and efficiency-related demand, though I agree we lack orders or segment results proving those opportunities are lifting margins today.</p>
+<p>I accept your cash-flow objection, too. The <strong>$1.69 billion</strong> rolling operating-cash-flow-less-capex proxy through March is historical evidence of capacity, not dependable forward cash flow—especially given Q1’s negative proxy, tighter working capital and the unreconciled vendor figure. I would not value CARR as though the quoted <strong>$3.30 forward EPS</strong> or 2025 cash generation were assured. Nor are the cut analyst targets a floor.</p>
+<p>Where I still disagree is the <em>position decision</em>. You would pay more for evidence; I would risk a <strong>small initial allocation</strong> to own the possibility that evidence arrives and the price adjusts before a new buyer can act. That is a speculative choice, not a valuation cushion: <strong>$53.88 is a reassessment level, not protection against an earnings gap</strong>. I would not add on a technical bounce alone.</p>
+<p>My test is concrete: check the missing filings and forthcoming Q3 report for improving orders, margins moving convincingly away from <strong>4.9%</strong>, operating cash flow again exceeding capex, and an explanation for working-capital pressure. A move above <strong>$58.72–$59.29</strong> with stronger participation would help confirm the market’s response, but cannot substitute for those results. If weak margins and cash conversion persist, I would exit the recovery thesis rather than average down.</p>
+<p>So your case is strong against a <em>full-sized</em> CARR purchase at the verified <strong>$55.83 October 8 close</strong>. It does not, in my view, rule out a <strong>small, explicitly speculative CARR investment</strong>: sales resilience and demonstrated—if uneven—cash generation leave meaningful upside if management can show the margin deterioration is reversible.
+Bull Analyst: Bear, your <strong>$2.30 EPS example is a fair challenge</strong>. At the verified October 8 close of <strong>$55.83</strong>, CARR would cost about <strong>24×</strong> those hypothetical earnings. I would not call that cheap, and I would not buy CARR on the assumption that the vendor’s <strong>$3.30 forward EPS</strong> is assured.</p>
+<p>The reason I still favor a <strong>small speculative position</strong> is that the latest supplied results show a profit problem without showing a comparable collapse in demand. Q1 revenue grew <strong>2.4%</strong> while operating profit fell <strong>$370 million</strong>. That divergence could reflect a lasting cost or pricing problem; it could also leave substantial room for improvement if CARR addresses it. On roughly <strong>$22 billion</strong> in annual sales, a <em>sustained</em> three-percentage-point margin recovery would add about <strong>$660 million in annual operating profit before tax</strong>. That is scenario arithmetic—not an EPS forecast—and it is why I want exposure before the explanation is fully priced in.</p>
+<p>You’re also right to challenge my earlier emphasis on one bad quarter. The implied <strong>2.1% Q4 2025 margin</strong> needs filing-level verification and, if confirmed, would make this a longer-running problem. It does not establish that those margins are CARR’s permanent earning power. Likewise, the roughly <strong>$1.69 billion rolling cash-flow-less-capex proxy</strong> shows historical capacity, not dependable future cash flow, particularly given the unreconciled vendor figure and tighter working capital.</p>
+<p>CARR’s climate-control and refrigeration reach gives it potential demand beyond new construction, but I cannot claim that replacement or smart-control sales are currently offsetting the financing headwind. <strong>That is the bet, not the evidence.</strong> My position would remain small enough to tolerate an earnings gap; I would add only if the missing filings and Q3 outlook explain the compression and show better margins, orders and cash conversion. Persistent weak margins would end my thesis.</p>
+<p>Your decision to wait buys more certainty. Mine accepts limited, explicitly speculative risk that CARR’s large, still-selling business can recover profit faster than the market expects.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: Bull, I agree that CARR <em>could</em> recover. My objection is that investors at the verified <strong>$55.83 October 8 close</strong> are being asked to pay for a recovery that the latest supplied financial statements do not yet show.</p>
+<p>Your operating-leverage example cuts both ways. On roughly $22 billion in annual sales, a sustained margin gain of one percentage point could add about <strong>$220 million</strong> in operating profit—but a one-point shortfall costs about the same. CARR’s 2025 operating margin had already fallen to <strong>10.0% from 11.8% in 2024</strong>. Then, in Q1 2026, sales grew <strong>2.4%</strong> while operating income fell <strong>58.8%</strong> and margin reached <strong>4.9%</strong>. That is not simply a weak sales environment waiting for demand to return; it raises a question about how much profit CARR can retain <em>even when revenue grows</em>. One quarter does not establish permanent earning power, but it puts the burden of proof on the recovery case.</p>
+<p>You’re right to cite 2025’s roughly <strong>$2.12 billion</strong> of operating cash flow less capex. I would not dismiss it. But the same measure was just <strong>$44 million in 2024</strong> and <strong>negative $15 million in Q1 2026</strong>. Meanwhile, calculated working capital narrowed from <strong>$1.42 billion to $0.43 billion</strong> between year-end and March. Before treating 2025 cash generation as repeatable, I want to see why Q1 cash conversion weakened and whether later quarters reversed it. The supplied extracts stop at Q1; that is a reason to verify newer filings, not to assume the weakness continued.</p>
+<p>The business story is plausible but still unproven. Replacement HVAC and smart controls may help offset construction softness, yet the supplied research has <strong>no current orders, segment guidance, or demonstrated CARR market-share gains</strong>. An established brand did not prevent Q1’s margin compression. Reports of high mortgage rates and rising yields add a credible headwind for construction-linked purchases, even if replacement demand proves more resilient.</p>
+<p>Nor would I treat the <strong>$64–$74 analyst targets</strong> as a margin of safety. They imply upside from $55.83, but all three cited targets were <strong>cut</strong>, and Deutsche Bank retained a <strong>Hold</strong>. More importantly, the apparently reasonable <strong>16.93× forward P/E</strong> relies on vendor-estimated EPS of <strong>$3.30</strong>, about <strong>139% above</strong> its $1.38 trailing figure. If margins do not recover, that “cheap” forward multiple is the fragile part of the argument—not protection against disappointment.</p>
+<p>I concede your technical point: the positive MACD histogram and completed weekly TD-9 setup make a rebound possible. But CARR remains below its <strong>$58.72</strong> falling 50-day average, all three cited SuperTrends are down, and OBV has not convincingly confirmed the stabilization. A bounce is not yet evidence that earnings expectations are achievable.</p>
+<p><strong>My bear stance is to avoid initiating or adding to CARR here</strong>, rather than chase a short into a possible countertrend rally. The bull case gets materially stronger if forthcoming results establish improving orders, margins and cash flow—not merely a price move above the daily resistance levels. Until then, CARR offers a demonstrated profit-and-cash-flow problem against a valuation that assumes its solution.
+Bear Analyst: Bull, I agree that a <em>small</em> position limits the dollars at risk. It does not improve the evidence for buying CARR before the missing financials and upcoming Q3 report are checked. At <strong>$55.83 on October 8</strong>, investors would be taking earnings-event risk while the supplied statements still stop at Q1 2026.</p>
+<p>Your margin arithmetic is useful, but it shows the size of the hurdle as well as the opportunity. One sustained margin point on roughly $22 billion of sales is about <strong>$220 million in annual operating profit before tax</strong>. Yet CARR’s operating profit fell <strong>$370 million year over year in Q1 alone</strong>, despite higher revenue. A one-point improvement would help; it would not, by itself, validate forward EPS of <strong>$3.30 versus $1.38 trailing</strong>. We need to know why growing sales produced so much less profit before assuming the revenue base will deliver operating leverage in the favorable direction.</p>
+<p>I credit CARR’s <strong>$2.12 billion 2025 cash-flow-less-capex proxy</strong>. But the comparable measure was <strong>$44 million in 2024</strong> and <strong>negative $15 million in Q1 2026</strong>, while calculated working capital shrank to <strong>$0.43 billion</strong>. That volatility makes “demonstrated capacity” different from dependable cash generation. Replacement demand and smart controls may provide support, but we have no current orders or segment evidence showing they are protecting CARR’s margins against high financing costs.</p>
+<p>The analyst targets are not a safety net either: <strong>all three cited targets were lowered</strong>. And a speculative entry has a nearby test—<strong>$53.88 is only about 3.5% below $55.83</strong>—without being a floor if guidance disappoints. The weekly TD-9 setup makes me wary of shorting CARR, but the falling 50-day average and weak volume confirmation do not persuade me to buy a rebound.</p>
+<p><strong>My recommendation remains to avoid initiating or adding to CARR for now.</strong> I would reconsider if the later filings and Q3 outlook show improving orders, margins and cash flow. Waiting may mean paying a higher price, but here that would buy evidence the recovery thesis currently lacks.
+Bear Analyst: Bull, I agree that CARR’s <strong>4.9% Q1 margin is not proven to be permanent</strong>. But “it might be temporary” is a reason to investigate, not yet a reason to buy ahead of the evidence.</p>
+<p>Your 10% margin illustration makes the hurdle concrete. Applied to Q1 2026 sales, it would add about <strong>$275 million</strong> of operating profit—still roughly <strong>$95 million short of Q1 2025</strong>. More importantly, the supplied annual and Q1–Q3 figures <em>imply</em> only about <strong>$101 million of operating income on $4.84 billion of revenue in Q4 2025</strong>. That residual needs checking against the filing and could reflect unusual items, but it makes me less comfortable describing Q1 2026 as an isolated bad quarter.</p>
+<p>I also accept your <strong>$1.69 billion</strong> rolling cash-flow-less-capex calculation. It is real historical capacity, but it is backward-looking and falls from roughly <strong>$2.12 billion</strong> for full-year 2025 after Q1’s cash result replaced a much stronger year-earlier quarter. With working capital down from <strong>$1.42 billion to $0.43 billion</strong> by March, I want the missing later-quarter statements before deciding which cash-generation figure is dependable. The vendor’s different free-cash-flow figure remains unreconciled; I would not quietly treat either definition as definitive.</p>
+<p>The timing argument is where we still part ways. A small CARR position limits portfolio damage; it does not create a valuation cushion. At <strong>$55.83 on October 8</strong>, the quoted <strong>16.93× forward P/E</strong> depends on <strong>$3.30 EPS</strong>, versus <strong>$1.38 trailing</strong>. Replacement demand and smart controls could support that recovery, but we have no current orders, segment margins, or demonstrated share gains to show they are doing so. Higher financing costs add another demand risk, even if replacements hold up better than new construction.</p>
+<p>Yes, waiting for Q3 evidence could mean paying more. I would rather pay more for verified margin and cash-flow improvement than pay now for an unverified recovery—particularly while CARR remains below its falling <strong>$58.72</strong> 50-day average and volume has not confirmed a turn. The weekly TD-9 warns me against confidently shorting a bounce, not against <strong>avoiding a new CARR purchase</strong>. Improved orders, margins and cash conversion would change my view; a speculative position before those checks would not.
+Bear Analyst: Bull, I agree that CARR’s earnings power may be higher than its latest reported quarter suggests. But the case for buying <em>before</em> checking the missing later-quarter filings rests on a question we cannot yet answer: <strong>why did profit deteriorate so sharply while sales grew?</strong></p>
+<p>Your 10% margin scenario is useful arithmetic, not a baseline I would underwrite. Q1 2026 revenue rose <strong>2.4%</strong>, yet operating profit fell <strong>$370 million</strong> year over year. Restoring a 10% margin on Q1 sales would add about <strong>$275 million</strong>—substantial, but still short of the prior-year quarter. And Q4 2025 figures <em>implied</em> by the supplied annual and Q1–Q3 totals suggest a margin near <strong>2.1%</strong>. That residual needs filing-level verification, but it makes the 4.9% Q1 margin harder to dismiss as a single-quarter anomaly. Sales resilience has not yet demonstrated pricing power or cost control.</p>
+<p>I also grant your historical cash-flow point: the rolling operating-cash-flow-less-capex proxy was about <strong>$1.69 billion</strong> through March. The problem is its reliability as a guide to what comes next. The same measure swung from <strong>$44 million in 2024</strong> to <strong>$2.12 billion in 2025</strong>, then <strong>negative $15 million in Q1 2026</strong>. Calculated working capital narrowed from <strong>$1.42 billion to $0.43 billion</strong> in that latest quarter. Before paying for a recovery, I want to know whether cash conversion and liquidity pressure have improved.</p>
+<p>That uncertainty matters at <strong>$55.83 on October 8</strong>. CARR’s <strong>16.93× forward P/E</strong> assumes <strong>$3.30 EPS</strong>, versus <strong>$1.38 trailing</strong>. For illustration, if earnings reached only <strong>$2.30</strong>, the same share price would be about <strong>24× earnings</strong>. That is not my forecast; it shows how quickly the apparent valuation cushion disappears. The <strong>$64–$74</strong> analyst targets do not solve this—all three cited targets were cut. Nor do replacement demand and smart controls establish a competitive advantage without current orders, segment margins or share-gain evidence, particularly with financing costs pressuring building-related demand.</p>
+<p>I understand your timing argument: waiting could mean paying more. But a small position limits exposure; it does not make an earnings gap or an unverified recovery more attractive. <strong>I would avoid initiating or adding to CARR</strong>, while also avoiding an aggressive short given the weekly reversal signal. Verified later filings and Q3 evidence of stronger margins, orders and cash conversion—not a technical bounce alone—would change my view.
+Bear Analyst: Bull, your three-point margin scenario captures the upside <em>if</em> CARR fixes profitability. But it skips the decision investors face today: <strong>what evidence says those three points are coming back?</strong> The latest supplied quarter shows revenue up <strong>2.4%</strong> while operating profit fell <strong>$370 million</strong>. A larger sales base is valuable only if CARR can earn an adequate margin on it. We do not yet have the orders, segment results or explanation of costs and pricing needed to distinguish a temporary setback from a more persistent problem.</p>
+<p>I would also be careful about using the <strong>$660 million</strong> illustration as a reason to get in early. It assumes a sustained three-point improvement across roughly $22 billion of annual sales; it is not evidence that improvement has begun. The supplied figures <em>imply</em> a roughly <strong>2.1% margin in Q4 2025</strong>, subject to filing verification, followed by a reported <strong>4.9% in Q1 2026</strong>. Those readings make the path back to stronger margins a question, not a minor adjustment. CARR’s brand and replacement opportunities may help, but neither has yet shown up here as proven pricing power or margin protection.</p>
+<p>The cash record reinforces my hesitation. I accept the approximately <strong>$1.69 billion rolling cash-flow-less-capex proxy</strong> through March. But that backward-looking figure coexists with <strong>negative $15 million in Q1</strong>, working capital falling from <strong>$1.42 billion to $0.43 billion</strong>, and an unreconciled vendor free-cash-flow number. Before treating historical capacity as investable future cash flow, I want to see what the missing later quarters actually produced.</p>
+<p>At the verified <strong>$55.83 October 8 close</strong>, the valuation leaves little room to be casual about that uncertainty. The <strong>16.93× forward P/E</strong> requires <strong>$3.30 EPS</strong>, versus <strong>$1.38 trailing</strong>; at your acknowledged hypothetical <strong>$2.30 EPS</strong>, the price is about <strong>24×</strong>. All three cited analyst targets were cut, and higher financing costs could pressure construction-linked demand. Replacement demand might soften that blow, but we cannot yet quantify it for CARR.</p>
+<p>I understand why you would size a position small enough to withstand an earnings gap. That manages <em>portfolio exposure</em>; it does not improve the odds or make <strong>$53.88</strong> a loss limit. The weekly reversal setup is a good reason not to chase a short, but with CARR below its falling <strong>$58.72</strong> 50-day average and without convincing volume confirmation, it is not my reason to buy.</p>
+<p><strong>My call remains: avoid initiating or adding to CARR for now.</strong> I would rather risk missing the first leg of a recovery than pay today for one before the later filings and Q3 outlook show improving orders, margins and cash conversion.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For CARR, the bear case is stronger because it rests on observed profitability deterioration, while the bull case still rests on an unverified recovery. The supplied 2025 operating margin fell to 10.0% from 11.8% in 2024, and Q1 2026 revenue growth of 2.4% accompanied a 58.8% operating-profit decline and a 4.9% operating margin. The implied 2.1% Q4 2025 margin warrants investigation, but it is an unverified residual, not another confirmed quarterly result. Sales resilience is encouraging; it has not yet established pricing power or cost control.</p>
+<p>The bull deserves credit for CARR's large revenue base, approximately $2.12 billion of 2025 operating cash flow less capex, and approximately $1.69 billion on the supplied rolling calculation through March 2026. Replacement and efficiency-related demand could support recovery, and each sustained margin point on roughly $22 billion of revenue represents about $220 million of annual operating profit. Those are meaningful possibilities, not forecasts. Cash generation has also been uneven: the same proxy was negative $15 million in Q1, and calculated working capital fell from $1.42 billion to $0.43 billion. That calls for reconciliation, not an unsupported conclusion of financial distress.</p>
+<p>At the supplied $55.83 October 8 close, the quoted 16.93x forward multiple relies on vendor-estimated EPS of $3.30 versus $1.38 trailing. The earnings definitions and recovery assumptions need checking; this is not a demonstrated valuation cushion. The cut $64-$74 analyst targets do not provide one either. A bearish prevailing technical trend reinforces caution, although the positive MACD histogram and weekly reversal setup argue against chasing a short. Later financial statements, current orders and segment evidence are missing, and the vendor free-cash-flow figure remains unreconciled. We do not need to prove that weak margins are permanent to reduce exposure, but historical cash capacity and rebound potential keep this from an outright exit call. Demonstrated margin deterioration, uncertain cash conversion and recovery-dependent valuation outweigh the speculative upside, supporting Underweight for CARR.</p>
+<p><strong>Strategic Actions</strong>: 1. For an existing CARR long, cap exposure at 0.5x a standard full allocation and trim any excess. Do not increase an already smaller holding. If uninvested, do not initiate ahead of the missing financial evidence. Avoid a new short, leverage or averaging down; the remaining exposure must be tolerable through an earnings gap. The trader and portfolio manager should translate this relative sizing into actual holdings and orders.</p>
+<ol>
+<li>
+<p>Treat $55.83 and every technical level in this plan as references from the supplied October 8 snapshot, not live quotes. Current price and the exact upcoming earnings date are not supplied. Refresh those inputs and confirm the technical levels remain relevant before implementing price-conditioned orders; do not delay the exposure reduction solely to await a rebound.</p>
+</li>
+<li>
+<p>If the $53.88 reference remains relevant and CARR subsequently closes below it, reduce any residual position to no more than 0.25x standard allocation and reassess immediately. This is a review and reduction trigger, not a guaranteed execution price or loss limit. If verified later results show persistent margins near 4.9% together with weak cash generation and no credible explanation or improving outlook, close the remaining recovery position rather than average down.</p>
+</li>
+<li>
+<p>Before adding, obtain and reconcile the missing later filings and the forthcoming Q3 results/outlook referenced in the debate. Check the implied Q4 margin against the filing, distinguish recurring costs/pricing/mix from unusual items, reconcile vendor EPS and free-cash-flow definitions, and explain the working-capital contraction. Require evidence of improving orders or demand, operating margins moving meaningfully above 4.9% on a comparable basis, and positive operating cash flow less capex supported by stronger year-to-date cash conversion. A single seasonal cash rebound or price bounce is insufficient.</p>
+</li>
+<li>
+<p>If those fundamental tests are met, reassess CARR and rebuild in increments of 0.25x standard allocation, toward no more than 1.0x as the improvement is corroborated. A volume-supported reclaim of the supplied $58.72-$59.29 resistance area, after refreshing the chart, would strengthen confirmation but cannot substitute for improving fundamentals. Do not use the analyst targets as assured exit prices.</p>
+</li>
+</ol>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: Underweight CARR by trimming existing exposure: operating margin fell from 11.8% in 2024 to 10.0% in 2025 and reached 4.9% in Q1 2026, while cash conversion and the earnings recovery implied by its forward multiple remain uncertain. At the supplied October 8 close of $55.83, CARR is below its $58.72 50-day SMA and $59.29 daily SuperTrend resistance, with all three SuperTrend timeframes down. Improving MACD momentum and a completed weekly TD-9 buy setup argue against a new short or an outright exit; a subsequent close below $53.88, if still relevant on a refreshed chart, calls for a further reduction. The supplied quote is not live, so refresh it before placing an order rather than treating $55.83 as an executable sell price.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: not provided</p>
+<p><strong>Position Sizing</strong>: Trim an existing CARR holding to no more than 0.5x the investor's standard full allocation; do not add to smaller holdings or initiate if uninvested. If CARR subsequently closes below the refreshed $53.88 reference, reduce any residual holding to no more than 0.25x. The close-below level is a review/reduction trigger, not a guaranteed stop-loss execution price.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: No conservative or neutral analyst has made a case yet, so I’ll put the aggressive case for selling CARR on the table: the opportunity is to free up risk capacity before the market gets firmer evidence on earnings, while keeping enough exposure to benefit if the recovery arrives. Aggressive capital allocation does not mean defending a full position when its original earnings case is under strain.</p>
+<p>CARR’s Q1 2026 revenue rose 2.4% year over year, but operating income fell 58.8%, operating margin dropped to 4.9% from 12.1%, and the free-cash-flow proxy turned slightly negative. The quoted 16.93× forward P/E assumes $3.30 in EPS—about 139% above the feed’s trailing $1.38. That is substantial upside <em>if delivered</em>, but an expensive assumption to hold at full size while the supplied financial statements stop at Q1. At the dated October 8 close of $55.83, CARR was also below its $58.72 50-day average and $59.29 daily SuperTrend line, with weekly and monthly SuperTrend still down. Waiting for the upcoming earnings release at full allocation risks letting one event settle the position-sizing decision for you.</p>
+<p>I would challenge an outright-exit case just as strongly. CARR’s 2025 cash generation improved markedly, MACD momentum is recovering, and the completed weekly TD-9 buy setup raises the chance of a sharp rebound. Even the reduced $64–$74 analyst targets sit above the dated close, though they are opinions, not price floors. Thin, mixed social sentiment adds little conviction either way. The stronger high-reward choice is therefore the proposed <strong>trim, not a short or a liquidation</strong>: if an existing CARR holding exceeds 0.5× your normal full allocation, cut it to no more than that; if it is already smaller or you hold none, do not add or initiate under this plan. Refresh the quote and chart before trading. A subsequent close below a still-relevant, refreshed $53.88 reference calls for reducing any remainder to no more than 0.25×—a review trigger, not a guaranteed execution price.
+Aggressive Analyst: Conservative Analyst, CARR’s Q1 numbers make a strong case for selling an oversized position now: revenue rose 2.4%, yet operating margin fell to 4.9% and the free-cash-flow proxy turned negative. I disagree with making 0.25× the default ceiling before checking newer filings. CARR generated a $2.12 billion free-cash-flow proxy in 2025. That does not erase Q1’s weakness, but neither does one weak quarter prove the recovery has failed. Cutting nearly all exposure before the next earnings report risks surrendering the upside if margins and cash flow recover.</p>
+<p>You are right that MACD and the weekly TD-9 setup do not reverse CARR’s downtrend, and that $53.88 cannot stop an earnings gap. Those are reasons to trim <em>before</em> the event, not reasons to dismiss a residual position. The positive MACD histogram and completed weekly buy setup make a rebound plausible, while the falling 50-day average, deteriorated OBV and three down SuperTrend readings argue against keeping a full allocation. Reduced analyst targets are opinions, not protection; even so, the $64–$74 targets illustrate why selling almost everything has an opportunity cost, not a guaranteed payoff.</p>
+<p>Neutral Analyst, I agree that 0.5× is a ceiling, not a universal risk budget. Where I would push harder is on the cost of waiting for confirmation to retain meaningful exposure. At the dated $55.83 close, CARR’s $58.72 average and $59.29 daily SuperTrend line were already roughly 5%–6% higher. A strong earnings response could move faster than a cautious rebuild. Conversely, high-rate headlines describe a real risk but do not establish that CARR’s replacement or commercial orders have weakened. Thin, mixed social sentiment settles neither question.</p>
+<p>My aggressive case is therefore still SELL, but sell the <em>excess</em>, not the entire opportunity. After refreshing CARR’s quote, chart and later filings, trim an existing holding above 0.5× a normal full allocation to no more than 0.5×; use less if a plausible earnings gap would exceed your loss tolerance. Do not add to a smaller holding or initiate one. If CARR later closes below a still-relevant, refreshed $53.88 reference, review cutting the remainder to no more than 0.25×—without treating that level as a guaranteed exit price. That frees risk capacity now while preserving participation if the recovery arrives sooner than the cautious cases allow.
+Aggressive Analyst: Conservative Analyst, CARR’s Q1 margin, cash-flow and liquidity deterioration make the case for selling an oversized holding now. I’m not calling 0.5× safe; I’m arguing that 0.25× is too blunt a default when we do not know the investor’s risk budget. Your hypothetical 20% earnings gap would cost 10% of the dollar value of a standard full allocation at 0.5×, versus 5% at 0.25×—not 10% or 5% of the whole portfolio. That difference matters, but so does giving up half the participation if CARR recovers. The $3.30 forward EPS estimate is unverified, yet the supplied Q1 weakness also does not prove that recovery has failed.</p>
+<p>I agree with you about the chart: CARR’s below-zero MACD lines, deteriorated OBV and three down SuperTrend readings rule out treating the weekly TD-9 buy setup as a reversal signal. They argue for trimming, not for automatically cutting to a quarter-position. The $64–$74 analyst targets are not floors, but relative to the dated $55.83 close they illustrate the opportunity cost of retaining too little if results improve. A close below $53.88 cannot protect against a gap; the protection is reducing exposure <em>before</em> the event.</p>
+<p>Neutral Analyst, your warning about the conflicting free-cash-flow figures is fair. The $2.12 billion 2025 proxy comes from the supplied annual cash-flow extracts; the untimestamped vendor figure is substantially lower. I would reconcile them before relying on a precise current valuation, not discard the evidence that 2025 cash generation was much stronger than Q1’s. I also would not wait for a clean chart and fully persuasive results to decide whether to keep any meaningful exposure: from the dated close, $58.72 and $59.29 were already about 5% and 6% higher. CARR could cross those levels quickly on earnings. Conversely, high financing costs are a reason to sell excess exposure today, not proof that its replacement or commercial orders have weakened. Thin, mixed social sentiment cannot settle that question.</p>
+<p>My call remains SELL: refresh CARR’s quote, chart and any later filings, then trim an existing holding above 0.5× the investor’s standard full allocation to no more than 0.5×. Use less—or exit—if a plausible earnings gap breaches the investor’s loss tolerance. Do not add to a smaller holding or initiate one. If CARR subsequently closes below a still-relevant, refreshed $53.88 reference, review reducing any remainder to no more than 0.25×; that is a decision trigger, not a guaranteed sale price. The aggressive move is to release risk capacity now without surrendering all participation in a recovery.
+Aggressive Analyst: Conservative Analyst, CARR’s 4.9% Q1 operating margin, $79 million of operating cash flow and narrower current ratio are reasons to sell excess exposure now. They are not evidence that every investor should cut to 0.25× before checking later filings. CARR’s $3.30 forward EPS estimate demands a major recovery, but 2025’s $2.12 billion cash-flow proxy also makes it costly to assume that one weak quarter is permanent. I agree the conflicting cash-flow figures need reconciliation; I would not use either as a precise current valuation.</p>
+<p>Your 20% earnings-gap example is the right stress test, not a reason for a universal ceiling. At 0.5×, that gap costs 10% of the <em>dollar value of a standard full allocation</em>; at 0.25×, it costs 5%. If the larger loss breaches the investor’s actual budget, hold less or exit. Otherwise, automatically halving the residual also halves participation if CARR surprises positively.</p>
+<p>Neutral Analyst, I agree that 0.5× is a ceiling, not a target for everyone, and that MACD, the weekly TD-9 setup and analyst targets cannot protect against a gap. But waiting for convincing results and a clean chart has a price: from the dated $55.83 close, CARR’s $58.72 average and $59.29 daily trend line were already roughly 5%–6% higher. The reduced $64–$74 targets imply roughly 15%–33% above that dated close—not a forecast or floor, but a concrete illustration of upside that a near-exit could miss. High-rate headlines likewise warrant a smaller position; they do not tell us that CARR’s replacement or commercial orders have failed.</p>
+<p>My call remains SELL, aggressively in the sense of reallocating risk <em>before</em> earnings without abandoning the recovery opportunity. Refresh CARR’s quote, chart and later filings, then trim an existing holding above 0.5× a standard full allocation to no more than 0.5×; use less if a plausible gap or sector concentration exceeds the investor’s loss tolerance. Do not add to a smaller holding or initiate one. If CARR later closes below a still-relevant, refreshed $53.88 reference, review cutting any remainder to no more than 0.25×. That is a reduction trigger, not a stop that can prevent a gap.
+Aggressive Analyst: Conservative Analyst, I agree that CARR’s 4.9% Q1 operating margin, $79 million of operating cash flow and narrower current ratio make a full-sized holding hard to defend. That is precisely why I favor selling excess exposure before earnings. But moving every investor toward 0.25× treats an unknown loss budget as though it were uniformly small. Your hypothetical 20% gap is a useful stress test: at 0.5× it costs 10% of the dollar value of a standard full allocation, versus 5% at 0.25×—neither figure is a percentage of the whole portfolio. If the larger loss is unaffordable, hold less or exit. If it is affordable, retaining the extra quarter-allocation also preserves meaningful participation in a positive surprise.</p>
+<p>You are also right that CARR’s $3.30 forward EPS is unverified, its reduced $64–$74 analyst targets are not floors, and a close below $53.88 cannot contain an earnings gap. I am not using any of those as protection. The stronger argument against a near-exit is that the supplied statements stop at Q1: they establish serious deterioration, not that it persisted. CARR’s 2025 cash-flow proxy was $2.12 billion, although the conflicting vendor figure needs reconciliation. Selling down now limits the bet on recovery; automatically selling nearly all of it makes a second bet—that waiting for confirmation will still leave an attractive entry.</p>
+<p>Neutral Analyst, I agree that the targets do not measure CARR’s upside and that paying more for credible results can be rational. But paying more is still a cost, particularly if earnings move the price before a cautious investor can rebuild. At the dated $55.83 close, the $58.72 average and $59.29 daily trend line were already about 5%–6% higher. Improving MACD and the weekly TD-9 buy setup do not prove a reversal; together with weak OBV and three down SuperTrend readings, they make the case for a trim that frees capital without discarding rebound exposure. High-rate headlines and rate-market odds strengthen the case for reducing risk, but they do not establish what happened to CARR’s replacement or commercial orders.</p>
+<p>My call remains SELL CARR as a deliberate reallocation, not a short or an automatic exit. Refresh the quote, chart and later filings before acting; $55.83 is not a live execution price. Trim an existing holding above 0.5× the investor’s standard full allocation to no more than 0.5×, and retain less or nothing if a plausible earnings gap or related-sector exposure exceeds the investor’s actual loss budget. Do not add to a smaller holding or initiate CARR under this plan. If CARR subsequently closes below a still-relevant, refreshed $53.88 reference, review reducing any remainder to no more than 0.25×. That is a decision trigger, never a guaranteed exit price.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: Aggressive Analyst, I agree with selling down an oversized CARR position rather than shorting it. But calling a 0.5× holding the stronger “high-reward” choice gives too little weight to what could happen before the next earnings report. Q1 2026 revenue rose, yet operating margin fell to 4.9%, operating cash flow dropped to $79 million from $483 million a year earlier, and the free-cash-flow proxy turned negative. The 16.93× forward P/E depends on an earnings recovery that the supplied statements, which end at Q1, do not yet verify. CARR’s strong 2025 cash generation is a reason not to assume permanent deterioration, not a reason to leave substantial capital exposed to an unconfirmed recovery.</p>
+<p>I also would not lean on the rebound signals to set the risk limit. CARR’s positive MACD histogram and weekly TD-9 buy setup make a short unattractive, but they do not reverse the downtrend: the MACD lines remain below zero, OBV has deteriorated, and all three SuperTrend timeframes are down. Reduced analyst targets above the dated $55.83 close are opinions, not downside protection. Nor is a later close below $53.88 a dependable way to control an earnings gap; the price could move past that review level before a sale is possible.</p>
+<p>The Neutral Analyst has not offered a view, so I won’t assign one to them. If the neutral case is to wait at the current size for clearer results, my objection is that waiting also means accepting the event risk. For an investor whose priority is capital preservation, I would refresh CARR’s quote, filings, and chart first, then consider reducing any holding above 0.25× the investor’s normal full allocation to that level before earnings; exit instead if even that residual exposure exceeds the investor’s loss tolerance. If the holding is already smaller—or there is no holding—this is not a call to add or initiate. Rebuilding exposure can wait for verified margin and cash-flow recovery, preferably with stronger price and volume confirmation.
+Conservative Analyst: Aggressive Analyst, I agree that CARR’s $2.12 billion free-cash-flow proxy in 2025 argues against assuming permanent deterioration. It does not establish that a 0.5× position is safe through the next earnings report. In the latest supplied quarter, revenue grew 2.4%, but operating margin fell to 4.9%, operating cash flow dropped to $79 million from $483 million, and the free-cash-flow proxy turned negative. The calculated current ratio also narrowed from 1.20 to 1.05. The 16.93× forward P/E rests on $3.30 of earnings per share versus $1.38 trailing—recovery that the supplied statements, which stop at Q1, cannot yet confirm.</p>
+<p>I take your rebound case seriously, but it is not a risk control. CARR’s MACD lines remain below zero, OBV has deteriorated, and all three SuperTrend timeframes are down. The weekly TD-9 buy setup makes shorting unattractive; it does not make the reduced $64–$74 analyst targets a floor. Paying more after credible confirmation could be preferable to carrying an oversized position into a possible earnings gap.</p>
+<p>Neutral Analyst, you are right that neither one weak quarter nor high-rate headlines prove CARR’s orders have weakened. My objection to making 0.5× the usual residual is narrower: without newer verified filings or a portfolio risk budget, we cannot know whether that residual is affordable. A hypothetical 20% earnings gap would cost 10% of a standard full allocation at 0.5×, versus 5% at 0.25×. Neither the $53.88 close-below review trigger nor an ordinary stop guarantees protection against that gap.</p>
+<p>I still favor SELL, not a short. Refresh CARR’s quote, chart, and later filings before acting. If recovery remains unverified, I would trim an existing holding above 0.25× the investor’s standard full allocation toward that more protective ceiling; exit if even that exposure exceeds the investor’s loss tolerance. Do not add to a smaller holding or initiate one. Verified improvement in margins, cash flow, and orders would justify reconsidering the ceiling—not assuming the recovery in advance.
+Conservative Analyst: Aggressive Analyst, I agree that one weak quarter does not prove CARR’s recovery has failed. But it also does not justify making 0.5× the usual holding ahead of earnings. In the latest supplied quarter, CARR’s operating margin fell to 4.9% from 12.1% a year earlier, operating cash flow fell to $79 million from $483 million, and its current ratio narrowed. The $3.30 forward EPS estimate assumes a substantial recovery that these statements, which end at Q1, cannot verify. CARR’s strong 2025 cash generation deserves weight, but it does not remove that near-term uncertainty—especially while the supplied free-cash-flow measures remain unreconciled.</p>
+<p>Neutral Analyst, you are right to reject a universal 0.25× rule. My point is that, without the investor’s holdings or loss budget, 0.5× should not become the default merely because a rebound is possible. A hypothetical 20% CARR gap would lose 10% of the dollar value of a standard full allocation at 0.5×, versus 5% at 0.25×; neither figure is a percentage of the whole portfolio. The investor should test that loss against their actual portfolio limit and any related building-sector exposure.</p>
+<p>The rebound signals argue against shorting CARR, not against reducing risk. Its MACD lines remain below zero, OBV has deteriorated, and all three SuperTrend timeframes are down. The reduced $64–$74 targets are not price floors, while a close below $53.88 may come too late to protect against an earnings gap. High-rate headlines do not prove CARR’s orders are weak, but they add a scenario worth protecting against until orders and guidance are checked.</p>
+<p>I favor SELL: refresh CARR’s quote, chart, and later filings first. If recovery is still unverified, trim an existing holding above 0.25× a standard full allocation toward that provisional ceiling, or lower if a plausible gap exceeds the investor’s loss tolerance. Do not add to a smaller holding or initiate one. Reconsider retaining more only if verified margins, cash flow, orders, and the investor’s risk budget support it; the dated $53.88 level is a review trigger, not a stop.
+Conservative Analyst: Aggressive Analyst, I agree that one weak quarter does not prove CARR’s recovery has failed, and I am not arguing for an automatic exit. But the cost of missing some upside is not equivalent to the risk of carrying an unverified recovery through earnings. In the latest supplied quarter, CARR’s operating margin fell to 4.9%, operating cash flow dropped to $79 million from $483 million, and its current ratio narrowed to 1.05. The $3.30 forward EPS estimate is roughly 139% above trailing EPS. Strong cash generation in 2025 matters, but it does not tell us whether those Q1 pressures have eased. Nor do analyst targets of $64–$74 protect the position if results disappoint.</p>
+<p>Neutral Analyst, you are right that CARR’s replacement and commercial orders could prove resilient, and that no allocation limit fits every portfolio. My concern is making 0.5× the routine residual <em>before</em> we know the investor’s loss budget or see newer filings. A hypothetical 20% earnings gap would cost 10% of the dollar value of a standard full allocation at 0.5×, versus 5% at 0.25×—not those percentages of the entire portfolio. A later close below $53.88 cannot contain a gap that has already happened. Improving MACD and the weekly TD-9 setup make a rebound possible and argue against a short, but CARR remains below its falling 50-day average, with all three SuperTrend timeframes down.</p>
+<p>My call remains <strong>SELL CARR exposure, not short CARR</strong>. Refresh the quote, chart, and later filings before trading. If recovery is still unverified, I would provisionally trim an existing holding above 0.25× a standard full allocation toward that level, or lower if a plausible gap exceeds the investor’s actual loss tolerance. That is a cautious starting point, not a universal rule: verified improvement in margins, cash flow, orders, and guidance could support retaining more. Do not add to a smaller holding or initiate CARR under this plan.
+Conservative Analyst: Aggressive Analyst, I agree that CARR’s weak Q1 does not prove a lasting decline. But retaining 0.5× primarily to participate in a possible earnings rebound still puts capital behind an unverified recovery. CARR’s operating margin fell to 4.9%, operating cash flow dropped to $79 million from $483 million a year earlier, and the calculated current ratio narrowed to 1.05. Its $3.30 forward EPS estimate is roughly 139% above trailing EPS. The strong 2025 cash-flow proxy deserves attention, but it does not show whether those latest reported pressures have eased.</p>
+<p>Your 20% gap example is useful, provided we do not treat it as the worst case. At 0.5×, such a move costs 10% of the dollar value of a standard full allocation—not 10% of the portfolio. Whether that loss is affordable depends on the investor’s actual holdings, other building-related exposure, and loss limit. The possibility of paying more for CARR after credible results is a cost, but for a capital-preservation mandate it can be a reasonable cost of avoiding an earnings gap.</p>
+<p>Neutral Analyst, I agree that neither higher-rate headlines nor one weak quarter establish that CARR’s replacement or commercial orders have deteriorated. That uncertainty is why I would not call for a short or an automatic exit. It is also why I would not make 0.5× the routine residual while later filings and the differing cash-flow measures still need checking. Improving MACD and the weekly TD-9 setup make a bounce plausible, but OBV has deteriorated and all three SuperTrend timeframes remain down. Those signals offer no protection against a disappointing release.</p>
+<p>My call is to SELL CARR exposure conservatively. First refresh the quote, chart, and any later filings; $55.83 was an October 8 close, not an executable price. If recovery remains unverified, I favor trimming an existing holding above 0.25× the investor’s standard full allocation toward that provisional ceiling, or lower if a plausible gap would breach the investor’s loss budget. That is not a universal allocation rule: verified improvement in margins, cash flow, orders, and guidance could support retaining more. Do not add to a smaller holding or initiate CARR under this plan. A refreshed close-below-$53.88 reference can prompt another review, but it cannot serve as protection against a gap.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: Aggressive Analyst, I agree with trimming CARR rather than defending a full position through an uncertain earnings catalyst. But I would not call a 0.5× holding a “high-reward” choice. The forward P/E relies on a large earnings recovery, the last supplied quarterly statements end at Q1 2026, and a close below $53.88 could come after an earnings gap. Half an allocation is a ceiling to consider, not a risk budget that suits everyone. The reduced analyst targets are opinions, not protection for the residual holding.</p>
+<p>Conservative Analyst, your 0.25× ceiling better protects an investor who cannot tolerate that gap risk, but applying it to everyone before seeing newer filings may be too cautious. CARR generated a $2.12 billion free-cash-flow proxy in 2025, and one weak quarter does not establish that cash generation has permanently reversed. Improving MACD momentum and the completed weekly TD-9 buy setup do not prove a turnaround, but they do make a rebound credible enough that automatically selling nearly everything has a cost. The housing and rate headlines add a plausible demand risk; they do not tell us how CARR’s replacement and commercial orders are actually performing.</p>
+<p>My middle ground is still SELL, but as a measured trim of an existing CARR position, not a short or an outright exit by default. First refresh the quote, chart, and any later filings. If the holding exceeds the investor’s normal 0.5× allocation, bring it to no more than 0.5×, or less if an earnings gap at that size would breach the investor’s loss tolerance or leave the portfolio too concentrated in building-related exposure. Do not add to a smaller holding or initiate one under this plan. If CARR subsequently closes below a still-relevant, refreshed $53.88 reference, review reducing the remainder to no more than 0.25×; that level cannot guarantee an execution price.</p>
+<p>Neither side should let the technical signals settle the fundamental question. I would reassess the retained CARR exposure when newer results show whether margins are recovering toward 2025’s 10% and operating cash flow again exceeds capex. A sustained move above $58.72 and $59.29 with improving volume participation would strengthen the case to retain or eventually rebuild; weak orders, persistently low margins, or another cash-flow shortfall would justify cutting sooner. That leaves room for recovery without requiring the investor to carry a full-sized bet on it.
+Neutral Analyst: Aggressive Analyst, you’re right that selling every CARR share could forfeit a rebound. But the cost of waiting for confirmation cuts both ways: paying more after stronger results may be preferable to holding too much through a disappointing earnings gap. CARR’s positive MACD histogram and weekly TD-9 buy setup make a bounce plausible, not dependable. The $64–$74 analyst targets are opinions, not protection. I would also be careful about leaning too heavily on 2025’s $2.12 billion free-cash-flow proxy until its substantial difference from the untimestamped vendor figure is reconciled.</p>
+<p>Conservative Analyst, your gap-risk example is useful, but it argues for a position-specific risk limit, not a universal 0.25× ceiling. A hypothetical 20% drop in CARR would cost 10% of the dollar amount of a standard full allocation at 0.5×; that is not necessarily 10% of the portfolio. We do not know the investor’s holdings or loss tolerance. Nor do the supplied statements, which end at Q1 2026, establish that weak margins persisted. High financing costs could hurt construction-linked demand, while replacement and commercial demand may behave differently; CARR’s orders and guidance need checking rather than assuming either outcome.</p>
+<p>My recommendation remains SELL, meaning a measured trim of an existing CARR holding—not a short or an automatic exit. Refresh the quote, chart, and later filings first. If the holding exceeds 0.5× the investor’s standard full allocation, reduce it to no more than 0.5×; use 0.25× or less if a plausible earnings gap or concentrated building-related exposure would exceed the investor’s risk budget. Do not add to a smaller holding or initiate one under this plan. A subsequent close below a still-relevant, refreshed $53.88 reference warrants reviewing a reduction of any remainder to no more than 0.25×, but that level cannot guarantee an exit price. Stronger margins, cash flow, orders, and price participation would justify reassessing the retained position; further weakness would justify cutting sooner.
+Neutral Analyst: Aggressive Analyst, I agree that CARR could rebound before its chart or earnings look convincing. But preserving that upside does not make 0.5× an appropriate holding for every investor. Q1 2026 operating margin fell to 4.9%, and the $3.30 forward EPS estimate remains unverified by the supplied statements, which end at Q1. Improving MACD and analyst targets above the dated close cannot absorb an earnings gap. CARR’s strong 2025 cash-flow proxy matters, but I would check newer filings and reconcile the differently dated cash-flow figures before relying on it to size the residual position.</p>
+<p>Conservative Analyst, you are right to put gap risk ahead of a close-below trigger. Still, making 0.25× the default for CARR assumes a loss tolerance and portfolio concentration we have not been given. One weak quarter does not establish persistent deterioration. Higher financing costs could pressure new construction, while replacement demand may hold up differently; the next orders, margins and guidance should help distinguish those outcomes.</p>
+<p>My call remains SELL, but size the trim to the investor’s actual risk budget. Refresh CARR’s quote, chart and filings first, then bring any existing holding above 0.5× a standard full allocation down to no more than 0.5×. Hold less—including 0.25× or nothing—if a plausible earnings gap or combined building-sector exposure would breach that budget. Do not add to a smaller holding or initiate CARR under this plan. If CARR later closes below a still-relevant, refreshed $53.88 reference, review reducing the remainder to no more than 0.25×; that close is a decision trigger, not a guaranteed exit price.
+Neutral Analyst: Aggressive Analyst, I agree that CARR’s weak Q1 is a reason to sell excess exposure without abandoning the possibility of a recovery. But the gap between the dated $55.83 close and the $64–$74 analyst targets is not a measured upside opportunity; those targets were cut, and the earnings recovery behind the forward multiple remains unverified. Likewise, paying more after strong results could be a worthwhile price for avoiding a disappointing earnings gap. The improving MACD and weekly TD-9 setup support keeping <em>some</em> optionality, not treating 0.5× as a default holding.</p>
+<p>Conservative Analyst, your gap-risk warning is important, but making 0.25× the provisional ceiling can be too cautious for an investor whose CARR exposure is modest within a diversified portfolio. CARR’s 2025 cash-flow proxy was strong, even though it needs reconciling with the differently dated vendor figure, and the supplied statements do not show whether Q1’s 4.9% operating margin persisted. High financing costs raise a demand question; they do not answer what happened to CARR’s replacement or commercial orders.</p>
+<p>I would keep the proposal at <strong>SELL CARR as a measured trim</strong>, not a short or automatic exit. Refresh the quote, chart, and later filings first. For an existing holding above 0.5× the investor’s standard full allocation, reduce it to no more than 0.5×; use 0.25× or less if a plausible earnings gap, combined building-sector exposure, or the investor’s loss limit calls for it. Do not add to a smaller holding or initiate CARR under this plan. If CARR later closes below a still-relevant, refreshed $53.88 reference, review reducing the remainder to no more than 0.25×—but do not mistake that close-based trigger for protection against a gap. New evidence on margins, cash flow, orders, and guidance should carry more weight than either analyst targets or a brief technical bounce.
+Neutral Analyst: Aggressive Analyst, I agree that selling only the excess CARR exposure preserves a chance to benefit from a rebound. But the cost of missing a move through the dated $58.72 average or $59.29 trend line applies only to shares sold; the remaining holding still participates. That opportunity cost should not outweigh the possibility of a sharp earnings gap. Reduced analyst targets are not a substitute for evidence that CARR can deliver the recovery implied by $3.30 forward EPS.</p>
+<p>Conservative Analyst, I agree that a close below $53.88 would not protect against a gap. But making 0.25× the provisional ceiling for everyone may sacrifice too much upside without knowing their portfolio or loss budget. CARR’s Q1 2026 margin of 4.9% and weak cash flow are serious warnings, not proof that the weakness persisted. The stronger 2025 cash-flow proxy also deserves consideration, though it should be reconciled with the differing vendor figure. Higher financing costs add risk to construction-linked demand, but CARR’s replacement and commercial orders need checking rather than assuming they moved together.</p>
+<p>My recommendation remains <strong>SELL CARR as a measured trim</strong>, not a short or automatic exit. Refresh the quote, chart and later filings before ordering; $55.83 is a dated close. If an existing holding exceeds 0.5× the investor’s standard full allocation, reduce it to no more than 0.5×. Hold 0.25× or less if a plausible earnings gap or combined building-sector exposure breaches the actual loss budget; do not add to a smaller holding or initiate one. A subsequent close below a still-relevant, refreshed $53.88 reference warrants reviewing a reduction of the remainder to no more than 0.25×, not expecting execution at that price. Reassess retained exposure against reported margins, cash flow, orders and guidance—and avoid simply moving the proceeds into another highly rate-sensitive holding.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: Underweight CARR over 3-6 months: refresh the quote, chart, available later filings and earnings date, then trim any existing holding above 0.5x your standard full allocation to no more than that, without waiting solely for a rebound. Retain 0.25x or less, including zero, if an earnings gap or combined building-sector exposure would exceed your loss budget; do not add to a smaller holding, initiate a new position, use leverage or open a short. A subsequent close below the refreshed $53.88 reference calls for reducing residual exposure to no more than 0.25x and reassessing, but cannot guarantee execution at that price. Rebuilding requires verified margin, cash-conversion and demand improvement, with a volume-supported reclaim of $58.72-$59.29 providing confirmation rather than replacing the fundamental tests.</p>
+<p><strong>Investment Thesis</strong>: The stronger case is to reduce CARR exposure, not hold a full allocation or liquidate automatically. The analysts' repeated SELL transaction language describes a partial reduction and therefore maps to Underweight on the requested rating scale. The aggressive and neutral analysts' 0.5x ceiling preserves some recovery participation, while the conservative analyst correctly identifies earnings-gap risk as the reason to hold less when necessary. Neither 0.5x nor 0.25x is a universally appropriate target without the investor's holdings and risk budget. In the debate's hypothetical 20% gap, a 0.5x holding loses 10% of the dollar value of a standard full allocation, versus 5% at 0.25x—not those percentages of the whole portfolio. That scenario is not a worst-case bound.</p>
+<p>Observed profitability deterioration outweighs an unverified recovery. CARR's operating margin fell from 11.8% in 2024 to 10.0% in 2025. Q1 2026 revenue rose 2.4%, but operating income fell 58.8% and margin reached 4.9%, versus 12.1% a year earlier. Operating cash flow fell from $483 million to $79 million, and operating cash flow less capex deteriorated from positive $420 million to negative $15 million. Working capital contracted from $1.42 billion to $0.43 billion and the calculated current ratio from 1.20 to 1.05. These observations justify reducing exposure; they do not establish financial distress or permanent impairment. The implied Q4 2025 margin is an unverified residual, not an additional confirmed quarterly result.</p>
+<p>The counterargument limits the size of the bearish call. CARR generated approximately $2.12 billion of operating cash flow less capex in 2025 and $1.69 billion on the supplied rolling calculation through March 2026. This demonstrates historical cash capacity, although the latter remains unreconciled with the vendor's untimestamped $0.86 billion FCF figure. Technically, the $55.83 October 8 close was below the falling $58.72 50-day SMA and $59.29 daily SuperTrend line, all three SuperTrend timeframes were down, and OBV deteriorated. However, the positive 0.32 MACD histogram and completed weekly TD-9 buy setup make a countertrend rebound credible. They support avoiding a new short or automatic liquidation, not treating the downtrend as reversed.</p>
+<p>Price-target method—provisional valuation scenario: use the supplied vendor forward EPS of $3.30 and apply a 15.0x forward earnings multiple, giving $3.30 x 15.0 = $49.50 per CARR share in USD. The 15.0x multiple is an explicit portfolio-manager risk-discount assumption, 11.4% below the supplied 16.93x multiple, not a reported peer benchmark or independently verified fair value. The target is approximately 11.3% below the verified $55.83 close. This scenario retains the vendor earnings estimate but discounts its valuation for execution uncertainty; it does not prove that $3.30 will be earned. Forward EPS is approximately 139% above the vendor's $1.38 trailing EPS, and their accounting definitions need reconciliation. The cut $64-$74 analyst objectives are conditional opinions, not downside protection. Consequently, confidence in the target's precision is lower than confidence in reducing exposure.</p>
+<p>Reassess CARR over the next 3-6 months and immediately when newer filings and guidance are verified; the supplied statements end March 31, 2026, and the exact next earnings date is missing. Improvement in comparable margins materially above 4.9% toward 2025's roughly 10%, positive operating cash flow less capex supported by stronger year-to-date conversion, and improving orders or demand would justify reconsidering the Underweight and rebuilding in 0.25x increments as corroborated. A refreshed, volume-supported reclaim of $58.72-$59.29 would strengthen that case. Conversely, verified persistent margins near 4.9% together with weak cash generation and no credible explanation or improving outlook would justify exiting the residual recovery position rather than averaging down. The October 8 quote and all technical levels must be refreshed before implementation; missing later results, EPS definitions and cash-flow reconciliation prevent high confidence.</p>
+<p><strong>Current Price</strong>: 55.83</p>
+<p><strong>Price Target</strong>: 49.5</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 3-6 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

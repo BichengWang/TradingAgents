@@ -1,0 +1,5735 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/COHR/20261008_gpt-6-astra_20261008_210348/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: COHR - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-cohr" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: COHR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MCD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../STRL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MCD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../PDD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../STRL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cohr-technical-outlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COHR technical outlook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-levels-and-decision-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading levels and decision points
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cohr-sentiment-2026-10-01-to-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COHR sentiment | 2026-10-01 to 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-by-source-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source-by-source breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-source-alignment-and-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-source alignment and divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dominant-themes-catalysts-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dominant themes, catalysts and risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cohr-trading-and-macro-report-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COHR trading and macro report — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-for-cohr-this-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed for COHR this week
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macro-backdrop-relevant-to-the-trade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Macro backdrop relevant to the trade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actionable-cohr-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actionable COHR setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cohr-fundamental-report-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COHR fundamental report — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-and-financial-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business and financial history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#earnings-and-profitability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Earnings and profitability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-the-main-risk-to-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow: the main risk to test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance-sheet-and-valuation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balance sheet and valuation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-activity-and-trading-takeaways" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insider activity and trading takeaways
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-cohr">Trading Analysis Report: COHR<a class="headerlink" href="#trading-analysis-report-cohr" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:03:48</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $302.35
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="cohr-technical-outlook">COHR technical outlook<a class="headerlink" href="#cohr-technical-outlook" title="Permanent link">&para;</a></h4>
+<p><strong>The broader trend remains up, but the latest session sharply weakened the near-term setup.</strong> COHR fell from a verified $334.56 close on October 7 to $302.35 on October 8, closing just below its 50-day SMA of $302.82. That $0.47 gap is too small to treat as a decisive moving-average breakdown by itself. The more consequential evidence is the speed of the decline: October 8 closed near its $298.88 session low on volume of 9,247,200 shares.</p>
+<p>The multi-timeframe SuperTrend tool still reports <strong>uptrends on weekly, monthly, and daily bars</strong>. Its trailing stops are $255.29, $228.66, and $275.61, respectively. Those signals describe the prevailing trend, not the strength of today’s move. In contrast, the ADX tool reads <strong>10.37</strong>, well below the 20 level commonly used to flag a weak or range-bound daily trend. Taken together, they argue against assuming that either the prior rally or this one-day selloff will continue cleanly.</p>
+<p>Momentum has deteriorated without reaching an oversold extreme. Verified RSI is <strong>48.72</strong>, below the 50 midpoint but far from 30. The verified MACD histogram remains positive at <strong>2.70</strong>; the indicator tool shows it was <strong>5.15 on October 7</strong>, so positive momentum has contracted rather than reversed outright. The OBV tool likewise shows a decline from <strong>306,583,900 on October 7 to 297,336,700 on October 8</strong>, consistent with selling participation on the down day. OBV’s change matters here, not its absolute level.</p>
+<p>Neither stretch nor volatility offers an easy “buy the dip” argument. The Z-score tool reports <strong>−0.53 weekly, +0.97 monthly, and −0.11 daily</strong>—none near the ±2 stretch threshold. Verified ATR is <strong>$21.43</strong>, roughly 7% of the latest close, so a stop placed only a few dollars away could be vulnerable to ordinary price movement.</p>
+<h4 id="trading-levels-and-decision-points">Trading levels and decision points<a class="headerlink" href="#trading-levels-and-decision-points" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>For a prospective long:</strong> Look first for a close back above the <strong>$302.82 50-day SMA</strong>, then evidence that the recovery can extend beyond October 8’s verified <strong>$328.87 high</strong>. Improving RSI, a widening positive MACD histogram, and recovering OBV would make that case stronger. An SMA reclaim alone, given how close price already is to it, is weak confirmation.</li>
+<li><strong>For downside risk:</strong> A subsequent close below October 8’s <strong>$298.88 low</strong> would add evidence that selling is continuing. The tool-reported <strong>$275.61 daily SuperTrend stop</strong> is a more substantial trend-invalidation reference; a daily flip would not automatically overturn the still-up weekly and monthly signals.</li>
+<li><strong>For sizing:</strong> From the verified close to the tool-reported daily stop is <strong>$26.74 per share</strong>, before gaps or slippage. Size a position against a tolerable dollar loss rather than treating the nearby 50-day SMA as a reliable tight stop.</li>
+</ul>
+<p><strong>Data qualification:</strong> The verified snapshot confirms the latest price, OHLCV, 50-day SMA, RSI, MACD histogram, and ATR quoted above. SuperTrend, ADX, OBV, and Z-scores are reported by the indicator tool but are not independently listed in that snapshot; no conflicting values were provided.</p>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest reading for COHR</th>
+<th>Why it matters now</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SuperTrend</td>
+<td>Weekly <strong>UP</strong>, stop <strong>$255.29</strong>; monthly <strong>UP</strong>, <strong>$228.66</strong>; daily <strong>UP</strong>, <strong>$275.61</strong></td>
+<td>Separates the intact higher-timeframe trend from nearer-term stop risk.</td>
+</tr>
+<tr>
+<td>50-day SMA</td>
+<td><strong>$302.82</strong> versus <strong>$302.35</strong> close</td>
+<td>Price is marginally below it; await confirmation rather than declaring a breakdown.</td>
+</tr>
+<tr>
+<td>ADX</td>
+<td><strong>10.37</strong></td>
+<td>Weak daily trend strength cautions against chasing either direction.</td>
+</tr>
+<tr>
+<td>MACD histogram</td>
+<td><strong>+2.70</strong></td>
+<td>Still positive, but down from the indicator tool’s October 7 reading of <strong>+5.15</strong>.</td>
+</tr>
+<tr>
+<td>RSI</td>
+<td><strong>48.72</strong></td>
+<td>Momentum slipped below neutral, without an oversold signal.</td>
+</tr>
+<tr>
+<td>ATR</td>
+<td><strong>$21.43</strong></td>
+<td>Large daily movement calls for wider risk allowances and smaller sizing.</td>
+</tr>
+<tr>
+<td>OBV</td>
+<td><strong>297,336,700</strong></td>
+<td>Fell on October 8; monitor whether participation recovers with price.</td>
+</tr>
+<tr>
+<td>Z-score</td>
+<td>Weekly <strong>−0.53</strong>; monthly <strong>+0.97</strong>; daily <strong>−0.11</strong></td>
+<td>No timeframe shows a ±2 statistical stretch supporting an exhaustion trade.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mildly Bullish</strong> (Score: 6.2/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="cohr-sentiment-2026-10-01-to-2026-10-08">COHR sentiment | 2026-10-01 to 2026-10-08<a class="headerlink" href="#cohr-sentiment-2026-10-01-to-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="source-by-source-breakdown">Source-by-source breakdown<a class="headerlink" href="#source-by-source-breakdown" title="Permanent link">&para;</a></h4>
+<p><strong>News (19 Yahoo Finance headlines):</strong> The company-specific framing leans positive. Headlines report a COHR data-optics platform launch and a related rise in AI-infrastructure stocks; a Bernstein call followed by a reported 10% jump; a bullish Wall Street call lifting COHR alongside Lumentum and Ciena; and descriptions of COHR as an AI-optics “structural winner.” Other titles frame PhotonLink as a potential undervalued-AI-optics story and say Wall Street backs COHR. These are headlines, not independently reviewed article bodies: the valuation thesis is an opinion, and the reported share moves are historical headline claims, not a current quote or additive returns. Offsetting coverage says profit-taking knocked COHR down 5% with optics peers, flags a “loose end” in the stock thesis, and asks what must be true to buy now. An OpenAI-related AI-trade selloff and a broader headline about high Treasury yields add macro pressure. A VCSEL-market growth forecast is supportive industry context, not a COHR revenue forecast; several AAOI and general-market headlines are only indirect or unclear COHR signals. No earnings date or confirmed forward financial guidance appears in the supplied headlines.</p>
+<p><strong>StockTwits (28 most-recent messages, dated October 6–8):</strong> User tags show 12 bullish, 1 bearish and 15 unlabeled: bullish messages are <strong>12/13 of tagged posts (92%)</strong>, but only <strong>12/28 of the full sample (43%)</strong>; the single bearish tag is 1/28 (4%). Posts cite buying near the close, a possible reversal, an expected near-term pop, and a broader optical-networking/AI-infrastructure thesis. One bullish-tagged post nevertheless acknowledges COHR is “free Fallin” and volatile; a bearish-tagged post warns of downside if COHR crosses below 288. Unlabeled messages raise an OpenAI-related market impact, a possible semiconductor-sector cool-off, and a “pump it to dump it” concern, while others describe buying interest or a perceived valuation gap to LITE. A post alleging large Oct. 9 call flow, references to prices/targets, and peer revenue, market-cap or capacity comparisons are <strong>unverified trader claims</strong>, not confirmed market data or COHR forecasts. Repeated posts and promotional content further limit independence. The strongly positive tagged ratio could also flag crowded positioning or contrarian risk; unlabeled posts must not be counted as bullish.</p>
+<p><strong>Reddit:</strong> The Reddit feed was <strong>disabled by configuration</strong>, not evidence of neutral or absent COHR discussion. No subreddit posts, votes or comments were supplied, so no Reddit stance or engagement can be assessed.</p>
+<h4 id="cross-source-alignment-and-divergence">Cross-source alignment and divergence<a class="headerlink" href="#cross-source-alignment-and-divergence" title="Permanent link">&para;</a></h4>
+<p>Analyst-call and product-launch headlines align with retail interest in optical connectivity for AI infrastructure. The main divergence is <strong>within the news flow and between retail enthusiasm and risk headlines</strong>, rather than a clean news-bearish/retail-bullish split: the same coverage that describes sharp rallies also describes a 5% COHR selloff and conditions on the buy thesis. Some retail users continue to call for rebounds despite acknowledging weakness or macro headwinds. Because news consists of titles only, the underlying strength and timing of each catalyst cannot be verified here.</p>
+<h4 id="dominant-themes-catalysts-and-risks">Dominant themes, catalysts and risks<a class="headerlink" href="#dominant-themes-catalysts-and-risks" title="Permanent link">&para;</a></h4>
+<p>The dominant COHR narrative is AI data-center optics and higher-scale networking, reinforced by a reported data-optics platform launch, PhotonLink discussion, analyst support and peer strength. Potential sentiment catalysts are substantive follow-through on the product launch, further analyst commentary and evidence that AI-optics demand translates into COHR results; the supplied material does <strong>not</strong> establish such financial follow-through. Risks include optics-sector profit-taking after large gains, sensitivity to OpenAI/AI-trade headlines and Treasury yields, thesis or valuation uncertainty, volatile price action, and retail calls for an imminent rebound that may be overextended. This is a sentiment read for a trader to weigh with fundamentals and technicals, <strong>not a price forecast</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Key COHR sentiment signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-optics product and analyst attention</td>
+<td>Positive</td>
+<td>News</td>
+<td>Data-optics platform launch; Bernstein and broader bullish Wall Street call headlines</td>
+</tr>
+<tr>
+<td>Longer-term optics demand narrative</td>
+<td>Positive, indirect</td>
+<td>News / StockTwits</td>
+<td>VCSEL-market forecast and retail discussion of expanding AI networking; not COHR revenue evidence</td>
+</tr>
+<tr>
+<td>Retail tagged stance</td>
+<td>Positive, potentially crowded</td>
+<td>StockTwits</td>
+<td>12 bullish vs. 1 bearish among 13 tagged; 15 of 28 messages unlabeled</td>
+</tr>
+<tr>
+<td>Pullback and macro pressure</td>
+<td>Negative</td>
+<td>News / StockTwits</td>
+<td>Headline says COHR fell 5% in optics profit-taking; OpenAI-related selloff and retail cool-off warnings</td>
+</tr>
+<tr>
+<td>Thesis and volatility cautions</td>
+<td>Negative / conditional</td>
+<td>News / StockTwits</td>
+<td>“Loose end” and conditional-buy headlines; posts noting free fall or downside below a claimed level</td>
+</tr>
+<tr>
+<td>Independent community corroboration</td>
+<td>Unavailable</td>
+<td>Reddit</td>
+<td>Feed disabled by configuration; no posts provided</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assessment:</strong> Mildly bullish COHR sentiment, tempered by clear pullback/macro risks. <strong>Confidence is low</strong> because Reddit is unavailable, news is headline-only, and the retail sample is small, mostly unlabeled and partly promotional.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="cohr-trading-and-macro-report-october-8-2026">COHR trading and macro report — October 8, 2026<a class="headerlink" href="#cohr-trading-and-macro-report-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Bottom line:</strong> COHR’s AI-data-center optics story drew strong buying at the start of the week, but the trade reversed sharply today. The near-term decision is whether the selloff is profit-taking after a rapid run or the start of a broader repricing of AI-infrastructure stocks. <strong>I would wait for COHR and its optics peers to stabilize before treating the dip as a buy.</strong></p>
+<h4 id="what-changed-for-cohr-this-week">What changed for COHR this week<a class="headerlink" href="#what-changed-for-cohr-this-week" title="Permanent link">&para;</a></h4>
+<p>On October 1, coverage linked COHR’s rally to a <a href="https://finance.yahoo.com/technology/ai/articles/cohr-stock-leads-ai-infrastructure-203908118.html">new data-optics platform</a> and a <a href="https://finance.yahoo.com/markets/stocks/article/coherent-lumentum-and-ciena-stocks-surge-on-bullish-wall-street-call-182906439.html">bullish Wall Street call that also lifted Lumentum and Ciena</a>. A subsequent article described a roughly <a href="https://finance.yahoo.com/markets/stocks/articles/coherent-stock-jumped-10-bernstein-014620730.html">10% jump following Bernstein’s call</a>. These are reported moves and catalysts, <strong>not</strong> evidence yet of new orders or earnings.</p>
+<p>The reversal is just as relevant. An October 8 <a href="https://finance.yahoo.com/news/optics-stocks-tumble-profit-taking-160031296.html">optics-sector report</a> described COHR falling about 5%, alongside larger declines in Applied Optoelectronics and Lumentum. <a href="https://finance.yahoo.com/m/3e003936-6fe4-375c-99cf-748a773e4776/stocks-sink-after-openai.html">Barron’s</a> also reported an OpenAI-related story souring the wider AI trade. Because peers fell too, traders should not assume COHR’s drop reflects a company-specific deterioration—but should not assume it is merely a bargain, either. The available feed provides headlines, not verified closing prices, order figures, or the full terms of the platform launch.</p>
+<h4 id="macro-backdrop-relevant-to-the-trade">Macro backdrop relevant to the trade<a class="headerlink" href="#macro-backdrop-relevant-to-the-trade" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Rates are the clearest headwind.</strong> The <a href="https://fred.stlouisfed.org/series/DGS10">10-year Treasury yield</a> was <strong>5.28% on October 7</strong>, versus <strong>5.24% on October 1</strong> and <strong>4.79% on September 1</strong>. That much larger rise since September raises the hurdle for richly valued growth themes, even though the yield changed little this week. The <a href="https://fred.stlouisfed.org/series/T10Y2Y">10-year/2-year spread</a> stood at <strong>+0.47 percentage points on October 8</strong>.</li>
+<li><strong>A quick rate-cut rescue is not priced in.</strong> The latest <a href="https://fred.stlouisfed.org/series/FEDFUNDS">effective federal funds rate</a> was <strong>3.75% for September</strong>. Polymarket put a cut <em>by October</em> at <strong>1%</strong> (about <strong>$214,000</strong> traded) and <em>by December</em> at <strong>3%</strong> (about <strong>$405,000</strong> traded). These are contract prices, not Fed forecasts; traders should check settlement rules.</li>
+<li><strong>Growth looks more resilient than recessionary, but inflation remains a constraint.</strong> <a href="https://fred.stlouisfed.org/series/UNRATE">September unemployment</a> was <strong>4.2%</strong>, up from <strong>4.1% in August</strong>. The latest available <a href="https://fred.stlouisfed.org/series/CPIAUCSL">CPI index</a> rose about <strong>0.40% month over month in August</strong>, while the <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE price index</a> rose about <strong>0.25%</strong>. Polymarket priced a U.S. recession by year-end at <strong>6%</strong>, down <strong>2 percentage points</strong> over the week, on roughly <strong>$2.28 million</strong> traded.</li>
+<li><strong>Energy and geopolitics remain inflation risks.</strong> A <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">Yahoo Finance report</a> described oil falling to about <strong>$103</strong> following comments on Iran. The headline does not establish a durable easing in energy risk. Meanwhile, a <a href="https://finance.yahoo.com/markets/article/chip-stocks-retreat-despite-samsungs-record-profit-guidance-alphacheck-134449548.html">report of chip-stock weakness despite Samsung’s record profit guidance</a> reinforces that strong industry news alone may not overcome today’s risk-off positioning.</li>
+</ul>
+<h4 id="actionable-cohr-setup">Actionable COHR setup<a class="headerlink" href="#actionable-cohr-setup" title="Permanent link">&para;</a></h4>
+<p>For a <strong>new long</strong>, look for COHR to recover its October 8 breakdown area <em>and</em> for optics peers to stop falling; a retreat in the 10-year yield from roughly 5.28% would strengthen that signal. For an <strong>existing position</strong>, consider sizing against a defined recent swing low rather than adding simply because the headline says COHR is down 5%. Further peer-led selling or a yield move above the recent <strong>5.31% October 5 reading</strong> would favor patience. Verify live COHR prices and volume before acting; neither is supplied by these tools.</p>
+<table>
+<thead>
+<tr>
+<th>COHR trading factor</th>
+<th>Evidence as of Oct. 8</th>
+<th>Practical read-through</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI-optics catalyst</td>
+<td>Oct. 1 platform and analyst-call coverage lifted COHR and peers</td>
+<td>Positive thesis; seek order or revenue confirmation</td>
+</tr>
+<tr>
+<td>Sector reversal</td>
+<td>Oct. 8 report put COHR down ~5% with optics peers also falling</td>
+<td>Wait for sector stabilization before buying the dip</td>
+</tr>
+<tr>
+<td>Treasury yields</td>
+<td>10-year at 5.28% Oct. 7; 4.79% Sept. 1</td>
+<td>Sustained high yields challenge growth-stock valuations</td>
+</tr>
+<tr>
+<td>Fed and economy</td>
+<td>September unemployment 4.2%; cut-by-December market at 3%; recession-by-year-end at 6%</td>
+<td>Neither imminent easing nor imminent recession is the base case priced by these markets</td>
+</tr>
+<tr>
+<td>Trade trigger</td>
+<td>No verified live COHR quote or volume in the feed</td>
+<td>Use a confirmed price recovery and predefined risk limit, not an assumed closing price</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="cohr-fundamental-report-october-8-2026">COHR fundamental report — October 8, 2026<a class="headerlink" href="#cohr-fundamental-report-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>COHR (Coherent Corp.) shows strong revenue and earnings growth, but unusually weak cash conversion.</strong> The key question for traders is whether its elevated capital spending produces enough future cash flow to support a valuation of about 73 times trailing earnings.</p>
+<p><strong>Scope:</strong> The available annual financial-statement data run through COHR’s fiscal year ended <strong>June 30, 2026</strong>; the quarterly income-statement series runs through <strong>March 31, 2026</strong>. The tools provide data available as of October 8, but not filing publication dates or a dated fundamental change during <strong>October 1–8</strong>. The latest insider transaction shown is from September 11. This is therefore an up-to-date <em>fundamental snapshot</em>, not a claim that the figures were newly announced this week.</p>
+<h4 id="business-and-financial-history">Business and financial history<a class="headerlink" href="#business-and-financial-history" title="Permanent link">&para;</a></h4>
+<p>COHR is classified as a Technology / Scientific &amp; Technical Instruments company. It supplies photonics and optical technologies, including products used in communications and industrial applications. The supplied data do not break out current revenue by product, customer, or geography; traders should consult COHR’s filings before assigning a specific share of growth to any end market.</p>
+<p>Fiscal-year revenue rose from <strong>$3.32 billion in 2022</strong> to <strong>$5.16 billion in 2023</strong>, fell to <strong>$4.71 billion in 2024</strong>, then recovered to <strong>$5.81 billion in 2025</strong> and <strong>$7.12 billion in 2026</strong>. The latest increase was <strong>22.5% year over year</strong>, following <strong>23.4%</strong> growth in FY2025. These figures establish a strong two-year recovery, although the supplied statements alone do not establish how much was organic.</p>
+<h4 id="earnings-and-profitability">Earnings and profitability<a class="headerlink" href="#earnings-and-profitability" title="Permanent link">&para;</a></h4>
+<p>COHR’s FY2026 annual statement reports <strong>$805 million of net income</strong>, versus <strong>$49 million in FY2025</strong> and a <strong>$156 million loss in FY2024</strong>. Revenue less cost of revenue implies FY2026 gross profit of approximately <strong>$2.67 billion</strong>, or a <strong>37.5% gross margin</strong>, up from <strong>35.2%</strong> in FY2025. The fundamentals feed lists trailing diluted EPS of <strong>$4.12</strong>, an <strong>11.83% operating margin</strong>, and <strong>$1.42 billion of EBITDA</strong>.</p>
+<p>The last separately listed income-statement quarter, ended March 2026, recorded <strong>$1.806 billion of revenue</strong>, up <strong>20.6%</strong> from March 2025, and <strong>$191 million of net income</strong>. Subtracting the three listed FY2026 quarters from the annual total implies approximately <strong>$2.045 billion of June-quarter revenue</strong>, up <strong>33.7%</strong> from the similarly derived year-earlier quarter. <strong>This is a calculation, not a separately supplied June-quarter income statement</strong>; confirm it against COHR’s filing before treating it as reported quarterly guidance or a new announcement.</p>
+<h4 id="cash-flow-the-main-risk-to-test">Cash flow: the main risk to test<a class="headerlink" href="#cash-flow-the-main-risk-to-test" title="Permanent link">&para;</a></h4>
+<p>Despite higher reported profit, FY2026 <strong>operating cash flow was $80 million</strong>, down from <strong>$634 million</strong> in FY2025. <strong>Capital expenditure rose to $1.103 billion</strong> from <strong>$441 million</strong>. On the straightforward operating-cash-flow-minus-capex calculation, FY2026 free cash flow was approximately <strong>negative $1.023 billion</strong>, compared with <strong>positive $193 million</strong> in FY2025. Operating cash flow covered only about <strong>10% of FY2026 reported net income</strong>, while capex equaled <strong>15.5% of revenue</strong>.</p>
+<p>The fundamentals feed separately gives free cash flow as approximately <strong>negative $650 million</strong>, rather than the <strong>negative $1.023 billion</strong> calculated from the supplied annual cash-flow lines. Its definition or measurement window is not specified. <strong>Do not mix these two figures in a valuation model without reconciling them to COHR’s full cash-flow statement.</strong> The annual statement also reports <strong>$1.477 billion of financing inflows</strong> and <strong>$1.414 billion of investing outflows</strong> in FY2026. Traders should examine the filing’s working-capital, investment, and financing details to understand why cash generation diverged so sharply from earnings.</p>
+<h4 id="balance-sheet-and-valuation">Balance sheet and valuation<a class="headerlink" href="#balance-sheet-and-valuation" title="Permanent link">&para;</a></h4>
+<p>At June 2026, COHR reported <strong>$18.30 billion of assets</strong>, <strong>$7.06 billion of liabilities</strong>, <strong>$10.90 billion of stockholders’ equity</strong>, and <strong>$1.162 billion of cash</strong>. Current assets of <strong>$6.925 billion</strong> against current liabilities of <strong>$2.854 billion</strong> imply a <strong>2.43 current ratio</strong>: near-term liquidity appears substantial, even though annual free cash flow on the calculation above was negative. The vendor reports <strong>31.6% debt to equity</strong>, <strong>7.98% return on equity</strong>, and <strong>3.39% return on assets</strong>.</p>
+<p>Stockholders’ equity nearly doubled from <strong>$5.645 billion</strong> in FY2025. That <strong>$5.258 billion</strong> increase is far greater than FY2026 net income and <strong>should not be attributed to retained profits alone</strong>. Moreover, the three supplied balance-sheet totals—assets, liabilities, and stockholders’ equity—leave a <strong>$335 million difference</strong> in FY2026 and a <strong>$2.836 billion difference</strong> in FY2025. The abbreviated tagged rows do not explain those amounts; inspect the full balance sheet and equity footnotes before drawing conclusions about capital structure or dilution.</p>
+<p>The fundamentals snapshot gives COHR a <strong>$59.21 billion market capitalization</strong>, <strong>73.4× trailing P/E</strong>, <strong>21.5× forward P/E</strong>, <strong>5.43× price-to-book</strong>, and approximately <strong>8.3× trailing sales</strong>; it lists <strong>no dividend</strong>. Forward EPS of <strong>$14.05</strong> is about <strong>3.4 times</strong> trailing EPS of <strong>$4.12</strong>, though the feed does not state the forecast horizon. These multiples make sustained growth—and substantially better cash conversion—important to the investment case. The valuation fields imply a price near <strong>$302</strong>, <strong>not a verified live quote</strong>. The supplied 52-week range is <strong>$108.19–$440</strong>, and beta is <strong>2.11</strong>, underscoring position-sizing risk.</p>
+<p>One reconciliation also warrants attention: the fundamentals feed lists <strong>$769.9 million of net income</strong>, while the annual statement lists <strong>$805 million</strong>. The feed’s stated <strong>11.31% profit margin</strong> aligns with $805 million divided by annual revenue. Verify the income definitions before combining these figures with per-share estimates.</p>
+<h4 id="insider-activity-and-trading-takeaways">Insider activity and trading takeaways<a class="headerlink" href="#insider-activity-and-trading-takeaways" title="Permanent link">&para;</a></h4>
+<p>The transaction feed shows <strong>no insider purchase or sale during October 1–8</strong>. Its latest listed open-market sales total approximately <strong>25,636 shares and $7.21 million</strong> across August 31–September 11, including a <strong>$3.58 million sale by CTO Julie Sheridan Eng</strong> on September 1 and a <strong>$1.63 million sale by director Enrico DiGirolomo</strong> on September 11. It also lists August stock awards; <strong>awards and gifts are not open-market purchases</strong>. The latest CEO open-market purchases shown were two 500-share purchases in November–December 2024. Sales alone do not establish a negative management outlook.</p>
+<p><strong>Actionable focus for COHR:</strong> Track whether the next reports sustain revenue growth and roughly <strong>37.5% gross margins</strong>, while testing for a recovery in operating cash flow relative to capex. A cash-flow rebound would strengthen the case for the forward valuation; continued heavy cash burn, slower growth, or material dilution would make that valuation harder to justify. Confirm the apparent capital-structure change and the differing free-cash-flow definitions in COHR’s complete filings before taking a position.</p>
+<table>
+<thead>
+<tr>
+<th>COHR measure</th>
+<th style="text-align: right;">Latest supplied evidence</th>
+<th>Trading significance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FY2026 revenue</td>
+<td style="text-align: right;"><strong>$7.118B</strong>, <strong>+22.5% YoY</strong></td>
+<td>Strong growth; check whether it persists.</td>
+</tr>
+<tr>
+<td>FY2026 gross margin</td>
+<td style="text-align: right;"><strong>~37.5%</strong>, versus <strong>~35.2%</strong> in FY2025</td>
+<td>Improving product economics.</td>
+</tr>
+<tr>
+<td>FY2026 net income / diluted EPS</td>
+<td style="text-align: right;"><strong>$805M / $4.12</strong> in annual data</td>
+<td>Earnings recovered; vendor net-income figure differs.</td>
+</tr>
+<tr>
+<td>FY2026 operating cash flow / capex</td>
+<td style="text-align: right;"><strong>$80M / $1.103B</strong></td>
+<td>Principal earnings-quality and funding concern.</td>
+</tr>
+<tr>
+<td>Calculated FY2026 free cash flow</td>
+<td style="text-align: right;"><strong>−$1.023B</strong>; vendor separately lists <strong>~−$650M</strong></td>
+<td>Reconcile definitions before valuing cash flow.</td>
+</tr>
+<tr>
+<td>June 2026 cash / current ratio</td>
+<td style="text-align: right;"><strong>$1.162B / ~2.43</strong></td>
+<td>Near-term liquidity remains substantial.</td>
+</tr>
+<tr>
+<td>Valuation</td>
+<td style="text-align: right;"><strong>73.4× trailing P/E; 21.5× forward P/E; ~8.3× sales</strong></td>
+<td>Requires execution on growth and future earnings.</td>
+</tr>
+<tr>
+<td>Insider feed</td>
+<td style="text-align: right;"><strong>~$7.21M of sales, Aug. 31–Sept. 11; none shown Oct. 1–8</strong></td>
+<td>Monitor, but do not treat grants or gifts as purchases.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>Bull opening on COHR:</strong> I’m bullish on COHR over a 12–24 month horizon, but I would not call the October 8 selloff an automatic buying opportunity. The case is that its earnings and product economics are improving while AI data-center networking creates an opportunity for its optics portfolio. The test is whether that growth begins to produce cash.</p>
+<p>Bear, your strongest point is cash flow—not the share-price drop. COHR’s FY2026 revenue grew <strong>22.5% to $7.12 billion</strong>, following <strong>23.4% growth</strong> the prior year. Gross margin rose from roughly <strong>35.2% to 37.5%</strong>, and annual net income increased from <strong>$49 million to $805 million</strong>. That combination matters: sales are growing, and a greater share of those sales is reaching gross profit. As an illustration, <em>15% revenue growth</em> next year would put revenue near <strong>$8.19 billion</strong>; that is a scenario, <strong>not company guidance</strong>.</p>
+<p>The opportunity is credible without pretending it is already booked. COHR supplies photonics and optical technologies used in communications, and October headlines reported a new data-optics platform and favorable analyst attention. Those are reasons to watch COHR as AI infrastructure expands—not proof of new orders, market-share gains, or a particular AI revenue contribution.</p>
+<p>I agree that <strong>$80 million of FY2026 operating cash flow against $1.103 billion of capex</strong> is a serious challenge. The annual cash-flow lines imply about <strong>negative $1.023 billion of free cash flow</strong>; a separate vendor figure says roughly <strong>negative $650 million</strong>, and the discrepancy needs reconciling. Nor can capex alone excuse weak cash conversion: operating cash flow fell from <strong>$634 million</strong> the year before. My rebuttal is narrower than “ignore it”: COHR has <strong>$1.162 billion in cash</strong> and a roughly <strong>2.43 current ratio</strong>, giving it near-term liquidity while investors test whether spending supports future growth. If cash generation fails to recover, the bull case weakens materially.</p>
+<p>Valuation makes that test urgent. <strong>73.4× trailing earnings and about 8.3× sales are not cheap.</strong> The reported <strong>21.5× forward P/E</strong> suggests substantial expected earnings growth, but its forecast horizon is unspecified; it is an expectation, not an achieved result.</p>
+<p><strong>My COHR recommendation is a cautiously bullish, confirmation-based buy rather than a blind dip-buy at the October 8 close of $302.35.</strong> That close was about <strong>9.6% below</strong> the prior close, on heavy volume. I’d look for recovery beyond the nearly coincident <strong>$302.82 50-day average</strong>, then stronger evidence above <strong>$328.87</strong>, alongside improving volume and optics-peer stability. I would size against meaningful volatility and watch <strong>$275.61</strong>, the reported daily SuperTrend stop, as a risk reference—not a guaranteed exit price.</p>
+<p>So the debate is not whether COHR has risk. It plainly does. It is whether accelerating revenue, better margins, and the AI-optics opportunity justify staying interested while demanding cash-flow proof. I think they do; I would change my view if growth slows without a clear improvement in cash conversion.
+Bull Analyst: Bear, I agree with your central objection: <strong>a COHR price rebound would not prove cash conversion has improved.</strong> I’m not proposing that a chart signal replace a cash-flow test. I’m arguing that investors do not have to wait for <em>every</em> part of the thesis to be proven before taking a carefully sized position.</p>
+<p>The evidence already goes beyond a product-launch headline. COHR grew revenue <strong>22.5% to $7.12 billion</strong> in FY2026 after <strong>23.4%</strong> growth the prior year, while gross margin improved from about <strong>35.2% to 37.5%</strong>. Net income rose from <strong>$49 million to $805 million</strong>. You call the slight decline in annual growth a warning; I see a company sustaining growth above 20% while improving product economics. The supplied annual and quarterly figures also <em>imply</em> June-quarter revenue of roughly <strong>$2.05 billion, up 33.7% year over year</strong>. That is a calculation to verify against the filing, not a separately reported quarter—but it makes a broad slowdown claim premature.</p>
+<p>You’re right that the AI-optics opportunity is not the same thing as booked AI-optics revenue. COHR’s communications and photonics business gives it relevant products and operating scale, and the reported data-optics platform launch gives investors a potential growth catalyst. Neither establishes market-share dominance or new orders; competitors are pursuing the opportunity too. My advantage argument is narrower: COHR has demonstrated an ability to grow a multibillion-dollar business <em>and</em> expand gross margin. That is a firmer starting point than a thesis resting solely on industry forecasts.</p>
+<p><strong>Cash flow is where you have the strongest case.</strong> FY2026 operating cash flow of <strong>$80 million</strong> against <strong>$1.103 billion</strong> of capex implies about <strong>$1.023 billion of negative free cash flow</strong> on the supplied annual lines. The separate vendor estimate of roughly <strong>negative $650 million</strong> needs reconciliation, and financing inflows are not a free substitute for internally generated cash. The <strong>$1.162 billion</strong> cash balance and <strong>2.43 current ratio</strong> provide near-term flexibility, not permission for another year of unchanged burn. I would look for operating cash flow to recover <em>relative to capex</em>, not simply for earnings to rise again.</p>
+<p>Valuation makes this a conditional bull case, not a cheap-stock case. At <strong>73.4× trailing earnings</strong> and roughly <strong>8.3× sales</strong>, COHR must execute. The <strong>21.5× forward P/E</strong> shows how much earnings improvement is anticipated, but the estimate’s horizon is unspecified and it is not a guarantee. Your “wait for proof” approach reduces fundamental uncertainty; its trade-off is that a convincing cash-flow recovery may already be reflected in the share price by the time it appears.</p>
+<p>So my recommendation remains <strong>cautiously bullish on COHR over 12–24 months, not an automatic buy at the $302.35 October 8 close</strong>. I would consider a small initial position only after optics peers stabilize and COHR shows a sustained recovery beyond <strong>$328.87</strong>, rather than treating a $0.47 move back over its 50-day average as sufficient. I would add conviction only if subsequent reports preserve margins and show cash conversion improving. If cash burn persists or growth weakens, your valuation objection wins—and I would step back.
+Bull Analyst: Bear, the <strong>88% cash-balance comparison is a serious warning</strong>, not something I’d wave away. In fact, even if COHR restored FY2025 operating cash flow of <strong>$634 million</strong> while capex stayed at FY2026’s <strong>$1.103 billion</strong>, free cash flow would still be about <strong>negative $469 million</strong>. The bull case needs better cash conversion, a moderation in spending, or both. I’m not assuming last year’s <strong>$1.477 billion of financing inflows</strong> can be repeated without cost.</p>
+<p>Where we differ is whether investors must wait for <em>positive free cash flow</em> before owning any COHR. There is already evidence that the operating business can scale: approximately <strong>$1.31 billion of additional FY2026 revenue produced $624 million of additional gross profit</strong>, using the supplied annual revenue and margin figures. That is roughly a <strong>48% incremental gross margin</strong>. It does not prove an AI-optics moat or turn gross profit into cash, but it is more substantial than a platform-launch headline. COHR expanded gross margin while growing revenue more than 20% for a second consecutive year.</p>
+<p>Your valuation objection keeps me from recommending a full position. At <strong>73.4× trailing earnings</strong>, COHR cannot afford indefinitely weak cash generation, and the <strong>21.5× forward multiple</strong> depends on an earnings forecast whose horizon is unspecified. But waiting until cash flow is conclusively fixed has a cost too: investors may then be paying for an improvement already recognized by the market. A small, staged position is a way to take that opportunity seriously without pretending the uncertainty is gone.</p>
+<p><strong>My recommendation remains a cautious, 12–24-month bull position in COHR—not a blind buy at the October 8 close.</strong> I’d consider a small starter only if optics peers stabilize and COHR sustains a recovery beyond <strong>$328.87</strong>. That would address entry timing, <strong>not</strong> validate cash flow. I’d add only if subsequent reports hold gross margin near <strong>37.5%</strong> and show operating cash flow improving relative to capex. If the roughly <strong>$1 billion annual cash deficit</strong> persists without credible progress, your bear case wins, and I would step aside.
+Bull Analyst: Bear, your break-even math is right: if COHR keeps spending <strong>$1.103 billion a year on capex</strong>, restoring FY2025 operating cash flow of <strong>$634 million</strong> would still leave roughly <strong>$469 million of negative free cash flow</strong>. That is why I would not buy COHR merely because it rebounds above <strong>$328.87</strong>. A chart cannot explain what happened to cash conversion.</p>
+<p>Where I differ is treating FY2026’s <strong>$80 million</strong> of operating cash flow as the most useful baseline for the next two years. COHR has previously generated $634 million, and since then it has grown revenue <strong>22.5%</strong>, raised gross margin from about <strong>35.2% to 37.5%</strong>, and produced roughly <strong>$624 million of additional gross profit</strong>. None of that proves cash flow will recover—the cause of the divergence needs to be established—but it gives the bull case operating evidence beyond an AI-optics headline.</p>
+<p>Consider a <strong>sensitivity, not a forecast</strong>. At 15% revenue growth, sales would reach about <strong>$8.19 billion</strong>. If COHR regained FY2025’s roughly <strong>10.9% operating-cash-flow margin</strong>, cash from operations would be about <strong>$893 million</strong>. With capex easing to <strong>$800 million—still about 81% above FY2025 spending</strong>—simple free cash flow would turn modestly positive. Keep capex at $1.103 billion instead, and it remains about <strong>$210 million negative</strong>. Both assumptions need proof; the point is that COHR need not stop investing to improve cash generation.</p>
+<p>I also won’t claim a proven AI-optics moat. COHR’s demonstrated advantage <em>so far</em> is its ability to grow a multibillion-dollar photonics business while improving gross margin. The platform launch offers an opportunity; orders, returns on capex, and sustained cash generation must establish its value.</p>
+<p><strong>My COHR recommendation remains cautiously bullish over 12–24 months, with a staged—not rebound-only—entry.</strong> I would want optics peers to stabilize, a sustained recovery beyond $328.87, and a credible explanation of the operating-cash-flow shortfall before starting small. I would add only as cash flow improves relative to capex without sacrificing margins. If substantial burn persists or funding materially dilutes shareholders, your valuation objection wins.
+Bull Analyst: Bear, you’re right that my earlier positive-free-cash-flow sensitivity required too many favorable assumptions at once. I would not underwrite COHR on that scenario, and I would not treat a move above <strong>$328.87</strong> as proof that the funding problem is solved.</p>
+<p>But <strong>positive free cash flow next year is not the only outcome that could strengthen the investment case</strong>. Hold capex at FY2026’s <strong>$1.103 billion</strong>—no assumed cut—and suppose operating cash flow merely returns to FY2025’s <strong>$634 million</strong>. Free cash flow would still be about <strong>negative $469 million</strong>, a serious deficit, but roughly <strong>$554 million less negative</strong> than the FY2026 result calculated from the annual lines. That is a sensitivity, not a forecast. It shows why I would watch the <em>size and direction</em> of the cash shortfall rather than make immediate break-even the sole test.</p>
+<p>Why give COHR a chance to demonstrate that recovery? Its operating evidence is stronger than a product-launch story: FY2026 revenue grew <strong>22.5%</strong>, gross margin reached roughly <strong>37.5%</strong>, and approximately <strong>$1.31 billion</strong> of additional sales generated about <strong>$624 million</strong> of additional gross profit. That does not explain the collapse in operating cash flow or prove an AI-optics moat. It does show a scaled photonics business improving its gross economics while it grows. The data-optics launch offers a plausible route to further demand; identifiable orders and returns on spending still need verification.</p>
+<p>I accept your valuation point, too. At <strong>73.4× trailing earnings</strong>, COHR cannot sustain a roughly <strong>$1 billion</strong> annual cash deficit indefinitely, and the <strong>21.5× forward P/E</strong> depends on an unverified earnings forecast. So I’ll sharpen my entry test: <strong>peer stabilization and a stronger chart would help with timing, but I would want a subsequent report showing meaningful operating-cash-flow recovery relative to capex before starting even a small position.</strong> I would add only with further evidence that margins hold and optics demand is converting into cash-generating business.</p>
+<p>My <strong>12–24-month view on COHR remains cautiously bullish</strong> because the growth and gross-profit gains give a recovery something tangible to build on. Your case wins if that recovery fails to appear or requires materially unfavorable financing.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: Bull, I agree that COHR’s growth is real. Revenue rose <strong>22.5%</strong> in FY2026, gross margin improved, and net income reached <strong>$805 million</strong>. But I disagree that a price recovery would make this a confirmation-based <em>buy</em>. A move back above the 50-day average—or even October 8’s $328.87 high—would confirm renewed buying, not that COHR can turn its growth into cash.</p>
+<p>That is the gap in your case. FY2026 operating cash flow fell from <strong>$634 million to $80 million</strong> while capex rose to <strong>$1.103 billion</strong>. The supplied annual lines therefore imply roughly <strong>$1.023 billion of negative free cash flow</strong>, versus positive $193 million the prior year. The vendor’s separate estimate of about <strong>negative $650 million</strong> needs reconciliation, but neither figure supports the idea that reported earnings are already funding expansion. COHR’s <strong>$1.162 billion cash balance</strong> and 2.43 current ratio provide breathing room; they do not make another year of comparable cash burn inconsequential. Nor should the <strong>$1.477 billion of FY2026 financing inflows</strong> be assumed to be a costless or repeatable solution.</p>
+<p>Your 15% revenue-growth illustration is possible, but it is not evidence. Reported annual growth actually eased slightly from <strong>23.4% to 22.5%</strong>, and the supplied data do not identify how much AI optics contributes or establish new orders from the platform launch. Lumentum, Applied Optoelectronics and other optics names are pursuing the same opportunity; the peer-wide selloff is a reminder that COHR has not yet demonstrated a uniquely insulated position. I am not claiming it has lost share—I am saying the premium valuation prices in an advantage the evidence here does not establish.</p>
+<p>At <strong>73.4× trailing earnings</strong> and roughly <strong>8.3× sales</strong>, COHR has little room for a cash-flow disappointment. The <strong>21.5× forward P/E</strong> relies on $14.05 of forecast EPS, about <strong>3.4 times</strong> trailing EPS, with an unspecified forecast horizon. Meanwhile, the October 8 close was down about <strong>9.6%</strong> on heavy volume; the close just <strong>$0.47 below</strong> the 50-day average is <em>not</em> a decisive breakdown, but neither RSI nor the reported Z-scores indicate an exhausted selloff. A roughly <strong>5.28% 10-year Treasury yield</strong> adds pressure to the price investors may pay for distant growth.</p>
+<p><strong>My COHR recommendation: avoid initiating a position for now, rather than buy a technical rebound.</strong> I would reconsider if subsequent reports show operating cash flow recovering relative to capex, AI-optics demand turning into identifiable business, and margins holding as spending scales. You have made those tests central to your bull case; my disagreement is that, at this valuation, investors should demand the results <em>before</em> paying for them.
+Bear Analyst: Bull, your strongest reply is the implied June-quarter revenue growth of <strong>33.7%</strong>. I agree it makes a broad COHR slowdown claim premature. But it answers a different question from the one that would make me buy: <strong>Is that growth producing enough cash to fund itself?</strong> The June figure is a calculation to verify, and it tells us neither how much came from AI optics nor whether the spending behind it will pay off.</p>
+<p>The cash-flow deterioration is too large to treat as a temporary footnote. While FY2026 revenue rose <strong>22.5%</strong> and gross margin improved, operating cash flow fell from <strong>$634 million to $80 million</strong> and capex climbed from <strong>$441 million to $1.103 billion</strong>. On the supplied annual lines, free cash flow swung from <strong>positive $193 million to negative $1.023 billion</strong>—a <strong>$1.216 billion</strong> reversal. The separate vendor estimate of roughly negative $650 million needs reconciliation, but it does not change the direction of the problem.</p>
+<p>You’re right that COHR’s <strong>$1.162 billion cash balance</strong> and <strong>2.43 current ratio</strong> mean this is not an imminent liquidity-crisis argument. Still, the calculated annual cash burn is equivalent to roughly <strong>88% of that cash balance</strong>. The <strong>$1.477 billion of financing inflows</strong> last year also makes it important to establish how future expansion will be funded; I’m not assuming dilution, but I won’t assume financing is costless either.</p>
+<p>I give COHR credit for scale and improving margins. What I cannot yet give it is a proven AI-optics moat: the platform launch and favorable analyst calls are not verified orders, AI-specific revenue, or market-share gains. At <strong>73.4× trailing earnings</strong> and roughly <strong>8.3× sales</strong>, that distinction matters. Even the seemingly more comfortable <strong>21.5× forward P/E</strong> rests on forecast EPS of <strong>$14.05</strong>, about <strong>3.4 times</strong> trailing EPS, with an unspecified forecast horizon.</p>
+<p>Waiting for proof could mean paying a higher price; I accept that trade-off. But a sustained move above <strong>$328.87</strong> would establish buying interest, not resolve cash conversion—and it would mean entering about <strong>8.8% above</strong> the October 8 close of $302.35. <strong>My COHR recommendation remains to avoid initiating a position for now.</strong> I would reconsider when subsequent results show operating cash flow recovering relative to capex and provide firmer evidence that optics demand is becoming profitable, cash-generating business.
+Bear Analyst: Bull, I accept your <strong>48% incremental gross-margin</strong> calculation. COHR’s revenue growth and improving product economics are real. But they make the cash-flow result more troubling, not less: despite roughly <strong>$624 million of additional gross profit</strong> in FY2026, operating cash flow <strong>fell $554 million</strong> to $80 million. Capex also rose <strong>$662 million</strong>. The supplied figures do not tell us why cash conversion deteriorated, so I would not call it permanent—but I would not pay a premium while assuming it is temporary.</p>
+<p>Your own scenario shows how demanding the fix is. If capex remains at <strong>$1.103 billion</strong>, COHR needs operating cash flow at that level merely to break even on a simple cash-flow-minus-capex basis. That is nearly <strong>14 times FY2026’s $80 million</strong> and about <strong>74% above FY2025’s $634 million</strong>. “Improving relative to capex” could still leave substantial cash burn. The separate vendor free-cash-flow estimate needs reconciliation, but it is negative too.</p>
+<p>I also question what your proposed starter position confirms. A sustained move above <strong>$328.87</strong> would put an investor roughly <strong>8.8% above</strong> the October 8 close without establishing new orders, an AI-optics market-share advantage, or better cash generation. COHR and its optics peers are competing for the same opportunity; the platform launch and analyst enthusiasm do not yet show who will earn attractive returns on the spending. With COHR at <strong>73.4× trailing earnings</strong> and the <strong>21.5× forward multiple</strong> depending on a forecast EPS far above trailing EPS, that missing evidence matters—particularly with the 10-year Treasury yield recently around <strong>5.28%</strong>.</p>
+<p>You’re right that waiting may mean paying more if COHR fixes cash conversion. I would rather take that risk than pay more <em>after a rebound</em> for an unresolved funding and valuation problem. <strong>My COHR recommendation remains to avoid a new position for now.</strong> I do not require positive free cash flow immediately, but I would want a meaningful operating-cash-flow recovery, a credible path to funding capex, and clearer evidence that AI-optics demand is producing profitable business before reconsidering.
+Bear Analyst: <strong>Bear Analyst:</strong> Bull, your sensitivity is useful because it shows how much has to go right <em>at once</em>. To produce the roughly <strong>$93 million of positive free cash flow</strong> in your example, COHR would need 15% revenue growth, a return to FY2025’s approximately 10.9% operating-cash-flow margin, <strong>and</strong> a roughly 27% reduction in capex from FY2026’s $1.103 billion. That is a plausible scenario to test, not evidence that the cash-flow problem is nearly solved.</p>
+<p>The margin assumption is the steepest hurdle. COHR’s operating-cash-flow margin was only about <strong>1.1% in FY2026</strong>, despite the revenue growth and incremental gross profit you rightly emphasize. At your projected $8.19 billion of sales, each percentage point of cash-flow margin is worth about <strong>$82 million</strong>—almost the entire free-cash-flow surplus in your scenario. If capex stays at $1.103 billion, even your $893 million cash-flow estimate leaves a deficit of about <strong>$210 million</strong>.</p>
+<p>I agree that FY2026’s $80 million of operating cash flow need not be the permanent baseline. But FY2025’s $634 million is not automatically the right one either: cash generation fell sharply <em>while</em> sales and gross margin improved. Until COHR explains that divergence and demonstrates a recovery, I would not underwrite a return to the old margin. Nor would I assume it can cut spending while sustaining growth; the supplied data do not establish what returns that capex will earn.</p>
+<p>That is why your proposed staged entry still does not persuade me. Peer stabilization and a move above <strong>$328.87</strong> might improve timing, but neither establishes the cash-flow assumptions on which your valuation case depends. At <strong>73.4× trailing earnings</strong>, roughly <strong>8.3× sales</strong>, and with the forward multiple relying on EPS far above trailing results, investors are being asked to pay for substantial improvement before seeing it. The <strong>$1.162 billion cash balance</strong> provides flexibility, not an answer to sustained burn.</p>
+<p><strong>My COHR recommendation remains: avoid a new position for now.</strong> I would reconsider after a documented operating-cash-flow recovery, a credible capex-funding path, and clearer evidence that optics growth is producing cash—not merely a stronger chart or an explanation of why last year was weak.
+Bear Analyst: Bull, your revised entry test is much closer to mine: <strong>wait for a subsequent cash-flow report before buying COHR</strong>. I agree that free cash flow need not turn positive immediately. But the <em>quality and scale</em> of the recovery matter more than its direction.</p>
+<p>Your example makes the hurdle clear. Restoring FY2025 operating cash flow of <strong>$634 million</strong> while holding capex at <strong>$1.103 billion</strong> would still leave roughly <strong>$469 million of annual cash burn</strong>—about <strong>40% of COHR’s June 2026 cash balance</strong>. That would be a major improvement on FY2026, but not yet evidence that expansion can fund itself. If capex stays at that level, operating cash flow must exceed <strong>$1.103 billion</strong> merely to produce positive free cash flow on the supplied annual-line calculation. Nor can we assume COHR can sharply reduce capex without affecting the growth your thesis relies on.</p>
+<p>I give the operating gains their due: <strong>22.5% revenue growth</strong> and a <strong>37.5% gross margin</strong> are substantial. The concern is precisely that those gains coincided with operating cash flow falling from <strong>$634 million to $80 million</strong>. Until the cause is clear, an improving gross margin does not establish a durable return on the spending. And the platform launch has not yet been tied in the supplied evidence to identifiable orders or a competitive advantage over other optics suppliers.</p>
+<p>That leaves little margin for disappointment at <strong>73.4× trailing earnings</strong> and roughly <strong>8.3× sales</strong>. The cheaper-looking <strong>21.5× forward earnings</strong> multiple depends on forecast EPS about <strong>3.4 times</strong> trailing EPS, with an unspecified forecast horizon. A stronger chart or a partial cash-flow rebound would not, by itself, validate that expectation.</p>
+<p><strong>My COHR recommendation remains to avoid a new position for now.</strong> I would reconsider on a documented, sustainable operating-cash-flow recovery <em>relative to capex</em>, a credible funding path, and clearer evidence that optics demand is generating returns—not simply on a smaller, still-substantial cash deficit.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: The bear case is stronger for COHR at the supplied valuation, although the operating improvements argue against a full exit. The bull has credible evidence: FY2026 revenue grew 22.5% to $7.12 billion, gross margin rose from roughly 35.2% to 37.5%, and net income increased from $49 million to $805 million. That supports a genuine growth-and-margin thesis, but the supplied evidence does not establish AI-optics orders, a competitive moat, or returns on expansion spending. The deciding issue is the unexplained deterioration in cash conversion: operating cash flow fell from $634 million to $80 million despite stronger reported profits. Subtracting $1.103 billion of capex implies negative $1.023 billion of free cash flow. The separate vendor estimate of approximately negative $650 million cannot be reconciled from the prompt; both measures indicate substantial cash consumption. Even restoring operating cash flow to $634 million with unchanged capex would leave a $469 million deficit. At 73.4 times trailing earnings and roughly 8.3 times sales, COHR offers insufficient valuation protection against that funding uncertainty. The 21.5 times forward multiple is not a reliable cheapness argument without the forecast horizon and a comparable earnings basis. COHR's $1.162 billion cash balance and approximately 2.43 current ratio provide flexibility, so this is not an established imminent-liquidity-crisis case. The appropriate response is reduced exposure while demanding cash-flow evidence, not a rebound-based purchase or an indiscriminate exit.</p>
+<p><strong>Strategic Actions</strong>: Use 0.5 times the portfolio's standard COHR allocation as an exposure ceiling, not a minimum or a top-up target. If existing exposure exceeds that ceiling, trim the excess in two liquidity-aware tranches without making completion contingent on a rebound. If exposure is already smaller, do not add; if there is no position, do not initiate. This is not a short-sale instruction. The trader and portfolio manager must apply the ceiling to actual holdings and portfolio limits, which are not supplied. Refresh execution prices before placing orders: the $302.35 October 8 close and the supplied technical levels are historical references, not live quotes. A recovery above $302.82 or $328.87 would not independently justify buying. Reassess after the next financial report. Before increasing exposure, reconcile the conflicting free-cash-flow figures, establish the cause of the operating-cash-flow shortfall, and identify the source and terms of financing; those details are missing. Require documented operating-cash-flow recovery relative to capex, a credible funding path for any remaining deficit, gross margin holding near 37.5%, and clearer evidence of profitable optics demand. A smaller deficit alone is insufficient, and immediate positive free cash flow is not mandatory if the remaining deficit is credibly funded without materially adverse terms. If these conditions are met, consider raising the ceiling to 0.75 times standard allocation; restore 1.0 times only after a subsequent report confirms the improvement. If approximately $1 billion of annual cash burn persists without a credible recovery and funding path, or financing becomes materially unfavorable to shareholders, exit the residual exposure. Size any retained position within the portfolio's established volatility and loss limits; those limits and current volatility are not provided.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: Underweight COHR: despite stronger revenue, margins, and earnings, operating cash flow fell to $80 million against $1.103 billion of capex, leaving a large, unexplained funding gap at a demanding valuation. The drop to $302.35 on heavy volume near the $298.88 session low weakens the near-term setup, although the $302.82 50-day SMA is only marginally above price and the higher-timeframe trend remains up; that favors trimming excess exposure rather than exiting indiscriminately. Refresh quotes before selling in two liquidity-aware tranches, without waiting for a rebound; $275.61 is a daily trend-risk reference, not an automatic stop for the retained position.</p>
+<p><strong>Entry Price</strong>: not provided</p>
+<p><strong>Stop Loss</strong>: not provided</p>
+<p><strong>Position Sizing</strong>: Cap COHR exposure at 0.5 times the portfolio's standard COHR allocation. If above the ceiling, sell the excess in two liquidity-aware tranches; otherwise do not add or initiate. Do not short.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: I’d back the COHR sell, but not because the AI-optics opportunity has disappeared. The aggressive move is to cut an oversized position before a promising growth story becomes a portfolio-sized bet on flawless execution.</p>
+<p>COHR grew FY2026 revenue 22.5% and lifted gross margin to about 37.5%. Its platform launch and analyst attention give the retained position real upside if demand translates into results. That is why selling everything would be too defensive. But holding excess exposure while waiting for a rebound would take substantial risk without a stronger entry signal: COHR fell about 9.6% on October 8, traded 9.25 million shares, and closed only $3.47 above the session low. The 50-day average is just $0.47 above the close, so this is not a confirmed trend breakdown—but neither is that tiny gap a compelling reason to delay trimming.</p>
+<p>The bigger opportunity-cost issue is cash conversion. COHR reported $80 million of operating cash flow against $1.103 billion of capex, while trading at 73.4 times trailing earnings. Its $1.477 billion of financing inflows show funding was available; they do not yet establish that the investment will earn an attractive return. At a 5.28% 10-year Treasury yield, execution matters.</p>
+<p>So refresh the COHR quote, then sell only the amount above 0.5 times your standard COHR allocation in two liquidity-aware tranches, without waiting for a bounce. If you are already at or below that ceiling, do not sell merely to satisfy the label, and do not add or short. This keeps exposure to a potentially powerful growth thesis while freeing capital from its least defensible portion. I would reassess adding only after stronger price recovery and evidence that COHR’s cash generation is catching up with its growth.
+Aggressive Analyst: Conservative, the cash-flow gap is the strongest reason to sell excess COHR exposure, not to abandon a risk-budgeted position. FY2026 operating cash flow of $80 million against $1.103 billion of capex is a serious warning; even the vendor’s less-negative free-cash-flow figure does not make it disappear. But COHR also has $1.162 billion in cash and a roughly 2.43 current ratio. Financing inflows show access to funding, not that the spending will pay off. That distinction argues for cutting concentration while keeping a stake in the upside: revenue grew 22.5%, gross margin rose to about 37.5%, and net income reached $805 million. The 73.4-times trailing P/E and 5.28% Treasury yield raise the execution bar; they do not prove the growth investment will fail.</p>
+<p>I also agree with you that waiting for a rebound before trimming is a poor gamble. COHR fell about 9.6% on 9.25 million shares and closed near its low, while its $21.43 ATR makes a tidy exit unlikely. But half a standard allocation is a ceiling, not an instruction to keep cutting a holding that already fits the portfolio’s risk budget. Weekly and monthly trends remain up, and MACD is still positive, though weakening. Product and analyst headlines are not confirmed orders, and the small, low-confidence retail sample is not a risk control. They are reasons to preserve measured participation in a potentially valuable AI-optics opportunity, not reasons to carry an oversized bet.</p>
+<p>Neutral, you are right that we cannot declare a funding crisis or know whether this year’s capex-driven cash burn will persist. Both reported free-cash-flow measures are negative, though, so that uncertainty is a reason to remove <em>excess</em> COHR risk now rather than await a perfect reconciliation. Your 21.5-times forward P/E captures the upside case, but it relies on forecast earnings far above trailing EPS. Likewise, a close just $0.47 below the 50-day average does not justify selling everything; it does not protect an overweight position from another volatile session. Better cash conversion and peer stabilization are useful tests before reconsidering exposure later, not prerequisites for today’s trim.</p>
+<p>Refresh the COHR quote, then sell any amount above the lesser of 0.5 times your standard COHR allocation and your actual concentration and loss limits in two liquidity-aware tranches, without waiting for a bounce. If COHR is already within those limits, do not force a sale, add, initiate, or short. Treat $275.61 as a trend-review reference, not an automatic stop. That is the aggressive choice here: shed avoidable concentration while retaining meaningful upside if COHR’s investment pays off.
+Aggressive Analyst: Conservative, you’re right that “meaningful upside” is not a risk limit. I’m not proposing half an allocation as a target: COHR should sit below the lesser of that ceiling and the portfolio’s concentration and loss limits, including correlated AI-optics exposure. Where I push back is on treating the cash-flow gap as a reason to keep shrinking a position that already fits those limits. COHR’s $80 million of operating cash flow against $1.103 billion of capex is a serious execution risk, and neither its cash nor its $1.477 billion of financing inflows proves the spending will pay off. But 22.5% revenue growth, a gross-margin rise to roughly 37.5%, and $805 million of annual net income give that investment a credible potential payoff. The aggressive choice is to sell the <em>excess</em> without surrendering the chance to benefit if growth converts to cash.</p>
+<p>Your technical caution strengthens the case for trimming now, not for abandoning COHR. A roughly 9.6% decline on 9.25 million shares, near the day’s low, is no setup for waiting on a rebound with an oversized stake. Yet ADX of 10.37 signals a weak daily trend, not a confirmed downtrend; MACD remains positive, and the weekly and monthly trends remain up. Likewise, 21.5 times forward earnings is risky because forecast EPS of $14.05 is far above trailing EPS of $4.12—but dismissing that forecast entirely would also dismiss the upside we are retaining exposure to.</p>
+<p>Neutral, I agree that financing access is not a return on capital and that the two negative free-cash-flow figures need reconciliation. That uncertainty is precisely why I would remove excess COHR risk <em>before</em> a definitive answer, rather than demand proof of permanent cash burn. I also agree that a close $0.47 below the 50-day average is not a breakdown. It is no protection for an overweight holding after a heavy-volume fall, either. Product and analyst headlines support the opportunity, but they are not confirmed orders; low-confidence retail bullishness is not a sizing rule.</p>
+<p>So my COHR call remains a conditional <strong>SELL</strong>: refresh the quote and portfolio exposures, then sell any amount above the lesser of 0.5 times the standard COHR allocation and the portfolio’s concentration and loss limits in two liquidity-aware tranches, without waiting for a bounce. If the holding fits both limits, do not force a sale, add, initiate, or short. Treat $298.88 as a near-term warning and $275.61 as a trend-review reference—not a guaranteed stop. This takes risk where the potential reward remains, rather than where concentration could dictate the outcome.
+Aggressive Analyst: Conservative, I agree that COHR’s half-allocation ceiling is not automatically safe. Stress the holding alongside other AI-optics exposure and allow for a gap beyond the $275.61 daily trend level; sell below half an allocation if the portfolio’s loss budget requires it. Where I disagree is treating the cash-flow gap as a reason to keep shrinking a position that <em>does</em> fit that budget. COHR’s $80 million of operating cash flow against $1.103 billion of capex demands an explanation, and financing inflows do not prove a return on investment. But 22.5% revenue growth, a gross-margin increase to about 37.5%, and $805 million in annual net income give a measured stake a credible upside case. The 73.4-times trailing P/E and 5.28% Treasury yield call for less concentration, not an assumption that growth will fail.</p>
+<p>Neutral, your distinction between a risk budget and repeated selling after every volatile session is important. COHR’s roughly 9.6% fall on 9.25 million shares, near the session low, makes <em>excess</em> exposure a poor gamble while waiting for a bounce. Yet the close is only $0.47 below the 50-day average, daily trend strength is weak, and the weekly and monthly trends remain up. Waiting for both proven cash conversion and settled optics peers before retaining any upside could mean giving up the opportunity those improvements would validate. The 21.5-times forward P/E illustrates that potential, though its $14.05 forecast EPS is far from assured. Product headlines and low-confidence bullish sentiment are reasons to watch COHR, not substitutes for orders or cash flow.</p>
+<p>My COHR call is a conditional <strong>SELL</strong>: refresh the quote and portfolio exposures, then sell any amount above the lesser of 0.5 times your standard COHR allocation and your correlation- and gap-stressed loss limit, in two liquidity-aware tranches without waiting for a rebound. If the holding already fits both limits, do not force a sale, add, initiate, or short. Use $298.88 as a near-term warning and $275.61 as a review point—not promised exit prices. That removes the risk least justified by the evidence while preserving a budgeted stake in COHR’s growth.
+Aggressive Analyst: Conservative, COHR’s cash-flow gap is the best argument for selling an oversized position—not for continually shrinking one that fits a properly stressed loss budget. The annual lines imply about $1.023 billion of negative free cash flow, and the vendor’s roughly $650 million negative figure needs reconciliation. Neither is good cash conversion. But neither establishes that this level of spending will persist or fail to earn a return. COHR’s 22.5% revenue growth and gross-margin improvement to roughly 37.5% make retaining <em>limited</em> exposure a deliberate growth bet. Its cash and financing access buy room to test that bet; they do not prove it will succeed. I agree that 21.5 times forward earnings is no margin of safety—the forecast EPS of $14.05 versus $4.12 trailing is a demanding hurdle. It is also the upside a measured position preserves if execution improves.</p>
+<p>Your technical warning supports trimming excess COHR <strong>now</strong>. A roughly 9.6% drop on 9.25 million shares near the session low is no reason to wait for a bounce. But it is not proof that the longer-term opportunity has ended: COHR closed only $0.47 below its 50-day average, daily ADX is a weak 10.37, MACD remains positive, and weekly and monthly trends remain up. The $21.43 ATR and gap risk belong in position sizing, not in a claim that $275.61 guarantees an exit.</p>
+<p>Neutral, you are right that a loss budget must include correlated optics holdings and be revisited when conditions change. I would not turn that into a rule to sell a well-sized COHR holding after every volatile session. Product and analyst headlines are not orders, and low-confidence bullish sentiment is not evidence of cash generation; waiting for every uncertainty to clear, though, could surrender the upside before it is reflected in results.</p>
+<p>My COHR call is a conditional <strong>SELL</strong>: refresh the quote and portfolio exposures, then sell any amount above the lesser of half your standard COHR allocation and your correlation- and gap-stressed concentration and loss limits. Use two liquidity-aware tranches without requiring a rebound; trim below half if the loss limit demands it. If COHR already fits those limits, do not force a sale, add, initiate, or short. Treat $298.88 as a near-term warning and $275.61 as a review level, not automatic stops. That cuts the least defensible risk while keeping a budgeted stake in the potential payoff.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst that an oversized COHR position should be trimmed, but I would not treat half a standard allocation as automatically safe. COHR’s 22.5% revenue growth and improving margins support the upside case; they do not yet show that its spending is paying off. FY2026 operating cash flow was $80 million against $1.103 billion of capex, implying negative $1.023 billion of free cash flow from those annual lines. The separately reported negative $650 million figure needs reconciliation. COHR’s cash and current assets argue against calling this an immediate liquidity crisis, but financing inflows are not proof that the investment will earn an adequate return—particularly at 73.4 times trailing earnings and with the 10-year Treasury yield at 5.28%.</p>
+<p>I would also push back on any neutral case for waiting until COHR’s technical breakdown is confirmed before trimming excess exposure. The close was only $0.47 below the 50-day average, and the longer-term trend remains up, so one day does not justify indiscriminate liquidation. But a roughly 9.6% fall on heavy volume, a close near the session low, and a $21.43 ATR make waiting for a rebound an unnecessary gamble with an oversized stake. Bullish product and analyst headlines have not established new orders or cash-flow improvement; retail sentiment is low-confidence evidence, not a risk control.</p>
+<p>My adjustment is to make <strong>0.5 times the standard COHR allocation a ceiling, not a target</strong>. After refreshing the quote, sell any excess in two liquidity-aware tranches without requiring a rebound. Size any retained COHR holding to the portfolio’s actual loss tolerance and its other AI-optics exposure; from the October 8 close to $275.61 alone was $26.74 per share, before gaps or slippage. That level is a review point, not a guaranteed stop. If COHR is already below both the ceiling and the portfolio’s risk limit, do not force a sale, add, or short.
+Conservative Analyst: Aggressive, I agree with selling excess COHR, but “keeping meaningful upside” is not a risk limit. Even a holding at half the standard allocation may be too large if the portfolio already has substantial AI-optics exposure. COHR’s revenue growth and stronger margins are real, yet FY2026 operating cash flow of $80 million against $1.103 billion of capex leaves a serious cash-conversion question. Cash on hand and financing inflows reduce the case for an immediate funding crisis; they do not show that the spending is self-funding or will earn an adequate return.</p>
+<p>Neutral, I agree that one year of heavy capex and a close $0.47 below the 50-day average do not justify indiscriminate liquidation. But waiting for a confirmed breakdown gives too much weight to signals that can lag losses. COHR fell about 9.6% on heavy volume and closed near its low. Its weekly and monthly trends remain up, but the daily ADX is only 10.37 and the positive MACD histogram has narrowed. The 21.5-times forward P/E also depends on forecast EPS of $14.05 versus trailing EPS of $4.12; at a 5.28% 10-year Treasury yield, that is substantial execution risk, not a conservative valuation cushion.</p>
+<p>My recommendation remains a conditional COHR sell: refresh the quote and portfolio exposures, then sell any amount above the lesser of half the standard COHR allocation and the portfolio’s concentration and loss limits, in two liquidity-aware tranches without waiting for a rebound. If an existing holding is below half an allocation but still breaches the portfolio’s risk limit, trim it further. If it fits both limits, do not force a sale, add, or short. The $275.61 daily trend level is a review point, not a guaranteed exit price; reassess retained exposure if cash conversion fails to improve or sector selling persists.
+Conservative Analyst: Aggressive, I agree that COHR’s growth makes a measured retained position defensible. But a holding is “within limits” only if those limits reflect today’s risk, including other AI-optics holdings. FY2026 revenue grew 22.5% and margins improved, yet $80 million of operating cash flow against $1.103 billion of capex does not show that growth is funding itself. COHR’s $1.162 billion of cash argues against declaring an immediate funding crisis; it does not establish a return on that spending. The 21.5-times forward P/E also depends on forecast EPS of $14.05 versus $4.12 trailing, with the cited 10-year Treasury yield at 5.28%.</p>
+<p>Neutral, I agree that one difficult cash-flow year and a close $0.47 below the 50-day average do not warrant selling COHR indiscriminately. But an existing risk limit should be revisited when the risk changes. COHR fell roughly 9.6% on heavy volume and closed near its session low; its $21.43 ATR makes the $275.61 daily trend level an uncertain exit price, not protection against a gap. The higher-timeframe uptrend and still-positive MACD do not remove that near-term exposure. Nor do bullish product headlines yet establish orders or better cash conversion.</p>
+<p>My COHR recommendation remains a conditional sell: refresh the quote and portfolio exposures, then sell any amount above the lesser of half the standard COHR allocation and a loss limit stressed for gaps and correlated optics positions. Use two liquidity-aware tranches without waiting for a rebound. Trim further if that stress test calls for it, even below half an allocation; if the holding comfortably fits it, do not force a sale, add, or short. Treat $298.88 as a warning and $275.61 as a review point, not automatic stops.
+Conservative Analyst: Aggressive, COHR’s growth makes a small retained position defensible, but it does not make today’s risk budget durable. FY2026 revenue rose 22.5% and gross margin improved, yet operating cash flow was just $80 million against $1.103 billion of capex. The annual lines imply negative $1.023 billion of free cash flow; the vendor’s roughly negative $650 million figure needs reconciliation. Either way, reported earnings are not yet converting into enough cash to fund that spending. COHR’s $1.162 billion of cash and financing inflows argue against calling this an immediate funding crisis, not against reducing exposure to uncertain future returns. The 21.5-times forward P/E relies on forecast EPS of $14.05 versus $4.12 trailing; it is an upside scenario, not a margin of safety.</p>
+<p>Neutral, I agree that one volatile session should not trigger repeated, automatic cuts to a position that fits a well-defined loss budget. But this is not a judgment based solely on a close $0.47 below the 50-day average. COHR fell roughly 9.6% on heavy volume near its low, while its $21.43 ATR and a 5.28% cited 10-year Treasury yield compound an unresolved cash-conversion risk. An uptrend or a review level at $275.61 cannot guarantee an exit before a gap.</p>
+<p>My COHR recommendation is a conditional sell. Refresh the quote and portfolio exposures, then sell any holding above the lesser of half the standard COHR allocation and a loss limit stressed for gaps and correlated optics holdings, in two liquidity-aware tranches without waiting for a rebound. Trim below half an allocation if that stress test requires it; if the holding already fits, do not force a sale, add, or short. Revisit the limit when filings clarify cash flow and funding—not after every price swing.
+Conservative Analyst: Aggressive, I agree that COHR’s cash-flow shortfall does not prove its investment will fail. But “room to test the bet” should not be mistaken for a durable margin of safety. COHR generated $80 million of operating cash flow against $1.103 billion of capex in FY2026; the roughly $1.023 billion shortfall calculated from those lines is close to its $1.162 billion cash balance. That is not a cash-runway estimate or an immediate funding crisis, and the competing free-cash-flow figure needs reconciliation. It does mean that retaining exposure should depend on a loss budget that can withstand another difficult year, not just confidence in 22.5% revenue growth. The 21.5-times forward P/E likewise depends on forecast EPS of $14.05 versus $4.12 trailing.</p>
+<p>Neutral, I agree that COHR’s current ratio and higher-timeframe uptrend argue against selling every risk-budgeted share. I also agree that the limit must be revisited before the next filing if peer selling or portfolio risk worsens. My caution is that a limit calibrated to a neat exit at $275.61 understates gap risk: that level was $26.74 below the October 8 close, while COHR’s ATR was $21.43. Neither a near-flat 50-day-average crossing nor a trend-review level guarantees an executable exit.</p>
+<p>My COHR call remains a conditional sell. Refresh the quote and portfolio exposures, then sell any amount above the lesser of half the standard COHR allocation and a loss limit stressed for gaps and correlated optics holdings, in two liquidity-aware tranches without waiting for a rebound. Trim below half if that stress test requires it. If the holding comfortably fits both limits, do not force a sale, add, or short; reassess the limit as cash conversion, funding details, rates, and peer trading develop.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I support a conditional COHR sell, but the two analysts’ agreement on trimming leaves one important question open: how much COHR risk is appropriate for this particular portfolio?</p>
+<p>Aggressive Analyst, selling excess exposure in two tranches is sensible, but half a standard COHR allocation is not automatically a safe destination if the portfolio already owns correlated AI-optics names. At the same time, the cash-flow shortfall is a reason to investigate, not proof of an immediate funding crisis: COHR reported $1.477 billion of financing inflows, $1.162 billion of cash, and substantial current assets. The conflicting free-cash-flow figures also need reconciliation before treating this year’s cash burn as permanent.</p>
+<p>Conservative Analyst, you are right to make half an allocation a ceiling rather than a target. But shrinking an already risk-budgeted COHR holding solely because of one year’s heavy capex or a 73.4-times trailing P/E could sacrifice upside from 22.5% revenue growth and improving margins. The 21.5-times forward P/E offers a different perspective, though it depends on a large earnings increase actually materializing. Likewise, COHR’s heavy-volume decline is concerning, but a close just $0.47 below the 50-day average does not establish a sustained breakdown, especially with the higher-timeframe trend still up.</p>
+<p>I would refresh the COHR quote, then sell any amount above the lesser of half the standard COHR allocation or the portfolio’s concentration and loss limits, using two liquidity-aware tranches without requiring a rebound. If COHR is already within those limits, do not force a sale, add, or short. Treat $298.88 as a near-term warning and $275.61 as a trend-review level, not an automatic stop. Before considering more exposure later, look for better cash conversion alongside price and optics-peer stabilization; high Treasury yields make relying on the growth narrative alone too risky.
+Neutral Analyst: Aggressive, I agree that trimming excess COHR exposure now is better than waiting for a rebound. But “keeping meaningful upside” is not a sizing rule. A half allocation could still be too much if the portfolio already has substantial AI-optics exposure, and COHR’s $1.477 billion of financing inflows show access to funding—not that its $1.103 billion of capex will earn an adequate return.</p>
+<p>Conservative, you are right to put the portfolio’s loss limit ahead of the half-allocation ceiling. I would push back, though, on letting the cash-flow gap or one violent session become a standing reason to cut a position that already fits that limit. COHR grew revenue 22.5% and improved gross margin to about 37.5%; its weekly and monthly trends remain up. The $302.35 close was only $0.47 below the 50-day average. None of that erases the heavy-volume decline, but it argues against treating it as a confirmed long-term breakdown.</p>
+<p>The tension is real: FY2026 operating cash flow was only $80 million against $1.103 billion of capex, and the two supplied free-cash-flow figures need reconciliation. COHR also had $1.162 billion of cash and a roughly 2.43 current ratio, so “funding crisis” goes beyond the evidence. Meanwhile, 21.5 times forward earnings is not an easy valuation defense when forecast EPS is far above trailing EPS and the latest cited 10-year Treasury yield was 5.28%. Bullish optics headlines and low-confidence retail sentiment cannot settle whether that forecast will be earned.</p>
+<p>My COHR recommendation remains a conditional sell: refresh the quote and portfolio exposures, then sell any holding above the lesser of 0.5 times your standard COHR allocation and your portfolio’s concentration and loss limits, in two liquidity-aware tranches without waiting for a bounce. If COHR already fits both limits, do not force a sale, add, initiate, or short. Use a close below $298.88 as a near-term warning and $275.61 as a trend-review reference, not an automatic stop—COHR’s $21.43 ATR and gap risk make a precise exit price unreliable. That preserves a measured stake in the growth case without asking the portfolio to absorb an oversized bet on cash conversion and valuation.
+Neutral Analyst: Aggressive, I agree that selling excess COHR now is more defensible than waiting for a rebound. But a holding that “fits the limits” is safe only if those limits account for correlated AI-optics positions and a possible price gap. COHR’s 22.5% revenue growth and stronger margins support keeping measured upside; they do not resolve $80 million of operating cash flow against $1.103 billion of capex. Financing inflows show access to capital, not a return on that spending.</p>
+<p>Conservative, gap stress is appropriate, but it should be tied to a defined portfolio loss budget—not become a reason to keep cutting every time COHR has a volatile session. The heavy-volume decline near the day’s low is a warning, yet a close just $0.47 below the 50-day average, weak daily trend strength, and still-up weekly and monthly trends do not establish a lasting breakdown. The two negative free-cash-flow figures also need reconciliation before treating this year’s shortfall as permanent. Neither bullish headlines nor the 21.5-times forward P/E settles that question, especially with the cited 10-year yield at 5.28%.</p>
+<p>My COHR call is a conditional sell. Refresh the quote and portfolio exposures, then sell any amount above the lesser of half your standard COHR allocation or your concentration and gap-stressed loss limits, in two liquidity-aware tranches without requiring a rebound. If COHR already fits those limits, do not force a sale, add, or short. Treat $298.88 as a near-term warning and $275.61 as a review level, not guaranteed exits. Reconsider more exposure only when cash conversion and optics-peer trading improve.
+Neutral Analyst: Aggressive, I agree with selling excess COHR without waiting for a rebound, but a loss budget is not a one-time permission slip to hold the remainder. It needs to account for other AI-optics holdings and a gap beyond $275.61. COHR’s 22.5% revenue growth makes a retained stake defensible; $805 million of reported net income does not resolve why operating cash flow was only $80 million against $1.103 billion of capex.</p>
+<p>Conservative, that cash gap and the heavy-volume decline warrant a smaller position, not an assumption that every risk-budgeted share must go. COHR had $1.162 billion of cash and a roughly 2.43 current ratio, so an immediate funding crisis is not established. The weekly and monthly trends also remain up. I would challenge the idea of waiting solely for filings to revisit the limit, though: renewed sector selling or a portfolio loss-limit breach could require action sooner.</p>
+<p>My COHR call remains a conditional sell. Refresh the quote and portfolio exposures, then sell any amount above the lesser of half your standard COHR allocation and your concentration and gap-stressed loss limits, counting correlated optics holdings. Use two liquidity-aware tranches without making the second depend on a rebound. If COHR already fits those limits, do not force a sale, add, initiate, or short. Treat $298.88 as a warning and $275.61 as a review level, not guaranteed exits. Reassess the retained stake as cash-flow details, peer trading, and rates develop.
+Neutral Analyst: Aggressive, I agree that selling excess COHR now is more sensible than waiting for a rebound. But a position that fits a loss budget today is not automatically safe tomorrow, especially if the portfolio also owns optics names. COHR’s 22.5% revenue growth and improving margins make the upside credible; they do not explain why operating cash flow was $80 million against $1.103 billion of capex. Financing inflows show access to capital, not that the spending will pay off. The 21.5-times forward P/E also relies on a large earnings increase that has yet to materialize.</p>
+<p>Conservative, I agree that the loss budget must allow for a gap past $275.61. I would not, though, compare the calculated $1.023 billion annual free-cash-flow shortfall with COHR’s $1.162 billion cash balance as if that established a cash runway. The competing free-cash-flow figure needs reconciliation, and we do not know whether this capex pace will persist. COHR’s higher-timeframe trend remains up, so repeatedly cutting an already well-sized holding after each volatile session could give up the growth exposure the trim is meant to preserve.</p>
+<p>My COHR call remains a conditional sell. Refresh the quote and portfolio exposures, then sell any amount above the lesser of half your standard COHR allocation and a concentration and loss limit stressed for correlated holdings and gaps. Use two liquidity-aware tranches without making either depend on a rebound. If COHR already fits those limits, do not force a sale, add, initiate, or short. Treat $298.88 as a warning and $275.61 as a review point, not executable stops. Revisit the retained stake if peer selling, high yields, or cash conversion materially changes the risk case.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: Underweight COHR for 1–3 months: refresh the quote and actual portfolio exposures, then trim to the lesser of 0.5× the standard COHR allocation and the maximum position permitted by concentration and gap-stressed loss limits, including correlated optics holdings. Sell only the excess in two liquidity-aware tranches without waiting for a rebound; the ceiling is not a target, so do not force a sale if already within both limits, and do not add, initiate or short COHR. Treat a close below $298.88 as a warning and $275.61 as a trend-review reference, not automatic or guaranteed stops. Reassess after the next financial report, or sooner if funding, peer trading or portfolio risk materially deteriorates.</p>
+<p><strong>Investment Thesis</strong>: The Conservative Analyst's cash-conversion and risk-budget arguments outweigh the case for maintaining a standard COHR allocation, while the Aggressive and Neutral Analysts correctly argue against indiscriminate liquidation. The trader's sell instruction is therefore an execution direction for excess exposure, not a full-exit rating. Portfolio holdings and loss tolerance were not supplied, so an absolute share count or portfolio weight cannot be prescribed.</p>
+<p>The decisive evidence is FY2026 operating cash flow of $80 million versus $805 million of net income: only about 10% cash conversion. Subtracting $1.103 billion of capex gives $0.080 billion − $1.103 billion = negative $1.023 billion of free cash flow. The vendor's approximately negative $650 million estimate has an unspecified definition or window and must not be blended with that calculation. Even restoring operating cash flow to FY2025's $634 million would leave $634 million − $1,103 million = negative $469 million at unchanged capex. At 73.4× trailing earnings and approximately 8.3× sales, that unexplained cash-generation shortfall leaves little valuation protection. The 21.5× forward P/E relies on forecast EPS of $14.05 versus $4.12 trailing, approximately 3.4× as much, without a specified forecast horizon or comparable earnings basis.</p>
+<p>The counterargument limits the reduction rather than overturning it. COHR grew revenue 22.5% to approximately $7.12 billion, expanded gross margin from 35.2% to 37.5%, and increased net income from $49 million to $805 million. Cash of $1.162 billion and a 2.43 current ratio argue against an established immediate liquidity crisis. Financing inflows of $1.477 billion demonstrate access to capital during FY2026, not favorable future funding terms or adequate returns on investment. Product headlines and low-confidence sentiment do not establish optics orders, a moat or profitable expansion. These facts justify retaining an existing position only within the reduced, portfolio-specific risk ceiling.</p>
+<p>Technicals support trimming excess COHR promptly, not declaring a confirmed long-term downtrend. The October 8 decline was approximately 9.6% on 9,247,200 shares, with the $302.35 close near the $298.88 session low. However, the close was only $0.47 below the $302.82 50-day SMA; weekly and monthly trends remained up, ADX was only 10.37, and the MACD histogram remained positive at 2.70 despite falling from 5.15. ATR of $21.43 was approximately 7% of the close. The $302.35 − $275.61 = $26.74 distance to the daily trend-review level is not a maximum-loss estimate: retained sizing must accommodate gaps beyond that reference and correlated holdings. Neither a moving-average reclaim nor a recovery above $328.87 independently resolves the cash-flow concern.</p>
+<p>Price-target method: the reports supply market valuation ratios but no substantiated fair-value objective, comparable target multiple or reconciled cash-flow valuation; the forward earnings horizon and basis are also unspecified. Accordingly, use a conditional technical measured-move objective. The October 8 high–low range was $328.87 − $298.88 = $29.99. Projecting one such range below the session low gives $298.88 − $29.99 = $268.89, approximately 11.1% below the verified close. This is a downside scenario over 1–3 months if selling follows through below $298.88, not a supplied support level, confirmed chart pattern, guaranteed forecast or execution stop. It does not make today's excess-exposure trim contingent on a breakdown.</p>
+<p>Before increasing COHR exposure, reconcile the two free-cash-flow measures, explain the operating-cash-flow shortfall and financing terms, document improving operating cash flow relative to capex, sustain gross margin near 37.5%, and establish profitable optics demand. A smaller deficit alone is insufficient, although immediate positive free cash flow is not required if the remaining deficit has a credible funding path without materially adverse terms. Consider raising the ceiling to 0.75× standard allocation only after those conditions are demonstrated and portfolio limits permit, and to 1.0× only after a subsequent report confirms them. Exit residual exposure if approximately $1 billion of annual cash burn persists without a credible recovery and funding path, or financing becomes materially unfavorable to shareholders. Medium confidence reflects a stronger case for reduced exposure than for a precise price forecast, given financial-data discrepancies, missing funding details and the conditional technical objective. The supplied closing price and technical levels are dated October 8, 2026, not live execution quotes; the next financial-report date was not provided.</p>
+<p><strong>Current Price</strong>: 302.35</p>
+<p><strong>Price Target</strong>: 268.89</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1-3 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

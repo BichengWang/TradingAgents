@@ -1,0 +1,5824 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/TEAM/20261008_gpt-6-astra_20261008_212949/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: TEAM - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-team" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: TEAM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MCD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../STRL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MCD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../PDD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../STRL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#team-atlassian-corporation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TEAM — Atlassian Corporation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trend-and-momentum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trend and momentum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#participation-stretch-and-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Participation, stretch, and risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actionable-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actionable scenarios
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#team-sentiment-2026-10-01-through-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TEAM sentiment, 2026-10-01 through 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignment-and-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignment and divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-narrative-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant narrative themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-catalysts-and-risks-surfaced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Catalysts and risks surfaced
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-key-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Key signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#team-trading-and-macro-news-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TEAM — trading and macro news brief
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-matters-this-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What matters this week
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#team-atlassian-fundamental-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TEAM — Atlassian fundamental report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-and-available-financial-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business and available financial documents
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#financial-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Financial performance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance-sheet-and-capital-allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balance sheet and capital allocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuation-and-insider-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valuation and insider activity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-team">Trading Analysis Report: TEAM<a class="headerlink" href="#trading-analysis-report-team" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:29:49</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $203.57
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="team-atlassian-corporation">TEAM — Atlassian Corporation<a class="headerlink" href="#team-atlassian-corporation" title="Permanent link">&para;</a></h4>
+<p><strong>Technical read: bullish trend, but a stretched short-term entry.</strong> TEAM closed at $203.57, near its verified session high of $203.89. That is above every earlier close in the snapshot’s most recent 30 trading bars; the highest prior close in that set was $196.65 on October 5. This is evidence of renewed price strength, not yet proof that a breakout will hold.</p>
+<p>I selected <strong>eight complementary indicators</strong>: SuperTrend and the 50-day SMA for trend, the MACD histogram and RSI for momentum, ATR for risk, OBV for participation, and TD-9 and Z-score for exhaustion and stretch.</p>
+<h4 id="trend-and-momentum">Trend and momentum<a class="headerlink" href="#trend-and-momentum" title="Permanent link">&para;</a></h4>
+<p>TEAM is above its <strong>50-day SMA of $171.68</strong>. SuperTrend also reads <strong>UP on all three timeframes</strong>: weekly with a $139.70 trailing stop, monthly with a $68.72 stop, and daily with a $173.55 stop. The alignment favors the upside, with the weekly signal carrying more weight than a short-lived daily move. The important sizing caveat is that even the daily SuperTrend stop is far below the current close; it may be too wide for a short-term trade.</p>
+<p>Momentum supports the rise, but is not fully confirmed. <strong>RSI is 64.55</strong>—strong, though below the conventional 70 overbought threshold. The <strong>MACD histogram improved from −3.70 on September 30 to −0.17 on October 8</strong>, indicating that bearish momentum has faded. It remains below zero, however, so a bullish histogram crossover has <strong>not</strong> occurred.</p>
+<h4 id="participation-stretch-and-risk">Participation, stretch, and risk<a class="headerlink" href="#participation-stretch-and-risk" title="Permanent link">&para;</a></h4>
+<p><strong>OBV has recovered</strong> from its September 29 reading of −90.05 million to −80.91 million on October 8. It has <em>not</em> recovered to its September 17 reading of −71.96 million, even though TEAM’s verified close is now above its September 17 close of $192.53. That is a participation warning: recent buying has improved, but volume-based confirmation lags price. OBV’s absolute number has no standalone meaning; the comparison over time is what matters.</p>
+<p>The <strong>daily Z-score is +1.96</strong>, just short of the +2 stretch threshold. Weekly is +1.40 and monthly +0.95, so the elevated reading is chiefly a <em>daily</em> concern rather than a uniformly stretched higher-timeframe condition. TD-9 likewise calls for monitoring, not an automatic reversal trade: the current sell-setup counts are <strong>weekly −1, monthly −5, and daily −6</strong>. None has reached a completed 9, and the primary weekly count is only at 1 of 9.</p>
+<p><strong>ATR is $8.81</strong>, making stop placement and position size consequential. A one-ATR move from the verified close is roughly $8.81 per share; it is a risk-planning measure, not a forecast or a guaranteed stop fill.</p>
+<h4 id="actionable-scenarios">Actionable scenarios<a class="headerlink" href="#actionable-scenarios" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>For a prospective long:</strong> Look for a subsequent close <strong>above October 8’s $203.89 high</strong>, ideally alongside a positive MACD histogram and continued OBV improvement. A trade through the high without those confirmations would be less convincing, particularly with daily Z-score already near +2.</li>
+<li><strong>For an existing long:</strong> The trend indicators support staying attentive to the upside, but the near-term participation warning argues against assuming uninterrupted follow-through. October 5’s <strong>$196.65 close</strong> and October 7’s <strong>$195.79 close</strong> are recent reference points for judging whether the advance is losing ground—not historically validated support levels.</li>
+<li><strong>If price weakens:</strong> A close back below those recent closes would weaken the immediate breakout case. The <strong>$173.55 daily SuperTrend stop</strong> is a separate, much wider trend threshold; it should not be treated as a suitably tight stop for every trader. Size any position to the dollar risk you can accept, and allow for gaps or slippage.</li>
+</ul>
+<p><strong>Bottom line:</strong> TEAM’s verified close and aligned SuperTrend readings favor the bulls. The better decision point is whether TEAM can <strong>hold and extend above $203.89 with improving momentum and participation</strong>, rather than relying on trend strength alone while daily stretch approaches its warning threshold.</p>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th style="text-align: right;">Latest reading</th>
+<th>What it adds to the TEAM decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SuperTrend</td>
+<td style="text-align: right;">Weekly <strong>UP</strong>, stop <strong>$139.70</strong>; monthly <strong>UP</strong>, <strong>$68.72</strong>; daily <strong>UP</strong>, <strong>$173.55</strong></td>
+<td>Aligned uptrend; stops are wide relative to the current close.</td>
+</tr>
+<tr>
+<td>50-day SMA</td>
+<td style="text-align: right;"><strong>$171.68</strong></td>
+<td>Medium-term trend benchmark; TEAM is above it.</td>
+</tr>
+<tr>
+<td>MACD histogram</td>
+<td style="text-align: right;"><strong>−0.17</strong></td>
+<td>Improving, but still below zero; bullish crossover unconfirmed.</td>
+</tr>
+<tr>
+<td>RSI</td>
+<td style="text-align: right;"><strong>64.55</strong></td>
+<td>Strong momentum without a conventional 70 overbought reading.</td>
+</tr>
+<tr>
+<td>ATR</td>
+<td style="text-align: right;"><strong>$8.81</strong></td>
+<td>Use dollar volatility to plan stops and position size.</td>
+</tr>
+<tr>
+<td>OBV</td>
+<td style="text-align: right;"><strong>−80.91 million</strong></td>
+<td>Recent recovery, but below its September 17 reading; watch participation.</td>
+</tr>
+<tr>
+<td>TD-9</td>
+<td style="text-align: right;">Weekly <strong>−1</strong>; monthly <strong>−5</strong>; daily <strong>−6</strong></td>
+<td>Developing sell-setups, none completed; prioritize the weekly context.</td>
+</tr>
+<tr>
+<td>Z-score</td>
+<td style="text-align: right;">Weekly <strong>+1.40</strong>; monthly <strong>+0.95</strong>; daily <strong>+1.96</strong></td>
+<td>Daily price is near the +2 stretch threshold; higher tiers are less stretched.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mildly Bullish</strong> (Score: 6.0/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="team-sentiment-2026-10-01-through-2026-10-08">TEAM sentiment, 2026-10-01 through 2026-10-08<a class="headerlink" href="#team-sentiment-2026-10-01-through-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-evidence">1. Source-by-source evidence<a class="headerlink" href="#1-source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>Yahoo Finance news:</strong> Unavailable: the configured vendor returned no TEAM-tagged articles. This is a data gap, not evidence of either favorable or unfavorable institutional coverage. There are no verified news events in the supplied material.</p>
+<p><strong>StockTwits:</strong> The 29 most-recent messages contain 4 user-tagged Bullish (14%), 1 tagged Bearish (3%), and 24 unlabeled (83%). Among the five tagged messages, the nominal bullish/bearish split is 4:1 (80%/20%), but that is only five self-selected tags, not an 80% bullish share of all messages. Moreover, the sole Bearish-tagged message says to short cybersecurity stocks and go <strong>long TEAM</strong> and other traditional software, so its tag does not describe its TEAM-specific stance. The wider conversation leans constructive: posters describe software-sector buying alongside CRM and NOW (Oct. 8), repeatedly watch a breakout around $200 (Oct. 7–8), and mention holding calls and perceived post-earnings strength (Oct. 7). An Oct. 8 poster says TEAM printed a new 52-week high, but this is an unverified user claim. Three breakout-screen posts on Oct. 5, 7, and 8 come from the same promotional account, rather than three independent assessments; another account repeatedly discusses the $200 setup. The $400-soon and earnings-will-blow-mind posts are speculative opinions, not corroborated catalysts. Caution is present too: one poster reports profiting from shorting TEAM in the mid-$190s (Oct. 6), others describe $200 as resistance and difficulty buying amid a weak broader-market tape (Oct. 8). An Oct. 2 post claims TEAM was more than 70% below its 52-week high, conflicting with Oct. 7–8 claims that it was near or at a new high. Without price data, neither assertion can be verified.</p>
+<p><strong>Reddit:</strong> Collection was disabled for r/wallstreetbets, r/stocks, and r/investing. No posts, engagement data, or subreddit-level stance were supplied; this is not evidence that those communities were silent.</p>
+<h4 id="2-cross-source-alignment-and-divergence">2. Cross-source alignment and divergence<a class="headerlink" href="#2-cross-source-alignment-and-divergence" title="Permanent link">&para;</a></h4>
+<p>A news-versus-retail or Reddit-versus-retail comparison cannot be made: StockTwits is the only substantive source. Within it, self-labels and message meaning diverge in the Bearish-tagged, long-TEAM post. Posters also disagree about TEAM's position relative to its 52-week high, and the $200 breakout is discussed as both a potential trigger and unresolved resistance. These disagreements and repeated authors temper the apparent bullishness.</p>
+<h4 id="3-dominant-narrative-themes">3. Dominant narrative themes<a class="headerlink" href="#3-dominant-narrative-themes" title="Permanent link">&para;</a></h4>
+<p>The main TEAM narrative is <strong>software rotation and a possible technical breakout near $200</strong>, accompanied by momentum/high claims and continued interest after purported earnings. Secondary themes are enthusiasm about potential upside, concern about a difficult market tape, and uncertainty about whether strength holds. A user's claim that sales rose 26% year over year and gross margin gained 2.0 points is not verified financial reporting in this dataset. A request to add TEAM to the S&amp;P is a wish, not an announced index decision.</p>
+<h4 id="4-catalysts-and-risks-surfaced">4. Catalysts and risks surfaced<a class="headerlink" href="#4-catalysts-and-risks-surfaced" title="Permanent link">&para;</a></h4>
+<p><strong>Potential sentiment catalysts, not confirmed events:</strong> a sustained, volume-backed move above the repeatedly cited $200 level; continued interest in software-sector rotation; any genuinely verified earnings or financial update. Posters refer to earnings and post-earnings trading, but the supplied sources do not establish an earnings date, results, or a forthcoming earnings event. <strong>Risks:</strong> failure or reversal at $200, reports of shorting into the mid-$190s, broad-market selling mentioned by one poster, options/momentum enthusiasm outrunning evidence, and contradictory high/low claims. No prices, volumes, filings, or verified corporate announcements are supplied to validate these narratives.</p>
+<h4 id="5-key-signals">5. Key signals<a class="headerlink" href="#5-key-signals" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User-labeled stance</td>
+<td>Mildly bullish, limited sample</td>
+<td>StockTwits</td>
+<td>4 Bullish vs. 1 Bearish tag among 29 messages; 24 unlabeled; Bearish-tagged body actually favors long TEAM.</td>
+</tr>
+<tr>
+<td>Software rotation</td>
+<td>Positive, unverified</td>
+<td>StockTwits</td>
+<td>Oct. 8 posts say software is being bought and cite TEAM with CRM/NOW.</td>
+</tr>
+<tr>
+<td>$200 breakout focus</td>
+<td>Constructive but conditional</td>
+<td>StockTwits</td>
+<td>Oct. 7–8 posters cite $200 as a volume-backed trigger, resistance, or attempted break; no price/volume confirmation supplied.</td>
+</tr>
+<tr>
+<td>High and financial claims</td>
+<td>Conflicted, unverified</td>
+<td>StockTwits</td>
+<td>Oct. 7–8 near/new-high claims contradict an Oct. 2 claim of being 70%+ below the 52-week high; one post alleges 26% sales growth and a 2.0-point margin gain.</td>
+</tr>
+<tr>
+<td>Earnings/option speculation</td>
+<td>Two-sided risk</td>
+<td>StockTwits</td>
+<td>Posts mention holding calls and post-earnings strength, while one questions a post-earnings drop; no confirmed earnings details.</td>
+</tr>
+<tr>
+<td>Macro and resistance</td>
+<td>Cautionary</td>
+<td>StockTwits</td>
+<td>Oct. 8 post alleges SPY/QQQ selling; another says buying is hard on this tape; Oct. 6 poster reports shorting in the mid-$190s.</td>
+</tr>
+<tr>
+<td>Independent corroboration</td>
+<td>Unavailable</td>
+<td>News; Reddit</td>
+<td>News vendor unavailable; Reddit collection disabled. Neither supplies a confirming or opposing read.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assessment:</strong> Mildly bullish sentiment for TEAM (6.0/10), reflecting the constructive but concentrated retail discussion, not a price forecast or trade recommendation. Confidence is <strong>low</strong> because news is unavailable, Reddit was disabled, most StockTwits posts are unlabeled, some positive signals repeat authors, and material factual claims cannot be checked against the provided data. This is a sentiment input for the trader to weigh alongside independently established fundamentals and technicals.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="team-trading-and-macro-news-brief">TEAM — trading and macro news brief<a class="headerlink" href="#team-trading-and-macro-news-brief" title="Permanent link">&para;</a></h4>
+<p><strong>As of October 8, 2026 | News window: October 1–8</strong></p>
+<p><strong>Bottom line:</strong> The clearest near-term risk for TEAM is interest rates, not a verified company-specific development. The available company-news feed returned no TEAM-tagged articles, so it cannot establish whether Atlassian had a catalyst this week. Meanwhile, the U.S. 10-year Treasury yield remains elevated at <strong>5.28%</strong>, a potential headwind for growth-stock valuations.</p>
+<h4 id="what-matters-this-week">What matters this week<a class="headerlink" href="#what-matters-this-week" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Rates remain the dominant macro pressure.</strong> The <a href="https://fred.stlouisfed.org/series/DGS10">10-year yield</a> was <strong>5.28% on October 7</strong>, virtually unchanged from <strong>5.29% on September 30</strong>, but up from <strong>4.72% on August 10</strong>. Thus, this is <em>not</em> a fresh weekly yield surge; it is a sustained, higher-yield backdrop. TEAM could face valuation pressure if yields break above the recent <strong>5.31% October 5</strong> reading, even without adverse company news.</li>
+<li><strong>Markets price little near-term easing.</strong> The <a href="https://fred.stlouisfed.org/series/FEDFUNDS">effective federal funds rate</a> averaged <strong>3.75% in September</strong>, versus <strong>3.63% in August</strong>. Tool-reported Polymarket odds put <strong>another Fed hike in 2026 at 80%</strong> (up 3 percentage points over one week), against <strong>3% for a cut by the December meeting</strong>. These are contract-specific betting odds, not Fed forecasts.</li>
+<li><strong>Growth risk is not the market’s central near-term scenario.</strong> <a href="https://fred.stlouisfed.org/series/UNRATE">Unemployment</a> rose to <strong>4.2% in September</strong> from <strong>4.1% in August</strong>; the reported prediction-market probability of a U.S. recession by year-end is <strong>6%</strong>, down 2 points over the week. The <a href="https://fred.stlouisfed.org/series/PCEPILFE">core PCE price <em>index</em></a> rose from <strong>130.133 in July to 130.455 in August</strong>, approximately <strong>0.25% month over month</strong>. This index change should not be mistaken for a year-over-year inflation rate.</li>
+<li><strong>Risk appetite is mixed, rather than uniformly weak.</strong> A <a href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-6-dow-sp-500-nasdaq-080526166.html">market report</a> described S&amp;P 500 and Nasdaq record highs on October 6, while another <a href="https://finance.yahoo.com/markets/article/10-year-treasury-yield-hits-highest-level-since-2002-as-stocks-retreat-alphacheck-134621987.html">reported stock weakness alongside high Treasury yields</a>. A <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">Yahoo Finance headline</a> also reported oil falling to <strong>$103</strong> amid Iran-related comments; the supplied headline does not identify the oil benchmark. Treat energy and geopolitical news as potential inflation-and-rates risks, not as a demonstrated direct driver of TEAM.</li>
+</ul>
+<p><strong>Actionable TEAM watchlist:</strong> Monitor whether the 10-year yield clears <strong>5.31%</strong> or retreats below the early-week <strong>5.24%</strong> reading. The former would strengthen the case for tighter risk limits on rate-sensitive TEAM exposure; the latter would ease one macro headwind, but would <strong>not alone</strong> establish a buy signal. Before taking a company-driven position, verify TEAM’s own announcements, earnings timing, cloud-subscription trends, AI-product monetization, and current share price from primary or live market sources. The available tools supplied none of those TEAM-specific figures. Attempts to retrieve additional CPI, GDP, VIX, and yield-curve series were rate-limited, so they are not used here.</p>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Evidence as of October 8</th>
+<th>Trading implication for TEAM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company news</td>
+<td>TEAM-tagged news <strong>unavailable</strong> from the configured feed</td>
+<td>Do not infer either a positive or negative catalyst from the empty result.</td>
+</tr>
+<tr>
+<td>Treasury yields</td>
+<td>10-year <strong>5.28% Oct. 7</strong>; <strong>5.31% Oct. 5</strong> recent reading</td>
+<td>Watch for a renewed yield breakout and associated valuation pressure.</td>
+</tr>
+<tr>
+<td>Fed outlook</td>
+<td>Hike-in-2026 market odds <strong>80%</strong>; cut-by-December odds <strong>3%</strong></td>
+<td>Limited priced-in relief from lower rates; probabilities are not certainties.</td>
+</tr>
+<tr>
+<td>Labor and recession</td>
+<td>September unemployment <strong>4.2%</strong>; year-end recession odds <strong>6%</strong></td>
+<td>Watch for deterioration in enterprise spending, but do not assume recession.</td>
+</tr>
+<tr>
+<td>Equity and geopolitical sentiment</td>
+<td>Tech-index record-high report alongside later yield-related stock weakness; oil/geopolitical headline</td>
+<td>Keep position sizing responsive to broader risk sentiment rather than headlines alone.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="team-atlassian-fundamental-report">TEAM — Atlassian fundamental report<a class="headerlink" href="#team-atlassian-fundamental-report" title="Permanent link">&para;</a></h4>
+<p><strong>As of October 8, 2026 | Fiscal year-end: June 30</strong></p>
+<p><strong>Bottom line.</strong> TEAM’s fiscal 2026 revenue growth accelerated, and its latest quarter appears to have returned to GAAP profitability. The counterweights are a sharp deterioration in short-term liquidity, lower annual operating cash flow, and a valuation that leaves considerable room for disappointment. The data supplied do <strong>not</strong> show a new filing or insider purchase during October 1–8; that is a limit of these feeds, not confirmation that no company news occurred.</p>
+<h4 id="business-and-available-financial-documents">Business and available financial documents<a class="headerlink" href="#business-and-available-financial-documents" title="Permanent link">&para;</a></h4>
+<p>Atlassian Corporation (TEAM) is a Nasdaq-listed application-software company whose collaboration and developer tools include Jira, Confluence, Jira Service Management, Trello and Bitbucket. Its results are exposed to enterprise software spending and the economics of delivering and expanding its cloud products. The available tools provide SEC EDGAR-derived annual income, balance-sheet and cash-flow figures through <strong>June 30, 2026</strong>, plus company-level market metrics and insider transactions. They do not provide filing text, product-level revenue, customer retention, guidance or an independently verified current share quote.</p>
+<h4 id="financial-performance">Financial performance<a class="headerlink" href="#financial-performance" title="Permanent link">&para;</a></h4>
+<p>TEAM generated <strong>$6.572 billion</strong> of fiscal 2026 revenue, up approximately <strong>26.0%</strong> from $5.215 billion in fiscal 2025; the preceding year’s growth was approximately <strong>19.6%</strong>. SEC-derived gross profit was <strong>$5.575 billion</strong>, an approximately <strong>84.8% gross margin</strong>, versus 82.8% a year earlier. GAAP operating income improved from a <strong>$130 million loss to $10 million of income</strong>. The GAAP net loss narrowed from <strong>$257 million to $54 million</strong>, or <strong>−$0.21 per diluted share</strong> for fiscal 2026.</p>
+<p>The annual figures imply a particularly strong <strong>June 2026 fiscal fourth quarter</strong> when the reported September, December and March quarters are subtracted from the fiscal-year totals. Implied fourth-quarter revenue was <strong>$1.766 billion</strong>, up approximately <strong>27.6%</strong> from the similarly derived prior-year quarter, though about 1% below March 2026 revenue. Implied fourth-quarter GAAP operating income was <strong>$210 million</strong> and net income <strong>$139 million</strong>, compared with respective prior-year-quarter losses of approximately <strong>$29 million</strong> and <strong>$24 million</strong>. These are <strong>calculations from rounded annual and quarterly figures</strong>, not separately supplied June-quarter statement lines. The next question for traders is whether that profitability persists.</p>
+<table>
+<thead>
+<tr>
+<th>Fiscal year ended June 30</th>
+<th style="text-align: right;">Revenue, $bn</th>
+<th style="text-align: right;">Gross margin</th>
+<th style="text-align: right;">GAAP operating income, $m</th>
+<th style="text-align: right;">GAAP net income, $m</th>
+<th style="text-align: right;">Operating cash flow, $m</th>
+<th style="text-align: right;">Calculated FCF, $m*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td style="text-align: right;">2.089</td>
+<td style="text-align: right;">84.1%</td>
+<td style="text-align: right;">141</td>
+<td style="text-align: right;">−579</td>
+<td style="text-align: right;">790</td>
+<td style="text-align: right;">758</td>
+</tr>
+<tr>
+<td>2022</td>
+<td style="text-align: right;">2.803</td>
+<td style="text-align: right;">83.8%</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">−520</td>
+<td style="text-align: right;">821</td>
+<td style="text-align: right;">750</td>
+</tr>
+<tr>
+<td>2023</td>
+<td style="text-align: right;">3.535</td>
+<td style="text-align: right;">82.1%</td>
+<td style="text-align: right;">−345</td>
+<td style="text-align: right;">−487</td>
+<td style="text-align: right;">868</td>
+<td style="text-align: right;">842</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align: right;">4.359</td>
+<td style="text-align: right;">81.6%</td>
+<td style="text-align: right;">−117</td>
+<td style="text-align: right;">−301</td>
+<td style="text-align: right;">1,448</td>
+<td style="text-align: right;">1,415</td>
+</tr>
+<tr>
+<td>2025</td>
+<td style="text-align: right;">5.215</td>
+<td style="text-align: right;">82.8%</td>
+<td style="text-align: right;">−130</td>
+<td style="text-align: right;">−257</td>
+<td style="text-align: right;">1,460</td>
+<td style="text-align: right;">1,415</td>
+</tr>
+<tr>
+<td>2026</td>
+<td style="text-align: right;">6.572</td>
+<td style="text-align: right;">84.8%</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">−54</td>
+<td style="text-align: right;">1,353</td>
+<td style="text-align: right;">1,319</td>
+</tr>
+</tbody>
+</table>
+<p><em>Calculated free cash flow (FCF) is operating cash flow less reported capital expenditure. Amounts and margins based on rounded SEC-derived statement figures.</em></p>
+<p><strong>Cash generation did not keep pace with revenue in fiscal 2026.</strong> Operating cash flow fell approximately <strong>7.3%</strong> to $1.353 billion; calculated FCF fell approximately <strong>6.8%</strong> to $1.319 billion. FCF margin consequently declined from approximately <strong>27.1% to 20.1%</strong>. There was a brighter fourth-quarter signal: implied June-quarter operating cash flow rose from approximately <strong>$375 million to $479 million</strong> year over year. Positive cash flow alongside a full-year GAAP loss makes the detailed cash-flow reconciliation—including noncash charges and working-capital movements—important to inspect before assuming the earnings improvement is fully cash-backed.</p>
+<h4 id="balance-sheet-and-capital-allocation">Balance sheet and capital allocation<a class="headerlink" href="#balance-sheet-and-capital-allocation" title="Permanent link">&para;</a></h4>
+<p>At June 30, 2026, TEAM held <strong>$1.240 billion in cash</strong>, down from <strong>$2.513 billion</strong> one year earlier. Current assets declined to <strong>$2.797 billion</strong>, while current liabilities rose to <strong>$3.571 billion</strong>. That took the current ratio from approximately <strong>1.22 to 0.78</strong> and working capital from roughly <strong>positive $710 million to negative $774 million</strong>. Total assets were <strong>$6.104 billion</strong>, total liabilities <strong>$5.045 billion</strong>, and shareholders’ equity <strong>$1.058 billion</strong>. The vendor reports debt-to-equity of <strong>116.5%</strong>; total liabilities are <strong>not</strong> interchangeable with debt.</p>
+<p>Fiscal 2026 investing cash flow was <strong>−$807 million</strong>, versus −$342 million in fiscal 2025, and financing cash flow was <strong>−$1.800 billion</strong>, versus −$783 million. Those outflows help explain why cash declined despite positive operating cash flow. The available statement summary does <strong>not</strong> identify the specific investments or financing transactions, so they should not be attributed to acquisitions, buybacks or debt repayment without the underlying filing.</p>
+<p><strong>Actionable check:</strong> before relying on TEAM’s cash-flow yield, review the full cash-flow statement and liability notes. Determine what drove the $1.8 billion financing outflow, how much of current liabilities is deferred revenue rather than near-term cash obligations, and whether subsequent cash balances stabilize.</p>
+<h4 id="valuation-and-insider-activity">Valuation and insider activity<a class="headerlink" href="#valuation-and-insider-activity" title="Permanent link">&para;</a></h4>
+<p>The fundamentals feed places TEAM’s market capitalization at approximately <strong>$51.53 billion</strong>, or <strong>7.8 times</strong> fiscal 2026 revenue. It reports <strong>30.3 times forward earnings</strong>, forecast EPS of <strong>$6.73</strong>, <strong>48.7 times book value</strong>, a <strong>2.02 PEG ratio</strong>, beta of <strong>1.23</strong>, and no dividend. Trailing GAAP EPS is negative, so the forward P/E should not be read as a trailing GAAP earnings multiple. At the supplied market capitalization, fiscal 2026 <strong>calculated</strong> FCF implies approximately <strong>39.1 times FCF</strong>, or a <strong>2.6% FCF yield</strong>.</p>
+<p><strong>Source discrepancy matters here:</strong> the fundamentals feed instead lists <strong>$1.655 billion of free cash flow</strong>, versus <strong>$1.319 billion</strong> calculated from the supplied fiscal 2026 SEC-derived operating cash flow and capex. It also lists $5.629 billion of gross profit and a 12.26% operating margin, versus SEC-derived fiscal 2026 gross profit of $5.575 billion and a <strong>0.15% annual GAAP operating margin</strong>. The feeds do not establish why their periods or definitions differ. Traders should reconcile them before using a single FCF or margin multiple.</p>
+<p>The insider feed shows <strong>no October 1–8 transaction</strong>. Its latest entries are <strong>September 18 stock-award grants totaling 57,923 shares</strong> to Brian Duffy and CFO James Chuong; grants at zero purchase price are <strong>not open-market buying</strong>. The latest listed sale was <strong>939 shares for $178,410 on August 28</strong> by Gene Liu. Listed August 14, 19 and 28 officer sales total about <strong>22,138 shares and $3.75 million</strong>. The latest listed open-market purchase was director Scott Belsky’s <strong>1,672 shares for $247,506 on December 1, 2025</strong>. Sale motives and any trading-plan arrangements cannot be determined from this feed.</p>
+<h4 id="trading-interpretation">Trading interpretation<a class="headerlink" href="#trading-interpretation" title="Permanent link">&para;</a></h4>
+<p>For TEAM, the evidence favors <strong>watching for confirmation rather than extrapolating one profitable quarter</strong>. Revenue growth, expanding gross margin and the implied fourth-quarter GAAP profit support the improving-fundamentals case. Against that, annual cash generation weakened, the current ratio fell below one, and the share valuation prices in substantial future earnings growth. The most useful next comparisons are the <strong>September 2026-quarter results, when available in a filing</strong>, the cash/current-liability position, and whether GAAP profitability and cash conversion remain strong. No verified current price or past-week price move was provided, so this report does not establish an entry level.</p>
+<table>
+<thead>
+<tr>
+<th>Key point for TEAM</th>
+<th>Evidence as of October 8, 2026</th>
+<th>Trader implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Growth accelerated</td>
+<td>FY2026 revenue <strong>$6.572bn, +26.0%</strong>; implied June-quarter revenue <strong>+27.6% YoY</strong></td>
+<td>Test whether growth holds in the next reported quarter.</td>
+</tr>
+<tr>
+<td>Profitability improved</td>
+<td>FY2026 GAAP operating income <strong>$10m</strong> versus <strong>−$130m</strong>; implied June-quarter net income <strong>$139m</strong></td>
+<td>Seek a second profitable quarter before treating the turn as durable.</td>
+</tr>
+<tr>
+<td>Cash conversion weakened annually</td>
+<td>FY2026 operating cash flow <strong>$1.353bn, −7.3%</strong>; calculated FCF <strong>$1.319bn</strong></td>
+<td>Reconcile cash flow with earnings and the vendor’s different FCF figure.</td>
+</tr>
+<tr>
+<td>Liquidity tightened</td>
+<td>Current ratio <strong>0.78</strong>, down from <strong>1.22</strong>; cash <strong>$1.240bn</strong>, down from <strong>$2.513bn</strong></td>
+<td>Examine liability composition and the causes of investing and financing outflows.</td>
+</tr>
+<tr>
+<td>Valuation demands execution</td>
+<td>Market cap <strong>$51.53bn</strong>; approximately <strong>7.8× sales</strong> and <strong>39.1× calculated FY2026 FCF</strong></td>
+<td>A growth or cash-flow miss could have an outsized valuation effect.</td>
+</tr>
+<tr>
+<td>No fresh insider-buying signal in feed</td>
+<td>September entries were grants; latest listed sale was August 28</td>
+<td>Do not interpret stock awards as insider purchases or infer a past-week change.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>My opening case for TEAM is that its growth is accelerating just as profitability is beginning to emerge.</strong> Fiscal 2026 revenue rose 26% to $6.572 billion, versus roughly 20% growth the year before. Gross margin expanded two percentage points to about 84.8%, and GAAP operating results improved from a $130 million loss to a $10 million profit. The June-quarter figures <em>implied by the supplied annual and quarterly statements</em> are stronger still: revenue grew about 27.6% year over year, with approximately $210 million in operating income. One quarter does not establish a durable margin, but it shows why earnings could grow faster than sales if that performance persists.</p>
+<p>The opportunity is to extend that growth across a portfolio that spans development, collaboration and IT service management—Jira, Confluence and Jira Service Management among its products. That breadth gives TEAM several ways to serve existing customers and win enterprise spending, although the supplied data do not quantify retention, cross-selling or market share. To put the potential in perspective, <strong>20% revenue growth in fiscal 2027 would produce about $7.89 billion in sales</strong>. That is an illustration, not company guidance or a consensus forecast.</p>
+<p>The bear’s strongest objection is real: TEAM is not cheap at roughly 7.8 times fiscal 2026 sales and 39 times <em>calculated</em> free cash flow. Annual free cash flow fell about 7% to $1.319 billion despite the revenue surge, cash declined to $1.240 billion, and the current ratio slipped to 0.78. I would not wave those away. But I also would not call this a business that cannot fund itself: it generated $1.353 billion of operating cash flow for the year, while implied June-quarter operating cash flow rose from about $375 million to $479 million year over year. The $1.8 billion financing outflow and the composition of current liabilities need checking in the full filing before either side declares the balance-sheet question settled.</p>
+<p>The market is offering a cautiously constructive signal, not a blank check. At <strong>$203.57</strong>, TEAM is above its $171.68 50-day average, with weekly, monthly and daily SuperTrend readings all up. Yet the MACD histogram remains slightly negative, volume-based confirmation lags, and a 5.28% 10-year Treasury yield can pressure its valuation. That is why my <strong>bullish stance on TEAM favors a measured position</strong>, rather than chasing an unconfirmed breakout: I would look for a close above <strong>$203.89</strong> with improving momentum and participation, then test the thesis against the next reported quarter’s profitability, cash conversion and liquidity. The bear is right to demand execution; TEAM’s accelerating sales and emerging GAAP profit give me reason to believe it can deliver it.
+Bull Analyst: You’re right that TEAM has not <em>proved</em> a durable profit turn. Where I disagree is your conclusion that investors should wait for proof before owning any of it. The improvement is broader than one implied quarter: fiscal 2026 revenue growth accelerated from roughly 20% to <strong>26%</strong>, gross margin rose to <strong>84.8%</strong>, and annual GAAP operating results moved from a <strong>$130 million loss to a $10 million profit</strong>. The implied June-quarter operating profit of about $210 million is not a run rate I’d assume, but it shows what TEAM’s earnings can look like when more of that high-margin revenue reaches the bottom line.</p>
+<p>Your cash-flow objection is the strongest one. Full-year calculated free cash flow fell to <strong>$1.319 billion</strong>, and its margin dropped to <strong>20.1%</strong>. But that is a cash-conversion <em>setback</em>, not an absence of cash generation. Implied June-quarter operating cash flow rose from about <strong>$375 million to $479 million</strong> year over year—roughly keeping pace with that quarter’s revenue growth. I want to see it continue, just as you do; I don’t think the weaker annual figure makes the recent improvement irrelevant.</p>
+<p>The balance sheet also deserves scrutiny, not a dismissal. Cash fell and working capital turned negative. Yet TEAM generated <strong>$1.353 billion</strong> in operating cash flow while reporting substantial investing and financing outflows. Until the full filing explains those outflows and the current-liability mix, neither of us can say how much of the cash decline reflects operating strain. That uncertainty warrants a smaller position, not necessarily a zero position.</p>
+<p>And yes, your <strong>5-times-sales scenario implies about 23% downside</strong> even with 20% revenue growth. But it is one valuation scenario, not the only one. On the same illustrative <strong>$7.89 billion</strong> of fiscal 2027 sales, a recovery to a <strong>25% FCF margin</strong>—still below fiscal 2025’s 27.1%—would yield about <strong>$1.97 billion of FCF</strong>. At <strong>35 times FCF</strong>, below today’s roughly 39 times, that would imply about <strong>$69 billion in market value</strong>, roughly <strong>34% above</strong> the supplied $51.53 billion figure, before share-count changes. Those are assumptions, not a price target. They show why growth <em>plus cash-margin recovery</em> matters more to my thesis than sales growth alone.</p>
+<p>I also agree that a close above <strong>$203.89</strong> would confirm neither customer retention nor future profits. It would be a trading signal, and MACD and OBV still warrant caution. My <strong>bull case for TEAM at $203.57 is a measured position</strong>, not a breakout chase: its broad Jira, Confluence and service-management portfolio offers several routes for growth, while the next reported quarter must test whether GAAP profit, cash conversion and liquidity are improving together. Waiting for every one of those questions to be settled reduces risk—but may also mean paying for a turnaround after the market has recognized it.
+Bull Analyst: <strong>Bear, I agree that TEAM’s cash conversion—not its revenue growth—is the test of this investment.</strong> I would not underwrite a permanent 25% free-cash-flow margin from one implied quarter. But I also think your “avoid” conclusion treats the weakest full-year cash result as more informative than the direction of the business entering fiscal 2027.</p>
+<p>The improvement is visible beyond that quarter. TEAM’s revenue growth accelerated from about 20% to <strong>26%</strong> in fiscal 2026, gross margin rose from <strong>82.8% to 84.8%</strong>, and annual GAAP operating income moved from a <strong>$130 million loss to a $10 million profit</strong>. That annual profit is thin, as you say. Still, the implied June-quarter operating income of about <strong>$210 million</strong> and operating cash flow of <strong>$479 million</strong>, up from roughly <strong>$375 million</strong> a year earlier, make it reasonable to test whether the exit-quarter improvement persists rather than assume it was meaningless. Jira, Confluence and Jira Service Management give TEAM multiple product routes for continued growth; they do <strong>not</strong> prove retention or pricing power, which remain important checks.</p>
+<p>Your valuation scenario is fair, but <strong>25 times FCF is a scenario, not the inevitable multiple</strong>. Using the more conservative, statement-derived fiscal 2026 FCF of $1.319 billion, suppose fiscal 2027 sales grow an illustrative 20% to $7.89 billion. At <strong>30 times FCF</strong>—a substantial reduction from today’s roughly 39 times—TEAM would need an FCF margin of about <strong>21.8%</strong> to support its current $51.53 billion market value. That is a recovery of roughly <strong>1.7 percentage points</strong>, not necessarily a return to 25%; fiscal 2025’s margin was about 27.1%. At a 23% margin and 30 times FCF, the illustrative value is about <strong>$54.4 billion</strong>. Neither multiple nor margin is guaranteed, especially with the 10-year yield at 5.28%, but the bull case does not require <em>all three</em> of your most demanding assumptions to work at once. Growth in cash flow can justify an equity yield below a bond yield; it also carries much more risk.</p>
+<p>I take the liquidity objection seriously. Cash fell to $1.240 billion and the current ratio to 0.78. Yet TEAM produced <strong>$1.353 billion of operating cash flow</strong> while reporting <strong>$807 million of investing outflow and $1.8 billion of financing outflow</strong>. That does not explain away the decline: the full filing must establish what those outflows and current liabilities contain. It does mean the cash balance alone cannot tell us whether the products have stopped funding the business.</p>
+<p>Finally, you’re right that <strong>$203.89 is not a magic breakout level</strong> when ATR is $8.81 and OBV lags. I would not add aggressively on a $0.32 move. My recommendation at <strong>$203.57 is a small, staged TEAM position</strong>, not a full-sized momentum bet: reserve capital for a sustained move with better participation <em>or</em> another quarter confirming GAAP profit, cash conversion and stable liquidity. Your downside case defines the risk. TEAM’s accelerating sales, expanding gross margin and improving exit-quarter results give me enough evidence to begin owning that risk—without pretending the turnaround is already proved.
+Bull Analyst: Bear, your <strong>23% downside versus 6% upside</strong> comparison is a fair stress test for TEAM, but it is not the whole investment case. Your upside example uses a 23% free-cash-flow margin. On the same illustrative $7.89 billion of fiscal 2027 sales, a <strong>25% margin at 30 times FCF</strong> implies about <strong>$59 billion in market value, or 15% above</strong> the supplied $51.53 billion market cap. That margin is below TEAM’s 27.1% in fiscal 2025, and the multiple is well below today’s roughly 39 times. Neither assumption is assured; the point is that the bull case need not preserve today’s valuation multiple to have upside. If 20% sales growth and a 25% FCF margin persisted into fiscal 2028, the same 30-times multiple would imply about $71 billion. That longer-term illustration carries more execution risk, but it is the compounding opportunity your one-year comparison leaves out.</p>
+<p>I accept your first-nine-month cash-flow calculation: TEAM’s implied June quarter <strong>partly offset</strong>, rather than erased, the earlier decline. What makes me willing to start a position is the combination of that quarter’s roughly <strong>28% year-over-year operating-cash-flow growth</strong>, roughly <strong>28% revenue growth</strong>, and implied <strong>$210 million GAAP operating profit</strong>. None proves a durable 25% FCF margin. Together with fiscal 2026’s accelerating sales and gross margin rising to <strong>84.8%</strong>, they give us evidence to test, not merely a hoped-for turnaround. Jira, Confluence and Jira Service Management provide routes to expand across development, collaboration and service workflows; I would not claim the supplied data prove retention or a competitive moat.</p>
+<p>You are also right about the price of being wrong. TEAM’s <strong>0.78 current ratio</strong>, falling cash balance and unexplained financing outflow need answers from the full filing. A <strong>5.28% Treasury yield</strong> makes a 30-times cash-flow multiple demanding, even though TEAM’s cash flow can grow and a bond’s coupon cannot. And I agree that a $0.32 move above $203.89 would mean little beside an $8.81 ATR while OBV lags.</p>
+<p>So my recommendation remains <strong>a small, staged TEAM position at the supplied $203.57 price—not an aggressive breakout buy</strong>. Sizing does not fix valuation; it limits exposure while we find out whether the stronger exit quarter persists. I would add only on convincing profit, cash-conversion and liquidity evidence, and reassess the bull thesis if those fail to improve. Waiting is defensible. But TEAM’s accelerating growth and emerging profitability make <em>some</em> exposure more compelling to me than requiring confirmation of every improvement before buying.
+Bull Analyst: Bear, I agree that <strong>sizing a TEAM position does not fix its valuation</strong>. At the supplied October 8 price of $203.57, roughly 39 times statement-derived fiscal 2026 free cash flow is a demanding entry. My disagreement is with treating fiscal 2026’s 20.1% cash-flow margin as the most likely lasting outcome while treating its stronger exit quarter as merely an exception.</p>
+<p>Your fiscal 2028 stress test is useful. On <em>your same illustrative path</em> of 20% sales growth in each of two years and a 25-times FCF multiple, TEAM would need an FCF margin of about <strong>21.8%</strong> to support today’s $51.53 billion market value. That is a 1.7-percentage-point improvement from fiscal 2026, not a return to fiscal 2025’s 27.1%. At a 25% margin, the same 25-times multiple implies about <strong>$59 billion, or 15% above</strong> today’s value, before share-count changes. None of that is a forecast: two more years of 20% growth are a meaningful assumption. But your roughly 8% downside scenario depends on cash conversion staying near its weaker 2026 level <em>as well as</em> multiple compression.</p>
+<p>There is evidence for testing a recovery, rather than simply hoping for one. TEAM’s annual revenue growth accelerated to <strong>26%</strong>, gross margin expanded to <strong>84.8%</strong>, and GAAP operating results crossed from a $130 million loss to a $10 million profit. More importantly for your objection, the <em>implied</em> June quarter paired roughly <strong>27.6% revenue growth</strong> with about <strong>$210 million of operating profit</strong> and <strong>$479 million of operating cash flow</strong>, up from approximately $375 million a year earlier. I would not annualize that quarter; I would give it weight alongside the weaker full-year cash result.</p>
+<p>You are right to demand an explanation for TEAM’s $1.8 billion financing outflow, falling cash and 0.78 current ratio. Until the filing clarifies those items, the balance-sheet risk stays in my thesis. The 5.28% Treasury yield and lagging OBV also argue against chasing a tiny move above $203.89.</p>
+<p>So I still favor <strong>initiating a small TEAM position at the supplied $203.57 price</strong>, not a full-sized bet on an immediate breakout. Its Jira, Confluence and service-management portfolio offers multiple growth routes, though retention and pricing power remain unverified here. I would add only if the next reported results show recurring profit, better cash conversion and stabilizing liquidity—and reconsider the position if they do not. Waiting for that proof is defensible; I think TEAM’s accelerating growth and improving exit-quarter results justify owning some exposure while those tests unfold.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: You’re right that TEAM’s growth accelerated. My objection is that <strong>the stock already prices in a durable profit turn, while the full-year cash figures have yet to confirm one</strong>.</p>
+<p>Fiscal 2026 revenue rose 26%, but operating cash flow fell 7.3% and calculated free cash flow fell 6.8%. Free-cash-flow margin dropped from roughly 27.1% to 20.1%. The implied June-quarter operating profit of $210 million is encouraging, but it comes from rounded annual and quarterly figures; the first three quarters combined therefore imply about $200 million in operating losses. TEAM finished the year with just <strong>$10 million of GAAP operating income on $6.572 billion of sales</strong>. That is a promising turn, not yet an established earnings engine.</p>
+<p>I also wouldn’t call the balance-sheet question settled merely because TEAM generated $1.353 billion of operating cash flow. Cash fell from $2.513 billion to $1.240 billion, the current ratio declined from 1.22 to 0.78, and working capital swung from about <strong>positive $710 million to negative $774 million</strong>. Some current liabilities may be deferred revenue, so this is <em>not</em> an insolvency claim. But until the $1.8 billion financing outflow and liability composition are reconciled, it is a reason to demand more evidence—not pay a premium in advance.</p>
+<p>Your 20% fiscal 2027 growth example illustrates the valuation risk. Even if sales reach $7.89 billion, TEAM’s current $51.53 billion market value would still equal about <strong>6.5 times those hypothetical sales</strong>. If investors instead assigned a hypothetical 5-times-sales multiple, that growth would imply a market value near $39.5 billion—roughly 23% below today’s figure, before share-count changes. Growth alone does not protect the stock from repricing, particularly with the 10-year Treasury yield at 5.28%.</p>
+<p>Jira, Confluence and Jira Service Management give TEAM breadth, but the supplied evidence does not establish retention, market-share gains or insulation from competing tools and tighter enterprise budgets. Nor would I treat a close just above $203.89 as proof of the business thesis: MACD remains slightly negative, and OBV has not matched the price advance relative to September 17.</p>
+<p><strong>My bear stance on TEAM is to avoid buying at $203.57.</strong> I’d reconsider if another reported quarter shows sustained GAAP profit, recovering <em>annualized</em> cash conversion and a stabilizing cash position. Until then, the bull case asks investors to pay for improvements that have appeared more clearly in sales—and one implied quarter—than in full-year cash generation.
+Bear Analyst: You’re right that TEAM is generating cash and growing quickly. My disagreement is about <strong>how much improvement an investor must assume to justify buying at $203.57</strong>.</p>
+<p>Your upside scenario needs three things to happen together: fiscal 2027 sales grow 20%, free-cash-flow margin rebounds from <strong>20.1% to 25%</strong>, and investors still pay <strong>35 times</strong> that cash flow. That could happen, but the margin recovery is not a small detail. Fiscal 2026 revenue rose 26% while calculated free cash flow <em>fell</em> 6.8%. If sales reach your illustrative <strong>$7.89 billion</strong> but the FCF margin stays at 20.1%, cash flow would be about <strong>$1.59 billion</strong>. At 25 times FCF, that implies roughly <strong>$39.7 billion</strong> in market value—about <strong>23% below</strong> today’s $51.53 billion. Even your 25% margin at 25 times FCF implies about <strong>$49.3 billion</strong>, slightly below today. Those are scenarios, not forecasts; they show why growth alone may not protect the valuation. A 35-times multiple also implies a roughly 2.9% FCF yield in a market where the 10-year Treasury yields 5.28%.</p>
+<p>I agree the implied June quarter improved. But the same figures imply roughly <strong>$200 million in operating losses over the first three quarters</strong>; TEAM earned just <strong>$10 million in GAAP operating income for the full year</strong>. June-quarter operating cash flow grew, yet full-year cash flow declined. One strong exit quarter is evidence worth testing, not a reason to treat the 25% cash-margin recovery as already underway.</p>
+<p>And while the $1.8 billion financing outflow may have an explanation, it still coincided with cash falling by roughly half and the current ratio dropping to <strong>0.78</strong>. I’m not claiming insolvency. I’m saying a premium-priced stock deserves a clearer account of that change. The portfolio’s breadth is attractive, but we have no supplied retention or market-share data to establish that competing software tools cannot constrain growth or pricing.</p>
+<p>Finally, a close above <strong>$203.89</strong> would be only $0.32 above the latest close—small beside TEAM’s <strong>$8.81 ATR</strong>—while MACD remains negative and OBV lags the price advance. I don’t need every uncertainty resolved before owning TEAM. I need either another reported quarter showing durable profit, cash conversion and stable liquidity, <strong>or a price that offers more room for disappointment</strong>. At $203.57, I would avoid buying TEAM.
+Bear Analyst: Bull, I agree the implied June quarter matters. I’m not calling it meaningless. I’m questioning whether <strong>TEAM at $203.57 offers enough upside for the risk that the improvement does not persist</strong>.</p>
+<p>Your revised valuation example makes that trade-off clearer. On your illustrative $7.89 billion of fiscal 2027 sales, a <strong>23% free-cash-flow margin at 30 times FCF</strong> implies about $54.4 billion in value—only <strong>6% above</strong> the supplied $51.53 billion market cap. If the margin instead remains near fiscal 2026’s <strong>20.1%</strong> and the multiple falls to <strong>25 times</strong>, the illustrative value is about $39.6 billion, or <strong>23% below</strong>. Neither outcome is a forecast. But even the modest-upside case requires both better cash conversion and a 30-times multiple. At that multiple, the FCF yield would be roughly 3.3%, versus a 5.28% 10-year Treasury yield; future growth has to earn the difference.</p>
+<p>Nor am I selecting a weak annual figure while ignoring June. Subtracting the <em>implied</em> June-quarter operating cash flow from each annual total suggests the first nine months of fiscal 2026 produced about <strong>$874 million</strong>, versus <strong>$1.085 billion</strong> a year earlier. The stronger June quarter partly offset that decline; it did not erase it. Meanwhile, TEAM’s 84.8% gross margin translated into just <strong>$10 million of full-year GAAP operating income</strong>. The question is whether it can repeatedly turn sales growth into profit and cash flow.</p>
+<p>You’re also right that the financing outflow does not prove operating trouble. But without its explanation, a cash balance that fell roughly by half and a <strong>0.78 current ratio</strong> are unresolved risks, not reassurance. Product breadth offers opportunity, yet the supplied evidence cannot show whether retention and pricing power will withstand competing tools or tighter enterprise budgets.</p>
+<p>I would <strong>avoid initiating TEAM at $203.57</strong>, not short its uptrend. A small staged position limits your exposure, but it does not improve the entry valuation. I’d rather see another reported quarter confirm profit and cash conversion <em>alongside</em> stable liquidity—or buy at a price that leaves more room for those tests to disappoint.
+Bear Analyst: Bull, I agree that TEAM’s stronger June quarter deserves attention. But <strong>a small position limits the cost of being wrong; it does not make the entry valuation more forgiving</strong>. At $203.57, investors are paying roughly 39 times fiscal 2026 statement-derived free cash flow. Fiscal 2025’s 27.1% cash-flow margin shows what TEAM has achieved before, not what it can reliably repeat: revenue grew 26% in fiscal 2026 while free cash flow fell and its margin declined to 20.1%.</p>
+<p>Your fiscal 2028 illustration makes the dependency clearer. It assumes 20% sales growth <em>in each of two years</em>, a recovery to a 25% free-cash-flow margin, and a 30-times exit multiple. Keep your two years of 20% growth, but hold the margin at 20.1% and use a still-substantial 25-times multiple: implied value is about <strong>$47.6 billion, roughly 8% below</strong> today’s $51.53 billion market cap, before share-count changes. Compounding revenue does not guarantee a return if cash conversion disappoints and the multiple contracts—particularly with the 10-year Treasury yielding 5.28%.</p>
+<p>I’m not dismissing the implied $210 million June-quarter operating profit or its higher operating cash flow. I’m asking how much weight to put on one exit quarter when TEAM earned only <strong>$10 million in GAAP operating income for the full year</strong>, annual operating cash flow fell 7.3%, and cash dropped to $1.240 billion. Product breadth may help, but we have no supplied retention or market-share evidence to show that competing tools and tighter enterprise budgets cannot impede the next two years of growth.</p>
+<p>So I would <strong>avoid initiating TEAM at $203.57—not short its uptrend</strong>. I’d rather see another reported quarter confirm profit <em>and</em> cash conversion, alongside an explanation of the financing outflow and a stabilizing cash position. That may mean paying more later. At this valuation, I think it is worth avoiding the risk of paying for a recovery that stalls.
+Bear Analyst: Bull, I’m not forecasting that TEAM’s 20.1% free-cash-flow margin will persist. I’m saying investors at <strong>$203.57 are paying for a recovery before the full-year cash figures confirm it</strong>.</p>
+<p>Your 21.8% margin “breakeven” is mathematically fair, but it comes <em>after two years of 20% annual sales growth</em> and assumes investors still pay 25 times free cash flow. That combination would lift annual free cash flow from $1.319 billion to roughly $2.06 billion—about <strong>56% growth—just to preserve today’s $51.53 billion market value</strong>, before any share-count changes. Even your stronger 25% margin case yields about 15% cumulative upside over two years, or roughly 7% annualized. Against a 5.28% 10-year Treasury yield—not a maturity-matched comparison—that leaves a modest reward for considerable execution and valuation risk. If the margin instead stays near 20.1%, your same growth and 25-times multiple imply about $47.6 billion, roughly 8% below today.</p>
+<p>I give the implied June quarter credit: its operating profit and higher operating cash flow are reasons to watch TEAM closely. But <strong>quarterly operating cash flow is not evidence of a 25% quarterly FCF margin</strong>, and it has not reversed the full-year decline in free cash flow. TEAM earned only $10 million in GAAP operating income for fiscal 2026 despite 26% revenue growth. Meanwhile, cash fell to $1.240 billion and the current ratio reached 0.78. The unexplained financing outflow and liability mix may have benign explanations; we should establish them rather than assume them.</p>
+<p>Jira, Confluence and service management offer growth routes, but the supplied data do not establish retention or pricing power against competing tools. Nor would I short TEAM’s rising trend. <strong>My recommendation remains to avoid initiating TEAM at $203.57</strong> until another reported quarter confirms profit <em>and</em> cash conversion, liquidity stabilizes, or the price offers more room for disappointment.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For TEAM at the supplied $203.57 reference price, the bear case wins on valuation relative to demonstrated cash conversion, but not strongly enough to justify a blanket exit. The bull has real evidence: fiscal 2026 revenue grew 26%, gross margin reached 84.8%, and annual GAAP operating results improved from a $130 million loss to a $10 million profit. The implied June quarter also improved. However, that quarter is derived from rounded statements, not independently supplied quarterly results, and operating cash flow is not the same as free cash flow. Against those positives, annual calculated FCF fell 6.8% to $1.319 billion and its margin declined from 27.1% to 20.1%, while TEAM trades at roughly 39 times that FCF. The valuation scenarios illustrate the execution burden rather than establish a forecast: with illustrative 20% fiscal 2027 revenue growth, a 25% FCF margin and 30-times multiple imply about 15% upside; a 20.1% margin and 25-times multiple imply about 23% downside, assuming unchanged shares. Higher multiples could produce more upside, but retain more valuation risk. The supplied 5.28% Treasury yield adds pressure without being a directly comparable equity-return benchmark. Cash of $1.240 billion, a 0.78 current ratio and the unexplained $1.8 billion financing outflow require clarification. The financing-use breakdown, current-liability composition and retention/pricing evidence are missing; deferred revenue could explain part of negative working capital, so this is not an insolvency claim. Accelerating sales, positive cash generation and the rising price trend support retaining limited exposure. Deteriorating full-year cash conversion at a premium entry valuation is what tips the decision to Underweight.</p>
+<p><strong>Strategic Actions</strong>: 1. Use 0.5 times a standard TEAM allocation as an exposure ceiling, not an instruction to halve every existing holding. If the actual position exceeds that ceiling, trim the excess through staged limit orders. If already below it, do not top up; if uninvested, avoid initiating at the supplied valuation. Do not short the uptrend or use leverage for this plan. The trader must verify the executable quote because $203.57 is only the supplied reference; reassess valuation if it has changed materially. 2. Do not use a move above $203.89 alone as an add trigger. The $0.32 gap from the reference price is immaterial beside the supplied $8.81 ATR, while MACD and OBV lack confirmation. 3. Review the next directly reported quarter and filing for positive GAAP operating income, recovering trailing-twelve-month FCF growth and margin versus the supplied $1.319 billion and 20.1%, and stabilizing liquidity. Use a consistent FCF definition and account for seasonality. Reconcile the $1.8 billion financing outflow and current liabilities, including deferred revenue, before concluding liquidity risk is benign. If the combined evidence improves and valuation remains supportable, reconsider the ceiling and restore exposure in 0.25-standard-allocation increments toward, not automatically beyond, a standard allocation. 4. Set a valuation-review alert near $156: using the supplied price and market value, this corresponds approximately to 30 times fiscal 2026 FCF at unchanged FCF and share count. It is neither a price target nor an automatic buy order; reassess the business and liquidity at that level. 5. If subsequent results show continued trailing FCF deterioration together with substantive, unexplained funding pressure, reduce the residual exposure toward zero rather than averaging down. Revenue growth or price momentum alone should not override that deterioration.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: TEAM’s research plan calls for underweight exposure: fiscal 2026 FCF fell 6.8%, its margin declined to 20.1%, and the supplied $203.57 price implies roughly 39× FCF despite improving revenue and operating results. TEAM’s close above its $171.68 50-day SMA and aligned UP SuperTrend readings argue against exiting every holding or shorting, but its $203.89 session high is just $0.32 above the reference price versus an $8.81 ATR; MACD remains negative and OBV lags. Trim only exposure above the plan’s 0.5× standard-allocation ceiling through staged limit orders, subject to verifying the executable quote; a uniform technical stop would be inappropriate for this valuation-led reduction.</p>
+<p><strong>Entry Price</strong>: 203.57</p>
+<p><strong>Stop Loss</strong>: not provided</p>
+<p><strong>Position Sizing</strong>: TEAM ceiling: 0.5× your standard TEAM allocation. If above it, sell the excess in stages; if at or below it, do not add or automatically sell. No shorting or leverage.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: I favor TEAM’s proposed sell, but not because I think the growth story is broken. The more aggressive move is to take some risk off at a strong price while keeping a position that can still benefit if the breakout continues.</p>
+<p>TEAM grew fiscal 2026 revenue 26%, lifted gross margin to about 84.8%, and appears to have delivered a profitable June quarter. Those are reasons not to abandon it. But annual free cash flow fell 6.8% to $1.319 billion, its margin dropped to 20.1%, and the supplied valuation is about 39 times that calculated cash flow. Even the feed’s higher, unreconciled FCF figure would put the multiple near 31 times. That is a demanding price for a company whose annual cash conversion weakened. Selling <em>exposure above</em> the 0.5× allocation ceiling turns a rich valuation into an opportunity to free up risk capacity, rather than waiting for a disappointing result to force the decision.</p>
+<p>I would push back on two cautious instincts before they become the debate. Selling every TEAM share because cash flow and liquidity weakened would ignore the tape: TEAM is above its $171.68 50-day average, all three SuperTrend readings are UP, and the MACD histogram has improved sharply. Conversely, waiting for every data discrepancy to be resolved before trimming an oversized position gives up the chance to sell into strength. The $203.57 reference close was near the $203.89 session high; that high is <strong>not</strong> an upside ceiling, but it does offer a sensible reference for staged limit orders. OBV still lags its September 17 reading, and MACD remains just below zero, so price strength has not earned an unlimited allocation.</p>
+<p>The 5.28% ten-year yield adds valuation risk, though it was not a fresh weekly spike. Retail sentiment is mildly bullish but thinly corroborated—not a reason to assume a breakout will persist. For TEAM, my call is therefore a <strong>disciplined sell of only the shares above 0.5× your standard allocation</strong>, in stages after verifying an executable quote. If your position is already at or below that ceiling, do not sell automatically or add under this plan. Keep the remaining upside exposure; do not short or use leverage. That is a more opportunistic response than either liquidating a strengthening stock or letting an oversized winner outrun its risk budget.
+Aggressive Analyst: I agree with the SELL, but I disagree that enforcing TEAM’s 0.5× ceiling is merely defensive. If a position is above that ceiling, trimming the excess while TEAM trades above its $171.68 50-day average converts an oversized valuation bet into capacity for future opportunities. It also leaves a position in place if the growth story keeps working. That is a more ambitious trade-off than either holding the excess indefinitely or selling every share.</p>
+<p>The Conservative Analyst is right that one implied profitable quarter does not prove durable cash conversion. But caution can miss the direction of change: TEAM’s fiscal 2026 revenue grew 26%, gross margin reached roughly 84.8%, and implied June-quarter operating cash flow rose from about $375 million to $479 million year over year. None erases the 6.8% annual FCF decline or the roughly 39× calculated-FCF valuation; together, they make the case for selling the <em>excess</em>, not treating TEAM’s remaining upside as expendable. Likewise, the 0.78 current ratio and lower cash balance warrant investigation, but the liability mix and causes of financing outflows are not established here. The unreconciled higher FCF figure is no reason to waive the ceiling—and the lower figure is no reason to assume financial distress.</p>
+<p>On execution, both analysts are right that $203.89 is not a price TEAM must revisit. The $0.32 distance from the $203.57 reference close is tiny relative to its $8.81 ATR. My argument is not to wait for a perfect exit: verify a live executable quote, place staged limits suited to that market, and reassess promptly if they do not fill. Still, the Conservative Analyst’s emphasis on negative MACD and lagging OBV risks understating the opportunity in the tape. MACD’s histogram improved from −3.70 to −0.17, OBV has recovered recently, and all three SuperTrend readings are UP. Those signals do not confirm a breakout, but they make a strength-based trim more plausible than a thesis built solely on deterioration.</p>
+<p>The Neutral Analyst’s conditional sizing is right; the “middle ground” framing undersells its value. A 5.28% ten-year yield is a real valuation headwind, not a fresh weekly surge, and thin retail sentiment is not a catalyst. Neither negates TEAM’s verified growth and trend. Preserve the remaining exposure to that upside, while using the sale to reduce a concentrated bet—not automatically to buy another software name. If your TEAM holding is already at or below 0.5× your standard allocation, this plan calls for <strong>no automatic sale and no addition</strong>. For an over-ceiling holding, <strong>SELL only the excess</strong>, without shorting or leverage, and review the next filing for cash conversion, liabilities, and sustained profitability.
+Aggressive Analyst: Conservative Analyst, I agree that selling TEAM’s excess shares must reduce risk first. But calling the proceeds “capacity for future opportunities” does not mean immediately buying another growth stock. It means replacing an oversized TEAM bet with the option to act later if a better-priced opportunity appears. TEAM’s cash fell from $2.513 billion to $1.240 billion, annual free cash flow declined 6.8%, and roughly 39× calculated FCF is demanding. Those are strong reasons to trim now. They are not reasons to discard the upside from 26% revenue growth, an 84.8% gross margin, and implied June-quarter operating cash flow of about $479 million versus $375 million a year earlier. The unreconciled higher FCF figure does not waive the ceiling; the lower figure does not prove the improvement has stalled.</p>
+<p>On price, I am not asking TEAM to revisit $203.89 before selling. The $203.57 October 8 close is a dated reference, and the $0.32 distance to that session high is negligible beside an $8.81 ATR. Verify the executable quote, stage realistic limits, and promptly reassess orders that do not fill. Still, the tape matters to what we <em>keep</em>: TEAM was above its $171.68 50-day average, all three SuperTrend readings were UP, and MACD improved from −3.70 to −0.17. MACD remained negative and OBV lagged, as both of you stress, but a daily Z-score of +1.96 is not evidence that the higher-timeframe uptrend has ended. This is an opportunity to sell the excess into demonstrated strength without pretending we can call a top.</p>
+<p>Neutral Analyst, I also challenge the idea that the trim’s value is limited to cash or permanent diversification. Cash can be useful optionality, and any later risk-taking should have to earn its place in the portfolio budget. At the same time, keeping a compliant TEAM stake gives the investor a way to benefit if growth and the apparent profit turn persist. The 5.28% ten-year yield is a valuation headwind, not a fresh weekly surge; thin, mildly bullish retail sentiment is not a verified catalyst. Neither settles the upside case.</p>
+<p>My recommendation remains SELL, but only conditionally: if TEAM exceeds 0.5× your standard TEAM allocation, sell the excess without shorting or leverage. If it is already at or below that ceiling, do not automatically sell or add. Budget the retained shares by acceptable portfolio-level dollar risk, not a universal $173.55 SuperTrend stop. A retreat below the recent $196.65 and $195.79 closes, or the next filing’s cash conversion and liability details, should prompt reassessment—not an automatic trade.
+Aggressive Analyst: Conservative Analyst, I’m not calling TEAM’s October 8 strength a dependable exit price. I’m saying it creates an opportunity to correct an oversized position while preserving a stake in a business that grew revenue 26%. The $203.57 close was above every earlier close in the most recent 30-bar snapshot, but the $203.89 session high is not a price to hold out for—especially with an $8.81 ATR. Verify a live quote, use realistic staged limits, and promptly reassess unfilled orders. Your cash-flow and liquidity concerns justify enforcing the ceiling, not treating the retained shares as a failed growth bet. TEAM’s implied June-quarter operating cash flow rose to about $479 million from $375 million a year earlier; the liability mix and causes of the cash decline still need checking.</p>
+<p>You’re also right that the remaining position is not self-protecting. But risk budgeting need not mean waiting passively for the next filing or adopting the distant $173.55 daily SuperTrend level as a stop. Monitor price and fundamentals in the meantime. MACD is still negative and OBV lags, yet MACD improved from −3.70 to −0.17, OBV has recovered recently, and all three SuperTrend readings are UP. Those mixed signals favor trimming the excess—not forfeiting the upside.</p>
+<p>Neutral Analyst, I agree that neither a good exit nor a future growth-stock purchase is guaranteed. But framing the proceeds chiefly as cash or permanent diversification understates their value: they give the investor the option to pursue a <em>later</em> opportunity if it earns a place in the risk budget. Meanwhile, a compliant TEAM stake can participate if its apparent profit turn persists. The 5.28% ten-year yield and roughly 39× calculated FCF demand discipline, but the yield was not a fresh weekly spike, and neither fact cancels TEAM’s growth and improving gross margin. A retreat below the recent $196.65 and $195.79 closes would warrant reassessment, not an automatic sale.</p>
+<p>My call remains a conditional SELL for TEAM: if you hold more than 0.5× your standard TEAM allocation, sell only the excess through staged orders based on a verified executable quote. If you are already at or below that ceiling, do not automatically sell or add. Keep the retained stake within your portfolio dollar-risk budget; do not short or use leverage.
+Aggressive Analyst: Conservative Analyst, I agree that TEAM’s excess exposure should come down regardless of whether we get an ideal price. But calling this <em>only</em> risk reduction misses why retaining a stake matters. TEAM grew fiscal 2026 revenue 26%, lifted gross margin to about 84.8%, and generated an implied $479 million of June-quarter operating cash flow, versus about $375 million a year earlier. If its FCF margin eventually recovered to fiscal 2025’s 27.1% on fiscal 2026 revenue, FCF would be roughly $1.78 billion and the supplied market cap would represent about 29× FCF rather than 39×. That is a sensitivity, not a forecast—but it shows the upside a full exit could forfeit. The annual FCF decline, lower cash balance and 0.78 current ratio make the <strong>excess</strong> hard to justify; they do not establish that TEAM’s growth opportunity has failed.</p>
+<p>Your technical and rates warnings deserve a response, too. A 5.28% ten-year yield is a persistent valuation headwind, but it was not a fresh weekly spike. MACD remains negative and OBV lags, yet MACD improved from −3.70 to −0.17, OBV recovered recently, and all three SuperTrend readings are UP. None guarantees a breakout. Together with TEAM’s close above its prior 30 closes in the snapshot, they make preserving a risk-budgeted stake more attractive than treating the trim as the first step toward liquidation. I agree that the distant $173.55 SuperTrend level is no universal stop.</p>
+<p>Neutral Analyst, you’re right that the ceiling—not a hoped-for fill at $203.89—is the dependable part of execution. But reducing an oversized bet while keeping exposure to a strengthening business is more than a defensive middle ground. The proceeds create the option to pursue a later, higher-conviction opportunity <em>if</em> it passes a fresh portfolio-risk test; they are not earmarked for another software stock. Thin, mildly bullish retail sentiment is no substitute for that test or for verified company results.</p>
+<p>My TEAM call remains a conditional SELL: if your holding exceeds 0.5× your standard TEAM allocation, sell only the excess through realistic staged limits after checking a live executable quote, and promptly reassess unfilled orders. If it is at or below the ceiling, do not automatically sell or add. Budget the retained shares for losses potentially larger than one $8.81 ATR, watch cash conversion and liabilities as new filings arrive, and do not short or use leverage.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst’s SELL of TEAM exposure above the 0.5× ceiling, but I would frame it as enforcing a risk limit, not as an opportunity to pick a good exit price. TEAM’s 26% revenue growth and improved gross margin are real strengths, yet one implied profitable quarter does not establish durable cash conversion. Fiscal 2026 free cash flow fell 6.8%, the current ratio dropped to 0.78, and cash roughly halved. At about 39 times calculated free cash flow, TEAM has little room for those concerns to persist. The higher FCF figure in the other feed is unreconciled, not a reason to relax the limit.</p>
+<p>The uptrend is a sound argument against automatically liquidating TEAM or shorting it. It is not a sound argument for leaving an oversized position in place while waiting for a perfect price. MACD remains negative, OBV has not confirmed the new closing high, and the $0.32 gap between the $203.57 reference close and the $203.89 session high is trivial beside an $8.81 ATR. I would verify the live quote, stage limit orders, and set a prompt reassessment if they do not fill; the historical high should not become a requirement that leaves TEAM above the risk ceiling indefinitely. A uniform stop is no substitute for this valuation-led trim, particularly when the daily SuperTrend level is far below the reference price.</p>
+<p>The Neutral Analyst has not offered a position yet. If the neutral case is to wait for cleaner filings, I would do that before increasing TEAM exposure—not before reducing an over-limit holding. The 5.28% ten-year yield adds pressure to an expensive valuation, while thin retail sentiment and an unavailable company-news feed offer no reliable offset. If TEAM is already at or below 0.5× the caller’s standard allocation, do not sell automatically or add under this plan. Reassess the remaining position as cash flow, liability composition, and sustained profitability become clearer.
+Conservative Analyst: Aggressive Analyst, I agree that TEAM’s growth and uptrend argue against selling every share. But calling an over-ceiling trim “capacity for future opportunities” risks making the proceeds sound available for another growth bet. TEAM’s 26% revenue growth and stronger implied June quarter have not yet translated into stronger annual cash generation: calculated free cash flow fell 6.8%, its margin dropped to 20.1%, and the supplied valuation is about 39 times that cash flow. Cash also fell from $2.513 billion to $1.240 billion. The causes need checking, not dismissing. I would treat the sale first as a reduction in portfolio risk, not a prompt to redeploy.</p>
+<p>The improving tape helps with execution, but it does not make waiting for a strong exit price low-risk. TEAM’s MACD histogram remains negative, OBV still lags its earlier reading despite the higher close, and the daily Z-score is near +2. Those signals do not predict a reversal; they do mean an oversized holding should not depend on TEAM revisiting $203.89. The $203.57 price is a dated reference, not an executable quote.</p>
+<p>Neutral Analyst, I agree that the 0.78 current ratio is not proof of imminent trouble and that the 5.28% ten-year yield was not a fresh weekly spike. My concern is that enforcing the ceiling and then simply waiting for the next filing could leave the retained TEAM position exposed to valuation compression or further cash-flow weakness. The $173.55 daily SuperTrend level is too distant to serve as a universal capital-protection stop. The remaining position needs a portfolio risk budget and reassessment as price and fundamentals change.</p>
+<p>My recommendation remains conditional: if TEAM exceeds 0.5× your standard TEAM allocation, sell only the excess using staged limits based on a verified live quote, and promptly reprice or reassess unfilled orders rather than leave TEAM over the ceiling indefinitely. If TEAM is already at or below that ceiling, do not automatically sell or add. Do not short or use leverage; check whether even the retained allocation fits your broader concentration limits.
+Conservative Analyst: Aggressive Analyst, I agree that selling excess TEAM shares preserves some upside, but I would not call today’s strength a dependable exit opportunity. TEAM’s 26% revenue growth and stronger implied June-quarter cash flow are encouraging; they have not reversed the 6.8% decline in annual free cash flow. Cash fell from $2.513 billion to $1.240 billion, the current ratio declined to 0.78, and roughly 39× calculated free cash flow leaves little room for a setback. Those figures do not prove distress, but they make risk reduction more urgent than obtaining a particularly attractive sale price. Proceeds create useful optionality only if a later investment clears a fresh risk assessment.</p>
+<p>Neutral Analyst, I agree that TEAM’s liabilities need examination and that the 5.28% ten-year yield was not a new weekly spike. Neither point makes the retained position self-protecting. TEAM’s trend is up, but MACD is still negative, OBV lags price, and the $173.55 daily SuperTrend level is far below the dated $203.57 close. Waiting solely for the next filing could leave the investor exposed to valuation compression in the meantime. The remaining shares need an acceptable portfolio-level dollar risk and ongoing reassessment, not a universal technical stop.</p>
+<p>My recommendation is a conditional SELL for TEAM: if the holding exceeds 0.5× the investor’s standard TEAM allocation, sell only the excess. Verify a live executable quote, use realistic staged limits, and reassess unfilled orders promptly rather than require a return to $203.89. If TEAM is already at or below the ceiling, do not automatically sell or add. Avoid shorting and leverage, and check that even the retained stake fits the broader portfolio risk budget.
+Conservative Analyst: Aggressive Analyst, TEAM’s 26% revenue growth and improving trend justify preserving a stake, but they do not make the current price a dependable opportunity to exit. The stronger implied June-quarter cash flow is encouraging; for the full fiscal year, calculated free cash flow still fell 6.8% while cash declined from $2.513 billion to $1.240 billion. At roughly 39 times that calculated cash flow, an oversized TEAM position leaves little margin for disappointment. I would treat a trim as risk reduction first, not as capital already earmarked for a future opportunity.</p>
+<p>Neutral Analyst, I agree that TEAM’s 0.78 current ratio does not prove imminent distress. The unknown liability mix and unreconciled FCF figures are precisely why I would not let an over-ceiling holding persist while awaiting cleaner filings. Nor does the 5.28% ten-year yield have to spike this week to remain a headwind for an expensive stock. TEAM’s MACD is still negative, OBV lags price, and the $173.55 daily SuperTrend level is about $30 below the dated $203.57 close—too wide to serve as a universal capital-protection stop.</p>
+<p>My recommendation remains a conditional SELL: if TEAM exceeds 0.5× your standard TEAM allocation, sell only the excess. Verify a live executable quote, use realistic staged limits, and promptly reassess unfilled orders rather than wait for $203.89. If TEAM is already at or below the ceiling, do not automatically sell or add. Keep any retained shares within your portfolio dollar-risk budget, monitor cash conversion and liquidity as new information arrives, and avoid shorting or leverage.
+Conservative Analyst: Aggressive Analyst, your 29× FCF scenario for TEAM depends on its margin recovering from 20.1% to 27.1%—a seven-percentage-point improvement that the stronger implied June quarter has not established. Even at 29×, TEAM would still require substantial execution. The verified full-year picture is less comfortable: calculated FCF fell 6.8%, cash declined from $2.513 billion to $1.240 billion, and the current ratio fell to 0.78. None proves distress, but treating the retained stake chiefly as upside optionality risks underweighting what could go wrong. Sale proceeds are risk capacity only after the rest of the portfolio has been assessed, not a reason to seek another bet.</p>
+<p>Neutral Analyst, I agree that TEAM’s liability mix needs checking and that the 5.28% ten-year yield was not a fresh spike. Uncertainty is not reassurance, though. A sustained high yield can pressure a stock valued at roughly 39× calculated FCF without any new company setback. TEAM’s uptrend argues against a blanket exit, but negative MACD, lagging OBV and a daily Z-score near +2 make it unwise to rely on that trend to protect an oversized holding. The $173.55 daily SuperTrend level is too distant to be a universal loss limit.</p>
+<p>My TEAM recommendation remains a conditional SELL: verify a live executable quote and sell only shares above the 0.5× standard-allocation ceiling, using realistic staged limits and promptly reassessing unfilled orders. If the holding is already at or below that ceiling, do not automatically sell or add. Keep any retained TEAM exposure within an acceptable portfolio-level dollar-risk budget, review cash conversion and liabilities as new filings arrive, and avoid shorting or leverage.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with the direction of the proposed SELL, but only conditionally: if your TEAM position exceeds the plan’s 0.5× standard-allocation ceiling, trim the excess. If it is already at or below that ceiling, this evidence does not call for an automatic sale.</p>
+<p>The Aggressive Analyst is right to preserve some upside, but “selling into strength” can sound easier than it is. The $203.57 reference price was only $0.32 below TEAM’s session high, while its ATR was $8.81. I would not make a fill near $203.89 the test of a successful trim. Verify the executable quote, use staged limits appropriate to the live market, and reassess promptly if they do not fill rather than leave an over-limit position untouched. Nor does the improving MACD settle the breakout case: its histogram remains negative, and OBV still lags price.</p>
+<p>The Conservative Analyst is right not to wait for perfect filings before correcting an oversized position. But the 0.78 current ratio and lower annual FCF should not be treated as proof of imminent financial trouble. TEAM grew revenue 26%, improved gross margin, and appears to have had a profitable June quarter; the composition of current liabilities and the disagreement between the two FCF figures still need checking. Likewise, the 5.28% ten-year yield is a meaningful valuation headwind, not a fresh weekly spike or a prediction that TEAM must fall. The trend above the 50-day average gives the retained shares a reasonable chance to participate if growth continues.</p>
+<p>My middle ground is to enforce the existing ceiling without trying to call a top. Keep the remaining TEAM exposure unleveraged, avoid using the distant daily SuperTrend level as a universal stop, and review the next filing for sustained profitability, cash conversion, and liability composition. Consider where the sale proceeds fit your broader diversification plan rather than automatically recycling them into another rate-sensitive software holding. That reduces concentration risk while leaving room for TEAM’s improving business and uptrend to prove themselves.
+Neutral Analyst: Aggressive Analyst, you’re right that trimming TEAM need not mean giving up on its growth. But “capacity for future opportunities” is only a benefit if the proceeds actually reduce or diversify risk. TEAM’s stronger implied June quarter does not erase a 6.8% decline in annual free cash flow, and roughly 39 times calculated FCF leaves little room for disappointment. With MACD still negative and OBV lagging price, I would not count on the uptrend to deliver a better exit for an oversized holding.</p>
+<p>Conservative Analyst, you’re right to insist on a risk budget for the shares that remain. Still, TEAM’s 0.78 current ratio is a reason to examine its liabilities, not proof of imminent distress. Revenue grew 26%, gross margin improved, and TEAM remains above its 50-day average with aligned UP trends. The 5.28% ten-year yield is a valuation headwind, but it was not a fresh weekly spike. Those facts argue against automatically selling a position that already fits the plan.</p>
+<p>My recommendation remains a conditional SELL: if TEAM exceeds 0.5× your standard TEAM allocation, sell only the excess. Verify a live executable quote, use staged limits that can realistically fill, and reassess unfilled orders promptly rather than anchor to the dated $203.57 close or $203.89 high. If TEAM is already at or below the ceiling, do not automatically sell or add; do not short or use leverage.</p>
+<p>For any retained TEAM shares, set an acceptable portfolio-level dollar risk rather than adopt the distant $173.55 SuperTrend level as a universal stop. The $8.81 ATR helps size that risk, while a retreat below the recent $196.65 and $195.79 closes would prompt reassessment, not an automatic trade. Review the next filing for cash conversion and liability composition, and decide whether sale proceeds belong in cash or more diversified exposure—not automatically in another rate-sensitive software stock.
+Neutral Analyst: Aggressive Analyst, I agree that selling excess TEAM shares can create useful flexibility, but the uptrend does not guarantee an attractive exit. The $203.57 close is dated, the $203.89 session high was only $0.32 higher, and TEAM’s ATR was $8.81. MACD was still negative and OBV still lagged price. I would not make a return to that high a condition for correcting an oversized position—or assume the proceeds should eventually fund another growth-stock bet.</p>
+<p>Conservative Analyst, I agree that the ceiling should be enforced without waiting for perfect financial disclosure. But urgency about sizing is different from a conclusion that TEAM’s business is deteriorating. Revenue grew 26%, gross margin improved, and the implied June quarter was profitable. The 0.78 current ratio warrants a look at liability composition, not an assumption of imminent distress; the conflicting FCF figures also need reconciliation. A 5.28% ten-year yield pressures TEAM’s valuation, but it was not a fresh weekly spike. Those uncertainties support retaining a risk-budgeted stake rather than automatically exiting it.</p>
+<p>My recommendation remains a conditional SELL of TEAM: if your holding exceeds 0.5× your standard TEAM allocation, trim only the excess through staged limits based on a verified executable quote, and promptly reassess orders that do not fill. If it is already at or below that ceiling, do not automatically sell or add. For retained shares, check the portfolio-level dollar risk—including the possibility of moves larger than the $8.81 ATR—rather than relying on the distant $173.55 SuperTrend level as a universal stop. Reassess if recent price strength fades or the next filing fails to support cash conversion and profitability. Keep proceeds in cash or diversify only as your broader portfolio plan warrants; do not short or use leverage.
+Neutral Analyst: Aggressive Analyst, I agree that trimming TEAM can preserve upside while reducing concentration. But “selling into strength” is not the reliable part of this plan; enforcing the allocation ceiling is. The $203.57 October 8 close is dated, and $203.89 was only $0.32 higher against an $8.81 ATR. TEAM’s improving MACD and aligned uptrends support retaining a stake, not waiting for a particular price to sell an oversized one. Proceeds provide flexibility, but any later investment should clear a fresh portfolio-risk test.</p>
+<p>Conservative Analyst, I agree that an over-ceiling TEAM holding should not wait for cleaner filings. Still, the annual FCF decline and 0.78 current ratio do not establish that the business is in distress. TEAM grew revenue 26%, improved gross margin, and generated stronger implied June-quarter operating cash flow. The conflicting FCF figures and unknown liability mix call for scrutiny, not an automatic exit from a compliant position. Likewise, a 5.28% ten-year yield is a sustained valuation headwind, not a prediction that TEAM must fall.</p>
+<p>My recommendation is a conditional SELL: if your TEAM holding exceeds 0.5× your standard TEAM allocation, sell only the excess through staged limits based on a verified executable quote, and promptly reassess unfilled orders. If it is at or below that ceiling, do not automatically sell or add. Budget the retained shares against a plausible portfolio-level dollar loss, allowing for moves larger than one ATR; neither the distant $173.55 SuperTrend level nor the recent $196.65 and $195.79 closes is a universal stop. Review cash conversion, liability composition, and profitability as new results arrive, and consider how TEAM fits alongside other rate-sensitive holdings. Do not short or use leverage.
+Neutral Analyst: Aggressive Analyst, I agree that keeping a smaller TEAM position preserves upside, but your 29× FCF example depends on a recovery from a 20.1% margin to 27.1%. It is a useful sensitivity, not evidence that TEAM is becoming cheaper. The stronger implied June-quarter cash flow is encouraging, while the full-year FCF decline and roughly 39× calculated-FCF valuation still make an oversized position hard to defend. The uptrend may help with execution, but it should not become a reason to wait for a better price.</p>
+<p>Conservative Analyst, I agree that the ceiling should not wait for perfect disclosure. But TEAM’s lower cash balance and 0.78 current ratio do not, by themselves, establish a worsening operating business: the liability mix and the causes of the investing and financing outflows remain unknown. Revenue grew 26%, gross margin improved, and the implied June quarter was profitable. Nor was the 5.28% ten-year yield a fresh weekly spike. Those points support keeping a position that fits the risk budget, while recognizing that high rates can still compress TEAM’s valuation.</p>
+<p>My recommendation is a conditional SELL of TEAM shares above 0.5× your standard TEAM allocation—no more. Check a live executable quote, use realistic staged limits, and promptly reassess unfilled orders rather than anchor to the dated $203.57 close or $203.89 high. If TEAM is already at or below the ceiling, do not automatically sell or add. For shares retained, set a portfolio-level dollar-loss budget that allows for a move larger than the $8.81 ATR; do not rely on the distant $173.55 SuperTrend level as a universal stop. Review cash conversion, liabilities and sustained profitability as new filings arrive, and assess any redeployment against your broader concentration risk. No shorting or leverage.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: Over 6–12 months, reduce TEAM exposure only if it exceeds 0.5× your standard TEAM allocation, using staged limit orders based on a verified executable quote and promptly reassessing unfilled orders. This is a ceiling, not an instruction to halve every holding or fill smaller positions: if already at or below it, do not automatically sell or add; if uninvested, avoid initiating at the supplied valuation. Keep retained TEAM shares within your portfolio dollar-risk budget without shorting or leverage, and treat $196.65 and $195.79 as reassessment alerts—not automatic stops. Review the next directly reported quarter and monitor interim deterioration rather than relying on the distant $173.55 daily SuperTrend level as a universal stop.</p>
+<p><strong>Investment Thesis</strong>: For TEAM, the conservative cash-conversion argument wins on allocation, while the aggressive growth-and-trend argument wins against liquidation. Fiscal 2026 calculated FCF declined 6.8% to $1.319 billion and its margin fell from 27.1% to 20.1%, despite 26% revenue growth. The supplied $51.53 billion market capitalization divided by $1.319 billion of FCF implies approximately 39.1× FCF. Strong sales have therefore not yet justified the valuation through stronger annual cash generation. The analysts' proposed sales apply only to exposure above the ceiling; Underweight accurately expresses that recommendation rather than a blanket exit.</p>
+<p>The positive evidence warrants retaining appropriately sized TEAM exposure. Gross margin reached 84.8%, annual GAAP operating income improved from a $130 million loss to a $10 million profit, and implied June-quarter operating cash flow increased from approximately $375 million to $479 million. However, the June-quarter figures are derived from rounded statements, and operating cash flow is not FCF. The Aggressive Analyst's approximately 29× FCF sensitivity requires margin recovery to 27.1%; it is not demonstrated performance. Technically, TEAM is above its $171.68 50-day SMA and all three SuperTrend readings are UP. Against that, the MACD histogram remains negative at −0.17, OBV lags its September 17 reading, and the daily Z-score is +1.96. A move above $203.89 alone would not justify adding: its $0.32 distance from the supplied close is negligible beside the $8.81 ATR.</p>
+<p>Liquidity uncertainty reinforces smaller sizing without establishing distress. Cash declined from $2.513 billion to $1.240 billion, the current ratio fell to 0.78, and the $1.800 billion financing outflow is unexplained. Deferred revenue could account for part of current liabilities; neither the liability mix nor the uses of financing cash are established. The vendor's $1.655 billion FCF differs from the consistently calculated $1.319 billion, lowering confidence in valuation precision. The supplied 5.28% Treasury yield is an additional valuation headwind, not a fresh weekly spike or a directly comparable equity-return hurdle.</p>
+<p>TEAM's $157 price target is a cautious 6–12 month valuation objective using the Research Manager's existing downside sensitivity, not company guidance or an analyst-consensus forecast. Assume illustrative fiscal 2027 revenue growth of 20%, an unchanged 20.1% FCF margin, a 25× FCF multiple, and unchanged shares. Modeled FCF = $6.572 billion × 1.20 × 0.201 = $1.5851664 billion. Scaling the supplied capitalization and close gives target = $203.57 × [($1.5851664 billion × 25) / $51.53 billion] ≈ $157, rounded to the nearest dollar, approximately 23% below the verified close. I adopt the lower supplied multiple because cash conversion has not established a recovery; neither the multiple nor the growth assumption is a verified forecast. This target is not an automatic buy level, and a materially different executable quote requires a fresh valuation assessment.</p>
+<p>For retained TEAM shares, stress-test losses larger than $8.81 per share: ATR is not a maximum-loss estimate, and gaps can exceed intended risk limits. The $196.65 and $195.79 recent closes are monitoring references, not validated support. Reconsider increasing exposure only when directly reported results demonstrate sustained positive GAAP operating income, recovering trailing FCF growth and margin relative to the supplied $1.319 billion and 20.1% baselines, and stabilizing liquidity with financing uses and current liabilities reconciled; apply consistent definitions and account for seasonality. If that evidence and valuation improve, restore exposure gradually in 0.25-standard-allocation increments rather than automatically filling a standard position. Continued trailing FCF deterioration together with substantive, unexplained funding pressure would instead justify reducing residual TEAM exposure toward zero. Any proceeds should be allocated under the caller's broader diversification and risk plan, not automatically reinvested in another rate-sensitive software holding.</p>
+<p><strong>Current Price</strong>: 203.57</p>
+<p><strong>Price Target</strong>: 157.0</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 6–12 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

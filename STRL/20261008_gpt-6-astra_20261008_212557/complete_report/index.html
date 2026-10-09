@@ -1,0 +1,5854 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/STRL/20261008_gpt-6-astra_20261008_212557/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: STRL - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-strl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: STRL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MCD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MCD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../PDD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strl-technical-outlook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRL technical outlook
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trend-and-momentum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trend and momentum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#participation-volatility-and-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Participation, volatility and exhaustion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actionable-levels-and-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Actionable levels and conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strl-sentiment-2026-10-01-to-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRL sentiment | 2026-10-01 to 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignment-and-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignment and divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-themes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant themes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-potential-catalysts-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Potential catalysts and risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strl-trading-and-macro-brief-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRL trading and macro brief — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-this-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed this week
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trading-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trading approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strl-fundamental-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STRL — fundamental report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#company-and-reporting-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Company and reporting scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#financial-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Financial history
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-and-balance-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow and balance sheet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuation-and-data-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valuation and data checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-activity-and-near-term-watchpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insider activity and near-term watchpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-strl">Trading Analysis Report: STRL<a class="headerlink" href="#trading-analysis-report-strl" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:25:57</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $518.41 USD
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="strl-technical-outlook">STRL technical outlook<a class="headerlink" href="#strl-technical-outlook" title="Permanent link">&para;</a></h4>
+<p><strong>STRL is in a short-term recovery within a weaker higher-timeframe trend.</strong> The daily SuperTrend is up, but both the weekly and monthly SuperTrends remain down. That disagreement matters more than a single positive daily signal: traders can treat the recovery as a tactical opportunity, but the indicators do not yet establish a sustained reversal.</p>
+<p>The scale of the preceding move also argues for caution. STRL closed at $993.74 on 2026-06-04 and $456.10 on 2026-09-01; the latest close is $518.41. Those dated prices show why a recent rise should be judged against the broader decline, rather than assumed to have ended it.</p>
+<h4 id="trend-and-momentum">Trend and momentum<a class="headerlink" href="#trend-and-momentum" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>SuperTrend:</strong> Weekly is <strong>down</strong>, with a trailing line at <strong>$758.67</strong>; the close is <strong>31.67% below</strong> that line. Monthly is <strong>down</strong>, with a line at <strong>$852.24</strong>; the close is <strong>39.17% below</strong> it. Daily is <strong>up</strong>, with a trailing stop at <strong>$464.62</strong>; the close is <strong>11.58% above</strong> it, measured relative to the stop. The daily uptrend therefore remains intact, but it runs counter to both higher tiers. These lines update with new bars; the higher-tier lines are <em>not</em> near-term price targets.</li>
+<li><strong>50-day SMA:</strong> The verified average is <strong>$517.61</strong>, leaving the $518.41 close only <strong>$0.80 above it</strong>. More importantly, the average has fallen from approximately <strong>$670.98 on 2026-08-24</strong>. A close marginally above a falling average is a tenuous sign of stabilization, not strong medium-term trend confirmation.</li>
+<li><strong>MACD histogram and RSI:</strong> The verified MACD histogram is still positive at <strong>5.45</strong>, but has narrowed from <strong>8.01 on 2026-10-06</strong>. RSI fell from <strong>61.47</strong> on that date to a verified <strong>50.30</strong>. Both readings fit a rebound that has lost momentum over the last two sessions; RSI is now near neutral, not at an overbought or oversold extreme. STRL’s verified closes likewise moved from <strong>$563.69 on October 6</strong> to <strong>$534.13 on October 7</strong> and <strong>$518.41 on October 8</strong>.</li>
+</ul>
+<h4 id="participation-volatility-and-exhaustion">Participation, volatility and exhaustion<a class="headerlink" href="#participation-volatility-and-exhaustion" title="Permanent link">&para;</a></h4>
+<p><strong>OBV confirms the recent pullback rather than showing a clear bullish divergence.</strong> It rose from about <strong>17.85 million on 2026-09-15</strong> to <strong>20.62 million on October 6</strong>, then fell to <strong>19.26 million on October 8</strong> as price retreated. The direction of OBV, not its absolute value, is the useful observation here. A renewed advance would be more convincing if OBV began rising alongside it.</p>
+<p>The verified <strong>ATR is $30.51</strong>, so STRL has substantial day-to-day price movement relative to a narrow stop. The current close is <strong>$53.79 per share above</strong> the daily SuperTrend line at $464.62. A trader using that line as an indicative exit must size for that distance—and allow for gaps or slippage—rather than assuming an exit exactly at the line.</p>
+<p>Neither selected exhaustion measure calls for an immediate reversal. <strong>TD-9</strong> stands at <strong>weekly −4</strong> (sell-setup), <strong>monthly +3</strong> (buy-setup), and <strong>daily +1</strong> (buy-setup): none has reached 9, and the tiers do not agree. The <strong>20-period z-scores</strong> are <strong>weekly −0.82, monthly +0.57, and daily +0.39</strong>. None meets the ±2 stretch threshold. In particular, the daily rebound is not statistically stretched by this measure, but a near-mean reading is not itself a buy signal.</p>
+<h4 id="actionable-levels-and-conditions">Actionable levels and conditions<a class="headerlink" href="#actionable-levels-and-conditions" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>For a new long:</strong> Consider waiting for a daily close above the latest session’s <strong>$535.22 high</strong>, followed by evidence that OBV and momentum are improving. A close above the verified <strong>October 6 close of $563.69</strong> would be a more demanding test of the recent rebound. Even then, weekly and monthly SuperTrend would remain the principal reasons to keep a tactical long distinct from a confirmed longer-term uptrend.</li>
+<li><strong>For an existing long:</strong> Watch whether STRL can hold above the <strong>$517.61 50-day SMA</strong> on a closing basis. The latest session’s <strong>$498.00 low</strong> is a nearby risk reference, <em>not</em> a historically validated support level. The <strong>$464.62 daily SuperTrend</strong> is the wider trend-based exit reference; reassess its value as it updates.</li>
+<li><strong>For a bearish or defensive view:</strong> A close below the 50-day SMA, followed by weakness through the $498.00 reference, would add evidence that the daily recovery is failing. A close through the updated daily SuperTrend line would be a stronger change in the daily trend signal. Avoid treating any single intraday breach as confirmation.</li>
+</ul>
+<p><strong>Bottom line:</strong> STRL’s daily trend and MACD histogram remain positive, but fading momentum, declining recent OBV, and downtrends on the weekly and monthly SuperTrends favor <strong>confirmation and disciplined position sizing over chasing the rebound</strong>. This is a technical assessment, not a forecast or a substitute for a trader’s risk limits.</p>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest reading for STRL</th>
+<th>Why it matters now</th>
+<th>Trading implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SuperTrend</td>
+<td>Weekly <strong>down</strong>, $758.67; monthly <strong>down</strong>, $852.24; daily <strong>up</strong>, $464.62</td>
+<td>Separates the higher-timeframe regime from the daily recovery</td>
+<td>Treat longs as countertrend until higher tiers improve; use the <em>updated</em> daily line for trend-risk monitoring</td>
+</tr>
+<tr>
+<td>50-day SMA</td>
+<td><strong>$517.61</strong>, versus $518.41 close</td>
+<td>Medium-term benchmark is falling and price is barely above it</td>
+<td>Require stronger closes above the average for stabilization</td>
+</tr>
+<tr>
+<td>MACD histogram</td>
+<td><strong>+5.45</strong>, down from +8.01 on October 6</td>
+<td>Positive momentum persists but is weakening</td>
+<td>Look for renewed expansion before relying on the rebound</td>
+</tr>
+<tr>
+<td>RSI</td>
+<td><strong>50.30</strong></td>
+<td>Near-neutral momentum checks an overbought/oversold interpretation</td>
+<td>Seek directional confirmation rather than an extreme-reading trade</td>
+</tr>
+<tr>
+<td>ATR</td>
+<td><strong>$30.51</strong></td>
+<td>Captures the size of typical price movement</td>
+<td>Size positions and stops to accommodate volatility</td>
+</tr>
+<tr>
+<td>OBV</td>
+<td>Fell from <strong>20.62m</strong> on October 6 to <strong>19.26m</strong> on October 8</td>
+<td>Tests whether volume participation supports price</td>
+<td>Prefer rising OBV alongside any renewed advance</td>
+</tr>
+<tr>
+<td>TD-9</td>
+<td>Weekly <strong>−4</strong>; monthly <strong>+3</strong>; daily <strong>+1</strong></td>
+<td>Checks for sequential exhaustion across timeframes</td>
+<td>No completed 9; do not presume an exhaustion reversal</td>
+</tr>
+<tr>
+<td>Z-score</td>
+<td>Weekly <strong>−0.82</strong>; monthly <strong>+0.57</strong>; daily <strong>+0.39</strong></td>
+<td>Tests whether price is unusually stretched from its mean</td>
+<td>No ±2 stretch signal to justify a standalone mean-reversion trade</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mixed</strong> (Score: 5.2/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="strl-sentiment-2026-10-01-to-2026-10-08">STRL sentiment | 2026-10-01 to 2026-10-08<a class="headerlink" href="#strl-sentiment-2026-10-01-to-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-evidence">1. Source-by-source evidence<a class="headerlink" href="#1-source-by-source-evidence" title="Permanent link">&para;</a></h4>
+<p><strong>Yahoo Finance news: mixed, with a constructive fundamental tilt.</strong> The supplied feed contains 15 headlines: 10 explicitly name Sterling/STRL or include Sterling among the stocks discussed; four focus on other companies (KBR, Dycom, Construction Partners, and Tutor Perini), and one generic profitable-stocks headline does not identify STRL. The most directly positive STRL headline reports a Zacks rating upgrade to Buy. Other STRL headlines raise possible support from data-center demand, a growing E-Infrastructure backlog, higher-margin work, and Texas exposure; a separate headline says Sterling stock rebounded 12%. These are headline-level signals, not supplied evidence of backlog size, realized margin gains, or sustained demand. Counterweights include a StockStory headline saying Sterling shares plummeted alongside peers and a Zacks headline saying STRL declined while the broader market improved. Another StockStory headline says Sterling and peers soared. The headline about a new general counsel asks whether the hire could reshape STRL’s risk posture; it does not establish that risk has already fallen. Peer-specific contract and backlog headlines are sector context, not STRL contracts or backlog. Full articles, publication timestamps, and independent price data were not provided, so the magnitude, sequence, and causes of the headline-reported moves cannot be verified here.</p>
+<p><strong>StockTwits: explicitly bullish tags, but divided message bodies and sharp reversal concerns.</strong> Of the 30 most-recent STRL messages, 10 are user-tagged Bullish (33% of all messages), none are tagged Bearish, and 20 are unlabeled (67%). Thus 10/10 <em>tagged</em> posts are bullish, but 0 bearish tags must not be read as 30/30 bullish messages. On October 6, posts celebrated a purported reclaim of the 200-day moving average, a construction-stock breakout, and potential moves toward $600; one user described STRL as a short- and long-term gainer. On October 7, unlabeled posts instead described the 200-day reclaim as failing, asked why STRL dropped so hard, and said prior gains were lost. A screener poster reported STRL down 7.8% intraday among falling infrastructure and AI-related names and said they saw no clear stock-specific headline; this is a user's observation, not a verified quote or established cause. Some tagged-bullish holders maintained a long-term stance despite the volatility. On October 8, messages included self-reported purchases around $500–$501, an unsubstantiated $625-within-90-days prediction, and a post calling the move a ‘head-fake.’ A user's October 6 ‘add 557.58’ and the later $500–$501 entry claims illustrate the discussion's changed price context, but these are not verified transaction prices or a measured return. The available messages cluster on October 6–8; no October 1–5 StockTwits messages are supplied.</p>
+<p><strong>Reddit: unavailable, not neutral.</strong> Collection was explicitly skipped because sentiment_include_reddit is disabled. There is no r/wallstreetbets, r/stocks, or r/investing content from which to infer a stance, engagement, or the absence of STRL discussion.</p>
+<h4 id="2-cross-source-alignment-and-divergence">2. Cross-source alignment and divergence<a class="headerlink" href="#2-cross-source-alignment-and-divergence" title="Permanent link">&para;</a></h4>
+<p>The favorable Zacks upgrade and growth-oriented STRL headlines align with bullish October 6 retail enthusiasm for infrastructure exposure. The plunge/decline headlines also align with October 7 StockTwits reports of a reversal, although the headlines lack publication timestamps and cannot independently date that move. The main divergence is between uniformly bullish <em>user-labeled</em> StockTwits posts and numerous anxious or skeptical <em>unlabeled</em> posts; treating labels alone as a 100% bullish retail consensus would miss that risk. News offers possible company-specific fundamental support, while social discussion emphasizes technical trading and market-wide rotation; neither source establishes a firm causal link between STRL fundamentals and the reported volatility.</p>
+<h4 id="3-dominant-themes">3. Dominant themes<a class="headerlink" href="#3-dominant-themes" title="Permanent link">&para;</a></h4>
+<p>The central STRL narrative is a potential data-center/E-Infrastructure and higher-margin construction growth story competing with an unstable, sector-linked share-price rally. Texas exposure and a reported Buy upgrade reinforce the constructive case. A purported 200-day moving-average reclaim followed by a reported failure, alongside simultaneous moves in infrastructure peers, dominates the short-term retail discussion. Backlog growth, sustainable margins, and the durability of demand remain questions in the supplied headlines rather than verified outcomes.</p>
+<h4 id="4-potential-catalysts-and-risks">4. Potential catalysts and risks<a class="headerlink" href="#4-potential-catalysts-and-risks" title="Permanent link">&para;</a></h4>
+<p><strong>Potential catalysts to check independently:</strong> Details and rationale behind the reported STRL Buy upgrade; future confirmation of E-Infrastructure backlog, data-center project demand, higher-margin work, and Texas execution; whether a technically significant recovery holds rather than reversing. No scheduled earnings date, specific new STRL contract, or quantified backlog figure is supplied.</p>
+<p><strong>Risks:</strong> Fast sector-wide reversals, possible failure to hold the cited 200-day moving average, crowding around AI/data-center-adjacent infrastructure themes, and growth/margin expectations outrunning what the supplied headlines substantiate. The general-counsel/risk-posture headline flags a governance question, not a documented adverse event. The $600/$625 targets and user-reported prices are opinions or anecdotes, not forecasts or verified market data.</p>
+<table>
+<thead>
+<tr>
+<th>STRL sentiment signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence / qualification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reported rating upgrade</td>
+<td>Positive</td>
+<td>Zacks headline</td>
+<td>‘Rating Upgrade to Buy’; underlying rationale not supplied.</td>
+</tr>
+<tr>
+<td>Data-center, E-Infrastructure, margins, Texas</td>
+<td>Cautiously positive</td>
+<td>STRL news headlines</td>
+<td>Recurring growth themes, largely phrased as questions; no supplied quantitative confirmation.</td>
+</tr>
+<tr>
+<td>Rally and selloff headlines</td>
+<td>Mixed / volatile</td>
+<td>StockStory and Zacks headlines</td>
+<td>Sterling included in both ‘soaring’ and ‘plummet’ coverage; another STRL headline reports a decline as the market improved.</td>
+</tr>
+<tr>
+<td>Tagged retail stance</td>
+<td>Positive, narrowly measured</td>
+<td>StockTwits</td>
+<td>10 Bullish, 0 Bearish, 20 unlabeled among 30 messages.</td>
+</tr>
+<tr>
+<td>Reversal and technical failure worries</td>
+<td>Negative near term</td>
+<td>StockTwits message bodies</td>
+<td>October 7 users describe a sharp drop, lost gains, and an alleged failed 200-day reclaim; one user reports −7.8% intraday.</td>
+</tr>
+<tr>
+<td>Reddit corroboration</td>
+<td>Unknown</td>
+<td>Reddit</td>
+<td>Feed disabled; no posts or subreddit-level evidence supplied.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Overall:</strong> Mixed, 5.2/10 for STRL. Constructive company-growth framing and bullish labeled retail interest are offset by pronounced reversal anxiety and inconsistent price-action headlines. Confidence is <strong>low</strong> because Reddit was disabled, full news articles and precise headline dates are unavailable, and recent social posts cover only part of the requested week. This describes sentiment for the trader to weigh against independently checked fundamentals and technicals; it is not a price prediction or trade recommendation.</p>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="strl-trading-and-macro-brief-october-8-2026">STRL trading and macro brief — October 8, 2026<a class="headerlink" href="#strl-trading-and-macro-brief-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Bottom line:</strong> STRL has a plausible growth catalyst in data-center-related construction, but this week’s market has become less forgiving of growth stories. Higher long-term rates, expensive construction inputs, volatile oil and renewed doubts about AI spending all raise the bar for a sustained rally. <strong>I would avoid chasing a headline-driven move in STRL without confirmation of new work, margins and cash conversion.</strong></p>
+<h4 id="what-changed-this-week">What changed this week<a class="headerlink" href="#what-changed-this-week" title="Permanent link">&para;</a></h4>
+<p><strong>STRL-specific news is mixed, not a confirmed change in fundamentals.</strong> Coverage highlighted data-center demand, Texas operations and potential margin improvement. Zacks also reported a rating upgrade and described a 12% stock rebound; other headlines reported sharp declines and gains during the same October 1–8 window (<a href="https://finance.yahoo.com/markets/stocks/articles/sterling-stock-rebounds-12-data-123600809.html">Zacks on data centers</a>; <a href="https://finance.yahoo.com/markets/stocks/articles/fluence-energy-comfort-systems-powell-212047808.html">StockStory on declines</a>; <a href="https://finance.yahoo.com/markets/stocks/articles/sterling-quanta-herc-construction-partners-223234513.html">StockStory on gains</a>). A report discussed a new general counsel and STRL’s growing E-infrastructure backlog, but its proposed effect on risk management is speculative (<a href="https://finance.yahoo.com/markets/stocks/articles/sterling-infrastructure-gc-hire-reshape-171227179.html">Simply Wall St.</a>). The retrieved headlines do <strong>not</strong> establish the value of a newly awarded STRL contract or provide a fresh earnings release. Do not substitute commentary or a rating change for company-reported backlog and results.</p>
+<p><strong>Financing conditions are the principal macro headwind.</strong> The <a href="https://fred.stlouisfed.org/series/DGS10">10-year Treasury yield</a> was <strong>5.28% on October 7</strong>, versus <strong>4.72% on August 10</strong>; the <a href="https://fred.stlouisfed.org/series/MORTGAGE30US">30-year mortgage rate</a> reached <strong>7.40% on October 8</strong>, up from 7.28% a week earlier. Higher rates can delay privately financed projects and weigh on construction-stock valuations. The <a href="https://fred.stlouisfed.org/series/FEDFUNDS">effective federal funds rate</a> averaged <strong>3.75% in September</strong>—a monthly average, not the Fed’s target-range announcement. Prediction-market contracts priced the October meeting at <strong>84% no change and 16% a 25-basis-point increase</strong>, with effectively no probability assigned to a cut. These are traded odds, not a Fed forecast.</p>
+<p><strong>Construction demand is uneven.</strong> <a href="https://fred.stlouisfed.org/series/PNRESCONS">Private nonresidential spending</a> rose to a <strong>$773.0 billion annualized rate in August</strong>, about <strong>1.0% above July</strong>, a supportive broad indicator for STRL. But <a href="https://fred.stlouisfed.org/series/TTLCONS">total construction spending</a> was <strong>$2.203 trillion annualized</strong>, <strong>1.9% below September 2025</strong>; <a href="https://fred.stlouisfed.org/series/TLPBLCONS">public construction</a> rose <strong>1.2%</strong> over that eleven-month comparison. Aggregate spending therefore does not, by itself, verify STRL’s project pipeline. Cost control matters: the <a href="https://fred.stlouisfed.org/series/WPU101">iron-and-steel producer-price index</a> climbed <strong>20.5% from October 2025 to August 2026</strong>. Watch whether STRL can pass input-cost increases through its contracts.</p>
+<p><strong>The broader market shifted quickly.</strong> Headlines reported S&amp;P 500 and Nasdaq records on October 6, followed by an October 8 decline as oil rose and chip stocks weighed on equities (<a href="https://finance.yahoo.com/markets/live/stock-market-today-tuesday-october-6-dow-sp-500-nasdaq-080526166.html">October 6 market report</a>; <a href="https://finance.yahoo.com/news/p-500-nasdaq-end-lower-203227225.html">Reuters, October 8</a>). AI-revenue concerns are particularly relevant to any data-center construction thesis, though a technology-stock selloff does not prove customers have cancelled projects. Iran-related headlines added oil-price uncertainty (<a href="https://finance.yahoo.com/news/shares-slip-oil-jumps-bond-211618469.html">Reuters</a>). The latest retrieved <a href="https://fred.stlouisfed.org/series/DCOILWTICO">FRED WTI observation</a> is <strong>$96.24 on October 6</strong>; a later <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">news headline</a> cites oil near $103 without establishing the same benchmark or observation time, so the two should not be treated as a like-for-like price move.</p>
+<h4 id="trading-approach">Trading approach<a class="headerlink" href="#trading-approach" title="Permanent link">&para;</a></h4>
+<p>For <strong>STRL</strong>, the constructive trigger is <em>verified</em> backlog growth and firm margins alongside easing yields—not another favorable headline alone. Monitor the next company disclosure for data-center project awards, backlog conversion, cost-escalation protections and cash collection. Conversely, persistent yields around or above recent highs, another oil or steel-cost jump, or evidence that customers are delaying projects would argue for smaller exposure or waiting for clearer results. No current STRL quote or valuation was available from these tools, so a defensible price target or entry level cannot be established.</p>
+<p>The near-term macro backdrop is not an outright recession call: <a href="https://fred.stlouisfed.org/series/UNRATE">September unemployment</a> was <strong>4.2%</strong>, <a href="https://fred.stlouisfed.org/series/PAYEMS">payrolls</a> increased <strong>29,000</strong> from August, and a prediction-market contract priced a U.S. recession by year-end at <strong>6%</strong>. Those figures still warrant monitoring if financing costs remain elevated.</p>
+<table>
+<thead>
+<tr>
+<th>STRL trading factor</th>
+<th>Evidence as of October 8</th>
+<th>Practical implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company catalyst</td>
+<td>Data-center, Texas and margin stories; no verified new award value in retrieved headlines</td>
+<td>Require company-reported orders and execution evidence before treating coverage as a fundamental upgrade</td>
+</tr>
+<tr>
+<td>Rates</td>
+<td>10-year Treasury <strong>5.28%</strong> on Oct. 7; October Fed odds <strong>84% hold / 16% hike</strong></td>
+<td>Watch yields and the October Fed decision; avoid assuming near-term rate relief</td>
+</tr>
+<tr>
+<td>End-market demand</td>
+<td>Private nonresidential spending <strong>$773.0B annualized</strong> in August, up ~<strong>1.0%</strong> month over month</td>
+<td>Supportive sector signal, but not a proxy for STRL bookings</td>
+</tr>
+<tr>
+<td>Project costs</td>
+<td>Iron-and-steel price index up <strong>20.5%</strong> from Oct. 2025 to Aug. 2026</td>
+<td>Scrutinize margins and contract cost pass-through</td>
+</tr>
+<tr>
+<td>Oil and AI sentiment</td>
+<td>October 8 oil-related market weakness and chip-stock declines</td>
+<td>Keep position sizing disciplined until project demand is confirmed</td>
+</tr>
+<tr>
+<td>Growth risk</td>
+<td>Unemployment <strong>4.2%</strong>; year-end recession contract <strong>6%</strong></td>
+<td>No recession is priced as the base case, but weak project conversion would matter more in a high-rate market</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="strl-fundamental-report">STRL — fundamental report<a class="headerlink" href="#strl-fundamental-report" title="Permanent link">&para;</a></h4>
+<p><strong>Sterling Infrastructure, Inc. | Industrials / Engineering &amp; Construction | As of October 8, 2026</strong></p>
+<p><strong>Bottom line:</strong> STRL’s latest available statements show rapid revenue and earnings growth, improving margins, and positive operating cash flow. The main questions for traders are how much of that growth is repeatable, whether cash generation keeps pace with earnings, and whether future results justify a valuation of roughly <strong>37.3× trailing earnings</strong>. The supplied data do not establish a new fundamental development during the past week.</p>
+<h4 id="company-and-reporting-scope">Company and reporting scope<a class="headerlink" href="#company-and-reporting-scope" title="Permanent link">&para;</a></h4>
+<p>STRL is classified as an engineering and construction company. The available tools provide a fundamentals snapshot, SEC-EDGAR-derived income statements, balance sheets and cash-flow statements, and an insider-transaction feed. The latest financial-statement period shown is <strong>June 30, 2026</strong>; the September-quarter results are not shown. The tools do not provide a full filing, segment results, backlog, contract details, management guidance, or filing-publication dates. Those omissions matter when assessing whether growth is organic and how durable it may be.</p>
+<h4 id="financial-history">Financial history<a class="headerlink" href="#financial-history" title="Permanent link">&para;</a></h4>
+<p><em>USD millions; free cash flow (FCF) below is operating cash flow less capital expenditure. Half-year figures should be compared with half-year figures, not full years.</em></p>
+<table>
+<thead>
+<tr>
+<th>Period</th>
+<th style="text-align: right;">Revenue</th>
+<th style="text-align: right;">Gross profit</th>
+<th style="text-align: right;">Operating income</th>
+<th style="text-align: right;">Net income</th>
+<th style="text-align: right;">Operating cash flow</th>
+<th style="text-align: right;">Capex</th>
+<th style="text-align: right;">Calculated FCF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td style="text-align: right;">1,414</td>
+<td style="text-align: right;">204</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">112</td>
+</tr>
+<tr>
+<td>2022</td>
+<td style="text-align: right;">1,769</td>
+<td style="text-align: right;">275</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">106</td>
+<td style="text-align: right;">219</td>
+<td style="text-align: right;">61</td>
+<td style="text-align: right;">158</td>
+</tr>
+<tr>
+<td>2023</td>
+<td style="text-align: right;">1,972</td>
+<td style="text-align: right;">338</td>
+<td style="text-align: right;">206</td>
+<td style="text-align: right;">139</td>
+<td style="text-align: right;">479</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;">415</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align: right;">2,116</td>
+<td style="text-align: right;">426</td>
+<td style="text-align: right;">265</td>
+<td style="text-align: right;">257</td>
+<td style="text-align: right;">497</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">416</td>
+</tr>
+<tr>
+<td>2025</td>
+<td style="text-align: right;">2,490</td>
+<td style="text-align: right;">572</td>
+<td style="text-align: right;">406</td>
+<td style="text-align: right;">290</td>
+<td style="text-align: right;">440</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">363</td>
+</tr>
+<tr>
+<td>H1 2025</td>
+<td style="text-align: right;">1,045</td>
+<td style="text-align: right;">238</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">110</td>
+<td style="text-align: right;">170</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">139</td>
+</tr>
+<tr>
+<td>H1 2026</td>
+<td style="text-align: right;">1,994</td>
+<td style="text-align: right;">484</td>
+<td style="text-align: right;">357</td>
+<td style="text-align: right;">252</td>
+<td style="text-align: right;">328</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">258</td>
+</tr>
+</tbody>
+</table>
+<p>The longer history shows a substantial turnaround: STRL reported a <strong>$74 million net loss in 2013</strong>, versus <strong>$290 million net income in 2025</strong>. More recently, 2025 revenue rose <strong>17.7%</strong> from 2024, while gross margin increased from <strong>20.1% to 23.0%</strong> and operating margin from <strong>12.5% to 16.3%</strong>. Yet operating cash flow fell from <strong>$497 million to $440 million</strong>; calculated FCF fell from <strong>$416 million to $363 million</strong>. Earnings growth therefore did not translate into higher annual cash generation in 2025.</p>
+<p><strong>H1 2026 accelerated sharply versus H1 2025:</strong> revenue rose <strong>90.8%</strong>, gross profit <strong>103.4%</strong>, operating income <strong>121.7%</strong>, and net income <strong>129.1%</strong>. Gross margin improved from <strong>22.8% to 24.3%</strong>; operating margin improved from <strong>15.4% to 17.9%</strong>. The latest quarter, Q2 2026, produced <strong>$1.168 billion revenue</strong>, <strong>$219 million operating income</strong>, <strong>$156 million net income</strong>, and <strong>$5.00 diluted EPS</strong>, versus <strong>$614 million</strong>, <strong>$105 million</strong>, <strong>$71 million</strong>, and <strong>$2.31</strong> in Q2 2025. These are strong comparisons, but the available documents cannot distinguish organic growth from contributions associated with investments or other changes.</p>
+<h4 id="cash-flow-and-balance-sheet">Cash flow and balance sheet<a class="headerlink" href="#cash-flow-and-balance-sheet" title="Permanent link">&para;</a></h4>
+<p>H1 2026 operating cash flow was <strong>$328 million</strong>, up from <strong>$170 million</strong> a year earlier. Capex also increased, from <strong>$31 million to $70 million</strong>, leaving calculated H1 FCF of <strong>$258 million</strong>, versus <strong>$139 million</strong>. Within H1 2026, calculated Q2 FCF was <strong>$112 million</strong>, below Q1’s <strong>$146 million</strong>, despite higher Q2 earnings. This makes quarterly cash conversion worth monitoring.</p>
+<p>Investing cash outflow was <strong>$552 million in 2025</strong>, compared with <strong>$186 million in 2024</strong>, and <strong>$206 million in H1 2026</strong>. Capex accounts for only part of those outflows. The tools do not identify the remaining uses, so they should <strong>not</strong> be presumed to be acquisitions.</p>
+<p>At June 30, 2026, STRL reported <strong>$3.194 billion assets</strong>, <strong>$1.804 billion total liabilities</strong>, <strong>$1.357 billion stockholders’ equity</strong>, and <strong>$464 million cash</strong>. Current assets of <strong>$1.429 billion</strong> exceeded current liabilities of <strong>$1.291 billion</strong> by <strong>$138 million</strong>, a current ratio of about <strong>1.11</strong>. That is an improvement on December 2025’s approximately <strong>1.01</strong> ratio, but it leaves a relatively modest liquidity cushion. The fundamentals feed lists <strong>debt-to-equity of 0.24×</strong>; total liabilities should not be mistaken for interest-bearing debt.</p>
+<h4 id="valuation-and-data-checks">Valuation and data checks<a class="headerlink" href="#valuation-and-data-checks" title="Permanent link">&para;</a></h4>
+<p>The fundamentals snapshot lists a <strong>$15.86 billion market capitalization</strong>, <strong>$3.438 billion trailing revenue</strong>, <strong>$13.88 trailing EPS</strong>, <strong>37.35× trailing P/E</strong>, <strong>11.72× price-to-book</strong>, <strong>40.0% return on equity</strong>, <strong>14.6% return on assets</strong>, and <strong>no dividend yield</strong>. Market capitalization is approximately <strong>4.6× trailing revenue</strong>. Its <strong>$25.40 forward EPS</strong> and <strong>20.41× forward P/E</strong> imply substantially higher forecast earnings than the trailing figure; the forecast period and assumptions are not supplied. Beta is <strong>1.86</strong>, indicating meaningful market sensitivity in the vendor estimate.</p>
+<p>Two vendor figures need care before using them in a valuation model. The snapshot’s <strong>$349 million FCF</strong> differs from approximately <strong>$482 million trailing FCF</strong> calculated from the supplied statements: trailing operating cash flow of <strong>$598 million</strong> less trailing capex of <strong>$116 million</strong>. Its <strong>20.1% operating-margin</strong> figure also differs from approximately <strong>17.5%</strong> calculated using the supplied trailing income statements. Definitions or timing may differ; the tools do not reconcile them. Traders should use one consistently defined set rather than mixing these figures.</p>
+<h4 id="insider-activity-and-near-term-watchpoints">Insider activity and near-term watchpoints<a class="headerlink" href="#insider-activity-and-near-term-watchpoints" title="Permanent link">&para;</a></h4>
+<p>The <strong>latest listed insider event</strong> is CEO Joseph Cutillo’s <strong>40,000-share gift on September 21, 2026</strong>—not an open-market purchase or sale. The latest listed cash sale is General Counsel Mark Wolf’s <strong>2,500 shares for $2.22 million on June 25</strong>. The feed also shows Cutillo selling <strong>150,000 shares for about $63.89 million in March 2026</strong>, following an <strong>8,120-share purchase for about $1.01 million in February 2025</strong>. Transaction motives and trading-plan details are unavailable. <strong>No transaction dated October 1–8 appears in the supplied feed</strong>; that is not proof that none occurred.</p>
+<p>For a trading decision, the most useful next checks are the <strong>September-quarter filing when available</strong>, especially year-over-year growth, gross and operating margins, operating cash flow, capex, and changes in current liabilities. Seek the full filing for the source of growth, backlog and contract exposure, investing-cash-flow uses, and a debt schedule before treating the current growth rate or forward EPS as established.</p>
+<table>
+<thead>
+<tr>
+<th>STRL key point</th>
+<th>Supporting evidence</th>
+<th>Trading implication / check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Growth and margins are strong</td>
+<td>H1 2026 revenue <strong>+90.8%</strong> and operating income <strong>+121.7%</strong> year over year</td>
+<td>Test whether growth and margin gains persist in the next reported quarter.</td>
+</tr>
+<tr>
+<td>Cash generation is positive, but uneven</td>
+<td>H1 FCF <strong>$258m</strong>; Q2 calculated FCF <strong>$112m</strong> versus Q1 <strong>$146m</strong></td>
+<td>Track cash conversion alongside earnings, not EPS alone.</td>
+</tr>
+<tr>
+<td>Liquidity merits monitoring</td>
+<td>June current ratio <strong>~1.11</strong>; working capital <strong>$138m</strong></td>
+<td>Watch current liabilities and cash needs as revenue scales.</td>
+</tr>
+<tr>
+<td>Valuation assumes substantial earnings</td>
+<td><strong>37.35×</strong> trailing P/E; forward EPS <strong>$25.40</strong> versus trailing <strong>$13.88</strong></td>
+<td>Verify the forecast horizon and assumptions before relying on forward P/E.</td>
+</tr>
+<tr>
+<td>Data definitions differ</td>
+<td>Vendor FCF <strong>$349m</strong> versus statement-calculated trailing FCF <strong>~$482m</strong></td>
+<td>Reconcile figures before calculating an FCF yield.</td>
+</tr>
+<tr>
+<td>No fresh insider signal established this week</td>
+<td>Latest listed event: <strong>September 21 gift</strong>; no October 1–8 transaction shown</td>
+<td>Do not interpret the gift as a new open-market buy or sell.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>My opening bull case for STRL:</strong> the share price is volatile, but the latest reported business results are stronger than the chart suggests. In H1 2026, revenue rose <strong>90.8%</strong> year over year to <strong>$1.99 billion</strong>, while operating income rose <strong>121.7%</strong>. Operating margin expanded from <strong>15.4% to 17.9%</strong>. That combination matters: STRL is not merely taking on more work; it is generating more operating profit per dollar of revenue as it scales. H1 free cash flow, calculated from the supplied statements, rose from <strong>$139 million to $258 million</strong>.</p>
+<p>Bear, you’re right to question whether that pace lasts. We do not yet have September-quarter results, a verified backlog figure, or enough detail to separate organic growth from other contributions. But the bull case does not require <strong>91% revenue growth forever</strong>. It requires STRL to retain a meaningful portion of its larger revenue base and improved margins. Data-center and E-Infrastructure coverage points to a plausible source of future demand, while rising private nonresidential construction spending offers sector support. Neither is a substitute for company-reported awards, so that is what I would check next.</p>
+<p>You will also point to <strong>37.35× trailing earnings</strong>, higher rates and construction-cost inflation. Those are real risks, not reasons to dismiss the operating performance. The supplied forward estimate of <strong>$25.40 EPS</strong> implies <strong>20.41× forward earnings</strong> <em>if achieved</em>; its period and assumptions still need verification. Meanwhile, STRL reported <strong>$464 million of cash</strong> at June 30 and a vendor-reported <strong>0.24× debt-to-equity ratio</strong>, giving it some financial flexibility. I would watch contract pricing and cash collection closely: the current ratio is only <strong>1.11</strong>, and Q2 free cash flow fell below Q1’s despite higher earnings.</p>
+<p>Finally, I would not call the stock’s rebound proof that the selloff is over. At <strong>$518.41 on October 8</strong>, STRL was barely above its falling 50-day average, with weekly and monthly trend signals still down. <strong>My position is bullish on STRL’s business, but selective on entry:</strong> I would favor building exposure on confirmed results and a more convincing price recovery—rather than buying solely because a headline or one strong day says the turn has arrived.
+Bull Analyst: Bear, I agree that STRL’s missing backlog detail is the central uncertainty. But <strong>missing confirmation is not the same as evidence that the growth has stopped</strong>. The reported results already show a business operating at a different scale: H1 2026 revenue rose 90.8% to $1.99 billion, operating income rose 121.7%, and operating margin expanded from 15.4% to 17.9%. That margin gain alongside rapid growth is evidence of execution and operating leverage—not proof of a permanent competitive moat, but more substantial than a data-center headline.</p>
+<p>You’re right that 91% growth cannot be the valuation assumption. It doesn’t have to be. <strong>If H2 2026 merely matched H2 2025</strong>, full-year revenue would be about <strong>$3.44 billion, up 38%</strong>, and operating income about <strong>$602 million, up 48%</strong>. That is an illustration, not a forecast; it shows how much of the year’s growth STRL has already delivered. The $773 billion annualized rate of private nonresidential spending in August, up roughly 1% from July, supports the market opportunity, though it does not establish STRL’s bookings. I want company-reported awards and backlog before calling the data-center opportunity secured.</p>
+<p>Valuation is your strongest point. <strong>37.35× trailing earnings is not cheap</strong>, and I would not underwrite the stock using the unverified $25.40 forward EPS estimate. Still, the cash-flow evidence is better than your quarter-to-quarter comparison suggests: H1 free cash flow rose from $139 million to <strong>$258 million</strong>, slightly exceeding H1 net income of $252 million, even as capex increased. Q2 free cash flow of $112 million was below Q1’s $146 million, so conversion needs watching; it was not an earnings-without-cash quarter. The $464 million cash balance provides flexibility, while the 1.11 current ratio limits how complacent we should be.</p>
+<p>Nor do I dismiss 5.28% Treasury yields, steel inflation, or the weak weekly and monthly trends. H1 margins do <strong>not</strong> prove STRL can pass through future cost increases, and a daily recovery is not a confirmed long-term reversal. Those risks argue against a full-sized purchase—not necessarily against owning any STRL.</p>
+<p><strong>My call:</strong> I favor a <em>small, risk-budgeted</em> STRL position at the supplied October 8 price of $518.41 for an investor who can tolerate substantial volatility. I would add only if the next company disclosure confirms profitable work, durable margins and cash conversion, preferably alongside stronger price and volume participation. If those fundamentals disappoint—or the daily recovery breaks down—the bull case needs revisiting. Your wait-for-everything approach reduces uncertainty; my disagreement is that it also gives no weight to the unusually strong growth and cash generation STRL has already reported.
+Bull Analyst: Bear, your correction to my flat-H2 illustration is fair: if H2 2026 only matches H2 2025, full-year revenue is essentially today’s trailing revenue. <strong>That scenario establishes a floor for the year’s growth, not a durable new run rate.</strong> But it also assumes a sharp slowdown: matching H2 2025 would mean averaging roughly <strong>$723 million of revenue per quarter</strong>, about <strong>38% below STRL’s $1.168 billion in Q2 2026</strong>. Project revenue can be uneven, so I would not extrapolate Q2 indefinitely. I would not treat that drop as the neutral assumption, either.</p>
+<p>There is a middle case worth considering. <strong>If H2 simply equals H1</strong>—an illustration, not a forecast—STRL would report about <strong>$3.99 billion of 2026 revenue and $714 million of operating income</strong>, roughly <strong>60% and 76% above 2025</strong>, respectively. That case needs verification, but it does not require another step-up from H1. The evidence for taking it seriously is operational: Q2 revenue rose about <strong>41% from Q1</strong>, Q2 operating margin reached about <strong>18.8%</strong>, and operating margins have risen from <strong>12.5% in 2024</strong> to <strong>16.3% in 2025</strong> and <strong>17.9% in H1 2026</strong>. I cannot claim a protected moat or verified data-center awards. I <em>can</em> point to a demonstrated ability to scale revenue while improving profitability—the strongest competitive evidence we have.</p>
+<p>I agree that <strong>37.35× trailing earnings is demanding</strong>, and I would not justify buying STRL with the unverified <strong>$25.40 forward EPS</strong> estimate. Nor does $464 million of cash erase the <strong>1.11 current ratio</strong>, high rates, or steel-cost risk. Yet cash conversion has not disappeared: H1 free cash flow rose from <strong>$139 million to $258 million</strong>, slightly exceeding H1 net income, despite higher capex. Q2’s lower free cash flow makes the next filing a real test, not a reason to disregard the H1 improvement.</p>
+<p>So my disagreement is with <strong>zero exposure</strong>, not with your demand for proof. At the supplied <strong>$518.41 October 8 close</strong>, I favor a <strong>small, risk-budgeted STRL position</strong>, not a full allocation or a claim that the downtrend has ended. I would add only if company-reported backlog, margins and cash conversion support the thesis—and preferably if price and volume confirm the recovery. If that evidence fails, I would reassess. Waiting removes uncertainty; it also risks ignoring how much growth STRL has already converted into operating profit and cash.
+Bull Analyst: Bear, I accept two corrections: <strong>flat H2 is not a floor</strong>, and a small position does not make STRL a better investment at $518.41. My case for owning STRL is instead that the reported operating performance is substantial enough to justify taking <em>some</em> exposure before every question is resolved.</p>
+<p>Look at what has been demonstrated, rather than the data-center headlines. STRL’s operating margin rose from <strong>12.5% in 2024</strong> to <strong>16.3% in 2025</strong> and <strong>17.9% in H1 2026</strong>. Within the latest half, Q2 revenue rose about <strong>41% sequentially</strong>, and operating margin reached roughly <strong>18.8%</strong>. That is evidence that STRL has scaled work profitably across multiple reporting periods. It is <strong>not</strong> proof of a protected moat or of future contract pricing—but the bull case rests on more than an unquantified market opportunity.</p>
+<p>Your cash-conversion concern deserves a fuller comparison. Q2 free cash flow fell from Q1, as you note. Yet <strong>2025 free cash flow was $363 million against $290 million of net income</strong>, despite its year-over-year decline; H1 2026 free cash flow was <strong>$258 million against $252 million of net income</strong>. On consistent statement-based definitions, trailing free cash flow is approximately <strong>$482 million</strong>. The vendor’s $349 million figure is unreconciled, so I would not present that calculation as a precise valuation anchor. I would say the evidence does <strong>not</strong> describe a business whose reported profits have generally failed to become cash.</p>
+<p>I also agree that the attractive <strong>20.41× forward P/E</strong> is not an investment case: the $25.40 EPS estimate lacks a verified period and assumptions. If H2 merely matched H1 net income, STRL would earn about <strong>$504 million for 2026</strong>, putting the supplied $15.86 billion market cap at roughly <strong>31×</strong> that illustrative figure. That is still demanding and requires growth beyond this year. But it does <strong>not</strong> require another sequential surge in H2 to move earnings meaningfully above the current trailing base.</p>
+<p>So where do we differ? You treat the missing September results and backlog as reasons for <strong>zero exposure</strong>. I treat them as reasons to keep exposure modest and the thesis falsifiable. The <strong>5.28% Treasury yield</strong>, <strong>20.5% rise in the cited steel index</strong>, and weak weekly and monthly trends all strengthen your argument against a full-sized or momentum-driven purchase. They do not negate STRL’s demonstrated margin expansion and cash generation. Private nonresidential spending and data-center coverage identify possible demand; I would not count either as STRL orders.</p>
+<p><strong>My call remains a small, risk-budgeted STRL position at the supplied $518.41 close—not an aggressive buy.</strong> I would add only if company-reported results show profitable backlog conversion, durable margins and cash collection, ideally with improving price and volume. If those fail, or the daily recovery breaks down, I would cut the thesis rather than defend the headlines. Waiting for proof is reasonable; my bullish disagreement is that it assigns too little value to the profitable growth STRL has <em>already</em> delivered.
+Bull Analyst: Bear, the <strong>3.0% trailing free-cash-flow yield against a 5.28% Treasury yield</strong> is your strongest objection. STRL is not cheap on static numbers. My disagreement is that a static number gives too little weight to what the business has already delivered: H1 2026 free cash flow rose from <strong>$139 million to $258 million</strong>, even as capex rose from $31 million to $70 million. That growth may not repeat, but it is reported cash generation, not a data-center forecast.</p>
+<p>Q2 cash conversion does need explaining. Its <strong>$112 million of free cash flow against $156 million of net income</strong> was weaker than Q1. Across H1, though, free cash flow of <strong>$258 million slightly exceeded net income of $252 million</strong>. I would not infer from one quarter that collections are secure—or that they are deteriorating. The next filing has to resolve that question.</p>
+<p>I also accept your <strong>roughly 31× earnings</strong> calculation if H2 net income merely matches H1. That is a demanding multiple. But that illustrative $504 million full-year profit would be about <strong>17% above the roughly $432 million earned over the latest four reported quarters</strong>; it does not depend on the unverified $25.40 forward EPS estimate. Continued growth is necessary to justify STRL’s price, and the case for considering it now is the demonstrated progression in operating margin: <strong>12.5% in 2024, 16.3% in 2025, and 17.9% in H1 2026</strong>. That suggests scalable execution, though without peer comparisons or contract detail I would not call it a proven moat.</p>
+<p>You are right that higher rates, steel costs and the weak weekly and monthly trends leave little room for complacency. Waiting for backlog and another quarter reduces uncertainty; it may also mean waiting until evidence of continued growth is reflected in the share price. Neither outcome is assured.</p>
+<p><strong>My call remains a small STRL starter position at the supplied $518.41 close, not a full allocation.</strong> I would add only on company-reported evidence of profitable work and sound cash conversion, preferably with improving price and volume. If those results disappoint or the daily recovery fails, I would reassess rather than defend the multiple.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: Bull, I agree that STRL’s H1 2026 results are impressive. Revenue rose 90.8%, operating margin reached 17.9%, and free cash flow increased to $258 million. My objection is to <strong>paying for those results before we know how durable they are</strong>. We have no September-quarter results, quantified backlog, or breakdown that establishes how much of the growth is organic. Data-center and E-Infrastructure headlines make the opportunity plausible; they do not show that STRL has secured enough profitable work to sustain this pace or a durable advantage over competing contractors.</p>
+<p>You say the bull case only needs STRL to retain much of its larger revenue base and margins. At <strong>37.35× trailing earnings</strong> and roughly <strong>4.6× trailing revenue</strong>, I think the market is asking for more than retention. The cited <strong>$25.40 forward EPS</strong> is about 83% above trailing EPS of $13.88; the attractive-sounding <strong>20.41× forward P/E</strong> depends on that estimate being achieved, and its forecast period and assumptions are not supplied. Meanwhile, the 10-year Treasury yield has risen to <strong>5.28%</strong>, and the iron-and-steel price index is up <strong>20.5%</strong> over the cited period. Higher financing costs can delay projects, while input inflation tests whether contract pricing will protect STRL’s margins.</p>
+<p>I also wouldn’t confuse cash on hand with assured cash conversion. The <strong>$464 million cash balance</strong> and low vendor-reported debt-to-equity ratio are genuine strengths, not signs of imminent financial trouble. But STRL’s current ratio is only <strong>1.11</strong>; 2025 free cash flow fell from <strong>$416 million to $363 million</strong> despite revenue growth; and Q2 2026 free cash flow fell to <strong>$112 million from Q1’s $146 million</strong> even as quarterly earnings rose. Those figures make the next filing important, not optional.</p>
+<p>Finally, the chart gives little reason to rush ahead of that evidence. At <strong>$518.41</strong>, STRL is just <strong>$0.80 above a falling 50-day average</strong>. The daily trend remains positive, but the weekly and monthly SuperTrends are down, and recent RSI and volume participation have weakened. That does not prove another selloff is coming; it does mean the rebound has not resolved the larger downtrend.</p>
+<p><strong>My call is to avoid initiating STRL here.</strong> I would revisit it if company-reported backlog and subsequent results demonstrate durable margins, solid cash conversion, and growth that can justify the valuation. Until then, your selective-entry stance is sensible—but to me, the missing confirmation is the bear case.
+Bear Analyst: Bull, I’m not arguing that STRL’s growth has stopped. H1 2026 revenue, margins and free cash flow were strong. I’m arguing that <strong>$518.41 already asks investors to pay for growth that remains unverified beyond June</strong>. We have no September-quarter results, quantified backlog or contract detail showing that STRL can keep winning work at those margins.</p>
+<p>Your H2 illustration makes that distinction clearer. If H2 2026 merely matches H2 2025, full-year revenue would indeed rise about 38% and operating income about 48%. But H2 revenue would be <strong>$1.45 billion versus $1.99 billion in H1</strong>—a roughly 28% sequential contraction. Full-year revenue of about $3.44 billion would also be essentially equal to the <em>current trailing</em> revenue figure. The annual growth headline would reflect the excellent first half, not demonstrate a durable new run rate. At <strong>37.35× trailing earnings</strong>, that distinction matters. The more comfortable <strong>20.41× forward P/E</strong> relies on $25.40 EPS—about <strong>83% above</strong> the reported trailing $13.88—without supplied assumptions or even a verified forecast period.</p>
+<p>I also give STRL credit for H1 free cash flow exceeding net income and for its $464 million cash balance. This is <strong>not a financial-distress argument</strong>. It is a question of repeatability and price: 2025 free cash flow fell despite revenue growth, Q2 2026 free cash flow fell from Q1 even as earnings rose, and the current ratio is only 1.11. Rising private nonresidential spending gives STRL an opportunity, but it gives competing contractors one too; the supplied evidence does not establish a protected position or cost-escalation terms. With the 10-year yield at <strong>5.28%</strong> and the iron-and-steel price index up <strong>20.5%</strong> over the cited period, project timing and margin protection deserve proof, not assumption.</p>
+<p>Finally, a small position limits the dollars at risk; it does not improve the entry case. STRL closed barely above its falling 50-day average while weekly and monthly trend signals remained down. <strong>I would avoid initiating STRL at $518.41</strong>, even at a small weight. I would reconsider after company-reported backlog, sustained margins and cash conversion show that H1’s performance can carry forward. That gives full weight to what STRL has achieved—without paying in advance for what it has yet to demonstrate.
+Bear Analyst: Bull, I agree STRL has <em>earned</em> attention: H1 revenue, margins and free cash flow were strong. But a small position at <strong>$518.41</strong> still needs an investment case at that price. Position sizing limits the damage if the thesis fails; it does not make the thesis more likely to succeed.</p>
+<p>Your flat-H2 example is an illustration, <strong>not a floor</strong>—H2 could come in below H2 2025. And your middle case, where H2 matches H1, still requires about <strong>38% H2 revenue growth year over year</strong> and a repeat of H1’s <strong>17.9% operating margin</strong>. That is plausible, but we lack the backlog, contract terms and September-quarter results needed to judge it. The striking <strong>60% full-year revenue growth</strong> in that example also includes growth already reported in H1. Against STRL’s <em>current trailing</em> figures, the example adds roughly <strong>16% revenue and 19% operating income</strong>. It is not evidence that another H1-sized acceleration remains ahead.</p>
+<p>That distinction matters at <strong>37.35× trailing earnings</strong>. The quoted <strong>20.41× forward P/E</strong> depends on $25.40 EPS—about <strong>83% above trailing EPS</strong>—with neither its period nor assumptions supplied. H1 free cash flow of <strong>$258 million</strong> deserves credit, but it does not settle repeatability: 2025 free cash flow fell despite revenue growth, and Q2 2026 free cash flow declined to <strong>$112 million from $146 million in Q1</strong> while earnings rose. STRL’s <strong>$464 million cash balance</strong> argues against a distress thesis; its <strong>1.11 current ratio</strong> argues against treating cash conversion as automatic.</p>
+<p>Nor can broad construction demand establish a competitive edge for STRL. The supplied data do not quantify its data-center awards or show whether contracts protect margins if steel costs rise. With the 10-year Treasury yield at <strong>5.28%</strong>, project timing and pricing deserve scrutiny. The chart offers no urgency to buy ahead of those answers: STRL closed only <strong>$0.80 above its falling 50-day average</strong>, while weekly and monthly trends remained down.</p>
+<p><strong>My call remains: do not initiate STRL at $518.41.</strong> I would reconsider on company-reported backlog, durable margins and cash conversion, ideally alongside stronger price and volume confirmation. That is not dismissing what H1 proved; it is declining to pay a demanding price for what H2 has yet to prove.
+Bear Analyst: Bull, I give STRL full credit for the margin expansion. Moving from a <strong>12.5% operating margin in 2024 to 17.9% in H1 2026</strong>, while generating cash, is real execution. My disagreement is about what an investor gets for <strong>$518.41</strong>, not whether H1 was impressive.</p>
+<p>Your flat-H2 earnings illustration makes the valuation issue sharper: even if STRL repeats H1 net income in H2, the supplied <strong>$15.86 billion market cap is still roughly 31×</strong> that illustrative full-year profit. And on the more favorable, statement-calculated trailing free cash flow of <strong>$482 million</strong>, the cash-flow yield is only about <strong>3.0%</strong>. That is not proof the stock is overpriced, but it leaves little room for project delays or margin disappointment—particularly with the 10-year Treasury yield at <strong>5.28%</strong>. The unreconciled vendor FCF figure would make the yield lower.</p>
+<p>You’re also right that STRL’s profits have generally converted into cash. I’m not alleging accounting-driven growth or financial distress. But the <em>latest quarter</em> illustrates why I want another filing before buying: Q2 free cash flow was <strong>$112 million against $156 million of net income</strong>, after Q1 free cash flow of <strong>$146 million</strong>. That could reflect timing; without contract and working-capital detail, we cannot tell. Nor can we establish that STRL’s recent margins are protected against higher input costs or competing bids. Broad data-center demand is an opportunity for STRL, not evidence of a competitive moat.</p>
+<p>A small position makes that uncertainty cheaper, but it does not resolve it. At the October 8 close, STRL was barely above a falling 50-day average, while its weekly and monthly trends remained down. <strong>I would not initiate STRL at $518.41.</strong> I would rather risk missing some upside than pay this multiple before company-reported backlog, subsequent margins and cash collection show that H1’s performance is repeatable.
+Bear Analyst: Bull, I agree that STRL’s H1 free-cash-flow growth is real, not a data-center forecast. The question is how much <em>additional</em> growth an investor needs at <strong>$518.41</strong>. Using the supplied statements, trailing free cash flow is about <strong>$482 million</strong>. If H2 2026 matches H1’s strong <strong>$258 million</strong>, full-year free cash flow would be about <strong>$516 million</strong>—only about 7% above that trailing figure. At the supplied <strong>$15.86 billion</strong> market cap, that illustrative yield is roughly <strong>3.3%</strong>. It is an illustration, not a forecast, but it shows why STRL can repeat a good half and still look expensive.</p>
+<p>The same issue applies to your earnings case. If H2 net income matches H1, <strong>$504 million</strong> for the year would leave STRL at roughly <strong>31× earnings</strong>. H1’s margin expansion makes that outcome plausible; it does not make the multiple forgiving. And while one weaker cash-conversion quarter proves nothing, Q2’s <strong>$112 million of free cash flow against $156 million of net income</strong> is precisely why I want the next filing before paying for continued execution.</p>
+<p>You’re right that waiting could mean missing upside. But we still lack quantified company-reported backlog, contract pricing terms and September-quarter results. Broad demand does not tell us whether STRL can defend its margins against competing bids and higher costs. With the 10-year Treasury yield at <strong>5.28%</strong>, the cited steel-price index up <strong>20.5%</strong>, and weekly and monthly price trends still down, I do not see a reason to accept that uncertainty <em>now</em>. The Treasury yield is not a direct substitute for an equity cash-flow yield; it does raise the return investors should demand for taking project and valuation risk.</p>
+<p><strong>My call remains: do not initiate STRL at $518.41.</strong> This is not a bet that growth has stopped or that STRL is financially distressed. It is a decision to wait for evidence that profitable work, margins and cash collection can support a demanding valuation—rather than buying a small position and hoping the next disclosure supplies it.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For STRL, the bear case wins moderately on entry valuation, not on business quality. The bull's strongest evidence is substantial: supplied H1 2026 revenue grew 90.8%, operating margin reached 17.9%, and $258 million of free cash flow slightly exceeded $252 million of net income. The $464 million cash balance also argues against a distress thesis. Q2's weaker cash conversion deserves investigation, but one quarter does not establish deterioration.</p>
+<p>The deciding issue is how much further growth is needed at the supplied October 8 price of $518.41. STRL trades at a cited 37.35 times trailing earnings. Even an illustrative H2 repeat of H1 would produce about $504 million of annual net income and $516 million of free cash flow, leaving valuation around 31 times earnings and a 3.3% free-cash-flow yield at the supplied $15.86 billion market capitalization. Those are scenarios, not forecasts or floors. Much of the impressive H1 improvement is already in the trailing comparison base. The unverified $25.40 forward EPS estimate cannot justify the purchase, and statement-derived trailing free cash flow of $482 million remains unreconciled with the vendor's $349 million figure.</p>
+<p>Missing September-quarter results, quantified company-reported backlog, organic-growth detail and contract-pricing protections are not evidence that growth has stopped. They do, however, leave the case for paying this premium insufficiently supported. The cited 5.28% Treasury yield and steel-cost inflation increase the hurdle; an equity cash-flow yield is not directly comparable to a Treasury yield. Weak weekly and monthly trends reinforce caution but are secondary to valuation. STRL's demonstrated execution prevents a high-conviction exit call, while the demanding price and unverified durability favor trimming rather than adding.</p>
+<p><strong>Strategic Actions</strong>: Anchor this STRL plan to the supplied $518.41 October 8 close, not a presumed live quote; the trader should verify the executable price and reassess if it differs materially.</p>
+<p>For an existing STRL allocation above 0.5 times the portfolio's standard allocation, trim toward 0.5 times using staged limit orders. For example, a standard 1.0-times allocation would be reduced by half. Treat 0.5 times as a cap, not an instruction to top up a smaller holding. If STRL is not held, do not initiate at the reference valuation. The trader and portfolio manager must apply this guidance to actual holdings and portfolio constraints.</p>
+<p>Before adding, obtain the next company results and disclosures covering awarded backlog and conversion timing, organic versus other growth contributions, contract cost protection, margins and working capital. Reconcile the two free-cash-flow definitions and verify the forward EPS estimate's period and assumptions. Require evidence that margins remain near the H1 17.9% benchmark and that cumulative cash conversion remains sound; do not demand that every quarter match H1 conversion or treat sequential volatility alone as failure.</p>
+<p>If those checks support durable profitable growth and the refreshed valuation offers an acceptable return, consider restoring exposure in 0.25-times-standard increments toward a standard allocation. Improving price and volume participation above the 50-day average would strengthen the entry, but a technical bounce alone is insufficient. If disclosures instead show weakening awarded work, material margin compression or persistent collection-related cash shortfalls, reduce residual STRL exposure toward 0–0.25 times standard. Do not average down solely because the price falls. The supplied evidence does not support a precise fair-value target or a defensible fixed-dollar stop.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: STRL's underweight plan favors trimming an existing allocation above 0.5 times standard: despite strong H1 growth and cash generation, its cited 37.35-times trailing earnings and unresolved growth and cash-flow questions do not justify adding at the supplied October 8 close of $518.41. That close is barely above the falling $517.61 50-day average; weekly and monthly trends remain down, and momentum and OBV have weakened despite the daily uptrend. Stage trims around the October 8 reference price after verifying an executable quote; the $30.51 ATR makes a narrow fixed stop imprudent, and the plan supplies no defensible fixed-dollar stop.</p>
+<p><strong>Entry Price</strong>: 518.41</p>
+<p><strong>Stop Loss</strong>: not provided</p>
+<p><strong>Position Sizing</strong>: If an existing STRL holding exceeds 0.5 times the portfolio's standard allocation, use staged limit sells to reduce it toward 0.5 times; do not add to a smaller holding or initiate a new one. Apply actual portfolio limits and reassess the reference price before trading.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: I’m for the proposed SELL—but as an aggressive allocation decision, not a verdict that STRL’s growth story is over. If an existing STRL position is above 0.5 times the portfolio’s standard allocation, I’d trim the excess toward that level and free up risk budget while the daily rebound is still intact. Waiting for every warning to become conclusive could mean selling only after the opportunity to trim near $518.41 has passed.</p>
+<p>The upside case is real: H1 revenue rose 90.8%, operating income rose 121.7%, and calculated free cash flow reached $258 million. That is precisely why I would retain a smaller stake rather than exit indiscriminately. But strong results do not make every position size attractive. At the October 8 reference close, STRL was just $0.80 above a falling 50-day average, after dropping from $563.69 on October 6 to $518.41. Weekly and monthly trends remained down, while RSI and OBV weakened. Paying 37.35 times trailing earnings for that setup asks a lot of an unverified growth outlook, especially with the 10-year yield at 5.28% and construction input costs elevated.</p>
+<p>The passive alternative—hold the full allocation and wait—risks mistaking a positive daily trend for a durable reversal. The opposite extreme—sell the entire holding—would give up exposure to unusually strong reported growth. Trimming the excess is the bolder trade between those choices: act on the weakening setup now, preserve some upside, and keep capacity to add risk elsewhere or reassess STRL if its price, participation, and company results strengthen. Sentiment at 5.2/10 with low confidence is not enough to override the price action.</p>
+<p>I’d use staged limit sells only after checking a current executable STRL quote; $518.41 is an October 8 reference, not a guaranteed sale price. The $30.51 ATR makes a tight fixed stop unreliable, and none was supplied. If the holding is already at or below 0.5 times the standard allocation—or there is no holding—the proposal calls for no sale, new position, or short.
+Aggressive Analyst: I still favor the conditional SELL in STRL, and I think the bolder move is to trim excess exposure before the daily recovery breaks—not wait for a weekly reversal that may arrive at a much lower price. Conservative Analyst, “while the rebound is intact” does not mean a neat fill at $518.41. It means the daily SuperTrend was still up and the MACD histogram still positive on October 8, even as STRL sat only $0.80 above a falling 50-day average and OBV weakened. That is an opportunity to reduce an oversized position while there is still a recovery to sell into. I agree that stale, unfilled limits cannot be the plan: check a live quote and spread, use time-bounded staged orders, and reassess execution if the required reduction is not filled.</p>
+<p>I also agree that half a standard allocation is not automatically safe; it is a conditional sizing ceiling, subordinate to the caller’s tighter concentration and loss limits. But the cash-flow and liquidity concerns argue against an oversized bet, not against retaining any upside. STRL generated $258 million of calculated free cash flow in H1 2026 versus $139 million a year earlier, while its current ratio improved from roughly 1.01 at year-end to 1.11. The weaker 2025 cash conversion and Q2-versus-Q1 decline deserve scrutiny, but neither establishes that the growth has failed. At 37.35 times trailing earnings, the cost of being wrong on size is high; the cost of selling every share could also be high if H1’s 90.8% revenue growth proves durable.</p>
+<p>Neutral Analyst, I’m not treating two weak sessions as proof that STRL’s business has turned, nor the October 8 close as an executable exit. That is precisely why I prefer a trim to a full exit. Your case for waiting on backlog and stronger volume is sound before <em>increasing</em> exposure, but it is too slow a standard for <em>reducing excess</em> exposure: STRL has already fallen from $563.69 on October 6 to $518.41 on October 8, with weekly and monthly trends down. Higher yields and steel costs add risk, yet they do not prove project cancellations; private nonresidential spending rose about 1% in the latest cited month. STRL’s growth still merits a seat at the table—just not an oversized one on this evidence.</p>
+<p>I would not automatically move the proceeds into another rate-sensitive stock, but I would preserve the freedom to pursue a better-supported, higher-upside opportunity rather than insist they remain idle or in a related theme. If an existing STRL holding exceeds the lesser of 0.5 times the caller’s standard allocation and applicable risk limits, sell the excess using a current executable quote and a defined execution timeframe. If it is already within limits, do not sell solely on this thesis; if there is no holding, do nothing. The $30.51 ATR and the October 8 gap to the then-current daily SuperTrend line make a narrow fixed stop a poor substitute for sizing. That is the aggressive edge here: keep exposure to STRL’s growth, but reclaim risk capacity before a fragile rebound dictates the terms.
+Aggressive Analyst: Conservative Analyst, you’re right that STRL’s daily uptrend is no floor and that $518.41 is not a sale price anyone can count on today. But that strengthens the case for acting on an oversized position, not for waiting until the daily signal also turns down. On October 8, STRL still had an up daily SuperTrend and a positive MACD histogram, even as its close sat just $0.80 above a falling 50-day average, OBV weakened, and weekly and monthly trends remained down. I call that a window to <em>attempt</em> a trim before the recovery fails—not a promise of a favorable fill. Check the current quote and spread, use time-bounded staged orders, and promptly revisit execution if the required reduction remains unfilled.</p>
+<p>Your cash-flow concerns also argue for a smaller bet, not for treating a permitted stake as a mistake. STRL’s 2025 free cash flow declined, Q2 2026 cash flow lagged Q1, and backlog and cost pass-through need verification. Yet H1 2026 calculated free cash flow rose to $258 million from $139 million, alongside 90.8% revenue growth and 121.7% operating-income growth. The 1.11 current ratio warrants monitoring; it does not erase that performance. At 37.35 times trailing earnings, I don’t want an oversized position exposed to disappointing results—but I also don’t want to surrender all participation if the growth persists. Half a standard allocation is a <strong>ceiling, not a reservation</strong>: the caller’s tighter concentration and loss limits govern any retained STRL stake.</p>
+<p>Neutral Analyst, I agree that two weak sessions do not prove the business has turned, and I am not proposing an immediate swap into another rate-sensitive growth stock. My disagreement is with letting the need for better backlog and volume evidence delay the <em>sale of excess exposure</em>. Those are useful conditions for increasing conviction later. They are not prerequisites for cutting a position that is too large now. The 5.28% 10-year yield and higher steel costs raise the stakes, while the roughly 1% rise in private nonresidential spending and STRL’s H1 results show why the upside remains worth monitoring. Neither the sector spending figure nor growth-themed headlines verify STRL’s orders; mixed, low-confidence sentiment does not settle the question either.</p>
+<p>So my call remains a conditional <strong>SELL in STRL</strong>: if an existing holding exceeds the tighter of 0.5 times the caller’s standard allocation and their applicable risk limits, trim the excess—and reduce further if the remainder still exceeds its loss budget. If it is within those limits, do not sell solely on this thesis or add under this plan; if there is no holding, there is no trade. The $30.51 ATR, the then-current $464.62 daily SuperTrend line, and gap risk make sizing more credible than a narrow fixed stop. Keep the proceeds available for a genuinely differentiated opportunity when one earns the risk budget, rather than automatically reinvesting them—or assuming that caution requires leaving that capacity unused indefinitely.
+Aggressive Analyst: Conservative Analyst, I’m not calling STRL’s daily uptrend a reliable floor or promising a sale near $518.41. I’m saying an oversized holding should be trimmed while there is still a positive daily SuperTrend and MACD histogram, rather than waiting for those signals to fail as well. The close was only $0.80 above a falling 50-day average, OBV was weakening, and the weekly and monthly trends were down. That combination makes the attempted sale timely, not certain to fill. I agree that required risk reduction cannot sit indefinitely in unfilled limits: check a live quote and spread, set an execution timeframe, and promptly revise the orders if the excess remains.</p>
+<p>Your cash-flow objections strengthen the case against an oversized STRL bet, but they do not erase the upside in a smaller one. H1 calculated free cash flow rose from $139 million to $258 million year over year, alongside 90.8% revenue growth and 121.7% operating-income growth. The 2025 cash-flow decline and Q2’s lower free cash flow than Q1 deserve scrutiny; neither proves that this year’s growth has stopped converting to cash. Likewise, a current ratio of about 1.11 is a constraint to monitor, not grounds by itself to abandon a stake that fits the caller’s loss budget. I would not mistake the half-allocation ceiling for a guaranteed safe holding.</p>
+<p>Neutral Analyst, we agree that $518.41 is a reference, not an executable exit, and that a portfolio already concentrated in construction or rate-sensitive growth may need much less STRL. My sharper distinction is between evidence needed to <em>add</em> and evidence needed to <em>sell excess</em>. Verified backlog, sustained margins and rising OBV would make a larger position easier to defend; waiting for them before trimming an oversized one leaves the current risk in place. Conversely, selling every share now would forfeit participation if STRL’s exceptional H1 growth persists. The 37.35-times trailing P/E raises the cost of disappointment, but it also makes getting the <em>size</em> right more valuable than declaring the growth story finished.</p>
+<p>That is why I favor the proposed conditional SELL in STRL. If an existing position exceeds the tighter of 0.5 times the caller’s standard allocation and their concentration or stress-tested loss limit, sell the excess with time-bounded, quote-checked orders; sell more if the remainder still breaches that limit. If it already fits, this plan calls for no sale or addition; with no holding, there is no trade. The $30.51 ATR and the then-current $464.62 daily SuperTrend line are reminders to size for volatility and gaps, not substitutes for an executable exit.</p>
+<p>I also would not automatically park the proceeds forever or recycle them into another correlated growth trade. The aggressive advantage is to reclaim risk capacity now, retain only STRL upside the portfolio can afford, and deploy that capacity later when a genuinely differentiated opportunity earns it.
+Aggressive Analyst: Conservative Analyst, I agree that STRL’s positive daily SuperTrend is no floor and that an unfilled order reduces no risk. But that is an argument for executing a required trim promptly, not for waiting until the daily signal fails too. On October 8, STRL was only $0.80 above its falling 50-day average, while OBV and momentum weakened. The daily trend and positive MACD histogram offered a chance to <em>attempt</em> a sale before another signal deteriorated—not a promise of a fill near $518.41. I would check the current quote and spread, use time-bounded staged orders, and promptly revise execution if an oversized holding remains.</p>
+<p>Your cash-flow and valuation concerns make the case for selling the <strong>excess</strong>, not automatically discarding all STRL upside. H1 calculated free cash flow rose to $258 million from $139 million, and operating income grew 121.7%. Q2 cash flow trailing Q1, the 1.11 current ratio, unverified backlog quality, a 5.28% 10-year yield and higher steel costs all limit how much conviction that performance deserves. At 37.35 times trailing earnings, the payoff from getting position size right is greater: protect the portfolio from a costly disappointment while retaining exposure if growth persists. Broad construction spending is no substitute for STRL orders, but neither do those headwinds establish that its growth has ended.</p>
+<p>Neutral Analyst, I am not reserving half an allocation for STRL. It is a ceiling for this plan, subordinate to the caller’s concentration and stress-tested loss limits; a portfolio heavy in related risks may warrant much less. Where I push harder is on timing: company-reported backlog, sustained margins and renewed price-and-OBV strength are sensible evidence for <em>adding later</em>. They are not prerequisites for selling exposure that is already too large. Mixed, low-confidence sentiment and a reported rating upgrade do not justify postponing that reduction.</p>
+<p>My call remains a conditional <strong>SELL in STRL</strong>: trim an existing holding above the tighter of half the standard allocation and applicable portfolio limits, and sell further if the remainder still breaches its loss budget. If it fits those limits, hold without adding under this plan; with no holding, make no trade. The $30.51 ATR and then-current $464.62 daily SuperTrend line are sizing scenarios, not dependable exits. Keep proceeds available for a genuinely differentiated high-upside opportunity if one earns the risk—not automatically for another correlated growth trade, and not necessarily in cash forever.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst’s conditional SELL, but not with treating this as a chance to trim neatly “while the rebound is intact.” STRL’s daily trend is still up, yet the October 8 close of $518.41 was only $0.80 above a falling 50-day average, after a decline from $563.69 two sessions earlier. Weekly and monthly trends remain down. With a $30.51 ATR, staged limits anchored to an old close could simply go unfilled while an oversized position keeps falling. I would check a live quote and spread, then set a timeframe for reducing any exposure that breaches the portfolio’s risk limits—not let an unfilled limit order become an accidental decision to hold.</p>
+<p>I also would not assume that retaining half a standard allocation is automatically safe. STRL’s strong H1 growth and $258 million of calculated free cash flow merit respect, but 2025 free cash flow declined despite earnings growth, Q2 2026 free cash flow was below Q1’s, and the June current ratio was about 1.11. Backlog quality, cost pass-through and the assumptions behind forward earnings remain unverified in the supplied material. At 37.35 times trailing earnings, with the 10-year yield at 5.28% and steel input prices elevated, those gaps matter. Proceeds from a trim should not automatically become risk budget for another growth trade.</p>
+<p>The Neutral Analyst has not spoken, so I would not attribute a position to them. If the argument is to hold the full allocation until weakness is confirmed, that puts too much weight on confirmation arriving before further loss. My recommendation is to SELL excess STRL exposure if a holding exceeds the lesser of half the standard allocation or the caller’s applicable concentration and loss limits; otherwise, do not initiate a sale merely to express a bearish view, and do not add. Before retaining any stake, define its portfolio-level loss budget and review conditions. The $498 session low and updated $464.62 daily SuperTrend can inform that review, but neither is a guaranteed exit price, especially if STRL gaps lower.
+Conservative Analyst: Aggressive Analyst, I agree that an oversized STRL holding should be reduced without waiting for a weekly trend reversal. But calling the daily rebound an opportunity risks assuming there is still a favorable exit. The October 8 close of $518.41 was only $0.80 above a falling 50-day average, after STRL closed at $563.69 two sessions earlier. OBV weakened, and the weekly and monthly trends remained down. A positive daily SuperTrend does not put a floor under the price: the $30.51 ATR signals substantial movement, and a gap could bypass the then-current $464.62 daily line.</p>
+<p>STRL’s $258 million of H1 free cash flow is a reason to investigate the growth story, not a reason to reserve half an allocation for it. Calculated free cash flow fell in 2025 despite earnings growth, Q2 2026 free cash flow was below Q1’s, and the June current ratio of about 1.11 leaves limited working-capital headroom. None of that establishes distress, as Neutral Analyst rightly says. Nor do higher rates or steel costs prove project cancellations. But at 37.35 times trailing earnings, unverified backlog quality and cost pass-through leave little margin for disappointment. The roughly 1% monthly rise in broad private nonresidential spending does not verify STRL’s orders.</p>
+<p>Neutral Analyst, I also agree that these facts do not require selling every share. My concern is treating “within half an allocation” as a default hold. Even a smaller STRL stake may exceed the caller’s loss budget or concentration limit; preserving upside is optional, while controlling an unacceptable exposure is not.</p>
+<p>My recommendation remains a conditional SELL: reduce any existing STRL position above the exposure allowed by the tighter of half the standard allocation and the caller’s portfolio risk limits, and reduce further if the remaining stake still breaches its loss budget. Check a current executable quote, use time-bounded orders, and reassess execution promptly if required sales do not fill. Do not anchor to $518.41 or treat a technical level as a guaranteed stop. If STRL is already within a defensible risk budget, hold without adding and set review conditions; if there is no holding, take no trade. I would keep trim proceeds available for lower-risk uses rather than automatically redeploying them into another growth theme.
+Conservative Analyst: Aggressive Analyst, I agree that an oversized STRL position should be reduced without waiting for the weekly trend to turn. But I would not describe the positive daily SuperTrend and MACD as a reliable window for selling into strength. At the October 8 close, STRL was only $0.80 above a falling 50-day average; momentum and OBV had weakened, while the weekly and monthly trends were still down. The $518.41 close is a reference, not a price the firm can count on obtaining. If reduction is required by a risk limit, time-bounded orders need a prompt execution review—not an indefinite wait for a rebound.</p>
+<p>Neutral Analyst, you are right that STRL’s 1.11 current ratio is not evidence of insolvency, and that higher rates and steel costs do not prove cancelled projects. My objection is to making “within half an allocation” sound like a sufficient reason to hold. STRL’s H1 free cash flow rose to $258 million, but 2025 free cash flow fell despite earnings growth, Q2 2026 free cash flow was below Q1’s, and the supplied material does not verify backlog quality or cost pass-through. Broad construction spending growth does not fill those gaps. At 37.35 times trailing earnings, disappointment could be costly even for a position below the half-allocation ceiling.</p>
+<p>My recommendation remains a conditional SELL for STRL: reduce an existing holding above the tighter of half the standard allocation and the caller’s concentration or loss limits, and reduce it further if the remainder exceeds a defensible loss budget. Check a current quote and liquidity before placing time-bounded orders. The October 8 ATR was $30.51, and the daily SuperTrend line was $53.79 below that close; neither is a guaranteed exit, particularly in a gap. If STRL is already within a genuinely stress-tested risk budget, hold without adding and review it against company-reported backlog, margins and cash conversion. With no holding, make no trade. Trim proceeds need not be rushed into another growth exposure.
+Conservative Analyst: Aggressive Analyst, I agree that excess STRL exposure should be cut before waiting for every trend signal to fail. But the positive daily SuperTrend and MACD histogram do not establish a dependable window to sell into strength. At the October 8 close, STRL was just $0.80 above a falling 50-day average, while OBV and momentum had weakened and both higher-timeframe trends remained down. A time-bounded limit order is sensible, but if a sale is required to meet a risk limit, an unfilled order cannot count as risk reduction. Recheck the live quote, spread and execution terms promptly rather than anchoring to $518.41.</p>
+<p>Neutral Analyst, STRL’s $258 million of H1 free cash flow and improved current ratio argue against calling the business distressed. They do not, by themselves, make a retained half-allocation safe. Free cash flow declined in 2025 despite earnings growth, Q2 2026 cash flow trailed Q1, and the supplied material does not verify backlog quality or cost pass-through. Broad construction-spending growth is not a substitute for STRL orders. At 37.35 times trailing earnings, with the 10-year yield at 5.28% and steel costs elevated, a smaller position can still impose more downside than the portfolio permits.</p>
+<p>My recommendation remains a conditional SELL for STRL: if an existing holding exceeds the tighter of half the standard allocation and the caller’s concentration or stress-tested loss limit, reduce it; sell further if the remainder still exceeds that limit. The $53.79 distance from the October 8 close to the then-current daily SuperTrend line is already about 10% of the reference price, before any gap or slippage. It is a sizing scenario, not a guaranteed stop. If the holding genuinely fits the loss budget, hold without adding and review company-reported backlog, margins and cash conversion. If there is no holding, make no trade. Keep sale proceeds available for lower-risk or genuinely diversified uses rather than treating recovered risk capacity as a reason to spend it immediately.
+Conservative Analyst: Aggressive Analyst, I agree that an oversized STRL holding should be reduced now rather than waiting for its daily trend to fail. I disagree that the positive daily SuperTrend creates a useful selling window or that recovered risk capacity should be viewed as an opening for another high-upside trade. At the October 8 close, STRL was only $0.80 above a falling 50-day average, and momentum and OBV had weakened. The $518.41 close is not an executable price. If a risk limit requires a sale, an unfilled limit order leaves the firm exposed; execution needs a deadline and prompt reassessment against a live quote and spread.</p>
+<p>Neutral Analyst, I am not arguing that STRL is distressed or that every permitted stake must be sold. H1 free cash flow rose to $258 million. But “within half an allocation” is not enough to establish that a holding is safe: 2025 free cash flow fell despite earnings growth, Q2 cash flow trailed Q1, and the supplied material does not establish backlog quality or cost pass-through. At 37.35 times trailing earnings, with elevated yields and steel costs, a disappointing result could reprice even a smaller stake. The $53.79 distance from the October 8 close to the then-current daily SuperTrend is a roughly 10% downside sizing scenario before gaps or slippage—not a loss cap.</p>
+<p>My recommendation is a conditional SELL for STRL. Reduce any existing holding above the tighter of half the standard allocation and the caller’s concentration or stress-tested loss limit; reduce further if the remainder still exceeds that loss budget. Use current quotes and time-bounded orders, then revisit any required sale that does not fill. If STRL already fits a defensible budget, hold without adding and reassess when company-reported backlog, margins and cash conversion are available. With no holding, make no trade. Keep trim proceeds available for lower-risk or genuinely diversified uses, not automatic redeployment.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I support a conditional SELL for STRL, but I’d challenge how confidently either analyst treats the half-allocation level. Aggressive Analyst, trimming while the daily trend is up may be sensible, but $518.41 is an October 8 reference close, not an available exit. Nor should the proceeds automatically become risk budget for another rate-sensitive growth stock. At the same time, STRL’s H1 revenue growth of 90.8% and $258 million of calculated free cash flow are good reasons not to treat a weak two-day move as proof that the business has turned.</p>
+<p>Conservative Analyst, your warning about unfilled limits is important, but the evidence does not require selling every remaining share. The roughly 1.11 current ratio calls for monitoring, not an insolvency conclusion; higher yields and steel costs are headwinds, not evidence that STRL’s projects have been cancelled. Private nonresidential construction spending also rose in the latest cited month. The stronger argument for caution is that STRL’s weekly and monthly trends are down, its momentum and OBV have weakened, and its 37.35-times trailing earnings valuation leaves little room for growth or cash conversion to disappoint.</p>
+<p>My recommendation is to sell excess STRL only if an existing holding exceeds the lesser of half the caller’s standard allocation and their own concentration or loss-risk limit. Use a current quote and time-bounded staged orders; if a required risk reduction remains unfilled, reassess execution rather than silently keeping the oversized position. The $30.51 ATR and $53.79 distance from the October 8 close to the then-current daily SuperTrend line illustrate why a narrow fixed stop is not a sound substitute for sizing—and gaps could make losses larger. If STRL is already within limits, hold rather than add; if there is no holding, do nothing. Reconsider exposure after company-reported backlog, margins and cash conversion improve and a price recovery gains volume support. Keep any trim proceeds diversified rather than moving the same risk into a closely related theme.
+Neutral Analyst: Aggressive Analyst, I agree that an oversized STRL position need not wait for a weekly trend reversal before it is trimmed. But I would not call the daily uptrend an assured opportunity to sell into strength. STRL fell from $563.69 to $518.41 in two sessions, and $518.41 is an October 8 reference close, not an executable price. Reclaiming risk capacity is useful; redeploying it immediately into another rate-sensitive growth trade could leave the portfolio with much the same risk.</p>
+<p>Conservative Analyst, your concern about unfilled orders and gap risk is well taken. Still, STRL’s roughly 1.11 current ratio is not evidence of distress, and its $258 million of calculated H1 free cash flow was up from $139 million a year earlier. Higher yields and steel costs raise the bar for future results, but they do not establish that projects have been cancelled. Those uncertainties justify a smaller, monitored stake where the caller’s risk budget permits one—not an automatic exit.</p>
+<p>My recommendation remains a conditional SELL for STRL: if an existing holding exceeds the tighter of half the caller’s standard allocation and their concentration or loss limits, trim the excess. Half an allocation is a ceiling for this plan, not a guaranteed safe size. Check a current quote, use time-bounded staged orders, and promptly revisit execution if a required reduction does not fill. The October 8 close was $53.79 above the then-current daily SuperTrend line; that gap, the $30.51 ATR, and possible slippage make position sizing more dependable than a narrow fixed stop.</p>
+<p>If STRL is already within a defensible risk budget, I would hold without adding; if there is no holding, there is no sale to make. Review the retained exposure against company-reported backlog, margins and cash conversion, as well as whether price and OBV strengthen together. Keep any sale proceeds available for genuinely diversified uses rather than assuming either immediate reinvestment or permanent cash is the only prudent choice.
+Neutral Analyst: Aggressive Analyst, I agree that excess STRL exposure can be trimmed before the weekly trend improves. But I would not count on the daily uptrend as a window to sell into strength: the October 8 close was only $0.80 above a falling 50-day average, a negligible margin beside the $30.51 ATR. Your half-allocation ceiling is a useful starting point, not a destination; a portfolio already heavy in construction or rate-sensitive growth may need less STRL.</p>
+<p>Conservative Analyst, the need to stress-test a retained stake is sound, but uncertainty is not itself a case for exiting one that fits the caller’s loss budget. STRL generated $258 million of calculated free cash flow in H1 2026, up from $139 million a year earlier. The roughly 1.11 current ratio warrants monitoring, not a conclusion of distress. Higher yields and steel costs may hurt future projects, while the recent rise in private nonresidential spending offers some sector support; neither tells us what STRL’s own backlog will deliver. At 37.35 times trailing earnings, though, the burden of proof remains high.</p>
+<p>I would keep the conditional SELL: if an existing STRL holding exceeds the tighter of half the caller’s standard allocation and their concentration or stress-tested loss limit, reduce the excess. Check a current executable quote, use time-bounded staged orders, and revisit execution promptly if a required reduction does not fill. Do not treat $518.41, the $498 session low, or the then-current $464.62 daily SuperTrend as a guaranteed exit. If STRL is within a defensible risk budget, hold without adding; with no holding, make no trade. Reassess the retained stake as company-reported backlog, margins and cash conversion become available, alongside price and OBV. Trim proceeds can remain available or be diversified into genuinely different risks—not automatically recycled into the same growth theme.
+Neutral Analyst: Aggressive Analyst, I agree that an oversized STRL position can be trimmed before its daily trend turns down. But calling that trend a window to sell still risks implying a better fill than the evidence supports. The $518.41 October 8 close was only $0.80 above a falling 50-day average, and OBV was weakening. STRL’s strong H1 results justify considering a retained stake, not reserving half an allocation regardless of the portfolio’s other construction or rate-sensitive exposures.</p>
+<p>Conservative Analyst, your execution warning is important: an unfilled order does not reduce risk. But stress-testing a position should not become an automatic exit when it fits the caller’s limits. STRL’s H1 calculated free cash flow rose to $258 million from $139 million a year earlier. The roughly 1.11 current ratio, higher rates and steel costs warrant scrutiny; they do not establish distress or cancelled projects. Equally, broad construction spending and favorable headlines do not verify STRL’s backlog. At 37.35 times trailing earnings, the next company-reported margins and cash conversion matter more than either side’s confidence in the story.</p>
+<p>I therefore support a conditional SELL in STRL: trim an existing holding above the tighter of half the caller’s standard allocation and their concentration or stress-tested loss limit; reduce further if the remainder still breaches that limit. Check a current executable quote, use time-bounded orders, and promptly revisit execution if a required trim does not fill. The $30.51 ATR and $53.79 distance from the October 8 close to the then-current daily SuperTrend line are sizing warnings, not a dependable stop—gaps could make losses larger. If STRL already fits a defensible risk budget, hold without adding and review it as company results and price-and-volume evidence arrive. With no holding, make no trade; keep any proceeds available for genuinely diversified uses.
+Neutral Analyst: Aggressive Analyst, I agree that an oversized STRL position should be trimmed without waiting for the daily trend to fail. But a positive daily SuperTrend is not much of an execution advantage when the October 8 close was only $0.80 above a falling 50-day average and OBV was declining. I also would not treat the freed-up risk budget as an invitation to find another high-upside trade until its correlation with STRL’s rate- and construction-related risks is understood.</p>
+<p>Conservative Analyst, your insistence on an execution deadline and a stress-tested loss budget is right. But uncertainty about backlog is not, by itself, a reason to exit a stake that genuinely fits that budget. STRL’s calculated H1 free cash flow rose from $139 million to $258 million, and its current ratio improved, even though both cash conversion and liquidity still need monitoring. The 37.35-times trailing P/E warrants caution, but it is not a complete valuation verdict: the forward estimate’s assumptions are unavailable, and the supplied free-cash-flow figures use unreconciled definitions.</p>
+<p>My call remains a conditional SELL for STRL. If an existing holding exceeds the lowest of half the caller’s standard allocation, their concentration limit, and a size that fits their stress-tested loss budget, reduce the excess. The $30.51 ATR and the $53.79 distance from the October 8 close to the then-current daily SuperTrend line are useful stress scenarios, not loss caps; gaps could be worse. Check a live quote, use time-bounded orders, and promptly revisit execution if a required sale does not fill. If the holding fits the budget, hold without adding; with no holding, make no trade. Reassess against company-reported backlog, margins and cash conversion, alongside price and OBV—not headlines alone.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: STRL warrants an Underweight allocation over 1–3 months: trim excess exposure rather than exit automatically. Reduce any holding above the lowest of 0.5× your standard allocation, your concentration limit, and the position size allowed by a stress-tested loss budget; this is a ceiling, not an instruction to add to smaller holdings. Verify current quotes and liquidity, then use staged limit sells with a defined execution deadline and promptly reassess any unfilled required reduction; if already within limits, retain without adding, and if unheld, make no trade. Monitor $517.61, $498.00 and the updating daily SuperTrend reference of $464.62 for closing-basis deterioration, not as guaranteed stops.</p>
+<p><strong>Investment Thesis</strong>: The stronger STRL case is for reducing exposure, not declaring business failure. H1 2026 revenue grew 90.8%, operating margin reached 17.9%, and calculated free cash flow of $258 million exceeded net income of $252 million. Cash of $464 million and a current ratio improving from approximately 1.01 to 1.11 argue against a distress-driven exit. The decline in annual FCF from $416 million in 2024 to $363 million in 2025, and Q2 2026 FCF of $112 million versus Q1's $146 million, warrant investigation but do not establish persistent cash-conversion deterioration. These merits support the Neutral Analyst's objection to an automatic exit, while the Conservative Analyst's portfolio-loss constraints appropriately limit any retained stake.</p>
+<p>Valuation decides the allocation call. STRL's cited 37.35× trailing P/E requires substantial continuing earnings growth. In the illustrative scenario where H2 repeats H1, annual net income would be 2 × $252 million = $504 million and FCF would be 2 × $258 million = $516 million. Against the supplied $15.86 billion market capitalization, those imply $15,860 million / $504 million = 31.5× earnings and $516 million / $15,860 million = 3.25% FCF yield. This is a scenario, not a forecast or floor. The $25.40 forward EPS lacks a verified period and assumptions; vendor FCF of $349 million remains unreconciled with statement-calculated trailing FCF of approximately $482 million. Missing September-quarter results, awarded backlog, organic-growth detail and cost-pass-through terms leave the premium insufficiently supported, without proving that growth has ended. The debate's cited 5.28% Treasury yield and elevated steel costs add headwinds, but an equity FCF yield is not directly comparable to a Treasury yield.</p>
+<p>Technical evidence reinforces caution rather than establishing a full-exit thesis. STRL's daily SuperTrend remains up, but weekly and monthly trends are down. The October 8 close was only $0.80 above the falling $517.61 50-day average; the MACD histogram narrowed to 5.45 from 8.01 and OBV fell to 19.26 million from 20.62 million over two sessions. The $30.51 ATR and $518.41 − $464.62 = $53.79 distance to the then-current daily SuperTrend imply a 10.38% downside scenario before gaps or slippage, not a maximum loss. Stress-test the residual position for worse outcomes and refresh these references before acting. This favors prompt reduction of excess exposure, as the Aggressive Analyst advocates, but with the Conservative Analyst's execution discipline: an unfilled order does not reduce risk. The $498.00 session low is a risk reference, not validated support.</p>
+<p>STRL price-target method: the reports provide no defensible valuation objective or justified target multiple, so use the next supported method, a technical retest of the September 1, 2026 closing reference of $456.10. The target implies $518.41 − $456.10 = $62.31 of downside, or ($456.10 / $518.41 − 1) × 100 = −12.02%, over the selected 1–3 month review horizon. This is a downside trading objective, not an intrinsic-value estimate, guaranteed support or stop price. The $518.41 October 8 close is a dated reference, not an executable quote; materially different current prices require reassessment.</p>
+<p>Reconsider increasing STRL only after company disclosures establish durable awarded work and conversion timing, explain growth sources and contract cost protection, and support operating margins near the H1 17.9% benchmark with sound cumulative cash conversion. Reconcile FCF definitions and verify forward EPS before relying on them; a refreshed valuation must also offer an acceptable return. Sustained strength above the 50-day average with rising OBV, followed by closes above $535.22 and $563.69, would strengthen—but not independently justify—adding in 0.25×-standard increments within portfolio limits. Weakening awarded work, material margin compression or persistent collection-related cash shortfalls would favor reducing residual exposure toward 0–0.25× standard, or further if required by the loss budget. Do not average down solely on price or automatically recycle proceeds into correlated growth exposure. The allocation call has medium confidence because the operating evidence is substantial, but forward visibility, valuation inputs and the technical target remain uncertain.</p>
+<p><strong>Current Price</strong>: 518.41</p>
+<p><strong>Price Target</strong>: 456.1</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 1-3 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

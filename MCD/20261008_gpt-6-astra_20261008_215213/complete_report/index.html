@@ -1,0 +1,5804 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-agent LLM trading analysis runs">
+      
+      
+      
+        <link rel="canonical" href="https://bichengwang.github.io/TradingAgents/MCD/20261008_gpt-6-astra_20261008_215213/complete_report/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Trading Analysis Report: MCD - TradingAgents Reports</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#trading-analysis-report-mcd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="TradingAgents Reports" class="md-header__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TradingAgents Reports
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trading Analysis Report: MCD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  TradingAgents Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AAPL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AAPL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ADBE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ADBE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMAT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMAT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AMZN/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AMZN
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ANET/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ANET
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ARM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ARM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../AVGO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  AVGO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BABA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BABA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../BE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  BE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CARR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CARR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../COHR/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  COHR
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRDO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRDO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../CRM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  CRM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GEV/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GEV
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../GOOGL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  GOOGL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../INTU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  INTU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../JD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  JD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../KGC/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  KGC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LITE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LITE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../LLY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../META/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  META
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MKSI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MKSI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MRVL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MRVL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MSFT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MSFT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../MU/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MU
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NBIS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NBIS
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NFLX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NFLX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NKE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NKE
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NOW/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NOW
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVDA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVDA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../NVO/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  NVO
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../ORCL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  ORCL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../PDD/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  PDD
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QCOM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QCOM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../QQQ/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  QQQ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SMCI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SMCI
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SNDK/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SNDK
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SOXX/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SOXX
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../SPY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SPY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../STRL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  STRL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TCEHY/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TCEHY
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TEAM/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TEAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TLT/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TLT
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../TSLA/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  TSLA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UBER/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UBER
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../UNH/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UNH
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../XBI/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  XBI
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="TradingAgents Reports" class="md-nav__button md-logo" aria-label="TradingAgents Reports" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    TradingAgents Reports
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TradingAgents Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AAPL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AAPL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AAPL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ADBE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADBE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ADBE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMAT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMAT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMAT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AMZN/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMZN
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AMZN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ANET/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANET
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANET
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ARM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ARM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ARM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../AVGO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVGO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AVGO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BABA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BABA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BABA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../BE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    BE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CARR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CARR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CARR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../COHR/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COHR
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    COHR
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRDO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRDO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRDO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../CRM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CRM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GEV/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEV
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GEV
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../GOOGL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GOOGL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    GOOGL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../INTU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    INTU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    INTU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_20" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../JD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_20_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_20">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    JD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../KGC/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    KGC
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_21">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    KGC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LITE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LITE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LITE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../LLY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_24" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_24_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_24">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_25" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../META/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    META
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_25_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_25">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    META
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_26" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MKSI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MKSI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_26_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_26">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MKSI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_27" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MRVL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MRVL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_27_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_27">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MRVL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_28" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MSFT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MSFT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_28_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_28">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MSFT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_29" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../MU/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MU
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_29_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_29">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MU
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_30" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NBIS/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NBIS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_30_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_30">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NBIS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_31" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NFLX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NFLX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_31_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_31">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NFLX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_32" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NKE/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NKE
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_32_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_32">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NKE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_33" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NOW/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NOW
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_33_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_33">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NOW
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_34" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVDA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVDA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_34_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_34">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVDA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_35" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../NVO/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NVO
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_35_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_35">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NVO
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_36" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../ORCL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORCL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_36_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_36">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ORCL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_37" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../PDD/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PDD
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_37_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_37">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PDD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_38" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QCOM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QCOM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_38_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_38">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QCOM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_39" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../QQQ/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    QQQ
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_39_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_39">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    QQQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_40" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SMCI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMCI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_40_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_40">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SMCI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_41" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SNDK/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SNDK
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_41_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_41">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SNDK
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_42" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SOXX/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOXX
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_42_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_42">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SOXX
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_43" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../SPY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SPY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_43_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_43">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SPY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_44" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../STRL/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STRL
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_44_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_44">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    STRL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_45" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TCEHY/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TCEHY
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_45_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_45">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TCEHY
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_46" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TEAM/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TEAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_46_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_46">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TEAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_47" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TLT/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TLT
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_47_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_47">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TLT
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_48" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../TSLA/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSLA
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_48_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_48">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    TSLA
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_49" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UBER/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UBER
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_49_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_49">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UBER
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_50" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../UNH/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UNH
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_50_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_50">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UNH
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_51" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../XBI/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    XBI
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_51_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_51">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    XBI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#i-analyst-team-reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Analyst Team Reports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="I. Analyst Team Reports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#market-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Market Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Market Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcd-a-sharp-rebound-within-a-broader-downtrend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCD: a sharp rebound within a broader downtrend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-watch-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to watch next
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentiment-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sentiment Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sentiment Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcd-sentiment-2026-10-01-to-2026-10-08" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCD sentiment | 2026-10-01 to 2026-10-08
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-source-by-source-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Source-by-source breakdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-cross-source-alignment-and-divergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-source alignment and divergence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-dominant-narratives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Dominant narratives
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-catalysts-and-risks-surfaced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Catalysts and risks surfaced
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#news-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        News Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="News Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcd-trading-and-macro-report-october-8-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCD trading and macro report — October 8, 2026
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-for-mcd-this-week" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed for MCD this week
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-world-backdrop-that-matters-for-mcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The world backdrop that matters for MCD
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals Analyst
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals Analyst">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcd-fundamental-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCD — fundamental report
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-and-financial-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business and financial model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#income-statement-growth-continues-with-a-modest-q2-margin-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Income statement: growth continues, with a modest Q2 margin check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cash-flow-and-investment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cash flow and investment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#balance-sheet-and-liquidity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Balance sheet and liquidity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valuation-dividend-and-insider-activity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Valuation, dividend and insider activity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-to-watch-next_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What to watch next
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-research-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        II. Research Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Research Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bull-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bull Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bear-researcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bear Researcher
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iii-trading-team-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        III. Trading Team Plan
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="III. Trading Team Plan">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iv-risk-management-team-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IV. Risk Management Team Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IV. Risk Management Team Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggressive-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggressive Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conservative-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conservative Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neutral-analyst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neutral Analyst
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v-portfolio-manager-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        V. Portfolio Manager Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="V. Portfolio Manager Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#portfolio-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Portfolio Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="trading-analysis-report-mcd">Trading Analysis Report: MCD<a class="headerlink" href="#trading-analysis-report-mcd" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Analysis date: 2026-10-08</li>
+<li>Rating: Underweight</li>
+<li>Generated: 2026-10-08 21:52:13</li>
+<li>TradingAgents 0.6.0: openai, deep gpt-6-astra, quick gpt-6-sol</li>
+<li>Analysts: market, sentiment, news, fundamentals; research debate rounds 5, risk debate rounds 5</li>
+<li>Data vendors: core_stock_apis yfinance, technical_indicators yfinance, fundamental_data sec_edgar,yfinance, news_data yfinance, macro_data fred, prediction_markets polymarket</li>
+</ul>
+<h2 id="i-analyst-team-reports">I. Analyst Team Reports<a class="headerlink" href="#i-analyst-team-reports" title="Permanent link">&para;</a></h2>
+<h3 id="market-analyst">Market Analyst<a class="headerlink" href="#market-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Current Price</strong>: $236.90
+<strong>Price As Of</strong>: 2026-10-08</p>
+<h4 id="mcd-a-sharp-rebound-within-a-broader-downtrend">MCD: a sharp rebound within a broader downtrend<a class="headerlink" href="#mcd-a-sharp-rebound-within-a-broader-downtrend" title="Permanent link">&para;</a></h4>
+<p>MCD rallied from its October 7 close of $230.88 to $236.90 on October 8, trading as high as $237.50 on volume of 11,357,000 shares. That is a meaningful one-day response after a sustained decline: verified closes were $250.35 on September 22, $238.32 on September 23, and $230.88 on October 7. <strong>The rebound improves near-term momentum, but it has not yet reversed the prevailing trend.</strong></p>
+<p>The strongest trend evidence remains bearish. MCD is below its falling 50-day SMA of $255.44. SuperTrend is <strong>down on all three timeframes</strong>: the daily reversal line is $244.47, the higher-priority weekly line is $265.86, and the monthly line is $299.43. A daily close above $244.47 would improve the short-term picture; it would not, by itself, overturn the weekly or monthly signals. These lines are <em>conditional trend-flip thresholds</em>, not levels at which a bounce has been historically established.</p>
+<p>Momentum explains why the next few closes matter. RSI rose to <strong>39.05</strong>, recovering from an oversold reading below 30 on October 7, while the MACD histogram turned positive at <strong>0.28</strong> after negative readings. Together, they suggest that selling momentum has eased. RSI remains below 50, however, and one positive histogram reading is not enough to establish a durable upswing.</p>
+<p>The exhaustion signals also call for patience rather than a bottom call. TD-9 shows a <strong>+7 buy-setup on both weekly and monthly charts</strong>, approaching—but not completing—the count of nine. The daily count is <strong>−1</strong>, reflecting a different, shorter-term setup after the rebound. MCD’s z-score is <strong>−1.76 weekly</strong> and <strong>−2.04 monthly</strong>, indicating substantial longer-horizon downside stretch; the <strong>−0.42 daily</strong> reading is much nearer its recent mean. A stretched monthly price can keep falling when all three SuperTrend tiers remain down.</p>
+<p>Volume offers a mixed confirmation. October 8’s strong-volume rise lifted OBV sharply, but OBV remains below its late-September reading; one session has not erased the preceding deterioration in participation. ATR is <strong>$4.46</strong>, so relatively small-looking stops could be vulnerable to ordinary volatility. For example, a hypothetical entry at $236.90 with a stop <em>below</em> October 8’s $230.20 low entails <strong>more than $6.70 per share of risk</strong>, before slippage.</p>
+<h4 id="what-to-watch-next">What to watch next<a class="headerlink" href="#what-to-watch-next" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Bullish confirmation:</strong> MCD first needs to sustain closes above the <strong>$244.47 daily SuperTrend line</strong>, with continued improvement in RSI and OBV. The <strong>$255.44 50-day SMA</strong> is a subsequent medium-term test. Even those developments would leave the weekly downtrend to contend with.</li>
+<li><strong>Rebound failure:</strong> A close back below the <strong>$230.20 October 8 low</strong>, particularly alongside weakening OBV, would undermine the recovery attempt. This is a prospective risk trigger, not a validated support bounce.</li>
+<li><strong>Positioning:</strong> Traders considering a countertrend position should size it against a clearly defined stop and the <strong>$4.46 ATR</strong>, rather than treating the positive MACD histogram or near-complete TD-9 counts as standalone buy signals.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Selected indicator</th>
+<th>Latest MCD reading</th>
+<th>Trading interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SuperTrend</td>
+<td>Weekly <strong>down</strong>, $265.86; monthly <strong>down</strong>, $299.43; daily <strong>down</strong>, $244.47</td>
+<td>All tiers agree on the downtrend; a daily flip alone would be preliminary.</td>
+</tr>
+<tr>
+<td>50-day SMA</td>
+<td><strong>$255.44</strong>, above price and falling</td>
+<td>Medium-term trend has not recovered.</td>
+</tr>
+<tr>
+<td>RSI</td>
+<td><strong>39.05</strong></td>
+<td>Improved from oversold, but still below the 50 momentum midpoint.</td>
+</tr>
+<tr>
+<td>MACD histogram</td>
+<td><strong>+0.28</strong></td>
+<td>Early momentum improvement; seek follow-through.</td>
+</tr>
+<tr>
+<td>ATR</td>
+<td><strong>$4.46</strong></td>
+<td>Allow for volatility when placing stops and sizing risk.</td>
+</tr>
+<tr>
+<td>OBV</td>
+<td>Rose sharply on October 8; remains below late-September reading</td>
+<td>Participation improved for one day, not yet across the lookback period.</td>
+</tr>
+<tr>
+<td>TD-9</td>
+<td>Weekly <strong>+7</strong>; monthly <strong>+7</strong>; daily <strong>−1</strong></td>
+<td>Higher-timeframe exhaustion is approaching, not confirmed.</td>
+</tr>
+<tr>
+<td>Z-score</td>
+<td>Weekly <strong>−1.76</strong>; monthly <strong>−2.04</strong>; daily <strong>−0.42</strong></td>
+<td>Longer-term stretch supports a rebound watch, not a trend-reversal conclusion.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sentiment-analyst">Sentiment Analyst<a class="headerlink" href="#sentiment-analyst" title="Permanent link">&para;</a></h3>
+<p><strong>Overall Sentiment:</strong> <strong>Mixed</strong> (Score: 4.9/10)
+<strong>Confidence:</strong> Low</p>
+<h4 id="mcd-sentiment-2026-10-01-to-2026-10-08">MCD sentiment | 2026-10-01 to 2026-10-08<a class="headerlink" href="#mcd-sentiment-2026-10-01-to-2026-10-08" title="Permanent link">&para;</a></h4>
+<h4 id="1-source-by-source-breakdown">1. Source-by-source breakdown<a class="headerlink" href="#1-source-by-source-breakdown" title="Permanent link">&para;</a></h4>
+<p><strong>News — cautious on company-specific issues, with some positive offsets.</strong> The 16 supplied Yahoo Finance headlines include several tangential peer or franchise stories, so headline count is not a vote on MCD. The most consequential MCD-specific negative is Bernstein's price-target cut to <strong>$250 from $295</strong> (about 15%), reported in both MT Newswires and Stocktwits headlines; the latter cites sales-growth concerns and uncertainty around the NEXT initiatives. These are two headlines about the same analyst action, not two independent downgrades. Restaurant Dive separately describes pushback over NEXT. Reuters reports that an AI-pricing lawsuit against MCD raises antitrust questions, while Axios covers the broader AI-pricing issue; the existence of a suit is a risk, <strong>not evidence that the allegations are proven</strong>. TIKR reports MCD's response that the suit is “filled with inaccuracies” and says the business is 98% franchised. On the positive side, an Insider Monkey headline raises the potential value of MCD's high-margin franchise model, Zacks says MCD gained on a day the market dipped, and 24/7 Wall St. says it ticked up amid peer takeover talk. These are headline-level signals only: article text, actual price data, the litigation's merits, and details of NEXT are not provided. Starbucks/Chipotle takeover and valuation headlines, Hardee's staffing, and Ace Hardware franchise news should not be mistaken for MCD-specific catalysts.</p>
+<p><strong>StockTwits — bullish short-term tone, but narrow and noisy.</strong> Among <strong>23 most-recent messages</strong>, 7 are user-tagged Bullish, 2 Bearish, and 14 unlabeled. The tagged split is <strong>7:2, or roughly 78% bullish among the nine tagged posts</strong>; only 7/23 (30%) of the full feed is explicitly tagged Bullish. Posters point to a bounce from oversold conditions, a possible gap to close, and stronger volume. One claims MCD traded <strong>11.3 million shares, roughly twice average</strong>; another describes an inverse head-and-shoulders with rising buy volume. These are trader observations, <strong>not independently verified volume or chart measurements</strong>. A reported still-open MCD call gain is likewise a user's claim, not evidence of general returns. One bearish-tagged user says MCD has further to fall; another claims to be a buyer only at $20. Unlabeled messages range from enthusiastic hopes for all-time highs and a $250 month-end level to jokes, mixed-ticker posts, and remarks with little analytical content. Claims such as “trump bought it” are unverified and should not be treated as events. The supplied posts are concentrated within a few hours on <strong>October 8</strong>, rather than representing the entire seven-day window; repeat posters and 14 unlabeled messages further limit inference.</p>
+<p><strong>Reddit — unavailable.</strong> The Reddit feed was explicitly <strong>disabled by configuration</strong>, so there are no posts from r/wallstreetbets, r/stocks, or r/investing to assess. Absence of posts here is not evidence of neutral community sentiment.</p>
+<h4 id="2-cross-source-alignment-and-divergence">2. Cross-source alignment and divergence<a class="headerlink" href="#2-cross-source-alignment-and-divergence" title="Permanent link">&para;</a></h4>
+<p>News and StockTwits align on MCD's apparent positive October 8 trading tone: the Zacks gain headline coincides with retail discussion of a strong session. They diverge on the <em>durability</em> of that strength. Retail discussion predominantly focuses on a rebound and chart/volume signals, while the most material MCD-specific headlines flag sales-growth concerns, NEXT pushback, an analyst target cut, and AI-pricing litigation. The franchise-model headline and MCD's rebuttal offer counterweights but do not resolve those issues. News-item duplication and the absence of Reddit prevent treating the headline flow or tagged social ratio as a broad consensus.</p>
+<h4 id="3-dominant-narratives">3. Dominant narratives<a class="headerlink" href="#3-dominant-narratives" title="Permanent link">&para;</a></h4>
+<p>The immediate retail narrative is <strong>a potential oversold rebound with unusually strong volume</strong>. The longer-horizon company narrative is <strong>whether MCD's heavily franchised, high-margin model can outweigh sales-growth/NEXT uncertainty and a new AI-pricing legal overhang</strong>. Peer takeover speculation is background restaurant-sector discussion, not an announced MCD transaction.</p>
+<h4 id="4-catalysts-and-risks-surfaced">4. Catalysts and risks surfaced<a class="headerlink" href="#4-catalysts-and-risks-surfaced" title="Permanent link">&para;</a></h4>
+<p>Potential positive sentiment catalysts are further independently confirmed trading strength and evidence that NEXT or franchise economics support sales; neither follow-through nor such operational evidence is supplied. Risks to monitor are the Bernstein reassessment of growth, reported pushback on NEXT, and developments in the AI-pricing suit. No earnings date, court schedule, verified session volume, or substantive Reddit discussion is provided. This is a <strong>Mixed (4.9/10)</strong> assessment: a bullish, concentrated retail snapshot versus more cautious company-specific headlines. <strong>Confidence is low</strong> because Reddit was disabled, the StockTwits sample is small and confined to October 8, most posts have no sentiment tag, and only news headlines—not articles—are available. Sentiment is an input for the trader, not a forecast or trade recommendation.</p>
+<table>
+<thead>
+<tr>
+<th>Key signal</th>
+<th>Direction</th>
+<th>Source</th>
+<th>Supporting evidence and qualification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Analyst reassessment</td>
+<td>Bearish</td>
+<td>MT Newswires; Stocktwits news</td>
+<td>Bernstein target cut to $250 from $295; sales-growth and NEXT concerns; overlapping coverage of one action.</td>
+</tr>
+<tr>
+<td>NEXT implementation</td>
+<td>Bearish</td>
+<td>Restaurant Dive</td>
+<td>Headline reports pushback over NEXT; extent and impact are unspecified.</td>
+</tr>
+<tr>
+<td>AI-pricing legal exposure</td>
+<td>Bearish, disputed</td>
+<td>Reuters; Axios; TIKR</td>
+<td>Lawsuit and antitrust questions; MCD disputes allegations, and no finding of wrongdoing is provided.</td>
+</tr>
+<tr>
+<td>Franchise economics</td>
+<td>Potentially bullish</td>
+<td>Insider Monkey; TIKR</td>
+<td>High-margin model highlighted; TIKR headline says 98% franchised, without independent financial quantification.</td>
+</tr>
+<tr>
+<td>Positive session and rebound positioning</td>
+<td>Bullish near-term</td>
+<td>Zacks; 24/7 Wall St.; StockTwits</td>
+<td>News reports MCD gained/ticked up; retail posts discuss an oversold bounce, gap, and volume, with figures unverified.</td>
+</tr>
+<tr>
+<td>Tagged retail sentiment</td>
+<td>Bullish, limited sample</td>
+<td>StockTwits</td>
+<td>7 Bullish vs. 2 Bearish tags; 14 of 23 messages unlabeled and all supplied posts clustered on October 8.</td>
+</tr>
+<tr>
+<td>Community corroboration</td>
+<td>Unavailable</td>
+<td>Reddit</td>
+<td>Feed disabled; no inference about subreddit views is possible.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="news-analyst">News Analyst<a class="headerlink" href="#news-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="mcd-trading-and-macro-report-october-8-2026">MCD trading and macro report — October 8, 2026<a class="headerlink" href="#mcd-trading-and-macro-report-october-8-2026" title="Permanent link">&para;</a></h4>
+<p><strong>Near-term read:</strong> MCD faces a mixed backdrop. Its franchise-heavy model may offer some resilience if consumers trade down, but this week’s analyst downgrade, questions about its “Next” initiatives, and an AI-pricing lawsuit add company-specific uncertainty. Meanwhile, high Treasury yields make the stock’s dividend and valuation less attractive relative to bonds. <strong>A conditional, watch-and-wait approach is better supported by the available evidence than a price-based call:</strong> the tools do not provide a current MCD share price, comparable-sales figures, or the full text of every news article.</p>
+<h4 id="what-changed-for-mcd-this-week">What changed for MCD this week<a class="headerlink" href="#what-changed-for-mcd-this-week" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Sales and execution concerns came into focus.</strong> Bernstein lowered its MCD price target <strong>from $295 to $250</strong>, a roughly <strong>15% cut</strong>. Coverage attributes the change to sales-growth concerns and uncertainty around “Next.” Separately, <em>Restaurant Dive</em> reports pushback over those initiatives. The key question is whether MCD can improve <strong>customer transactions</strong>, not merely raise the average ticket, while keeping franchisees aligned. A target is an analyst opinion, <strong>not</strong> a current share price or a support level. <a href="https://finance.yahoo.com/markets/stocks/articles/bernstein-adjusts-price-target-mcdonald-111214610.html">MT Newswires</a> · <a href="https://finance.yahoo.com/small-business/articles/mcdonald-navigates-pushback-over-next-145200440.html">Restaurant Dive</a></li>
+<li><strong>Legal risk is unresolved.</strong> Reuters reports that an AI-pricing lawsuit against MCD raises antitrust questions; another report says the company disputes its allegations. The allegations are <strong>not established findings</strong>. Watch court filings and any disclosures about pricing practices, rather than treating the lawsuit as evidence of wrongdoing. <a href="https://finance.yahoo.com/technology/ai/articles/analysis-ai-pricing-lawsuit-against-154152300.html">Reuters</a> · <a href="https://finance.yahoo.com/markets/stocks/articles/mcdonald-calls-ai-price-fixing-174348940.html">TIKR</a></li>
+<li><strong>A positive trading day is not yet a fundamental reversal.</strong> A report says MCD gained on October 8 while the broader market dipped, but supplies no verified share-price series or evidence that sales concerns have eased. <a href="https://finance.yahoo.com/markets/stocks/articles/why-market-dipped-mcdonalds-mcd-205003777.html">Zacks</a></li>
+</ul>
+<h4 id="the-world-backdrop-that-matters-for-mcd">The world backdrop that matters for MCD<a class="headerlink" href="#the-world-backdrop-that-matters-for-mcd" title="Permanent link">&para;</a></h4>
+<p><strong>Rates are the clearest valuation headwind.</strong> FRED puts the U.S. 10-year Treasury yield at <strong>5.28% on October 7</strong>, versus <strong>4.70% on August 24</strong>—up <strong>58 basis points</strong>. Higher yields can pressure the valuation of a dividend-paying stock and raise financing costs for restaurant operators. The September effective fed-funds rate averaged <strong>3.75%</strong>, versus <strong>3.63% in August</strong>; those monthly averages alone should not be read as proof of a new Fed policy move. <a href="https://fred.stlouisfed.org/series/DGS10">FRED: 10-year yield</a> · <a href="https://fred.stlouisfed.org/series/FEDFUNDS">FRED: effective fed-funds rate</a></p>
+<p><strong>Consumers are spending, but value remains important.</strong> August nominal U.S. retail and food-service sales rose about <strong>1.1% from July</strong>; nominal growth does not establish higher purchase volumes. September unemployment was <strong>4.2%</strong>, up from <strong>4.1% in August</strong>, without indicating a sharp labor-market break. In August, the seasonally adjusted <em>food-away-from-home</em> price index rose about <strong>0.25% month over month</strong>, versus roughly <strong>0.04%</strong> for <em>food at home</em>. That gap makes MCD’s value proposition and traffic particularly worth testing against grocery alternatives. <a href="https://fred.stlouisfed.org/series/RSAFS">FRED: retail sales</a> · <a href="https://fred.stlouisfed.org/series/UNRATE">unemployment</a> · <a href="https://fred.stlouisfed.org/series/CUSR0000SEFV">food away</a> · <a href="https://fred.stlouisfed.org/series/CUSR0000SAF11">food at home</a></p>
+<p><strong>Energy and geopolitics remain swing risks.</strong> The latest FRED WTI observation is <strong>$96.24 a barrel on October 6</strong>. A later headline reports oil falling to <strong>$103</strong> after remarks about U.S.–Iran policy; the headline does not specify the same benchmark or observation time, so the two figures should not be compared directly. Higher fuel prices could squeeze customers’ discretionary budgets and franchisees’ distribution costs. <a href="https://fred.stlouisfed.org/series/DCOILWTICO">FRED: WTI</a> · <a href="https://finance.yahoo.com/markets/article/oil-falls-to-103-as-trump-says-us-will-not-attack-iran-before-the-midterm-elections-171630147.html">Yahoo Finance</a></p>
+<p><strong>International translation bears watching.</strong> FRED’s latest EUR/USD observation was <strong>$1.1259 per euro on October 2</strong>, down from <strong>$1.1550 on June 10</strong>. If sustained, a stronger dollar would weigh on the dollar value of MCD’s overseas results; the currency observation is six days older than this report. <a href="https://fred.stlouisfed.org/series/DEXUSEU">FRED: EUR/USD</a></p>
+<p>Prediction-market prices offer a <em>scenario check</em>, not certainty: Polymarket priced a <strong>3%</strong> chance of a Fed cut by its December 2026 meeting and a <strong>6%</strong> chance of a U.S. recession by year-end. Its market for WTI reaching <strong>$100 during October</strong> stood at <strong>32%</strong>, down <strong>19 percentage points over the week</strong>. Contract definitions and market liquidity matter when interpreting those odds.</p>
+<p><strong>What to do with the evidence:</strong> For MCD, prioritize the next verified update on <strong>U.S. comparable-sales transactions, franchisee response to Next, and litigation</strong>. Improving traffic alongside stable yields would strengthen a constructive case. Further sales-estimate cuts, rising yields, or a renewed oil shock would strengthen the cautious case. The available data do <strong>not</strong> justify a precise entry price or upside calculation.</p>
+<table>
+<thead>
+<tr>
+<th>MCD trading factor</th>
+<th>Latest evidence</th>
+<th>Practical implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Company execution</td>
+<td>Bernstein target <strong>$295 → $250</strong>; reported Next pushback</td>
+<td>Require evidence of better transactions and franchisee alignment before treating a rally as durable.</td>
+</tr>
+<tr>
+<td>Legal</td>
+<td>AI-pricing suit reported; MCD disputes allegations</td>
+<td>Monitor filings; do not price allegations as proven facts.</td>
+</tr>
+<tr>
+<td>Rates</td>
+<td>10-year Treasury <strong>5.28%</strong>, Oct. 7; <strong>+58 bp</strong> since Aug. 24</td>
+<td>A sustained yield rise is a valuation and financing headwind.</td>
+</tr>
+<tr>
+<td>Consumer value</td>
+<td>Food-away prices <strong>+0.25% m/m</strong> in August; food-at-home <strong>+0.04%</strong></td>
+<td>Watch whether MCD retains traffic as eating out gets relatively dearer.</td>
+</tr>
+<tr>
+<td>Energy and FX</td>
+<td>WTI <strong>$96.24</strong>, Oct. 6; EUR/USD <strong>1.1259</strong>, Oct. 2</td>
+<td>Monitor fuel-driven spending pressure and overseas earnings translation.</td>
+</tr>
+<tr>
+<td>Forward scenarios</td>
+<td>Polymarket: <strong>3%</strong> December Fed cut; <strong>6%</strong> 2026 recession; <strong>32%</strong> October WTI $100 touch</td>
+<td>Use as risk indicators, not forecasts or substitutes for company results.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="fundamentals-analyst">Fundamentals Analyst<a class="headerlink" href="#fundamentals-analyst" title="Permanent link">&para;</a></h3>
+<h4 id="mcd-fundamental-report">MCD — fundamental report<a class="headerlink" href="#mcd-fundamental-report" title="Permanent link">&para;</a></h4>
+<p><strong>McDonald’s Corporation | NYQ | As of October 8, 2026</strong></p>
+<p><strong>Bottom line:</strong> MCD’s latest available financial statements show growing revenue, earnings and operating cash flow. The main counterweights are a thin near-term liquidity cushion, a longstanding shareholders’ deficit, rising capital spending and a valuation that still depends on continued earnings growth. The supplied tools do <strong>not</strong> establish a new company announcement or insider purchase during the past week, October 1–8; this is an assessment of the latest available fundamentals, not a claim that no such event occurred.</p>
+<h4 id="business-and-financial-model">Business and financial model<a class="headerlink" href="#business-and-financial-model" title="Permanent link">&para;</a></h4>
+<p>MCD is a global restaurant company in the Consumer Cyclical sector. Its franchise model generates revenue from franchise-related payments, while company-operated restaurants generate restaurant sales. As a result, <strong>reported MCD revenue is not the same as sales across the entire restaurant system</strong>. Traders assessing demand should examine comparable sales and customer traffic alongside reported revenue when those figures become available.</p>
+<p>The fundamental-data snapshot lists a <strong>$167.64 billion market capitalization</strong>, <strong>$27.702 billion trailing-12-month (TTM) revenue</strong>, <strong>$8.787 billion TTM net income</strong>, <strong>$12.31 TTM diluted EPS</strong>, and a <strong>3.32% indicated dividend yield</strong>. It also reports a 0.447 beta. These are vendor snapshot figures, not a verified live quote.</p>
+<h4 id="income-statement-growth-continues-with-a-modest-q2-margin-check">Income statement: growth continues, with a modest Q2 margin check<a class="headerlink" href="#income-statement-growth-continues-with-a-modest-q2-margin-check" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>USD billions, except EPS</th>
+<th style="text-align: right;">FY2023</th>
+<th style="text-align: right;">FY2024</th>
+<th style="text-align: right;">FY2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Revenue</td>
+<td style="text-align: right;">25.494</td>
+<td style="text-align: right;">25.920</td>
+<td style="text-align: right;">26.885</td>
+</tr>
+<tr>
+<td>Operating income</td>
+<td style="text-align: right;">11.647</td>
+<td style="text-align: right;">11.712</td>
+<td style="text-align: right;">12.393</td>
+</tr>
+<tr>
+<td>Net income</td>
+<td style="text-align: right;">8.469</td>
+<td style="text-align: right;">8.223</td>
+<td style="text-align: right;">8.563</td>
+</tr>
+<tr>
+<td>Diluted EPS</td>
+<td style="text-align: right;">$11.56</td>
+<td style="text-align: right;">$11.39</td>
+<td style="text-align: right;">$11.95</td>
+</tr>
+</tbody>
+</table>
+<p>FY2025 revenue rose <strong>3.7%</strong> from FY2024, operating income <strong>5.8%</strong>, net income <strong>4.1%</strong>, and diluted EPS <strong>4.9%</strong>. Operating margin increased from approximately <strong>45.2% to 46.1%</strong>.</p>
+<p>The latest reported quarter in the supplied statements is <strong>Q2 2026</strong>, ended June 30:</p>
+<ul>
+<li><strong>Revenue:</strong> $7.099 billion, up <strong>3.7%</strong> from Q2 2025’s $6.843 billion.</li>
+<li><strong>Operating income:</strong> $3.338 billion, up <strong>3.3%</strong> from $3.232 billion. Calculated operating margin was approximately <strong>47.0%</strong>, versus <strong>47.2%</strong> a year earlier—a small decline despite higher sales.</li>
+<li><strong>Net income:</strong> $2.362 billion, up <strong>4.8%</strong> from $2.253 billion.</li>
+<li><strong>Diluted EPS:</strong> <strong>$3.32</strong>, up <strong>5.7%</strong> from $3.14.</li>
+</ul>
+<p>For <strong>H1 2026</strong>, revenue was <strong>$13.616 billion</strong>, up <strong>6.4%</strong> year over year; operating income was <strong>$6.291 billion</strong>, up <strong>7.0%</strong>; and net income was <strong>$4.345 billion</strong>, up <strong>5.4%</strong>. Reconstructing the last four quarters from the SEC-based statements gives approximately <strong>$27.702 billion revenue</strong> and <strong>$8.787 billion net income</strong>, matching the rounded vendor TTM figures. The vendor separately reports <strong>$15.896 billion gross profit</strong>, but the provided SEC income-statement extract does not consistently tag gross profit, so that figure cannot be independently reconciled from the extract.</p>
+<p><strong>Trading implication:</strong> Growth has not stalled, but Q2 operating income grew slightly slower than revenue. In the next earnings release, distinguish sales growth driven by traffic and comparable sales from growth driven principally by pricing, and check whether operating margin holds up.</p>
+<h4 id="cash-flow-and-investment">Cash flow and investment<a class="headerlink" href="#cash-flow-and-investment" title="Permanent link">&para;</a></h4>
+<p>FY2025 operating cash flow was <strong>$10.551 billion</strong>, versus <strong>$9.447 billion</strong> in FY2024. Capital expenditure rose from <strong>$2.775 billion to $3.365 billion</strong>. On the straightforward definition of operating cash flow less capital expenditure, FY2025 free cash flow was <strong>$7.186 billion</strong>, up from <strong>$6.672 billion</strong> in FY2024.</p>
+<p>Cash generation strengthened in the latest quarter. Q2 2026 operating cash flow was <strong>$2.807 billion</strong>, versus <strong>$1.998 billion</strong> a year earlier; capital expenditure was <strong>$831 million</strong>, versus $744 million. That yields approximately <strong>$1.976 billion</strong> of Q2 free cash flow, versus <strong>$1.254 billion</strong> a year earlier. H1 2026 free cash flow calculated the same way was <strong>$3.706 billion</strong>, up from <strong>$3.131 billion</strong> in H1 2025.</p>
+<p>A reconstruction of the four quarters through June 2026 gives approximately <strong>$11.344 billion operating cash flow</strong>, <strong>$3.583 billion capital expenditure</strong>, and <strong>$7.761 billion free cash flow</strong>. The separate fundamental-data vendor lists <strong>$6.262 billion free cash flow</strong>, without enough period or methodology detail here to reconcile the difference. <strong>Do not interchange those two FCF figures</strong> when calculating a yield or judging dividend capacity.</p>
+<p>The annual trend warrants attention: calculated FY2025 free cash flow of $7.186 billion was slightly <strong>below FY2023’s $7.255 billion</strong>, even though revenue and operating cash flow increased. Higher investment has absorbed part of the operating improvement.</p>
+<h4 id="balance-sheet-and-liquidity">Balance sheet and liquidity<a class="headerlink" href="#balance-sheet-and-liquidity" title="Permanent link">&para;</a></h4>
+<p>At <strong>June 30, 2026</strong>, MCD reported <strong>$59.920 billion total assets</strong>, <strong>$4.345 billion current assets</strong>, <strong>$4.018 billion current liabilities</strong>, and <strong>$822 million cash and equivalents</strong>. Its calculated current ratio was approximately <strong>1.08</strong>, and working capital was <strong>positive $327 million</strong>. That compares with a roughly <strong>0.95</strong> current ratio and <strong>negative $198 million</strong> working capital at year-end 2025—an improvement, though not a large cushion.</p>
+<p>Cash was down from <strong>$1.876 billion at June 30, 2025</strong>. Shareholders’ equity remained <strong>negative $1.023 billion</strong> at June 2026, albeit improved from <strong>negative $1.791 billion</strong> at year-end 2025. Equity has been negative in the supplied annual series since 2016. The balance-sheet extract does not provide a tagged total-liabilities or debt breakdown sufficient for a reliable net-debt or maturity assessment. Negative book equity also makes the vendor’s <strong>negative price-to-book ratio economically unhelpful</strong>; it is not a bargain signal.</p>
+<p><strong>Trading implication:</strong> Strong operating cash flow helps offset the low cash balance, but monitor cash, borrowing needs, refinancing disclosures and capital returns together. Do not infer dividend or buyback amounts from the net financing-cash-flow line alone.</p>
+<h4 id="valuation-dividend-and-insider-activity">Valuation, dividend and insider activity<a class="headerlink" href="#valuation-dividend-and-insider-activity" title="Permanent link">&para;</a></h4>
+<p>The snapshot reports <strong>19.24× trailing P/E</strong>, <strong>17.21× forward P/E</strong>, <strong>$13.77 forward EPS</strong>, and a <strong>3.32% dividend yield</strong>. Forward EPS implies approximately <strong>11.8% growth</strong> over TTM EPS, but is an estimate, not achieved earnings. Market capitalization is about <strong>6.1× TTM reported revenue</strong>; franchise-system sales should not be substituted into that calculation. The supplied ratios imply a share price near <strong>$237</strong>, but <strong>no live price or quote timestamp was verified</strong>, so that figure should not be treated as a current entry price.</p>
+<p>The insider feed shows <strong>no transaction dated October 1–8</strong>. Its newest entry, dated <strong>August 7</strong>, lists 1,038 shares for an officer <strong>without identifying a purchase or sale</strong>. The latest clearly labelled sale is an officer’s <strong>5,252 shares on June 10 at $284.32</strong>, approximately <strong>$1.49 million</strong>, alongside an exercise of 5,252 derivative shares. A February CEO sale also appears in the feed. These are <strong>not evidence of a new past-week selling wave</strong>, and the unlabelled August entry must not be counted as insider buying.</p>
+<h4 id="what-to-watch-next_1">What to watch next<a class="headerlink" href="#what-to-watch-next_1" title="Permanent link">&para;</a></h4>
+<p>MCD’s next reported quarter should be assessed against <strong>Q3 2025 revenue of $7.078 billion</strong>, <strong>operating income of $3.357 billion</strong>, and <strong>diluted EPS of $3.18</strong>. An especially constructive result would combine growth above those comparisons with sustained operating margin, strong cash conversion and an explanation of capital-spending returns. Conversely, weakening traffic or margin alongside continued high spending would challenge the forward-earnings case. Verify the next report’s date, current price, debt details and dividend declaration before making a trade; none is established by these tools.</p>
+<table>
+<thead>
+<tr>
+<th>Key point for MCD</th>
+<th>Evidence as of October 8, 2026</th>
+<th>Trader takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest reported growth</td>
+<td>Q2 revenue <strong>+3.7%</strong>, net income <strong>+4.8%</strong>, EPS <strong>+5.7%</strong> YoY</td>
+<td>Earnings remain on an upward trajectory.</td>
+</tr>
+<tr>
+<td>Margin watch</td>
+<td>Q2 calculated operating margin <strong>47.0%</strong>, versus <strong>47.2%</strong> YoY</td>
+<td>Look for proof that sales growth converts into operating profit.</td>
+</tr>
+<tr>
+<td>Cash generation</td>
+<td>H1 calculated FCF <strong>$3.706bn</strong>, versus <strong>$3.131bn</strong> YoY</td>
+<td>Positive support for investment and shareholder returns; reconcile vendor FCF definitions.</td>
+</tr>
+<tr>
+<td>Liquidity</td>
+<td><strong>$822m cash</strong>; <strong>1.08</strong> current ratio at June 30</td>
+<td>Working capital improved, but the cash cushion is modest.</td>
+</tr>
+<tr>
+<td>Balance-sheet risk</td>
+<td><strong>Negative $1.023bn equity</strong>; debt detail insufficient for net-debt analysis</td>
+<td>Do not use negative P/B as a valuation signal; review debt disclosures.</td>
+</tr>
+<tr>
+<td>Valuation</td>
+<td><strong>19.24× TTM P/E</strong>; <strong>17.21× forward P/E</strong></td>
+<td>Forward valuation relies on estimated earnings growth materializing.</td>
+</tr>
+<tr>
+<td>Past-week evidence</td>
+<td>No October 1–8 filing, earnings update or insider trade established by supplied tools</td>
+<td>Avoid trading on an assumed new fundamental catalyst.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ii-research-team-decision">II. Research Team Decision<a class="headerlink" href="#ii-research-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="bull-researcher">Bull Researcher<a class="headerlink" href="#bull-researcher" title="Permanent link">&para;</a></h3>
+<p>Bull Analyst: <strong>My opening case for MCD is that the stock’s downtrend is real, but the business deterioration a bear case would need has not shown up in the latest reported results.</strong> At $236.90 on October 8, I would be constructive for a patient investor—not because one rebound proves a bottom, but because MCD is still growing earnings and cash flow through a period of evident skepticism.</p>
+<p>Start with the operating evidence. In H1 2026, MCD grew revenue <strong>6.4%</strong> and operating income <strong>7.0%</strong> year over year. Q2 diluted EPS rose <strong>5.7%</strong>, while H1 free cash flow, calculated as operating cash flow less capital expenditure, rose from <strong>$3.131 billion to $3.706 billion</strong>. That is a stronger answer to “growth has stalled” than the October 8 share-price bounce. The opportunity is to extend those gains across a global, franchise-heavy business: MCD can benefit from a broad restaurant footprint without treating every dollar spent at a franchised restaurant as its own reported revenue. Its brand and franchise network are difficult to replicate, while its FY2025 operating margin of roughly <strong>46%</strong> shows the earnings power of that model.</p>
+<p>I expect the bear to lead with Bernstein’s cut from <strong>$295 to $250</strong>, sales concerns, and pushback on NEXT. Those concerns deserve attention—but a lower analyst target is not evidence that MCD’s earnings are declining. The revised <strong>$250</strong> target is still about <strong>5.5% above</strong> the October 8 price, though I would not mistake an analyst opinion for a price floor. More importantly, the next decisive evidence will be <em>transactions and comparable sales</em>: reported revenue growth alone cannot tell us whether customers are visiting more often or simply paying more. NEXT could help growth, but its returns and franchisee reception remain unproven. That makes execution the bull case’s test, not something to wave away.</p>
+<p>The other objections are manageable, not imaginary. Q2 operating margin slipped from about <strong>47.2% to 47.0%</strong>; that is worth monitoring, but it sits alongside higher operating income and substantially stronger first-half cash generation. The AI-pricing lawsuit is a legal risk, <strong>not an established finding of wrongdoing</strong>. A <strong>5.28%</strong> 10-year Treasury yield also competes with MCD’s <strong>3.32%</strong> indicated dividend yield; the equity case therefore has to rest on future earnings and cash-flow growth, not the dividend alone. At approximately <strong>19.24× trailing</strong> and <strong>17.21× forward</strong> earnings, valuation is not risk-free: the <strong>$13.77 forward EPS</strong> estimate implies roughly <strong>12%</strong> growth over trailing EPS, and MCD must deliver it.</p>
+<p>Finally, I would not sell a one-day rally as technical confirmation. MCD remains below its falling 50-day average, and its daily, weekly, and monthly SuperTrend readings are down. October 8’s <strong>11.357 million-share</strong> advance, recovering RSI, and newly positive MACD histogram make the rebound worth watching; sustained closes above <strong>$244.47</strong>, followed by a test of the <strong>$255.44</strong> 50-day average, would make the trading case stronger.</p>
+<p>So my bullish position is <strong>selective accumulation for a longer horizon, with position size reflecting the downtrend</strong>, rather than an all-clear call on October 8. If the next results show better traffic, franchisee alignment, and continued cash conversion, MCD’s current skepticism offers an opening. If traffic weakens while spending and margin pressure persist, I would revise that view.
+Bull Analyst: <strong>Bear, you’re right that MCD needs to earn its valuation. Where I disagree is your conclusion that investors should wait for every uncertainty to clear before buying.</strong> At $236.90 on October 8, I see a business still growing earnings and cash flow, with genuine execution risks already attracting skepticism—not a stock that requires a collapse to justify caution.</p>
+<p>The missing transaction data cuts both ways. We cannot claim MCD is gaining visits, but we also cannot conclude that higher tickets are masking <em>weaker</em> traffic. August’s faster rise in food-away-from-home prices than grocery prices is a reason to test MCD’s value proposition, not evidence that its customers have left. Its global brand and franchise network give it a way to compete for value-conscious diners, though the next comparable-sales and transaction figures must validate that opportunity.</p>
+<p>On execution, your Q2 margin point is fair: operating margin slipped from <strong>47.2% to 47.0%</strong>. But calling that evidence of a broader deterioration overlooks <strong>7.0% H1 operating-income growth</strong> on <strong>6.4% revenue growth</strong>. Higher investment has not stopped cash generation either. Despite the FY2025 capex increase, calculated free cash flow rose from <strong>$6.672 billion in FY2024 to $7.186 billion in FY2025</strong>; H1 2026 free cash flow rose a further <strong>18.4% year over year</strong> to <strong>$3.706 billion</strong>. NEXT pushback could change that trajectory, but the supplied headline does not establish that franchisees have rejected it or that returns have failed.</p>
+<p>I also would not use Bernstein’s <strong>$250</strong> target as my upside case. You’re right that the <strong>$13.77 forward EPS</strong> estimate—about <strong>11.8% above trailing EPS</strong>—sets a demanding bar, particularly beside Q2’s <strong>5.7% EPS growth</strong>. It is an estimate, not growth in hand. But buying MCD at roughly <strong>19.24× trailing earnings</strong> does not require asserting that the full estimate will arrive on schedule. The bull case is that its franchise-led earnings and cash generation can keep compounding; the risk is that weaker traffic or higher rates compress the multiple before that growth is realized. The <strong>3.32% indicated dividend yield</strong> helps the potential total return, but it is not, by itself, an answer to a <strong>5.28%</strong> Treasury yield.</p>
+<p>Finally, I accept your chart warning. One high-volume rebound does not overturn three downtrend signals. That is why my call is <strong>selective, modest accumulation in MCD for a patient investor, not an aggressive bet that October 8 marked the bottom</strong>. Sustained closes above <strong>$244.47</strong>, then a test of the <strong>$255.44</strong> 50-day average, would improve the trading case; a close below <strong>$230.20</strong> would challenge the rebound.</p>
+<p>Our real disagreement is about the burden of proof. You want confirmed traffic, franchisee alignment and a trend reversal <em>before</em> buying. I want those results to justify adding more. For an initial long-term position, MCD’s demonstrated profit and cash-flow growth make the uncertainty investable at this price—provided position size leaves room for the possibility that the next results prove the bear right.
+Bull Analyst: <strong>Bear, your $209 scenario is a useful warning, but it combines two separate setbacks:</strong> MCD earns no more than its $12.31 trailing EPS <em>and</em> its multiple falls from roughly 19.24× to 17×. Both could happen. Neither is established by the latest results.</p>
+<p>Here is the return case if growth is merely steady rather than accelerating. If MCD’s EPS rose an illustrative <strong>5.7%</strong> over a year—matching Q2’s year-over-year pace, <em>not</em> a forecast—EPS would be about <strong>$13.01</strong>. At an unchanged 19.24× multiple, that implies roughly <strong>$250</strong>, or <strong>5.7%</strong> price appreciation from $236.90. Add the <strong>3.32% indicated dividend yield</strong>, <em>if maintained</em>, and the illustrative return approaches <strong>9%</strong> before taxes. That does not require the $13.77 forward EPS estimate or a successful NEXT rollout. Your multiple risk remains real: at 17× that same $13.01, the price would be about <strong>$221</strong> before dividends. I am arguing that MCD offers a plausible return without earnings acceleration, not that its downside has vanished.</p>
+<p>The operating record gives me a reason to consider that steady-growth case. H1 2026 revenue rose <strong>6.4%</strong>, operating income <strong>7.0%</strong>, and calculated free cash flow <strong>18.4%</strong>. You are right that FY2025 free cash flow was slightly below FY2023’s; it was also up from FY2024, followed by a stronger first half in 2026. And while Q2’s <strong>0.2-percentage-point</strong> margin decline deserves scrutiny, it has not yet become a sustained profit decline. MCD’s brand and franchise-heavy network offer a scalable way to compete for value-conscious restaurant customers, though neither proves traffic is improving.</p>
+<p>I agree that the <strong>5.28% Treasury yield</strong>, thin liquidity cushion, unknown debt maturities and reported NEXT pushback rule out a carefree valuation call. Negative book equity is not, by itself, a liquidity crisis; equally, MCD’s improved <strong>1.08 current ratio</strong> is not a large safety buffer. We need transaction data and evidence that franchisees can earn returns on new spending.</p>
+<p>So my recommendation remains <strong>modest, staged accumulation of MCD for a patient investor</strong>, not buying aggressively into a downtrend. I would add conviction on improving transactions, franchisee alignment and cash conversion; sustained closes above <strong>$244.47</strong>, then <strong>$255.44</strong>, would strengthen the trading case. A close below <strong>$230.20</strong> would make me reassess the rebound. Waiting for proof is defensible, Bear—but MCD’s demonstrated growth and cash generation make an initial position defensible <em>before</em> every test is settled.
+Bull Analyst: <strong>Bear, your 18.6× scenario is the strongest objection to buying MCD now.</strong> A roughly 5.5% illustrative one-year return offers little compensation for equity risk when the 10-year Treasury yields 5.28%. I would not defend MCD as a compelling one-year income trade.</p>
+<p>My case rests on a longer horizon—and it does <strong>not</strong> require the $13.77 forward EPS estimate to arrive next year. Suppose EPS grows at 5.7% annually for three years, matching Q2’s year-over-year pace as an <em>illustration</em>, not a forecast. Starting from $12.31 trailing EPS, that would produce about $14.54. Even at your lower <strong>18.6×</strong> multiple, the implied share price would be about <strong>$270</strong>. Add roughly <strong>$24</strong> of dividends over three years <em>if the current indicated annual payment were maintained</em>, and the illustrative annualized return is about <strong>7.5%</strong>, without multiple expansion or earnings acceleration.</p>
+<p>That outcome is far from assured. At <strong>17×</strong> the same three-year EPS, the illustrative return falls to roughly <strong>4.6% annualized</strong>, including those dividends. But the operating evidence makes steady growth a reasonable possibility rather than an invented rescue scenario: MCD grew H1 2026 operating income <strong>7.0%</strong>, and calculated free cash flow rose <strong>18.4%</strong> year over year despite higher investment. Its franchise-heavy network and brand offer a scalable way to compete for value-conscious diners. Neither advantage proves that visits are rising; both give MCD a credible means to pursue them.</p>
+<p>I agree with your proposed tests. We need transaction data, evidence that NEXT works for franchisees, and margins that hold up as spending continues. The Q2 margin decline was <strong>0.2 percentage points</strong>, not a demonstrated breakdown in the model; likewise, a headline about NEXT pushback is a risk to investigate, not a measured failure. The downtrend is real, so October 8’s rebound is not permission to buy indiscriminately.</p>
+<p><strong>My MCD call remains modest, staged accumulation for a patient investor at the October 8 price of $236.90—not an aggressive trade on a confirmed bottom.</strong> Your one-year math explains why the position should be small. MCD’s actual profit and cash-flow growth explains why I would start it before all three operating tests are settled, then add only if the evidence improves.
+Bull Analyst: <strong>Bear, your 3% growth scenario is a fair stress test for MCD.</strong> At $236.90 on October 8, a buyer cannot assume that dividends will rescue the return if earnings growth slows and the multiple contracts. I also agree that staging a purchase limits exposure; it does not improve the expected return on each share.</p>
+<p>Where we differ is which operating path the evidence supports. Your 3% case is possible, but it is not yet a demonstrated slowdown. MCD grew diluted EPS <strong>4.9% in FY2025</strong> and <strong>5.7% year over year in Q2 2026</strong>. In H1 2026, operating income grew <strong>7.0%</strong> on <strong>6.4%</strong> revenue growth, while calculated free cash flow rose <strong>18.4%</strong> to <strong>$3.706 billion</strong>. I would not project that cash-flow pace forward, or turn one quarter’s EPS growth into a three-year forecast. Taken together, though, these results give a mid-single-digit growth case more grounding than a claim that growth has already settled at 3%.</p>
+<p>Your execution objection is the right test. We do not know whether customer visits are rising, and a value offer that hurts franchisee returns would weaken my thesis. But the reported NEXT pushback does not establish failed returns. Nor does Q2’s <strong>0.2-percentage-point</strong> margin decline erase the stronger first-half operating profit. MCD’s global brand and franchise-heavy network give it a scalable way to compete for value-conscious diners; the next transaction and franchisee evidence must show whether it is using that advantage effectively.</p>
+<p>I concede the valuation risk rather than relying on the <strong>$13.77 forward EPS</strong> estimate. At a <strong>17×</strong> terminal multiple, even continued growth could leave a disappointing return, as your math shows. High Treasury yields make that risk more consequential. But waiting for proven traffic growth, NEXT acceptance <em>and</em> a repaired chart may also mean waiting until some of today’s uncertainty—and the opportunity to buy amid it—has passed. The October 8 rebound is not confirmation: MCD remains below its falling 50-day average.</p>
+<p><strong>My call remains a small, staged MCD purchase for a patient investor, not an aggressive one-year return trade.</strong> I would add only if transactions, franchisee economics and cash conversion support the earnings record. If traffic weakens while margins and investment returns deteriorate, your 3% scenario becomes more persuasive, and I would change the call.</p>
+<h3 id="bear-researcher">Bear Researcher<a class="headerlink" href="#bear-researcher" title="Permanent link">&para;</a></h3>
+<p>Bear Analyst: <strong>Bear Analyst:</strong> I agree with you that MCD’s earnings have not collapsed. But that sets the bar too low for buying a stock at $236.90. The question is whether the growth already reflected in its valuation can survive weaker traffic, execution friction and a less forgiving rate environment.</p>
+<p>You cite H1 revenue growth of <strong>6.4%</strong> and stronger free cash flow. Those are real positives. What they <em>don’t</em> establish is that more customers are visiting MCD. As you acknowledge, we lack comparable-sales transaction data. If growth is coming mainly from higher tickets, the food-away-from-home price increase relative to groceries makes that harder to sustain. MCD’s franchise network and roughly <strong>46% FY2025 operating margin</strong> are formidable advantages, but neither guarantees traffic when customers have cheaper at-home options and other restaurants compete on value.</p>
+<p>Nor is execution risk merely hypothetical. Q2 revenue rose <strong>3.7%</strong>, while operating income rose <strong>3.3%</strong> and operating margin slipped from <strong>47.2% to 47.0%</strong>. That is a small deterioration, not a crisis—but it matters when the bull case requires further earnings acceleration. Capital expenditure also rose from <strong>$2.775 billion in FY2024 to $3.365 billion in FY2025</strong>, and FY2025 free cash flow remained slightly below FY2023’s despite higher revenue. Reported pushback on NEXT raises the question of whether new spending will earn its return with franchisees aligned; the headline alone does not establish the scale of that pushback.</p>
+<p>Your valuation argument is where I most disagree. The <strong>17.21× forward P/E</strong> depends on estimated EPS of <strong>$13.77</strong>, about <strong>12% above</strong> trailing EPS. By comparison, Q2 EPS grew <strong>5.7%</strong> year over year. That does not mean the estimate is unattainable; it means <em>delivering growth is already part of the price</em>, not necessarily a source of upside. Bernstein’s cut from <strong>$295 to $250</strong> is one analyst reassessment, not proof of declining earnings—but its roughly <strong>5.5%</strong> price upside from October 8 is hardly compelling compensation for forecast risk. Meanwhile, the <strong>5.28%</strong> 10-year Treasury yield exceeds MCD’s <strong>3.32%</strong> indicated dividend yield, so income alone offers a weak answer.</p>
+<p>Finally, I would not accumulate against the chart yet. The October 8 rebound was substantial, but MCD remains below its falling <strong>$255.44</strong> 50-day average, with daily, weekly and monthly SuperTrend signals down. The AI-pricing allegations are disputed, not proven; they are another uncertainty rather than the centerpiece of my case.</p>
+<p><strong>My call on MCD: avoid new accumulation for now, not short it on the assumption of a collapse.</strong> Show me improving transactions, NEXT progress with franchisees, sustained margins and a trend reversal. Until then, “the business is still growing” does not show that today’s buyer is being paid enough for the risks.
+Bear Analyst: <strong>Bull, I’m not asking for every uncertainty to disappear before buying MCD. I’m asking what compensates a buyer at $236.90 on October 8 if growth proves merely steady rather than accelerating.</strong> Your case shows MCD is profitable and cash-generative. It does not yet show that the prospective return outweighs the risks.</p>
+<p>I agree the missing transaction data cuts both ways: we cannot claim traffic is falling. But we also cannot count on more visits to support the next leg of growth. That matters for a mature, global chain competing with other restaurants and cheaper meals at home. If MCD has to lean harder on value offers to win visits, franchisee economics and margins become part of the test—not just reported revenue. The reported NEXT pushback is not proof the initiative will fail, but it makes your assumption of smooth execution less comfortable.</p>
+<p>Your cash-flow numbers are strong: H1 2026 free cash flow rose <strong>18.4%</strong>. Yet higher spending has absorbed some of the longer-term improvement: FY2025 free cash flow of <strong>$7.186 billion</strong> remained slightly below FY2023’s, and Q2 operating margin edged down to <strong>47.0% from 47.2%</strong>. MCD is not in a demonstrated liquidity crisis; still, <strong>$822 million in cash</strong>, a <strong>1.08 current ratio</strong>, and a longstanding shareholders’ deficit leave less room to dismiss spending and financing risks—especially with debt maturities not established in the supplied data.</p>
+<p>The price is my central objection. Forward EPS of <strong>$13.77</strong> requires about <strong>11.8%</strong> growth over trailing EPS; Q2’s <strong>5.7%</strong> year-over-year EPS gain is not a like-for-like forecast comparison, but it illustrates why acceleration needs proving. At today’s price, even an illustrative <strong>17× trailing EPS of $12.31</strong> gives roughly <strong>$209</strong>, about <strong>12% below</strong> $236.90. That is <em>not</em> a price prediction. It shows the downside if earnings stall and investors pay a less generous multiple. Bernstein’s <strong>$250</strong> target is no ceiling, but its roughly <strong>5.5%</strong> indicated upside hardly settles that asymmetry. A <strong>5.28%</strong> 10-year Treasury yield also makes MCD’s <strong>3.32%</strong> dividend a less persuasive reason to wait.</p>
+<p>Nor does modest position sizing change the investment case. MCD remains below its falling <strong>$255.44</strong> 50-day average, with all three SuperTrend timeframes down; one strong-volume rebound has not repaired that trend. <strong>My call remains: avoid new MCD accumulation for now, rather than shorting it.</strong> Improving transactions, credible franchisee support for NEXT, and sustained margins would give me a reason to reconsider. Those are specific tests—not a demand for certainty.
+Bear Analyst: <strong>Bull, your $250 illustration requires two favorable outcomes too:</strong> MCD repeats Q2’s 5.7% EPS growth across a full year, <em>and</em> investors keep paying roughly 19.24× earnings. Neither is assured. Earnings growth below the $13.77 forward-EPS estimate—which implies about 11.8% growth over trailing EPS—could itself prompt a lower multiple. My concerns about earnings and valuation are connected, not two unrelated bets against the company.</p>
+<p>Using your illustrative <strong>$13.01 EPS</strong>, a modest move to <strong>18.6×</strong> produces a share price near <strong>$242</strong>. That is about <strong>2.1%</strong> above October 8’s $236.90; adding the <strong>3.32% indicated dividend</strong>, if maintained, yields roughly <strong>5.5%</strong> before taxes. That barely clears the <strong>5.28% 10-year Treasury yield</strong> as a benchmark, though a one-year stock return and a 10-year bond yield are not identical measures. It takes only about <strong>3.3% multiple compression</strong> to get there. At <strong>17×</strong>, your same EPS assumption implies roughly <strong>$221</strong> before dividends. MCD need not suffer an earnings collapse for a buyer’s return to disappoint.</p>
+<p>I grant the strength in H1 profit and free cash flow. But neither tells us whether customer visits are improving. Q2 operating income grew slightly slower than revenue, FY2025 capital spending increased, and reported NEXT pushback puts franchisee returns under scrutiny. Bernstein’s target cut is an opinion, not proof of failure; it is nevertheless a reason to test the growth assumptions rather than extrapolate them. With MCD still below its falling 50-day average and all three SuperTrend timeframes down, the October 8 bounce does not supply that missing evidence.</p>
+<p><strong>My MCD call remains: avoid new accumulation, not short the stock.</strong> I would reconsider on verified transaction growth, clearer franchisee support for NEXT, and margins and cash conversion that hold up alongside investment spending. Staging a purchase limits exposure; it does not make today’s prospective return compelling.
+Bear Analyst: <strong>Bull, extending the horizon helps MCD’s case only if the growth you extend actually persists.</strong> Your three-year illustration assumes 5.7% EPS growth <em>every year</em>, using one quarter’s year-over-year rate, plus roughly $24 in dividends and a terminal 18.6× multiple. That produces about 7.5% annualized, as you say—but it is a scenario, not yet an operating trend we can verify through customer transactions.</p>
+<p>The sensitivity matters. If EPS instead grows <strong>3% annually</strong> and MCD still receives <strong>18.6×</strong> earnings, the same dividend assumption produces an illustrative return of only <strong>about 5% annualized</strong>. At <strong>17×</strong>, it falls to roughly <strong>2%</strong>. Neither scenario requires an earnings collapse. The 5.28% 10-year Treasury yield is not a like-for-like three-year return, but it underscores how little room there is for disappointing growth or a lower valuation.</p>
+<p>I grant your strongest point: H1 operating income rose <strong>7.0%</strong>, and calculated free cash flow rose <strong>18.4%</strong>. Yet we do not know whether MCD is winning more visits, while FY2025 capital expenditure increased and Q2 operating margin edged down. The franchise network is an advantage; it does not make value offers or NEXT investment automatically attractive to franchisees. Reported NEXT pushback is a question to resolve, not proof of failure.</p>
+<p>So this is not a call to short MCD or to wait for certainty. It is a call <strong>against starting accumulation at $236.90</strong> when the multi-year return case is sensitive to repeated EPS growth and a reasonably firm multiple, while the stock remains in a downtrend. Verified transaction growth, franchisee support and durable margins would make that initial purchase easier to justify. Position sizing limits a mistake; it does not improve the expected return on the shares bought today.
+Bear Analyst: <strong>Bull, I agree that MCD’s recent results support mid-single-digit growth more than they support a claim that growth has already slowed to 3%.</strong> My objection is that mid-single-digit growth may still be insufficient for a buyer at <strong>$236.90 on October 8</strong>.</p>
+<p>Your three-year illustration makes the valuation risk clear. Even if MCD grows EPS <strong>5.7% every year</strong> and pays roughly <strong>$24 in dividends</strong> over that period, a terminal multiple of <strong>17×</strong> produces an illustrative return of only <strong>about 4.6% annualized</strong>. That is not a forecast, and a three-year stock return is not directly comparable with the <strong>5.28%</strong> 10-year Treasury yield. But it shows how a plausible lower multiple can consume the return from continued earnings growth. The <strong>$13.77 forward EPS</strong> estimate also implies about <strong>11.8% growth over trailing EPS</strong>—a more demanding step than FY2025’s 4.9% EPS growth or Q2’s 5.7% year-over-year gain, though those are different measurement periods.</p>
+<p>I’m not dismissing your cash-flow evidence. H1 free cash flow rose <strong>18.4%</strong>. But FY2025 free cash flow was still slightly below FY2023’s after capital spending increased, and in Q2 operating income grew <strong>3.3%</strong> against <strong>3.7%</strong> revenue growth. Those figures do not prove deterioration; they do make it premature to assume that stronger first-half cash flow will compound for years. Nor do we yet know whether MCD is gaining visits or whether value offers and NEXT spending will earn attractive returns for franchisees.</p>
+<p>And I’m not demanding <em>every</em> test pass before buying. Verified transaction improvement <strong>or</strong> clearer evidence of franchisee returns could change the risk-reward case. So could a price that offers more room for a lower multiple. For now, reported NEXT pushback, an unresolved legal overhang and a stock still below its falling <strong>$255.44</strong> 50-day average leave too much riding on growth and valuation holding together.</p>
+<p><strong>My call remains to avoid new MCD accumulation at $236.90, not to short it.</strong> A small position limits the dollars at risk, but it does not make the expected return on each share more attractive.</p>
+<h3 id="research-manager">Research Manager<a class="headerlink" href="#research-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Recommendation</strong>: Underweight</p>
+<p><strong>Rationale</strong>: For MCD, the bull wins on business resilience, but the bear narrowly wins on prospective risk-adjusted returns at the supplied October 8 price of $236.90. H1 2026 revenue growth of 6.4%, operating-income growth of 7.0%, and free-cash-flow growth of 18.4% support retaining a core position. The franchise-heavy model and roughly 46% FY2025 operating margin also argue against an exit. Missing transaction data do not establish falling traffic, and the small Q2 margin decline does not establish a sustained deterioration.</p>
+<p>The concern is valuation sensitivity, not an earnings-collapse thesis. The $13.77 forward EPS estimate implies approximately 11.8% growth over trailing EPS, above FY2025's 4.9% and Q2 2026's 5.7% reported growth, although these are different measurement periods. The forward P/E therefore should not be treated as a demonstrated bargain. Even the bull's three-year illustration of repeated 5.7% EPS growth produces approximately 7.5% annualized with an 18.6x terminal multiple, but only approximately 4.6% at 17x, including maintained dividends. Neither multiple is established as fair value; these are sensitivity tests, not forecasts. A 5.28% ten-year Treasury yield raises the return hurdle, although it is not directly comparable with a three-year equity return.</p>
+<p>Unverified transaction trends and NEXT franchisee returns, together with a falling 50-day average and down signals across all three SuperTrend timeframes, tip the decision toward caution. Bernstein's target is not an independent valuation, and the legal allegations are not proven wrongdoing. Debt maturities are also missing, so refinancing risk cannot be quantified. Strong realized cash generation prevents a stronger bearish call; the limited demonstrated valuation cushion and adverse trend decide a modest underweight.</p>
+<p><strong>Strategic Actions</strong>: Use 0.75x a standard MCD allocation as the exposure ceiling for this review cycle. Trim any exposure above that ceiling; this means a 25% reduction from a standard-sized allocation, not automatically 25% of whatever the account currently holds. Do not top up an already smaller position. If MCD is unowned, defer initiation. Do not short. The trader and portfolio manager must apply this guidance to the actual holdings, which were not supplied.</p>
+<p>The quoted prices are the debate's October 8 snapshot, not live market data. Verify that the setup remains applicable before submitting orders. Use limit orders to stage the required reduction; a rebound that fails near $244.47 can help complete it, but do not make the entire trim contingent on a rebound.</p>
+<p>If MCD closes below $230.20 while the supplied setup remains applicable, reduce the ceiling to 0.50x standard at the next practical execution opportunity. This is a risk-control trigger, not a guaranteed execution price. Do not average down solely because the price has fallen.</p>
+<p>Re-underwrite at the next results release, or sooner on material transaction or NEXT disclosures. Seek improving transactions or credible franchisee investment returns, alongside resilient margins and cash conversion; also obtain the missing debt-maturity information. A meaningful improvement in either demand or franchisee economics warrants reconsideration without requiring every uncertainty to disappear. For rebuilding toward 1.00x standard, require that fundamental improvement plus a sustained technical recovery: two consecutive closes above $244.47 are an initial signal, and reclaiming the then-current 50-day average is stronger confirmation ($255.44 in the supplied snapshot). A price bounce alone does not authorize rebuilding.</p>
+<h2 id="iii-trading-team-plan">III. Trading Team Plan<a class="headerlink" href="#iii-trading-team-plan" title="Permanent link">&para;</a></h2>
+<h3 id="trader">Trader<a class="headerlink" href="#trader" title="Permanent link">&para;</a></h3>
+<p><strong>Action</strong>: Sell</p>
+<p><strong>Reasoning</strong>: MCD's resilient cash generation supports retaining a core holding, but the research plan favors a modest underweight given valuation sensitivity and an unrecovered downtrend. At the supplied $236.90 snapshot, MCD remains below its falling $255.44 50-day SMA and $244.47 daily SuperTrend line; the one-day rebound and improving momentum do not establish a reversal. Stage the necessary trim rather than waiting entirely for a rebound, and treat a close below $230.20 as a trigger to lower the exposure ceiling, not as an automatic liquidation order.</p>
+<p><strong>Entry Price</strong>: 236.9</p>
+<p><strong>Stop Loss</strong>: 230.2</p>
+<p><strong>Position Sizing</strong>: Cap MCD at 0.75x the standard allocation; trim only exposure above that level, with no initiation or top-up if already at or below it. If MCD closes below $230.20 while the setup applies, reduce the ceiling to 0.50x at the next practical opportunity.</p>
+<p>FINAL TRANSACTION PROPOSAL: <strong>SELL</strong></p>
+<h2 id="iv-risk-management-team-decision">IV. Risk Management Team Decision<a class="headerlink" href="#iv-risk-management-team-decision" title="Permanent link">&para;</a></h2>
+<h3 id="aggressive-analyst">Aggressive Analyst<a class="headerlink" href="#aggressive-analyst" title="Permanent link">&para;</a></h3>
+<p>Aggressive Analyst: My aggressive case is to use MCD’s October 8 rebound to cut exposure, not to mistake one strong session for a repaired trend. At $236.90, MCD is still below its $244.47 daily reversal line and falling $255.44 50-day average; weekly and monthly trend signals are down too. RSI has recovered to 39.05 and the MACD histogram has turned positive, but neither confirms a reversal. Selling the excess now takes advantage of the bounce rather than waiting for proof that may arrive at a less favorable price.</p>
+<p>MCD’s cash generation is the strongest argument against selling: H1 2026 free cash flow rose to about $3.71 billion. It is why I would keep a core holding. But it is not a reason to keep a full allocation while Bernstein has cut its target from $295 to $250, sales growth and NEXT face questions, and the 10-year Treasury yields 5.28% against MCD’s indicated 3.32% dividend yield. The opposite response—liquidating everything—would also ignore rebound potential: MCD is stretched on longer-horizon measures, and the lawsuit’s allegations are unproven.</p>
+<p>The high-conviction move is selective risk-taking: <strong>SELL MCD only to bring exposure down to 0.75× the standard allocation</strong>. If it is already at or below that level, do not sell or top up under this plan. A close below $230.20 lowers the ceiling to 0.50× at the next practical opportunity; it is a reassessment trigger, not an automatic stop order. That keeps participation in a possible recovery while freeing risk capacity before an unconfirmed bounce fails.
+Aggressive Analyst: Conservative, you are right that MCD’s trend is still down and that $230.20 is not a guaranteed exit price. Those are reasons to trim the excess exposure now, not reasons to make 0.50× the default ceiling. MCD’s H1 free cash flow rose from $3.13 billion to $3.71 billion, and its longer-horizon downside readings are stretched. Cutting to 0.50× before the proposed closing-price trigger breaks would surrender more participation in a possible rebound without evidence that the stricter limit is necessary. A concentrated position or tight drawdown budget could justify it—but we do not know the portfolio. The $822 million cash balance merits scrutiny, while improved working capital and cash generation argue against treating it alone as a crisis. Bernstein’s $250 target is neither a floor nor a reason to hold; the NEXT concerns and disputed lawsuit are risks, not settled outcomes.</p>
+<p>Neutral, I agree with staging, but “high conviction” describes the sizing decision, not a claim that $236.90 is the perfect sale price. MCD rose from $230.88 to $236.90 in a session with 11.357 million shares traded. RSI and MACD improved, yet price remains below the $244.47 daily trend-flip line and the falling $255.44 50-day average, with weekly and monthly trends also down. That combination creates an opportunity to sell into strength while retaining a meaningful core. Waiting for a higher price to do the whole trim risks losing today’s opening if the rebound fails; waiting for traffic and franchisee evidence before <em>reducing</em> exposure confuses the standard for trimming with the much higher standard for restoring a full allocation.</p>
+<p>Both of you correctly flag valuation and execution risk. A 5.28% 10-year Treasury yield against MCD’s indicated 3.32% dividend yield raises the cost of carrying an oversized position while forward earnings remain estimates. But the reward from this SELL is not a promised return on the proceeds: it is freeing risk capacity without abandoning MCD’s recovery potential.</p>
+<p>I would sell MCD exposure above 0.75× the standard allocation, starting the trim now and completing it at the next practical opportunities rather than making it depend on another rally. If exposure is already at or below 0.75×, neither sell nor add under this plan. A close below $230.20 lowers the ceiling to 0.50× at the next practical opportunity; with a $4.46 ATR and gap risk, that is a decision trigger, not an executable stop price.
+Aggressive Analyst: Conservative, you are right that MCD’s trend is down and that stronger cash flow does not put a floor under the stock. That is the case for selling excess exposure—not for cutting everyone to 0.50× before the proposed trigger. The weekly and monthly z-scores of −1.76 and −2.04 leave room for a sharp countertrend rebound, even though they do not predict one. From the supplied $236.90 snapshot, the $244.47 daily trend-flip line is about 3.2% higher and the falling $255.44 average about 7.8% higher. A 0.75× core preserves more participation if MCD recovers toward those tests; a 0.50× default gives up that upside before we know the holder’s concentration or drawdown limit.</p>
+<p>Your balance-sheet and valuation concerns are real, but they do not establish a liquidity crisis. MCD’s current ratio improved to 1.08, and H1 free cash flow rose from about $3.13 billion to $3.71 billion. Q2’s slight margin decline, uncertain traffic, NEXT pushback and the 5.28% Treasury yield all argue against a full allocation. Bernstein’s $250 target is an opinion, not a floor, just as the disputed lawsuit is a risk, not an established liability. The bolder choice is to free risk capacity while keeping a meaningful stake in a cash-generative business—not to treat every uncertainty as a reason to sell another quarter of the standard allocation.</p>
+<p>Neutral, I agree that $236.90 is not demonstrably the best sale price and that staging helps execution. My conviction is in the exposure ceiling, not in calling the top. MCD’s RSI recovery, positive MACD histogram and strong October 8 volume make a further bounce plausible, but price remains below every cited trend line. Start selling exposure above 0.75× at the next practical opportunity and finish the trim on a defined near-term schedule; do not make completion contingent on a better rally or wait for traffic data before reducing an oversized position.</p>
+<p>My call remains SELL MCD only above 0.75× the standard allocation; at or below it, neither sell nor top up under this plan. A close below $230.20 lowers the ceiling to 0.50× for reduction at the next practical opportunity. It is a decision trigger, not an executable stop: MCD’s $4.46 ATR and gap risk mean the exit could be worse.
+Aggressive Analyst: Conservative, I agree that MCD’s $244.47 daily trend line and $255.44 falling average are hurdles, not promised gains. That is why I would sell exposure above 0.75× now. But making 0.50× the default treats an unconfirmed rebound as though it has already failed. MCD’s weekly and monthly downside readings are stretched, while H1 free cash flow rose from about $3.13 billion to $3.71 billion. Those facts do not prove a bottom or resolve traffic and NEXT concerns; they do make the extra quarter-allocation worth preserving unless the holder’s risk limits call for a deeper cut.</p>
+<p>Your liquidity and valuation concerns strengthen the case against a full allocation, not necessarily the case for halving every holding. A 1.08 current ratio and missing debt-maturity detail warrant scrutiny, but they do not establish imminent distress. Forward earnings growth is uncertain, and a 5.28% Treasury yield raises the hurdle for MCD. The bold trade is to free risk capacity while the rebound offers an opportunity to sell, without surrendering too much participation if the business and price recover.</p>
+<p>Neutral, I am not claiming that $236.90 was the best possible sale price or that one strong-volume day repaired OBV. My conviction is in acting on the sizing decision rather than waiting for a better bounce. Stage the trim over a short, defined period, but do not make completion depend on MCD reaching $244.47. Nor must traffic and franchisee execution be proven before retaining a 0.75× core; that evidence matters more when considering a return to full weight.</p>
+<p>My call remains SELL MCD only to the extent it exceeds 0.75× the holder’s standard allocation. If already at or below that ceiling, neither sell nor add under this plan. Concentration or a tight drawdown limit can justify 0.50× sooner; otherwise, a close below $230.20 lowers the ceiling to 0.50× for a reduction at the next practical opportunity. It is not a guaranteed exit price—MCD’s $4.46 ATR and gap risk make that clear. The $236.90 figure is an October 8 snapshot, so verify the current quote before acting.
+Aggressive Analyst: Conservative, you are right that MCD’s stretched readings provide no floor, its trend is still down, and $230.20 is not a guaranteed exit. That makes the October 8 rebound a reason to sell excess exposure now. It does not, by itself, justify a 0.50× ceiling for every holder. A 0.50× core would participate in a recovery, but it would give up another quarter of a standard allocation if MCD rebounds toward the $244.47 daily trend line or the $255.44 falling average. Those are tests, not promised gains. Still, H1 free cash flow rose from about $3.13 billion to $3.71 billion, while Q2 revenue and EPS grew. The 1.08 current ratio, missing debt detail, slight margin slip, 17.21× forward P/E and uncertain traffic justify an underweight—not an assumption that the additional quarter-allocation must go before the rebound fails.</p>
+<p>Neutral, I agree that $236.90 is not demonstrably the best sale price and that one strong-volume day has not repaired OBV. My conviction is in the <em>decision to reduce an oversized holding</em>, not in predicting the next close. MCD rose from $230.88 to $236.90 on 11.357 million shares, yet remains below every cited SuperTrend line and its falling 50-day average. That is a useful opportunity to sell into strength without demanding another rally. Stage execution over a short, defined period; don’t let staging become a reason to postpone the trim. Better traffic and franchisee evidence should be required before rebuilding to full weight, not before retaining a reduced core.</p>
+<p>My call is to <strong>SELL MCD only to the extent it exceeds 0.75× the holder’s standard allocation</strong>. If it is already at or below that ceiling, neither sell nor top up under this plan. Concentration or a tight drawdown limit can warrant 0.50× sooner; otherwise, a close below $230.20 lowers the ceiling to 0.50× for reduction at the next practical opportunity. With MCD’s $4.46 ATR and gap risk, that is a decision trigger, not a fillable stop. Verify the current quote before acting: $236.90 is an October 8 snapshot.</p>
+<h3 id="conservative-analyst">Conservative Analyst<a class="headerlink" href="#conservative-analyst" title="Permanent link">&para;</a></h3>
+<p>Conservative Analyst: I agree with the Aggressive Analyst that MCD’s October 8 rebound is an opportunity to reduce risk, not proof of a reversal. Where I disagree is the confidence implied by keeping a 0.75× core as the default. MCD remains below its falling $255.44 50-day average, and its daily, weekly, and monthly SuperTrend signals are all down. Stronger H1 free cash flow supports retaining <em>some</em> exposure, but it does not resolve sales-growth and NEXT concerns, a thin $822 million cash balance, or whether the forward earnings growth embedded in valuation will materialize. Bernstein’s $250 target is an opinion, not a downside floor; the lawsuit is an unresolved risk, not a proven liability.</p>
+<p>I would also challenge a neutral instinct to wait for clearer evidence before trimming a full position. No Neutral Analyst has made that argument yet, but waiting would leave the firm carrying the exposure through a possible rebound failure. The improvement in RSI, MACD, and one day’s volume is encouraging, while OBV still trails its late-September level. Nor is $230.20 a dependable stop-loss price: it is a proposed <em>closing-price trigger</em>, about $6.70 below the supplied $236.90 snapshot, and MCD’s $4.46 ATR means a gap or ordinary volatility could produce a worse exit.</p>
+<p>My recommendation is SELL MCD exposure above 0.75× the standard allocation promptly rather than waiting for another bounce. If the position is concentrated or the portfolio has a tight drawdown budget, use a stricter 0.50× ceiling now rather than waiting for $230.20 to break. If MCD is already below the applicable ceiling, do not sell mechanically or add. A close below $230.20 should prompt timely reassessment and reduction to no more than 0.50× where applicable—not an assumption that a stop will execute at that price. I would require sustained trend improvement and evidence on customer traffic before restoring a full allocation.
+Conservative Analyst: Aggressive, I agree that MCD’s rebound is a chance to trim, but I disagree that the $230.20 closing-price trigger must break before a 0.50× ceiling is justified. MCD remains below its falling $255.44 50-day average, with daily, weekly and monthly SuperTrend signals down. RSI at 39.05 and one positive MACD histogram reading show easing selling pressure, not a durable reversal. Stronger H1 free cash flow and stretched downside readings leave room for a bounce; they do not put a floor under the price. Keeping 0.50× would preserve some participation while reducing losses if the rebound fails.</p>
+<p>Neutral, I agree that MCD’s $822 million cash balance is not, by itself, a liquidity crisis, and that the disputed lawsuit is not a proven liability. But neither point makes 0.75× the safer default. The current ratio is only about 1.08, debt-maturity detail is missing, Q2 operating margin slipped slightly, and the forward P/E depends on estimated earnings growth. Bernstein’s target cut and NEXT concerns add uncertainty about traffic, while the 5.28% Treasury yield raises the hurdle for holding a dividend stock yielding an indicated 3.32%. Staging is sensible for execution, but it should not become an open-ended wait for another rally.</p>
+<p>My risk-first adjustment is to SELL MCD exposure above 0.50× the standard allocation at the next practical opportunities, subject to the holder’s transaction costs and constraints. If MCD is already at or below that ceiling, do not sell mechanically or add under this plan. Treat a close below $230.20 as a prompt to reassess whether even 0.50× remains appropriate—not as a stop that will execute at $230.20. I would consider restoring exposure only after sustained trend improvement and credible evidence on customer traffic and NEXT execution.
+Conservative Analyst: Aggressive, the possibility of a rebound is a reason to retain some MCD, not a reason to make 0.75× the default ceiling. The $244.47 daily trend line and $255.44 falling average are tests MCD has not passed, not gains the firm can count on. Weekly and monthly trends remain down, and October 8’s stronger volume has not restored OBV to its late-September level. Stronger H1 free cash flow supports a core holding, but it does not establish improving customer traffic or resolve NEXT execution concerns.</p>
+<p>Neutral, I agree that MCD’s $822 million cash balance is not a liquidity crisis, that the lawsuit is disputed, and that a 5.28% Treasury yield does not determine MCD’s total return. My case for a lower ceiling does not depend on any of those claims. The current ratio is only 1.08, debt-maturity detail is missing, and forward valuation relies on earnings growth that has yet to be achieved. With those uncertainties and an unrecovered downtrend, waiting for a close below $230.20 before reducing further puts more capital at risk of a poor exit. That level is a reassessment trigger, not a fillable stop; it is $6.70 below the supplied $236.90 snapshot, and MCD’s $4.46 ATR leaves meaningful gap and slippage risk.</p>
+<p>For a risk-first mandate, I would SELL MCD exposure above a provisional 0.50× standard allocation at the next practical opportunities, staging execution without making completion depend on another rally. That is a risk ceiling, not a claim of imminent distress or a rule to sell an already smaller holding. Portfolio constraints and transaction costs may warrant a different ceiling, but they have not been provided. If MCD is already at or below 0.50×, do not sell mechanically or add under this plan. A close below $230.20 should prompt reassessment of even that core; restoring exposure should require sustained trend improvement and credible traffic and franchisee evidence.
+Conservative Analyst: Aggressive, I agree that MCD’s rebound is an opportunity to sell, but I would not preserve the extra quarter-allocation simply because a further bounce is possible. The weekly and monthly downside readings show MCD is stretched; they do not provide a price floor. MCD remains below its $244.47 daily reversal line and falling $255.44 50-day average, while one strong-volume day has not restored OBV. A 0.50× holding still participates if MCD recovers. The question is whether the additional exposure is worth carrying through an unrepaired downtrend.</p>
+<p>Neutral, I agree that MCD’s $822 million cash balance is not evidence of a liquidity crisis, and the lawsuit’s allegations are unproven. Neither is the basis for my lower ceiling. MCD’s current ratio is only 1.08, debt-maturity detail is missing, Q2 operating margin slipped slightly, and its 17.21× forward P/E depends on earnings growth that has not yet occurred. Stronger H1 free cash flow supports keeping a core, but it does not answer the concerns about customer traffic and NEXT. The 5.28% Treasury yield adds valuation pressure; it does not, by itself, determine MCD’s total return.</p>
+<p>Both of you would wait for a close below $230.20 before cutting from 0.75× to 0.50×. That leaves more capital exposed until the rebound has visibly failed. The trigger sits $6.70 below the supplied $236.90 snapshot—about 1.5 times MCD’s $4.46 ATR—and a subsequent sale could occur lower still.</p>
+<p>For a risk-first mandate, I would SELL MCD exposure above a provisional 0.50× standard allocation at the next practical opportunities, staging execution without waiting for another rally. I cannot claim that ceiling fits every portfolio without its holdings, costs and drawdown limits. If MCD is already at or below the applicable ceiling, I would neither sell mechanically nor add. A close below $230.20 would prompt reassessment of the remaining core, not an automatic stop. I would require sustained trend improvement and credible traffic and franchisee evidence before rebuilding. Verify the current quote before acting; $236.90 is an October 8 snapshot.
+Conservative Analyst: Aggressive, I agree that MCD’s October 8 rebound is a chance to sell excess exposure. I disagree that the extra quarter-allocation is worth keeping because MCD <em>might</em> rebound toward $244.47 or $255.44. Those are unpassed trend tests, not expected gains. MCD remains below its falling 50-day average, all three SuperTrend signals are down, and one strong-volume session has not restored OBV to its late-September level. The improvement in cash flow and momentum supports retaining a core, but neither establishes a floor under the share price.</p>
+<p>Neutral, you are right that MCD’s $822 million cash balance is not a liquidity crisis, the lawsuit is disputed, and Treasury yields do not determine the stock’s total return. My case for a smaller holding does not require any of those stronger claims. MCD’s current ratio is only 1.08, debt-maturity detail is missing, Q2 operating margin slipped slightly, and its forward valuation depends on earnings growth not yet achieved. We also lack the traffic and franchisee evidence needed to judge whether NEXT concerns are easing. Waiting to cut from 0.75× until MCD closes below $230.20 means accepting more downside before acting; from the supplied $236.90 snapshot, that trigger is $6.70 lower, about 1.5 times MCD’s $4.46 ATR. A sale after the close could occur lower still.</p>
+<p>For a risk-first mandate, I would <strong>SELL MCD exposure above a provisional 0.50× standard allocation</strong> at the next practical opportunities. Stage execution to manage price and transaction costs, but do not make completion depend on another rally. This is a conservative risk ceiling, not a claim that every portfolio has the same needs or that MCD is in distress. If MCD is already at or below the applicable ceiling, do not sell mechanically or add under this plan. A close below $230.20 should prompt reassessment of even the remaining core, not an automatic stop order or an assumed fill at that price. I would consider rebuilding only after sustained trend improvement and credible evidence on customer traffic and franchisee execution. Verify the current quote before acting; $236.90 is an October 8 snapshot.</p>
+<h3 id="neutral-analyst">Neutral Analyst<a class="headerlink" href="#neutral-analyst" title="Permanent link">&para;</a></h3>
+<p>Neutral Analyst: I agree with the Aggressive Analyst’s direction for MCD, but not the “high-conviction” label. The October 8 rebound gives a reasonable opportunity to trim exposure above a chosen ceiling; it does not establish that $236.90 is a particularly good sale price. RSI and MACD have improved, and MCD’s longer-horizon downside stretch leaves room for a further bounce. I would begin the trim rather than wait for a better price, but stage it instead of making the entire reduction depend on one session.</p>
+<p>I also think the Conservative Analyst moves too quickly from real risks to a stricter 0.50× ceiling. MCD’s $822 million cash balance is modest, but its improved working capital and rising H1 free cash flow argue against treating that figure alone as a liquidity crisis. Negative book equity is longstanding, and the lawsuit’s allegations remain unproven. Conversely, neither analyst should treat cash generation as an answer to weaker customer traffic, NEXT execution concerns, or the pressure that a 5.28% Treasury yield could put on MCD’s valuation.</p>
+<p>My balanced call is to SELL only the MCD exposure above 0.75× your standard allocation, using a staged trim at the next practical opportunities. If you are already at or below that ceiling, this plan calls for neither a sale nor a top-up. A concentrated position or unusually tight portfolio drawdown limit could justify 0.50× sooner, but that cannot be assumed without portfolio context; risk freed by a trim can be kept liquid or diversified rather than immediately put back into one restaurant stock. A close below $230.20 would lower the ceiling to 0.50× and prompt a reduction at the next practical opportunity—not an automatic execution at $230.20, especially with MCD’s $4.46 ATR and gap risk. I would consider restoring exposure only after sustained improvement above $244.47, further progress toward the falling $255.44 average, and better evidence on traffic and franchisee execution.
+Neutral Analyst: Aggressive, I agree that MCD’s rebound is a chance to reduce an oversized position, but I would not call the 0.75× ceiling a high-conviction trade. At the supplied October 8 snapshot of $236.90, MCD was still below its $244.47 daily trend-flip line and falling $255.44 50-day average. That supports trimming; it does not tell us that this session is the best sale price. Stronger H1 free cash flow and stretched longer-term readings also leave room for a further bounce. Staging the trim should manage execution risk, though I agree it must not become an indefinite wait for another rally.</p>
+<p>Conservative, your concerns about traffic, NEXT and valuation are real, but a 0.50× ceiling for everyone goes beyond what we know. MCD’s $822 million cash balance is modest, yet working capital improved and H1 free cash flow rose. The lawsuit remains disputed, and we have no portfolio context or new comparable-sales figures to establish that another quarter of allocation should be sold now. Nor does a 5.28% Treasury yield versus MCD’s indicated 3.32% dividend yield, by itself, settle the stock’s prospective total return.</p>
+<p>My balanced decision remains to SELL MCD exposure above 0.75× your standard allocation, beginning at the next practical opportunity and completing the trim on a defined near-term schedule rather than waiting for a higher price. If MCD is already at or below 0.75×, this plan calls for no sale or top-up. Concentration or a tight drawdown limit could justify 0.50× sooner. Otherwise, a close below $230.20 lowers the ceiling to 0.50× for a subsequent practical reduction—not an executable stop at that price. I would revisit the ceiling with sustained trend improvement and credible traffic and franchisee evidence, or sooner if those fundamentals deteriorate. Freed capital need not be reinvested in another restaurant stock.
+Neutral Analyst: Aggressive, I agree with selling MCD exposure above a ceiling now, but I would not call 0.75× a high-conviction weight without knowing the portfolio. The $244.47 daily trend line and $255.44 falling average are hurdles, not likely gains to count on. October 8’s rebound improved momentum, but MCD remains below both levels, and one strong-volume day has not repaired OBV. A close below $230.20 could also lead to an exit at a worse price, so a concentrated holder should not rely on that trigger alone.</p>
+<p>Conservative, the downtrend and uncertain traffic justify a trim, but they do not establish that every holder should cut MCD to 0.50× now. H1 free cash flow rose to about $3.71 billion, and the longer-horizon downside stretch leaves room for a rebound. The $822 million cash balance and missing debt detail warrant scrutiny, not an assumption of imminent distress; the lawsuit’s allegations remain disputed. Likewise, a 5.28% Treasury yield pressures MCD’s valuation, but comparing it with the 3.32% indicated dividend yield does not settle the stock’s prospective total return.</p>
+<p>My call is to SELL MCD only to the extent it exceeds 0.75× the holder’s standard allocation. Start at the next practical opportunity and finish the trim on a short, defined schedule—not only if another rally appears. If MCD is already at or below that ceiling, neither sell nor add under this plan. Concentration or a tight drawdown budget can justify 0.50× immediately; otherwise, a close below $230.20 lowers the ceiling to 0.50× for a subsequent practical reduction, not an automatic fill at that price. Rebuilding exposure should require sustained trend improvement <em>and</em> credible evidence on customer traffic and franchisee execution. The $236.90 price is an October 8 snapshot, so verify the current quote before acting.
+Neutral Analyst: Aggressive, I agree that MCD’s October 8 rebound is a reasonable chance to trim, but the possibility of another bounce is not, by itself, a reason to defend a 0.75× holding. MCD is still below its $244.47 daily trend line and falling $255.44 50-day average, and one strong-volume session has not repaired OBV. Stronger H1 free cash flow supports retaining a core; it does not answer the questions about customer traffic or NEXT execution. I would treat 0.75× as a practical ceiling, not a high-conviction forecast.</p>
+<p>Conservative, cutting every MCD position to 0.50× now gives too little weight to that cash generation and to the possibility of a countertrend recovery. The $822 million cash balance and incomplete debt detail call for scrutiny, not a conclusion that MCD is in distress. Likewise, the 5.28% Treasury yield raises MCD’s valuation hurdle, but its comparison with a 3.32% indicated dividend yield does not settle prospective total return. Your stronger case for 0.50× is a holder whose concentration or drawdown limit cannot tolerate another leg down—not a universal default without portfolio context.</p>
+<p>My balanced call remains to SELL MCD only to the extent it exceeds 0.75× the holder’s standard allocation. Begin at the next practical opportunity and complete the trim over a short, defined period rather than waiting for another rally. If MCD is already at or below that ceiling, neither sell nor add under this plan. Use 0.50× sooner if portfolio risk limits warrant it; otherwise, a close below $230.20 lowers the ceiling to 0.50× for a subsequent reduction. That is a decision trigger, not a guaranteed exit price, particularly with MCD’s $4.46 ATR and gap risk. Reconsider rebuilding only with sustained trend improvement and credible traffic and franchisee evidence. Verify the current quote before acting: $236.90 is an October 8 snapshot.
+Neutral Analyst: Aggressive, I agree with trimming MCD rather than waiting for another rally. But a possible move toward $244.47 or $255.44 is not a return we can bank on: both are unpassed trend tests, and one strong-volume rebound has not repaired OBV. MCD’s rising H1 free cash flow supports keeping a core position, not treating 0.75× as a high-conviction weight when customer traffic and NEXT execution remain uncertain.</p>
+<p>Conservative, your gap-risk objection is important, but the proposed plan does not leave a full position exposed until $230.20: it reduces excess exposure now. Making 0.50× the default would sell another quarter of a standard allocation without knowing the holder’s concentration or loss tolerance. MCD’s modest cash balance and 1.08 current ratio warrant scrutiny, while improving cash flow argues against assuming imminent distress. Higher Treasury yields add valuation pressure, but comparing the 5.28% 10-year yield with MCD’s 3.32% indicated dividend yield does not settle its total-return outlook.</p>
+<p>My call remains to <strong>SELL MCD only above 0.75× the holder’s standard allocation</strong>. Start at the next practical opportunity and complete the trim over a short, defined period, without requiring another bounce. If already at or below 0.75×, neither sell nor add under this plan. A concentrated holding or tight drawdown limit can justify 0.50× now; otherwise, a close below $230.20 lowers the ceiling to 0.50× for reduction at the next practical opportunity, not a guaranteed stop fill. Deteriorating traffic or execution evidence should also prompt reassessment without waiting for that price. Verify the current quote first: $236.90 is an October 8 snapshot. Freed capital can remain liquid or be diversified outside restaurants.</p>
+<h2 id="v-portfolio-manager-decision">V. Portfolio Manager Decision<a class="headerlink" href="#v-portfolio-manager-decision" title="Permanent link">&para;</a></h2>
+<h3 id="portfolio-manager">Portfolio Manager<a class="headerlink" href="#portfolio-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Rating</strong>: Underweight</p>
+<p><strong>Executive Summary</strong>: For MCD, trim only exposure above 0.75× your standard MCD allocation; at or below that ceiling, neither sell mechanically nor add, and if unowned, defer initiation rather than short. Verify the current quote and whether the supplied October 8, 2026 setup still applies, then stage any required reduction with limit orders over the next five trading sessions rather than waiting for $244.47. A close below $230.20 lowers the ceiling to 0.50× for reduction at the next practical execution opportunity, without assuming a fill at that price. Use a 12-month horizon, reassess at the next results release or earlier on material traffic/NEXT evidence, and consider 0.50× immediately only if portfolio concentration or drawdown limits warrant it.</p>
+<p><strong>Investment Thesis</strong>: Decision and sizing: The case for reducing MCD exposure wins, but only modestly; the evidence supports Underweight, not a full-exit Sell rating. The analysts' repeated SELL instructions principally describe partial reductions. The Neutral Analyst's 0.75× ceiling best balances the adverse trend against demonstrated business resilience. The Conservative Analyst correctly emphasizes gap risk, but rising cash generation and the absence of established fundamental deterioration do not justify a universal 0.50× ceiling without knowing the portfolio's concentration and loss tolerance. These are ceilings, not allocations to buy up to: reducing a standard 1.00× holding to 0.75× means a 25% reduction, not selling 25% of every existing holding.</p>
+<p>Why reduce: MCD's $236.90 October 8 close remains below the $244.47 daily SuperTrend threshold and falling $255.44 50-day SMA, with daily, weekly and monthly SuperTrend signals all down. RSI of 39.05 remains below 50, and the positive 0.28 MACD histogram and strong-volume rebound have not restored OBV to its late-September level. The Aggressive Analyst is right that waiting for another rally risks losing the opportunity to reduce excess exposure; the Neutral Analyst is right that this does not establish an optimal sale price. Weekly and monthly z-scores of -1.76 and -2.04 support the possibility of a countertrend bounce, not a demonstrated bottom.</p>
+<p>Why retain a reduced core: H1 2026 MCD revenue increased 6.4%, operating income 7.0%, and statement-derived free cash flow approximately 18.4%, from $3.131 billion to $3.706 billion. The franchise-heavy model and FY2025 operating margin of approximately 46.1% support resilience. Q2 operating margin slipped only from approximately 47.2% to 47.0%, insufficient to establish sustained deterioration. Cash of $822 million and a 1.08 current ratio warrant monitoring, but working capital improved; longstanding negative equity is not evidence of a new liquidity crisis. Missing debt maturities prevent a quantified refinancing assessment. Missing transaction and NEXT franchisee-return data do not establish falling traffic or failed investment returns, and the lawsuit's allegations are not proven liabilities.</p>
+<p>Valuation and target: My 12-month MCD price target is $234.09, calculated as the supplied $13.77 forward EPS estimate × 17.0 P/E = $234.09. I adopt 17.0× from the research plan's supplied sensitivity cases as a cautious valuation assumption; it is not an established fair-value multiple or an analyst consensus. This target still assumes the forward EPS estimate is achieved. That estimate implies approximately 11.8% growth over $12.31 trailing EPS, compared with FY2025 EPS growth of 4.9% and Q2 2026 growth of 5.7%; those are different measurement periods and do not prove the forecast is unattainable. Relative to $236.90, the target implies approximately 1.2% price downside and roughly 2.1% one-year total return if the indicated 3.32% dividend yield translates into maintained cash payments, before costs and taxes. The cited 5.28% ten-year Treasury yield raises the return hurdle but is not a duration-matched comparison with a one-year equity outcome. Bernstein's target is an opinion, not independent fair value or a price floor. Limited demonstrated valuation cushion, rather than an earnings-collapse forecast, supports the modest underweight.</p>
+<p>Execution and change conditions: Start the required trim after verifying that the setup remains applicable; a rebound that fails near $244.47 can assist execution, but completion must not depend on it. A close below $230.20 reduces the ceiling to 0.50× at the next practical opportunity. The $6.70 gap from the supplied close to that trigger is approximately 1.5× the $4.46 ATR, so this is a closing-price decision rule, not a guaranteed stop execution. Material deterioration in transactions, margins, cash conversion or NEXT economics warrants reassessment before that trigger. To rebuild toward 1.00×, require meaningful improvement in demand or credible franchisee investment returns, alongside resilient margins and cash conversion, plus sustained technical recovery. Two consecutive closes above $244.47 provide initial evidence; reclaiming the then-current 50-day SMA provides stronger confirmation, with $255.44 only its snapshot value. A price bounce alone does not authorize rebuilding, and a daily recovery would not automatically reverse the weekly and monthly downtrends.</p>
+<p>Confidence and review: Confidence is medium because the trend and realized financial statements support a measured reduction, while the target depends on estimated earnings and an assumed multiple. The quote is a supplied October 8, 2026 snapshot, not live data; current holdings, transaction trends, NEXT investment returns, debt maturities, the next reporting date and the dividend declaration are not established here. Verify those inputs and re-underwrite at the next results release or sooner on material disclosures.</p>
+<p><strong>Current Price</strong>: 236.9</p>
+<p><strong>Price Target</strong>: 234.09</p>
+<p><strong>Confidence</strong>: Medium</p>
+<p><strong>Time Horizon</strong>: 12 months</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      For AI testing and experimentation only. Not financial or investment advice or a substitute for a qualified financial adviser. AI-generated reports may contain errors. Do not use them to make investment or trading decisions.
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "content.code.copy", "content.tabs.link"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
