@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 from abc import ABC, abstractmethod
@@ -10,6 +11,7 @@ from typing import Any
 from langchain_core.messages import AIMessage, BaseMessage
 
 from tradingagents.llm_clients.anthropic_client import NormalizedChatAnthropic
+from tradingagents.llm_clients.google_client import NormalizedChatGoogleGenerativeAI
 from tradingagents.llm_clients.openai_client import NormalizedChatOpenAI
 
 
@@ -374,14 +376,175 @@ class AnthropicBatchAdapter(BaseBatchAdapter):
         return parsed
 
 
+def _jsonable(value: Any) -> Any:
+    """Recursively turn SDK pydantic objects into camelCase REST JSON."""
+    if hasattr(value, "model_dump"):
+        return value.model_dump(mode="json", by_alias=True, exclude_none=True)
+    if isinstance(value, dict):
+        return {k: _jsonable(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_jsonable(v) for v in value]
+    return value
+
+
+# Gemini batch job states -> the status words BatchRunner understands.
+_GOOGLE_STATES = {
+    "JOB_STATE_SUCCEEDED": "completed",
+    "JOB_STATE_PARTIALLY_SUCCEEDED": "completed",
+    "JOB_STATE_FAILED": "failed",
+    "JOB_STATE_EXPIRED": "expired",
+    "JOB_STATE_CANCELLED": "cancelled",
+}
+
+
+class GoogleBatchAdapter(BaseBatchAdapter):
+    provider = "google"
+    endpoint = "models:batchGenerateContent"
+
+    def _api_key(self) -> str | None:
+        return (
+            self.config.get("api_key")
+            or os.environ.get("GOOGLE_API_KEY")
+            or os.environ.get("GEMINI_API_KEY")
+        )
+
+    def _client(self):
+        from google import genai
+
+        return genai.Client(api_key=self._api_key())
+
+    def build_payload(
+        self,
+        *,
+        model: str,
+        messages: list[BaseMessage],
+        request_kwargs: dict[str, Any],
+    ) -> dict[str, Any]:
+        from google.genai import batches
+
+        llm_kwargs: dict[str, Any] = {
+            "model": model,
+            "google_api_key": self._api_key() or "placeholder",
+        }
+        thinking_level = self.config.get("google_thinking_level")
+        if thinking_level:
+            llm_kwargs["thinking_level"] = thinking_level
+        temperature = self.config.get("temperature")
+        if temperature not in (None, ""):
+            llm_kwargs["temperature"] = float(temperature)
+        llm = NormalizedChatGoogleGenerativeAI(**llm_kwargs)
+        prepared = llm._prepare_request(messages, **request_kwargs)
+        # The SDK's own inline-request converter yields the REST request body
+        # that the batch JSONL file expects (systemInstruction, tools, ...).
+        converted = batches._InlinedRequest_to_mldev(self._client()._api_client, prepared)
+        request = _jsonable(converted["request"])
+        request.pop("model", None)  # the model is set on the batch job
+        if not request.get("safetySettings"):
+            request.pop("safetySettings", None)
+        return request
+
+    def line_for_request(self, custom_id: str, payload: dict[str, Any]) -> dict[str, Any]:
+        return {"key": custom_id, "request": payload}
+
+    def submit_batch(
+        self,
+        *,
+        model: str,
+        lines: list[dict[str, Any]],
+        input_path: Path,
+    ) -> str:
+        from google.genai import types
+
+        client = self._client()
+        uploaded = client.files.upload(
+            file=str(input_path),
+            config=types.UploadFileConfig(display_name=input_path.stem, mime_type="jsonl"),
+        )
+        job = client.batches.create(
+            model=model,
+            src=uploaded.name,
+            config=types.CreateBatchJobConfig(display_name=input_path.stem),
+        )
+        return job.name
+
+    def refresh_batch(self, batch_id: str) -> dict[str, Any]:
+        job = self._client().batches.get(name=batch_id)
+        state = getattr(job.state, "name", str(job.state))
+        return {"status": _GOOGLE_STATES.get(state, state.lower()), "state": state}
+
+    def download_results(
+        self,
+        *,
+        batch_id: str,
+        output_path: Path,
+        error_path: Path,
+    ) -> dict[str, dict[str, Any]]:
+        client = self._client()
+        job = client.batches.get(name=batch_id)
+        results: dict[str, dict[str, Any]] = {}
+        file_name = job.dest.file_name if job.dest else None
+        if file_name:
+            text = client.files.download(file=file_name).decode("utf-8")
+            output_path.write_text(text, encoding="utf-8")
+            for line in text.splitlines():
+                if line.strip():
+                    item = json.loads(line)
+                    results[item["key"]] = item
+        if not error_path.exists():
+            error_path.write_text("", encoding="utf-8")
+        return results
+
+    def message_from_response(self, response_body: dict[str, Any]) -> AIMessage:
+        candidates = response_body.get("candidates") or []
+        parts = ((candidates[0].get("content") or {}).get("parts") or []) if candidates else []
+        text_parts: list[str] = []
+        tool_calls: list[dict[str, Any]] = []
+        for index, part in enumerate(parts):
+            call = part.get("functionCall")
+            if call:
+                args = call.get("args") or {}
+                digest = hashlib.sha1(
+                    json.dumps([call.get("name"), args, index], sort_keys=True).encode("utf-8")
+                ).hexdigest()[:12]
+                tool_calls.append({"id": f"call_{digest}", "name": call.get("name"), "args": args})
+            elif part.get("text") and not part.get("thought"):
+                text_parts.append(part["text"])
+        usage = response_body.get("usageMetadata") or {}
+        input_tokens = usage.get("promptTokenCount", 0)
+        output_tokens = usage.get("candidatesTokenCount", 0) + usage.get("thoughtsTokenCount", 0)
+        return AIMessage(
+            content="".join(text_parts),
+            tool_calls=tool_calls,
+            usage_metadata={
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "total_tokens": usage.get("totalTokenCount", input_tokens + output_tokens),
+            },
+        )
+
+    def structured_args_from_response(self, response_body: dict[str, Any]) -> dict[str, Any]:
+        message = self.message_from_response(response_body)
+        if message.tool_calls:
+            return dict(message.tool_calls[0].get("args") or {})
+        text = message.content.strip()
+        if text.startswith("```"):
+            text = text.strip("`").split("\n", 1)[-1]
+        parsed = json.loads(text)
+        if not isinstance(parsed, dict):
+            raise BatchAdapterError("structured response was not a JSON object")
+        return parsed
+
+
 def adapter_for_provider(provider: str, config: dict[str, Any]) -> BaseBatchAdapter:
     provider_key = provider.lower()
     if provider_key == "openai":
         return OpenAIBatchAdapter(config)
     if provider_key == "anthropic":
         return AnthropicBatchAdapter(config)
+    if provider_key == "google":
+        return GoogleBatchAdapter(config)
     raise BatchAdapterError(
-        f"Batch mode supports only 'openai' and 'anthropic', not {provider!r}."
+        f"Batch mode supports only 'openai', 'anthropic' and 'google', not {provider!r}."
     )
 
 

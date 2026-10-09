@@ -70,8 +70,7 @@ DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-5-5}"
 QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-opus-5-5}"
 # Claude 5.5 tool workflows need room for thinking and the final answer; new
 # IDs can inherit the SDK's 4096-token fallback. Other models keep SDK defaults.
-export TRADINGAGENTS_MAX_TOKENS="${TRADINGAGENTS_MAX_TOKENS:-256000}"
-export TRADINGAGENTS_LLM_TIMEOUT="${TRADINGAGENTS_LLM_TIMEOUT:-600}"
+export TRADINGAGENTS_LLM_TIMEOUT="${TRADINGAGENTS_LLM_TIMEOUT:-1800}"
 
 REASONING_EFFORT="${TRADINGAGENTS_OPENAI_REASONING_EFFORT:-xhigh}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
@@ -85,7 +84,7 @@ model_slug() {
 }
 MODEL_SLUG="$(model_slug "$DEEP_MODEL")"
 REPORT_GLOB="${DATE_SLUG}_${MODEL_SLUG}_*"
-CONCURRENCY="${CONCURRENCY:-10}"
+CONCURRENCY="${CONCURRENCY:-20}"
 case "$CONCURRENCY" in
   ''|*[!0-9]*|0) echo "CONCURRENCY must be a positive integer" >&2; exit 1 ;;
 esac

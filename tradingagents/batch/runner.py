@@ -62,9 +62,10 @@ def validate_batch_config(config: dict[str, Any], provider: str) -> None:
     native_endpoints = {
         "openai": "https://api.openai.com/v1",
         "anthropic": "https://api.anthropic.com",
+        "google": "https://generativelanguage.googleapis.com",
     }
     if provider_key not in native_endpoints:
-        raise ValueError("batch mode supports only provider='openai' or provider='anthropic'")
+        raise ValueError("batch mode supports only provider='openai', 'anthropic' or 'google'")
     tier_config = {**config, "llm_provider": provider_key}
     for tier in ("quick", "deep"):
         configured_provider = tier_provider(tier_config, tier)
@@ -506,6 +507,13 @@ class BatchRunner:
                     continue
                 request.status = "succeeded"
                 request.response = response["body"]
+            elif self.manifest.provider == "google":
+                if result.get("response"):
+                    request.status = "succeeded"
+                    request.response = result["response"]
+                else:
+                    request.status = "errored"
+                    request.error = result.get("error") or result
             else:
                 body = result.get("result", result)
                 result_type = body.get("type")

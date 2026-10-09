@@ -203,6 +203,10 @@ class DeferredBatchChatModel(BaseChatModel):
             request_kwargs["tools"] = [convert_to_anthropic_tool(tool) for tool in tools]
             if tool_choice is not None:
                 request_kwargs["tool_choice"] = tool_choice
+        elif self.provider == "google":
+            request_kwargs["tools"] = [convert_to_openai_tool(tool) for tool in tools]
+            if tool_choice is not None:
+                request_kwargs["tool_choice"] = tool_choice
         else:
             raise RuntimeError(f"batch deferred model does not support {self.provider}")
         return self.bind(**request_kwargs)
@@ -248,5 +252,10 @@ def structured_kwargs(provider: str, schema: type) -> dict[str, Any]:
         return {
             "tools": [convert_to_anthropic_tool(schema)],
             "tool_choice": {"type": "tool", "name": schema.__name__},
+        }
+    if provider == "google":
+        return {
+            "tools": [convert_to_openai_tool(schema)],
+            "tool_choice": schema.__name__,
         }
     raise RuntimeError(f"structured batch output does not support {provider}")
