@@ -1526,10 +1526,11 @@ def _batch_config(
     language: str,
     openai_reasoning_effort: str | None,
     anthropic_effort: str | None,
+    google_thinking_level: str | None = None,
 ) -> dict:
     provider_key = provider.strip().lower()
-    if provider_key not in ("openai", "anthropic"):
-        raise typer.BadParameter("batch provider must be openai or anthropic")
+    if provider_key not in ("openai", "anthropic", "google"):
+        raise typer.BadParameter("batch provider must be openai, anthropic or google")
     config = DEFAULT_CONFIG.copy()
     config["llm_provider"] = provider_key
     try:
@@ -1550,6 +1551,8 @@ def _batch_config(
         config["openai_reasoning_effort"] = openai_reasoning_effort
     if anthropic_effort is not None:
         config["anthropic_effort"] = anthropic_effort
+    if google_thinking_level is not None:
+        config["google_thinking_level"] = google_thinking_level
     return config
 
 
@@ -1565,6 +1568,7 @@ def _create_batch_runner(
     quick_model: str | None,
     openai_reasoning_effort: str | None,
     anthropic_effort: str | None,
+    google_thinking_level: str | None = None,
 ) -> BatchRunner:
     asset_enums = {ticker: detect_asset_type(ticker) for ticker in tickers}
     selected_analysts = _parse_batch_analysts(analysts, asset_enums)
@@ -1578,6 +1582,7 @@ def _create_batch_runner(
         language=language,
         openai_reasoning_effort=openai_reasoning_effort,
         anthropic_effort=anthropic_effort,
+        google_thinking_level=google_thinking_level,
     )
     ensure_api_key(config["llm_provider"])
     try:
@@ -1622,11 +1627,12 @@ def batch_submit(
     analysts: str = typer.Option("market,social,news,fundamentals", "--analysts", "-a"),
     depth: int = typer.Option(1, "--depth"),
     language: str = typer.Option("English", "--language", "-l"),
-    provider: str = typer.Option("openai", "--provider", "-p", help="openai or anthropic."),
+    provider: str = typer.Option("openai", "--provider", "-p", help="openai, anthropic or google."),
     deep_model: str = typer.Option(None, "--deep-model"),
     quick_model: str = typer.Option(None, "--quick-model"),
     openai_reasoning_effort: str = typer.Option(None, "--openai-reasoning-effort"),
     anthropic_effort: str = typer.Option(None, "--anthropic-effort"),
+    google_thinking_level: str = typer.Option(None, "--google-thinking-level"),
 ):
     runner = _create_batch_runner(
         provider=provider,
@@ -1639,6 +1645,7 @@ def batch_submit(
         quick_model=quick_model,
         openai_reasoning_effort=openai_reasoning_effort,
         anthropic_effort=anthropic_effort,
+        google_thinking_level=google_thinking_level,
     )
     path = runner.submit()
     console.print(f"[green]Batch run submitted:[/green] {runner.manifest.run_id}")

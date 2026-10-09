@@ -5,7 +5,11 @@ import json
 import pytest
 from langchain_core.messages import HumanMessage, SystemMessage, ToolMessage
 
-from tradingagents.batch.adapters import AnthropicBatchAdapter, OpenAIBatchAdapter
+from tradingagents.batch.adapters import (
+    AnthropicBatchAdapter,
+    GoogleBatchAdapter,
+    OpenAIBatchAdapter,
+)
 from tradingagents.batch.runner import BatchRunner
 from tradingagents.default_config import DEFAULT_CONFIG
 from tradingagents.llm_clients.base_client import normalize_content
@@ -353,3 +357,128 @@ def test_pm_target_correction_survives_batch_replay(tmp_path, monkeypatch, provi
     if not corrected:
         assert "numeric Price Target" in run.error
         assert not runner.memory_log.load_entries()
+
+
+def _google_config(tmp_path):
+    config = _config(tmp_path)
+    config.update(
+        {
+            "llm_provider": "google",
+            "deep_think_llm": "gemini-3.8-flash",
+            "quick_think_llm": "gemini-3.8-flash",
+            "google_thinking_level": "high",
+        }
+    )
+    return config
+
+
+def test_google_adapter_builds_generate_content_batch_line(tmp_path):
+    adapter = GoogleBatchAdapter(_google_config(tmp_path))
+    payload = adapter.build_payload(
+        model="gemini-3.8-flash",
+        messages=[SystemMessage("system"), HumanMessage("hello")],
+        request_kwargs={},
+    )
+    line = adapter.line_for_request("request_1", payload)
+    assert line["key"] == "request_1"
+    request = line["request"]
+    assert request["contents"] == [{"parts": [{"text": "hello"}], "role": "user"}]
+    assert request["systemInstruction"] == {"parts": [{"text": "system"}]}
+    assert request["generationConfig"]["thinkingConfig"] == {"thinkingLevel": "HIGH"}
+    assert "model" not in request
+    json.dumps(line)  # the manifest and the JSONL input must serialize
+
+
+def test_google_adapter_parses_text_tool_calls_and_usage(tmp_path):
+    adapter = GoogleBatchAdapter(_google_config(tmp_path))
+    body = {
+        "candidates": [
+            {
+                "content": {
+                    "parts": [
+                        {"text": "private reasoning", "thought": True},
+                        {"text": "Report."},
+                        {"functionCall": {"name": "Pick", "args": {"rating": "Buy"}}},
+                    ]
+                }
+            }
+        ],
+        "usageMetadata": {
+            "promptTokenCount": 10,
+            "candidatesTokenCount": 5,
+            "thoughtsTokenCount": 7,
+            "totalTokenCount": 22,
+        },
+    }
+    message = adapter.message_from_response(body)
+    assert message.content == "Report."
+    assert message.tool_calls[0]["name"] == "Pick"
+    assert message.tool_calls[0]["id"] == adapter.message_from_response(body).tool_calls[0]["id"]
+    assert message.usage_metadata == {"input_tokens": 10, "output_tokens": 12, "total_tokens": 22}
+    assert adapter.structured_args_from_response(body) == {"rating": "Buy"}
+
+
+def test_google_runner_replays_result_and_advances_to_next_node(tmp_path, monkeypatch):
+    import tradingagents.batch.runner as runner_mod
+
+    class FakeGoogleAdapter(GoogleBatchAdapter):
+        def submit_batch(self, *, model, lines, input_path):
+            assert lines[0]["key"] and input_path.is_file()
+            return "batches/fake_1"
+
+        def refresh_batch(self, batch_id):
+            return {"status": "completed"}
+
+        def download_results(self, *, batch_id, output_path, error_path):
+            return {}
+
+    monkeypatch.setattr(runner_mod, "resolve_instrument_identity", lambda ticker: {})
+    config = _google_config(tmp_path)
+    runner = BatchRunner.create(
+        provider="google",
+        tickers=["AAPL"],
+        trade_date="2026-06-19",
+        asset_types={"AAPL": "stock"},
+        selected_analysts=["market"],
+        config=config,
+        root=tmp_path / "batch",
+    )
+    adapter = FakeGoogleAdapter(config)
+    runner.adapter = adapter
+    runner.context.adapter = adapter
+    runner.submit()
+
+    request = next(iter(runner.manifest.requests.values()))
+    assert request.status == "submitted"
+    assert request.provider_batch_id == "batches/fake_1"
+    runner._apply_results(
+        {request.custom_id: {"key": request.custom_id, "response": {
+            "candidates": [{"content": {"parts": [{"text": "Market report."}]}}],
+        }}}
+    )
+    assert request.status == "succeeded"
+    runner.collect()
+
+    run = runner.manifest.runs["AAPL"]
+    assert run.progress["active_node"] == "Bull Researcher"
+    assert run.decoded_state()["market_report"] == "Market report."
+
+
+def test_google_error_result_marks_request_errored(tmp_path, monkeypatch):
+    import tradingagents.batch.runner as runner_mod
+
+    monkeypatch.setattr(runner_mod, "resolve_instrument_identity", lambda ticker: {})
+    runner = BatchRunner.create(
+        provider="google",
+        tickers=["AAPL"],
+        trade_date="2026-06-19",
+        asset_types={"AAPL": "stock"},
+        selected_analysts=["market"],
+        config=_google_config(tmp_path),
+        root=tmp_path / "batch",
+    )
+    runner.advance_all()
+    request = next(iter(runner.manifest.requests.values()))
+    runner._apply_results({request.custom_id: {"key": request.custom_id, "error": {"code": 400}}})
+    assert request.status == "errored"
+    assert request.error == {"code": 400}
