@@ -122,6 +122,15 @@ refused before upload if it exceeds the file limit or has a file over 25 MiB.
 GitHub Pages still caps the published site at 1 GB, so the existing
 1,000,000,000-byte budget applies to both copies.
 
+## Visitor counter
+
+Every page's footer shows a page-view badge from [hits.sh](https://hits.sh/),
+which counts each page load (not unique visitors) on both GitHub Pages and the
+Cloudflare mirror. Daily statistics are at
+<https://hits.sh/bichengwang.github.io/TradingAgents/>. The badge is set in
+`docs/stylesheets/extra.css`, which every published page links, so it reaches
+historical reports with the next release; delete that rule to remove it.
+
 ## Duplicate report protection
 
 All four generation launchers (`run_missing_today_claude.sh`,
