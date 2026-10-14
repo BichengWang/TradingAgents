@@ -11,10 +11,37 @@
 # TRADINGAGENTS_LLM_BACKEND_URL overrides the server root (no /v1 suffix).
 # Direct mode uses GOOGLE_API_KEY from the environment or project .env.
 # TRADINGAGENTS_MODE defaults to proxy; TRADINGAGENTS_GEMINI_MODE overrides it.
-# Direct mode defaults to gemini-3.8-flash; proxy mode uses its -high alias.
+# Direct mode defaults to gemini-3.8-flash; proxy mode defaults to gemini-4-argon.
 # Model overrides: TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL.
 # TRADINGAGENTS_GOOGLE_THINKING_LEVEL defaults to high; CONCURRENCY to 10.
 # Reports always go to this repository's docs/; TA_LOGDIR overrides logs.
+#
+# Pairing with CLIProxyAPI (proxy mode):
+#   1. Install and start the proxy (listens on :8317, config above):
+#        brew install cliproxyapi && brew services start cliproxyapi
+#      To run a local CLIProxyAPI checkout instead, build it with the formula's
+#      config path and swap it into the brew Cellar, then restart the service:
+#        go build -ldflags "-X main.DefaultConfigPath=/opt/homebrew/etc/cliproxyapi.conf" \
+#          -o /tmp/cliproxyapi ./cmd/server
+#        install -m 0555 /tmp/cliproxyapi "$(brew --prefix cliproxyapi)/bin/cliproxyapi"
+#        brew services restart cliproxyapi
+#      (brew upgrade/reinstall cliproxyapi restores the bottled binary.)
+#   2. Set a client key under access.api-keys in the config, then add a Google
+#      account: cliproxyapi -antigravity-login (auth JSON goes to ~/.cli-proxy-api).
+#      Gemini API keys can instead go under api-keys.gemini in the config.
+#   3. List the model IDs this account can actually use:
+#        curl -s -H "Authorization: Bearer <client key>" http://127.0.0.1:8317/v1/models
+#      Antigravity IDs carry a tier suffix (gemini-3.8-flash-high). Models the
+#      account is not entitled to are hidden; e.g. an upstream entry named
+#      gemini-4-argon-disabled means Gemini 4 is unavailable on that account.
+#   4. Verify, then run with advertised IDs if the default is not listed:
+#        bash scripts/run_missing_today_gemini.sh --check-only
+#        TRADINGAGENTS_DEEP_MODEL=gemini-3.8-flash-high \
+#          TRADINGAGENTS_QUICK_MODEL=gemini-3.8-flash-high \
+#          bash scripts/run_missing_today_gemini.sh NVDA AMD
+#   A probe reporting "upstream quota exhausted" means the account hit its limit;
+#   the reset time is in ~/.cli-proxy-api/logs/error-*.log. Wait for it, or add
+#   more accounts (the proxy round-robins between them).
 
 # Parse the complete body before running; edits during a batch must not shift
 # the file positions Bash reads after workers finish. Exit inside this block.
@@ -34,7 +61,7 @@ MODE="${TRADINGAGENTS_GEMINI_MODE:-${TRADINGAGENTS_MODE:-proxy}}"
 case "$MODE" in
   proxy)
     BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-http://127.0.0.1:8317}"
-    DEFAULT_MODEL="gemini-3.8-flash-high" ;;
+    DEFAULT_MODEL="gemini-4-argon" ;;
   direct)
     BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-https://generativelanguage.googleapis.com}"
     DEFAULT_MODEL="gemini-3.8-flash" ;;
