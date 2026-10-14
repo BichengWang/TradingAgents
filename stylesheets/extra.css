@@ -11,6 +11,27 @@
   max-width: 100%;
 }
 
+/* The ticker tabs are the site navigation; the left sidebar only repeats the
+   current page ("Home", the ticker), so drop it on desktop and give the
+   content its width. The phone drawer still uses it. */
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    display: none;
+  }
+}
+
+/* Visitor counter under the footer copyright. hits.sh counts each request for
+   the badge (page views, not unique visitors) and draws the running total.
+   It lives here, not in a template, because every published page links this
+   stylesheet unhashed, including report pages that are never rebuilt.
+   Statistics: https://hits.sh/bichengwang.github.io/TradingAgents/ */
+.md-copyright::after {
+  content: url("https://hits.sh/bichengwang.github.io/TradingAgents.svg?label=page%20views&color=4051b5");
+  display: block;
+  margin-top: 0.4rem;
+  line-height: 0;
+}
+
 /* Keep tables readable at ultra width without horizontal scroll surprises */
 .md-typeset table:not([class]) {
   display: table;
@@ -31,8 +52,9 @@ body:has(.daily-summary-layout) .md-sidebar--secondary {
 
 .daily-summary-rail {
   position: sticky;
-  top: 4rem;
-  max-height: calc(100vh - 5rem);
+  /* Clear the sticky header and ticker tabs (2.4rem each). */
+  top: 5.2rem;
+  max-height: calc(100vh - 6.2rem);
   overflow: auto;
   padding: 0.75rem;
   border: 1px solid var(--md-default-fg-color--lightest);
@@ -91,6 +113,12 @@ body:has(.daily-summary-layout) .md-sidebar--secondary {
 .daily-summary-tables table:not([class]) {
   font-size: 0.72rem;
   min-width: 48rem;
+}
+
+/* Ticker, model and suggestion read better on one line; the table scrolls
+   inside .daily-summary-tables when the column is too narrow. */
+.daily-summary-tables td:nth-child(-n + 3) {
+  white-space: nowrap;
 }
 
 .daily-summary-tables table:not([class]) th,
