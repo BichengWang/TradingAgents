@@ -115,14 +115,10 @@ def test_no_arguments_uses_all_shared_tickers(tmp_path, provider):
 
 @pytest.mark.parametrize("token_budget", [None, "65536"])
 @pytest.mark.parametrize("effort", [None, "high", "max"])
-# The launcher gives every model pair the same 256000-token default budget.
-@pytest.mark.parametrize("models", [
-    ("claude-opus-5-5", "claude-opus-5-5"),
-    ("claude-opus-5-5", "claude-sonnet-5-5"),
-    ("claude-opus-4-5", "claude-sonnet-5-5"),
-    ("claude-opus-5-5", "claude-haiku-4-5"),
-])
-def test_claude_workers_receive_output_budget(tmp_path, token_budget, effort, models):
+# Unset, the budget is exported empty so a project .env cap (python-dotenv never
+# overrides set variables) cannot truncate xhigh thinking; the SDK then applies
+# each model's own maximum.
+def test_claude_workers_receive_output_budget(tmp_path, token_budget, effort):
     root = tmp_path / "repo"
     (root / "scripts").mkdir(parents=True)
     (root / "bin").mkdir()
@@ -133,7 +129,7 @@ def test_claude_workers_receive_output_budget(tmp_path, token_budget, effort, mo
         shutil.copy2(ROOT / "cli" / helper, root / "cli" / helper)
     worker = root / "bin/uv"
     worker.write_text('''#!/bin/bash
-printf '%s' "$TRADINGAGENTS_MAX_TOKENS" > "$CAPTURE"
+printf '%s' "${TRADINGAGENTS_MAX_TOKENS-unset}" > "$CAPTURE"
 printf '%s\\n' "$@" > "$CAPTURE.args"
 report="docs/NVDA/20000101_${TRADINGAGENTS_DEEP_THINK_LLM}_20000102_030405"
 mkdir -p "$report/1_analysts" "$report/3_trading" "$report/5_portfolio"
@@ -147,8 +143,6 @@ done
         "PATH": str(root / "bin") + os.pathsep + os.defpath,
         "TRADINGAGENTS_MODE": "direct",
         "TRADINGAGENTS_DATE": "2000-01-01",
-        "TRADINGAGENTS_DEEP_MODEL": models[0],
-        "TRADINGAGENTS_QUICK_MODEL": models[1],
         "TA_LOGDIR": str(root / "logs"),
         "CAPTURE": str(capture),
     }
@@ -161,6 +155,6 @@ done
         cwd=tmp_path, env=env, capture_output=True, text=True, timeout=10,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert capture.read_text() == (token_budget or "256000")
+    assert capture.read_text() == (token_budget or "")
     args = capture.with_suffix(".args").read_text().splitlines()
     assert args[args.index("--anthropic-effort") + 1] == (effort or "xhigh")

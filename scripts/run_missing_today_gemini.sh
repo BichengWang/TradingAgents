@@ -5,16 +5,9 @@
 #   bash scripts/run_missing_today_gemini.sh NVDA AMD
 #   TRADINGAGENTS_MODE=direct bash scripts/run_missing_today_gemini.sh
 # --check-only verifies model access with a small Gemini request.
-#
-# Proxy mode starts the Homebrew service and uses CLIPROXY_API_KEY or the
-# client key in CLIPROXY_CONFIG (default /opt/homebrew/etc/cliproxyapi.conf).
-# TRADINGAGENTS_LLM_BACKEND_URL overrides the server root (no /v1 suffix).
-# Direct mode uses GOOGLE_API_KEY from the environment or project .env.
-# TRADINGAGENTS_MODE defaults to proxy; TRADINGAGENTS_GEMINI_MODE overrides it.
-# Direct mode defaults to gemini-3.8-flash; proxy mode uses its -high alias.
-# Model overrides: TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL.
-# TRADINGAGENTS_GOOGLE_THINKING_LEVEL defaults to high; CONCURRENCY to 10.
-# Reports always go to this repository's docs/; TA_LOGDIR overrides logs.
+# TODO: gemini 4 not work yet, use cmd following:
+#  TRADINGAGENTS_DEEP_MODEL=gemini-4-argon TRADINGAGENTS_QUICK_MODEL=gemini-3.8-flash GOOGLE_API_KEY={YOUR_API_KEY} TRADINGAGENTS_GEMINI_MODE=direct \
+#   bash scripts/run_missing_today_gemini.sh
 
 # Parse the complete body before running; edits during a batch must not shift
 # the file positions Bash reads after workers finish. Exit inside this block.
@@ -34,7 +27,7 @@ MODE="${TRADINGAGENTS_GEMINI_MODE:-${TRADINGAGENTS_MODE:-proxy}}"
 case "$MODE" in
   proxy)
     BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-http://127.0.0.1:8317}"
-    DEFAULT_MODEL="gemini-3.8-flash-high" ;;
+    DEFAULT_MODEL="gemini-4-argon" ;;
   direct)
     BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-https://generativelanguage.googleapis.com}"
     DEFAULT_MODEL="gemini-3.8-flash" ;;
