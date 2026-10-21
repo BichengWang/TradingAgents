@@ -16,7 +16,9 @@
 # TRADINGAGENTS_MODE defaults to proxy; TRADINGAGENTS_CLAUDE_MODE overrides it.
 # TRADINGAGENTS_OPENAI_REASONING_EFFORT also sets Claude effort (default max).
 # TRADINGAGENTS_LLM_RPM controls per-worker request pacing.
-# TRADINGAGENTS_MAX_TOKENS sets the output/reasoning budget (128000 for Claude 5.5).
+# TRADINGAGENTS_MAX_TOKENS overrides the output/reasoning budget. Unset, each
+# model gets its SDK maximum (128000 for Claude 5.5) and .env is ignored; set it
+# for model IDs the SDK does not know, which otherwise fall back to 4096.
 # TRADINGAGENTS_LLM_TIMEOUT sets the per-request timeout (1800s for Claude 5.5).
 
 # Parse the complete body before running; edits during a batch must not shift
@@ -67,9 +69,11 @@ proxy_preflight() {
   fi
 }
 DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-5-5}"
-QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-opus-5-5}"
-# Claude 5.5 tool workflows need room for thinking and the final answer; new
-# IDs can inherit the SDK's 4096-token fallback. Other models keep SDK defaults.
+QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-sonnet-5-5}"
+# xhigh thinking counts against max_tokens: a small .env cap (e.g. 8192) lets
+# thinking consume it and return no answer (stop reason: max_tokens). An empty
+# export keeps .env from filling it, so the SDK uses each model's maximum.
+export TRADINGAGENTS_MAX_TOKENS="${TRADINGAGENTS_MAX_TOKENS-}"
 export TRADINGAGENTS_LLM_TIMEOUT="${TRADINGAGENTS_LLM_TIMEOUT:-1800}"
 
 REASONING_EFFORT="${TRADINGAGENTS_OPENAI_REASONING_EFFORT:-xhigh}"
