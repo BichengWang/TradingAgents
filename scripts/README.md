@@ -59,6 +59,14 @@ checks that all historical report pages are unchanged and reachable. Old assets
 remain available for old pages. Historical report pages keep their original
 navigation; the homepage and updated ticker hubs link to the merged history.
 
+After the history check, builds refresh only the shared "Browse the live reports"
+footer link, including on historical pages and releases with no new runs. Reports
+and ticker hubs link to the corresponding `https://altairworld.com/TradingAgents/<TICKER>/`
+hub; the homepage links to the index. Links carry `utm_source=tradingagents`,
+`utm_medium=referral`, and `utm_campaign=report-footer` (reports and index) or
+`hub-footer` (hubs). The `altair-live-link` class lets the altairworld.com proxy
+remove these upstream referral links from its own copy.
+
 The normal push extends the prior deployment commit. If another release lands
 while building, the push fails safely; rerun to rebuild against that deployment.
 Running again after a successful release creates no additional release commit.

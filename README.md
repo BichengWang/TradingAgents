@@ -29,6 +29,8 @@
 
 # TradingAgents: Multi-Agents LLM Financial Trading Framework
 
+[Browse the live reports](https://altairworld.com/TradingAgents/?utm_source=tradingagents&utm_medium=referral&utm_campaign=readme) — dated, AI-generated research; not financial advice.
+
 ## News
 
 <!-- news:start -->

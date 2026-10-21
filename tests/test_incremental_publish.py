@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
 import pytest
 from bs4 import BeautifulSoup
@@ -128,6 +129,25 @@ def test_new_date_retains_html_only_history_and_rerun_is_noop(publication, monke
         "NVDA",
     }
     history.validate_indexes(output, history.report_paths(output))
+    for relative, ticker, campaign in [
+        ("index.html", "", "report-footer"),
+        ("AAPL/index.html", "AAPL", "hub-footer"),
+        ("MSFT/index.html", "MSFT", "hub-footer"),
+        (f"AAPL/{NEW_RUN}/complete_report/index.html", "AAPL", "report-footer"),
+        (f"MSFT/{OLD_RUN}/complete_report/index.html", "MSFT", "report-footer"),
+    ]:
+        links = history.read_page(output / relative).select("footer a.altair-live-link")
+        assert len(links) == 1
+        assert links[0].get_text() == "Browse the live reports"
+        target = urlsplit(links[0]["href"])
+        assert target.scheme == "https"
+        assert target.netloc == "altairworld.com"
+        assert target.path == f"/TradingAgents/{ticker + '/' if ticker else ''}"
+        assert parse_qs(target.query) == {
+            "utm_source": ["tradingagents"],
+            "utm_medium": ["referral"],
+            "utm_campaign": [campaign],
+        }
     assert (
         gzip.decompress((output / "sitemap.xml.gz").read_bytes())
         == (output / "sitemap.xml").read_bytes()
@@ -150,6 +170,32 @@ def test_new_date_retains_html_only_history_and_rerun_is_noop(publication, monke
     assert (output / "stylesheets/extra.css").read_bytes() == style.read_bytes()
     changed = {path for path, digest in hashes(output).items() if before.get(path) != digest}
     assert changed == {"stylesheets/extra.css"}
+
+
+def test_no_new_runs_adds_footer_to_html_only_history(publication):
+    repo, docs, base = publication
+    # Model a pre-referral deployment whose historical sources are gone.
+    original = {}
+    pages = history.report_paths(base) | {"index.html", "AAPL/index.html", "MSFT/index.html"}
+    for relative in pages:
+        path = base / relative
+        page = history.read_page(path)
+        for link in page.select(".altair-live-link"):
+            link.decompose()
+        path.write_text(str(page), encoding="utf-8")
+        original[path.relative_to(base).as_posix()] = path.read_text(encoding="utf-8")
+    commit_site(repo, base)
+    assert build(repo) == []
+    output = repo / "_site"
+    for relative, before in original.items():
+        page = history.read_page(output / relative)
+        links = page.select("footer a.altair-live-link")
+        assert len(links) == 1
+        links[0].decompose()
+        assert str(page) == before
+    before = hashes(output)
+    history.refresh_live_links(output)
+    assert hashes(output) == before
 
 
 def test_same_date_reruns_models_and_backfills_keep_latest_summary(publication):

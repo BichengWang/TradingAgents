@@ -242,6 +242,10 @@ def build_static_site(work_root: Path = ROOT, site_dir: Path | None = None) -> N
         raise WorkflowError("mkdocs is not available on PATH") from exc
     except subprocess.CalledProcessError as exc:
         raise WorkflowError(f"mkdocs build failed with exit code {exc.returncode}") from exc
+    # Import after module initialization: published_history shares WorkflowError.
+    from scripts.published_history import refresh_live_links
+
+    refresh_live_links(output_dir)
 
 
 def decision_summary_rows(home_text: str, analysis_date: str) -> list[str]:

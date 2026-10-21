@@ -183,6 +183,7 @@ def build_site(
         if not runs:
             print(f"No unpublished report folders in baseline {commit[:12]}.")
             refresh_stylesheets(merged)
+            history.refresh_live_links(merged)
             history.validate_indexes(merged, old_paths)
             if not identical_sites(merged, site_dir):
                 install_preview(merged, site_dir)
@@ -235,6 +236,7 @@ def build_site(
         for path, checksum in old_hashes.items():
             if not (merged / path).is_file() or digest(merged / path) != checksum:
                 raise workflow.WorkflowError(f"Published report changed during merge: {path}")
+        history.refresh_live_links(merged)
         history.validate_indexes(merged, all_paths)
         size = sum(p.stat().st_size for p in merged.rglob("*") if p.is_file())
         if size > MAX_SITE_BYTES:
