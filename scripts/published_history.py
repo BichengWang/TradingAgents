@@ -37,7 +37,7 @@ def refresh_live_links(site_dir: Path) -> None:
         # Only our link changes: preserve every other byte of historical HTML.
         updated, count = re.subn(
             r'<a class="altair-live-link md-grid" href="[^"]*">Browse the live reports</a>',
-            lambda _: link,
+            lambda _match, replacement=link: replacement,
             text,
         )
         if not count:
