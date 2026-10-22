@@ -6,8 +6,9 @@ import gzip
 import re
 from collections import Counter
 from copy import deepcopy
+from html import escape
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import quote, unquote, urlsplit
 from xml.etree import ElementTree as ET
 
 from bs4 import BeautifulSoup, Tag
@@ -15,6 +16,36 @@ from bs4 import BeautifulSoup, Tag
 from scripts.report_workflow import WorkflowError
 
 DATE_HEADING = re.compile(r"^(\d{4}-\d{2}-\d{2})-decision-summary$")
+
+
+def refresh_live_links(site_dir: Path) -> None:
+    """Refresh shared footer chrome without rewriting historical report bodies."""
+    reports = report_paths(site_dir)
+    tickers = {path.split("/", 1)[0] for path in reports}
+    pages = {"index.html", *reports, *(f"{ticker}/index.html" for ticker in tickers)}
+    for relative in sorted(pages):
+        path = site_dir / relative
+        text = path.read_text(encoding="utf-8")
+        ticker = relative.split("/", 1)[0] if relative != "index.html" else ""
+        campaign = "hub-footer" if relative == f"{ticker}/index.html" else "report-footer"
+        target = f"https://altairworld.com/TradingAgents/{quote(ticker, safe='') + '/' if ticker else ''}"
+        target += f"?utm_source=tradingagents&utm_medium=referral&utm_campaign={campaign}"
+        link = (
+            f'<a class="altair-live-link md-grid" href="{escape(target, quote=True)}">'
+            "Browse the live reports</a>"
+        )
+        # Only our link changes: preserve every other byte of historical HTML.
+        updated, count = re.subn(
+            r'<a class="altair-live-link md-grid" href="[^"]*">Browse the live reports</a>',
+            lambda _match, replacement=link: replacement,
+            text,
+        )
+        if not count:
+            if "</footer>" not in text:
+                raise WorkflowError(f"Missing report footer: {relative}")
+            updated = text.replace("</footer>", link + "</footer>", 1)
+        if updated != text:
+            path.write_text(updated, encoding="utf-8")
 
 
 def required(page: Tag, selector: str) -> Tag:
