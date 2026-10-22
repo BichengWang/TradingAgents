@@ -36,6 +36,15 @@ Each mode accepts `proxy` or `direct`. Direct mode uses the corresponding
 provider API key from the environment or project `.env`.
 The older `run_all_today.sh` has no proxy/direct selector.
 
+`run_missing_today_claude.sh` and `run_batch_claude.sh` run the index tickers
+(`INDEX_TICKERS` in `default_tickers.sh`) with `claude-fable-5-1` as the deep
+model and every other ticker with `TRADINGAGENTS_DEEP_MODEL` (default
+`claude-opus-5-5`). Set `TRADINGAGENTS_INDEX_DEEP_MODEL` to change the index
+model; all other settings are shared. Index reports, completion checks, and
+locks use the index model's slug. The batch launcher submits the index tickers
+as their own run; `status`, `collect`, `retry`, and `wait` without a `RUN_ID`
+act on every run of the last submit.
+
 ## Incremental releases
 
 Install the documentation dependencies with `python3 -m pip install '.[docs]'`.
