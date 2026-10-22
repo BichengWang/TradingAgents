@@ -10,7 +10,10 @@
 # not the upstream OAuth token. TRADINGAGENTS_LLM_BACKEND_URL overrides the
 # default http://127.0.0.1:8317 server root.
 # TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL must be advertised by
-# the proxy. --check-only checks access and model IDs without generating reports.
+# the proxy. INDEX_TICKERS from default_tickers.sh (SPY, QQQ, ...) run with
+# TRADINGAGENTS_INDEX_DEEP_MODEL (default claude-fable-5-1) as their deep model;
+# every other setting is shared. --check-only checks access and model IDs
+# without generating reports.
 # For the public Anthropic API, set TRADINGAGENTS_MODE=direct and
 # ANTHROPIC_API_KEY. The direct API key may also come from the project's .env.
 # TRADINGAGENTS_MODE defaults to proxy; TRADINGAGENTS_CLAUDE_MODE overrides it.
@@ -63,12 +66,13 @@ proxy_preflight() {
     export CLIPROXY_API_KEY
     export ANTHROPIC_API_KEY="$CLIPROXY_API_KEY"
     unset ANTHROPIC_AUTH_TOKEN
-    "$PYTHON" scripts/claude_proxy.py --base-url "$BACKEND_URL" "$DEEP_MODEL" "$QUICK_MODEL" || return 1
+    "$PYTHON" scripts/claude_proxy.py --base-url "$BACKEND_URL" "$@" || return 1
   else
     echo "Direct Anthropic API selected; proxy preflight does not apply."
   fi
 }
 DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-5-5}"
+INDEX_DEEP_MODEL="${TRADINGAGENTS_INDEX_DEEP_MODEL:-claude-fable-5-1}"
 QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-sonnet-5-5}"
 # xhigh thinking counts against max_tokens: a small .env cap (e.g. 8192) lets
 # thinking consume it and return no answer (stop reason: max_tokens). An empty
@@ -87,13 +91,13 @@ model_slug() {
   printf '%s\n' "$slug"
 }
 MODEL_SLUG="$(model_slug "$DEEP_MODEL")"
-REPORT_GLOB="${DATE_SLUG}_${MODEL_SLUG}_*"
+INDEX_MODEL_SLUG="$(model_slug "$INDEX_DEEP_MODEL")"
 CONCURRENCY="${CONCURRENCY:-20}"
 case "$CONCURRENCY" in
   ''|*[!0-9]*|0) echo "CONCURRENCY must be a positive integer" >&2; exit 1 ;;
 esac
 if [ "$CHECK_ONLY" -eq 1 ]; then
-  proxy_preflight
+  proxy_preflight "$DEEP_MODEL" "$INDEX_DEEP_MODEL" "$QUICK_MODEL"
   exit $?
 fi
 LOGDIR="${TA_LOGDIR:-/tmp/ta_runlogs}"
@@ -109,18 +113,40 @@ else
   ALL_TICKERS=("${DEFAULT_TICKERS[@]}")
 fi
 
+# Report identity follows the deep model, so index tickers are checked, locked
+# and generated under INDEX_DEEP_MODEL. The custom list may omit INDEX_TICKERS.
+is_index_ticker() {
+  case " ${INDEX_TICKERS[*]:-} " in
+    *" $1 "*) return 0 ;;
+  esac
+  return 1
+}
+
 # --- a ticker is "missing" if it has no docs/<T>/<DATESLUG>_<MODEL_SLUG>_*/ folder ------
 missing_tickers() {
-  python3 "$ROOT/scripts/report_guard.py" missing --reports-dir "$ROOT/docs" \
-    --date "$DATE" --model "$DEEP_MODEL" -- "${ALL_TICKERS[@]}"
+  if [ "${#INDEX_RUN[@]}" -gt 0 ]; then
+    python3 "$ROOT/scripts/report_guard.py" missing --reports-dir "$ROOT/docs" \
+      --date "$DATE" --model "$INDEX_DEEP_MODEL" -- "${INDEX_RUN[@]}" || return 1
+  fi
+  if [ "${#OTHER_RUN[@]}" -gt 0 ]; then
+    python3 "$ROOT/scripts/report_guard.py" missing --reports-dir "$ROOT/docs" \
+      --date "$DATE" --model "$DEEP_MODEL" -- "${OTHER_RUN[@]}" || return 1
+  fi
 }
 
 # --- run one heavy-run pass over a list of tickers ------------------------
 # Mirrors the skill.md "heavy run" one-liner exactly.
 run_pass() {
-  local conc="$1"; shift
-  printf '%s\n' "$@" | xargs -P"$conc" -I{} bash -c '
-      t="$1"; DATE="$2"; LOGDIR="$3"; PROVIDER="$4"; BACKEND_URL="$5"; DEEP_MODEL="$6"; QUICK_MODEL="$7"; ANALYSTS="$8"; DEPTH="$9"; REASONING_EFFORT="${10}"
+  local conc="$1" t; shift
+  # One "<TICKER> <DEEP_MODEL>" line per worker; model IDs contain no spaces.
+  for t in "$@"; do
+    if is_index_ticker "$t"; then
+      printf '%s %s\n' "$t" "$INDEX_DEEP_MODEL"
+    else
+      printf '%s %s\n' "$t" "$DEEP_MODEL"
+    fi
+  done | xargs -P"$conc" -I{} bash -c '
+      t="${1%% *}"; DEEP_MODEL="${1#* }"; DATE="$2"; LOGDIR="$3"; PROVIDER="$4"; BACKEND_URL="$5"; QUICK_MODEL="$6"; ANALYSTS="$7"; DEPTH="$8"; REASONING_EFFORT="$9"
       TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT="${TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT:-0}" \
       TRADINGAGENTS_ANTHROPIC_CACHE=1 \
       TRADINGAGENTS_LLM_PROVIDER="$PROVIDER" \
@@ -138,7 +164,7 @@ run_pass() {
         --anthropic-effort "$REASONING_EFFORT" \
         --checkpoint \
         && echo "[OK $t] $(date +%T)" || echo "[FAIL $t] $(date +%T)"
-    ' _ {} "$DATE" "$LOGDIR" "$PROVIDER" "$BACKEND_URL" "$DEEP_MODEL" "$QUICK_MODEL" "$ANALYSTS" "$DEPTH" "$REASONING_EFFORT"
+    ' _ {} "$DATE" "$LOGDIR" "$PROVIDER" "$BACKEND_URL" "$QUICK_MODEL" "$ANALYSTS" "$DEPTH" "$REASONING_EFFORT"
 }
 
 # Portable (bash 3.2 / macOS) array-from-lines; sets the named global array.
@@ -160,6 +186,17 @@ collect_missing() {
 
 # Normalize and deduplicate arguments before scheduling parallel workers.
 read_into ALL_TICKERS < <(printf '%s\n' "${ALL_TICKERS[@]}" | awk 'NF {t=toupper($0); if (!seen[t]++) print t}')
+INDEX_RUN=()
+OTHER_RUN=()
+for t in "${ALL_TICKERS[@]}"; do
+  if is_index_ticker "$t"; then INDEX_RUN+=("$t"); else OTHER_RUN+=("$t"); fi
+done
+REPORT_GLOB="${DATE_SLUG}_${MODEL_SLUG}_*"
+MODEL_LABEL="$MODEL_SLUG"
+if [ "${#INDEX_RUN[@]}" -gt 0 ]; then
+  REPORT_GLOB="$REPORT_GLOB (index: ${DATE_SLUG}_${INDEX_MODEL_SLUG}_*)"
+  MODEL_LABEL="$MODEL_LABEL (index: $INDEX_MODEL_SLUG)"
+fi
 
 # --- pass 1: everything missing, at the safe concurrency ------------------
 collect_missing TODO || exit 1
@@ -167,8 +204,15 @@ if [ "${#TODO[@]}" -eq 0 ]; then
   echo "Nothing to run — all ${#ALL_TICKERS[@]} tickers already have a ${REPORT_GLOB} report."
   exit 0
 fi
-proxy_preflight || exit 1
-echo "Pass 1: ${#TODO[@]} ticker(s) missing for ${DATE} ${MODEL_SLUG}, concurrency=${CONCURRENCY}"
+PREFLIGHT_MODELS=("$DEEP_MODEL" "$QUICK_MODEL")
+for t in "${TODO[@]}"; do
+  if is_index_ticker "$t"; then
+    PREFLIGHT_MODELS+=("$INDEX_DEEP_MODEL")
+    break
+  fi
+done
+proxy_preflight "${PREFLIGHT_MODELS[@]}" || exit 1
+echo "Pass 1: ${#TODO[@]} ticker(s) missing for ${DATE} ${MODEL_LABEL}, concurrency=${CONCURRENCY}"
 echo "  ${TODO[*]}"
 run_pass "$CONCURRENCY" "${TODO[@]}"
 
