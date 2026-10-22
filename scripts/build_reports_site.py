@@ -321,8 +321,11 @@ def extract_current_price(
 
 def extract_confidence(report_text: str) -> str:
     value = field(report_text, "Confidence")
-    if value.lower() in {"low", "medium", "high"}:
-        return value.capitalize()
+    # Decisions often explain the level after the field (for example,
+    # "**Confidence**: Medium. The filed fundamentals ...").
+    level = re.match(r"(low|medium|high)\b", value, flags=re.I)
+    if level:
+        return level.group(1).capitalize()
     for pattern in (
         r"^\*\*Confidence:\*\*\s*([A-Za-z]+)",
         r"Confidence is \*\*([A-Za-z]+)\*\*",

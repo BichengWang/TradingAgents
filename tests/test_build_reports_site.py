@@ -281,6 +281,48 @@ def test_decision_parser_accepts_target_price_alias():
 
 
 @pytest.mark.unit
+@pytest.mark.parametrize("label", ["**Confidence:**", "**Confidence**:"])
+def test_summary_uses_decision_confidence_with_explanation(tmp_path, monkeypatch, label):
+    builder = load_builder()
+    docs = tmp_path / "docs"
+    folder = "20261021_claude-opus-5-5_20261021_123508"
+    run_dir = docs / "AAPL" / folder
+    (run_dir / "5_portfolio").mkdir(parents=True)
+    decision = (
+        f"{label.replace('Confidence', 'Rating')} Hold\n"
+        f"{label.replace('Confidence', 'Price Target')} $300. The base case.\n"
+        f"{label.replace('Confidence', 'Time Horizon')} 6 months\n"
+        f"{label} Medium. The filed fundamentals support the decision.\n"
+    )
+    (run_dir / "5_portfolio" / "decision.md").write_text(decision, encoding="utf-8")
+    (run_dir / "complete_report.md").write_text(
+        "# Analyst\n\n**Confidence:** Low\n\n# Final Decision\n\n" + decision,
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(builder, "DOCS_DIR", docs)
+
+    row = builder.build_summary_row(
+        builder.Run("AAPL", "2026-10-21", "claude-opus-5-5", "2026-10-21 12:35:08", folder)
+    )
+
+    assert row.confidence == "Medium"
+    assert row.price_target == 300.0
+    assert row.horizon == "6 months"
+    assert row.rating == "Hold"
+
+
+@pytest.mark.unit
+@pytest.mark.parametrize("level", ["Low", "Medium", "High"])
+@pytest.mark.parametrize("label", ["**Confidence:**", "**Confidence**:"])
+def test_confidence_accepts_level_and_trailing_prose(label, level):
+    builder = load_builder()
+
+    assert builder.extract_confidence(f"{label} {level}. Supporting evidence.\n") == level
+    assert builder.extract_confidence(f"{label} {level}\n") == level
+    assert builder.extract_confidence(f"{label} {level}er\n") == "n/a"
+
+
+@pytest.mark.unit
 def test_summary_row_preserves_missing_target(tmp_path, monkeypatch):
     builder = load_builder()
     docs = tmp_path / "docs"
