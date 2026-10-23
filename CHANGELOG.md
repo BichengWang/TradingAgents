@@ -11,6 +11,7 @@ Changes that need action when upgrading are listed under "Upgrading from" in the
 ### Fixed
 
 - Research index confidence accepts explanations after the Portfolio Manager's confidence level, including both `**Confidence:** Medium. ...` and `**Confidence**: Medium. ...`, instead of falling back to an earlier analyst's confidence.
+- Batch runs no longer send Claude Fable 5.1, Opus 5.5 or Sonnet 5.5 a forced schema tool, which those models reject with HTTP 400. Their structured answers (Sentiment Analyst, Research Manager, Trader, Portfolio Manager) are requested through `output_config.format`, as live runs do.
 
 ## [0.6.0] — 2026-10-03
 

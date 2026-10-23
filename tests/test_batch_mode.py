@@ -228,6 +228,42 @@ def test_anthropic_adapter_extracts_structured_tool_use(tmp_path):
     assert args == {"rating": "Hold"}
 
 
+@pytest.mark.parametrize("model, forced", [
+    ("claude-fable-5-1", False),
+    ("claude-opus-5-5", False),
+    ("claude-sonnet-5-5", False),
+    ("claude-opus-4-8", True),
+])
+def test_anthropic_structured_request_forces_the_schema_tool_only_where_allowed(tmp_path, model, forced):
+    # Fable 5.1 and the 5.5 models answer a forced tool_choice with HTTP 400.
+    from pydantic import BaseModel
+
+    from tradingagents.batch.deferred import structured_kwargs
+
+    class Pick(BaseModel):
+        rating: str
+
+    config = _config(tmp_path)
+    config.update(llm_provider="anthropic", anthropic_effort="max")
+    adapter = AnthropicBatchAdapter(config)
+    payload = adapter.build_payload(
+        model=model,
+        messages=[HumanMessage("Rate it.")],
+        request_kwargs=structured_kwargs("anthropic", model, Pick),
+    )
+    if forced:
+        assert payload["tool_choice"] == {"type": "tool", "name": "Pick"}
+        return
+    assert "tool_choice" not in payload and "tools" not in payload
+    assert payload["output_config"]["format"]["type"] == "json_schema"
+    assert payload["output_config"]["effort"] == "max"
+    body = {"content": [
+        {"type": "thinking", "thinking": "reasoning", "signature": "signed_fixture"},
+        {"type": "text", "text": '{"rating": "Hold"}'},
+    ]}
+    assert Pick(**adapter.structured_args_from_response(body)).rating == "Hold"
+
+
 def test_runner_submits_first_deferred_request(tmp_path, monkeypatch):
     import tradingagents.batch.runner as runner_mod
 
