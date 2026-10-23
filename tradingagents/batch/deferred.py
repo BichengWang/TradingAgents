@@ -13,6 +13,7 @@ from pydantic import ConfigDict, Field
 
 from tradingagents.batch.adapters import BaseBatchAdapter
 from tradingagents.batch.manifest import BatchManifest, BatchRequest, BatchRunState
+from tradingagents.llm_clients.anthropic_client import _supports_forced_tool_choice
 from tradingagents.llm_clients.base_client import normalize_content
 
 try:
@@ -99,7 +100,7 @@ class BatchRuntimeContext:
             provider=provider,
             model=model,
             messages=messages,
-            request_kwargs={**request_kwargs, **structured_kwargs(provider, schema)},
+            request_kwargs={**request_kwargs, **structured_kwargs(provider, model, schema)},
             kind="structured",
             schema_name=schema.__name__,
         )
@@ -238,7 +239,7 @@ class DeferredStructuredRunnable:
         )
 
 
-def structured_kwargs(provider: str, schema: type) -> dict[str, Any]:
+def structured_kwargs(provider: str, model: str, schema: type) -> dict[str, Any]:
     if provider == "openai":
         tool = convert_to_openai_tool(schema)
         return {
@@ -247,6 +248,12 @@ def structured_kwargs(provider: str, schema: type) -> dict[str, Any]:
             "parallel_tool_calls": False,
         }
     if provider == "anthropic":
+        # Fable 5.1 and the 5.5 models answer a forced tool_choice with HTTP 400,
+        # so constrain the final text with output_config.format as live runs do.
+        if not _supports_forced_tool_choice(model):
+            from anthropic import transform_schema
+
+            return {"output_config": {"format": {"type": "json_schema", "schema": transform_schema(schema)}}}
         if convert_to_anthropic_tool is None:
             raise RuntimeError("langchain-anthropic tool conversion is unavailable")
         return {

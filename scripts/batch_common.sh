@@ -31,7 +31,7 @@ LATEST_FILE="$STATE_DIR/${LABEL}_latest"
 mkdir -p "$STATE_DIR" || exit 1
 
 have_key() {
-  [ -n "${!KEY_VAR:-}" ] || rg -q "^${KEY_VAR}=." "$ROOT/.env" 2>/dev/null
+  [ -n "${!KEY_VAR:-}" ] || grep -q "^${KEY_VAR}=." "$ROOT/.env" 2>/dev/null
 }
 
 batch_cli() { uv run python -m cli.main batch "$@"; }
