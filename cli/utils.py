@@ -296,6 +296,10 @@ def _select_model(provider: str, mode: str) -> str:
     """Select a model for the given provider and mode (quick/deep)."""
     if provider.lower() == "openrouter":
         return select_openrouter_model(mode)
+    if provider.lower() == "chatgpt":
+        from cli.prompts import select_chatgpt_model
+
+        return select_chatgpt_model(mode)
 
     if provider.lower() == "azure":
         return _require_text(
@@ -353,6 +357,7 @@ def _llm_provider_table() -> list[tuple[str, str, str | None]]:
     return [
         ("Anthropic", "anthropic", "https://api.anthropic.com/"),
         ("OpenAI", "openai", "https://api.openai.com/v1"),
+        ("ChatGPT (Plus or Pro plan)", "chatgpt", "https://api.openai.com/v1"),
         ("Google", "google", None),
         ("xAI", "xai", "https://api.x.ai/v1"),
         ("DeepSeek", "deepseek", "https://api.deepseek.com"),

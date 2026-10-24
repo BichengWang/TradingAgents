@@ -25,8 +25,7 @@ def interactive_cli(request, monkeypatch):
         "anthropic_effort": "max",
     }.items():
         monkeypatch.setitem(default_config.DEFAULT_CONFIG, key, value)
-    monkeypatch.setattr(module, "fetch_announcements", lambda: None)
-    monkeypatch.setattr(module, "display_announcements", lambda *a: None)
+    monkeypatch.setattr(module.updates, "enabled", lambda: False)
     monkeypatch.setattr(module, "get_ticker", lambda: "NVDA")
     monkeypatch.setattr(module, "get_analysis_date", lambda: "2026-09-01")
     monkeypatch.setattr(module, "select_analysts", lambda *a: [])
