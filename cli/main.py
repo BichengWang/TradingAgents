@@ -5,8 +5,10 @@ import sys
 import tempfile
 import time
 from collections import deque
+from enum import StrEnum
 from functools import wraps
 from pathlib import Path
+from typing import Annotated
 
 import typer
 from rich import box
@@ -15,13 +17,14 @@ from rich.console import Console
 from rich.layout import Layout
 from rich.live import Live
 from rich.markdown import Markdown
+from rich.markup import escape
 from rich.panel import Panel
 from rich.rule import Rule
 from rich.spinner import Spinner
 from rich.table import Table
 from rich.text import Text
 
-from cli.announcements import display_announcements, fetch_announcements
+from cli import updates
 from cli.checkpoint import stream_with_checkpoint
 from cli.models import AnalystType, AssetType
 from cli.prompts import parse_analysts
@@ -61,6 +64,8 @@ from tradingagents.graph.analyst_execution import (
     sync_analyst_tracker_from_chunk,
 )
 from tradingagents.graph.trading_graph import TradingAgentsGraph
+from tradingagents.llm_clients.factory import REASONING_EFFORT_PROVIDERS
+from tradingagents.llm_clients.openai_client import SIGNED_IN_PROVIDERS
 from tradingagents.portfolio import load_portfolio
 from tradingagents.reporting import report_settings, write_report_tree
 
@@ -534,9 +539,11 @@ def get_user_selections():
     console.print()
     console.print()  # Add vertical space before announcements
 
-    # Fetch and display announcements (silent on failure)
-    announcements = fetch_announcements()
-    display_announcements(console, announcements)
+    # What's new comes from a cache refreshed in the background, and only for
+    # someone at a terminal: a run never waits on it and unattended runs skip it.
+    if updates.enabled():
+        updates.show(console)
+        updates.start_background_refresh()
 
     # Create a boxed questionnaire for each step
     def create_question_box(title, prompt, default=None):
@@ -683,7 +690,7 @@ def get_user_selections():
             confirm_ollama_endpoint(backend_url)
 
 
-    _check_tier_providers(selected_llm_provider)
+    _check_tier_providers(selected_llm_provider, backend_url)
 
     # Step 7: Thinking agents (skipped when either model is set via environment)
     if os.environ.get("TRADINGAGENTS_QUICK_THINK_LLM") or os.environ.get("TRADINGAGENTS_DEEP_THINK_LLM"):
@@ -724,7 +731,7 @@ def get_user_selections():
             "Gemini thinking mode", "Step 8: Thinking Mode",
             "Configure Gemini thinking mode", ask_gemini_thinking_config,
         )
-    elif provider_lower == "openai":
+    elif provider_lower in REASONING_EFFORT_PROVIDERS:
         reasoning_effort = thinking_value_or_prompt(
             "TRADINGAGENTS_OPENAI_REASONING_EFFORT", "openai_reasoning_effort",
             "Reasoning effort", "Step 8: Reasoning Effort",
@@ -1969,6 +1976,39 @@ def backtest(
     for ticker, reason in result.settlement_failures:
         console.print(f"[yellow]unsettled:[/yellow] {ticker}: {reason}")
 
+
+# The plans `login` and `logout` take: the providers signed in to, not keyed.
+Plan = StrEnum("Plan", {name: name for name in SIGNED_IN_PROVIDERS})
+
+
+@app.command()
+def login(plan: Annotated[Plan, typer.Argument(help="The plan to sign in with")]):
+    """Sign in with your ChatGPT Plus or Pro plan, for the chatgpt provider."""
+    from tradingagents.llm_clients import chatgpt_auth
+
+    try:
+        # One unwrapped line, so the sign-in address can be copied whole.
+        email = chatgpt_auth.sign_in(
+            say=lambda line: console.print(line, soft_wrap=True, markup=False, highlight=False))
+    except chatgpt_auth.ChatGPTAuthError as exc:
+        console.print(f"[red]{escape(str(exc))}[/red]")
+        raise typer.Exit(code=1) from None
+    console.print(f"[green]Signed in to ChatGPT as {escape(email)}.[/green]")
+
+
+@app.command()
+def logout(plan: Annotated[Plan, typer.Argument(help="The plan to sign out of")]):
+    """Sign out of your ChatGPT plan: revoke this machine's access and forget it."""
+    from tradingagents.llm_clients import chatgpt_auth
+
+    outcome = chatgpt_auth.sign_out()
+    if outcome == "revoked":
+        console.print("Signed out of ChatGPT.")
+    elif outcome == "forgotten":
+        console.print("[yellow]Signed out here, but OpenAI could not be reached to revoke the sign-in; "
+                      "it stays valid at OpenAI until it expires.[/yellow]")
+    else:
+        console.print("Not signed in to ChatGPT.")
 
 
 if __name__ == "__main__":
