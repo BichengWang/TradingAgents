@@ -134,6 +134,19 @@ def test_probe_reports_exhausted_quota(monkeypatch):
             gemini_model_probe.probe_models("http://localhost:8317", ["gemini-test"], "high", "proxy")
 
 
+def test_probe_reports_depleted_prepay_credits_not_rate_limit(monkeypatch):
+    monkeypatch.setenv("GOOGLE_API_KEY", "direct-key")
+    with patch.object(gemini_model_probe.genai, "Client") as client:
+        client.return_value.models.generate_content.side_effect = Exception(
+            "402 RESOURCE_EXHAUSTED. {'error': {'code': 402, 'message': "
+            "'Your prepayment credits are depleted.', 'status': 'RESOURCE_EXHAUSTED'}}"
+        )
+        with pytest.raises(RuntimeError, match="prepayment credits are depleted"):
+            gemini_model_probe.probe_models(
+                "https://generativelanguage.googleapis.com", ["gemini-test"], "high", "direct"
+            )
+
+
 def test_probe_checks_duplicate_model_once(monkeypatch):
     monkeypatch.setattr(gemini_model_probe, "client_key", lambda: "fixture-key")
     with patch.object(gemini_model_probe.genai, "Client") as client:

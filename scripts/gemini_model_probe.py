@@ -44,6 +44,11 @@ def probe_models(base_url: str, models: list[str], thinking_level: str, mode: st
                     f"upstream quota exhausted{wait}; wait for its reset or use "
                     "a model/account with capacity"
                 )
+            elif "402" in message or "prepayment credits" in message:
+                reason = (
+                    "Google prepayment credits are depleted; add credits at "
+                    "https://ai.studio/projects or use a key with billing"
+                )
             elif "429" in message or "RESOURCE_EXHAUSTED" in message:
                 reason = "rate limited by the upstream provider"
             elif "503" in message or "MODEL_CAPACITY_EXHAUSTED" in message:
