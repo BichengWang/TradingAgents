@@ -30,7 +30,7 @@ case "$MODE" in
     DEFAULT_MODEL="gemini-4-argon" ;;
   direct)
     BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-https://generativelanguage.googleapis.com}"
-    DEFAULT_MODEL="gemini-3.8-flash" ;;
+    DEFAULT_MODEL="gemini-4-argon" ;;
   *) echo "TRADINGAGENTS_GEMINI_MODE/TRADINGAGENTS_MODE must be proxy or direct" >&2; exit 1 ;;
 esac
 PYTHON="${TRADINGAGENTS_PYTHON:-$ROOT/.venv/bin/python}"
