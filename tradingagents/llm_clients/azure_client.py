@@ -7,7 +7,7 @@ from .base_client import BaseLLMClient, normalize_content
 from .retry import call_with_rate_limit_retry
 
 _PASSTHROUGH_KWARGS = (
-    "timeout", "max_retries", "api_key", "reasoning_effort", "temperature",
+    "timeout", "max_retries", "api_key", "reasoning_effort", "temperature", "max_tokens",
     "callbacks", "http_client", "http_async_client", "rate_limiter",
 )
 
@@ -30,7 +30,8 @@ class AzureOpenAIClient(BaseLLMClient):
 
     Requires environment variables:
         AZURE_OPENAI_API_KEY: API key
-        AZURE_OPENAI_ENDPOINT: Endpoint URL (e.g. https://<resource>.openai.azure.com/)
+        AZURE_OPENAI_ENDPOINT: Endpoint URL (e.g. https://<resource>.openai.azure.com/),
+            unless backend_url gives one
         AZURE_OPENAI_DEPLOYMENT_NAME: Deployment name
         OPENAI_API_VERSION: API version (e.g. 2025-03-01-preview)
     """
@@ -46,6 +47,8 @@ class AzureOpenAIClient(BaseLLMClient):
             "model": self.model,
             "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT_NAME", self.model),
         }
+        if self.base_url:   # a configured endpoint, else AZURE_OPENAI_ENDPOINT
+            llm_kwargs["azure_endpoint"] = self.base_url
 
         for key in _PASSTHROUGH_KWARGS:
             if key in self.kwargs:

@@ -106,8 +106,6 @@ def test_on_windows_the_lock_is_waited_for_while_another_writer_holds_it(tmp_pat
     import errno
     import sys
 
-    # macOS exposes only the portable EDEADLK name, unlike Linux and Windows.
-    monkeypatch.delattr(errno, "EDEADLOCK", raising=False)
     fake, calls = _fake_msvcrt([OSError(errno.EDEADLK, "held"), None])
     monkeypatch.setitem(sys.modules, "msvcrt", fake)
 

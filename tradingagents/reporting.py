@@ -119,6 +119,8 @@ def write_report_tree(final_state: dict, ticker: str, save_path, settings: dict 
     self-contained page of the same report (#1419). ``normalize_headings``
     applies the fork CLI's heading normalization to both complete reports;
     individual stage files retain the original agent output.
+    Reusing a directory replaces the generated report files, removing sections
+    absent from this run and disabled HTML. Other files and directories are kept.
     """
     require_price_target(final_state.get("final_trade_decision") or "")
     save_path = Path(save_path)
@@ -145,4 +147,18 @@ def write_report_tree(final_state: dict, ticker: str, save_path, settings: dict 
             render_report(ticker, final_state, settings, parts, normalize_headings=normalize_headings),
             encoding="utf-8",
         )
+    else:
+        (save_path / "complete_report.html").unlink(missing_ok=True)
+
+    # Reconcile only the filenames owned by this writer; never clear the tree,
+    # since callers may keep notes or other artifacts alongside the reports.
+    current_files = {
+        (folder, filename)
+        for _heading, folder, written in parts
+        for _agent, filename, _text in written
+    }
+    for _heading, folder, agents in _SECTIONS:
+        for _agent, filename, _path in agents:
+            if (folder, filename) not in current_files:
+                (save_path / folder / filename).unlink(missing_ok=True)
     return save_path / "complete_report.md"
