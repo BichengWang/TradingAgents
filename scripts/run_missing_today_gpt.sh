@@ -62,7 +62,8 @@ proxy_preflight() {
     CLIPROXY_API_KEY="$("$PYTHON" scripts/claude_proxy.py --key)" || return 1
     export CLIPROXY_API_KEY
     export OPENAI_API_KEY="$CLIPROXY_API_KEY"
-    "$PYTHON" scripts/claude_proxy.py --provider codex --base-url "$BACKEND_URL" "$DEEP_MODEL" "$QUICK_MODEL" || return 1
+    # --probe catches a Codex usage-limit cooldown before 50 workers hit it.
+    "$PYTHON" scripts/claude_proxy.py --provider codex --probe --base-url "$BACKEND_URL" "$DEEP_MODEL" "$QUICK_MODEL" || return 1
   else
     echo "Direct OpenAI API selected; proxy preflight does not apply."
   fi

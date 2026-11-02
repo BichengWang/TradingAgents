@@ -20,6 +20,10 @@ Two error families are deliberately *not* retried:
   are already covered by the SDK retries, and genuine request errors
   (400s) must surface immediately.
 
+A 429 whose ``retry-after`` exceeds the whole remaining wait budget
+(``max_wait`` x retries left) also raises at once: a subscription usage
+limit that resets in hours cannot be ridden out by capped waits.
+
 Env overrides (read at call time so batch scripts can export them without
 code changes; set retries to 0 to disable the layer entirely):
 
@@ -146,6 +150,16 @@ def call_with_rate_limit_retry(fn: Callable[[], T], *, description: str = "LLM c
             if attempt >= max_retries or not is_retryable_rate_limit(exc):
                 raise
             wait = _retry_after_seconds(exc)
+            # A subscription cooldown (e.g. CLIProxyAPI's usage_limit_reached,
+            # Retry-After of hours) outlasts every remaining capped wait; fail
+            # now instead of sleeping through retries that cannot succeed.
+            budget = max_wait * (max_retries - attempt)
+            if wait is not None and wait > budget:
+                logger.error(
+                    "%s: provider rate limit resets in %.0fs, beyond the %.0fs retry budget; giving up",
+                    description, wait, budget,
+                )
+                raise
             if wait is None:
                 wait = base_wait * (2 ** attempt)
             wait = min(max(wait, 1.0), max_wait)
