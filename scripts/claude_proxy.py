@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Resolve CLIProxyAPI's client key or check its advertised Claude/Codex/Gemini models."""
+"""Resolve CLIProxyAPI's client key or check its advertised Claude/Codex/Gemini models.
+
+--probe also sends each model one tiny completion, catching quota cooldowns.
+"""
 
 import argparse
 import json
@@ -77,11 +80,43 @@ def check_models(base_url, models, provider="claude"):
     print("Proxy preflight OK: " + ", ".join(models))
 
 
+def probe_models(base_url, models):
+    """Send one tiny completion per model; an advertised model can still be in quota cooldown."""
+    url = base_url.rstrip("/")
+    if not url.endswith("/v1"):
+        url += "/v1"
+    for model in models:
+        request = urllib.request.Request(
+            url + "/chat/completions",
+            data=json.dumps({"model": model, "messages": [{"role": "user", "content": "Reply OK."}]}).encode(),
+            headers={"Authorization": "Bearer " + client_key(), "Content-Type": "application/json"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=120):
+                pass
+        except urllib.error.HTTPError as exc:
+            try:
+                error = json.load(exc).get("error", {})
+            except (ValueError, AttributeError):
+                error = {}
+            if not isinstance(error, dict):
+                error = {}
+            reset = error.get("reset_time") or exc.headers.get("Retry-After")
+            raise ValueError(
+                f"{model} probe returned HTTP {exc.code} ({error.get('code') or 'error'})"
+                + (f"; resets in {reset}" if reset else "")
+            ) from None
+        except (urllib.error.URLError, TimeoutError, OSError):
+            raise ValueError(f"{model} probe could not reach CLIProxyAPI.") from None
+    print("Proxy quota probe OK: " + ", ".join(models))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--key", action="store_true", help="Emit client key for shell capture only")
     parser.add_argument("--base-url", default="http://127.0.0.1:8317")
     parser.add_argument("--provider", choices=("claude", "codex", "gemini"), default="claude")
+    parser.add_argument("--probe", action="store_true", help="Also send one tiny request per model to catch quota cooldowns")
     parser.add_argument("models", nargs="*")
     args = parser.parse_args()
     try:
@@ -89,6 +124,8 @@ def main():
             print(client_key())
         else:
             check_models(args.base_url, args.models, args.provider)
+            if args.probe:
+                probe_models(args.base_url, args.models)
     except ValueError as exc:
         print(f"CLIProxyAPI: {exc}", file=sys.stderr)
         return 1

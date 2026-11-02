@@ -173,6 +173,26 @@ class TestCallWithRateLimitRetry:
         assert call_with_rate_limit_retry(fn) == "ok"
         assert sleeps == [30.0]
 
+    def test_retry_after_beyond_budget_fails_fast(self, sleeps):
+        # CLIProxyAPI usage_limit_reached cooldown: Retry-After of hours.
+        fn = MagicMock(side_effect=_FakeStatusError(headers={"retry-after": "13528"}))
+        with pytest.raises(_FakeStatusError):
+            call_with_rate_limit_retry(fn)
+        assert fn.call_count == 1
+        assert sleeps == []
+
+    def test_retry_after_beyond_remaining_budget_stops_retrying(self, sleeps, monkeypatch):
+        monkeypatch.setenv("TRADINGAGENTS_RATE_LIMIT_MAX_WAIT", "30")
+        fn = MagicMock(side_effect=[
+            _FakeStatusError(headers={"retry-after": "130"}),
+            _FakeStatusError(headers={"retry-after": "130"}),
+        ])
+        with pytest.raises(_FakeStatusError):
+            call_with_rate_limit_retry(fn)
+        # 130s fits 5x30s, then exceeds the 4x30s left after one wait.
+        assert fn.call_count == 2
+        assert sleeps == [30.0]
+
     def test_quota_exhaustion_never_retried(self, sleeps):
         fn = MagicMock(side_effect=_FakeStatusError(code="insufficient_quota"))
         with pytest.raises(_FakeStatusError):
