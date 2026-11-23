@@ -28,6 +28,7 @@ calls.append({
     "cwd": os.getcwd(),
     "files": sorted(p.relative_to(upload).as_posix() for p in upload.rglob("*") if p.is_file()),
     "redirects": (upload / "_redirects").read_text(),
+    "headers": (upload / "_headers").read_text(),
     "token": os.environ.get("CLOUDFLARE_API_TOKEN"),
 })
 log.write_text(json.dumps(calls))
@@ -143,9 +144,11 @@ def test_deploy_uploads_the_commit_under_the_mirror_path(published, tmp_path):
         "--commit-dirty=false",
     ]
     assert call["files"] == [
-        "_redirects", "research/404.html", "research/AAPL/index.html", "research/index.html",
+        "_headers", "_redirects", "research/404.html", "research/AAPL/index.html",
+        "research/index.html",
     ]
     assert call["redirects"] == "/ /research/ 302\n"
+    assert call["headers"] == "/research/*\n  Access-Control-Allow-Origin: *\n"
     assert call["token"] == "token"
     # Wrangler must not pick up repository config, and the staging copy is removed.
     assert not Path(call["cwd"]).resolve().is_relative_to(repo.resolve())

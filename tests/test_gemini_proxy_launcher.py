@@ -25,6 +25,15 @@ def test_gemini_catalog(monkeypatch):
         claude_proxy.check_models("http://localhost:8317", ["gemini-test"], "gemini")
 
 
+def test_probe_expired_login_hint(monkeypatch):
+    monkeypatch.setenv("CLIPROXY_API_KEY", "fixture-key")
+    body = io.BytesIO(b'{"error":{"code":"internal_server_error","message":"auth_unavailable: no auth"}}')
+    error = claude_proxy.urllib.error.HTTPError("http://x", 503, "unavailable", {}, body)
+    with patch.object(claude_proxy.urllib.request, "urlopen", side_effect=error), \
+            pytest.raises(ValueError, match="run: cliproxyapi --claude-login"):
+        claude_proxy.probe_models("http://localhost:8317", ["claude-test"], "claude")
+
+
 @pytest.mark.parametrize("mode,brew_status,check_only,probe_status", [
     ("proxy", "0", True, "0"), ("proxy", "1", True, "0"),
     ("direct", "0", True, "0"), ("direct", "0", True, "1"),

@@ -11,7 +11,7 @@
 # default http://127.0.0.1:8317 server root.
 # TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL must be advertised by
 # the proxy. INDEX_TICKERS from default_tickers.sh (SPY, QQQ, ...) run with
-# TRADINGAGENTS_INDEX_DEEP_MODEL (default claude-fable-5-1) as their deep model;
+# TRADINGAGENTS_INDEX_DEEP_MODEL (default claude-fable-5-2) as their deep model;
 # every other setting is shared. --check-only checks access and model IDs
 # without generating reports.
 # For the public Anthropic API, set TRADINGAGENTS_MODE=direct and
@@ -37,6 +37,11 @@ ROOT="$(pwd)"
 export TRADINGAGENTS_REPORTS_DIR="$ROOT/docs"
 
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
+case "$DATE" in  # cli.main only accepts YYYY-MM-DD; also allow 20261109
+  [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]) DATE="${DATE:0:4}-${DATE:4:2}-${DATE:6:2}" ;;
+  [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;;
+  *) echo "TRADINGAGENTS_DATE must be YYYY-MM-DD or YYYYMMDD, got: $DATE" >&2; exit 1 ;;
+esac
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 PROVIDER="anthropic"
 MODE="${TRADINGAGENTS_CLAUDE_MODE:-${TRADINGAGENTS_MODE:-proxy}}"
@@ -66,13 +71,15 @@ proxy_preflight() {
     export CLIPROXY_API_KEY
     export ANTHROPIC_API_KEY="$CLIPROXY_API_KEY"
     unset ANTHROPIC_AUTH_TOKEN
-    "$PYTHON" scripts/claude_proxy.py --base-url "$BACKEND_URL" "$@" || return 1
+    # --probe catches an expired Claude login (503 auth_unavailable) or quota
+    # cooldown before every worker hits it; /v1/models still lists models then.
+    "$PYTHON" scripts/claude_proxy.py --probe --base-url "$BACKEND_URL" "$@" || return 1
   else
     echo "Direct Anthropic API selected; proxy preflight does not apply."
   fi
 }
 DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-5-5}"
-INDEX_DEEP_MODEL="${TRADINGAGENTS_INDEX_DEEP_MODEL:-claude-fable-5-1}"
+INDEX_DEEP_MODEL="${TRADINGAGENTS_INDEX_DEEP_MODEL:-claude-fable-5-2}"
 QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-claude-sonnet-5-5}"
 # xhigh thinking counts against max_tokens: a small .env cap (e.g. 8192) lets
 # thinking consume it and return no answer (stop reason: max_tokens). An empty

@@ -108,10 +108,13 @@ One-time setup:
 
 ```bash
 npx wrangler login   # or set CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID
-npx wrangler pages project create tradingagents-reports --production-branch main
+npx wrangler pages project create altairworld-reports --production-branch main
 ```
 
-Then set `CLOUDFLARE_PAGES_PROJECT=tradingagents-reports` in the environment or
+`*.pages.dev` names are global: `tradingagents-reports.pages.dev` belongs to
+someone else. Point other sites at the URL the create command prints.
+
+Then set `CLOUDFLARE_PAGES_PROJECT=altairworld-reports` in the environment or
 the project `.env`, and copy the current site once:
 
 ```bash

@@ -21,6 +21,11 @@ cd "$ROOT" || exit 1
 export TRADINGAGENTS_REPORTS_DIR="$ROOT/docs"
 
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
+case "$DATE" in  # cli.main only accepts YYYY-MM-DD; also allow 20261109
+  [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]) DATE="${DATE:0:4}-${DATE:4:2}-${DATE:6:2}" ;;
+  [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;;
+  *) echo "TRADINGAGENTS_DATE must be YYYY-MM-DD or YYYYMMDD, got: $DATE" >&2; exit 1 ;;
+esac
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
 DEPTH="${TRADINGAGENTS_DEPTH:-5}"
 POLL_SECONDS="${POLL_SECONDS:-300}"

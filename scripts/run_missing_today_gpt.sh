@@ -29,6 +29,11 @@ ROOT="$(pwd)"
 export TRADINGAGENTS_REPORTS_DIR="$ROOT/docs"
 
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
+case "$DATE" in  # cli.main only accepts YYYY-MM-DD; also allow 20261109
+  [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]) DATE="${DATE:0:4}-${DATE:4:2}-${DATE:6:2}" ;;
+  [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;;
+  *) echo "TRADINGAGENTS_DATE must be YYYY-MM-DD or YYYYMMDD, got: $DATE" >&2; exit 1 ;;
+esac
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 # PROVIDER must be one `cli.main run` actually accepts ("cliproxyapi" isn't
 # and fails --provider validation outright); "openai" plus a BACKEND_URL
@@ -68,8 +73,8 @@ proxy_preflight() {
     echo "Direct OpenAI API selected; proxy preflight does not apply."
   fi
 }
-DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-gpt-6-astra}"
-QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-gpt-6.1-sol}"
+DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-gpt-6.2-astra}"
+QUICK_MODEL="${TRADINGAGENTS_QUICK_MODEL:-gpt-6.2-sol}"
 REASONING_EFFORT="${TRADINGAGENTS_OPENAI_REASONING_EFFORT:-max}"
 ANALYSTS="${TRADINGAGENTS_ANALYSTS:-market,social,news,fundamentals}"
 DEPTH="${TRADINGAGENTS_DEPTH:-5}"
@@ -82,7 +87,7 @@ model_slug() {
 }
 MODEL_SLUG="$(model_slug "$DEEP_MODEL")"
 REPORT_GLOB="${DATE_SLUG}_${MODEL_SLUG}_*"
-CONCURRENCY="${CONCURRENCY:-10}"
+CONCURRENCY="${CONCURRENCY:-20}"
 case "$CONCURRENCY" in
   ''|*[!0-9]*) echo "CONCURRENCY must be a positive integer" >&2; exit 1 ;;
 esac

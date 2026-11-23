@@ -80,7 +80,7 @@ def check_models(base_url, models, provider="claude"):
     print("Proxy preflight OK: " + ", ".join(models))
 
 
-def probe_models(base_url, models):
+def probe_models(base_url, models, provider="claude"):
     """Send one tiny completion per model; an advertised model can still be in quota cooldown."""
     url = base_url.rstrip("/")
     if not url.endswith("/v1"):
@@ -102,9 +102,13 @@ def probe_models(base_url, models):
             if not isinstance(error, dict):
                 error = {}
             reset = error.get("reset_time") or exc.headers.get("Retry-After")
+            # An expired upstream OAuth login surfaces as 503 auth_unavailable.
+            relogin = "auth_unavailable" in str(error.get("message", "")) and provider != "gemini"
             raise ValueError(
                 f"{model} probe returned HTTP {exc.code} ({error.get('code') or 'error'})"
                 + (f"; resets in {reset}" if reset else "")
+                + (f"; the proxy's {provider} login expired, run: cliproxyapi --{provider}-login"
+                   if relogin else "")
             ) from None
         except (urllib.error.URLError, TimeoutError, OSError):
             raise ValueError(f"{model} probe could not reach CLIProxyAPI.") from None
@@ -125,7 +129,7 @@ def main():
         else:
             check_models(args.base_url, args.models, args.provider)
             if args.probe:
-                probe_models(args.base_url, args.models)
+                probe_models(args.base_url, args.models, args.provider)
     except ValueError as exc:
         print(f"CLIProxyAPI: {exc}", file=sys.stderr)
         return 1

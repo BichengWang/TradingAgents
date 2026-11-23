@@ -53,6 +53,8 @@ if os.environ["SMOKE_FAIL"] == "1":
 if sys.argv[1].endswith("build_publish_site.py"):
     raise SystemExit(0)
 value = lambda flag: sys.argv[sys.argv.index(flag) + 1]
+if value("--date") != "2000-01-01":  # cli.main rejects compact dates
+    raise SystemExit("bad --date " + value("--date"))
 slug = value("--deep-model").translate(str.maketrans({"/": "-", ":": "-", ".": "-"}))
 report = Path(os.environ["TRADINGAGENTS_REPORTS_DIR"]) / value("--ticker") / (value("--date").replace("-", "") + "_" + slug + "_20000102_030405")
 report.mkdir(parents=True)
@@ -77,7 +79,7 @@ for stage in ("complete_report.md", "1_analysts/market.md", "3_trading/trader.md
         "PATH": str(root / "bin") + os.pathsep + os.defpath,
         "TRADINGAGENTS_MODE": "direct",
         "TRADINGAGENTS_PYTHON": str(root / "bin/probe-python"),
-        "TRADINGAGENTS_DATE": "2000-01-01",
+        "TRADINGAGENTS_DATE": "20000101",  # compact form must be normalized
         "TA_LOGDIR": str(root / "logs"),
         "SMOKE_ROOT": str(root),
         "SMOKE_FAIL": str(int(worker_fails)),
@@ -113,3 +115,15 @@ for stage in ("complete_report.md", "1_analysts/market.md", "3_trading/trader.md
         assert ("STILL FAILING (check " in stdout) is worker_fails
         assert set((root / "logs").glob("*.log")) == {root / "logs/NVDA.log"}
     assert not (root / ".tradingagents/run_missing_today_gpt.lock").exists()
+
+
+@pytest.mark.parametrize("name", [
+    "run_missing_today_gpt.sh", "run_missing_today_claude.sh",
+    "run_missing_today_gemini.sh", "run_all_today.sh", "run_batch_gpt.sh",
+])
+def test_invalid_date_fails_before_work(tmp_path, name):
+    env = {"PATH": os.defpath, "TRADINGAGENTS_DATE": "2026/11/09", "TA_LOGDIR": str(tmp_path)}
+    result = subprocess.run(["/bin/bash", str(ROOT / "scripts" / name), "NVDA"],
+                            env=env, capture_output=True, text=True, timeout=30)
+    assert result.returncode == 1
+    assert "TRADINGAGENTS_DATE must be YYYY-MM-DD or YYYYMMDD" in result.stderr

@@ -117,6 +117,11 @@ def stage(commit: str, upload: Path, mirror: Mirror) -> str:
     sha = publisher.snapshot_published_site(site, commit)
     # The bare project URL lands on the reports instead of a 404.
     (upload / "_redirects").write_text(f"/ /{mirror.path}/ 302\n", encoding="utf-8")
+    # Match GitHub Pages: other sites (altairworld's ticker hubs) read the
+    # sitemap and reports from the browser.
+    (upload / "_headers").write_text(
+        f"/{mirror.path}/*\n  Access-Control-Allow-Origin: *\n", encoding="utf-8"
+    )
     files = [path for path in upload.rglob("*") if path.is_file()]
     if len(files) > mirror.max_files:
         raise workflow.WorkflowError(

@@ -21,6 +21,11 @@ ROOT="$(pwd)"
 export TRADINGAGENTS_REPORTS_DIR="$ROOT/docs"
 
 DATE="${TRADINGAGENTS_DATE:-$(date +%F)}"
+case "$DATE" in  # cli.main only accepts YYYY-MM-DD; also allow 20261109
+  [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]) DATE="${DATE:0:4}-${DATE:4:2}-${DATE:6:2}" ;;
+  [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]) ;;
+  *) echo "TRADINGAGENTS_DATE must be YYYY-MM-DD or YYYYMMDD, got: $DATE" >&2; exit 1 ;;
+esac
 DATE_SLUG="${DATE//-/}"                       # 2026-06-01 -> 20260601 (folder prefix)
 PROVIDER="google"
 MODE="${TRADINGAGENTS_GEMINI_MODE:-${TRADINGAGENTS_MODE:-proxy}}"
