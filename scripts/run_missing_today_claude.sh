@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run missing reports through CLIProxyAPI using its existing Claude login.
+# Run missing reports through CLIProxyAPI or the direct Anthropic API.
 # Usage:
 #   bash scripts/run_missing_today_claude.sh --check-only
 #   bash scripts/run_missing_today_claude.sh NVDA AMD
@@ -12,8 +12,8 @@
 # TRADINGAGENTS_DEEP_MODEL / TRADINGAGENTS_QUICK_MODEL must be advertised by
 # the proxy. INDEX_TICKERS from default_tickers.sh (SPY, QQQ, ...) run with
 # TRADINGAGENTS_INDEX_DEEP_MODEL (default claude-fable-5-2) as their deep model;
-# every other setting is shared. --check-only checks access and model IDs
-# without generating reports.
+# every other setting is shared. --check-only [TICKER ...] probes the selected
+# models without generating reports. Direct probes request one output token.
 # For the public Anthropic API, set TRADINGAGENTS_MODE=direct and
 # ANTHROPIC_API_KEY. The direct API key may also come from the project's .env.
 # TRADINGAGENTS_MODE defaults to proxy; TRADINGAGENTS_CLAUDE_MODE overrides it.
@@ -50,16 +50,20 @@ case "$MODE" in
   direct) BACKEND_URL="${TRADINGAGENTS_LLM_BACKEND_URL:-https://api.anthropic.com}" ;;
   *) echo "TRADINGAGENTS_CLAUDE_MODE/TRADINGAGENTS_MODE must be proxy or direct" >&2; exit 1 ;;
 esac
-PYTHON="${TRADINGAGENTS_PYTHON:-$ROOT/.venv/bin/python}"
-if [ ! -x "$PYTHON" ]; then
-  PYTHON="python3"
+PYTHON=("${TRADINGAGENTS_PYTHON:-$ROOT/.venv/bin/python}")
+if ! command -v "${PYTHON[0]}" >/dev/null; then
+  if [ "$MODE" = direct ]; then
+    PYTHON=(uv run python)
+  else
+    PYTHON=(python3)
+  fi
 fi
 CHECK_ONLY=0
 if [ "${1:-}" = "--check-only" ]; then
   CHECK_ONLY=1
   shift
 fi
-proxy_preflight() {
+model_preflight() {
   if [ "$MODE" = proxy ]; then
     # Homebrew leaves an already-running service in place.
     if ! brew services start cliproxyapi; then
@@ -67,15 +71,16 @@ proxy_preflight() {
       return 1
     fi
     # Keep credentials out of worker command-line arguments and log output.
-    CLIPROXY_API_KEY="$("$PYTHON" scripts/claude_proxy.py --key)" || return 1
+    CLIPROXY_API_KEY="$("${PYTHON[@]}" scripts/claude_proxy.py --key)" || return 1
     export CLIPROXY_API_KEY
     export ANTHROPIC_API_KEY="$CLIPROXY_API_KEY"
     unset ANTHROPIC_AUTH_TOKEN
     # --probe catches an expired Claude login (503 auth_unavailable) or quota
     # cooldown before every worker hits it; /v1/models still lists models then.
-    "$PYTHON" scripts/claude_proxy.py --probe --base-url "$BACKEND_URL" "$@" || return 1
+    "${PYTHON[@]}" scripts/claude_proxy.py --probe --base-url "$BACKEND_URL" "$@"
   else
-    echo "Direct Anthropic API selected; proxy preflight does not apply."
+    echo "Direct Anthropic API selected."
+    "${PYTHON[@]}" -m scripts.anthropic_model_probe --base-url "$BACKEND_URL" "$@"
   fi
 }
 DEEP_MODEL="${TRADINGAGENTS_DEEP_MODEL:-claude-opus-5-5}"
@@ -99,18 +104,13 @@ model_slug() {
 }
 MODEL_SLUG="$(model_slug "$DEEP_MODEL")"
 INDEX_MODEL_SLUG="$(model_slug "$INDEX_DEEP_MODEL")"
-CONCURRENCY="${CONCURRENCY:-20}"
+CONCURRENCY="${CONCURRENCY:-5}"
 case "$CONCURRENCY" in
   ''|*[!0-9]*|0) echo "CONCURRENCY must be a positive integer" >&2; exit 1 ;;
 esac
-if [ "$CHECK_ONLY" -eq 1 ]; then
-  proxy_preflight "$DEEP_MODEL" "$INDEX_DEEP_MODEL" "$QUICK_MODEL"
-  exit $?
-fi
 LOGDIR="${TA_LOGDIR:-/tmp/ta_runlogs}"
-mkdir -p "$LOGDIR"
 
-source "$ROOT/scripts/default_tickers.sh"
+source "$ROOT/scripts/default_tickers.sh" || exit 1
 ALL_TICKERS=()
 if [ "$#" -gt 0 ]; then
   for t in "$@"; do
@@ -141,10 +141,8 @@ missing_tickers() {
   fi
 }
 
-# --- run one heavy-run pass over a list of tickers ------------------------
-# Mirrors the skill.md "heavy run" one-liner exactly.
-run_pass() {
-  local conc="$1" t; shift
+worker_models() {
+  local t
   # One "<TICKER> <DEEP_MODEL>" line per worker; model IDs contain no spaces.
   for t in "$@"; do
     if is_index_ticker "$t"; then
@@ -152,7 +150,12 @@ run_pass() {
     else
       printf '%s %s\n' "$t" "$DEEP_MODEL"
     fi
-  done | xargs -P"$conc" -I{} bash -c '
+  done
+}
+
+run_pass() {
+  local conc="$1"; shift
+  worker_models "$@" | xargs -P"$conc" -I{} bash -c '
       t="${1%% *}"; DEEP_MODEL="${1#* }"; DATE="$2"; LOGDIR="$3"; PROVIDER="$4"; BACKEND_URL="$5"; QUICK_MODEL="$6"; ANALYSTS="$7"; DEPTH="$8"; REASONING_EFFORT="$9"
       TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT="${TRADINGAGENTS_SENTIMENT_INCLUDE_REDDIT:-0}" \
       TRADINGAGENTS_ANTHROPIC_CACHE=1 \
@@ -206,19 +209,19 @@ if [ "${#INDEX_RUN[@]}" -gt 0 ]; then
 fi
 
 # --- pass 1: everything missing, at the safe concurrency ------------------
-collect_missing TODO || exit 1
+if [ "$CHECK_ONLY" -eq 1 ]; then
+  TODO=("${ALL_TICKERS[@]}")
+else
+  collect_missing TODO || exit 1
+fi
 if [ "${#TODO[@]}" -eq 0 ]; then
   echo "Nothing to run — all ${#ALL_TICKERS[@]} tickers already have a ${REPORT_GLOB} report."
   exit 0
 fi
-PREFLIGHT_MODELS=("$DEEP_MODEL" "$QUICK_MODEL")
-for t in "${TODO[@]}"; do
-  if is_index_ticker "$t"; then
-    PREFLIGHT_MODELS+=("$INDEX_DEEP_MODEL")
-    break
-  fi
-done
-proxy_preflight "${PREFLIGHT_MODELS[@]}" || exit 1
+read_into DEEP_MODELS < <(worker_models "${TODO[@]}" | awk '!seen[$2]++ { print $2 }')
+model_preflight "$QUICK_MODEL" "${DEEP_MODELS[@]}" || exit 1
+if [ "$CHECK_ONLY" -eq 1 ]; then exit 0; fi
+mkdir -p "$LOGDIR" || exit 1
 echo "Pass 1: ${#TODO[@]} ticker(s) missing for ${DATE} ${MODEL_LABEL}, concurrency=${CONCURRENCY}"
 echo "  ${TODO[*]}"
 run_pass "$CONCURRENCY" "${TODO[@]}"

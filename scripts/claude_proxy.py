@@ -123,13 +123,14 @@ def main():
     parser.add_argument("--probe", action="store_true", help="Also send one tiny request per model to catch quota cooldowns")
     parser.add_argument("models", nargs="*")
     args = parser.parse_args()
+    models = list(dict.fromkeys(args.models))
     try:
         if args.key:
             print(client_key())
         else:
-            check_models(args.base_url, args.models, args.provider)
+            check_models(args.base_url, models, args.provider)
             if args.probe:
-                probe_models(args.base_url, args.models, args.provider)
+                probe_models(args.base_url, models, args.provider)
     except ValueError as exc:
         print(f"CLIProxyAPI: {exc}", file=sys.stderr)
         return 1
