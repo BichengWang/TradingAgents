@@ -165,6 +165,25 @@ def test_success_exit_without_a_complete_report_fails(repo):
     assert '[OK NVDA]' not in result.stdout
 
 
+@pytest.mark.parametrize("check_only", [False, True])
+def test_claude_direct_preflight_stops_before_workers(repo, check_only):
+    root, env = repo
+    (root / 'scripts/default_tickers.sh').write_text('INDEX_TICKERS=(SPY)\nDEFAULT_TICKERS=(SPY NVDA)\n')
+    probe = root / 'bin/probe'
+    probe.write_text('#!/bin/bash\nprintf "%s\\n" "$@" > "$FIXTURE_ROOT/probe-args"\nexit 1\n')
+    probe.chmod(0o755)
+    args = ['--check-only', 'SPY'] if check_only else ['SPY']
+    result = invoke(root, dict(env, TRADINGAGENTS_PYTHON=str(probe),
+                               TRADINGAGENTS_QUICK_MODEL='quick', TRADINGAGENTS_INDEX_DEEP_MODEL='index'),
+                    'run_missing_today_claude.sh', *args)
+    assert result.returncode == 1
+    assert (root / 'probe-args').read_text().splitlines() == [
+        '-m', 'scripts.anthropic_model_probe', '--base-url', 'https://api.anthropic.com', 'quick', 'index',
+    ]
+    assert not (root / 'calls').exists()
+    assert not (root / 'logs').exists()
+
+
 @pytest.mark.parametrize('launcher', LAUNCHERS)
 def test_launchers_preserve_checkpoints(repo, launcher):
     root, env = repo

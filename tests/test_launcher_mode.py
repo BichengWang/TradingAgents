@@ -3,9 +3,13 @@
 import os
 import shutil
 import subprocess
+import sys
 from pathlib import Path
+from unittest.mock import Mock, patch
 
 import pytest
+
+from scripts import anthropic_model_probe
 
 ROOT = Path(__file__).resolve().parents[1]
 LAUNCHERS = {
@@ -28,6 +32,7 @@ def test_shared_mode_and_provider_override(tmp_path, provider, shared, specific,
     (root / "bin").mkdir()
     script = root / f"scripts/run_missing_today_{provider}.sh"
     shutil.copy2(ROOT / script.relative_to(root), script)
+    shutil.copy2(ROOT / "scripts/default_tickers.sh", root / "scripts/default_tickers.sh")
 
     brew = root / "bin/brew"
     brew.write_text('#!/bin/bash\necho brew >> "$CAPTURE"\n')
@@ -142,6 +147,7 @@ done
     env = {
         "PATH": str(root / "bin") + os.pathsep + os.defpath,
         "TRADINGAGENTS_MODE": "direct",
+        "TRADINGAGENTS_PYTHON": "/usr/bin/true",
         "TRADINGAGENTS_DATE": "2000-01-01",
         "TA_LOGDIR": str(root / "logs"),
         "CAPTURE": str(capture),
@@ -158,3 +164,36 @@ done
     assert capture.read_text() == (token_budget or "")
     args = capture.with_suffix(".args").read_text().splitlines()
     assert args[args.index("--anthropic-effort") + 1] == (effort or "xhigh")
+
+
+def test_direct_anthropic_probe_surfaces_usage_limit(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "fixture-key")
+    message = ("You have reached your specified API usage limits. "
+               "You will regain access on 2030-04-01 at 00:00 UTC.")
+    response = Mock(status_code=400, headers={})
+    error = anthropic_model_probe.anthropic.BadRequestError(
+        "Bad request", response=response, body={"error": {"message": message}},
+    )
+    with patch.object(anthropic_model_probe.anthropic, "Anthropic") as sdk:
+        create = sdk.return_value.__enter__.return_value.messages.create
+        create.side_effect = error
+        with pytest.raises(ValueError, match="HTTP 400") as failure:
+            anthropic_model_probe.probe_models("https://example.invalid", ["quick", "deep"])
+        assert message in str(failure.value)
+        assert "https://platform.claude.com/settings/spend-limits" in str(failure.value)
+        assert sdk.call_args.kwargs["max_retries"] == 0
+        create.assert_called_once_with(model="quick", max_tokens=1, messages=[{"role": "user", "content": "OK"}])
+
+
+@pytest.mark.parametrize("quick_provider,quick_url,expected", [
+    ("anthropic", None, [("https://deep.invalid", ["model"])]),
+    ("anthropic", "https://quick.invalid", [("https://quick.invalid", ["model"]), ("https://deep.invalid", ["model"])]),
+    ("openai", "https://quick.invalid", [("https://deep.invalid", ["model"])]),
+])
+def test_direct_probe_follows_tier_routes(monkeypatch, quick_provider, quick_url, expected):
+    monkeypatch.setitem(anthropic_model_probe.DEFAULT_CONFIG, "quick_think_provider", quick_provider)
+    monkeypatch.setitem(anthropic_model_probe.DEFAULT_CONFIG, "quick_think_backend_url", quick_url)
+    monkeypatch.setattr(sys, "argv", ["probe", "--base-url", "https://deep.invalid", "model", "model"])
+    with patch.object(anthropic_model_probe, "probe_models") as probe:
+        assert anthropic_model_probe.main() == 0
+        assert [call.args for call in probe.call_args_list] == expected
